@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="15G31" minimumToolsVersion="Xcode 8.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+    <entity name="BTExercise" representedClassName="BTExercise" syncable="YES">
+        <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="iteration" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sets" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="style" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="workout" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BTWorkout" inverseName="exercises" inverseEntity="BTWorkout" syncable="YES"/>
+    </entity>
+    <entity name="BTExerciseType" representedClassName="BTExerciseType" syncable="YES">
+        <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="iterations" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="style" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="BTUser" representedClassName="BTUser" syncable="YES">
+        <attribute name="recentEdits" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="typeListVersion" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="workouts" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="BTWorkout" inverseName="user" inverseEntity="BTWorkout" syncable="YES"/>
+    </entity>
+    <entity name="BTWorkout" representedClassName="BTWorkout" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="duration" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="summary" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="exercises" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="BTExercise" inverseName="workout" inverseEntity="BTExercise" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BTUser" inverseName="workouts" inverseEntity="BTUser" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="BTUser" positionX="-488" positionY="-105" width="128" height="103"/>
+        <element name="BTWorkout" positionX="-306" positionY="-105" width="128" height="148"/>
+        <element name="BTExercise" positionX="-137" positionY="-108" width="128" height="133"/>
+        <element name="BTExerciseType" positionX="-137" positionY="-249" width="128" height="103"/>
+    </elements>
+</model>

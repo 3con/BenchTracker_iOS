@@ -21,6 +21,16 @@
 		F90A4F7B19438FF0006F190F /* StepDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F90A4F7A19438FF0006F190F /* StepDetailViewController.m */; };
 		F90A4F7D1943A089006F190F /* StepImages in Resources */ = {isa = PBXBuildFile; fileRef = F90A4F7C1943A089006F190F /* StepImages */; };
 		F981D5891F022D9A00E7B456 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F981D5871F022D9A00E7B456 /* LaunchScreen.xib */; };
+		F9DA75111F02DC1700347B0D /* BTDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F9DA750F1F02DC1700347B0D /* BTDataModel.xcdatamodeld */; };
+		F9DA75221F02EE9600347B0D /* BTUser+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F9DA75131F02EE9600347B0D /* BTUser+CoreDataClass.m */; };
+		F9DA75231F02EE9600347B0D /* BTUser+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F9DA75151F02EE9600347B0D /* BTUser+CoreDataProperties.m */; };
+		F9DA75241F02EE9600347B0D /* BTExercise+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F9DA75171F02EE9600347B0D /* BTExercise+CoreDataClass.m */; };
+		F9DA75251F02EE9600347B0D /* BTExercise+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F9DA75191F02EE9600347B0D /* BTExercise+CoreDataProperties.m */; };
+		F9DA75261F02EE9600347B0D /* BTExerciseType+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F9DA751B1F02EE9600347B0D /* BTExerciseType+CoreDataClass.m */; };
+		F9DA75271F02EE9600347B0D /* BTExerciseType+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F9DA751D1F02EE9600347B0D /* BTExerciseType+CoreDataProperties.m */; };
+		F9DA75281F02EE9600347B0D /* BTWorkout+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F9DA751F1F02EE9600347B0D /* BTWorkout+CoreDataClass.m */; };
+		F9DA75291F02EE9600347B0D /* BTWorkout+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F9DA75211F02EE9600347B0D /* BTWorkout+CoreDataProperties.m */; };
+		F9DA75331F02F0B800347B0D /* BTTypeListManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F9DA75321F02F0B800347B0D /* BTTypeListManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +70,25 @@
 		F90A4F7A19438FF0006F190F /* StepDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StepDetailViewController.m; sourceTree = "<group>"; };
 		F90A4F7C1943A089006F190F /* StepImages */ = {isa = PBXFileReference; lastKnownFileType = folder; name = StepImages; path = BenchTracker/StepImages; sourceTree = "<group>"; };
 		F981D5881F022D9A00E7B456 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		F9DA75101F02DC1700347B0D /* BTDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BTDataModel.xcdatamodel; sourceTree = "<group>"; };
+		F9DA75121F02EE9600347B0D /* BTUser+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "BTUser+CoreDataClass.h"; path = "BenchTracker/BTUser+CoreDataClass.h"; sourceTree = "<group>"; };
+		F9DA75131F02EE9600347B0D /* BTUser+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "BTUser+CoreDataClass.m"; path = "BenchTracker/BTUser+CoreDataClass.m"; sourceTree = "<group>"; };
+		F9DA75141F02EE9600347B0D /* BTUser+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "BTUser+CoreDataProperties.h"; path = "BenchTracker/BTUser+CoreDataProperties.h"; sourceTree = "<group>"; };
+		F9DA75151F02EE9600347B0D /* BTUser+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "BTUser+CoreDataProperties.m"; path = "BenchTracker/BTUser+CoreDataProperties.m"; sourceTree = "<group>"; };
+		F9DA75161F02EE9600347B0D /* BTExercise+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "BTExercise+CoreDataClass.h"; path = "BenchTracker/BTExercise+CoreDataClass.h"; sourceTree = "<group>"; };
+		F9DA75171F02EE9600347B0D /* BTExercise+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "BTExercise+CoreDataClass.m"; path = "BenchTracker/BTExercise+CoreDataClass.m"; sourceTree = "<group>"; };
+		F9DA75181F02EE9600347B0D /* BTExercise+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "BTExercise+CoreDataProperties.h"; path = "BenchTracker/BTExercise+CoreDataProperties.h"; sourceTree = "<group>"; };
+		F9DA75191F02EE9600347B0D /* BTExercise+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "BTExercise+CoreDataProperties.m"; path = "BenchTracker/BTExercise+CoreDataProperties.m"; sourceTree = "<group>"; };
+		F9DA751A1F02EE9600347B0D /* BTExerciseType+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "BTExerciseType+CoreDataClass.h"; path = "BenchTracker/BTExerciseType+CoreDataClass.h"; sourceTree = "<group>"; };
+		F9DA751B1F02EE9600347B0D /* BTExerciseType+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "BTExerciseType+CoreDataClass.m"; path = "BenchTracker/BTExerciseType+CoreDataClass.m"; sourceTree = "<group>"; };
+		F9DA751C1F02EE9600347B0D /* BTExerciseType+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "BTExerciseType+CoreDataProperties.h"; path = "BenchTracker/BTExerciseType+CoreDataProperties.h"; sourceTree = "<group>"; };
+		F9DA751D1F02EE9600347B0D /* BTExerciseType+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "BTExerciseType+CoreDataProperties.m"; path = "BenchTracker/BTExerciseType+CoreDataProperties.m"; sourceTree = "<group>"; };
+		F9DA751E1F02EE9600347B0D /* BTWorkout+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "BTWorkout+CoreDataClass.h"; path = "BenchTracker/BTWorkout+CoreDataClass.h"; sourceTree = "<group>"; };
+		F9DA751F1F02EE9600347B0D /* BTWorkout+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "BTWorkout+CoreDataClass.m"; path = "BenchTracker/BTWorkout+CoreDataClass.m"; sourceTree = "<group>"; };
+		F9DA75201F02EE9600347B0D /* BTWorkout+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "BTWorkout+CoreDataProperties.h"; path = "BenchTracker/BTWorkout+CoreDataProperties.h"; sourceTree = "<group>"; };
+		F9DA75211F02EE9600347B0D /* BTWorkout+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "BTWorkout+CoreDataProperties.m"; path = "BenchTracker/BTWorkout+CoreDataProperties.m"; sourceTree = "<group>"; };
+		F9DA75311F02F0B800347B0D /* BTTypeListManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTypeListManager.h; sourceTree = "<group>"; };
+		F9DA75321F02F0B800347B0D /* BTTypeListManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTypeListManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +131,7 @@
 		F90712A319415FB0008694E5 /* BenchTracker */ = {
 			isa = PBXGroup;
 			children = (
+				F9DA752F1F02F08D00347B0D /* Classes */,
 				F90712A819415FB1008694E5 /* AppDelegate.h */,
 				F90712A919415FB1008694E5 /* AppDelegate.m */,
 				F90712AB19415FB1008694E5 /* MasterViewController.h */,
@@ -120,6 +150,7 @@
 				F90A4F36194295BF006F190F /* Workout.m */,
 				F90A4F381942B3EE006F190F /* Step.h */,
 				F90A4F391942B3EE006F190F /* Step.m */,
+				F9DA750F1F02DC1700347B0D /* BTDataModel.xcdatamodeld */,
 				F90712B419415FB2008694E5 /* Images.xcassets */,
 				F90712A419415FB0008694E5 /* Supporting Files */,
 			);
@@ -150,6 +181,80 @@
 				F90712BF19415FB4008694E5 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F9DA752A1F02F00200347B0D /* BTWorkout */ = {
+			isa = PBXGroup;
+			children = (
+				F9DA751E1F02EE9600347B0D /* BTWorkout+CoreDataClass.h */,
+				F9DA751F1F02EE9600347B0D /* BTWorkout+CoreDataClass.m */,
+				F9DA75201F02EE9600347B0D /* BTWorkout+CoreDataProperties.h */,
+				F9DA75211F02EE9600347B0D /* BTWorkout+CoreDataProperties.m */,
+			);
+			name = BTWorkout;
+			sourceTree = "<group>";
+		};
+		F9DA752B1F02F00C00347B0D /* BTExerciseType */ = {
+			isa = PBXGroup;
+			children = (
+				F9DA751A1F02EE9600347B0D /* BTExerciseType+CoreDataClass.h */,
+				F9DA751B1F02EE9600347B0D /* BTExerciseType+CoreDataClass.m */,
+				F9DA751C1F02EE9600347B0D /* BTExerciseType+CoreDataProperties.h */,
+				F9DA751D1F02EE9600347B0D /* BTExerciseType+CoreDataProperties.m */,
+			);
+			name = BTExerciseType;
+			sourceTree = "<group>";
+		};
+		F9DA752C1F02F01800347B0D /* BTExercise */ = {
+			isa = PBXGroup;
+			children = (
+				F9DA75161F02EE9600347B0D /* BTExercise+CoreDataClass.h */,
+				F9DA75171F02EE9600347B0D /* BTExercise+CoreDataClass.m */,
+				F9DA75181F02EE9600347B0D /* BTExercise+CoreDataProperties.h */,
+				F9DA75191F02EE9600347B0D /* BTExercise+CoreDataProperties.m */,
+			);
+			name = BTExercise;
+			sourceTree = "<group>";
+		};
+		F9DA752D1F02F02000347B0D /* BTUser */ = {
+			isa = PBXGroup;
+			children = (
+				F9DA75121F02EE9600347B0D /* BTUser+CoreDataClass.h */,
+				F9DA75131F02EE9600347B0D /* BTUser+CoreDataClass.m */,
+				F9DA75141F02EE9600347B0D /* BTUser+CoreDataProperties.h */,
+				F9DA75151F02EE9600347B0D /* BTUser+CoreDataProperties.m */,
+			);
+			name = BTUser;
+			sourceTree = "<group>";
+		};
+		F9DA752E1F02F08200347B0D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F9DA752D1F02F02000347B0D /* BTUser */,
+				F9DA752C1F02F01800347B0D /* BTExercise */,
+				F9DA752B1F02F00C00347B0D /* BTExerciseType */,
+				F9DA752A1F02F00200347B0D /* BTWorkout */,
+			);
+			name = Models;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		F9DA752F1F02F08D00347B0D /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				F9DA752E1F02F08200347B0D /* Models */,
+				F9DA75301F02F09300347B0D /* Managers */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		F9DA75301F02F09300347B0D /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				F9DA75311F02F0B800347B0D /* BTTypeListManager.h */,
+				F9DA75321F02F0B800347B0D /* BTTypeListManager.m */,
+			);
+			name = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -255,13 +360,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				F90712AA19415FB1008694E5 /* AppDelegate.m in Sources */,
+				F9DA75281F02EE9600347B0D /* BTWorkout+CoreDataClass.m in Sources */,
+				F9DA75271F02EE9600347B0D /* BTExerciseType+CoreDataProperties.m in Sources */,
 				F90A4F3A1942B3EE006F190F /* Step.m in Sources */,
 				F90A4F37194295BF006F190F /* Workout.m in Sources */,
+				F9DA75221F02EE9600347B0D /* BTUser+CoreDataClass.m in Sources */,
 				F90712AD19415FB1008694E5 /* MasterViewController.m in Sources */,
+				F9DA75251F02EE9600347B0D /* BTExercise+CoreDataProperties.m in Sources */,
+				F9DA75331F02F0B800347B0D /* BTTypeListManager.m in Sources */,
 				F90A4F3D1942BCE0006F190F /* StepViewController.m in Sources */,
+				F9DA75291F02EE9600347B0D /* BTWorkout+CoreDataProperties.m in Sources */,
 				F90A4F7B19438FF0006F190F /* StepDetailViewController.m in Sources */,
 				F90A4F401942D852006F190F /* SetsViewController.m in Sources */,
+				F9DA75111F02DC1700347B0D /* BTDataModel.xcdatamodeld in Sources */,
 				F90712A719415FB1008694E5 /* main.m in Sources */,
+				F9DA75241F02EE9600347B0D /* BTExercise+CoreDataClass.m in Sources */,
+				F9DA75231F02EE9600347B0D /* BTUser+CoreDataProperties.m in Sources */,
+				F9DA75261F02EE9600347B0D /* BTExerciseType+CoreDataClass.m in Sources */,
 				F90712B019415FB1008694E5 /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -484,6 +599,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F9DA750F1F02DC1700347B0D /* BTDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F9DA75101F02DC1700347B0D /* BTDataModel.xcdatamodel */,
+			);
+			currentVersion = F9DA75101F02DC1700347B0D /* BTDataModel.xcdatamodel */;
+			path = BTDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = F907129919415FB0008694E5 /* Project object */;
 }
