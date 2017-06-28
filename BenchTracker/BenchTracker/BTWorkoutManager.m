@@ -40,7 +40,7 @@
     BTWorkout *workout = [NSEntityDescription insertNewObjectForEntityForName:@"BTWorkout" inManagedObjectContext:self.context];
     workout.uuid = [[NSUUID UUID] UUIDString];
     int h = (int)[[[NSCalendar currentCalendar] components:(NSCalendarUnitHour) fromDate:[NSDate date]] hour];
-    NSString *timeStr = (h > 22 || h < 4 ) ? @"Dusk" : (h < 11) ? @"Morning" : (h < 1) ? @"Mid Day" : (h < 7) ? @"Afternoon" : @"Evening";
+    NSString *timeStr = (h > 22 || h < 4 ) ? @"Dusk" : (h < 11) ? @"Morning" : (h < 13) ? @"Mid Day" : (h < 19) ? @"Afternoon" : @"Evening";
     workout.name = [NSString stringWithFormat:@"%@ Workout",timeStr];
     workout.date = [NSDate date];
     workout.duration = 0;

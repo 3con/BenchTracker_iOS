@@ -8,6 +8,7 @@
 
 #import "MainViewController.h"
 #import "BTUserManager.h"
+#import "BTWorkoutManager.h"
 #import "ZFModalTransitionAnimator.h"
 #import "AppDelegate.h"
 
@@ -15,6 +16,7 @@
 
 @property (nonatomic) ZFModalTransitionAnimator *animator;
 @property (nonatomic) BTUserManager *userManager;
+@property (nonatomic) BTWorkoutManager *workoutManager;
 
 @end
 
@@ -24,6 +26,13 @@
     [super viewDidLoad];
     self.context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
     self.userManager = [BTUserManager sharedInstance];
+    self.workoutManager = [BTWorkoutManager sharedInstance];
+    NSError *error;
+    if (![[self fetchedResultsController] performFetch:&error]) {
+        NSLog(@"Main fetch error: %@, %@", error, [error userInfo]);
+    }
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -32,6 +41,53 @@
         [self presentLoginViewController];
     }
 }
+
+#pragma mark - fetchedResultsController
+
+- (NSFetchedResultsController *)fetchedResultsController {
+    if (_fetchedResultsController != nil) return _fetchedResultsController;
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"BTWorkout" inManagedObjectContext:self.context];
+    [fetchRequest setEntity:entity];
+    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO];
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]];
+    [fetchRequest setFetchBatchSize:20];
+    NSFetchedResultsController *theFetchedResultsController = [[NSFetchedResultsController alloc]
+                                                               initWithFetchRequest:fetchRequest
+                                                               managedObjectContext:self.context sectionNameKeyPath:nil
+                                                                          cacheName:@"Root"];
+    self.fetchedResultsController = theFetchedResultsController;
+    _fetchedResultsController.delegate = self;
+    return _fetchedResultsController;
+}
+
+#pragma mark - tableView dataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [[[_fetchedResultsController sections] objectAtIndex:section] numberOfObjects];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"WorkoutCell"];
+    if (cell == nil) cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleSubtitle reuseIdentifier: @"WorkoutCell"];
+    [self configureCell:cell atIndexPath:indexPath];
+    return cell;
+}
+
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    BTWorkout *workout = [_fetchedResultsController objectAtIndexPath:indexPath];
+    cell.textLabel.text = workout.name;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", workout.date];
+}
+
+#pragma mark - tableView delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    BTWorkout *workout = [_fetchedResultsController objectAtIndexPath:indexPath];
+    [self.workoutManager deleteWorkout:workout];
+}
+
+#pragma mark - view handling
 
 - (IBAction)workoutButtonPressed:(UIButton *)sender {
     [self presentWorkoutViewControllerWithWorkout:nil];
@@ -73,6 +129,46 @@
 
 - (void)workoutViewController:(WorkoutViewController *)workoutVC willDismissWithResultWorkout:(BTWorkout *)workout {
     
+}
+
+#pragma mark - fetchedResultsController delegate
+
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
+    [self.tableView beginUpdates];
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
+    UITableView *tableView = self.tableView;
+    switch(type) {
+        case NSFetchedResultsChangeInsert:
+            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+        case NSFetchedResultsChangeDelete:
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+        case NSFetchedResultsChangeUpdate:
+            [self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+            break;
+        case NSFetchedResultsChangeMove:
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+    }
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id )sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
+    switch(type) {
+        case NSFetchedResultsChangeInsert:
+            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+        case NSFetchedResultsChangeDelete:
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+    }
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+    [self.tableView endUpdates];
 }
 
 - (void)didReceiveMemoryWarning {

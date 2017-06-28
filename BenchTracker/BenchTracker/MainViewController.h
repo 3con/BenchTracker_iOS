@@ -10,8 +10,11 @@
 #import "LoginViewController.h"
 #import "WorkoutViewController.h"
 
-@interface MainViewController : UIViewController <WorkoutViewControllerDelegate>
+@interface MainViewController : UIViewController <WorkoutViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate>
 
+@property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @property NSManagedObjectContext *context;
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
