@@ -7,12 +7,14 @@ PODS:
   - AWSS3 (2.5.8):
     - AWSCore (= 2.5.8)
   - JSONModel (1.7.0)
+  - ZFDragableModalTransition (0.6)
 
 DEPENDENCIES:
   - AWSCognito
   - AWSDynamoDB
   - AWSS3
   - JSONModel
+  - ZFDragableModalTransition
 
 SPEC CHECKSUMS:
   AWSCognito: 8eb74039f4dc5f2d929999c4f531eeb4bd83e6cb
@@ -20,7 +22,8 @@ SPEC CHECKSUMS:
   AWSDynamoDB: 53ead656801e1a40b415fc0bebd85f1dc0dc0ead
   AWSS3: addf558f9cf2368e7fb520440867fea5596db0fb
   JSONModel: 840bc0fcffb24b8454d2c026bf26fea454b8e98d
+  ZFDragableModalTransition: 0d294eaaba6edfcb9839595de765f9ca06a4b524
 
-PODFILE CHECKSUM: 77b9b265e9fddf12bcf27d774672ea62cd72cbf3
+PODFILE CHECKSUM: e04a55e53215b66c72364806646ace975d732bdd
 
 COCOAPODS: 1.2.1

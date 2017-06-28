@@ -12,7 +12,7 @@
 
 @property (nullable, nonatomic, copy)   NSString *username;
 @property (nonatomic)                   NSNumber * _Nonnull typeListVersion;
-@property (nullable, nonatomic, retain) NSArray<NSString *> *recentEdits;
-@property (nullable, nonatomic, retain) NSArray<NSString *> *workouts;
+@property (nullable, nonatomic, retain) NSMutableArray<NSString *> *recentEdits;
+@property (nullable, nonatomic, retain) NSMutableArray<NSString *> *workouts;
 
 @end

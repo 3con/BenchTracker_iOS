@@ -15,10 +15,14 @@
 
 - (BTUser *)user;
 
-- (void)createUserWithUsername: (NSString *)username;
-
-- (void)pushUserToAWS;
-
 - (void)updateUserFromAWS;
+
+//CoreData user does not exist
+
+- (BOOL)userExistsWithUsername: (NSString *)username continueWithBlock:(void (^)(BOOL exists))completed;
+
+- (void)createUserWithUsername: (NSString *)username completionBlock:(void (^)())completed;
+
+- (void)copyUserFromAWS: (NSString *)username completionBlock:(void (^)())completed;
 
 @end

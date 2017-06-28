@@ -9,9 +9,12 @@
 #import "BTUserManager.h"
 #import "BTUser+CoreDataClass.h"
 #import "BTAWSUser.h"
+#import "BTWorkout+CoreDataClass.h"
 #import "AppDelegate.h"
 #import <AWSDynamoDB/AWSDynamoDB.h>
 #import "BenchTrackerKeys.h"
+
+#define AWS_EMPTY @"<EMPTY>"
 
 @interface BTUserManager ()
 
@@ -45,44 +48,85 @@
     return object[0];
 }
 
-- (void)getAWSUser {
-    BTUser *user = [self user];
-    if(!user) return;
-    [[self.mapper load:[BTAWSUser class] hashKey:user.username rangeKey:nil] continueWithBlock:^id(AWSTask *task) {
+- (void)userExistsWithUsername: (NSString *)username continueWithBlock:(void (^)(BOOL exists))completed {
+    [[self.mapper load:[BTAWSUser class] hashKey:username rangeKey:nil] continueWithBlock:^id(AWSTask *task) {
         if (task.error) NSLog(@"The request failed. Error: [%@]", task.error);
-        else {
-            if (task.result) { //user exists
-                self.AWSUser = task.result;
-            }
-            else {
-                [self pushUserToAWS];
-            }
-        }
+        else completed(task.result);
         return nil;
     }];
 }
 
-- (void)createUserWithUsername: (NSString *)username {
-    
+- (void)createUserWithUsername: (NSString *)username completionBlock:(void (^)())completed {
+    BTUser *user = [NSEntityDescription insertNewObjectForEntityForName:@"BTUser" inManagedObjectContext:self.context];
+    user.username = username;
+    user.typeListVersion = 0;
+    user.recentEdits = [NSKeyedArchiver archivedDataWithRootObject:@[]];
+    user.workouts = [[NSOrderedSet alloc] initWithArray:@[]];
+    [self pushUserToAWSWithCompletionBlock:^{
+        completed();
+    }];
 }
 
-- (void)pushUserToAWS {
-    BTAWSUser *AWSUser = [BTAWSUser new];
-    [[self.mapper save:AWSUser] continueWithBlock:^id(AWSTask *task) {
-        if (task.error) NSLog(@"The request failed. Error: [%@]", task.error);
-        else {
-            
-        };
-        return nil;
+- (void)copyUserFromAWS: (NSString *)username completionBlock:(void (^)())completed {
+    [self getAWSUserWithUsername:username completionBlock:^{
+        BTUser *user = [NSEntityDescription insertNewObjectForEntityForName:@"BTUser" inManagedObjectContext:self.context];
+        user = [self copyAWSUser:self.AWSUser toCDUser:user];
+        [self.context save:nil];
+        completed();
     }];
 }
 
 - (void)updateUserFromAWS {
     BTUser *user = [self user];
     if(!user) return;
-    [self getAWSUser];
+    //[self getAWSUser];
     //compare type list versions
     //compare recentEdits
+}
+
+#pragma mark - private methods
+
+- (void)getAWSUserWithUsername: (NSString *)username completionBlock:(void (^)())completed {
+    [[self.mapper load:[BTAWSUser class] hashKey:username rangeKey:nil] continueWithBlock:^id(AWSTask *task) {
+        if (task.error) NSLog(@"The request failed. Error: [%@]", task.error);
+        else {
+            if (task.result) { //user exists
+                self.AWSUser = task.result;
+                completed();
+            }
+            else NSLog(@"AWS user not found");
+        }
+        return nil;
+    }];
+}
+
+- (void)pushUserToAWSWithCompletionBlock:(void (^)())completed {
+    BTAWSUser *AWSUser = [self copyCDUser:[self user] toAWSUser:[BTAWSUser new]];
+    [[self.mapper save:AWSUser] continueWithBlock:^id(AWSTask *task) {
+        if (task.error) NSLog(@"The request failed. Error: [%@]", task.error);
+        else completed();
+        return nil;
+    }];
+}
+
+- (BTAWSUser *)copyCDUser: (BTUser *)user toAWSUser: (BTAWSUser *)AWSUser {
+    AWSUser.username = user.username;
+    AWSUser.typeListVersion = [NSNumber numberWithInt:user.typeListVersion];
+    NSArray *rE = [NSKeyedUnarchiver unarchiveObjectWithData:user.recentEdits];
+    AWSUser.recentEdits = [[NSMutableArray alloc] initWithArray:(rE.count == 0) ? @[AWS_EMPTY] : rE];
+    AWSUser.workouts = [[NSMutableArray alloc] init];
+    for (BTWorkout *workout in user.workouts) [AWSUser.workouts addObject:workout.uuid];
+    if (user.workouts.count == 0) [AWSUser.workouts addObject:AWS_EMPTY];
+    return AWSUser;
+}
+
+- (BTUser *)copyAWSUser: (BTAWSUser *)AWSUser toCDUser: (BTUser *)user {
+    user.username = AWSUser.username;
+    user.typeListVersion = AWSUser.typeListVersion.intValue;
+    if ([AWSUser.recentEdits.firstObject isEqualToString:AWS_EMPTY])
+        user.recentEdits = [NSKeyedArchiver archivedDataWithRootObject:@[]];
+    else user.recentEdits = [NSKeyedArchiver archivedDataWithRootObject:AWSUser.recentEdits];
+    return user;
 }
 
 @end

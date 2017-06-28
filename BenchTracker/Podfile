@@ -9,6 +9,7 @@ target 'BenchTracker' do
   pod 'AWSCognito'
   pod 'AWSDynamoDB'
   pod 'AWSS3'
+  pod 'ZFDragableModalTransition'
 
   # Pods for BenchTracker
 

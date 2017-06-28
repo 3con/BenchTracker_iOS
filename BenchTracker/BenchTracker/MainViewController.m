@@ -8,9 +8,11 @@
 
 #import "MainViewController.h"
 #import "BTUserManager.h"
+#import "ZFModalTransitionAnimator.h"
 
 @interface MainViewController ()
 
+@property (nonatomic) ZFModalTransitionAnimator *animator;
 @property (nonatomic) BTUserManager *userManager;
 
 @end
@@ -20,9 +22,28 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.userManager = [BTUserManager sharedInstance];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     if (![self.userManager user]) { //No user in CoreData
-        //Instantiate login vc
+        [self presentLoginViewController];
     }
+}
+
+- (void)presentLoginViewController {
+    LoginViewController *loginVC = [self.storyboard instantiateViewControllerWithIdentifier:@"l"];
+    loginVC.userManager = self.userManager;
+    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:loginVC];
+    self.animator.bounces = NO;
+    self.animator.dragable = NO;
+    self.animator.behindViewAlpha = 0.8;
+    self.animator.behindViewScale = 0.92;
+    self.animator.transitionDuration = 0.75;
+    self.animator.direction = ZFModalTransitonDirectionBottom;
+    loginVC.transitioningDelegate = self.animator;
+    loginVC.modalPresentationStyle = UIModalPresentationCustom;
+    [self presentViewController:loginVC animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {
