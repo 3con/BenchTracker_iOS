@@ -14,6 +14,7 @@
 		F90712B319415FB1008694E5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F90712B119415FB1008694E5 /* Main.storyboard */; };
 		F90712B519415FB2008694E5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F90712B419415FB2008694E5 /* Images.xcassets */; };
 		F90712C119415FB4008694E5 /* BenchTrackerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F90712C019415FB4008694E5 /* BenchTrackerTests.m */; };
+		F9418F9E1F0433980083C3DC /* AddExerciseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9418F9D1F0433980083C3DC /* AddExerciseViewController.m */; };
 		F95F932F1F02FC5000A19C4D /* TypeListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F95F932E1F02FC5000A19C4D /* TypeListModel.m */; };
 		F95F93331F03410500A19C4D /* BTAWSUser.m in Sources */ = {isa = PBXBuildFile; fileRef = F95F93321F03410500A19C4D /* BTAWSUser.m */; };
 		F95F93371F03426F00A19C4D /* BTUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F95F93361F03426F00A19C4D /* BTUserManager.m */; };
@@ -62,6 +63,8 @@
 		F90712BA19415FB4008694E5 /* BenchTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BenchTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F90712BF19415FB4008694E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F90712C019415FB4008694E5 /* BenchTrackerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BenchTrackerTests.m; sourceTree = "<group>"; };
+		F9418F9C1F0433980083C3DC /* AddExerciseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddExerciseViewController.h; sourceTree = "<group>"; };
+		F9418F9D1F0433980083C3DC /* AddExerciseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddExerciseViewController.m; sourceTree = "<group>"; };
 		F95F932D1F02FC5000A19C4D /* TypeListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeListModel.h; sourceTree = "<group>"; };
 		F95F932E1F02FC5000A19C4D /* TypeListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TypeListModel.m; sourceTree = "<group>"; };
 		F95F93311F03410500A19C4D /* BTAWSUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BTAWSUser.h; path = BenchTracker/BTAWSUser.h; sourceTree = "<group>"; };
@@ -204,6 +207,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		F9418F9F1F04339E0083C3DC /* Add Exercise */ = {
+			isa = PBXGroup;
+			children = (
+				F9418F9C1F0433980083C3DC /* AddExerciseViewController.h */,
+				F9418F9D1F0433980083C3DC /* AddExerciseViewController.m */,
+			);
+			name = "Add Exercise";
+			sourceTree = "<group>";
+		};
 		F95F93301F02FC5600A19C4D /* TypeListModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -262,9 +274,10 @@
 		F95F93481F0373AA00A19C4D /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				F95F93451F03739600A19C4D /* Login */,
 				F95F93471F0373A400A19C4D /* Main */,
 				F95F93461F03739E00A19C4D /* Workout */,
-				F95F93451F03739600A19C4D /* Login */,
+				F9418F9F1F04339E0083C3DC /* Add Exercise */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -567,6 +580,7 @@
 				F9DA75251F02EE9600347B0D /* BTExercise+CoreDataProperties.m in Sources */,
 				F95F933E1F034FA300A19C4D /* LoginViewController.m in Sources */,
 				F9DA75331F02F0B800347B0D /* BTTypeListManager.m in Sources */,
+				F9418F9E1F0433980083C3DC /* AddExerciseViewController.m in Sources */,
 				F9DA75291F02EE9600347B0D /* BTWorkout+CoreDataProperties.m in Sources */,
 				F95F93441F03738B00A19C4D /* WorkoutViewController.m in Sources */,
 				F9DA75111F02DC1700347B0D /* BTDataModel.xcdatamodeld in Sources */,

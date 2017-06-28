@@ -109,7 +109,7 @@
     for (ExerciseTypeModel *eT in model.list) {
         BTExerciseType *type = [NSEntityDescription insertNewObjectForEntityForName:@"BTExerciseType" inManagedObjectContext:self.context];
         type.name = eT.name;
-        type.iterations = [NSKeyedArchiver archivedDataWithRootObject:eT.name];
+        type.iterations = [NSKeyedArchiver archivedDataWithRootObject:eT.iterations];
         type.category = eT.category;
         type.style = eT.style;
     }

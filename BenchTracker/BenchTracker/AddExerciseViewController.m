@@ -1,32 +1,23 @@
 //
-//  MainViewController.m
+//  AddExerciseViewController.m
 //  BenchTracker
 //
-//  Created by Chappy Asel on 6/27/17.
+//  Created by Chappy Asel on 6/28/17.
 //  Copyright © 2017 CD. All rights reserved.
 //
 
-#import "MainViewController.h"
-#import "BTUserManager.h"
-#import "BTWorkoutManager.h"
-#import "ZFModalTransitionAnimator.h"
-#import "AppDelegate.h"
+#import "AddExerciseViewController.h"
+#import "BTExerciseType+CoreDataClass.h"
 
-@interface MainViewController ()
 
-@property (nonatomic) ZFModalTransitionAnimator *animator;
-@property (nonatomic) BTUserManager *userManager;
-@property (nonatomic) BTWorkoutManager *workoutManager;
+@interface AddExerciseViewController ()
 
 @end
 
-@implementation MainViewController
+@implementation AddExerciseViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
-    self.userManager = [BTUserManager sharedInstance];
-    self.workoutManager = [BTWorkoutManager sharedInstance];
     NSError *error;
     if (![[self fetchedResultsController] performFetch:&error]) {
         NSLog(@"Main fetch error: %@, %@", error, [error userInfo]);
@@ -35,11 +26,19 @@
     self.tableView.delegate = self;
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    if (![self.userManager user]) { //No user in CoreData
-        [self presentLoginViewController];
-    }
+- (void)viewWillAppear:(BOOL)animated {
+    self.containerView.layer.cornerRadius = 10;
+    self.containerView.clipsToBounds = YES;
+}
+
+- (IBAction)cancelButtonPressed:(UIButton *)sender {
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
+
+- (IBAction)supersetButtonPressed:(UIButton *)sender {
+    
 }
 
 #pragma mark - fetchedResultsController
@@ -47,20 +46,28 @@
 - (NSFetchedResultsController *)fetchedResultsController {
     if (_fetchedResultsController != nil) return _fetchedResultsController;
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"BTWorkout" inManagedObjectContext:self.context];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"BTExerciseType" inManagedObjectContext:self.context];
     [fetchRequest setEntity:entity];
-    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO];
+    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"category" ascending:NO];
     [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]];
     [fetchRequest setFetchBatchSize:20];
     NSFetchedResultsController *theFetchedResultsController = [[NSFetchedResultsController alloc]
                                                                initWithFetchRequest:fetchRequest managedObjectContext:self.context
-                                                               sectionNameKeyPath:nil cacheName:nil];
+                                                               sectionNameKeyPath:@"category" cacheName:nil];
     self.fetchedResultsController = theFetchedResultsController;
     _fetchedResultsController.delegate = self;
     return _fetchedResultsController;
 }
 
 #pragma mark - tableView dataSource
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return [[_fetchedResultsController sections] count];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return [[_fetchedResultsController sections][section] name];
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [[[_fetchedResultsController sections] objectAtIndex:section] numberOfObjects];
@@ -74,60 +81,17 @@
 }
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    BTWorkout *workout = [_fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = workout.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", workout.date];
+    BTExerciseType *type = [_fetchedResultsController objectAtIndexPath:indexPath];
+    cell.textLabel.text = type.name;
+    NSMutableArray *arr = [NSKeyedUnarchiver unarchiveObjectWithData:type.iterations];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"Iterations: %d", arr.count];
 }
 
 #pragma mark - tableView delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    BTWorkout *workout = [_fetchedResultsController objectAtIndexPath:indexPath];
-    [self.workoutManager deleteWorkout:workout];
-}
-
-#pragma mark - view handling
-
-- (IBAction)workoutButtonPressed:(UIButton *)sender {
-    [self presentWorkoutViewControllerWithWorkout:nil];
-}
-
-- (void)presentLoginViewController {
-    LoginViewController *loginVC = [self.storyboard instantiateViewControllerWithIdentifier:@"l"];
-    loginVC.userManager = self.userManager;
-    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:loginVC];
-    self.animator.bounces = NO;
-    self.animator.dragable = NO;
-    self.animator.behindViewAlpha = 0.8;
-    self.animator.behindViewScale = 0.92;
-    self.animator.transitionDuration = 0.75;
-    self.animator.direction = ZFModalTransitonDirectionBottom;
-    loginVC.transitioningDelegate = self.animator;
-    loginVC.modalPresentationStyle = UIModalPresentationFullScreen;
-    [self presentViewController:loginVC animated:YES completion:nil];
-}
-
-- (void)presentWorkoutViewControllerWithWorkout: (BTWorkout *)workout {
-    WorkoutViewController *workoutVC = [self.storyboard instantiateViewControllerWithIdentifier:@"w"];
-    workoutVC.delegate = self;
-    workoutVC.context = self.context;
-    workoutVC.workout = workout;
-    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:workoutVC];
-    self.animator.bounces = NO;
-    self.animator.dragable = NO;
-    self.animator.behindViewAlpha = 0.8;
-    self.animator.behindViewScale = 0.92;
-    self.animator.transitionDuration = 0.5;
-    self.animator.direction = ZFModalTransitonDirectionBottom;
-    workoutVC.transitioningDelegate = self.animator;
-    workoutVC.modalPresentationStyle = UIModalPresentationFullScreen;
-    [self presentViewController:workoutVC animated:YES completion:nil];
-}
-
-#pragma mark - workoutVC delegate
-
-- (void)workoutViewController:(WorkoutViewController *)workoutVC willDismissWithResultWorkout:(BTWorkout *)workout {
-    
+    BTExerciseType *type = [_fetchedResultsController objectAtIndexPath:indexPath];
+    //[self.workoutManager deleteWorkout:workout];
 }
 
 #pragma mark - fetchedResultsController delegate

@@ -8,9 +8,11 @@
 
 #import "WorkoutViewController.h"
 #import "BTWorkoutManager.h"
+#import "ZFModalTransitionAnimator.h"
 
 @interface WorkoutViewController ()
 
+@property (nonatomic) ZFModalTransitionAnimator *animator;
 @property BTWorkoutManager *workoutManager;
 
 @end
@@ -24,11 +26,32 @@
     if (!self.workout) self.workout = [self.workoutManager createWorkout];
 }
 
+- (IBAction)addExerciseButtonPressed:(UIButton *)sender {
+    [self presentAddExerciseViewController];
+}
+
 - (IBAction)finishWorkoutButtonPressed:(UIButton *)sender {
     [self.delegate workoutViewController:self willDismissWithResultWorkout:self.workout];
     [self dismissViewControllerAnimated:YES completion:^{
         
     }];
+}
+
+#pragma mark - view handling
+
+- (void)presentAddExerciseViewController {
+    AddExerciseViewController *addVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ae"];
+    addVC.context = self.context;
+    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:addVC];
+    self.animator.bounces = NO;
+    self.animator.dragable = NO;
+    self.animator.behindViewAlpha = 0.5;
+    self.animator.behindViewScale = 1;
+    self.animator.transitionDuration = 0.75;
+    self.animator.direction = ZFModalTransitonDirectionBottom;
+    addVC.transitioningDelegate = self.animator;
+    addVC.modalPresentationStyle = UIModalPresentationCustom;
+    [self presentViewController:addVC animated:YES completion:nil];
 }
 
 #pragma mark - textField delegate
