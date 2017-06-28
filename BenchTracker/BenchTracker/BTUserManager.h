@@ -8,8 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "BTUser+CoreDataClass.h"
+#import "BTWorkoutManager.h"
+#import "BTTypeListManager.h"
 
-@interface BTUserManager : NSObject
+@interface BTUserManager : NSObject <BTWorkoutManagerDelegate, BTTypeListManagerDelegate>
 
 + (id)sharedInstance;
 

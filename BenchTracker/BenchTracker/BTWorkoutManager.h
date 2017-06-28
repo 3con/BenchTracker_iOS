@@ -9,7 +9,18 @@
 #import <Foundation/Foundation.h>
 #import "BTWorkout+CoreDataClass.h"
 
+@class BTWorkoutManager;
+
+@protocol BTWorkoutManagerDelegate <NSObject>
+@required
+- (void) workoutManager:(BTWorkoutManager *)workoutManager didCreateWorkout:(BTWorkout *)workout;
+- (void) workoutManager:(BTWorkoutManager *)workoutManager didEditWorkout:(BTWorkout *)workout;
+- (void) workoutManager:(BTWorkoutManager *)workoutManager didDeleteWorkout:(BTWorkout *)workout;
+@end
+
 @interface BTWorkoutManager : NSObject
+
+@property id<BTWorkoutManagerDelegate> delegate;
 
 + (id)sharedInstance;
 

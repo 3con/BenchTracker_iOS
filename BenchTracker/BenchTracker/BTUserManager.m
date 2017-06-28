@@ -9,17 +9,19 @@
 #import "BTUserManager.h"
 #import "BTUser+CoreDataClass.h"
 #import "BTAWSUser.h"
-#import "BTWorkout+CoreDataClass.h"
 #import "AppDelegate.h"
 #import <AWSDynamoDB/AWSDynamoDB.h>
 #import "BenchTrackerKeys.h"
-
-#define AWS_EMPTY @"<EMPTY>"
+#import "BTWorkoutManager.h"
+#import "BTTypeListManager.h"
 
 @interface BTUserManager ()
 
 @property (nonatomic, strong) AWSDynamoDBObjectMapper *mapper;
 @property (nonatomic, strong) NSManagedObjectContext *context;
+
+@property (nonatomic, strong) BTWorkoutManager *workoutManager;
+@property (nonatomic, strong) BTTypeListManager *typeListManager;
 
 @property (nonatomic, strong) BTAWSUser *AWSUser;
 
@@ -34,6 +36,9 @@
         sharedInstance = [[self alloc] init];
         sharedInstance.context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
         sharedInstance.mapper = [AWSDynamoDBObjectMapper defaultDynamoDBObjectMapper];
+        sharedInstance.workoutManager = [BTWorkoutManager sharedInstance];
+        sharedInstance.workoutManager.delegate = sharedInstance;
+        sharedInstance.typeListManager.delegate = sharedInstance;
     });
     return sharedInstance;
 }
@@ -45,7 +50,7 @@
     request.fetchLimit = 1;
     NSError *error = nil;
     NSArray *object = [self.context executeFetchRequest:request error:&error];
-    if (error) NSLog(@"TypeListManager error: %@",error);
+    if (error) NSLog(@"userManager CoreData error: %@",error);
     else if (object.count == 0) return nil;
     return object[0];
 }
@@ -68,16 +73,20 @@
 - (void)updateUserFromAWS {
     BTUser *user = [self user];
     if(!user) return;
-    //[self getAWSUser];
-    //compare version -> typeListManager
-    //compare workouts -> workoutmanager
+    [self getAWSUserWithUsername:user.username completionBlock:^{
+        if (!self.AWSUser) { //user deleted from server
+            
+        }
+        //compare version -> typeListManager
+        //compare workouts -> workoutmanager
+    }];
 }
 
 - (void)copyUserFromAWS: (NSString *)username completionBlock:(void (^)())completed {
     [self getAWSUserWithUsername:username completionBlock:^{
         BTUser *user = [NSEntityDescription insertNewObjectForEntityForName:@"BTUser" inManagedObjectContext:self.context];
         user = [self copyAWSUser:self.AWSUser toCDUser:user];
-        [self.context save:nil];
+        [self saveCoreData];
         completed();
     }];
 }
@@ -86,9 +95,71 @@
 
 - (void)userExistsWithUsername: (NSString *)username continueWithBlock:(void (^)(BOOL exists))completed {
     [[self.mapper load:[BTAWSUser class] hashKey:username rangeKey:nil] continueWithBlock:^id(AWSTask *task) {
-        if (task.error) NSLog(@"The request failed. Error: [%@]", task.error);
-        else completed(task.result);
+        if (task.error) NSLog(@"userManaer get error: [%@]", task.error);
+        else completed(task.result != nil);
         return nil;
+    }];
+}
+
+#pragma mark - workoutManager delegate
+
+- (void)workoutManager:(BTWorkoutManager *)workoutManager didCreateWorkout:(BTWorkout *)workout {
+    NSString *uuid = workout.uuid;
+    int time = [NSDate timeIntervalSinceReferenceDate];
+    if (self.AWSUser.recentEdits.count == 1 && [self.AWSUser.recentEdits containsObject:AWS_EMPTY])
+        [self.AWSUser.recentEdits removeAllObjects];
+    [self.AWSUser.recentEdits addObject:[NSString stringWithFormat:@"A %d %@",time,uuid]];
+    if (self.AWSUser.workouts.count == 1 && [self.AWSUser.workouts containsObject:AWS_EMPTY])
+        [self.AWSUser.workouts removeAllObjects];
+    [self.AWSUser.workouts addObject:uuid];
+    BTUser *user = [self user];
+    user.recentEdits = [NSKeyedArchiver archivedDataWithRootObject:self.AWSUser.recentEdits];
+    [user addWorkoutsObject:workout];
+    [self saveCoreData];
+    [self pushAWSUserWithCompletionBlock:^{
+        
+    }];
+}
+
+- (void)workoutManager:(BTWorkoutManager *)workoutManager didEditWorkout:(BTWorkout *)workout {
+    NSString *uuid = workout.uuid;
+    int time = [NSDate timeIntervalSinceReferenceDate];
+    if (self.AWSUser.recentEdits.count == 1 && [self.AWSUser.recentEdits containsObject:AWS_EMPTY])
+        [self.AWSUser.recentEdits removeAllObjects];
+    [self.AWSUser.recentEdits addObject:[NSString stringWithFormat:@"E %d %@",time,uuid]];
+    BTUser *user = [self user];
+    user.recentEdits = [NSKeyedArchiver archivedDataWithRootObject:self.AWSUser.recentEdits];
+    [self saveCoreData];
+    [self pushAWSUserWithCompletionBlock:^{
+        
+    }];
+}
+
+- (void)workoutManager:(BTWorkoutManager *)workoutManager didDeleteWorkout:(BTWorkout *)workout {
+    NSString *uuid = workout.uuid;
+    int time = [NSDate timeIntervalSinceReferenceDate];
+    if (self.AWSUser.recentEdits.count == 1 && [self.AWSUser.recentEdits containsObject:AWS_EMPTY])
+        [self.AWSUser.recentEdits removeAllObjects];
+    [self.AWSUser.recentEdits addObject:[NSString stringWithFormat:@"D %d %@",time,uuid]];
+    [self.AWSUser.workouts removeObject:uuid];
+    BTUser *user = [self user];
+    user.recentEdits = [NSKeyedArchiver archivedDataWithRootObject:self.AWSUser.recentEdits];
+    [user removeWorkoutsObject:workout];
+    [self saveCoreData];
+    [self pushAWSUserWithCompletionBlock:^{
+        
+    }];
+}
+
+#pragma mark - typeListManager delegate
+
+- (void)typeListManagerDidEditList:(BTTypeListManager *)typeListManager {
+    self.AWSUser.typeListVersion = [NSNumber numberWithInt:self.AWSUser.typeListVersion.intValue + 1];
+    BTUser *user = [self user];
+    user.typeListVersion ++;
+    [self saveCoreData];
+    [self pushAWSUserWithCompletionBlock:^{
+        
     }];
 }
 
@@ -96,7 +167,7 @@
 
 - (void)getAWSUserWithUsername: (NSString *)username completionBlock:(void (^)())completed {
     [[self.mapper load:[BTAWSUser class] hashKey:username rangeKey:nil] continueWithBlock:^id(AWSTask *task) {
-        if (task.error) NSLog(@"The request failed. Error: [%@]", task.error);
+        if (task.error) NSLog(@"userManaer get error: [%@]", task.error);
         else {
             if (task.result) { //user exists
                 self.AWSUser = task.result;
@@ -108,12 +179,20 @@
     }];
 }
 
+- (void)pushAWSUserWithCompletionBlock:(void (^)())completed {
+    [[self.mapper save:self.AWSUser] continueWithBlock:^id(AWSTask *task) {
+        if (task.error) NSLog(@"userManaer push error: [%@]", task.error);
+        else completed();
+        return nil;
+    }];
+}
+     
 - (void)pushUserToAWSWithCompletionBlock:(void (^)())completed {
     BTAWSUser *AWSUser = [self copyCDUser:[self user] toAWSUser:[BTAWSUser new]];
     [[self.mapper save:AWSUser] continueWithBlock:^id(AWSTask *task) {
-        if (task.error) NSLog(@"The request failed. Error: [%@]", task.error);
-        else completed();
-        return nil;
+         if (task.error) NSLog(@"userManaer push error: [%@]", task.error);
+         else completed();
+         return nil;
     }];
 }
 
@@ -122,8 +201,8 @@
     AWSUser.typeListVersion = [NSNumber numberWithInt:user.typeListVersion];
     NSArray *rE = [NSKeyedUnarchiver unarchiveObjectWithData:user.recentEdits];
     AWSUser.recentEdits = [[NSMutableArray alloc] initWithArray:(rE.count == 0) ? @[AWS_EMPTY] : rE];
-    AWSUser.workouts = [[NSMutableArray alloc] init];
-    for (BTWorkout *workout in user.workouts) [AWSUser.workouts addObject:workout.uuid];
+    //AWSUser.workouts = [[NSMutableArray alloc] init];
+    //for (BTWorkout *workout in user.workouts) [AWSUser.workouts addObject:workout.uuid];
     if (user.workouts.count == 0) [AWSUser.workouts addObject:AWS_EMPTY];
     return AWSUser;
 }
@@ -135,6 +214,12 @@
         user.recentEdits = [NSKeyedArchiver archivedDataWithRootObject:@[]];
     else user.recentEdits = [NSKeyedArchiver archivedDataWithRootObject:AWSUser.recentEdits];
     return user;
+}
+
+- (void)saveCoreData {
+    NSError *error;
+    [self.context save:&error];
+    if(error) NSLog(@"userManager error: %@",error);
 }
 
 @end

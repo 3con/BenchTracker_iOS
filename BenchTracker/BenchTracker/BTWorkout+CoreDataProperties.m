@@ -19,7 +19,6 @@
 @dynamic date;
 @dynamic duration;
 @dynamic name;
-@dynamic user;
 @dynamic exercises;
 
 @end

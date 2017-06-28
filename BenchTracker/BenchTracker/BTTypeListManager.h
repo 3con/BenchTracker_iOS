@@ -8,7 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+@class BTTypeListManager;
+
+@protocol BTTypeListManagerDelegate <NSObject>
+@required
+- (void) typeListManagerDidEditList:(BTTypeListManager *)typeListManager;
+@end
+
 @interface BTTypeListManager : NSObject
+
+@property id<BTTypeListManagerDelegate> delegate;
 
 + (id)sharedInstance;
 

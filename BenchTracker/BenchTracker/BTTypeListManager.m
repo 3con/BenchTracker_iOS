@@ -37,8 +37,8 @@
 - (void)uploadTypeList {
     //get all types
     //put back into typeListModel
-    //update version number
-    //send file, updated user to AWS
+    //send file
+    [self.delegate typeListManagerDidEditList:self]; //update version number, send new user
 }
 
 #pragma mark - server -> client
@@ -87,7 +87,7 @@
                     case AWSS3TransferManagerErrorPaused:
                         break;
                     default:
-                        NSLog(@"Error: %@", task.error);
+                        NSLog(@"typeListManager get error: %@", task.error);
                         break;
                 }
             }
@@ -96,9 +96,9 @@
         if (task.result) {
             NSError *error;
             NSString *JSONString = [NSString stringWithContentsOfURL:downloadingFileURL encoding:NSUTF8StringEncoding error:&error];
-            if(error) NSLog(@"TypeList JSON model error:%@",error);
+            if(error) NSLog(@"typeList JSON model error:%@",error);
             TypeListModel *model = [[TypeListModel alloc] initWithString:JSONString error:&error];
-            if(error) NSLog(@"TypeList JSON model error:%@",error);
+            if(error) NSLog(@"typeList JSON model error:%@",error);
             completed(model);
         }
         return nil;
@@ -113,9 +113,13 @@
         type.category = eT.category;
         type.style = eT.style;
     }
+    [self saveCoreData];
+}
+
+- (void)saveCoreData {
     NSError *error;
     [self.context save:&error];
-    if (error) NSLog(@"TypeList save error: %@",error);
+    if(error) NSLog(@"typeListManager error: %@",error);
 }
 
 @end
