@@ -22,6 +22,7 @@
 		F90A4F401942D852006F190F /* SetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F90A4F3F1942D852006F190F /* SetsViewController.m */; };
 		F90A4F7B19438FF0006F190F /* StepDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F90A4F7A19438FF0006F190F /* StepDetailViewController.m */; };
 		F90A4F7D1943A089006F190F /* StepImages in Resources */ = {isa = PBXBuildFile; fileRef = F90A4F7C1943A089006F190F /* StepImages */; };
+		F95F932F1F02FC5000A19C4D /* TypeListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F95F932E1F02FC5000A19C4D /* TypeListModel.m */; };
 		F981D5891F022D9A00E7B456 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F981D5871F022D9A00E7B456 /* LaunchScreen.xib */; };
 		F9DA75111F02DC1700347B0D /* BTDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F9DA750F1F02DC1700347B0D /* BTDataModel.xcdatamodeld */; };
 		F9DA75221F02EE9600347B0D /* BTUser+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F9DA75131F02EE9600347B0D /* BTUser+CoreDataClass.m */; };
@@ -77,6 +78,8 @@
 		F90A4F7919438FF0006F190F /* StepDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StepDetailViewController.h; sourceTree = "<group>"; };
 		F90A4F7A19438FF0006F190F /* StepDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StepDetailViewController.m; sourceTree = "<group>"; };
 		F90A4F7C1943A089006F190F /* StepImages */ = {isa = PBXFileReference; lastKnownFileType = folder; name = StepImages; path = BenchTracker/StepImages; sourceTree = "<group>"; };
+		F95F932D1F02FC5000A19C4D /* TypeListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeListModel.h; sourceTree = "<group>"; };
+		F95F932E1F02FC5000A19C4D /* TypeListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TypeListModel.m; sourceTree = "<group>"; };
 		F981D5881F022D9A00E7B456 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		F9DA75101F02DC1700347B0D /* BTDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BTDataModel.xcdatamodel; sourceTree = "<group>"; };
 		F9DA75121F02EE9600347B0D /* BTUser+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "BTUser+CoreDataClass.h"; path = "BenchTracker/BTUser+CoreDataClass.h"; sourceTree = "<group>"; };
@@ -217,6 +220,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		F95F93301F02FC5600A19C4D /* TypeListModel */ = {
+			isa = PBXGroup;
+			children = (
+				F95F932D1F02FC5000A19C4D /* TypeListModel.h */,
+				F95F932E1F02FC5000A19C4D /* TypeListModel.m */,
+			);
+			name = TypeListModel;
+			sourceTree = "<group>";
+		};
 		F9DA752A1F02F00200347B0D /* BTWorkout */ = {
 			isa = PBXGroup;
 			children = (
@@ -287,6 +299,7 @@
 			children = (
 				F9DA75311F02F0B800347B0D /* BTTypeListManager.h */,
 				F9DA75321F02F0B800347B0D /* BTTypeListManager.m */,
+				F95F93301F02FC5600A19C4D /* TypeListModel */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -509,6 +522,7 @@
 				F90712A719415FB1008694E5 /* main.m in Sources */,
 				F9DA75241F02EE9600347B0D /* BTExercise+CoreDataClass.m in Sources */,
 				F9DA75231F02EE9600347B0D /* BTUser+CoreDataProperties.m in Sources */,
+				F95F932F1F02FC5000A19C4D /* TypeListModel.m in Sources */,
 				F9DA75261F02EE9600347B0D /* BTExerciseType+CoreDataClass.m in Sources */,
 				F90712B019415FB1008694E5 /* DetailViewController.m in Sources */,
 			);

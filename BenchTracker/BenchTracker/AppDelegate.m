@@ -7,7 +7,10 @@
 //
 
 #import "AppDelegate.h"
+#import <AWSCore/AWSCore.h>
+#import <AWSCognito/AWSCognito.h>
 #import "BTTypeListManager.h"
+#import "BenchTrackerKeys.h"
 
 @interface AppDelegate ()
             
@@ -18,6 +21,12 @@
             
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    //COGNITO HANDLING
+    AWSCognitoCredentialsProvider *credentialsProvider = [[AWSCognitoCredentialsProvider alloc]
+                                                          initWithRegionType:AWSRegionUSEast1
+                                                          identityPoolId:AWS_POOL_ID];
+    AWSServiceConfiguration *configuration = [[AWSServiceConfiguration alloc] initWithRegion:AWSRegionUSEast1 credentialsProvider:credentialsProvider];
+    [AWSServiceManager defaultServiceManager].defaultServiceConfiguration = configuration;
     //CHECK FOR TYPE LIST UPDATES
     [[BTTypeListManager sharedInstance] checkForExistingTypeList];
     return YES;
