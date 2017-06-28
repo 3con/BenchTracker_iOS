@@ -9,6 +9,7 @@
 #import "MainViewController.h"
 #import "BTUserManager.h"
 #import "ZFModalTransitionAnimator.h"
+#import "AppDelegate.h"
 
 @interface MainViewController ()
 
@@ -21,6 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
     self.userManager = [BTUserManager sharedInstance];
 }
 
@@ -29,6 +31,10 @@
     if (![self.userManager user]) { //No user in CoreData
         [self presentLoginViewController];
     }
+}
+
+- (IBAction)workoutButtonPressed:(UIButton *)sender {
+    [self presentWorkoutViewControllerWithWorkout:nil];
 }
 
 - (void)presentLoginViewController {
@@ -44,6 +50,29 @@
     loginVC.transitioningDelegate = self.animator;
     loginVC.modalPresentationStyle = UIModalPresentationCustom;
     [self presentViewController:loginVC animated:YES completion:nil];
+}
+
+- (void)presentWorkoutViewControllerWithWorkout: (BTWorkout *)workout {
+    WorkoutViewController *workoutVC = [self.storyboard instantiateViewControllerWithIdentifier:@"w"];
+    workoutVC.delegate = self;
+    workoutVC.context = self.context;
+    workoutVC.workout = workout;
+    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:workoutVC];
+    self.animator.bounces = NO;
+    self.animator.dragable = NO;
+    self.animator.behindViewAlpha = 0.8;
+    self.animator.behindViewScale = 0.92;
+    self.animator.transitionDuration = 0.5;
+    self.animator.direction = ZFModalTransitonDirectionBottom;
+    workoutVC.transitioningDelegate = self.animator;
+    workoutVC.modalPresentationStyle = UIModalPresentationCustom;
+    [self presentViewController:workoutVC animated:YES completion:nil];
+}
+
+#pragma mark - workoutVC delegate
+
+- (void)workoutViewController:(WorkoutViewController *)workoutVC willDismissWithResultWorkout:(BTWorkout *)workout {
+    
 }
 
 - (void)didReceiveMemoryWarning {

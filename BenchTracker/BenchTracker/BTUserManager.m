@@ -38,6 +38,8 @@
     return sharedInstance;
 }
 
+#pragma mark - client only
+
 - (BTUser *)user {
     NSFetchRequest *request = [BTUser fetchRequest];
     request.fetchLimit = 1;
@@ -48,13 +50,7 @@
     return object[0];
 }
 
-- (void)userExistsWithUsername: (NSString *)username continueWithBlock:(void (^)(BOOL exists))completed {
-    [[self.mapper load:[BTAWSUser class] hashKey:username rangeKey:nil] continueWithBlock:^id(AWSTask *task) {
-        if (task.error) NSLog(@"The request failed. Error: [%@]", task.error);
-        else completed(task.result);
-        return nil;
-    }];
-}
+#pragma mark - client -> server
 
 - (void)createUserWithUsername: (NSString *)username completionBlock:(void (^)())completed {
     BTUser *user = [NSEntityDescription insertNewObjectForEntityForName:@"BTUser" inManagedObjectContext:self.context];
@@ -67,6 +63,16 @@
     }];
 }
 
+#pragma mark - server -> client
+
+- (void)updateUserFromAWS {
+    BTUser *user = [self user];
+    if(!user) return;
+    //[self getAWSUser];
+    //compare version -> typeListManager
+    //compare workouts -> workoutmanager
+}
+
 - (void)copyUserFromAWS: (NSString *)username completionBlock:(void (^)())completed {
     [self getAWSUserWithUsername:username completionBlock:^{
         BTUser *user = [NSEntityDescription insertNewObjectForEntityForName:@"BTUser" inManagedObjectContext:self.context];
@@ -76,12 +82,14 @@
     }];
 }
 
-- (void)updateUserFromAWS {
-    BTUser *user = [self user];
-    if(!user) return;
-    //[self getAWSUser];
-    //compare type list versions
-    //compare recentEdits
+#pragma mark - server only
+
+- (void)userExistsWithUsername: (NSString *)username continueWithBlock:(void (^)(BOOL exists))completed {
+    [[self.mapper load:[BTAWSUser class] hashKey:username rangeKey:nil] continueWithBlock:^id(AWSTask *task) {
+        if (task.error) NSLog(@"The request failed. Error: [%@]", task.error);
+        else completed(task.result);
+        return nil;
+    }];
 }
 
 #pragma mark - private methods

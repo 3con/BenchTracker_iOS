@@ -12,6 +12,14 @@
 
 + (id)sharedInstance;
 
+//client -> server
+
+- (void)uploadTypeList;
+
+//server -> client
+
 - (void)checkForExistingTypeList;
+
+- (void)fetchTypeList;
 
 @end

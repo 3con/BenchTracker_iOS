@@ -13,16 +13,22 @@
 
 + (id)sharedInstance;
 
+//client only
+
 - (BTUser *)user;
 
-- (void)updateUserFromAWS;
-
-//CoreData user does not exist
-
-- (BOOL)userExistsWithUsername: (NSString *)username continueWithBlock:(void (^)(BOOL exists))completed;
+//client -> server
 
 - (void)createUserWithUsername: (NSString *)username completionBlock:(void (^)())completed;
 
+//server -> client
+
+- (void)updateUserFromAWS;
+
 - (void)copyUserFromAWS: (NSString *)username completionBlock:(void (^)())completed;
+
+//server only
+
+- (void)userExistsWithUsername: (NSString *)username continueWithBlock:(void (^)(BOOL exists))completed;
 
 @end

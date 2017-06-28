@@ -32,6 +32,17 @@
     return sharedInstance;
 }
 
+#pragma mark - client -> server
+
+- (void)uploadTypeList {
+    //get all types
+    //put back into typeListModel
+    //update version number
+    //send file, updated user to AWS
+}
+
+#pragma mark - server -> client
+
 - (void)checkForExistingTypeList {
     NSFetchRequest *request = [BTExerciseType fetchRequest];
     request.fetchLimit = 1;
@@ -47,6 +58,17 @@
     }
     else NSLog(@"Type List found");
 }
+
+- (void)fetchTypeList {
+    //replace default with correct name
+    /*
+    [self downloadListWithName:DEFAULT_LIST_NAME completionBlock:^(TypeListModel *model) {
+        [self loadTypeListModelToCoreData:model];
+    }];
+     */
+}
+
+#pragma mark - private methods
 
 - (void)downloadListWithName: (NSString *)name completionBlock:(void (^)(TypeListModel * model))completed {
     //IMAGE DOWNLOAD

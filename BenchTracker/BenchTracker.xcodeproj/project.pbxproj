@@ -19,6 +19,9 @@
 		F95F93371F03426F00A19C4D /* BTUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F95F93361F03426F00A19C4D /* BTUserManager.m */; };
 		F95F933B1F034DA500A19C4D /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F95F933A1F034DA500A19C4D /* MainViewController.m */; };
 		F95F933E1F034FA300A19C4D /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F95F933D1F034FA300A19C4D /* LoginViewController.m */; };
+		F95F93411F03713200A19C4D /* BTAWSWorkout.m in Sources */ = {isa = PBXBuildFile; fileRef = F95F93401F03713200A19C4D /* BTAWSWorkout.m */; };
+		F95F93441F03738B00A19C4D /* WorkoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F95F93431F03738B00A19C4D /* WorkoutViewController.m */; };
+		F95F934B1F037C9500A19C4D /* BTWorkoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F95F934A1F037C9500A19C4D /* BTWorkoutManager.m */; };
 		F981D5891F022D9A00E7B456 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F981D5871F022D9A00E7B456 /* LaunchScreen.xib */; };
 		F9DA75111F02DC1700347B0D /* BTDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F9DA750F1F02DC1700347B0D /* BTDataModel.xcdatamodeld */; };
 		F9DA75221F02EE9600347B0D /* BTUser+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F9DA75131F02EE9600347B0D /* BTUser+CoreDataClass.m */; };
@@ -69,6 +72,12 @@
 		F95F933A1F034DA500A19C4D /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		F95F933C1F034FA300A19C4D /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		F95F933D1F034FA300A19C4D /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		F95F933F1F03713200A19C4D /* BTAWSWorkout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BTAWSWorkout.h; path = BenchTracker/BTAWSWorkout.h; sourceTree = "<group>"; };
+		F95F93401F03713200A19C4D /* BTAWSWorkout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BTAWSWorkout.m; path = BenchTracker/BTAWSWorkout.m; sourceTree = "<group>"; };
+		F95F93421F03738B00A19C4D /* WorkoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkoutViewController.h; sourceTree = "<group>"; };
+		F95F93431F03738B00A19C4D /* WorkoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkoutViewController.m; sourceTree = "<group>"; };
+		F95F93491F037C9500A19C4D /* BTWorkoutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTWorkoutManager.h; sourceTree = "<group>"; };
+		F95F934A1F037C9500A19C4D /* BTWorkoutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTWorkoutManager.m; sourceTree = "<group>"; };
 		F981D5881F022D9A00E7B456 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		F9DA75101F02DC1700347B0D /* BTDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BTDataModel.xcdatamodel; sourceTree = "<group>"; };
 		F9DA75121F02EE9600347B0D /* BTUser+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "BTUser+CoreDataClass.h"; path = "BenchTracker/BTUser+CoreDataClass.h"; sourceTree = "<group>"; };
@@ -156,12 +165,9 @@
 			isa = PBXGroup;
 			children = (
 				F9DA752F1F02F08D00347B0D /* Classes */,
+				F95F93481F0373AA00A19C4D /* View Controllers */,
 				F90712A819415FB1008694E5 /* AppDelegate.h */,
 				F90712A919415FB1008694E5 /* AppDelegate.m */,
-				F95F93391F034DA500A19C4D /* MainViewController.h */,
-				F95F933A1F034DA500A19C4D /* MainViewController.m */,
-				F95F933C1F034FA300A19C4D /* LoginViewController.h */,
-				F95F933D1F034FA300A19C4D /* LoginViewController.m */,
 				F90712B119415FB1008694E5 /* Main.storyboard */,
 				F9DA750F1F02DC1700347B0D /* BTDataModel.xcdatamodeld */,
 				F90712A419415FB0008694E5 /* Supporting Files */,
@@ -226,9 +232,57 @@
 			name = UserManager;
 			sourceTree = "<group>";
 		};
+		F95F93451F03739600A19C4D /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				F95F933C1F034FA300A19C4D /* LoginViewController.h */,
+				F95F933D1F034FA300A19C4D /* LoginViewController.m */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		F95F93461F03739E00A19C4D /* Workout */ = {
+			isa = PBXGroup;
+			children = (
+				F95F93421F03738B00A19C4D /* WorkoutViewController.h */,
+				F95F93431F03738B00A19C4D /* WorkoutViewController.m */,
+			);
+			name = Workout;
+			sourceTree = "<group>";
+		};
+		F95F93471F0373A400A19C4D /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				F95F93391F034DA500A19C4D /* MainViewController.h */,
+				F95F933A1F034DA500A19C4D /* MainViewController.m */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		F95F93481F0373AA00A19C4D /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F95F93471F0373A400A19C4D /* Main */,
+				F95F93461F03739E00A19C4D /* Workout */,
+				F95F93451F03739600A19C4D /* Login */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		F95F934C1F037CA000A19C4D /* WorkoutManager */ = {
+			isa = PBXGroup;
+			children = (
+				F95F93491F037C9500A19C4D /* BTWorkoutManager.h */,
+				F95F934A1F037C9500A19C4D /* BTWorkoutManager.m */,
+			);
+			name = WorkoutManager;
+			sourceTree = "<group>";
+		};
 		F9DA752A1F02F00200347B0D /* BTWorkout */ = {
 			isa = PBXGroup;
 			children = (
+				F95F933F1F03713200A19C4D /* BTAWSWorkout.h */,
+				F95F93401F03713200A19C4D /* BTAWSWorkout.m */,
 				F9DA751E1F02EE9600347B0D /* BTWorkout+CoreDataClass.h */,
 				F9DA751F1F02EE9600347B0D /* BTWorkout+CoreDataClass.m */,
 				F9DA75201F02EE9600347B0D /* BTWorkout+CoreDataProperties.h */,
@@ -297,6 +351,7 @@
 			isa = PBXGroup;
 			children = (
 				F95F93381F03427400A19C4D /* UserManager */,
+				F95F934C1F037CA000A19C4D /* WorkoutManager */,
 				F95F93341F03425000A19C4D /* TypeListManager */,
 			);
 			name = Managers;
@@ -507,12 +562,15 @@
 				F9DA75271F02EE9600347B0D /* BTExerciseType+CoreDataProperties.m in Sources */,
 				F95F933B1F034DA500A19C4D /* MainViewController.m in Sources */,
 				F9DA75221F02EE9600347B0D /* BTUser+CoreDataClass.m in Sources */,
+				F95F934B1F037C9500A19C4D /* BTWorkoutManager.m in Sources */,
 				F95F93371F03426F00A19C4D /* BTUserManager.m in Sources */,
 				F9DA75251F02EE9600347B0D /* BTExercise+CoreDataProperties.m in Sources */,
 				F95F933E1F034FA300A19C4D /* LoginViewController.m in Sources */,
 				F9DA75331F02F0B800347B0D /* BTTypeListManager.m in Sources */,
 				F9DA75291F02EE9600347B0D /* BTWorkout+CoreDataProperties.m in Sources */,
+				F95F93441F03738B00A19C4D /* WorkoutViewController.m in Sources */,
 				F9DA75111F02DC1700347B0D /* BTDataModel.xcdatamodeld in Sources */,
+				F95F93411F03713200A19C4D /* BTAWSWorkout.m in Sources */,
 				F90712A719415FB1008694E5 /* main.m in Sources */,
 				F9DA75241F02EE9600347B0D /* BTExercise+CoreDataClass.m in Sources */,
 				F9DA75231F02EE9600347B0D /* BTUser+CoreDataProperties.m in Sources */,

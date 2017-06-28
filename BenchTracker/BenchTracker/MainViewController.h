@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "LoginViewController.h"
+#import "WorkoutViewController.h"
 
-@interface MainViewController : UIViewController
+@interface MainViewController : UIViewController <WorkoutViewControllerDelegate>
+
+@property NSManagedObjectContext *context;
 
 @end

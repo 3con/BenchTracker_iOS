@@ -10,9 +10,9 @@
 
 @interface BTAWSUser : AWSDynamoDBObjectModel <AWSDynamoDBModeling>
 
-@property (nullable, nonatomic, copy)   NSString *username;
-@property (nonatomic)                   NSNumber * _Nonnull typeListVersion;
-@property (nullable, nonatomic, retain) NSMutableArray<NSString *> *recentEdits;
-@property (nullable, nonatomic, retain) NSMutableArray<NSString *> *workouts;
+@property (nonatomic, nonnull)                   NSString* username;
+@property (nonatomic, nonnull)                   NSNumber* typeListVersion;
+@property (nonatomic, nonnull) NSMutableArray<NSString *>* recentEdits;
+@property (nonatomic, nonnull) NSMutableArray<NSString *>* workouts;
 
 @end

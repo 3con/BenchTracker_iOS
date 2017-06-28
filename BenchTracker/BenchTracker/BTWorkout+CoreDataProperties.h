@@ -16,10 +16,10 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSFetchRequest<BTWorkout *> *)fetchRequest;
 
 @property (nullable, nonatomic, copy) NSString *uuid;
-@property (nullable, nonatomic, copy) NSString *summary;
+@property (nullable, nonatomic, copy) NSString *name;
 @property (nullable, nonatomic, copy) NSDate *date;
 @property (nonatomic) int64_t duration;
-@property (nullable, nonatomic, copy) NSString *name;
+@property (nullable, nonatomic, copy) NSString *summary;
 @property (nullable, nonatomic, retain) BTUser *user;
 @property (nullable, nonatomic, retain) NSOrderedSet<BTExercise *> *exercises;
 
