@@ -34,7 +34,7 @@
 
 - (void)checkForExistingTypeList {
     NSFetchRequest *request = [BTExerciseType fetchRequest];
-    //request.fetchLimit = 1;
+    request.fetchLimit = 1;
     NSError *error = nil;
     NSArray *object = [self.context executeFetchRequest:request error:&error];
     if (error) NSLog(@"TypeListManager error: %@",error);

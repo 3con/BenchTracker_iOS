@@ -9,8 +9,9 @@
 #import "AppDelegate.h"
 #import <AWSCore/AWSCore.h>
 #import <AWSCognito/AWSCognito.h>
-#import "BTTypeListManager.h"
 #import "BenchTrackerKeys.h"
+#import "BTTypeListManager.h"
+#import "BTUserManager.h"
 
 @interface AppDelegate ()
             
@@ -29,6 +30,7 @@
     [AWSServiceManager defaultServiceManager].defaultServiceConfiguration = configuration;
     //CHECK FOR TYPE LIST UPDATES
     [[BTTypeListManager sharedInstance] checkForExistingTypeList];
+    [[BTUserManager sharedInstance] updateUserFromAWS];
     return YES;
 }
 
