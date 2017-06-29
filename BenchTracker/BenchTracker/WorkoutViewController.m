@@ -63,7 +63,10 @@
 #pragma mark - tableView delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    NSMutableArray <BTExercise *> *arr = [[NSMutableArray alloc] init];
+    [arr addObject:self.workout.exercises[indexPath.row]];
+    [arr addObject:self.workout.exercises[indexPath.row]];
+    [self presentExerciseViewControllerWithExercises:arr];
 }
 
 #pragma mark - addVC delegate
@@ -75,7 +78,7 @@
         exercise.iteration = [NSKeyedUnarchiver unarchiveObjectWithData:type.iterations][0];
         exercise.category = type.category;
         exercise.style = type.style;
-        exercise.sets = [NSKeyedArchiver archivedDataWithRootObject:@[]];
+        exercise.sets = [NSKeyedArchiver archivedDataWithRootObject:[[NSMutableArray alloc] init]];
         exercise.workout = self.workout;
         [self.workout addExercisesObject:exercise];
     }
@@ -98,13 +101,28 @@
     self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:addVC];
     self.animator.bounces = NO;
     self.animator.dragable = NO;
-    self.animator.behindViewAlpha = 0.5;
+    self.animator.behindViewAlpha = 0.4;
     self.animator.behindViewScale = 1;
     self.animator.transitionDuration = 0.75;
     self.animator.direction = ZFModalTransitonDirectionBottom;
     addVC.transitioningDelegate = self.animator;
     addVC.modalPresentationStyle = UIModalPresentationCustom;
     [self presentViewController:addVC animated:YES completion:nil];
+}
+
+- (void)presentExerciseViewControllerWithExercises: (NSArray<BTExercise *> *)exercises {
+    ExerciseViewController *eVC = [self.storyboard instantiateViewControllerWithIdentifier:@"e"];
+    eVC.exercises = exercises;
+    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:eVC];
+    self.animator.bounces = NO;
+    self.animator.dragable = NO;
+    self.animator.behindViewAlpha = 0.4;
+    self.animator.behindViewScale = 1;
+    self.animator.transitionDuration = 0.75;
+    self.animator.direction = ZFModalTransitonDirectionBottom;
+    eVC.transitioningDelegate = self.animator;
+    eVC.modalPresentationStyle = UIModalPresentationCustom;
+    [self presentViewController:eVC animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {

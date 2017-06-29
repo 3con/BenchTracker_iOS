@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BTWorkout+CoreDataClass.h"
 #import "AddExerciseViewController.h"
+#import "ExerciseViewController.h"
 
 @class WorkoutViewController;
 
