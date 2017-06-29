@@ -66,17 +66,17 @@
     return [[[_fetchedResultsController sections] objectAtIndex:section] numberOfObjects];
 }
 
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    BTWorkout *workout = [_fetchedResultsController objectAtIndexPath:indexPath];
+    cell.textLabel.text = workout.name;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", workout.date];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"WorkoutCell"];
     if (cell == nil) cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleSubtitle reuseIdentifier: @"WorkoutCell"];
     [self configureCell:cell atIndexPath:indexPath];
     return cell;
-}
-
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    BTWorkout *workout = [_fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = workout.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", workout.date];
 }
 
 #pragma mark - tableView delegate

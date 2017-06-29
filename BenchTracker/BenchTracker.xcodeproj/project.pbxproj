@@ -15,6 +15,8 @@
 		F90712B519415FB2008694E5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F90712B419415FB2008694E5 /* Images.xcassets */; };
 		F90712C119415FB4008694E5 /* BenchTrackerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F90712C019415FB4008694E5 /* BenchTrackerTests.m */; };
 		F9418F9E1F0433980083C3DC /* AddExerciseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9418F9D1F0433980083C3DC /* AddExerciseViewController.m */; };
+		F9418FA31F048B1E0083C3DC /* AddExerciseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F9418FA11F048B1E0083C3DC /* AddExerciseTableViewCell.m */; };
+		F9418FA41F048B1E0083C3DC /* AddExerciseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9418FA21F048B1E0083C3DC /* AddExerciseTableViewCell.xib */; };
 		F95F932F1F02FC5000A19C4D /* TypeListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F95F932E1F02FC5000A19C4D /* TypeListModel.m */; };
 		F95F93331F03410500A19C4D /* BTAWSUser.m in Sources */ = {isa = PBXBuildFile; fileRef = F95F93321F03410500A19C4D /* BTAWSUser.m */; };
 		F95F93371F03426F00A19C4D /* BTUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F95F93361F03426F00A19C4D /* BTUserManager.m */; };
@@ -65,6 +67,9 @@
 		F90712C019415FB4008694E5 /* BenchTrackerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BenchTrackerTests.m; sourceTree = "<group>"; };
 		F9418F9C1F0433980083C3DC /* AddExerciseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddExerciseViewController.h; sourceTree = "<group>"; };
 		F9418F9D1F0433980083C3DC /* AddExerciseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddExerciseViewController.m; sourceTree = "<group>"; };
+		F9418FA01F048B1E0083C3DC /* AddExerciseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddExerciseTableViewCell.h; sourceTree = "<group>"; };
+		F9418FA11F048B1E0083C3DC /* AddExerciseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddExerciseTableViewCell.m; sourceTree = "<group>"; };
+		F9418FA21F048B1E0083C3DC /* AddExerciseTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddExerciseTableViewCell.xib; sourceTree = "<group>"; };
 		F95F932D1F02FC5000A19C4D /* TypeListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeListModel.h; sourceTree = "<group>"; };
 		F95F932E1F02FC5000A19C4D /* TypeListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TypeListModel.m; sourceTree = "<group>"; };
 		F95F93311F03410500A19C4D /* BTAWSUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BTAWSUser.h; path = BenchTracker/BTAWSUser.h; sourceTree = "<group>"; };
@@ -212,8 +217,19 @@
 			children = (
 				F9418F9C1F0433980083C3DC /* AddExerciseViewController.h */,
 				F9418F9D1F0433980083C3DC /* AddExerciseViewController.m */,
+				F9418FA51F048B230083C3DC /* Add Exercise Cell */,
 			);
 			name = "Add Exercise";
+			sourceTree = "<group>";
+		};
+		F9418FA51F048B230083C3DC /* Add Exercise Cell */ = {
+			isa = PBXGroup;
+			children = (
+				F9418FA01F048B1E0083C3DC /* AddExerciseTableViewCell.h */,
+				F9418FA11F048B1E0083C3DC /* AddExerciseTableViewCell.m */,
+				F9418FA21F048B1E0083C3DC /* AddExerciseTableViewCell.xib */,
+			);
+			name = "Add Exercise Cell";
 			sourceTree = "<group>";
 		};
 		F95F93301F02FC5600A19C4D /* TypeListModel */ = {
@@ -458,6 +474,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F981D5891F022D9A00E7B456 /* LaunchScreen.xib in Resources */,
+				F9418FA41F048B1E0083C3DC /* AddExerciseTableViewCell.xib in Resources */,
 				F90712B319415FB1008694E5 /* Main.storyboard in Resources */,
 				F90712B519415FB2008694E5 /* Images.xcassets in Resources */,
 			);
@@ -583,6 +600,7 @@
 				F9418F9E1F0433980083C3DC /* AddExerciseViewController.m in Sources */,
 				F9DA75291F02EE9600347B0D /* BTWorkout+CoreDataProperties.m in Sources */,
 				F95F93441F03738B00A19C4D /* WorkoutViewController.m in Sources */,
+				F9418FA31F048B1E0083C3DC /* AddExerciseTableViewCell.m in Sources */,
 				F9DA75111F02DC1700347B0D /* BTDataModel.xcdatamodeld in Sources */,
 				F95F93411F03713200A19C4D /* BTAWSWorkout.m in Sources */,
 				F90712A719415FB1008694E5 /* main.m in Sources */,

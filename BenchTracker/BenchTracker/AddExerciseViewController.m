@@ -8,9 +8,11 @@
 
 #import "AddExerciseViewController.h"
 #import "BTExerciseType+CoreDataClass.h"
-
+#import "AddExerciseTableViewCell.h"
 
 @interface AddExerciseViewController ()
+
+@property (nonatomic) BOOL supersettingEnabled;
 
 @end
 
@@ -24,11 +26,15 @@
     }
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 45, 0);
+    self.supersettingEnabled = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    self.containerView.layer.cornerRadius = 10;
+    self.containerView.layer.cornerRadius = 12;
     self.containerView.clipsToBounds = YES;
+    self.addExerciseButton.userInteractionEnabled = NO;
+    self.addExerciseButton.alpha = 0;
 }
 
 - (IBAction)cancelButtonPressed:(UIButton *)sender {
@@ -38,7 +44,22 @@
 }
 
 - (IBAction)supersetButtonPressed:(UIButton *)sender {
-    
+    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
+    self.addExerciseButton.userInteractionEnabled = NO;
+    self.addExerciseButton.alpha = 0;
+    self.supersettingEnabled = !self.supersettingEnabled;
+    self.tableView.allowsMultipleSelection = self.supersettingEnabled;
+    [self.supersetButton setTitle:(self.supersettingEnabled) ? @"One Set?" : @"Superset?" forState:UIControlStateNormal];
+}
+
+- (IBAction)addExerciseButtonPressed:(UIButton *)sender {
+    NSMutableArray <BTExerciseType *> *exerciseTypes = [[NSMutableArray alloc] init];
+    for (NSIndexPath *path in self.tableView.indexPathsForSelectedRows)
+        [exerciseTypes addObject: [(AddExerciseTableViewCell *)[self.tableView cellForRowAtIndexPath:path] exerciseType]];
+    [self.delegate addExerciseViewController:self willDismissWithSelectedTypes:exerciseTypes];
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
 }
 
 #pragma mark - fetchedResultsController
@@ -65,6 +86,10 @@
     return [[_fetchedResultsController sections] count];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 50;
+}
+
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     return [[_fetchedResultsController sections][section] name];
 }
@@ -73,25 +98,49 @@
     return [[[_fetchedResultsController sections] objectAtIndex:section] numberOfObjects];
 }
 
+- (void)configureCell:(AddExerciseTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    BTExerciseType *type = self.fetchedResultsController.sections[indexPath.section].objects[indexPath.row];
+    cell.frame = CGRectMake(0, 0, self.tableView.frame.size.width, 50);
+    [cell loadExerciseType:type];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"WorkoutCell"];
-    if (cell == nil) cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleSubtitle reuseIdentifier: @"WorkoutCell"];
+    AddExerciseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Identifier"];
+    if (cell == nil) cell = [[NSBundle mainBundle] loadNibNamed:@"AddExerciseTableViewCell" owner:self options:nil].firstObject;
     [self configureCell:cell atIndexPath:indexPath];
     return cell;
 }
 
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    BTExerciseType *type = [_fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = type.name;
-    NSMutableArray *arr = [NSKeyedUnarchiver unarchiveObjectWithData:type.iterations];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"Iterations: %d", arr.count];
-}
-
 #pragma mark - tableView delegate
 
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([[tableView indexPathForSelectedRow] isEqual:indexPath]) {
+        [tableView deselectRowAtIndexPath:indexPath animated:NO];
+        [self tableView:tableView didDeselectRowAtIndexPath:indexPath];
+        return nil;
+    }
+    else if (tableView.indexPathsForSelectedRows.count == 2) {
+        [tableView deselectRowAtIndexPath:tableView.indexPathsForSelectedRows.firstObject animated:NO];
+    }
+    return indexPath;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    BTExerciseType *type = [_fetchedResultsController objectAtIndexPath:indexPath];
-    //[self.workoutManager deleteWorkout:workout];
+    int numSelected = (int)tableView.indexPathsForSelectedRows.count;
+    if (numSelected == 1) {
+        self.addExerciseButton.alpha = 1;
+        self.addExerciseButton.userInteractionEnabled = YES;
+    }
+    [self.addExerciseButton setTitle:(numSelected == 1) ? @"Add Exercise" : @"Superset Exercises" forState:UIControlStateNormal];
+}
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
+    int numSelected = (int)tableView.indexPathsForSelectedRows.count;
+    if (numSelected == 0) {
+        self.addExerciseButton.userInteractionEnabled = NO;
+        self.addExerciseButton.alpha = 0;
+    }
+    else [self.addExerciseButton setTitle:(numSelected == 1) ? @"Add Exercise" : @"Superset Exercises" forState:UIControlStateNormal];
 }
 
 #pragma mark - fetchedResultsController delegate
@@ -119,7 +168,7 @@
     }
 }
 
-- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id )sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
+- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
     switch(type) {
         case NSFetchedResultsChangeInsert:
             [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
