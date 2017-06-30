@@ -34,6 +34,7 @@
 		F96207711F05DCF200DE2330 /* ExerciseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F962076F1F05DCF200DE2330 /* ExerciseTableViewCell.m */; };
 		F96207721F05DCF200DE2330 /* ExerciseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F96207701F05DCF200DE2330 /* ExerciseTableViewCell.xib */; };
 		F981D5891F022D9A00E7B456 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F981D5871F022D9A00E7B456 /* LaunchScreen.xib */; };
+		F9B7D7D71F06303700376201 /* passTouchesView.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B7D7D61F06303700376201 /* passTouchesView.m */; };
 		F9DA75111F02DC1700347B0D /* BTDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F9DA750F1F02DC1700347B0D /* BTDataModel.xcdatamodeld */; };
 		F9DA75221F02EE9600347B0D /* BTUser+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F9DA75131F02EE9600347B0D /* BTUser+CoreDataClass.m */; };
 		F9DA75231F02EE9600347B0D /* BTUser+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F9DA75151F02EE9600347B0D /* BTUser+CoreDataProperties.m */; };
@@ -108,6 +109,8 @@
 		F962076F1F05DCF200DE2330 /* ExerciseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseTableViewCell.m; sourceTree = "<group>"; };
 		F96207701F05DCF200DE2330 /* ExerciseTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExerciseTableViewCell.xib; sourceTree = "<group>"; };
 		F981D5881F022D9A00E7B456 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		F9B7D7D51F06303700376201 /* PassTouchesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PassTouchesView.h; sourceTree = "<group>"; };
+		F9B7D7D61F06303700376201 /* passTouchesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = passTouchesView.m; sourceTree = "<group>"; };
 		F9DA75101F02DC1700347B0D /* BTDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BTDataModel.xcdatamodel; sourceTree = "<group>"; };
 		F9DA75121F02EE9600347B0D /* BTUser+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "BTUser+CoreDataClass.h"; path = "BenchTracker/BTUser+CoreDataClass.h"; sourceTree = "<group>"; };
 		F9DA75131F02EE9600347B0D /* BTUser+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "BTUser+CoreDataClass.m"; path = "BenchTracker/BTUser+CoreDataClass.m"; sourceTree = "<group>"; };
@@ -336,6 +339,8 @@
 			children = (
 				F95F93421F03738B00A19C4D /* WorkoutViewController.h */,
 				F95F93431F03738B00A19C4D /* WorkoutViewController.m */,
+				F9B7D7D51F06303700376201 /* PassTouchesView.h */,
+				F9B7D7D61F06303700376201 /* passTouchesView.m */,
 				F96207731F05DCF800DE2330 /* Exercise cell */,
 			);
 			name = Workout;
@@ -673,6 +678,7 @@
 				F9DA75221F02EE9600347B0D /* BTUser+CoreDataClass.m in Sources */,
 				F95F934B1F037C9500A19C4D /* BTWorkoutManager.m in Sources */,
 				F95F93371F03426F00A19C4D /* BTUserManager.m in Sources */,
+				F9B7D7D71F06303700376201 /* passTouchesView.m in Sources */,
 				F9DA75251F02EE9600347B0D /* BTExercise+CoreDataProperties.m in Sources */,
 				F95F933E1F034FA300A19C4D /* LoginViewController.m in Sources */,
 				F96207711F05DCF200DE2330 /* ExerciseTableViewCell.m in Sources */,

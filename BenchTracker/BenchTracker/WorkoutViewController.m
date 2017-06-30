@@ -12,6 +12,7 @@
 #import "BTExerciseType+CoreDataClass.h"
 #import "ZFModalTransitionAnimator.h"
 #import "ExerciseTableViewCell.h"
+#import "PassTouchesView.h"
 
 @interface WorkoutViewController ()
 
@@ -21,6 +22,8 @@
 @property (nonatomic) NSMutableArray <NSMutableArray <NSNumber *> *> *tempSupersets;
 
 @property (nonatomic) NSMutableArray <NSIndexPath *> *selectedIndexPaths;
+
+@property (nonatomic) NSDate *startDate;
 
 @end
 
@@ -33,12 +36,21 @@
     self.tableView.delegate = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.nameTextField.delegate = self;
+    self.finishWorkoutButton.layer.cornerRadius = 12;
+    self.finishWorkoutButton.clipsToBounds = YES;
     self.workoutManager = [BTWorkoutManager sharedInstance];
     if (!self.workout) self.workout = [self.workoutManager createWorkout];
+    self.nameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:self.workout.name
+        attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor], NSFontAttributeName:[UIFont italicSystemFontOfSize:22]}];
     self.tempSupersets = [NSKeyedUnarchiver unarchiveObjectWithData:self.workout.supersets];
     for (NSMutableArray <NSNumber *> *superset in self.tempSupersets) {
         NSLog(@"%@",superset);
     }
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    self.startDate = [NSDate date];
 }
 
 - (IBAction)addExerciseButtonPressed:(UIButton *)sender {
@@ -46,15 +58,20 @@
 }
 
 - (IBAction)finishWorkoutButtonPressed:(UIButton *)sender {
+    NSTimeInterval timeInterval = [self.startDate timeIntervalSinceNow];
+    self.workout.duration += -timeInterval+1;
+    if (self.nameTextField.text.length > 0) self.workout.name = self.nameTextField.text;
     NSMutableDictionary <NSString *, NSNumber *> *dict = [[NSMutableDictionary alloc] init];
     for (BTExercise *exercise in self.workout.exercises) {
         if (dict[exercise.category]) dict[exercise.category] = [NSNumber numberWithInt:dict[exercise.category].intValue + 1];
         else                         dict[exercise.category] = [NSNumber numberWithInt:1];
     }
-    self.workout.summary = @"";
-    for (NSString *key in dict.allKeys)
-        self.workout.summary = [NSString stringWithFormat:@"%@#%@ %@",self.workout.summary, key, dict[key]];
-    self.workout.summary = [self.workout.summary substringFromIndex:1];
+    self.workout.summary = @"0";
+    if (self.workout.exercises.count > 0) {
+        for (NSString *key in dict.allKeys)
+            self.workout.summary = [NSString stringWithFormat:@"%@#%@ %@",self.workout.summary, key, dict[key]];
+        self.workout.summary = [self.workout.summary substringFromIndex:2];
+    }
     self.workout.supersets = [NSKeyedArchiver archivedDataWithRootObject:self.tempSupersets];
     [self.delegate workoutViewController:self willDismissWithResultWorkout:self.workout];
     [self dismissViewControllerAnimated:YES completion:^{
@@ -65,7 +82,7 @@
 #pragma mark - tableView dataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.workout.exercises.count+1;
+    return self.workout.exercises.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -73,14 +90,29 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == self.workout.exercises.count) {
-        
-    }
     ExerciseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     if (cell == nil) cell = [[NSBundle mainBundle] loadNibNamed:@"ExerciseTableViewCell" owner:self options:nil].firstObject;
     cell.supersetMode = [self supersetTypeForIndexPath:indexPath];
     [cell loadExercise:self.workout.exercises[indexPath.row]];
     return cell;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 95;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    PassTouchesView *footerView = [[PassTouchesView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 95)];
+    footerView.backgroundColor = [UIColor clearColor];
+    UIButton *add = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2.0-75, 20, 150, 50)];
+    [add setTitle:@"Add Exercise" forState:UIControlStateNormal];
+    [add setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    add.layer.cornerRadius = 12;
+    add.clipsToBounds = YES;
+    add.backgroundColor = [UIColor colorWithRed:251/255.0 green:192/255.0 blue:45/255.0 alpha:1];
+    [add addTarget:self action:@selector(addExerciseButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [footerView addSubview:add];
+    return footerView;
 }
 
 - (NSString *)supersetTypeForIndexPath:(NSIndexPath *)indexPath {
@@ -127,9 +159,14 @@
         [indexPaths addObject:[NSIndexPath indexPathForRow:self.workout.exercises.count-1 inSection:0]];
     }
     if (supersetArr.count > 1) [self.tempSupersets addObject:supersetArr];
+    [CATransaction begin];
+    [CATransaction setCompletionBlock: ^{
+        [self.tableView reloadData];
+    }];
     [self.tableView beginUpdates];
     [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationMiddle];
     [self.tableView endUpdates];
+    [CATransaction commit];
 }
 
 - (BTExercise *)exerciseForExerciseType: (BTExerciseType *)type {
@@ -191,6 +228,10 @@
     eVC.transitioningDelegate = self.animator;
     eVC.modalPresentationStyle = UIModalPresentationCustom;
     [self presentViewController:eVC animated:YES completion:nil];
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 - (void)didReceiveMemoryWarning {

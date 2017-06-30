@@ -27,6 +27,8 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 
+@property (weak, nonatomic) IBOutlet UIButton *finishWorkoutButton;
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
