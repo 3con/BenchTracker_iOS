@@ -127,7 +127,7 @@
 #pragma mark - workoutVC delegate
 
 - (void)workoutViewController:(WorkoutViewController *)workoutVC willDismissWithResultWorkout:(BTWorkout *)workout {
-    
+    [self.workoutManager saveEditedWorkout:workout];
 }
 
 #pragma mark - fetchedResultsController delegate

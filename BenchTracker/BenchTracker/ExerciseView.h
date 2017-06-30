@@ -12,8 +12,8 @@
 
 @interface ExerciseView : UIView <UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UICollectionViewDelegate, UICollectionViewDataSource>
 
-@property BTExercise *exercise;
-
 - (void)loadExercise: (BTExercise *)exercise;
+
+- (BTExercise *)getExercise;
 
 @end

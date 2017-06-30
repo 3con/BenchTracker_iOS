@@ -23,6 +23,8 @@
 
 @interface ExerciseView ()
 
+@property (weak, nonatomic) IBOutlet UIView *contentView;
+
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *categoryLabel;
 
@@ -32,6 +34,8 @@
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
+@property BTExercise *exercise;
+
 @property (nonatomic) NSMutableArray <NSString *> *tempSets;
 
 @end
@@ -39,8 +43,8 @@
 @implementation ExerciseView
 
 - (void)loadExercise: (BTExercise *)exercise {
-    self.layer.cornerRadius = 12;
-    self.clipsToBounds = YES;
+    self.contentView.layer.cornerRadius = 12;
+    self.contentView.clipsToBounds = YES;
     self.textField.delegate = self;
     self.pickerView.dataSource = self;
     self.pickerView.delegate = self;
@@ -60,8 +64,15 @@
     self.categoryLabel.text = exercise.category;
     self.tempSets = [NSKeyedUnarchiver unarchiveObjectWithData:exercise.sets];
     if ([self styleIs:STYLE_CUSTOM]) [self loadTextField];
-    else [self loadPickerView];
-    [self.collectionView reloadData];
+    else [self loadPickerView];                                                             //Reps, Time
+    [self.pickerView selectRow:([self styleIs:STYLE_REPSWEIGHT] || [self styleIs:STYLE_REPS]) ? 9 : 29 inComponent:0 animated:NO];
+    if (self.pickerView.numberOfComponents == 2) [self.pickerView selectRow: 17 inComponent:1 animated:NO];
+    [self.collectionView reloadData];                                     //Weight
+}
+
+- (BTExercise *)getExercise {
+    self.exercise.sets = [NSKeyedArchiver archivedDataWithRootObject:self.tempSets];
+    return self.exercise;
 }
 
 - (void)loadTextField {
@@ -164,32 +175,59 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) { //add set
-        [self.collectionView performBatchUpdates:^{
-            NSString *result;
-            if ([self styleIs:STYLE_REPSWEIGHT]) {
-                int reps = (int)[(UILabel *)[self.pickerView viewForRow:[self.pickerView selectedRowInComponent:0] forComponent:0] tag];
-                int weight = (int)[(UILabel *)[self.pickerView viewForRow:[self.pickerView selectedRowInComponent:1] forComponent:1] tag];
-                if (weight == 11)   result = [NSString stringWithFormat:@"%d 12.5",reps];
-                else                result = [NSString stringWithFormat:@"%d %d",reps,weight];
-            }
-            else if ([self styleIs:STYLE_REPS]) {
-                int reps = (int)[(UILabel *)[self.pickerView viewForRow:[self.pickerView selectedRowInComponent:0] forComponent:0] tag];
-                                    result = [NSString stringWithFormat:@"%d",reps];
-            }
-            else if ([self styleIs:STYLE_TIME]) {
-                int time = (int)[(UILabel *)[self.pickerView viewForRow:[self.pickerView selectedRowInComponent:0] forComponent:0] tag];
-                                    result = [NSString stringWithFormat:@"%ds",time];
-            }
-            else if ([self styleIs:STYLE_TIMEWEIGHT]) {
-                int time = (int)[(UILabel *)[self.pickerView viewForRow:[self.pickerView selectedRowInComponent:0] forComponent:0] tag];
-                int weight = (int)[(UILabel *)[self.pickerView viewForRow:[self.pickerView selectedRowInComponent:1] forComponent:1] tag];
-                if (weight == 11)   result = [NSString stringWithFormat:@"%ds 12.5",time];
-                else                result = [NSString stringWithFormat:@"%ds %d",time,weight];
-            }
-            else result = [NSString stringWithFormat:@"~ %@",self.textField.text];
-            [self.tempSets addObject:result];
-            [self.collectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:0]]];
-        } completion:nil];
+        if (self.tempSets.count < 12) {
+            [self.collectionView performBatchUpdates:^{
+                NSString *result;
+                if ([self styleIs:STYLE_REPSWEIGHT]) {
+                    int reps = (int)[(UILabel *)[self.pickerView viewForRow:[self.pickerView selectedRowInComponent:0] forComponent:0] tag];
+                    int weight = (int)[(UILabel *)[self.pickerView viewForRow:[self.pickerView selectedRowInComponent:1] forComponent:1] tag];
+                    if (weight == 11)   result = [NSString stringWithFormat:@"%d 12.5",reps];
+                    else                result = [NSString stringWithFormat:@"%d %d",reps,weight];
+                }
+                else if ([self styleIs:STYLE_REPS]) {
+                    int reps = (int)[(UILabel *)[self.pickerView viewForRow:[self.pickerView selectedRowInComponent:0] forComponent:0] tag];
+                    result = [NSString stringWithFormat:@"%d",reps];
+                }
+                else if ([self styleIs:STYLE_TIME]) {
+                    int time = (int)[(UILabel *)[self.pickerView viewForRow:[self.pickerView selectedRowInComponent:0] forComponent:0] tag];
+                    result = [NSString stringWithFormat:@"s %d",time];
+                }
+                else if ([self styleIs:STYLE_TIMEWEIGHT]) {
+                    int time = (int)[(UILabel *)[self.pickerView viewForRow:[self.pickerView selectedRowInComponent:0] forComponent:0] tag];
+                    int weight = (int)[(UILabel *)[self.pickerView viewForRow:[self.pickerView selectedRowInComponent:1] forComponent:1] tag];
+                    if (weight == 11)   result = [NSString stringWithFormat:@"s %d 12.5",time];
+                    else                result = [NSString stringWithFormat:@"s %d %d",time,weight];
+                }
+                else result = [NSString stringWithFormat:@"~ %@",self.textField.text];
+                [self.tempSets addObject:result];
+                [self.collectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:0]]];
+            } completion:nil];
+        }
+        else {
+            UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+            UILabel *label = cell.subviews[1];
+            [UIView animateWithDuration:.2 animations:^{
+                label.alpha = 0;
+            } completion:^(BOOL finished) {
+                label.text = @"x";
+                [UIView animateWithDuration:.2 animations:^{
+                    label.alpha = 1;
+                } completion:^(BOOL finished) {
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW,1*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                        [UIView animateWithDuration:.2 animations:^{
+                            label.alpha = 0;
+                        } completion:^(BOOL finished) {
+                            label.text = @"+";
+                            [UIView animateWithDuration:.2 animations:^{
+                                label.alpha = 1;
+                            } completion:^(BOOL finished) {
+                                
+                            }];
+                        }];
+                    });
+                }];
+            }];
+        }
     }
     else { //delete set
         [(SetCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:indexPath] performDeleteAnimationWithDuration:.4];

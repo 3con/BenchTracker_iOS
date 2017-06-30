@@ -45,6 +45,7 @@
     workout.date = [NSDate date];
     workout.duration = 0;
     workout.summary = @"0";
+    workout.supersets = [NSKeyedArchiver archivedDataWithRootObject:[[NSMutableArray alloc] init]];
     workout.exercises = [[NSOrderedSet alloc] init];
     BTAWSWorkout *AWSWorkout = [self AWSWorkoutForWorkout:workout];
     [self pushAWSWorkout:AWSWorkout withCompletionBlock:^{
@@ -61,7 +62,7 @@
         
     }];
     [self saveCoreData];
-    [self.delegate workoutManager:self didCreateWorkout:workout]; //add to recentEdits list, send new user
+    [self.delegate workoutManager:self didEditWorkout:workout]; //add to recentEdits list, send new user
 }
 
 - (void)deleteWorkout: (BTWorkout *)workout {
@@ -104,17 +105,36 @@
     AWSWorkout.duration = [NSNumber numberWithInteger:workout.duration];
     AWSWorkout.summary = workout.summary;
     AWSWorkout.exercises = [[NSMutableArray alloc] init];
-    for (BTExercise *exercise in workout.exercises) {
-        NSString *r = @"{";
-        r = [NSString stringWithFormat:@"%@\"style\":\"%@\",",r, exercise.style];
-        r = [NSString stringWithFormat:@"%@\"name\":\"%@\",",r, exercise.name];
-        r = [NSString stringWithFormat:@"%@\"iteration\":\"%@\",",r, exercise.iteration];
-        r = [NSString stringWithFormat:@"%@\"category\":\"%@\",",r, exercise.category];
-        r = [NSString stringWithFormat:@"%@\"sets\":\"%@\",",r, exercise.sets];
-        [AWSWorkout.exercises addObject:[NSString stringWithFormat:@"%@}",r]];
-    }
+    for (BTExercise *exercise in workout.exercises)
+        [AWSWorkout.exercises addObject:[self JSONforExercise:exercise]];
     if (AWSWorkout.exercises.count == 0) [AWSWorkout.exercises addObject:AWS_EMPTY];
+    AWSWorkout.supersets = [[NSMutableArray alloc] init];
+    for (NSMutableArray <NSNumber *> *superset in [NSKeyedUnarchiver unarchiveObjectWithData:workout.supersets]) {
+        NSString *s = @"";
+        for (NSNumber *num in superset) s = [NSString stringWithFormat:@"%@ %d", s, num.intValue];
+        [AWSWorkout.supersets addObject:[s substringFromIndex:1]];
+    }
+    if (AWSWorkout.supersets.count == 0) [AWSWorkout.supersets addObject:AWS_EMPTY];
     return AWSWorkout;
+}
+
+- (NSString *)JSONforExercise:(BTExercise *)exercise {
+    NSString *r = @"{";
+    r = [NSString stringWithFormat:@"%@\"style\":\"%@\",",r, exercise.style];
+    r = [NSString stringWithFormat:@"%@\"name\":\"%@\",",r, exercise.name];
+    r = [NSString stringWithFormat:@"%@\"iteration\":\"%@\",",r, exercise.iteration];
+    r = [NSString stringWithFormat:@"%@\"category\":\"%@\",",r, exercise.category];
+    r = [NSString stringWithFormat:@"%@\"sets\":\"%@\"",r, [self stringForSetsData: exercise.sets]];
+    return [NSString stringWithFormat:@"%@}",r];
+}
+
+- (NSString *)stringForSetsData:(NSData *)data {
+    if (!data) return [NSString stringWithFormat:@"[ \"%@\" ]",AWS_EMPTY];
+    NSArray <NSString *> *arr = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    if (arr.count == 0) return [NSString stringWithFormat:@"[ \"%@\" ]",AWS_EMPTY];
+    NSString *r = @"[ ";
+    for (NSString *s in arr) r = [NSString stringWithFormat:@"%@,\"%@\"",r,s];
+    return [r stringByAppendingString:@" ]"];
 }
 
 - (void)pushAWSWorkout:(BTAWSWorkout *)AWSWorkout withCompletionBlock:(void (^)())completed {
@@ -124,24 +144,6 @@
         return nil;
     }];
 }
-
-
-/*
- @property (nonatomic, nonnull)                   NSString* uuid;
- @property (nonatomic, nonnull)                   NSString* name;
- @property (nonatomic, nonnull)                   NSString* date;
- @property (nonatomic, nonnull)                   NSNumber* duration;
- @property (nonatomic, nonnull)                   NSString* summary;
- @property (nonatomic, nonnull) NSMutableArray<NSString *>* exercises;
- */
-
-/*
- @property (nullable, nonatomic, retain) NSData *sets;
- @property (nullable, nonatomic, copy) NSString *style;
- @property (nullable, nonatomic, copy) NSString *name;
- @property (nullable, nonatomic, copy) NSString *iteration;
- @property (nullable, nonatomic, copy) NSString *category;
- */
 
 - (void)saveCoreData {
     NSError *error;

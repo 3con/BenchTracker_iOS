@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSDate *date;
 @property (nonatomic) int64_t duration;
 @property (nullable, nonatomic, copy) NSString *summary;
+@property (nullable, nonatomic, retain) NSData *supersets; //[ [1, 2, 3], [5, 6], ... ]
 @property (nullable, nonatomic, retain) NSOrderedSet<BTExercise *> *exercises;
 
 @end

@@ -55,7 +55,7 @@
 - (IBAction)addExerciseButtonPressed:(UIButton *)sender {
     NSMutableArray <BTExerciseType *> *exerciseTypes = [[NSMutableArray alloc] init];
     for (NSIndexPath *path in self.tableView.indexPathsForSelectedRows)
-        [exerciseTypes addObject: [(AddExerciseTableViewCell *)[self.tableView cellForRowAtIndexPath:path] exerciseType]];
+        [exerciseTypes addObject: [self.fetchedResultsController objectAtIndexPath:path]];
     [self.delegate addExerciseViewController:self willDismissWithSelectedTypes:exerciseTypes];
     [self dismissViewControllerAnimated:YES completion:^{
         
@@ -119,7 +119,7 @@
         [self tableView:tableView didDeselectRowAtIndexPath:indexPath];
         return nil;
     }
-    else if (tableView.indexPathsForSelectedRows.count == 2) {
+    else if (tableView.indexPathsForSelectedRows.count == 5) {
         [tableView deselectRowAtIndexPath:tableView.indexPathsForSelectedRows.firstObject animated:NO];
     }
     return indexPath;
@@ -131,7 +131,9 @@
         self.addExerciseButton.alpha = 1;
         self.addExerciseButton.userInteractionEnabled = YES;
     }
-    [self.addExerciseButton setTitle:(numSelected == 1) ? @"Add Exercise" : @"Superset Exercises" forState:UIControlStateNormal];
+    [self.addExerciseButton setTitle:(numSelected == 1) ? @"Add Exercise" :
+                               [NSString stringWithFormat:@"Superset %d Exercises",numSelected]
+                            forState:UIControlStateNormal];
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -140,7 +142,9 @@
         self.addExerciseButton.userInteractionEnabled = NO;
         self.addExerciseButton.alpha = 0;
     }
-    else [self.addExerciseButton setTitle:(numSelected == 1) ? @"Add Exercise" : @"Superset Exercises" forState:UIControlStateNormal];
+    else [self.addExerciseButton setTitle:(numSelected == 1) ? @"Add Exercise" :
+                                    [NSString stringWithFormat:@"Superset %d Exercises",numSelected]
+                                 forState:UIControlStateNormal];
 }
 
 #pragma mark - fetchedResultsController delegate

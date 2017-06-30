@@ -25,6 +25,7 @@
         <attribute name="duration" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="summary" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="supersets" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="exercises" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="BTExercise" inverseName="workout" inverseEntity="BTExercise" syncable="YES"/>
     </entity>
@@ -32,6 +33,6 @@
         <element name="BTExercise" positionX="-137" positionY="-108" width="128" height="133"/>
         <element name="BTExerciseType" positionX="-137" positionY="-249" width="128" height="103"/>
         <element name="BTUser" positionX="-488" positionY="-105" width="128" height="105"/>
-        <element name="BTWorkout" positionX="-306" positionY="-105" width="128" height="135"/>
+        <element name="BTWorkout" positionX="-306" positionY="-105" width="128" height="150"/>
     </elements>
 </model>

@@ -32,22 +32,41 @@
     self.doneButton.layer.cornerRadius = 12;
     self.doneButton.clipsToBounds = YES;
     self.exerciseViews = [[NSMutableArray alloc] init];
+    int h = 167;
     for (BTExercise *exercise in self.exercises) {
         ExerciseView *view = [[NSBundle mainBundle] loadNibNamed:@"ExerciseView" owner:self options:nil].firstObject;
         [view loadExercise:exercise];
         [self.exerciseViews addObject:view];
         [self.contentView addSubview:view];
+        view.center = CGPointMake(self.contentView.frame.size.width*.5, h);
+        h += 267;
     }
-    if (self.exerciseViews.count == 1) self.exerciseViews[0].center =
-                                       CGPointMake(self.contentView.frame.size.width*.5, self.contentView.frame.size.height*.5);
+    if (self.exercises.count < 3) {
+        if (self.exercises.count == 1) self.exerciseViews[0].center = CGPointMake(self.contentView.frame.size.width*.5,
+                                                                                 (self.view.frame.size.height-80-55)*.5);
+        [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.contentView
+                                                              attribute:NSLayoutAttributeHeight
+                                                              relatedBy:NSLayoutRelationEqual
+                                                                 toItem:nil
+                                                              attribute:NSLayoutAttributeNotAnAttribute
+                                                             multiplier:1.0
+                                                               constant:self.view.frame.size.height+1]];
+    }
     else {
-        self.exerciseViews[0].center = CGPointMake(self.contentView.frame.size.width*.5, self.contentView.frame.size.height*.25);
-        self.exerciseViews[1].center = CGPointMake(self.contentView.frame.size.width*.5, self.contentView.frame.size.height*.75);
+        [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.contentView
+                                                              attribute:NSLayoutAttributeHeight
+                                                              relatedBy:NSLayoutRelationEqual
+                                                                 toItem:nil
+                                                              attribute:NSLayoutAttributeNotAnAttribute
+                                                             multiplier:1.0
+                                                               constant:h+20]];
     }
-    
 }
 
 - (IBAction)doneButtonPressed:(UIButton *)sender {
+    NSMutableArray *arr = [[NSMutableArray alloc] init];
+    for (ExerciseView *view in self.exerciseViews) [arr addObject:[view getExercise]];
+    [self.delegate exerciseViewController:self willDismissWithResultExercises:arr];
     [self dismissViewControllerAnimated:YES completion:^{
                                  
     }];

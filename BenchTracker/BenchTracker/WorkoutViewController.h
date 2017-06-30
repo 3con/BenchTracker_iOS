@@ -18,7 +18,7 @@
 - (void) workoutViewController:(WorkoutViewController *)workoutVC willDismissWithResultWorkout:(BTWorkout *)workout;
 @end
 
-@interface WorkoutViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, AddExerciseViewControllerDelegate>
+@interface WorkoutViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, AddExerciseViewControllerDelegate, ExerciseViewControllerDelegate>
 
 @property id<WorkoutViewControllerDelegate> delegate;
 

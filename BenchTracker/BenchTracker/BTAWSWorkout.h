@@ -15,6 +15,7 @@
 @property (nonatomic, nonnull)                   NSString* date;
 @property (nonatomic, nonnull)                   NSNumber* duration;
 @property (nonatomic, nonnull)                   NSString* summary;
+@property (nonatomic, nonnull) NSMutableArray<NSString *>* supersets; //[ "1 2 3", "5 6", ... ]
 @property (nonatomic, nonnull) NSMutableArray<NSString *>* exercises;
 
 @end

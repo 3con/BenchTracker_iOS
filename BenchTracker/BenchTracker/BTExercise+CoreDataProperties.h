@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSFetchRequest<BTExercise *> *)fetchRequest;
 
-@property (nullable, nonatomic, retain) NSData *sets; //repsSets: "10 50" reps: "10" timeWeight: "10s 50" time: "10s" custom: "~ xxxxxxxx"
+@property (nullable, nonatomic, retain) NSData *sets; //repsSets: "10 50" reps: "10" timeWeight: "s 10 50" time: "s 10" custom: "~ xxxxxxxx"
 @property (nullable, nonatomic, copy) NSString *style;
 @property (nullable, nonatomic, copy) NSString *name;
 @property (nullable, nonatomic, copy) NSString *iteration;

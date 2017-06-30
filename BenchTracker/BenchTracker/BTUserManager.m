@@ -109,7 +109,7 @@
 
 - (void)workoutManager:(BTWorkoutManager *)workoutManager didCreateWorkout:(BTWorkout *)workout {
     NSString *uuid = workout.uuid;
-    int time = 9999999999-[NSDate timeIntervalSinceReferenceDate];
+    int time = 1999999999-[NSDate timeIntervalSinceReferenceDate];
     if (self.AWSUser.recentEdits.count == 1 && [self.AWSUser.recentEdits containsObject:AWS_EMPTY])
         [self.AWSUser.recentEdits removeAllObjects];
     [self.AWSUser.recentEdits addObject:[NSString stringWithFormat:@"%d A %@",time,uuid]];
@@ -127,7 +127,7 @@
 
 - (void)workoutManager:(BTWorkoutManager *)workoutManager didEditWorkout:(BTWorkout *)workout {
     NSString *uuid = workout.uuid;
-    int time = 9999999999-[NSDate timeIntervalSinceReferenceDate];
+    int time = 1999999999-[NSDate timeIntervalSinceReferenceDate];
     if (self.AWSUser.recentEdits.count == 1 && [self.AWSUser.recentEdits containsObject:AWS_EMPTY])
         [self.AWSUser.recentEdits removeAllObjects];
     [self.AWSUser.recentEdits addObject:[NSString stringWithFormat:@"%d E %@",time,uuid]];
@@ -141,7 +141,7 @@
 
 - (void)workoutManager:(BTWorkoutManager *)workoutManager didDeleteWorkout:(BTWorkout *)workout {
     NSString *uuid = workout.uuid;
-    int time = 9999999999-[NSDate timeIntervalSinceReferenceDate];
+    int time = 1999999999-[NSDate timeIntervalSinceReferenceDate];
     if (self.AWSUser.recentEdits.count == 1 && [self.AWSUser.recentEdits containsObject:AWS_EMPTY])
         [self.AWSUser.recentEdits removeAllObjects];
     [self.AWSUser.recentEdits addObject:[NSString stringWithFormat:@"%d D %@",time,uuid]];
