@@ -36,15 +36,16 @@ In order to get the app to fully function correctly, the file 'BenchTrackerKeys.
 
 ## Images
 #### User login
+<img src="./Screenshots/image1.png" alt="Drawing" width="300 px"/>
 
 #### Main view
-
-#### Workout in progress
+<img src="./Screenshots/image2.png" alt="Drawing" width="300 px"/>
 
 #### Exercise list
+<img src="./Screenshots/image3.png" alt="Drawing" width="300 px"/>
+
+#### Workout in progress
+<img src="./Screenshots/image4.png" alt="Drawing" width="300 px"/>
 
 #### Rep tracking
-<img src="./Screenshots/Workouts.png" alt="Drawing" width="300 px"/>
-<img src="./Screenshots/Steps.png" alt="Drawing" width="300 px"/>
-<img src="./Screenshots/Step.png" alt="Drawing" width="300 px"/>
-<img src="./Screenshots/Rep.png" alt="Drawing" width="300 px"/>
+<img src="./Screenshots/image5.png" alt="Drawing" width="300 px"/>
