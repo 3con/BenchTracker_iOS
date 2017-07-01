@@ -49,3 +49,4 @@ In order to get the app to fully function correctly, the file 'BenchTrackerKeys.
 
 #### Rep tracking
 <img src="./Screenshots/image5.png" alt="Drawing" width="300 px"/>
+<img src="./Screenshots/image6.png" alt="Drawing" width="300 px"/>

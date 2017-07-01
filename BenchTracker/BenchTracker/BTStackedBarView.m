@@ -20,6 +20,8 @@
 @implementation BTStackedBarView
 
 - (void)reloadData {
+    self.layer.cornerRadius = 3;
+    self.clipsToBounds = YES;
     if (self.dataSource) {
         [[self subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
         self.barValues = [NSMutableArray array];
