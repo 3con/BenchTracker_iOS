@@ -24,12 +24,15 @@
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
+@property (nonatomic) int maxCells;
+
 @end
 
 @implementation ExerciseTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.containerView.layer.cornerRadius = 8;
     self.containerView.clipsToBounds = YES;
     self.collectionView.delegate = self;
@@ -54,15 +57,14 @@
     self.tempSets = [NSKeyedUnarchiver unarchiveObjectWithData:self.exercise.sets];
     self.nameLabel.text = [NSString stringWithFormat:@"%@ %@",exercise.iteration,exercise.name];
     self.categoryLabel.text = exercise.category;
+    self.maxCells = (int)self.collectionView.frame.size.width / 70;
     [self.collectionView reloadData];
 }
 
 #pragma mark - collectionView datasource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    if (self.tempSets) {
-        return self.tempSets.count;
-    }
+    if (self.tempSets) return MIN(self.tempSets.count, self.maxCells);
     return 0;
 }
 
@@ -81,7 +83,14 @@
         [cell addSubview:label];
     }
     else label = cell.subviews[1];
-    label.text = self.tempSets[indexPath.row];
+    if (self.tempSets.count > self.maxCells && indexPath.row == self.maxCells-1) {
+        label.text = [NSString stringWithFormat:@"+%ld more",self.tempSets.count-self.maxCells];
+        label.font = [UIFont systemFontOfSize:10 weight:UIFontWeightBold];
+    }
+    else {
+        label.text = self.tempSets[indexPath.row];
+        label.font = [UIFont systemFontOfSize:12 weight:UIFontWeightMedium];
+    }
     return cell;
 }
 

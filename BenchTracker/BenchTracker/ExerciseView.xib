@@ -37,7 +37,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Barbell Bench Press" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e80-59-2Wk">
-                            <rect key="frame" x="0.0" y="0.0" width="360" height="30"/>
+                            <rect key="frame" x="30" y="0.0" width="300" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -55,6 +55,43 @@
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences" spellCheckingType="yes" keyboardAppearance="alert" returnKeyType="done"/>
                         </textField>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iAw-gC-BWl">
+                            <rect key="frame" x="5" y="5" width="24" height="24"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.80025946579999996" green="0.14866781030000001" blue="0.14117555979999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <fontDescription key="fontDescription" name="Courier-Bold" family="Courier" pointSize="16"/>
+                            <state key="normal" title="-">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="deleteButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="RXM-pk-eDW"/>
+                            </connections>
+                        </button>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eY4-rH-vPU">
+                            <rect key="frame" x="0.0" y="0.0" width="360" height="220"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Deleted" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uyZ-Oa-NaS">
+                                    <rect key="frame" x="80" y="76" width="200" height="40"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="35"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="68b-zS-Vp4">
+                                    <rect key="frame" x="150" y="117" width="60" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                    <state key="normal" title="Undo">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="undoDeleteButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="eiF-6w-U8z"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.71483839897260282" colorSpace="custom" customColorSpace="sRGB"/>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" red="0.078297413885593414" green="0.077457226812839508" blue="0.32783538103103638" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
@@ -73,9 +110,12 @@
                 <outlet property="categoryLabel" destination="eCs-Gt-wTR" id="Nqv-ef-pbb"/>
                 <outlet property="collectionView" destination="XQY-rd-tm3" id="wrU-hk-wYV"/>
                 <outlet property="contentView" destination="eer-s8-Eoe" id="dwk-qp-Opp"/>
+                <outlet property="deleteButton" destination="iAw-gC-BWl" id="wHT-1n-51Q"/>
+                <outlet property="deletedView" destination="eY4-rH-vPU" id="08O-dQ-LOo"/>
                 <outlet property="nameLabel" destination="e80-59-2Wk" id="nFE-zF-nu9"/>
                 <outlet property="pickerView" destination="Clc-bO-6ma" id="DTb-QT-FVs"/>
                 <outlet property="textField" destination="Ktd-ZZ-KsZ" id="y3g-0W-wWJ"/>
+                <outlet property="undoDeleteButton" destination="eY4-rH-vPU" id="oiR-EJ-TNs"/>
             </connections>
         </view>
     </objects>

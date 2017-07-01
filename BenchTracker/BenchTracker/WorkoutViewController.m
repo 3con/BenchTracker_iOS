@@ -21,6 +21,7 @@
 
 @property (nonatomic) NSMutableArray <NSMutableArray <NSNumber *> *> *tempSupersets;
 
+@property (nonatomic) NSMutableArray <BTExercise *> *selectedExercises;
 @property (nonatomic) NSMutableArray <NSIndexPath *> *selectedIndexPaths;
 
 @property (nonatomic) NSDate *startDate;
@@ -31,7 +32,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.selectedIndexPaths = [[NSMutableArray alloc] init];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -134,17 +134,18 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSMutableArray <BTExercise *> *arr = [[NSMutableArray alloc] init];
+    self.selectedIndexPaths = [[NSMutableArray alloc] init];
+    self.selectedExercises = [[NSMutableArray alloc] init];
     for (NSNumber *n in [self supersetForIndexPath:indexPath]) {
-        [arr addObject:self.workout.exercises[n.intValue]];
+        [self.selectedExercises addObject:self.workout.exercises[n.intValue]];
         [self.selectedIndexPaths addObject:[NSIndexPath indexPathForRow:n.intValue inSection:0]];
     }
-    if (arr.count == 0) {
-        [arr addObject:self.workout.exercises[indexPath.row]];
+    if (self.selectedExercises.count == 0) {
+        [self.selectedExercises addObject:self.workout.exercises[indexPath.row]];
         [self.selectedIndexPaths addObject:[NSIndexPath indexPathForRow:indexPath.row inSection:0]];
     }
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self presentExerciseViewControllerWithExercises:arr];
+        [self presentExerciseViewControllerWithExercises:self.selectedExercises];
     });
 }
 
@@ -182,11 +183,37 @@
 
 #pragma mark - exerciseVC delegate
 
-- (void)exerciseViewController:(ExerciseViewController *)exerciseVC willDismissWithResultExercises:(NSArray<BTExercise *> *)exercises {
+- (void)exerciseViewController:(ExerciseViewController *)exerciseVC willDismissWithEditedExercises:(NSArray<BTExercise *> *)exercises
+                                                                                  deletedExercises:(NSArray<BTExercise *> *)deleted {
+    NSMutableArray <NSIndexPath *> *deletedIndexPaths = [[NSMutableArray alloc] init];
+    for (BTExercise *exercise in deleted) {
+        NSInteger index = [self.workout.exercises indexOfObject:exercise];
+        [deletedIndexPaths addObject:[NSIndexPath indexPathForRow:index inSection:0]];
+        [self.selectedIndexPaths removeObject:deletedIndexPaths.lastObject];
+    }
+    [deletedIndexPaths sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        if ([obj1 row] < [obj2 row]) return (NSComparisonResult)NSOrderedDescending;
+        if ([obj1 row] > [obj2 row]) return (NSComparisonResult)NSOrderedAscending;
+        return (NSComparisonResult)NSOrderedSame;
+    }];
+    for (NSIndexPath *index in deletedIndexPaths) {
+        for (NSMutableArray <NSNumber *> *superset in self.tempSupersets) {
+            for (int i = (int)superset.count-1; i >= 0; i--) {
+                if (superset[i].integerValue == index.row) [superset removeObjectAtIndex:i];
+                else if (superset[i].integerValue > index.row) superset[i] = [NSNumber numberWithInt:superset[i].intValue - 1];
+            }
+        }
+    }
+    for (NSInteger i = self.tempSupersets.count-1; i >= 0; i--)
+        if (self.tempSupersets[i].count <= 1) [self.tempSupersets removeObjectAtIndex:i];
+    for (BTExercise *exercise in deleted) {
+        [self.workout removeExercisesObject:exercise];
+        [self.context deleteObject:exercise];
+    }
     [self.tableView beginUpdates];
-    [self.tableView reloadRowsAtIndexPaths:self.selectedIndexPaths withRowAnimation:UITableViewRowAnimationFade];
+    [self.tableView deleteRowsAtIndexPaths:deletedIndexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableView reloadRowsAtIndexPaths:self.selectedIndexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
     [self.tableView endUpdates];
-    [self.selectedIndexPaths removeAllObjects];
 }
 
 #pragma mark - textField delegate

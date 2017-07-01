@@ -18,12 +18,16 @@
 #define STYLE_CUSTOM     @"custom"
 
 #define PICKER_REPS      70  //1-50 by 1, 55-150 by 5
-#define PICKER_WEIGHT    131 //0-10 by 1, 12.5, 15-600 by 5
+#define PICKER_WEIGHT    130 //0-10 by 1, 12.5, 15-600 by 5
 #define PICKER_TIME      48  //1-30 by 1, 35-120 by 5
 
 @interface ExerciseView ()
 
 @property (weak, nonatomic) IBOutlet UIView *contentView;
+
+@property (weak, nonatomic) IBOutlet UIView *deletedView;
+@property (weak, nonatomic) IBOutlet UIView *undoDeleteButton;
+@property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *categoryLabel;
@@ -43,6 +47,11 @@
 @implementation ExerciseView
 
 - (void)loadExercise: (BTExercise *)exercise {
+    self.isDeleted = NO;
+    self.deletedView.alpha = 0;
+    self.deletedView.userInteractionEnabled = NO;
+    self.deleteButton.layer.cornerRadius = 12;
+    self.deleteButton.clipsToBounds = YES;
     self.contentView.layer.cornerRadius = 12;
     self.contentView.clipsToBounds = YES;
     self.textField.delegate = self;
@@ -73,6 +82,24 @@
 - (BTExercise *)getExercise {
     self.exercise.sets = [NSKeyedArchiver archivedDataWithRootObject:self.tempSets];
     return self.exercise;
+}
+
+- (IBAction)deleteButtonPressed:(UIButton *)sender {
+    self.isDeleted = YES;
+    self.deletedView.userInteractionEnabled = YES;
+    [UIView animateWithDuration:.3 animations:^{
+       self.deletedView.alpha = 1;
+    }];
+}
+
+- (IBAction)undoDeleteButtonPressed:(UIButton *)sender {
+    self.isDeleted = NO;
+    self.deletedView.userInteractionEnabled = NO;
+    [UIView animateWithDuration:.3 animations:^{
+        self.deletedView.alpha = 0;
+    } completion:^(BOOL finished) {
+        self.deletedView.userInteractionEnabled = NO;
+    }];
 }
 
 - (void)loadTextField {
@@ -125,7 +152,7 @@
         label.tag = num;
         if (row == 11) label.text = @"12.5 lbs";
     }
-    else {                                                                                         //TIME
+    else {                                                                                              //TIME
         NSInteger num = (row < 30) ? row+1 : (row-29)*5+30;
         label.text = [NSString stringWithFormat:@"%ld %@", num, (num == 1) ? @"sec" : @"secs"];
         label.tag = num;

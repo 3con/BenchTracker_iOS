@@ -12,6 +12,8 @@
 
 @interface ExerciseView : UIView <UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UICollectionViewDelegate, UICollectionViewDataSource>
 
+@property (nonatomic) BOOL isDeleted;
+
 - (void)loadExercise: (BTExercise *)exercise;
 
 - (BTExercise *)getExercise;

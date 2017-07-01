@@ -13,7 +13,8 @@
 
 @protocol ExerciseViewControllerDelegate <NSObject>
 @required
-- (void) exerciseViewController:(ExerciseViewController *)exerciseVC willDismissWithResultExercises:(NSArray <BTExercise *> *)exercises;
+- (void) exerciseViewController:(ExerciseViewController *)exerciseVC willDismissWithEditedExercises:(NSArray <BTExercise *> *)exercises
+                                                                                   deletedExercises:(NSArray <BTExercise *> *)deleted;
 @end
 
 @interface ExerciseViewController : UIViewController

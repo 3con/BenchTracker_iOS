@@ -30,7 +30,7 @@
         <relationship name="exercises" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="BTExercise" inverseName="workout" inverseEntity="BTExercise" syncable="YES"/>
     </entity>
     <elements>
-        <element name="BTExercise" positionX="-137" positionY="-108" width="128" height="133"/>
+        <element name="BTExercise" positionX="-137" positionY="-108" width="128" height="135"/>
         <element name="BTExerciseType" positionX="-137" positionY="-249" width="128" height="103"/>
         <element name="BTUser" positionX="-488" positionY="-105" width="128" height="105"/>
         <element name="BTWorkout" positionX="-306" positionY="-105" width="128" height="150"/>

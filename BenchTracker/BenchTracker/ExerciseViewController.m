@@ -64,9 +64,13 @@
 }
 
 - (IBAction)doneButtonPressed:(UIButton *)sender {
-    NSMutableArray *arr = [[NSMutableArray alloc] init];
-    for (ExerciseView *view in self.exerciseViews) [arr addObject:[view getExercise]];
-    [self.delegate exerciseViewController:self willDismissWithResultExercises:arr];
+    NSMutableArray *dArr = [[NSMutableArray alloc] init];
+    NSMutableArray *eArr = [[NSMutableArray alloc] init];
+    for (ExerciseView *view in self.exerciseViews) {
+        if (!view.isDeleted) [eArr addObject:[view getExercise]];
+        else                 [dArr addObject:[view getExercise]];
+    }
+    [self.delegate exerciseViewController:self willDismissWithEditedExercises:eArr deletedExercises:dArr];
     [self dismissViewControllerAnimated:YES completion:^{
                                  
     }];
