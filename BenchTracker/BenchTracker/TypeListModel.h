@@ -22,5 +22,6 @@
 @interface TypeListModel : JSONModel
 
 @property (nonatomic, strong) NSArray <ExerciseTypeModel> *list;
+@property (nonatomic, strong) NSMutableDictionary *colors;
 
 @end

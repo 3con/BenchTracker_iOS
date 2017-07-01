@@ -13,6 +13,8 @@
 
 @interface WorkoutTableViewCell : UITableViewCell <BTStackedBarViewDataSource>
 
+@property (nonatomic) NSDictionary *exerciseTypeColors;
+
 - (void)loadWorkout:(BTWorkout *)workout;
 
 @end

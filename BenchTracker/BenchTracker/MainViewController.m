@@ -18,6 +18,7 @@
 @property (nonatomic) ZFModalTransitionAnimator *animator;
 @property (nonatomic) BTUserManager *userManager;
 @property (nonatomic) BTWorkoutManager *workoutManager;
+@property (nonatomic) BTSettings *settings;
 
 @end
 
@@ -28,12 +29,20 @@
     self.context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
     self.userManager = [BTUserManager sharedInstance];
     self.workoutManager = [BTWorkoutManager sharedInstance];
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
     NSError *error;
     if (![[self fetchedResultsController] performFetch:&error]) {
         NSLog(@"Main fetch error: %@, %@", error, [error userInfo]);
     }
-    self.tableView.dataSource = self;
-    self.tableView.delegate = self;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"BTSettings"];
+    NSError *error;
+    self.settings = [self.context executeFetchRequest:fetchRequest error:&error].firstObject;
+    if (error) NSLog(@"settings fetcher errror: %@",error);
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -48,10 +57,8 @@
 - (NSFetchedResultsController *)fetchedResultsController {
     if (_fetchedResultsController != nil) return _fetchedResultsController;
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"BTWorkout" inManagedObjectContext:self.context];
-    [fetchRequest setEntity:entity];
-    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO];
-    [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]];
+    [fetchRequest setEntity:[NSEntityDescription entityForName:@"BTWorkout" inManagedObjectContext:self.context]];
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO]]];
     [fetchRequest setFetchBatchSize:20];
     NSFetchedResultsController *theFetchedResultsController = [[NSFetchedResultsController alloc]
                                                                initWithFetchRequest:fetchRequest managedObjectContext:self.context
@@ -71,9 +78,10 @@
     return 60;
 }
 
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+- (void)configureCell:(WorkoutTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     BTWorkout *workout = [_fetchedResultsController objectAtIndexPath:indexPath];
-    [(WorkoutTableViewCell *)cell loadWorkout:workout];
+    cell.exerciseTypeColors = [NSKeyedUnarchiver unarchiveObjectWithData:self.settings.exerciseTypeColors];
+    [cell loadWorkout:workout];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

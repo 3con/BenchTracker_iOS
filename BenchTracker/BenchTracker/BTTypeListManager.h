@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BTExerciseType+CoreDataClass.h"
+#import "BTSettings+CoreDataClass.h"
 
 @class BTTypeListManager;
 

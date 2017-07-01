@@ -61,6 +61,10 @@
     return self.tempSummary[index][0];
 }
 
+- (UIColor *)stackedBarView:(BTStackedBarView *)barView colorForBarAtIndex:(NSInteger)index {
+    return self.exerciseTypeColors[self.tempSummary[index][0]];
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

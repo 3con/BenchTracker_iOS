@@ -38,8 +38,10 @@
             float barWidth = self.barValues[i].floatValue / sum * self.frame.size.width;
             float barXPos = self.subSums[i].floatValue / sum * self.frame.size.width;
             UIView *bar = [[UIView alloc] initWithFrame:CGRectMake(barXPos, 0, barWidth, self.frame.size.height)];
+            id color;
             if ([self.dataSource respondsToSelector:@selector(stackedBarView:colorForBarAtIndex:)])
-                 bar.backgroundColor = [self.dataSource stackedBarView:self colorForBarAtIndex:i];
+                color = [self.dataSource stackedBarView:self colorForBarAtIndex:i];
+            if ([color isKindOfClass:[UIColor class]]) bar.backgroundColor = color;
             else bar.backgroundColor = [UIColor colorWithWhite:(arc4random()%180/256.0) alpha:1.0];
             [self addSubview:bar];
             if ([self.dataSource respondsToSelector:@selector(stackedBarView:nameForBarAtIndex:)]) {
@@ -51,7 +53,9 @@
                 barLabel.minimumScaleFactor = .7;
                 barLabel.allowsDefaultTighteningForTruncation = YES;
                 barLabel.textAlignment = NSTextAlignmentCenter;
-                barLabel.textColor = [UIColor whiteColor];
+                const CGFloat *components = CGColorGetComponents(((UIColor *)color).CGColor);
+                CGFloat colorBrightness = ((components[0] * 299) + (components[1] * 587) + (components[2] * 114)) / 1000;
+                barLabel.textColor = (colorBrightness > .75) ? [UIColor blackColor] : [UIColor whiteColor];
                 [self addSubview:barLabel];
             }
         }

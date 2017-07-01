@@ -7,7 +7,6 @@
 //
 
 #import "BTTypeListManager.h"
-#import "BTExerciseType+CoreDataClass.h"
 #import "AppDelegate.h"
 #import <AWSS3/AWSS3.h>
 #import "BenchTrackerKeys.h"
@@ -113,7 +112,28 @@
         type.category = eT.category;
         type.style = eT.style;
     }
+    BTSettings *settings = [NSEntityDescription insertNewObjectForEntityForName:@"BTSettings" inManagedObjectContext:self.context];
+    for (int i = 0; i < model.colors.allKeys.count; i++) {
+        NSString *key = model.colors.allKeys[i];
+        model.colors[key] = [self colorForHex:model.colors[key]];
+    }
+    settings.exerciseTypeColors = [NSKeyedArchiver archivedDataWithRootObject:model.colors];
     [self saveCoreData];
+}
+
+- (UIColor *)colorForHex:(NSString *)hex {
+    unsigned rgbValue = 0;
+    NSScanner *scanner = [NSScanner scannerWithString:hex];
+    [scanner scanHexInt:&rgbValue];
+    return [UIColor colorWithRed:((rgbValue & 0xFF0000) >> 16)/255.0 green:((rgbValue & 0xFF00) >> 8)/255.0 blue:(rgbValue & 0xFF)/255.0 alpha:1.0];
+}
+
+- (NSString *)hexForColor:(UIColor *)color {
+    const CGFloat *components = CGColorGetComponents(color.CGColor);
+    return [NSString stringWithFormat:@"#%02lX%02lX%02lX",
+            lroundf(components[0] * 255),
+            lroundf(components[1] * 255),
+            lroundf(components[2] * 255)];
 }
 
 - (void)saveCoreData {
