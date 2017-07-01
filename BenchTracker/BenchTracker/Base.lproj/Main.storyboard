@@ -23,7 +23,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oFE-yj-bhY">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="73"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W1F-YY-ujm">
                                         <rect key="frame" x="308" y="29" width="93" height="30"/>
@@ -38,16 +38,26 @@
                                             <action selector="workoutButtonPressed:" destination="BUy-cN-Z34" eventType="touchUpInside" id="I4M-YC-sNR"/>
                                         </connections>
                                     </button>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Z3Y-mQ-0sm">
+                                        <rect key="frame" x="25" y="64" width="350" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <segments>
+                                            <segment title="List"/>
+                                            <segment title="Week"/>
+                                            <segment title="Month"/>
+                                        </segments>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </segmentedControl>
                                 </subviews>
                                 <color key="backgroundColor" red="0.078297413885593414" green="0.077457226812839508" blue="0.32783538103103638" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="W1F-YY-ujm" secondAttribute="trailing" constant="13" id="Jc2-GC-HPn"/>
-                                    <constraint firstAttribute="height" constant="73" id="beo-R3-I7u"/>
+                                    <constraint firstAttribute="height" constant="100" id="beo-R3-I7u"/>
                                     <constraint firstItem="W1F-YY-ujm" firstAttribute="top" secondItem="oFE-yj-bhY" secondAttribute="top" constant="29" id="ebN-P6-XBA"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IiY-s6-C0p">
-                                <rect key="frame" x="0.0" y="73" width="414" height="663"/>
+                                <rect key="frame" x="0.0" y="100" width="414" height="636"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
@@ -98,11 +108,11 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardAppearance="alert" returnKeyType="done"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mHc-np-Ijl">
-                                        <rect key="frame" x="132" y="63" width="150" height="50"/>
+                                        <rect key="frame" x="107" y="63" width="200" height="50"/>
                                         <color key="backgroundColor" red="0.11678832309999999" green="0.1157350471" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="uIn-lP-Dy2"/>
-                                            <constraint firstAttribute="width" constant="150" id="vsz-FL-rW7"/>
+                                            <constraint firstAttribute="width" constant="200" id="vsz-FL-rW7"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                         <state key="normal" title="Finish Workout">
@@ -126,13 +136,30 @@
                                 <rect key="frame" x="0.0" y="125" width="414" height="611"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HGU-c2-dRq">
+                                <rect key="frame" x="107" y="646" width="200" height="50"/>
+                                <color key="backgroundColor" red="0.98532205819999996" green="0.75445228819999999" blue="0.176194042" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="LSG-Df-aVT"/>
+                                    <constraint firstAttribute="height" constant="50" id="ra8-Yk-xow"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                <state key="normal" title="Add Exercise">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="addExerciseButtonPressed:" destination="H2S-2B-J58" eventType="touchUpInside" id="bTU-Dr-6WA"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="HGU-c2-dRq" firstAttribute="centerX" secondItem="YY8-9r-rpW" secondAttribute="centerX" id="8nw-Bh-kej"/>
                             <constraint firstItem="dse-xV-KAV" firstAttribute="top" secondItem="nkC-SS-85L" secondAttribute="bottom" id="CRP-rM-Tj0"/>
                             <constraint firstItem="D7n-as-euy" firstAttribute="centerX" secondItem="YY8-9r-rpW" secondAttribute="centerX" id="HFO-NB-snZ"/>
                             <constraint firstItem="D7n-as-euy" firstAttribute="top" secondItem="0wZ-gk-QV1" secondAttribute="bottom" constant="-20" id="Ikv-ma-jKY"/>
                             <constraint firstItem="nkC-SS-85L" firstAttribute="centerX" secondItem="YY8-9r-rpW" secondAttribute="centerX" id="QyM-Ah-AS6"/>
+                            <constraint firstItem="dse-xV-KAV" firstAttribute="top" secondItem="HGU-c2-dRq" secondAttribute="bottom" constant="40" id="VzD-ok-yPu"/>
                             <constraint firstItem="nkC-SS-85L" firstAttribute="width" secondItem="YY8-9r-rpW" secondAttribute="width" id="gfV-8g-z4f"/>
                             <constraint firstItem="D7n-as-euy" firstAttribute="width" secondItem="YY8-9r-rpW" secondAttribute="width" id="h0a-9c-02Y"/>
                             <constraint firstItem="nkC-SS-85L" firstAttribute="top" secondItem="D7n-as-euy" secondAttribute="bottom" id="mZO-Eb-pV9"/>
@@ -140,6 +167,7 @@
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
+                        <outlet property="addExerciseButton" destination="HGU-c2-dRq" id="FQ2-DN-2QF"/>
                         <outlet property="finishWorkoutButton" destination="mHc-np-Ijl" id="FZW-sB-tJg"/>
                         <outlet property="nameTextField" destination="W1s-v4-xf3" id="FsI-3M-6Jk"/>
                         <outlet property="tableView" destination="nkC-SS-85L" id="tAV-Xq-K7X"/>
@@ -177,11 +205,11 @@
                                 </constraints>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zMR-7C-kFw">
-                                <rect key="frame" x="107" y="601" width="200" height="55"/>
+                                <rect key="frame" x="107" y="646" width="200" height="50"/>
                                 <color key="backgroundColor" red="0.98532205819999996" green="0.75445228819999999" blue="0.176194042" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="RbS-V2-hHx"/>
-                                    <constraint firstAttribute="height" constant="55" id="qPx-5d-8Ve"/>
+                                    <constraint firstAttribute="height" constant="50" id="qPx-5d-8Ve"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                 <state key="normal" title="Done">
@@ -195,7 +223,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="kMu-PX-4oX" firstAttribute="centerY" secondItem="BCt-Am-KvB" secondAttribute="centerY" id="H4d-34-2b0"/>
-                            <constraint firstItem="LGK-89-kHv" firstAttribute="top" secondItem="zMR-7C-kFw" secondAttribute="bottom" constant="80" id="HpP-Ib-cl8"/>
+                            <constraint firstItem="LGK-89-kHv" firstAttribute="top" secondItem="zMR-7C-kFw" secondAttribute="bottom" constant="40" id="HpP-Ib-cl8"/>
                             <constraint firstItem="kMu-PX-4oX" firstAttribute="height" secondItem="BCt-Am-KvB" secondAttribute="height" id="KHv-1p-Bcj"/>
                             <constraint firstItem="kMu-PX-4oX" firstAttribute="width" secondItem="BCt-Am-KvB" secondAttribute="width" id="LS1-bs-kPV"/>
                             <constraint firstItem="6ba-xy-zNF" firstAttribute="height" secondItem="BCt-Am-KvB" secondAttribute="height" priority="1" id="RO7-Od-sik"/>

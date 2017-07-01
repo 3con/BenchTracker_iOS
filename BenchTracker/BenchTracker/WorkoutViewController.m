@@ -35,6 +35,8 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.addExerciseButton.layer.cornerRadius = 12;
+    self.addExerciseButton.clipsToBounds = YES;
     self.nameTextField.delegate = self;
     self.finishWorkoutButton.layer.cornerRadius = 12;
     self.finishWorkoutButton.clipsToBounds = YES;
@@ -88,24 +90,6 @@
     cell.supersetMode = [self supersetTypeForIndexPath:indexPath];
     [cell loadExercise:self.workout.exercises[indexPath.row]];
     return cell;
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 95;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    PassTouchesView *footerView = [[PassTouchesView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 95)];
-    footerView.backgroundColor = [UIColor clearColor];
-    UIButton *add = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2.0-75, 20, 150, 50)];
-    [add setTitle:@"Add Exercise" forState:UIControlStateNormal];
-    [add setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    add.layer.cornerRadius = 12;
-    add.clipsToBounds = YES;
-    add.backgroundColor = [UIColor colorWithRed:251/255.0 green:192/255.0 blue:45/255.0 alpha:1];
-    [add addTarget:self action:@selector(addExerciseButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [footerView addSubview:add];
-    return footerView;
 }
 
 - (NSString *)supersetTypeForIndexPath:(NSIndexPath *)indexPath {

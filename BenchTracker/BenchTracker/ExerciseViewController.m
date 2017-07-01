@@ -43,7 +43,7 @@
     }
     if (self.exercises.count < 3) {
         if (self.exercises.count == 1) self.exerciseViews[0].center = CGPointMake(self.contentView.frame.size.width*.5,
-                                                                                 (self.view.frame.size.height-80-55)*.5);
+                                                                                 (self.view.frame.size.height-40-50)*.5);
         [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.contentView
                                                               attribute:NSLayoutAttributeHeight
                                                               relatedBy:NSLayoutRelationEqual
@@ -59,7 +59,7 @@
                                                                  toItem:nil
                                                               attribute:NSLayoutAttributeNotAnAttribute
                                                              multiplier:1.0
-                                                               constant:h+20]];
+                                                               constant:h-20]];
     }
 }
 
