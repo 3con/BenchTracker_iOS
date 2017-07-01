@@ -11,6 +11,7 @@
 #import "BTWorkoutManager.h"
 #import "ZFModalTransitionAnimator.h"
 #import "AppDelegate.h"
+#import "WorkoutTableViewCell.h"
 
 @interface MainViewController ()
 
@@ -66,15 +67,18 @@
     return [[[_fetchedResultsController sections] objectAtIndex:section] numberOfObjects];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 60;
+}
+
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     BTWorkout *workout = [_fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = workout.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", workout.date];
+    [(WorkoutTableViewCell *)cell loadWorkout:workout];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"WorkoutCell"];
-    if (cell == nil) cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleSubtitle reuseIdentifier: @"WorkoutCell"];
+    WorkoutTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    if (cell == nil) cell = [[NSBundle mainBundle] loadNibNamed:@"WorkoutTableViewCell" owner:nil options:nil].firstObject;
     [self configureCell:cell atIndexPath:indexPath];
     return cell;
 }

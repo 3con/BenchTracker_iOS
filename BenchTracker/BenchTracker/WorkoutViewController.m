@@ -43,19 +43,12 @@
     self.nameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:self.workout.name
         attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor], NSFontAttributeName:[UIFont italicSystemFontOfSize:22]}];
     self.tempSupersets = [NSKeyedUnarchiver unarchiveObjectWithData:self.workout.supersets];
-    for (NSMutableArray <NSNumber *> *superset in self.tempSupersets) {
-        NSLog(@"%@",superset);
-    }
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
     self.startDate = [NSDate date];
 }
 
 - (IBAction)addExerciseButtonPressed:(UIButton *)sender {
     [self presentAddExerciseViewController];
-}
+}   
 
 - (IBAction)finishWorkoutButtonPressed:(UIButton *)sender {
     NSTimeInterval timeInterval = [self.startDate timeIntervalSinceNow];
@@ -69,7 +62,7 @@
     self.workout.summary = @"0";
     if (self.workout.exercises.count > 0) {
         for (NSString *key in dict.allKeys)
-            self.workout.summary = [NSString stringWithFormat:@"%@#%@ %@",self.workout.summary, key, dict[key]];
+            self.workout.summary = [NSString stringWithFormat:@"%@#%@ %@",self.workout.summary, dict[key], key];
         self.workout.summary = [self.workout.summary substringFromIndex:2];
     }
     self.workout.supersets = [NSKeyedArchiver archivedDataWithRootObject:self.tempSupersets];

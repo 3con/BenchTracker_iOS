@@ -34,6 +34,9 @@
 		F96207711F05DCF200DE2330 /* ExerciseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F962076F1F05DCF200DE2330 /* ExerciseTableViewCell.m */; };
 		F96207721F05DCF200DE2330 /* ExerciseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F96207701F05DCF200DE2330 /* ExerciseTableViewCell.xib */; };
 		F981D5891F022D9A00E7B456 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F981D5871F022D9A00E7B456 /* LaunchScreen.xib */; };
+		F9AF067E1F07535C003A2200 /* WorkoutTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F9AF067C1F07535C003A2200 /* WorkoutTableViewCell.m */; };
+		F9AF067F1F07535C003A2200 /* WorkoutTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9AF067D1F07535C003A2200 /* WorkoutTableViewCell.xib */; };
+		F9AF06831F07596F003A2200 /* BTStackedBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = F9AF06821F07596F003A2200 /* BTStackedBarView.m */; };
 		F9B7D7D71F06303700376201 /* passTouchesView.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B7D7D61F06303700376201 /* passTouchesView.m */; };
 		F9DA75111F02DC1700347B0D /* BTDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F9DA750F1F02DC1700347B0D /* BTDataModel.xcdatamodeld */; };
 		F9DA75221F02EE9600347B0D /* BTUser+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F9DA75131F02EE9600347B0D /* BTUser+CoreDataClass.m */; };
@@ -109,6 +112,11 @@
 		F962076F1F05DCF200DE2330 /* ExerciseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseTableViewCell.m; sourceTree = "<group>"; };
 		F96207701F05DCF200DE2330 /* ExerciseTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExerciseTableViewCell.xib; sourceTree = "<group>"; };
 		F981D5881F022D9A00E7B456 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		F9AF067B1F07535C003A2200 /* WorkoutTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkoutTableViewCell.h; sourceTree = "<group>"; };
+		F9AF067C1F07535C003A2200 /* WorkoutTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkoutTableViewCell.m; sourceTree = "<group>"; };
+		F9AF067D1F07535C003A2200 /* WorkoutTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WorkoutTableViewCell.xib; sourceTree = "<group>"; };
+		F9AF06811F07596F003A2200 /* BTStackedBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTStackedBarView.h; sourceTree = "<group>"; };
+		F9AF06821F07596F003A2200 /* BTStackedBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTStackedBarView.m; sourceTree = "<group>"; };
 		F9B7D7D51F06303700376201 /* PassTouchesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PassTouchesView.h; sourceTree = "<group>"; };
 		F9B7D7D61F06303700376201 /* passTouchesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = passTouchesView.m; sourceTree = "<group>"; };
 		F9DA75101F02DC1700347B0D /* BTDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BTDataModel.xcdatamodel; sourceTree = "<group>"; };
@@ -351,6 +359,7 @@
 			children = (
 				F95F93391F034DA500A19C4D /* MainViewController.h */,
 				F95F933A1F034DA500A19C4D /* MainViewController.m */,
+				F9AF06801F075360003A2200 /* Workout cell */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -384,6 +393,26 @@
 				F96207701F05DCF200DE2330 /* ExerciseTableViewCell.xib */,
 			);
 			name = "Exercise cell";
+			sourceTree = "<group>";
+		};
+		F9AF06801F075360003A2200 /* Workout cell */ = {
+			isa = PBXGroup;
+			children = (
+				F9AF067B1F07535C003A2200 /* WorkoutTableViewCell.h */,
+				F9AF067C1F07535C003A2200 /* WorkoutTableViewCell.m */,
+				F9AF067D1F07535C003A2200 /* WorkoutTableViewCell.xib */,
+				F9AF06841F075973003A2200 /* Stacked bar */,
+			);
+			name = "Workout cell";
+			sourceTree = "<group>";
+		};
+		F9AF06841F075973003A2200 /* Stacked bar */ = {
+			isa = PBXGroup;
+			children = (
+				F9AF06811F07596F003A2200 /* BTStackedBarView.h */,
+				F9AF06821F07596F003A2200 /* BTStackedBarView.m */,
+			);
+			name = "Stacked bar";
 			sourceTree = "<group>";
 		};
 		F9DA752A1F02F00200347B0D /* BTWorkout */ = {
@@ -559,6 +588,7 @@
 				F96207721F05DCF200DE2330 /* ExerciseTableViewCell.xib in Resources */,
 				F90712B519415FB2008694E5 /* Images.xcassets in Resources */,
 				F9418FBE1F04CEF80083C3DC /* SetCollectionViewCell.xib in Resources */,
+				F9AF067F1F07535C003A2200 /* WorkoutTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -681,6 +711,7 @@
 				F9B7D7D71F06303700376201 /* passTouchesView.m in Sources */,
 				F9DA75251F02EE9600347B0D /* BTExercise+CoreDataProperties.m in Sources */,
 				F95F933E1F034FA300A19C4D /* LoginViewController.m in Sources */,
+				F9AF067E1F07535C003A2200 /* WorkoutTableViewCell.m in Sources */,
 				F96207711F05DCF200DE2330 /* ExerciseTableViewCell.m in Sources */,
 				F9DA75331F02F0B800347B0D /* BTTypeListManager.m in Sources */,
 				F9418F9E1F0433980083C3DC /* AddExerciseViewController.m in Sources */,
@@ -692,6 +723,7 @@
 				F90712A719415FB1008694E5 /* main.m in Sources */,
 				F9418FB21F04C83F0083C3DC /* SetFlowLayout.m in Sources */,
 				F9418FA81F04A4F80083C3DC /* ExerciseViewController.m in Sources */,
+				F9AF06831F07596F003A2200 /* BTStackedBarView.m in Sources */,
 				F9DA75241F02EE9600347B0D /* BTExercise+CoreDataClass.m in Sources */,
 				F9DA75231F02EE9600347B0D /* BTUser+CoreDataProperties.m in Sources */,
 				F95F932F1F02FC5000A19C4D /* TypeListModel.m in Sources */,
