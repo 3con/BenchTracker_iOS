@@ -10,6 +10,7 @@
 #import "LoginViewController.h"
 #import "WorkoutViewController.h"
 #import "SettingsViewController.h"
+#import "WeekdayView.h"
 #import "FSCalendar.h"
 
 @interface MainViewController : UIViewController <WorkoutViewControllerDelegate, SettingsViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate,  FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance>
@@ -19,7 +20,9 @@
 
 @property (weak, nonatomic) IBOutlet UIView *segmentedControlContainerView;
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UITableView *listTableView;
+@property (weak, nonatomic) IBOutlet UIView *weekdayContainerView;
+@property (weak, nonatomic) IBOutlet WeekdayView *weekdayView;
 @property (weak, nonatomic) IBOutlet FSCalendar *calendarView;
 
 @end

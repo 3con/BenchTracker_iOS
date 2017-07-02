@@ -12,6 +12,7 @@
 #import "ZFModalTransitionAnimator.h"
 #import "AppDelegate.h"
 #import "WorkoutTableViewCell.h"
+#import "WeekdayTableViewCell.h"
 #import "HMSegmentedControl.h"
 
 @interface MainViewController ()
@@ -35,8 +36,14 @@
     self.userManager = [BTUserManager sharedInstance];
     self.user = [self.userManager user];
     self.workoutManager = [BTWorkoutManager sharedInstance];
-    self.tableView.dataSource = self;
-    self.tableView.delegate = self;
+    self.listTableView.dataSource = self;
+    self.listTableView.delegate = self;
+    self.weekdayView = [[NSBundle mainBundle] loadNibNamed:@"WeekdayView" owner:self options:nil].firstObject;
+    self.weekdayView.user = self.user;
+    self.weekdayView.context = self.context;
+    self.weekdayView.frame = CGRectMake(0, 0, self.weekdayContainerView.frame.size.width, self.weekdayContainerView.frame.size.height);
+    [self.weekdayContainerView addSubview:self.weekdayView];
+    [self.weekdayView reloadData];
     [self setUpSegmentedControl];
     [self setSelectedViewIndex:0];
     [self setUpCalendarView];
@@ -48,6 +55,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self.weekdayView scrollToDate:[NSDate date]];
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"BTSettings"];
     NSError *error;
     self.settings = [self.context executeFetchRequest:fetchRequest error:&error].firstObject;
@@ -166,17 +174,32 @@
 - (void)setSelectedViewIndex:(NSInteger)index {
     if (index == 0) {
         self.calendarView.userInteractionEnabled = NO;
+        self.weekdayContainerView.userInteractionEnabled = NO;
         [UIView animateWithDuration:.2 animations:^{
-            self.tableView.alpha = 1;
+            self.listTableView.alpha = 1;
+            self.weekdayContainerView.alpha = 0;
             self.calendarView.alpha = 0;
         } completion:^(BOOL finished) {
-            self.tableView.userInteractionEnabled = YES;
+            self.listTableView.userInteractionEnabled = YES;
+        }];
+    }
+    else if (index == 1) {
+        self.listTableView.userInteractionEnabled = NO;
+        self.calendarView.userInteractionEnabled = NO;
+        [UIView animateWithDuration:.2 animations:^{
+            self.listTableView.alpha = 0;
+            self.weekdayContainerView.alpha = 1;
+            self.calendarView.alpha = 0;
+        } completion:^(BOOL finished) {
+            self.weekdayContainerView.userInteractionEnabled = YES;
         }];
     }
     else {
-        self.tableView.userInteractionEnabled = NO;
+        self.listTableView.userInteractionEnabled = NO;
+        self.weekdayContainerView.userInteractionEnabled = NO;
         [UIView animateWithDuration:.2 animations:^{
-            self.tableView.alpha = 0;
+            self.listTableView.alpha = 0;
+            self.weekdayContainerView.alpha = 0;
             self.calendarView.alpha = 1;
         } completion:^(BOOL finished) {
             self.calendarView.userInteractionEnabled = YES;
@@ -210,7 +233,7 @@
     return 60;
 }
 
-- (void)configureCell:(WorkoutTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+- (void)configureWorkoutCell:(WorkoutTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     BTWorkout *workout = [_fetchedResultsController objectAtIndexPath:indexPath];
     cell.exerciseTypeColors = [NSKeyedUnarchiver unarchiveObjectWithData:self.settings.exerciseTypeColors];
     [cell loadWorkout:workout];
@@ -219,7 +242,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     WorkoutTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     if (cell == nil) cell = [[NSBundle mainBundle] loadNibNamed:@"WorkoutTableViewCell" owner:nil options:nil].firstObject;
-    [self configureCell:cell atIndexPath:indexPath];
+    [self configureWorkoutCell:cell atIndexPath:indexPath];
     return cell;
 }
 
@@ -305,11 +328,11 @@
 #pragma mark - fetchedResultsController delegate
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
-    [self.tableView beginUpdates];
+    [self.listTableView beginUpdates];
 }
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
-    UITableView *tableView = self.tableView;
+    UITableView *tableView = self.listTableView;
     switch(type) {
         case NSFetchedResultsChangeInsert:
             [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
@@ -318,7 +341,7 @@
             [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
         case NSFetchedResultsChangeUpdate:
-            [self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+            [self configureWorkoutCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
             break;
         case NSFetchedResultsChangeMove:
             [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
@@ -330,16 +353,16 @@
 - (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id )sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
     switch(type) {
         case NSFetchedResultsChangeInsert:
-            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+            [self.listTableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
             break;
         case NSFetchedResultsChangeDelete:
-            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+            [self.listTableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
             break;
     }
 }
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
-    [self.tableView endUpdates];
+    [self.listTableView endUpdates];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {

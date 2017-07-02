@@ -27,6 +27,8 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
+    self.stackedView.layer.cornerRadius = 3;
+    self.stackedView.clipsToBounds = YES;
 }
 
 - (void)loadWorkout:(BTWorkout *)workout {
