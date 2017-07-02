@@ -24,6 +24,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>HMSegmentedControl.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>JSONModel.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -47,11 +52,6 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1F0E76222945663C3CAB683DEDAAD607</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>2755AE42901315D17AD036F6B85DA681</key>
 		<dict>
 			<key>primary</key>
@@ -72,7 +72,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C34A025BA697144838B18E7C1A49F634</key>
+		<key>6E66B362AE57238557E51E1B585B5C93</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7914667479847119A008A5B5163023D1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8684D81FA43BEF55896B5BACCB7FB4DF</key>
 		<dict>
 			<key>primary</key>
 			<true/>

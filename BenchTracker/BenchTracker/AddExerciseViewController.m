@@ -14,6 +14,8 @@
 
 @property (nonatomic) BOOL supersettingEnabled;
 
+@property (nonatomic) NSString *searchString;
+
 @end
 
 @implementation AddExerciseViewController
@@ -21,13 +23,31 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSError *error;
+    self.searchString = @"";
     if (![[self fetchedResultsController] performFetch:&error]) {
         NSLog(@"Main fetch error: %@, %@", error, [error userInfo]);
     }
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 45, 0);
+    [self loadSearchBar];
     self.supersettingEnabled = NO;
+}
+
+- (void)loadSearchBar {
+    self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+    self.searchController.searchResultsUpdater = self;
+    self.searchController.dimsBackgroundDuringPresentation = NO;
+    self.searchController.searchBar.delegate = self;
+    self.searchController.searchBar.barTintColor = [UIColor colorWithWhite:.97 alpha:1];
+    self.searchController.searchBar.tintColor = self.addExerciseButton.backgroundColor;
+    self.searchController.searchBar.layer.borderWidth = 1;
+    self.searchController.searchBar.layer.borderColor = [UIColor colorWithWhite:.97 alpha:1].CGColor;
+    self.tableView.tableHeaderView = self.searchController.searchBar;
+    self.definesPresentationContext = YES;
+    [self.searchController.searchBar sizeToFit];
+    self.searchController.searchBar.placeholder = @"Search for an exercise";
+    [self.tableView reloadData];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -78,6 +98,38 @@
     self.fetchedResultsController = theFetchedResultsController;
     _fetchedResultsController.delegate = self;
     return _fetchedResultsController;
+}
+
+#pragma mark - searchController methods
+
+- (void)searchForText: (NSString *) string scope: (NSInteger) index {
+    self.searchString = string;
+    NSError *error;
+    if (self.searchString.length)
+        [self.fetchedResultsController.fetchRequest setPredicate:
+            [NSPredicate predicateWithFormat:@"name CONTAINS %@ OR category CONTAINS %@", string, string]];
+    else [self.fetchedResultsController.fetchRequest setPredicate:nil];
+    if (![[self fetchedResultsController] performFetch:&error]) {
+        NSLog(@"Main fetch error: %@, %@", error, [error userInfo]);
+    }
+}
+
+- (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
+    CGRect searchBarFrame = self.searchController.searchBar.frame;
+    [self.tableView scrollRectToVisible:searchBarFrame animated:NO];
+    NSString *searchString = searchController.searchBar.text;
+    [self searchForText:searchString scope:searchController.searchBar.selectedScopeButtonIndex];
+    [self.tableView reloadData];
+}
+
+- (void)searchBar:(UISearchBar *)searchBar selectedScopeButtonIndexDidChange:(NSInteger)selectedScope {
+    [self updateSearchResultsForSearchController:self.searchController];
+}
+
+#pragma mark - searchBar delegate mathods
+
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
+    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 45, 0);
 }
 
 #pragma mark - tableView dataSource

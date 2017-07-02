@@ -67,6 +67,7 @@
     [self pushAWSUserWithCompletionBlock:^{
         completed();
     }];
+    [self saveCoreData];
 }
 
 #pragma mark - server -> client

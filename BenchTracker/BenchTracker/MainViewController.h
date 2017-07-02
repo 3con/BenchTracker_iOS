@@ -15,6 +15,8 @@
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @property NSManagedObjectContext *context;
 
+@property (weak, nonatomic) IBOutlet UIView *segmentedControlContainerView;
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

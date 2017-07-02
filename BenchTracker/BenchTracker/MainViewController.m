@@ -12,8 +12,11 @@
 #import "ZFModalTransitionAnimator.h"
 #import "AppDelegate.h"
 #import "WorkoutTableViewCell.h"
+#import "HMSegmentedControl.h"
 
 @interface MainViewController ()
+
+@property (nonatomic) HMSegmentedControl *segmentedControl;
 
 @property (nonatomic) ZFModalTransitionAnimator *animator;
 @property (nonatomic) BTUserManager *userManager;
@@ -31,6 +34,22 @@
     self.workoutManager = [BTWorkoutManager sharedInstance];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"List", @"Week", @"Month"]];
+    self.segmentedControl.frame = CGRectMake(0, 0, self.segmentedControlContainerView.frame.size.width,
+                                                   self.segmentedControlContainerView.frame.size.height);
+    self.segmentedControl.layer.cornerRadius = 8;
+    self.segmentedControl.clipsToBounds = YES;
+    self.segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleBox;
+    self.segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationNone;
+    self.segmentedControl.backgroundColor = [UIColor colorWithRed:30/255.0 green:30/255.0 blue:120/255.0 alpha:1];
+    self.segmentedControl.selectionIndicatorBoxColor = [UIColor whiteColor];
+    self.segmentedControl.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+         [UIColor whiteColor], NSForegroundColorAttributeName,
+         [UIFont systemFontOfSize:15 weight:UIFontWeightMedium], NSFontAttributeName, nil];
+    self.segmentedControl.selectedTitleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+         [UIColor whiteColor], NSForegroundColorAttributeName,
+         [UIFont systemFontOfSize:15 weight:UIFontWeightMedium], NSFontAttributeName, nil];
+    [self.segmentedControlContainerView addSubview:self.segmentedControl];
     NSError *error;
     if (![[self fetchedResultsController] performFetch:&error]) {
         NSLog(@"Main fetch error: %@, %@", error, [error userInfo]);

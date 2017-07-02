@@ -23,14 +23,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oFE-yj-bhY">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="110"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W1F-YY-ujm">
-                                        <rect key="frame" x="308" y="29" width="93" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W1F-YY-ujm">
+                                        <rect key="frame" x="304" y="28" width="100" height="30"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="93" id="085-dC-aab"/>
+                                            <constraint firstAttribute="width" constant="100" id="085-dC-aab"/>
                                             <constraint firstAttribute="height" constant="30" id="bjF-Km-SiJ"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                         <state key="normal" title="New Workout">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -38,26 +39,52 @@
                                             <action selector="workoutButtonPressed:" destination="BUy-cN-Z34" eventType="touchUpInside" id="I4M-YC-sNR"/>
                                         </connections>
                                     </button>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Z3Y-mQ-0sm">
-                                        <rect key="frame" x="25" y="64" width="350" height="29"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <segments>
-                                            <segment title="List"/>
-                                            <segment title="Week"/>
-                                            <segment title="Month"/>
-                                        </segments>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </segmentedControl>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Oe-gD-jXD">
+                                        <rect key="frame" x="20" y="70" width="374" height="30"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="OHY-VI-0RI"/>
+                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="500" id="UgL-YF-nVI"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bench Tracker" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nca-iP-Olh">
+                                        <rect key="frame" x="117" y="28" width="180" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="OaW-rM-5M8"/>
+                                            <constraint firstAttribute="width" constant="180" id="a5E-Qh-0sI"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xOh-gd-Bbp">
+                                        <rect key="frame" x="10" y="28" width="100" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="d4t-8N-S9b"/>
+                                            <constraint firstAttribute="width" constant="100" id="qgJ-jS-dIe"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                        <state key="normal" title="Settings">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.078297413885593414" green="0.077457226812839508" blue="0.32783538103103638" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="W1F-YY-ujm" secondAttribute="trailing" constant="13" id="Jc2-GC-HPn"/>
-                                    <constraint firstAttribute="height" constant="100" id="beo-R3-I7u"/>
-                                    <constraint firstItem="W1F-YY-ujm" firstAttribute="top" secondItem="oFE-yj-bhY" secondAttribute="top" constant="29" id="ebN-P6-XBA"/>
+                                    <constraint firstAttribute="bottom" secondItem="2Oe-gD-jXD" secondAttribute="bottom" constant="10" id="8Du-T8-uKE"/>
+                                    <constraint firstItem="xOh-gd-Bbp" firstAttribute="leading" secondItem="oFE-yj-bhY" secondAttribute="leading" constant="10" id="CJz-xA-z6a"/>
+                                    <constraint firstItem="W1F-YY-ujm" firstAttribute="centerY" secondItem="Nca-iP-Olh" secondAttribute="centerY" id="I0F-IJ-tvM"/>
+                                    <constraint firstAttribute="trailing" secondItem="W1F-YY-ujm" secondAttribute="trailing" constant="10" id="Jc2-GC-HPn"/>
+                                    <constraint firstItem="2Oe-gD-jXD" firstAttribute="centerX" secondItem="oFE-yj-bhY" secondAttribute="centerX" id="ODq-XY-LJG"/>
+                                    <constraint firstItem="Nca-iP-Olh" firstAttribute="centerX" secondItem="oFE-yj-bhY" secondAttribute="centerX" id="ZiQ-th-WSJ"/>
+                                    <constraint firstItem="2Oe-gD-jXD" firstAttribute="leading" secondItem="oFE-yj-bhY" secondAttribute="leading" priority="750" constant="20" id="bBo-Df-DJ8"/>
+                                    <constraint firstAttribute="height" constant="110" id="beo-R3-I7u"/>
+                                    <constraint firstItem="xOh-gd-Bbp" firstAttribute="centerY" secondItem="Nca-iP-Olh" secondAttribute="centerY" id="g4M-aG-kUL"/>
+                                    <constraint firstItem="Nca-iP-Olh" firstAttribute="top" secondItem="oFE-yj-bhY" secondAttribute="top" constant="28" id="tww-Kb-D7f"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IiY-s6-C0p">
-                                <rect key="frame" x="0.0" y="100" width="414" height="636"/>
+                                <rect key="frame" x="0.0" y="110" width="414" height="626"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
@@ -74,6 +101,8 @@
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
+                        <outlet property="segmentedControl" destination="2Oe-gD-jXD" id="SHV-tO-87F"/>
+                        <outlet property="segmentedControlContainerView" destination="2Oe-gD-jXD" id="bPy-Tq-Zt0"/>
                         <outlet property="tableView" destination="IiY-s6-C0p" id="fab-4B-IJ6"/>
                     </connections>
                 </viewController>

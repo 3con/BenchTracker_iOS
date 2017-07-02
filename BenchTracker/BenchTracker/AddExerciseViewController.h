@@ -17,7 +17,7 @@
 - (void) addExerciseViewController:(AddExerciseViewController *)addVC willDismissWithSelectedTypes:(NSArray <BTExerciseType *> *)selectedTypes;
 @end
 
-@interface AddExerciseViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate>
+@interface AddExerciseViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating>
 
 @property id<AddExerciseViewControllerDelegate> delegate;
 
@@ -30,6 +30,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *supersetButton;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic) UISearchController *searchController;
 
 @property (weak, nonatomic) IBOutlet UIButton *addExerciseButton;
 
