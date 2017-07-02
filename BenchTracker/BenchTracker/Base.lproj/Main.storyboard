@@ -10,6 +10,81 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Settings View Controller-->
+        <scene sceneID="9Hm-mV-Og7">
+            <objects>
+                <viewController storyboardIdentifier="s" id="DUe-Vz-gR3" customClass="SettingsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="QwX-xH-yKt"/>
+                        <viewControllerLayoutGuide type="bottom" id="qmg-Mk-4mz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5rr-gs-SKL">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BKf-EK-lTX">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="72"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6qd-uE-Whm">
+                                        <rect key="frame" x="304" y="28" width="100" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="BQZ-c6-0Av"/>
+                                            <constraint firstAttribute="width" constant="100" id="BXR-6U-lxc"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                        <state key="normal" title="Done">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="doneButtonPressed:" destination="DUe-Vz-gR3" eventType="touchUpInside" id="aud-FS-sXn"/>
+                                            <action selector="workoutButtonPressed:" destination="BUy-cN-Z34" eventType="touchUpInside" id="hed-JW-Zw1"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ML-2s-rPl">
+                                        <rect key="frame" x="117" y="28" width="180" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="180" id="ndG-Zi-Hqq"/>
+                                            <constraint firstAttribute="height" constant="30" id="xtK-FE-EmI"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.078297413890000001" green="0.077457226810000002" blue="0.32783538099999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="7ML-2s-rPl" firstAttribute="centerX" secondItem="BKf-EK-lTX" secondAttribute="centerX" id="a1R-eU-sjG"/>
+                                    <constraint firstItem="7ML-2s-rPl" firstAttribute="top" secondItem="BKf-EK-lTX" secondAttribute="top" constant="28" id="nc9-ie-ePS"/>
+                                    <constraint firstAttribute="height" constant="72" id="rFw-AF-HnU"/>
+                                    <constraint firstItem="6qd-uE-Whm" firstAttribute="centerY" secondItem="7ML-2s-rPl" secondAttribute="centerY" id="s9v-8A-rTQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="6qd-uE-Whm" secondAttribute="trailing" constant="10" id="yei-O0-LiC"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w65-mR-3oA">
+                                <rect key="frame" x="163" y="670" width="89" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                <state key="normal" title="Log Out">
+                                    <color key="titleColor" red="0.64724154069999995" green="0.1202409802" blue="0.11418132590000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="logOutButtonPressed:" destination="DUe-Vz-gR3" eventType="touchUpInside" id="9Mf-WE-OUM"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="BKf-EK-lTX" firstAttribute="centerX" secondItem="5rr-gs-SKL" secondAttribute="centerX" id="8FL-c1-euM"/>
+                            <constraint firstItem="BKf-EK-lTX" firstAttribute="width" secondItem="5rr-gs-SKL" secondAttribute="width" id="Kj3-DD-Xw8"/>
+                            <constraint firstItem="BKf-EK-lTX" firstAttribute="top" secondItem="QwX-xH-yKt" secondAttribute="bottom" constant="-20" id="hS6-Ty-V0i"/>
+                        </constraints>
+                    </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tme-eh-CID" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1049.2753623188407" y="-167.11956521739131"/>
+        </scene>
         <!--Main View Controller-->
         <scene sceneID="Ngi-xA-DDo">
             <objects>
@@ -67,6 +142,9 @@
                                         <state key="normal" title="Settings">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="settingsButtonPressed:" destination="BUy-cN-Z34" eventType="touchUpInside" id="0rW-Ib-N2k"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.078297413885593414" green="0.077457226812839508" blue="0.32783538103103638" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -126,11 +204,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="125"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Afternoon Workout" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="W1s-v4-xf3">
-                                        <rect key="frame" x="57" y="27" width="300" height="30"/>
+                                        <rect key="frame" x="67" y="27" width="280" height="30"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="e0w-WB-XJu"/>
-                                            <constraint firstAttribute="width" constant="300" id="x1H-f2-35S"/>
+                                            <constraint firstAttribute="width" constant="280" id="x1H-f2-35S"/>
                                         </constraints>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
@@ -151,13 +229,30 @@
                                             <action selector="finishWorkoutButtonPressed:" destination="H2S-2B-J58" eventType="touchUpInside" id="LX2-VR-15D"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pj3-Pj-9H7">
+                                        <rect key="frame" x="12" y="30" width="25" height="25"/>
+                                        <color key="backgroundColor" red="0.80025946579999996" green="0.14866781030000001" blue="0.14117555979999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="3B6-Wz-o2a"/>
+                                            <constraint firstAttribute="width" constant="25" id="9wr-3w-Ocj"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Courier-Bold" family="Courier" pointSize="25"/>
+                                        <state key="normal" title="-">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="deleteWorkoutButtonPressed:" destination="H2S-2B-J58" eventType="touchUpInside" id="ARf-T6-mxs"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.078297413885593414" green="0.077457226812839508" blue="0.32783538103103638" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="W1s-v4-xf3" firstAttribute="top" secondItem="D7n-as-euy" secondAttribute="top" constant="27" id="1Fq-2x-Pqw"/>
                                     <constraint firstItem="W1s-v4-xf3" firstAttribute="centerX" secondItem="D7n-as-euy" secondAttribute="centerX" id="8ic-L8-OPm"/>
                                     <constraint firstItem="mHc-np-Ijl" firstAttribute="centerX" secondItem="D7n-as-euy" secondAttribute="centerX" id="CFu-wX-ddY"/>
+                                    <constraint firstItem="Pj3-Pj-9H7" firstAttribute="leading" secondItem="D7n-as-euy" secondAttribute="leading" constant="12" id="X9d-Zt-eJ3"/>
                                     <constraint firstAttribute="bottom" secondItem="mHc-np-Ijl" secondAttribute="bottom" constant="12" id="Xr0-sV-17r"/>
+                                    <constraint firstItem="Pj3-Pj-9H7" firstAttribute="top" secondItem="D7n-as-euy" secondAttribute="top" constant="30" id="fEe-Qe-5zu"/>
                                     <constraint firstAttribute="height" constant="125" id="xPw-qt-odL"/>
                                 </constraints>
                             </view>
@@ -197,6 +292,7 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="addExerciseButton" destination="HGU-c2-dRq" id="FQ2-DN-2QF"/>
+                        <outlet property="deleteWorkoutButton" destination="Pj3-Pj-9H7" id="Xzb-GN-ncU"/>
                         <outlet property="finishWorkoutButton" destination="mHc-np-Ijl" id="FZW-sB-tJg"/>
                         <outlet property="nameTextField" destination="W1s-v4-xf3" id="FsI-3M-6Jk"/>
                         <outlet property="tableView" destination="nkC-SS-85L" id="tAV-Xq-K7X"/>

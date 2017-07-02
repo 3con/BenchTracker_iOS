@@ -18,7 +18,7 @@
 - (void) workoutViewController:(WorkoutViewController *)workoutVC willDismissWithResultWorkout:(BTWorkout *)workout;
 @end
 
-@interface WorkoutViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, AddExerciseViewControllerDelegate, ExerciseViewControllerDelegate>
+@interface WorkoutViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, AddExerciseViewControllerDelegate, ExerciseViewControllerDelegate, UIAlertViewDelegate>
 
 @property id<WorkoutViewControllerDelegate> delegate;
 
@@ -28,6 +28,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 
 @property (weak, nonatomic) IBOutlet UIButton *finishWorkoutButton;
+@property (weak, nonatomic) IBOutlet UIButton *deleteWorkoutButton;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 

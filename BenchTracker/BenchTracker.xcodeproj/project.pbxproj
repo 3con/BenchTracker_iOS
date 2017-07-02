@@ -23,6 +23,7 @@
 		F9418FB21F04C83F0083C3DC /* SetFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = F9418FB11F04C83F0083C3DC /* SetFlowLayout.m */; };
 		F9418FBC1F04CEE80083C3DC /* SetCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F9418FBB1F04CEE80083C3DC /* SetCollectionViewCell.m */; };
 		F9418FBE1F04CEF80083C3DC /* SetCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9418FBD1F04CEF80083C3DC /* SetCollectionViewCell.xib */; };
+		F95F5CF61F08B54500A567FA /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F95F5CF51F08B54500A567FA /* SettingsViewController.m */; };
 		F95F932F1F02FC5000A19C4D /* TypeListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F95F932E1F02FC5000A19C4D /* TypeListModel.m */; };
 		F95F93331F03410500A19C4D /* BTAWSUser.m in Sources */ = {isa = PBXBuildFile; fileRef = F95F93321F03410500A19C4D /* BTAWSUser.m */; };
 		F95F93371F03426F00A19C4D /* BTUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F95F93361F03426F00A19C4D /* BTUserManager.m */; };
@@ -94,6 +95,8 @@
 		F9418FBA1F04CEE80083C3DC /* SetCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetCollectionViewCell.h; sourceTree = "<group>"; };
 		F9418FBB1F04CEE80083C3DC /* SetCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetCollectionViewCell.m; sourceTree = "<group>"; };
 		F9418FBD1F04CEF80083C3DC /* SetCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetCollectionViewCell.xib; sourceTree = "<group>"; };
+		F95F5CF41F08B54500A567FA /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		F95F5CF51F08B54500A567FA /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		F95F932D1F02FC5000A19C4D /* TypeListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeListModel.h; sourceTree = "<group>"; };
 		F95F932E1F02FC5000A19C4D /* TypeListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TypeListModel.m; sourceTree = "<group>"; };
 		F95F93311F03410500A19C4D /* BTAWSUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BTAWSUser.h; path = BenchTracker/BTAWSUser.h; sourceTree = "<group>"; };
@@ -311,6 +314,15 @@
 			name = "Set CVC";
 			sourceTree = "<group>";
 		};
+		F95F5CF71F08B55700A567FA /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				F95F5CF41F08B54500A567FA /* SettingsViewController.h */,
+				F95F5CF51F08B54500A567FA /* SettingsViewController.m */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
 		F95F93301F02FC5600A19C4D /* TypeListModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -374,6 +386,7 @@
 			isa = PBXGroup;
 			children = (
 				F95F93451F03739600A19C4D /* Login */,
+				F95F5CF71F08B55700A567FA /* Settings */,
 				F95F93471F0373A400A19C4D /* Main */,
 				F95F93461F03739E00A19C4D /* Workout */,
 				F9418F9F1F04339E0083C3DC /* Add Exercise */,
@@ -747,6 +760,7 @@
 				F9DA75231F02EE9600347B0D /* BTUser+CoreDataProperties.m in Sources */,
 				F9640BD91F080E590053C9C0 /* BTSettings+CoreDataProperties.m in Sources */,
 				F95F932F1F02FC5000A19C4D /* TypeListModel.m in Sources */,
+				F95F5CF61F08B54500A567FA /* SettingsViewController.m in Sources */,
 				F9DA75261F02EE9600347B0D /* BTExerciseType+CoreDataClass.m in Sources */,
 				F95F93331F03410500A19C4D /* BTAWSUser.m in Sources */,
 			);

@@ -40,6 +40,8 @@
     self.nameTextField.delegate = self;
     self.finishWorkoutButton.layer.cornerRadius = 12;
     self.finishWorkoutButton.clipsToBounds = YES;
+    self.deleteWorkoutButton.layer.cornerRadius = 12.5;
+    self.deleteWorkoutButton.clipsToBounds = YES;
     self.workoutManager = [BTWorkoutManager sharedInstance];
     if (!self.workout) self.workout = [self.workoutManager createWorkout];
     self.nameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:self.workout.name
@@ -72,6 +74,23 @@
     [self dismissViewControllerAnimated:YES completion:^{
         
     }];
+}
+
+- (IBAction)deleteWorkoutButtonPressed:(UIButton *)sender {
+    UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Delete Workout"
+                                 message:@"Are you sure you want to delete this workout? You will lose all you hard work! This action cannot be undone."
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction* deleteButton = [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
+        [self.context deleteObject:self.workout];
+        [self.delegate workoutViewController:self willDismissWithResultWorkout:nil];
+        [self dismissViewControllerAnimated:YES completion:^{
+            
+        }];
+    }];
+    UIAlertAction* cancelButton = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {}];
+    [alert addAction:cancelButton];
+    [alert addAction:deleteButton];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark - tableView dataSource

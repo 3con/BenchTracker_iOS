@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "LoginViewController.h"
 #import "WorkoutViewController.h"
+#import "SettingsViewController.h"
 
-@interface MainViewController : UIViewController <WorkoutViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate>
+@interface MainViewController : UIViewController <WorkoutViewControllerDelegate, SettingsViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate>
 
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @property NSManagedObjectContext *context;

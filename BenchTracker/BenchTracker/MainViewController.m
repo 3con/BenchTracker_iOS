@@ -71,6 +71,10 @@
     }
 }
 
+- (IBAction)settingsButtonPressed:(UIButton *)sender {
+    [self presentSettingsViewController];
+}
+
 #pragma mark - fetchedResultsController
 
 - (NSFetchedResultsController *)fetchedResultsController {
@@ -114,7 +118,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     BTWorkout *workout = [_fetchedResultsController objectAtIndexPath:indexPath];
-    [self.workoutManager deleteWorkout:workout];
+    //[self.workoutManager deleteWorkout:workout];
+    [self presentWorkoutViewControllerWithWorkout:workout];
 }
 
 #pragma mark - view handling
@@ -138,6 +143,22 @@
     [self presentViewController:loginVC animated:YES completion:nil];
 }
 
+- (void)presentSettingsViewController {
+    SettingsViewController *settingsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"s"];
+    settingsVC.delegate = self;
+    settingsVC.context = self.context;
+    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:settingsVC];
+    self.animator.bounces = NO;
+    self.animator.dragable = NO;
+    self.animator.behindViewAlpha = 0.8;
+    self.animator.behindViewScale = 0.92;
+    self.animator.transitionDuration = 0.75;
+    self.animator.direction = ZFModalTransitonDirectionBottom;
+    settingsVC.transitioningDelegate = self.animator;
+    settingsVC.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self presentViewController:settingsVC animated:YES completion:nil];
+}
+
 - (void)presentWorkoutViewControllerWithWorkout: (BTWorkout *)workout {
     WorkoutViewController *workoutVC = [self.storyboard instantiateViewControllerWithIdentifier:@"w"];
     workoutVC.delegate = self;
@@ -158,7 +179,17 @@
 #pragma mark - workoutVC delegate
 
 - (void)workoutViewController:(WorkoutViewController *)workoutVC willDismissWithResultWorkout:(BTWorkout *)workout {
-    [self.workoutManager saveEditedWorkout:workout];
+    if (workout) [self.workoutManager saveEditedWorkout:workout];
+}
+
+#pragma mark - settingsVC delegate
+
+- (void)settingsViewControllerDidRequestUserLogout:(SettingsViewController *)settingsVC {
+    [self.context deleteObject:[self.userManager user]];
+    //DELETE ALL WORKOUTS
+    //DELETE SETTINGS
+    //DELETE EXERCISE TYPES
+    [self.context save:nil];
 }
 
 #pragma mark - fetchedResultsController delegate
