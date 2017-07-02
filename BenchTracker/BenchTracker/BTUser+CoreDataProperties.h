@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSFetchRequest<BTUser *> *)fetchRequest;
 
 @property (nullable, nonatomic, copy) NSString *username;
+@property (nullable, nonatomic, copy) NSDate* dateCreated;
+@property (nullable, nonatomic, copy) NSDate* lastUpdate;
 @property (nonatomic) int32_t typeListVersion;
 @property (nullable, nonatomic, retain) NSData *recentEdits;
 @property (nullable, nonatomic, retain) NSOrderedSet<BTWorkout *> *workouts;

@@ -11,6 +11,8 @@
 @interface BTAWSUser : AWSDynamoDBObjectModel <AWSDynamoDBModeling>
 
 @property (nonatomic, nonnull)                   NSString* username;
+@property (nonatomic, nonnull)                   NSString* dateCreated;
+@property (nonatomic, nonnull)                   NSString* lastUpdate;
 @property (nonatomic, nonnull)                   NSNumber* typeListVersion;
 @property (nonatomic, nonnull) NSMutableArray<NSString *>* recentEdits;
 @property (nonatomic, nonnull) NSMutableArray<NSString *>* workouts;

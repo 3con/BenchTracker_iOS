@@ -23,6 +23,8 @@
 @property (nonatomic) BTWorkoutManager *workoutManager;
 @property (nonatomic) BTSettings *settings;
 
+@property (nonatomic) BTUser *user;
+
 @end
 
 @implementation MainViewController
@@ -31,10 +33,12 @@
     [super viewDidLoad];
     self.context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
     self.userManager = [BTUserManager sharedInstance];
+    self.user = [self.userManager user];
     self.workoutManager = [BTWorkoutManager sharedInstance];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self setUpSegmentedControl];
+    [self setSelectedViewIndex:0];
     [self setUpCalendarView];
     NSError *error;
     if (![[self fetchedResultsController] performFetch:&error]) {
@@ -43,7 +47,6 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [self setSelectedViewIndex:0];
     [super viewWillAppear:animated];
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"BTSettings"];
     NSError *error;
@@ -53,7 +56,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    if (![self.userManager user]) { //No user in CoreData
+    if (!self.user) { //No user in CoreData
         [self presentLoginViewController];
     }
 }
@@ -73,14 +76,16 @@
 }
 
 - (NSDate *)minimumDateForCalendar:(FSCalendar *)calendar {
-    return [NSDate dateWithTimeIntervalSince1970:31536000*47.034];
+    return [NSDate dateWithTimeInterval:-75*86400 sinceDate:self.user.dateCreated];
 }
 
 - (NSDate *)maximumDateForCalendar:(FSCalendar *)calendar {
-    return [NSDate dateWithTimeInterval:86400 sinceDate:[NSDate date]];
+    return [NSDate dateWithTimeInterval:75*86400 sinceDate:[NSDate date]];
 }
 
 - (UIColor *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance fillDefaultColorForDate:(NSDate *)date {
+    if ([self numberOfWorkoutsBetweenBeginDate:date andEndDate:[date dateByAddingTimeInterval:86400]] > 0)
+        return [UIColor colorWithRed:67/255.0 green:160/255.0 blue:71/255.0 alpha:1];
     return [UIColor whiteColor];
 }
 
@@ -89,6 +94,11 @@
 }
 
 - (UIColor *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance titleDefaultColorForDate:(NSDate *)date {
+    if ([date compare:self.calendarView.maximumDate] == NSOrderedDescending ||
+        [date compare:self.calendarView.minimumDate] == NSOrderedAscending) return [UIColor whiteColor];
+    else if ([date compare:[NSDate date]] == NSOrderedDescending ||
+             [date compare:[self.user.dateCreated dateByAddingTimeInterval:-86400]] == NSOrderedAscending) return [UIColor lightGrayColor];
+    else if ([self numberOfWorkoutsBetweenBeginDate:date andEndDate:[date dateByAddingTimeInterval:86400]] > 0) return [UIColor whiteColor];
     return [UIColor colorWithRed:20/255.0 green:20/255.0 blue:84/255.0 alpha:1];
 }
 
@@ -101,12 +111,23 @@
 }
 
 - (NSArray<UIColor *> *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance eventSelectionColorsForDate:(nonnull NSDate *)date {
-    return @[[UIColor colorWithRed:20/255.0 green:20/255.0 blue:84/255.0 alpha:1]];
+    return @[[UIColor colorWithRed:30/255.0 green:30/255.0 blue:120/255.0 alpha:1]];
 }
 
 - (NSInteger)calendar:(FSCalendar *)calendar numberOfEventsForDate:(NSDate *)date {
     if ([[self normalizedDateForDate:[NSDate date]] compare:date] == NSOrderedSame) return 1; //same day
     return 0;
+}
+
+- (NSInteger)numberOfWorkoutsBetweenBeginDate:(NSDate *)d1 andEndDate:(NSDate *)d2 {
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"BTWorkout"];
+    NSMutableArray *predicates = [[NSMutableArray alloc] init];
+    NSPredicate *subPredFrom = [NSPredicate predicateWithFormat:@"date >= %@ ", d1];
+    [predicates addObject:subPredFrom];
+    NSPredicate *subPredTo = [NSPredicate predicateWithFormat:@"date < %@", d2];
+    [predicates addObject:subPredTo];
+    [fetchRequest setPredicate:[NSCompoundPredicate andPredicateWithSubpredicates:predicates]];
+    return [self.context executeFetchRequest:fetchRequest error:nil].count;
 }
 
 - (NSDate *)normalizedDateForDate:(NSDate *)date {
@@ -268,12 +289,13 @@
 
 - (void)workoutViewController:(WorkoutViewController *)workoutVC willDismissWithResultWorkout:(BTWorkout *)workout {
     if (workout) [self.workoutManager saveEditedWorkout:workout];
+    [self.calendarView reloadData];
 }
 
 #pragma mark - settingsVC delegate
 
 - (void)settingsViewControllerDidRequestUserLogout:(SettingsViewController *)settingsVC {
-    [self.context deleteObject:[self.userManager user]];
+    [self.context deleteObject:self.user];
     //DELETE ALL WORKOUTS
     //DELETE SETTINGS
     //DELETE EXERCISE TYPES

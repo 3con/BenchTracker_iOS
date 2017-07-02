@@ -60,6 +60,8 @@
 - (void)createUserWithUsername: (NSString *)username completionBlock:(void (^)())completed {
     BTUser *user = [NSEntityDescription insertNewObjectForEntityForName:@"BTUser" inManagedObjectContext:self.context];
     user.username = username;
+    user.dateCreated = [NSDate date];
+    user.lastUpdate = [NSDate date];
     user.typeListVersion = 0;
     user.recentEdits = [NSKeyedArchiver archivedDataWithRootObject:@[]];
     user.workouts = [[NSOrderedSet alloc] initWithArray:@[]];
@@ -184,6 +186,7 @@
 }
 
 - (void)pushAWSUserWithCompletionBlock:(void (^)())completed {
+    self.AWSUser.lastUpdate = [self stringForDate:[NSDate date]];
     [[self.mapper save:self.AWSUser] continueWithBlock:^id(AWSTask *task) {
         if (task.error) NSLog(@"userManaer push error: [%@]", task.error);
         else completed();
@@ -193,6 +196,8 @@
 
 - (BTAWSUser *)copyCDUser: (BTUser *)user toAWSUser: (BTAWSUser *)AWSUser {
     AWSUser.username = user.username;
+    AWSUser.dateCreated = [self stringForDate:user.dateCreated];
+    AWSUser.lastUpdate = [self stringForDate:user.lastUpdate];
     AWSUser.typeListVersion = [NSNumber numberWithInt:user.typeListVersion];
     NSArray *rE = [NSKeyedUnarchiver unarchiveObjectWithData:user.recentEdits];
     AWSUser.recentEdits = [[NSMutableArray alloc] initWithArray:(rE.count == 0) ? @[AWS_EMPTY] : rE];
@@ -205,12 +210,28 @@
 
 - (BTUser *)copyAWSUser: (BTAWSUser *)AWSUser toCDUser: (BTUser *)user {
     user.username = AWSUser.username;
+    user.dateCreated = [self dateForString:AWSUser.dateCreated];
+    user.lastUpdate = [self dateForString:AWSUser.lastUpdate];
     user.typeListVersion = AWSUser.typeListVersion.intValue;
     if ([AWSUser.recentEdits.firstObject isEqualToString:AWS_EMPTY])
         user.recentEdits = [NSKeyedArchiver archivedDataWithRootObject:@[]];
     else user.recentEdits = [NSKeyedArchiver archivedDataWithRootObject:AWSUser.recentEdits];
     //Handle workouts
     return user;
+}
+
+- (NSString *)stringForDate:(NSDate *)date {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+    return [dateFormatter stringFromDate:date];
+}
+
+- (NSDate *)dateForString:(NSString *)string {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+    return [dateFormatter dateFromString:string];
 }
 
 - (void)saveCoreData {
