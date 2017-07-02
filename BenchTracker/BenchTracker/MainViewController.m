@@ -34,22 +34,8 @@
     self.workoutManager = [BTWorkoutManager sharedInstance];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    self.segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"List", @"Week", @"Month"]];
-    self.segmentedControl.frame = CGRectMake(0, 0, self.segmentedControlContainerView.frame.size.width,
-                                                   self.segmentedControlContainerView.frame.size.height);
-    self.segmentedControl.layer.cornerRadius = 8;
-    self.segmentedControl.clipsToBounds = YES;
-    self.segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleBox;
-    self.segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationNone;
-    self.segmentedControl.backgroundColor = [UIColor colorWithRed:30/255.0 green:30/255.0 blue:120/255.0 alpha:1];
-    self.segmentedControl.selectionIndicatorBoxColor = [UIColor whiteColor];
-    self.segmentedControl.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-         [UIColor whiteColor], NSForegroundColorAttributeName,
-         [UIFont systemFontOfSize:15 weight:UIFontWeightMedium], NSFontAttributeName, nil];
-    self.segmentedControl.selectedTitleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-         [UIColor whiteColor], NSForegroundColorAttributeName,
-         [UIFont systemFontOfSize:15 weight:UIFontWeightMedium], NSFontAttributeName, nil];
-    [self.segmentedControlContainerView addSubview:self.segmentedControl];
+    [self setUpSegmentedControl];
+    [self setUpCalendarView];
     NSError *error;
     if (![[self fetchedResultsController] performFetch:&error]) {
         NSLog(@"Main fetch error: %@, %@", error, [error userInfo]);
@@ -57,6 +43,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    [self setSelectedViewIndex:0];
     [super viewWillAppear:animated];
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"BTSettings"];
     NSError *error;
@@ -73,6 +60,107 @@
 
 - (IBAction)settingsButtonPressed:(UIButton *)sender {
     [self presentSettingsViewController];
+}
+
+#pragma mark - calendarView
+
+- (void)setUpCalendarView {
+    self.calendarView.delegate = self;
+    self.calendarView.dataSource = self;
+    self.calendarView.scrollDirection = FSCalendarScrollDirectionVertical;
+    self.calendarView.calendarWeekdayView.backgroundColor = [UIColor colorWithRed:20/255.0 green:20/255.0 blue:84/255.0 alpha:1];
+    self.calendarView.calendarHeaderView.backgroundColor = [UIColor colorWithRed:20/255.0 green:20/255.0 blue:84/255.0 alpha:1];
+}
+
+- (NSDate *)minimumDateForCalendar:(FSCalendar *)calendar {
+    return [NSDate dateWithTimeIntervalSince1970:31536000*47.034];
+}
+
+- (NSDate *)maximumDateForCalendar:(FSCalendar *)calendar {
+    return [NSDate dateWithTimeInterval:86400 sinceDate:[NSDate date]];
+}
+
+- (UIColor *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance fillDefaultColorForDate:(NSDate *)date {
+    return [UIColor whiteColor];
+}
+
+- (UIColor *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance fillSelectionColorForDate:(NSDate *)date {
+    return [UIColor colorWithRed:20/255.0 green:20/255.0 blue:84/255.0 alpha:1];
+}
+
+- (UIColor *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance titleDefaultColorForDate:(NSDate *)date {
+    return [UIColor colorWithRed:20/255.0 green:20/255.0 blue:84/255.0 alpha:1];
+}
+
+- (UIColor *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance titleSelectionColorForDate:(NSDate *)date {
+    return [UIColor whiteColor];
+}
+
+- (NSArray<UIColor *> *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance eventDefaultColorsForDate:(NSDate *)date {
+    return @[[UIColor colorWithRed:20/255.0 green:20/255.0 blue:84/255.0 alpha:1]];
+}
+
+- (NSArray<UIColor *> *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance eventSelectionColorsForDate:(nonnull NSDate *)date {
+    return @[[UIColor colorWithRed:20/255.0 green:20/255.0 blue:84/255.0 alpha:1]];
+}
+
+- (NSInteger)calendar:(FSCalendar *)calendar numberOfEventsForDate:(NSDate *)date {
+    if ([[self normalizedDateForDate:[NSDate date]] compare:date] == NSOrderedSame) return 1; //same day
+    return 0;
+}
+
+- (NSDate *)normalizedDateForDate:(NSDate *)date {
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSCalendarUnit preservedComponents = (NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay);
+    NSDateComponents *components = [calendar components:preservedComponents fromDate:date];
+    return [calendar dateFromComponents:components];
+}
+
+#pragma mark - segmedtedControl
+
+- (void)setUpSegmentedControl {
+    self.segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"List", @"Week", @"Month"]];
+    self.segmentedControl.frame = CGRectMake(0, 0, self.segmentedControlContainerView.frame.size.width,
+                                             self.segmentedControlContainerView.frame.size.height);
+    self.segmentedControl.layer.cornerRadius = 8;
+    self.segmentedControl.clipsToBounds = YES;
+    self.segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleBox;
+    self.segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationNone;
+    self.segmentedControl.backgroundColor = [UIColor colorWithRed:30/255.0 green:30/255.0 blue:120/255.0 alpha:1];
+    self.segmentedControl.selectionIndicatorBoxColor = [UIColor whiteColor];
+    self.segmentedControl.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                                 [UIColor whiteColor], NSForegroundColorAttributeName,
+                                                 [UIFont systemFontOfSize:15 weight:UIFontWeightMedium], NSFontAttributeName, nil];
+    self.segmentedControl.selectedTitleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                                         [UIColor whiteColor], NSForegroundColorAttributeName,
+                                                         [UIFont systemFontOfSize:15 weight:UIFontWeightMedium], NSFontAttributeName, nil];
+    [self.segmentedControl addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
+    [self.segmentedControlContainerView addSubview:self.segmentedControl];
+}
+
+- (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl {
+    [self setSelectedViewIndex:self.segmentedControl.selectedSegmentIndex];
+}
+
+- (void)setSelectedViewIndex:(NSInteger)index {
+    if (index == 0) {
+        self.calendarView.userInteractionEnabled = NO;
+        [UIView animateWithDuration:.2 animations:^{
+            self.tableView.alpha = 1;
+            self.calendarView.alpha = 0;
+        } completion:^(BOOL finished) {
+            self.tableView.userInteractionEnabled = YES;
+        }];
+    }
+    else {
+        self.tableView.userInteractionEnabled = NO;
+        [UIView animateWithDuration:.2 animations:^{
+            self.tableView.alpha = 0;
+            self.calendarView.alpha = 1;
+        } completion:^(BOOL finished) {
+            self.calendarView.userInteractionEnabled = YES;
+        }];
+    }
 }
 
 #pragma mark - fetchedResultsController
