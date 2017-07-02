@@ -6,6 +6,7 @@ PODS:
     - AWSCore (= 2.5.8)
   - AWSS3 (2.5.8):
     - AWSCore (= 2.5.8)
+  - FSCalendar (2.7.9)
   - HMSegmentedControl (1.5.4)
   - JSONModel (1.7.0)
   - ZFDragableModalTransition (0.6)
@@ -14,6 +15,7 @@ DEPENDENCIES:
   - AWSCognito
   - AWSDynamoDB
   - AWSS3
+  - FSCalendar
   - HMSegmentedControl
   - JSONModel
   - ZFDragableModalTransition
@@ -23,10 +25,11 @@ SPEC CHECKSUMS:
   AWSCore: cf101c44d2cc5da32abc27d5529cddc63c010415
   AWSDynamoDB: 53ead656801e1a40b415fc0bebd85f1dc0dc0ead
   AWSS3: addf558f9cf2368e7fb520440867fea5596db0fb
+  FSCalendar: a04b09f16f811bc92e82f3cf852a15225233b9d5
   HMSegmentedControl: b25bc4ec44766e073d62c473188fb354ee244b76
   JSONModel: 840bc0fcffb24b8454d2c026bf26fea454b8e98d
   ZFDragableModalTransition: 0d294eaaba6edfcb9839595de765f9ca06a4b524
 
-PODFILE CHECKSUM: 39582f5a4d8c77b91c4ee6a559297b57ec93bf7b
+PODFILE CHECKSUM: fbf6d893dc88562718c91a3f35efc39146e05075
 
 COCOAPODS: 1.2.1

@@ -24,6 +24,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>FSCalendar.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>HMSegmentedControl.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -52,47 +57,52 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>2755AE42901315D17AD036F6B85DA681</key>
+		<key>53C6112213829CB147F47E473C93F271</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2DC549F9D200E645025017E1C1C9C966</key>
+		<key>764BF5F8A7793010994AF3D12E8FB7BF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4C6B69B58DD4B791CCE1E91F4FACC2EB</key>
+		<key>7891E2B724C54EF58FB1692B34F1455C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>55E3CFFEDC2629EE0C17B343EC00595B</key>
+		<key>9F7098779713B711F6C591B62A41F242</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6E66B362AE57238557E51E1B585B5C93</key>
+		<key>ACBD729E829240A2A650C5ECE8716400</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7914667479847119A008A5B5163023D1</key>
+		<key>C5A2DB7A84B7B78E359870D2E1B24AA7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8684D81FA43BEF55896B5BACCB7FB4DF</key>
+		<key>C83B0F8778708382BFD09745CBCD1CBA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CC6BD2A13E150E59C64E74A71DF0D1D6</key>
+		<key>D96E772729B009E0EA59AED2ABA23EFC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E29B8868BA38043AE72DA3FBC7AD033D</key>
+		<key>DC3688684BF42A20A8998F31DDA51A49</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DC90D58E9C9E8E8FFE5F2430416E237A</key>
 		<dict>
 			<key>primary</key>
 			<true/>

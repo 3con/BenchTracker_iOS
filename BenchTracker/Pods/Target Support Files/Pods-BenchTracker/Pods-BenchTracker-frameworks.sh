@@ -87,6 +87,27 @@ strip_invalid_archs() {
   fi
 }
 
+
+if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "$BUILT_PRODUCTS_DIR/AWSCognito/AWSCognito.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/AWSCore/AWSCore.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/AWSDynamoDB/AWSDynamoDB.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/AWSS3/AWSS3.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/FSCalendar/FSCalendar.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/HMSegmentedControl/HMSegmentedControl.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/JSONModel/JSONModel.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/ZFDragableModalTransition/ZFDragableModalTransition.framework"
+fi
+if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "$BUILT_PRODUCTS_DIR/AWSCognito/AWSCognito.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/AWSCore/AWSCore.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/AWSDynamoDB/AWSDynamoDB.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/AWSS3/AWSS3.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/FSCalendar/FSCalendar.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/HMSegmentedControl/HMSegmentedControl.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/JSONModel/JSONModel.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/ZFDragableModalTransition/ZFDragableModalTransition.framework"
+fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait
 fi

@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7D0E203204A888424538F78B /* libPods-BenchTrackerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1468A0357975A50862A87B49 /* libPods-BenchTrackerTests.a */; };
-		EE8E2D45DF76B9457E2F7FCA /* libPods-BenchTracker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1741F1AEFD5A51E5829E01AB /* libPods-BenchTracker.a */; };
+		6FF44576CFF404C6C4707802 /* Pods_BenchTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C83D3A0EA46ECDF1788C990 /* Pods_BenchTracker.framework */; };
+		F77B8D13565A4E6664DC71A8 /* Pods_BenchTrackerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40B18DFBDA158AF111B21958 /* Pods_BenchTrackerTests.framework */; };
 		F90712A719415FB1008694E5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F90712A619415FB1008694E5 /* main.m */; };
 		F90712AA19415FB1008694E5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F90712A919415FB1008694E5 /* AppDelegate.m */; };
 		F90712B319415FB1008694E5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F90712B119415FB1008694E5 /* Main.storyboard */; };
@@ -64,10 +64,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1468A0357975A50862A87B49 /* libPods-BenchTrackerTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BenchTrackerTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1741F1AEFD5A51E5829E01AB /* libPods-BenchTracker.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BenchTracker.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1746DDC55C14CBB644675063 /* Pods-BenchTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BenchTracker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BenchTracker/Pods-BenchTracker.debug.xcconfig"; sourceTree = "<group>"; };
 		2C3B197020A386DB147CEDEE /* Pods-BenchTrackerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BenchTrackerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BenchTrackerTests/Pods-BenchTrackerTests.release.xcconfig"; sourceTree = "<group>"; };
+		2C83D3A0EA46ECDF1788C990 /* Pods_BenchTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BenchTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		40B18DFBDA158AF111B21958 /* Pods_BenchTrackerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BenchTrackerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		791833EF2E04B86CA95AD6B3 /* Pods-BenchTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BenchTracker.release.xcconfig"; path = "Pods/Target Support Files/Pods-BenchTracker/Pods-BenchTracker.release.xcconfig"; sourceTree = "<group>"; };
 		EABA566C7706F85FACB19B97 /* Pods-BenchTrackerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BenchTrackerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BenchTrackerTests/Pods-BenchTrackerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F90712A119415FB0008694E5 /* BenchTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BenchTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -155,7 +155,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE8E2D45DF76B9457E2F7FCA /* libPods-BenchTracker.a in Frameworks */,
+				6FF44576CFF404C6C4707802 /* Pods_BenchTracker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,7 +163,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7D0E203204A888424538F78B /* libPods-BenchTrackerTests.a in Frameworks */,
+				F77B8D13565A4E6664DC71A8 /* Pods_BenchTrackerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -184,8 +184,8 @@
 		B57455EDB36A13EE7AEA1ED6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				1741F1AEFD5A51E5829E01AB /* libPods-BenchTracker.a */,
-				1468A0357975A50862A87B49 /* libPods-BenchTrackerTests.a */,
+				2C83D3A0EA46ECDF1788C990 /* Pods_BenchTracker.framework */,
+				40B18DFBDA158AF111B21958 /* Pods_BenchTrackerTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
