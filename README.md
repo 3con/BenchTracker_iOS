@@ -32,6 +32,9 @@ In order to get the app to fully function correctly, the file 'BenchTrackerKeys.
 * [AWS iOS SDK](https://github.com/aws/aws-sdk-ios) - database solution
 * [JSONModel](https://github.com/jsonmodel/jsonmodel) - data translation
 * [ZFDragableModalTransition](https://github.com/zoonooz/ZFDragableModalTransition) - popup views
+* [HMSegmentedControl](https://github.com/HeshamMegid/HMSegmentedControl) - custom segmented control
+* [FSCalendar](https://github.com/WenchaoD/FSCalendar) - calendar view
+* [MGSwipeTableCell](https://github.com/MortimerGoro/MGSwipeTableCell) - swipe-to-delete workout cells
 * [Core Data](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/CoreData/index.html) - on-device data storage
 
 ## Images
@@ -40,13 +43,15 @@ In order to get the app to fully function correctly, the file 'BenchTrackerKeys.
 
 #### Main view
 <img src="./Screenshots/image2.png" alt="Drawing" width="300 px"/>
-
-#### Exercise list
 <img src="./Screenshots/image3.png" alt="Drawing" width="300 px"/>
-
-#### Workout in progress
 <img src="./Screenshots/image4.png" alt="Drawing" width="300 px"/>
 
-#### Rep tracking
+#### Exercise list
 <img src="./Screenshots/image5.png" alt="Drawing" width="300 px"/>
+
+#### Workout in progress
 <img src="./Screenshots/image6.png" alt="Drawing" width="300 px"/>
+
+#### Rep tracking
+<img src="./Screenshots/image7.png" alt="Drawing" width="300 px"/>
+<img src="./Screenshots/image8.png" alt="Drawing" width="300 px"/>
