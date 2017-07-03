@@ -122,7 +122,7 @@
 
 - (void)userExistsWithUsername: (NSString *)username continueWithBlock:(void (^)(BOOL exists))completed {
     [[self.mapper load:[BTAWSUser class] hashKey:username rangeKey:nil] continueWithBlock:^id(AWSTask *task) {
-        if (task.error) NSLog(@"userManaer get error: [%@]", task.error);
+        if (task.error) NSLog(@"userManager get error: [%@]", task.error);
         else completed(task.result != nil);
         return nil;
     }];
@@ -195,7 +195,7 @@
 
 - (void)getAWSUserWithUsername: (NSString *)username completionBlock:(void (^)())completed {
     [[self.mapper load:[BTAWSUser class] hashKey:username rangeKey:nil] continueWithBlock:^id(AWSTask *task) {
-        if (task.error) NSLog(@"userManaer get error: [%@]", task.error);
+        if (task.error) NSLog(@"userManager get error: [%@]", task.error);
         else {
             if (task.result) self.awsUser = task.result; //user exists
             else NSLog(@"AWS user not found");
@@ -208,7 +208,7 @@
 - (void)pushAWSUserWithCompletionBlock:(void (^)())completed {
     self.awsUser.lastUpdate = [self stringForDate:[NSDate date]];
     [[self.mapper save:self.awsUser] continueWithBlock:^id(AWSTask *task) {
-        if (task.error) NSLog(@"userManaer push error: [%@]", task.error);
+        if (task.error) NSLog(@"userManager push error: [%@]", task.error);
         else completed();
         return nil;
     }];

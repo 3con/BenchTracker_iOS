@@ -36,20 +36,20 @@
     self.userManager = [BTUserManager sharedInstance];
     self.user = [self.userManager user];
     self.workoutManager = [BTWorkoutManager sharedInstance];
-    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"BTSettings"];
     NSError *error;
-    self.settings = [self.context executeFetchRequest:fetchRequest error:&error].firstObject;
-    if (error) NSLog(@"settings fetcher errror: %@",error);
-    self.listTableView.dataSource = self;
-    self.listTableView.delegate = self;
-    [self setUpCalendarView];
     if (![[self fetchedResultsController] performFetch:&error]) {
         NSLog(@"Main fetch error: %@, %@", error, [error userInfo]);
     }
+    self.listTableView.dataSource = self;
+    self.listTableView.delegate = self;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"BTSettings"];
+    NSError *error;
+    self.settings = [self.context executeFetchRequest:fetchRequest error:&error].firstObject;
+    if (error) NSLog(@"settings fetcher errror: %@",error);
 }
 
 - (void)viewDidLayoutSubviews {
@@ -63,6 +63,7 @@
         [self.weekdayContainerView addSubview:self.weekdayView];
         [self loadUser];
         [self.weekdayView scrollToDate:[NSDate date]];
+        [self setUpCalendarView];
         [self.segmentedControlContainerView setNeedsLayout];
         [self.segmentedControlContainerView layoutIfNeeded];
         [self setUpSegmentedControl];
@@ -326,12 +327,8 @@
 #pragma mark - settingsVC delegate
 
 - (void)settingsViewControllerDidRequestUserLogout:(SettingsViewController *)settingsVC {
-    [self.context deleteObject:self.user];
     self.user = nil;
-    //DELETE ALL WORKOUTS
-    //DELETE SETTINGS
-    //DELETE EXERCISE TYPES
-    [self.context save:nil];
+    [(AppDelegate *)[[UIApplication sharedApplication] delegate] resetCoreData];
 }
 
 #pragma mark - loginVC delegate

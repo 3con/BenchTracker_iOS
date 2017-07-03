@@ -132,4 +132,15 @@
     }
 }
 
+- (void)resetCoreData {
+    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"BenchTracker.sqlite"];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    [fileManager removeItemAtURL:storeURL error:NULL];
+    NSError *error;
+    if([fileManager fileExistsAtPath:[NSString stringWithContentsOfURL:storeURL encoding:NSASCIIStringEncoding error:&error]])
+        [fileManager removeItemAtURL:storeURL error:nil];
+    self.managedObjectContext = nil;
+    self.persistentStoreCoordinator = nil;
+}
+
 @end

@@ -97,48 +97,49 @@
 }
 
 - (void)updateWorkoutsWithLocalRecentEdits: (NSMutableArray<NSString *>*)localRecentEdits AWSRecentEdits: (NSMutableArray<NSString *>*)awsRecentEdits {
-    //ASYNC
-    NSMutableSet *deleteList = [NSMutableSet set];
-    NSMutableSet *downloadList = [NSMutableSet set];
-    //go through array to identify all changes until point of sync
-    NSString *mostRecentLocalEdit = localRecentEdits.lastObject;
-    for (NSInteger i = awsRecentEdits.count-1; i >= 0; i--) {
-        if ([mostRecentLocalEdit isEqualToString:awsRecentEdits[i]]) break;
-        NSArray <NSString *> *edit = [awsRecentEdits[i] componentsSeparatedByString:@" "];
-        if ([edit[1] isEqualToString:@"A"]) [downloadList addObject:edit[2]];
-        else if ([edit[1] isEqualToString:@"E"]) {
-            [deleteList addObject:edit[2]];
-            [downloadList addObject:edit[2]];
+    if (![awsRecentEdits.firstObject isEqualToString:AWS_EMPTY]) {
+        NSMutableSet *deleteList = [NSMutableSet set];
+        NSMutableSet *downloadList = [NSMutableSet set];
+        //go through array to identify all changes until point of sync
+        NSString *mostRecentLocalEdit = localRecentEdits.lastObject;
+        for (NSInteger i = awsRecentEdits.count-1; i >= 0; i--) {
+            if ([mostRecentLocalEdit isEqualToString:awsRecentEdits[i]]) break;
+            NSArray <NSString *> *edit = [awsRecentEdits[i] componentsSeparatedByString:@" "];
+            if ([edit[1] isEqualToString:@"A"]) [downloadList addObject:edit[2]];
+            else if ([edit[1] isEqualToString:@"E"]) {
+                [deleteList addObject:edit[2]];
+                [downloadList addObject:edit[2]];
+            }
+            else {
+                [deleteList addObject:edit[2]];
+                [downloadList removeObject:edit[2]];
+            }
         }
-        else {
-            [deleteList addObject:edit[2]];
-            [downloadList removeObject:edit[2]];
+        //trim out irrelevent changes?
+        //go through each change:
+        //   D: delete from CD
+        //   E: delete from CD, download, convert, add
+        //   A: download, convert, add
+        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"BTWorkout"];
+        request.fetchLimit = 1;
+        NSError *error;
+        for (NSString *uuid in deleteList) {
+            request.predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"uuid = '%@'",uuid]];
+            BTWorkout *workout = [self.context executeFetchRequest:request error:&error].firstObject;
+            if (error) NSLog(@"workoutManager update fetch error: %@",error);
+            if (workout) [self.context deleteObject:workout];
         }
+        self.userManager = [BTUserManager sharedInstance];
+        for (NSString *uuid in downloadList) {
+            [self fetchWorkoutFromAWSWithUUID:uuid completionBlock:^(BTWorkout *workout) {
+                if (workout) [self.userManager addWorkoutToLocalUser:workout];
+            }];
+        }
+        //save to CoreData
+        [self saveCoreData];
+        //checksum to make sure CD and user workout list are same length
+        //     ---> not same: hard compare DBs
     }
-    //trim out irrelevent changes?
-    //go through each change:
-    //   D: delete from CD
-    //   E: delete from CD, download, convert, add
-    //   A: download, convert, add
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"BTWorkout"];
-    request.fetchLimit = 1;
-    NSError *error;
-    for (NSString *uuid in deleteList) {
-        request.predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"uuid = '%@'",uuid]];
-        BTWorkout *workout = [self.context executeFetchRequest:request error:&error].firstObject;
-        if (error) NSLog(@"workoutManager update fetch error: %@",error);
-        if (workout) [self.context deleteObject:workout];
-    }
-    self.userManager = [BTUserManager sharedInstance];
-    for (NSString *uuid in downloadList) {
-        [self fetchWorkoutFromAWSWithUUID:uuid completionBlock:^(BTWorkout *workout) {
-            if (workout) [self.userManager addWorkoutToLocalUser:workout];
-        }];
-    }
-    //save to CoreData
-    [self saveCoreData];
-    //checksum to make sure CD and user workout list are same length
-    //     ---> not same: hard compare DBs
 }
 
 #pragma mark - client helpers
