@@ -36,4 +36,8 @@
 
 - (void)updateWorkoutsWithRecentEdits: (NSMutableArray<NSString *>*)recentEdits;
 
+//client helpers
+
+- (NSArray <BTWorkout *> *)workoutsBetweenBeginDate:(NSDate *)d1 andEndDate:(NSDate *)d2;
+
 @end

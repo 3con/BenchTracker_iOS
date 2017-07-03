@@ -9,7 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "BTUserManager.h"
 
+@class LoginViewController;
+
+@protocol LoginViewControllerDelegate <NSObject>
+- (void)loginViewController:(LoginViewController *)loginVC willDismissWithUser:(BTUser *)user;
+@end
+
 @interface LoginViewController : UIViewController
+
+@property (nonatomic) id<LoginViewControllerDelegate> delegate;
 
 @property (nonatomic) BTUserManager *userManager;
 

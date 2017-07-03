@@ -36,30 +36,30 @@
     self.userManager = [BTUserManager sharedInstance];
     self.user = [self.userManager user];
     self.workoutManager = [BTWorkoutManager sharedInstance];
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"BTSettings"];
+    NSError *error;
+    self.settings = [self.context executeFetchRequest:fetchRequest error:&error].firstObject;
+    if (error) NSLog(@"settings fetcher errror: %@",error);
     self.listTableView.dataSource = self;
     self.listTableView.delegate = self;
     self.weekdayView = [[NSBundle mainBundle] loadNibNamed:@"WeekdayView" owner:self options:nil].firstObject;
-    self.weekdayView.user = self.user;
     self.weekdayView.context = self.context;
+    self.weekdayView.settings = self.settings;
+    self.weekdayView.workoutManager = self.workoutManager;
     self.weekdayView.frame = CGRectMake(0, 0, self.weekdayContainerView.frame.size.width, self.weekdayContainerView.frame.size.height);
     [self.weekdayContainerView addSubview:self.weekdayView];
-    [self.weekdayView reloadData];
     [self setUpSegmentedControl];
     [self setSelectedViewIndex:0];
     [self setUpCalendarView];
-    NSError *error;
     if (![[self fetchedResultsController] performFetch:&error]) {
         NSLog(@"Main fetch error: %@, %@", error, [error userInfo]);
     }
+    [self loadUser];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.weekdayView scrollToDate:[NSDate date]];
-    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"BTSettings"];
-    NSError *error;
-    self.settings = [self.context executeFetchRequest:fetchRequest error:&error].firstObject;
-    if (error) NSLog(@"settings fetcher errror: %@",error);
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -67,6 +67,11 @@
     if (!self.user) { //No user in CoreData
         [self presentLoginViewController];
     }
+}
+
+- (void)loadUser {
+    self.weekdayView.user = self.user;
+    [self.weekdayView reloadData];
 }
 
 - (IBAction)settingsButtonPressed:(UIButton *)sender {
@@ -92,7 +97,7 @@
 }
 
 - (UIColor *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance fillDefaultColorForDate:(NSDate *)date {
-    if ([self numberOfWorkoutsBetweenBeginDate:date andEndDate:[date dateByAddingTimeInterval:86400]] > 0)
+    if ([self.workoutManager workoutsBetweenBeginDate:date andEndDate:[date dateByAddingTimeInterval:86400]].count > 0)
         return [UIColor colorWithRed:67/255.0 green:160/255.0 blue:71/255.0 alpha:1];
     return [UIColor whiteColor];
 }
@@ -106,7 +111,8 @@
         [date compare:self.calendarView.minimumDate] == NSOrderedAscending) return [UIColor whiteColor];
     else if ([date compare:[NSDate date]] == NSOrderedDescending ||
              [date compare:[self.user.dateCreated dateByAddingTimeInterval:-86400]] == NSOrderedAscending) return [UIColor lightGrayColor];
-    else if ([self numberOfWorkoutsBetweenBeginDate:date andEndDate:[date dateByAddingTimeInterval:86400]] > 0) return [UIColor whiteColor];
+    else if ([self.workoutManager workoutsBetweenBeginDate:date andEndDate:[date dateByAddingTimeInterval:86400]].count > 0)
+        return [UIColor whiteColor];
     return [UIColor colorWithRed:20/255.0 green:20/255.0 blue:84/255.0 alpha:1];
 }
 
@@ -123,26 +129,12 @@
 }
 
 - (NSInteger)calendar:(FSCalendar *)calendar numberOfEventsForDate:(NSDate *)date {
-    if ([[self normalizedDateForDate:[NSDate date]] compare:date] == NSOrderedSame) return 1; //same day
+    if ([[NSCalendar currentCalendar] isDate:date inSameDayAsDate:[NSDate date]]) return 1;
     return 0;
 }
 
-- (NSInteger)numberOfWorkoutsBetweenBeginDate:(NSDate *)d1 andEndDate:(NSDate *)d2 {
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"BTWorkout"];
-    NSMutableArray *predicates = [[NSMutableArray alloc] init];
-    NSPredicate *subPredFrom = [NSPredicate predicateWithFormat:@"date >= %@ ", d1];
-    [predicates addObject:subPredFrom];
-    NSPredicate *subPredTo = [NSPredicate predicateWithFormat:@"date < %@", d2];
-    [predicates addObject:subPredTo];
-    [fetchRequest setPredicate:[NSCompoundPredicate andPredicateWithSubpredicates:predicates]];
-    return [self.context executeFetchRequest:fetchRequest error:nil].count;
-}
-
-- (NSDate *)normalizedDateForDate:(NSDate *)date {
-    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-    NSCalendarUnit preservedComponents = (NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay);
-    NSDateComponents *components = [calendar components:preservedComponents fromDate:date];
-    return [calendar dateFromComponents:components];
+- (void)calendar:(FSCalendar *)calendar didSelectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition {
+    [calendar deselectDate:date];
 }
 
 #pragma mark - segmedtedControl
@@ -262,6 +254,7 @@
 
 - (void)presentLoginViewController {
     LoginViewController *loginVC = [self.storyboard instantiateViewControllerWithIdentifier:@"l"];
+    loginVC.delegate = self;
     loginVC.userManager = self.userManager;
     self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:loginVC];
     self.animator.bounces = NO;
@@ -313,16 +306,25 @@
 - (void)workoutViewController:(WorkoutViewController *)workoutVC willDismissWithResultWorkout:(BTWorkout *)workout {
     if (workout) [self.workoutManager saveEditedWorkout:workout];
     [self.calendarView reloadData];
+    [self.weekdayView reloadData];
 }
 
 #pragma mark - settingsVC delegate
 
 - (void)settingsViewControllerDidRequestUserLogout:(SettingsViewController *)settingsVC {
     [self.context deleteObject:self.user];
+    self.user = nil;
     //DELETE ALL WORKOUTS
     //DELETE SETTINGS
     //DELETE EXERCISE TYPES
     [self.context save:nil];
+}
+
+#pragma mark - loginVC delegate
+
+- (void)loginViewController:(LoginViewController *)loginVC willDismissWithUser:(BTUser *)user {
+    self.user = user;
+    [self loadUser];
 }
 
 #pragma mark - fetchedResultsController delegate

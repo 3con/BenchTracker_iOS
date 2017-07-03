@@ -78,6 +78,7 @@
         else {
             if (self.isLoginMode) { //user logged in
                 [self.userManager copyUserFromAWS:self.textField.text completionBlock:^{
+                    [self.delegate loginViewController:self willDismissWithUser:[self.userManager user]];
                     [self dismissViewControllerAnimated:YES completion:^{
                         
                     }];
@@ -85,6 +86,7 @@
             }
             else { //create user with username
                 [self.userManager createUserWithUsername:self.textField.text completionBlock:^{
+                    [self.delegate loginViewController:self willDismissWithUser:[self.userManager user]];
                     [self dismissViewControllerAnimated:YES completion:^{
                         
                     }];

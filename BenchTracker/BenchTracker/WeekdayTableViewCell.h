@@ -13,6 +13,10 @@
 
 @interface WeekdayTableViewCell : UITableViewCell <BTStackedBarViewDataSource>
 
+@property (nonatomic) BOOL today;
+
+@property (nonatomic) NSDictionary *exerciseTypeColors;
+
 - (void)loadDate:(NSDate *)date;
 
 - (void)loadWithWorkouts:(NSArray <BTWorkout *> *)workouts;

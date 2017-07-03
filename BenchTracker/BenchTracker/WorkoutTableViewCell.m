@@ -37,6 +37,10 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"EEEE, MMMM d"];
     self.dateLabel.text = [formatter stringFromDate:workout.date];
+    [self loadStackedView];
+}
+
+- (void)loadStackedView {
     if (self.workout.summary.length > 1) {
         self.tempSummary = [NSMutableArray array];
         NSArray *sArr = [self.workout.summary componentsSeparatedByString:@"#"];

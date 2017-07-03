@@ -92,6 +92,19 @@
     //optional: checksum to make sure CD and user workout list are same length
 }
 
+#pragma mark - client helpers
+
+- (NSArray <BTWorkout *> *)workoutsBetweenBeginDate:(NSDate *)d1 andEndDate:(NSDate *)d2 {
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"BTWorkout"];
+    NSMutableArray *predicates = [[NSMutableArray alloc] init];
+    NSPredicate *subPredFrom = [NSPredicate predicateWithFormat:@"date >= %@ ", d1];
+    [predicates addObject:subPredFrom];
+    NSPredicate *subPredTo = [NSPredicate predicateWithFormat:@"date < %@", d2];
+    [predicates addObject:subPredTo];
+    [fetchRequest setPredicate:[NSCompoundPredicate andPredicateWithSubpredicates:predicates]];
+    return (NSArray <BTWorkout *> *)[self.context executeFetchRequest:fetchRequest error:nil];
+}
+
 #pragma mark - private methods
 
 - (BTAWSWorkout *)AWSWorkoutForWorkout: (BTWorkout *)workout {

@@ -9,6 +9,8 @@
 #import "WeekdayView.h"
 #import "BTUser+CoreDataClass.h"
 #import "WeekdayTableViewCell.h"
+#import "BTWorkoutManager.h"
+#import "BTSettings+CoreDataClass.h"
 
 @interface WeekdayView ()
 
@@ -34,27 +36,36 @@
 }
 
 - (void)reloadData {
-    NSDateComponents* comp = [[NSCalendar currentCalendar] components:NSCalendarUnitWeekday fromDate:[NSDate date]];
-    NSInteger offset = (comp.weekday != 1) ? -(comp.weekday-2) : -6;
-    self.firstDayOfWeekDate = [NSDate dateWithTimeIntervalSinceNow:offset*86400];
-    comp = [[NSCalendar currentCalendar] components:NSCalendarUnitWeekday fromDate:self.user.dateCreated];
-    offset = (comp.weekday != 1) ? -(comp.weekday-2) : -6;
-    self.firstDayDate = [self.user.dateCreated dateByAddingTimeInterval:offset*86400-70*86400];
-    [self.tableView reloadData];
+    if (self.user) {
+        NSDateComponents* comp = [[NSCalendar currentCalendar] components:NSCalendarUnitWeekday fromDate:[NSDate date]];
+        NSInteger offset = (comp.weekday != 1) ? -(comp.weekday-2) : -6;
+        self.firstDayOfWeekDate = [NSDate dateWithTimeIntervalSinceNow:offset*86400];
+        comp = [[NSCalendar currentCalendar] components:NSCalendarUnitWeekday fromDate:self.user.dateCreated];
+        offset = (comp.weekday != 1) ? -(comp.weekday-2) : -6;
+        self.firstDayDate = [self.user.dateCreated dateByAddingTimeInterval:offset*86400-70*86400];
+        [self.tableView reloadData];
+        [self updateTitles];
+        [self scrollViewDidScroll:self.tableView];
+    }
 }
 
 - (void)scrollToDate:(NSDate *)date {
-    NSDateComponents* comp = [[NSCalendar currentCalendar] components:NSCalendarUnitWeekday fromDate:date];
-    NSInteger offset = (comp.weekday != 1) ? -(comp.weekday-2) : -6;
-    NSDate *targetDate = [date dateByAddingTimeInterval:offset*86400];
-    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:
-        [targetDate timeIntervalSinceDate:self.firstDayDate]/86400 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
+    if (self.user) {
+        NSDateComponents* comp = [[NSCalendar currentCalendar] components:NSCalendarUnitWeekday fromDate:date];
+        NSInteger offset = (comp.weekday != 1) ? -(comp.weekday-2) : -6;
+        NSDate *targetDate = [date dateByAddingTimeInterval:offset*86400];
+        [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:
+            [targetDate timeIntervalSinceDate:self.firstDayDate]/86400 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
+        [self updateTitles];
+        [self scrollViewDidScroll:self.tableView];
+    }
 }
 
 #pragma mark - tableView dataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 70+[self.firstDayOfWeekDate timeIntervalSinceDate:self.firstDayDate]/86400+70; //10 weeks before, 10 weeks after
+    if (self.user) return 70+[self.firstDayOfWeekDate timeIntervalSinceDate:self.firstDayDate]/86400+70; //10 weeks before, 10 weeks after
+    return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -62,10 +73,11 @@
 }
 
 - (void)configureWeekdayCell:(WeekdayTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    //BTWorkout *workout = [_fetchedResultsController objectAtIndexPath:indexPath];
-    //cell.exerciseTypeColors = [NSKeyedUnarchiver unarchiveObjectWithData:self.settings.exerciseTypeColors];
-    //[cell loadWorkout:workout];
-    [cell loadDate:[self.firstDayDate dateByAddingTimeInterval:86400*indexPath.row]];
+    NSDate *date = [self.firstDayDate dateByAddingTimeInterval:86400*indexPath.row];
+    cell.today = [[NSCalendar currentCalendar] isDate:date inSameDayAsDate:[NSDate date]];
+    cell.exerciseTypeColors = [NSKeyedUnarchiver unarchiveObjectWithData:self.settings.exerciseTypeColors];
+    [cell loadWithWorkouts:[self.workoutManager workoutsBetweenBeginDate:date andEndDate:[date dateByAddingTimeInterval:86400]]];
+    [cell loadDate:date];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -99,7 +111,6 @@
             [self.titleView addSubview:l];
         }
     }
-    [self updateTitles];
 }
 
 - (void)updateTitles {

@@ -19,16 +19,16 @@
                     <rect key="frame" x="0.0" y="0.0" width="67" height="90"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mon" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UY2-7k-MZ2">
-                            <rect key="frame" x="8" y="26" width="51" height="20"/>
+                            <rect key="frame" x="8" y="20" width="51" height="25"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="24" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="onK-en-alR">
-                            <rect key="frame" x="8" y="46" width="51" height="18"/>
+                            <rect key="frame" x="8" y="41" width="51" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="21"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -72,6 +72,7 @@
             <connections>
                 <outlet property="nameLabel" destination="hXL-RF-imJ" id="VeN-rZ-J5k"/>
                 <outlet property="stackedView" destination="TyM-qj-3DK" id="UIj-h5-Eic"/>
+                <outlet property="weekdayContainerView" destination="Yzz-q3-UIA" id="buP-h4-R6k"/>
                 <outlet property="weekdaySubtitleLabel" destination="onK-en-alR" id="UTt-tG-mFA"/>
                 <outlet property="weekdayTitleLabel" destination="UY2-7k-MZ2" id="UQ8-5a-mJO"/>
             </connections>

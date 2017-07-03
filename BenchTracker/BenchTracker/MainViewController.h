@@ -13,7 +13,7 @@
 #import "WeekdayView.h"
 #import "FSCalendar.h"
 
-@interface MainViewController : UIViewController <WorkoutViewControllerDelegate, SettingsViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate,  FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance>
+@interface MainViewController : UIViewController <WorkoutViewControllerDelegate, SettingsViewControllerDelegate, LoginViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance>
 
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @property NSManagedObjectContext *context;

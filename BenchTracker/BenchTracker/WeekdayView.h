@@ -9,11 +9,15 @@
 #import <UIKit/UIKit.h>
 
 @class BTUser;
+@class BTWorkoutManager;
+@class BTSettings;
 
 @interface WeekdayView : UIView <UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate>
 
-@property (nonatomic) BTUser *user;
 @property (nonatomic) NSManagedObjectContext *context;
+@property (nonatomic) BTUser *user;
+@property (nonatomic) BTSettings *settings;
+@property (nonatomic) BTWorkoutManager *workoutManager;
 
 - (void)reloadData;
 
