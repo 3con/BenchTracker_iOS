@@ -42,6 +42,7 @@
     }
     self.listTableView.dataSource = self;
     self.listTableView.delegate = self;
+    [self.listTableView registerNib:[UINib nibWithNibName:@"WorkoutTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"Cell"];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -248,7 +249,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     WorkoutTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    if (cell == nil) cell = [[NSBundle mainBundle] loadNibNamed:@"WorkoutTableViewCell" owner:nil options:nil].firstObject;
     [self configureWorkoutCell:cell atIndexPath:indexPath];
     return cell;
 }

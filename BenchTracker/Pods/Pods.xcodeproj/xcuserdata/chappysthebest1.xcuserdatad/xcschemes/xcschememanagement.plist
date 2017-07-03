@@ -39,17 +39,17 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>MGSwipeTableCell.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-BenchTracker.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>Pods-BenchTrackerTests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SWTableViewCell.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -62,12 +62,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>06AA960F1CBF3A4E4181FABAC30E643E</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>1CD80321715FDB12A3A31B7BCB09EA28</key>
+		<key>1E27F5A3FA07B9FCF0DCFD413D114115</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -102,17 +97,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D4DD3BFDA159FD3A3E28DD7542417816</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>D96E772729B009E0EA59AED2ABA23EFC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>DC3688684BF42A20A8998F31DDA51A49</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F7F69F1BDF5BDDDD727D38DA2AEBE85C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FFA0D07A823E25C585DF5E7FF5B4D86D</key>
 		<dict>
 			<key>primary</key>
 			<true/>

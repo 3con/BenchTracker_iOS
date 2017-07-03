@@ -12,7 +12,7 @@ target 'BenchTracker' do
   pod 'ZFDragableModalTransition'
   pod 'HMSegmentedControl'
   pod 'FSCalendar'
-  pod 'MGSwipeTableCell'
+  pod 'SWTableViewCell'
 
   # Pods for BenchTracker
 

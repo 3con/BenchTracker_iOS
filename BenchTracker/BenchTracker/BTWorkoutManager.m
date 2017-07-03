@@ -242,9 +242,9 @@
     if (!data) return [NSString stringWithFormat:@"[ \"%@\" ]",AWS_EMPTY];
     NSArray <NSString *> *arr = [NSKeyedUnarchiver unarchiveObjectWithData:data];
     if (arr.count == 0) return [NSString stringWithFormat:@"[ \"%@\" ]",AWS_EMPTY];
-    NSString *r = @"[ ";
+    NSString *r = @"";
     for (NSString *s in arr) r = [NSString stringWithFormat:@"%@,\"%@\"",r,s];
-    return [r stringByAppendingString:@" ]"];
+    return [NSString stringWithFormat:@"[ %@ ]",[r substringFromIndex:1]];
 }
 
 - (void)pushAWSWorkout:(BTAWSWorkout *)awsWorkout withCompletionBlock:(void (^)())completed {

@@ -36,7 +36,6 @@
     if (settings.exerciseTypeColors) self.exerciseTypeColors = [NSKeyedUnarchiver unarchiveObjectWithData:settings.exerciseTypeColors];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 45, 0);
     [self loadSearchBar];
     self.supersettingEnabled = NO;
 }
