@@ -75,7 +75,8 @@
 - (void)configureWeekdayCell:(WeekdayTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     NSDate *date = [self.firstDayDate dateByAddingTimeInterval:86400*indexPath.row];
     cell.today = [[NSCalendar currentCalendar] isDate:date inSameDayAsDate:[NSDate date]];
-    cell.exerciseTypeColors = [NSKeyedUnarchiver unarchiveObjectWithData:self.settings.exerciseTypeColors];
+    if (self.settings.exerciseTypeColors)
+        cell.exerciseTypeColors = [NSKeyedUnarchiver unarchiveObjectWithData:self.settings.exerciseTypeColors];
     [cell loadWithWorkouts:[self.workoutManager workoutsBetweenBeginDate:date andEndDate:[date dateByAddingTimeInterval:86400]]];
     [cell loadDate:date];
 }

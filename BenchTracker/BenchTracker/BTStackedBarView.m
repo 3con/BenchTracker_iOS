@@ -21,6 +21,8 @@
 
 - (void)reloadData {
     if (self.dataSource) {
+        [self setNeedsLayout];
+        [self layoutIfNeeded];
         [[self subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
         self.barValues = [NSMutableArray array];
         self.subSums = [NSMutableArray array];
@@ -54,7 +56,8 @@
                 barLabel.allowsDefaultTighteningForTruncation = YES;
                 barLabel.textAlignment = NSTextAlignmentCenter;
                 const CGFloat *components = CGColorGetComponents(((UIColor *)color).CGColor);
-                CGFloat colorBrightness = ((components[0] * 299) + (components[1] * 587) + (components[2] * 114)) / 1000;
+                CGFloat colorBrightness = 0;
+                if (components) colorBrightness = ((components[0] * 299) + (components[1] * 587) + (components[2] * 114)) / 1000;
                 barLabel.textColor = (colorBrightness > .75) ? [UIColor blackColor] : [UIColor whiteColor];
                 [self addSubview:barLabel];
             }

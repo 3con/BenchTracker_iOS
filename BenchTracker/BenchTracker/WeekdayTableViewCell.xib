@@ -16,30 +16,42 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yzz-q3-UIA">
-                    <rect key="frame" x="0.0" y="0.0" width="67" height="90"/>
+                    <rect key="frame" x="0.0" y="0.0" width="65" height="90"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mon" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UY2-7k-MZ2">
-                            <rect key="frame" x="8" y="20" width="51" height="25"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="24" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="onK-en-alR">
-                            <rect key="frame" x="8" y="41" width="51" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="21"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <nil key="highlightedColor"/>
-                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aCf-OG-vm4">
+                            <rect key="frame" x="0.0" y="0.0" width="65" height="90"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mon" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UY2-7k-MZ2">
+                                    <rect key="frame" x="7" y="20" width="51" height="25"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="24" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="onK-en-alR">
+                                    <rect key="frame" x="7" y="40" width="51" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="21"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="65" id="FGV-Z7-dXG"/>
+                                <constraint firstAttribute="height" constant="90" id="bdp-eG-6wN"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" red="0.078297413885593414" green="0.077457226812839508" blue="0.32783538103103638" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="67" id="Jw7-Xz-q6l"/>
+                        <constraint firstItem="aCf-OG-vm4" firstAttribute="centerY" secondItem="Yzz-q3-UIA" secondAttribute="centerY" id="0Vz-Oa-Mrd"/>
+                        <constraint firstAttribute="width" constant="65" id="Jw7-Xz-q6l"/>
+                        <constraint firstItem="aCf-OG-vm4" firstAttribute="centerX" secondItem="Yzz-q3-UIA" secondAttribute="centerX" id="oNr-mY-aTu"/>
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Afternoon Workout" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hXL-RF-imJ">
-                    <rect key="frame" x="77" y="10" width="165" height="25"/>
+                    <rect key="frame" x="75" y="10" width="165" height="25"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="25" id="7xL-sL-P9j"/>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="165" id="zg2-ot-VUm"/>
@@ -49,10 +61,11 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TyM-qj-3DK" customClass="BTStackedBarView">
-                    <rect key="frame" x="252" y="25" width="152" height="40"/>
+                    <rect key="frame" x="250" y="25" width="154" height="40"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="Xso-jU-BOc"/>
+                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="250" id="unA-ki-bnO"/>
                     </constraints>
                 </view>
             </subviews>
@@ -65,7 +78,7 @@
                 <constraint firstItem="Yzz-q3-UIA" firstAttribute="height" secondItem="R3D-3W-qA6" secondAttribute="height" id="Pat-io-88M"/>
                 <constraint firstItem="TyM-qj-3DK" firstAttribute="centerY" secondItem="R3D-3W-qA6" secondAttribute="centerY" id="jAb-fy-YlB"/>
                 <constraint firstItem="hXL-RF-imJ" firstAttribute="top" secondItem="R3D-3W-qA6" secondAttribute="top" constant="10" id="k3f-Ko-rSQ"/>
-                <constraint firstItem="TyM-qj-3DK" firstAttribute="leading" secondItem="hXL-RF-imJ" secondAttribute="trailing" constant="10" id="sbf-lJ-fy8"/>
+                <constraint firstItem="TyM-qj-3DK" firstAttribute="leading" secondItem="hXL-RF-imJ" secondAttribute="trailing" priority="750" constant="10" id="sbf-lJ-fy8"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

@@ -19,11 +19,15 @@
 
 - (BTUser *)user;
 
+- (void)addWorkoutToLocalUser:(BTWorkout *)workout;
+
 //client -> server
 
 - (void)createUserWithUsername: (NSString *)username completionBlock:(void (^)())completed;
 
 //server -> client
+
+- (void)setAutoRefresh:(BOOL)autoRefresh;
 
 - (void)updateUserFromAWS;
 

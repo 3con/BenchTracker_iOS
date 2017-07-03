@@ -42,24 +42,32 @@
     if (error) NSLog(@"settings fetcher errror: %@",error);
     self.listTableView.dataSource = self;
     self.listTableView.delegate = self;
-    self.weekdayView = [[NSBundle mainBundle] loadNibNamed:@"WeekdayView" owner:self options:nil].firstObject;
-    self.weekdayView.context = self.context;
-    self.weekdayView.settings = self.settings;
-    self.weekdayView.workoutManager = self.workoutManager;
-    self.weekdayView.frame = CGRectMake(0, 0, self.weekdayContainerView.frame.size.width, self.weekdayContainerView.frame.size.height);
-    [self.weekdayContainerView addSubview:self.weekdayView];
-    [self setUpSegmentedControl];
-    [self setSelectedViewIndex:0];
     [self setUpCalendarView];
     if (![[self fetchedResultsController] performFetch:&error]) {
         NSLog(@"Main fetch error: %@, %@", error, [error userInfo]);
     }
-    [self loadUser];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.weekdayView scrollToDate:[NSDate date]];
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    if (!self.weekdayView) { //first load
+        self.weekdayView = [[NSBundle mainBundle] loadNibNamed:@"WeekdayView" owner:self options:nil].firstObject;
+        self.weekdayView.context = self.context;
+        self.weekdayView.settings = self.settings;
+        self.weekdayView.workoutManager = self.workoutManager;
+        self.weekdayView.frame = CGRectMake(0, 0, self.weekdayContainerView.frame.size.width, self.weekdayContainerView.frame.size.height);
+        [self.weekdayContainerView addSubview:self.weekdayView];
+        [self loadUser];
+        [self.weekdayView scrollToDate:[NSDate date]];
+        [self.segmentedControlContainerView setNeedsLayout];
+        [self.segmentedControlContainerView layoutIfNeeded];
+        [self setUpSegmentedControl];
+        [self setSelectedViewIndex:0];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -67,6 +75,11 @@
     if (!self.user) { //No user in CoreData
         [self presentLoginViewController];
     }
+    [self.userManager setAutoRefresh:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [self.userManager setAutoRefresh:NO];
 }
 
 - (void)loadUser {
@@ -227,7 +240,8 @@
 
 - (void)configureWorkoutCell:(WorkoutTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     BTWorkout *workout = [_fetchedResultsController objectAtIndexPath:indexPath];
-    cell.exerciseTypeColors = [NSKeyedUnarchiver unarchiveObjectWithData:self.settings.exerciseTypeColors];
+    if (self.settings.exerciseTypeColors)
+        cell.exerciseTypeColors = [NSKeyedUnarchiver unarchiveObjectWithData:self.settings.exerciseTypeColors];
     [cell loadWorkout:workout];
 }
 
@@ -365,6 +379,8 @@
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
     [self.listTableView endUpdates];
+    [self.weekdayView reloadData];
+    [self.calendarView reloadData];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {

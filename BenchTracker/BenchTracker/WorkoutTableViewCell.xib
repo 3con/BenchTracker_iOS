@@ -44,12 +44,15 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a1S-0y-cF9" customClass="BTStackedBarView">
                     <rect key="frame" x="207" y="10" width="197" height="40"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="250" id="b1N-vy-IGE"/>
+                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="nrJ-qq-lQd" firstAttribute="top" secondItem="00J-0i-7c5" secondAttribute="top" constant="13" id="7fK-VN-rz1"/>
-                <constraint firstItem="a1S-0y-cF9" firstAttribute="leading" secondItem="zG2-kM-LMn" secondAttribute="trailing" constant="10" id="BWM-7D-tit"/>
+                <constraint firstItem="a1S-0y-cF9" firstAttribute="leading" secondItem="zG2-kM-LMn" secondAttribute="trailing" priority="750" constant="10" id="BWM-7D-tit"/>
                 <constraint firstItem="a1S-0y-cF9" firstAttribute="top" secondItem="00J-0i-7c5" secondAttribute="top" constant="10" id="MB6-Fi-cdp"/>
                 <constraint firstAttribute="trailing" secondItem="a1S-0y-cF9" secondAttribute="trailing" constant="10" id="ODl-IX-Zh7"/>
                 <constraint firstItem="zG2-kM-LMn" firstAttribute="leading" secondItem="00J-0i-7c5" secondAttribute="leading" constant="12" id="Yh2-54-yau"/>

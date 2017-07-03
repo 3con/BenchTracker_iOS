@@ -81,7 +81,7 @@
                                  message:@"Are you sure you want to delete this workout? You will lose all you hard work! This action cannot be undone."
                                  preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction* deleteButton = [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
-        [self.context deleteObject:self.workout];
+        [self.workoutManager deleteWorkout:self.workout];
         [self.delegate workoutViewController:self willDismissWithResultWorkout:nil];
         [self dismissViewControllerAnimated:YES completion:^{
             

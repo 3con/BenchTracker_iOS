@@ -23,7 +23,9 @@
 @property (nonatomic, strong) BTWorkoutManager *workoutManager;
 @property (nonatomic, strong) BTTypeListManager *typeListManager;
 
-@property (nonatomic, strong) BTAWSUser *AWSUser;
+@property (nonatomic, strong) BTAWSUser *awsUser;
+
+@property (nonatomic, strong) NSTimer *updateTimer;
 
 @end
 
@@ -55,6 +57,10 @@
     return object[0];
 }
 
+- (void)addWorkoutToLocalUser:(BTWorkout *)workout {
+    [[self user] addWorkoutsObject:workout];
+}
+
 #pragma mark - client -> server
 
 - (void)createUserWithUsername: (NSString *)username completionBlock:(void (^)())completed {
@@ -65,7 +71,7 @@
     user.typeListVersion = 0;
     user.recentEdits = [NSKeyedArchiver archivedDataWithRootObject:@[]];
     user.workouts = [[NSOrderedSet alloc] initWithArray:@[]];
-    self.AWSUser = [self copyCDUser:[self user] toAWSUser:[BTAWSUser new]];
+    self.awsUser = [self copyCDUser:[self user] toAWSUser:[BTAWSUser new]];
     [self pushAWSUserWithCompletionBlock:^{
         completed();
     }];
@@ -74,25 +80,39 @@
 
 #pragma mark - server -> client
 
+- (void)setAutoRefresh:(BOOL)autoRefresh {
+    if (autoRefresh) {
+        self.updateTimer = [NSTimer scheduledTimerWithTimeInterval:5.0 repeats:YES block:^(NSTimer * _Nonnull timer) {
+            [self updateUserFromAWS];
+        }];
+    }
+    else {
+        [self.updateTimer invalidate];
+    }
+}
+
 - (void)updateUserFromAWS {
     BTUser *user = [self user];
     if(!user) return;
     [self getAWSUserWithUsername:user.username completionBlock:^{
-        if (!self.AWSUser) { //user deleted from server
-            self.AWSUser = [self copyCDUser:[self user] toAWSUser:[BTAWSUser new]];
+        if (!self.awsUser) { //user deleted from server
+            self.awsUser = [self copyCDUser:[self user] toAWSUser:[BTAWSUser new]];
             [self pushAWSUserWithCompletionBlock:^{
                 
             }];
         }
         //compare version -> typeListManager
         //compare workouts -> workoutmanager
+        [self.workoutManager updateWorkoutsWithLocalRecentEdits:[NSKeyedUnarchiver unarchiveObjectWithData:user.recentEdits]
+                                                 AWSRecentEdits:self.awsUser.recentEdits];
+        user.recentEdits = [NSKeyedArchiver archivedDataWithRootObject:self.awsUser.recentEdits];
     }];
 }
 
 - (void)copyUserFromAWS: (NSString *)username completionBlock:(void (^)())completed {
     [self getAWSUserWithUsername:username completionBlock:^{
         BTUser *user = [NSEntityDescription insertNewObjectForEntityForName:@"BTUser" inManagedObjectContext:self.context];
-        user = [self copyAWSUser:self.AWSUser toCDUser:user];
+        user = [self copyAWSUser:self.awsUser toCDUser:user];
         [self saveCoreData];
         completed();
     }];
@@ -113,14 +133,14 @@
 - (void)workoutManager:(BTWorkoutManager *)workoutManager didCreateWorkout:(BTWorkout *)workout {
     NSString *uuid = workout.uuid;
     int time = 1999999999-[NSDate timeIntervalSinceReferenceDate];
-    if (self.AWSUser.recentEdits.count == 1 && [self.AWSUser.recentEdits containsObject:AWS_EMPTY])
-        [self.AWSUser.recentEdits removeAllObjects];
-    [self.AWSUser.recentEdits addObject:[NSString stringWithFormat:@"%d A %@",time,uuid]];
-    if (self.AWSUser.workouts.count == 1 && [self.AWSUser.workouts containsObject:AWS_EMPTY])
-        [self.AWSUser.workouts removeAllObjects];
-    [self.AWSUser.workouts addObject:uuid];
+    if (self.awsUser.recentEdits.count == 1 && [self.awsUser.recentEdits containsObject:AWS_EMPTY])
+        [self.awsUser.recentEdits removeAllObjects];
+    [self.awsUser.recentEdits addObject:[NSString stringWithFormat:@"%d A %@",time,uuid]];
+    if (self.awsUser.workouts.count == 1 && [self.awsUser.workouts containsObject:AWS_EMPTY])
+        [self.awsUser.workouts removeAllObjects];
+    [self.awsUser.workouts addObject:uuid];
     BTUser *user = [self user];
-    user.recentEdits = [NSKeyedArchiver archivedDataWithRootObject:self.AWSUser.recentEdits];
+    user.recentEdits = [NSKeyedArchiver archivedDataWithRootObject:self.awsUser.recentEdits];
     [user addWorkoutsObject:workout];
     [self saveCoreData];
     [self pushAWSUserWithCompletionBlock:^{
@@ -131,11 +151,11 @@
 - (void)workoutManager:(BTWorkoutManager *)workoutManager didEditWorkout:(BTWorkout *)workout {
     NSString *uuid = workout.uuid;
     int time = 1999999999-[NSDate timeIntervalSinceReferenceDate];
-    if (self.AWSUser.recentEdits.count == 1 && [self.AWSUser.recentEdits containsObject:AWS_EMPTY])
-        [self.AWSUser.recentEdits removeAllObjects];
-    [self.AWSUser.recentEdits addObject:[NSString stringWithFormat:@"%d E %@",time,uuid]];
+    if (self.awsUser.recentEdits.count == 1 && [self.awsUser.recentEdits containsObject:AWS_EMPTY])
+        [self.awsUser.recentEdits removeAllObjects];
+    [self.awsUser.recentEdits addObject:[NSString stringWithFormat:@"%d E %@",time,uuid]];
     BTUser *user = [self user];
-    user.recentEdits = [NSKeyedArchiver archivedDataWithRootObject:self.AWSUser.recentEdits];
+    user.recentEdits = [NSKeyedArchiver archivedDataWithRootObject:self.awsUser.recentEdits];
     [self saveCoreData];
     [self pushAWSUserWithCompletionBlock:^{
         
@@ -145,13 +165,13 @@
 - (void)workoutManager:(BTWorkoutManager *)workoutManager didDeleteWorkout:(BTWorkout *)workout {
     NSString *uuid = workout.uuid;
     int time = 1999999999-[NSDate timeIntervalSinceReferenceDate];
-    if (self.AWSUser.recentEdits.count == 1 && [self.AWSUser.recentEdits containsObject:AWS_EMPTY])
-        [self.AWSUser.recentEdits removeAllObjects];
-    [self.AWSUser.recentEdits addObject:[NSString stringWithFormat:@"%d D %@",time,uuid]];
-    [self.AWSUser.workouts removeObject:uuid];
-    if (self.AWSUser.workouts.count == 0) [self.AWSUser.workouts addObject:AWS_EMPTY];
+    if (self.awsUser.recentEdits.count == 1 && [self.awsUser.recentEdits containsObject:AWS_EMPTY])
+        [self.awsUser.recentEdits removeAllObjects];
+    [self.awsUser.recentEdits addObject:[NSString stringWithFormat:@"%d D %@",time,uuid]];
+    [self.awsUser.workouts removeObject:uuid];
+    if (self.awsUser.workouts.count == 0) [self.awsUser.workouts addObject:AWS_EMPTY];
     BTUser *user = [self user];
-    user.recentEdits = [NSKeyedArchiver archivedDataWithRootObject:self.AWSUser.recentEdits];
+    user.recentEdits = [NSKeyedArchiver archivedDataWithRootObject:self.awsUser.recentEdits];
     [user removeWorkoutsObject:workout];
     [self saveCoreData];
     [self pushAWSUserWithCompletionBlock:^{
@@ -162,7 +182,7 @@
 #pragma mark - typeListManager delegate
 
 - (void)typeListManagerDidEditList:(BTTypeListManager *)typeListManager {
-    self.AWSUser.typeListVersion = [NSNumber numberWithInt:self.AWSUser.typeListVersion.intValue + 1];
+    self.awsUser.typeListVersion = [NSNumber numberWithInt:self.awsUser.typeListVersion.intValue + 1];
     BTUser *user = [self user];
     user.typeListVersion ++;
     [self saveCoreData];
@@ -177,7 +197,7 @@
     [[self.mapper load:[BTAWSUser class] hashKey:username rangeKey:nil] continueWithBlock:^id(AWSTask *task) {
         if (task.error) NSLog(@"userManaer get error: [%@]", task.error);
         else {
-            if (task.result) self.AWSUser = task.result; //user exists
+            if (task.result) self.awsUser = task.result; //user exists
             else NSLog(@"AWS user not found");
             completed();
         }
@@ -186,37 +206,41 @@
 }
 
 - (void)pushAWSUserWithCompletionBlock:(void (^)())completed {
-    self.AWSUser.lastUpdate = [self stringForDate:[NSDate date]];
-    [[self.mapper save:self.AWSUser] continueWithBlock:^id(AWSTask *task) {
+    self.awsUser.lastUpdate = [self stringForDate:[NSDate date]];
+    [[self.mapper save:self.awsUser] continueWithBlock:^id(AWSTask *task) {
         if (task.error) NSLog(@"userManaer push error: [%@]", task.error);
         else completed();
         return nil;
     }];
 }
 
-- (BTAWSUser *)copyCDUser: (BTUser *)user toAWSUser: (BTAWSUser *)AWSUser {
-    AWSUser.username = user.username;
-    AWSUser.dateCreated = [self stringForDate:user.dateCreated];
-    AWSUser.lastUpdate = [self stringForDate:user.lastUpdate];
-    AWSUser.typeListVersion = [NSNumber numberWithInt:user.typeListVersion];
+- (BTAWSUser *)copyCDUser: (BTUser *)user toAWSUser: (BTAWSUser *)awsUser {
+    awsUser.username = user.username;
+    awsUser.dateCreated = [self stringForDate:user.dateCreated];
+    awsUser.lastUpdate = [self stringForDate:user.lastUpdate];
+    awsUser.typeListVersion = [NSNumber numberWithInt:user.typeListVersion];
     NSArray *rE = [NSKeyedUnarchiver unarchiveObjectWithData:user.recentEdits];
-    AWSUser.recentEdits = [[NSMutableArray alloc] initWithArray:(rE.count == 0) ? @[AWS_EMPTY] : rE];
-    AWSUser.workouts = [[NSMutableArray alloc] init];
-    for (BTWorkout *workout in user.workouts) [AWSUser.workouts addObject:workout.uuid];
+    awsUser.recentEdits = [[NSMutableArray alloc] initWithArray:(rE.count == 0) ? @[AWS_EMPTY] : rE];
+    awsUser.workouts = [[NSMutableArray alloc] init];
+    for (BTWorkout *workout in user.workouts) [awsUser.workouts addObject:workout.uuid];
     //<> Handle with recent edits instead
-    if (user.workouts.count == 0) [AWSUser.workouts addObject:AWS_EMPTY];
-    return AWSUser;
+    if (user.workouts.count == 0) [awsUser.workouts addObject:AWS_EMPTY];
+    return awsUser;
 }
 
-- (BTUser *)copyAWSUser: (BTAWSUser *)AWSUser toCDUser: (BTUser *)user {
-    user.username = AWSUser.username;
-    user.dateCreated = [self dateForString:AWSUser.dateCreated];
-    user.lastUpdate = [self dateForString:AWSUser.lastUpdate];
-    user.typeListVersion = AWSUser.typeListVersion.intValue;
-    if ([AWSUser.recentEdits.firstObject isEqualToString:AWS_EMPTY])
+- (BTUser *)copyAWSUser: (BTAWSUser *)awsUser toCDUser: (BTUser *)user {
+    user.username = awsUser.username;
+    user.dateCreated = [self dateForString:awsUser.dateCreated];
+    user.lastUpdate = [self dateForString:awsUser.lastUpdate];
+    user.typeListVersion = awsUser.typeListVersion.intValue;
+    if ([awsUser.recentEdits.firstObject isEqualToString:AWS_EMPTY])
         user.recentEdits = [NSKeyedArchiver archivedDataWithRootObject:@[]];
-    else user.recentEdits = [NSKeyedArchiver archivedDataWithRootObject:AWSUser.recentEdits];
-    //Handle workouts
+    else user.recentEdits = [NSKeyedArchiver archivedDataWithRootObject:awsUser.recentEdits];
+    for (NSString *uuid in awsUser.workouts) {
+        [self.workoutManager fetchWorkoutFromAWSWithUUID:uuid completionBlock:^(BTWorkout *workout) {
+            if (workout) [user addWorkoutsObject:workout];
+        }];
+    }
     return user;
 }
 

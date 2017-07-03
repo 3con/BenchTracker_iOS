@@ -19,6 +19,7 @@
                     <rect key="frame" x="5" y="0.0" width="403" height="10"/>
                     <color key="backgroundColor" red="0.3780187216" green="0.3921568627" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
+                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="500" id="3ni-x0-ubV"/>
                         <constraint firstAttribute="height" constant="10" id="aUf-Ig-FZf"/>
                     </constraints>
                 </view>
@@ -26,6 +27,7 @@
                     <rect key="frame" x="5" y="50" width="403" height="10"/>
                     <color key="backgroundColor" red="0.3780187216" green="0.3921568627" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
+                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="500" id="Lul-gL-bg4"/>
                         <constraint firstAttribute="height" constant="10" id="f9o-u0-fFX"/>
                     </constraints>
                 </view>
@@ -81,14 +83,14 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="3QT-9B-pVr" firstAttribute="leading" secondItem="G3U-Ip-JYx" secondAttribute="leading" constant="5" id="COg-yJ-XHU"/>
+                <constraint firstItem="3QT-9B-pVr" firstAttribute="leading" secondItem="G3U-Ip-JYx" secondAttribute="leading" priority="750" constant="5" id="COg-yJ-XHU"/>
                 <constraint firstAttribute="bottom" secondItem="3QT-9B-pVr" secondAttribute="bottom" id="Cdu-Hx-UJK"/>
                 <constraint firstItem="3QT-9B-pVr" firstAttribute="centerX" secondItem="G3U-Ip-JYx" secondAttribute="centerX" id="OmK-YD-L8s"/>
-                <constraint firstItem="4ay-7l-wv5" firstAttribute="leading" secondItem="G3U-Ip-JYx" secondAttribute="leading" constant="5" id="RQb-wI-uVC"/>
+                <constraint firstItem="4ay-7l-wv5" firstAttribute="leading" secondItem="G3U-Ip-JYx" secondAttribute="leading" priority="750" constant="5" id="RQb-wI-uVC"/>
                 <constraint firstItem="1bG-Et-wWm" firstAttribute="top" secondItem="G3U-Ip-JYx" secondAttribute="top" id="Unh-OL-q9L"/>
                 <constraint firstAttribute="bottom" secondItem="4ay-7l-wv5" secondAttribute="bottom" id="dl2-6q-lv2"/>
                 <constraint firstItem="4ay-7l-wv5" firstAttribute="centerX" secondItem="G3U-Ip-JYx" secondAttribute="centerX" id="eSp-Hn-YbT"/>
-                <constraint firstItem="1bG-Et-wWm" firstAttribute="leading" secondItem="G3U-Ip-JYx" secondAttribute="leading" constant="5" id="eW5-J9-D0b"/>
+                <constraint firstItem="1bG-Et-wWm" firstAttribute="leading" secondItem="G3U-Ip-JYx" secondAttribute="leading" priority="750" constant="5" id="eW5-J9-D0b"/>
                 <constraint firstItem="4ay-7l-wv5" firstAttribute="top" secondItem="G3U-Ip-JYx" secondAttribute="top" constant="5" id="eqr-tu-TNS"/>
                 <constraint firstItem="1bG-Et-wWm" firstAttribute="centerX" secondItem="G3U-Ip-JYx" secondAttribute="centerX" id="ibw-y1-4OC"/>
             </constraints>

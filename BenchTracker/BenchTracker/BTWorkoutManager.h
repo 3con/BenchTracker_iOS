@@ -34,7 +34,9 @@
 
 //server -> client
 
-- (void)updateWorkoutsWithRecentEdits: (NSMutableArray<NSString *>*)recentEdits;
+- (void)fetchWorkoutFromAWSWithUUID:(NSString *)uuid completionBlock:(void (^)(BTWorkout *workout))completed;
+
+- (void)updateWorkoutsWithLocalRecentEdits: (NSMutableArray<NSString *>*)localRecentEdits AWSRecentEdits: (NSMutableArray<NSString *>*)awsRecentEdits;
 
 //client helpers
 

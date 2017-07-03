@@ -67,6 +67,8 @@
             }
         }
     }
+    [self.stackedView setNeedsLayout];
+    [self.stackedView layoutIfNeeded];
     self.stackedView.dataSource = self;
     [self.stackedView reloadData];
 }

@@ -40,6 +40,7 @@
 		F97B1CA31F09759000B3EEC7 /* WeekdayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97B1CA11F09759000B3EEC7 /* WeekdayTableViewCell.xib */; };
 		F97B1CA71F097D8A00B3EEC7 /* WeekdayView.m in Sources */ = {isa = PBXBuildFile; fileRef = F97B1CA61F097D8A00B3EEC7 /* WeekdayView.m */; };
 		F97B1CAA1F097DA600B3EEC7 /* WeekdayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97B1CA91F097DA600B3EEC7 /* WeekdayView.xib */; };
+		F97B1CAD1F09F67300B3EEC7 /* ExerciseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F97B1CAC1F09F67300B3EEC7 /* ExerciseModel.m */; };
 		F981D5891F022D9A00E7B456 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F981D5871F022D9A00E7B456 /* LaunchScreen.xib */; };
 		F9AF067E1F07535C003A2200 /* WorkoutTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F9AF067C1F07535C003A2200 /* WorkoutTableViewCell.m */; };
 		F9AF067F1F07535C003A2200 /* WorkoutTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9AF067D1F07535C003A2200 /* WorkoutTableViewCell.xib */; };
@@ -130,6 +131,8 @@
 		F97B1CA51F097D8A00B3EEC7 /* WeekdayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeekdayView.h; sourceTree = "<group>"; };
 		F97B1CA61F097D8A00B3EEC7 /* WeekdayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeekdayView.m; sourceTree = "<group>"; };
 		F97B1CA91F097DA600B3EEC7 /* WeekdayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeekdayView.xib; sourceTree = "<group>"; };
+		F97B1CAB1F09F67300B3EEC7 /* ExerciseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExerciseModel.h; sourceTree = "<group>"; };
+		F97B1CAC1F09F67300B3EEC7 /* ExerciseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseModel.m; sourceTree = "<group>"; };
 		F981D5881F022D9A00E7B456 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		F9AF067B1F07535C003A2200 /* WorkoutTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkoutTableViewCell.h; sourceTree = "<group>"; };
 		F9AF067C1F07535C003A2200 /* WorkoutTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkoutTableViewCell.m; sourceTree = "<group>"; };
@@ -411,6 +414,7 @@
 			children = (
 				F95F93491F037C9500A19C4D /* BTWorkoutManager.h */,
 				F95F934A1F037C9500A19C4D /* BTWorkoutManager.m */,
+				F97B1CAE1F09F68900B3EEC7 /* ExerciseModel */,
 			);
 			name = WorkoutManager;
 			sourceTree = "<group>";
@@ -455,6 +459,15 @@
 				F97B1CA41F09759700B3EEC7 /* Weekday cell */,
 			);
 			name = "Weekday view";
+			sourceTree = "<group>";
+		};
+		F97B1CAE1F09F68900B3EEC7 /* ExerciseModel */ = {
+			isa = PBXGroup;
+			children = (
+				F97B1CAB1F09F67300B3EEC7 /* ExerciseModel.h */,
+				F97B1CAC1F09F67300B3EEC7 /* ExerciseModel.m */,
+			);
+			name = ExerciseModel;
 			sourceTree = "<group>";
 		};
 		F9AF06801F075360003A2200 /* Workout cell */ = {
@@ -779,6 +792,7 @@
 				F95F933E1F034FA300A19C4D /* LoginViewController.m in Sources */,
 				F9AF067E1F07535C003A2200 /* WorkoutTableViewCell.m in Sources */,
 				F96207711F05DCF200DE2330 /* ExerciseTableViewCell.m in Sources */,
+				F97B1CAD1F09F67300B3EEC7 /* ExerciseModel.m in Sources */,
 				F9DA75331F02F0B800347B0D /* BTTypeListManager.m in Sources */,
 				F9418F9E1F0433980083C3DC /* AddExerciseViewController.m in Sources */,
 				F9DA75291F02EE9600347B0D /* BTWorkout+CoreDataProperties.m in Sources */,
@@ -935,6 +949,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "CDdesigns.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -950,6 +965,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "CDdesigns.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
