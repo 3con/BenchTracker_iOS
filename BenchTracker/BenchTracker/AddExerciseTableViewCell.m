@@ -23,7 +23,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
 - (void)loadExerciseType:(BTExerciseType *)exerciseType {
@@ -37,8 +37,20 @@
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
+    if (selected) {
+        self.backgroundColor = self.color;
+        self.nameLabel.textColor = [UIColor whiteColor];
+        self.iterationLabel1.textColor = [UIColor whiteColor];
+        self.iterationLabel2.textColor = [UIColor whiteColor];
+        self.iterationLabel3.textColor = [UIColor whiteColor];
+    }
+    else {
+        self.backgroundColor = [UIColor whiteColor];
+        self.nameLabel.textColor = [UIColor blackColor];
+        self.iterationLabel1.textColor = [UIColor blackColor];
+        self.iterationLabel2.textColor = [UIColor blackColor];
+        self.iterationLabel3.textColor = [UIColor blackColor];
+    }
 }
 
 @end

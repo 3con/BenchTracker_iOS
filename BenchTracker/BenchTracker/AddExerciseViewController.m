@@ -9,8 +9,11 @@
 #import "AddExerciseViewController.h"
 #import "BTExerciseType+CoreDataClass.h"
 #import "AddExerciseTableViewCell.h"
+#import "BTSettings+CoreDataClass.h"
 
 @interface AddExerciseViewController ()
+
+@property (nonatomic) NSDictionary *exerciseTypeColors;
 
 @property (nonatomic) BOOL supersettingEnabled;
 
@@ -27,6 +30,10 @@
     if (![[self fetchedResultsController] performFetch:&error]) {
         NSLog(@"Main fetch error: %@, %@", error, [error userInfo]);
     }
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"BTSettings"];
+    BTSettings *settings = [self.context executeFetchRequest:fetchRequest error:&error].firstObject;
+    if (error) NSLog(@"settings fetcher errror: %@",error);
+    if (settings.exerciseTypeColors) self.exerciseTypeColors = [NSKeyedUnarchiver unarchiveObjectWithData:settings.exerciseTypeColors];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 45, 0);
@@ -53,6 +60,8 @@
 - (void)viewWillAppear:(BOOL)animated {
     self.containerView.layer.cornerRadius = 12;
     self.containerView.clipsToBounds = YES;
+    self.addExerciseButton.layer.cornerRadius = 12;
+    self.addExerciseButton.clipsToBounds = YES;
     self.addExerciseButton.userInteractionEnabled = NO;
     self.addExerciseButton.alpha = 0;
 }
@@ -135,7 +144,7 @@
 #pragma mark - tableView dataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [[_fetchedResultsController sections] count];
+    return [_fetchedResultsController sections].count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -143,16 +152,30 @@
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return [[_fetchedResultsController sections][section] name];
+    return [_fetchedResultsController sections][section].name;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
+    UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
+    [header.textLabel setTextColor:[UIColor whiteColor]];
+    NSString *key = [_fetchedResultsController sections][section].name;
+    header.contentView.backgroundColor = self.exerciseTypeColors[key];
+    
+    // Another way to set the background color
+    // Note: does not preserve gradient effect of original header
+    // header.contentView.backgroundColor = [UIColor blackColor];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[[_fetchedResultsController sections] objectAtIndex:section] numberOfObjects];
+    return [[_fetchedResultsController sections] objectAtIndex:section].numberOfObjects;
 }
 
 - (void)configureCell:(AddExerciseTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     BTExerciseType *type = self.fetchedResultsController.sections[indexPath.section].objects[indexPath.row];
     cell.frame = CGRectMake(0, 0, self.tableView.frame.size.width, 50);
+    NSString *key = [_fetchedResultsController sections][indexPath.section].name;
+    cell.color = self.exerciseTypeColors[key];
+    if (!cell.color) cell.color = [UIColor groupTableViewBackgroundColor];
     [cell loadExerciseType:type];
 }
 
@@ -166,13 +189,13 @@
 #pragma mark - tableView delegate
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([[tableView indexPathForSelectedRow] isEqual:indexPath]) {
-        [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    if ([tableView.indexPathsForSelectedRows containsObject:indexPath]) {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
         [self tableView:tableView didDeselectRowAtIndexPath:indexPath];
         return nil;
     }
     else if (tableView.indexPathsForSelectedRows.count == 5) {
-        [tableView deselectRowAtIndexPath:tableView.indexPathsForSelectedRows.firstObject animated:NO];
+        [tableView deselectRowAtIndexPath:tableView.indexPathsForSelectedRows.firstObject animated:YES];
     }
     return indexPath;
 }

@@ -38,24 +38,22 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Close-grip BB" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PR0-pa-Rrz">
+                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.65000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Close-grip BB" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PR0-pa-Rrz">
                         <rect key="frame" x="270" y="18" width="90" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="OZZ-H0-DZD"/>
                             <constraint firstAttribute="width" constant="90" id="muD-v4-eBS"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BB Standing ++" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WXi-q0-Rzv">
+                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.45000000000000001" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BB Standing ++" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WXi-q0-Rzv">
                         <rect key="frame" x="270" y="33" width="90" height="18"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="90" id="lfs-xt-9EG"/>
                             <constraint firstAttribute="height" constant="18" id="mWf-GN-lPL"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>

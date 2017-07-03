@@ -13,6 +13,7 @@
 @interface AddExerciseTableViewCell : UITableViewCell
 
 @property BTExerciseType *exerciseType;
+@property UIColor *color;
 
 - (void)loadExerciseType: (BTExerciseType *)exerciseType;
 

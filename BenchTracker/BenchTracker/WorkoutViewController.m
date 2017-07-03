@@ -50,6 +50,11 @@
     self.startDate = [NSDate date];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.addExerciseButton.alpha = 1;
+}
+
 - (IBAction)addExerciseButtonPressed:(UIButton *)sender {
     [self presentAddExerciseViewController];
 }   
@@ -222,6 +227,7 @@
 #pragma mark - view handling
 
 - (void)presentAddExerciseViewController {
+    self.addExerciseButton.alpha = 0;
     AddExerciseViewController *addVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ae"];
     addVC.delegate = self;
     addVC.context = self.context;
