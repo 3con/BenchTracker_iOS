@@ -173,6 +173,7 @@
     BTUser *user = [self user];
     user.recentEdits = [NSKeyedArchiver archivedDataWithRootObject:self.awsUser.recentEdits];
     [user removeWorkoutsObject:workout];
+    [self.context deleteObject:workout];
     [self saveCoreData];
     [self pushAWSUserWithCompletionBlock:^{
         

@@ -6,72 +6,74 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="00J-0i-7c5" customClass="WorkoutTableViewCell">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="xl7-0Y-jmy" customClass="WorkoutTableViewCell">
             <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Monday, June 30th" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PUo-Jf-nB7">
-                    <rect key="frame" x="26" y="8" width="171" height="20"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="20" id="Flu-Dj-a1T"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Afternoon Workout" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zG2-kM-LMn">
-                    <rect key="frame" x="12" y="26" width="185" height="27"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="27" id="cut-P6-fhD"/>
-                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="185" id="wR6-f7-cXC"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Clock" translatesAutoresizingMaskIntoConstraints="NO" id="nrJ-qq-lQd">
-                    <rect key="frame" x="12" y="13" width="10" height="10"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="10" id="DPP-YR-CCe"/>
-                        <constraint firstAttribute="height" constant="10" id="feO-Ta-6OQ"/>
-                    </constraints>
-                </imageView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a1S-0y-cF9" customClass="BTStackedBarView">
-                    <rect key="frame" x="207" y="10" width="197" height="40"/>
-                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                    <constraints>
-                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="250" id="b1N-vy-IGE"/>
-                    </constraints>
-                </view>
-            </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstItem="nrJ-qq-lQd" firstAttribute="top" secondItem="00J-0i-7c5" secondAttribute="top" constant="13" id="7fK-VN-rz1"/>
-                <constraint firstItem="a1S-0y-cF9" firstAttribute="leading" secondItem="zG2-kM-LMn" secondAttribute="trailing" priority="750" constant="10" id="BWM-7D-tit"/>
-                <constraint firstItem="a1S-0y-cF9" firstAttribute="top" secondItem="00J-0i-7c5" secondAttribute="top" constant="10" id="MB6-Fi-cdp"/>
-                <constraint firstAttribute="trailing" secondItem="a1S-0y-cF9" secondAttribute="trailing" constant="10" id="ODl-IX-Zh7"/>
-                <constraint firstItem="zG2-kM-LMn" firstAttribute="leading" secondItem="00J-0i-7c5" secondAttribute="leading" constant="12" id="Yh2-54-yau"/>
-                <constraint firstItem="PUo-Jf-nB7" firstAttribute="leading" secondItem="nrJ-qq-lQd" secondAttribute="trailing" constant="4" id="ccn-sO-b4b"/>
-                <constraint firstItem="PUo-Jf-nB7" firstAttribute="trailing" secondItem="zG2-kM-LMn" secondAttribute="trailing" id="gPO-Ps-uPz"/>
-                <constraint firstItem="nrJ-qq-lQd" firstAttribute="leading" secondItem="zG2-kM-LMn" secondAttribute="leading" id="gkv-xH-69i"/>
-                <constraint firstItem="a1S-0y-cF9" firstAttribute="centerY" secondItem="00J-0i-7c5" secondAttribute="centerY" id="hZ9-eK-Bk0"/>
-                <constraint firstItem="PUo-Jf-nB7" firstAttribute="top" secondItem="00J-0i-7c5" secondAttribute="top" constant="8" id="ujQ-zP-gRK"/>
-                <constraint firstAttribute="bottom" secondItem="zG2-kM-LMn" secondAttribute="bottom" constant="7" id="xR0-d4-0lV"/>
-            </constraints>
-            <nil key="simulatedStatusBarMetrics"/>
-            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xl7-0Y-jmy" id="oBe-7l-kk9">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NXR-R8-h71" customClass="BTStackedBarView">
+                        <rect key="frame" x="206" y="9" width="197" height="40"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="250" id="JPq-B2-w9u"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Afternoon Workout" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="La5-Wr-E7U">
+                        <rect key="frame" x="11" y="25" width="185" height="27"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="27" id="49c-xk-aXg"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="185" id="Co9-j0-ASx"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Monday, June 30th" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rdh-Kp-cdO">
+                        <rect key="frame" x="25" y="7" width="171" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="JIo-D2-Q3C"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Clock" translatesAutoresizingMaskIntoConstraints="NO" id="tXK-fV-KKf">
+                        <rect key="frame" x="11" y="12" width="10" height="10"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="10" id="jGl-du-0pV"/>
+                            <constraint firstAttribute="width" constant="10" id="zQ2-SP-Msc"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="NXR-R8-h71" firstAttribute="top" secondItem="oBe-7l-kk9" secondAttribute="topMargin" constant="1" id="34b-7F-SUT"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="NXR-R8-h71" secondAttribute="trailing" constant="3" id="9db-Z9-6rG"/>
+                    <constraint firstItem="tXK-fV-KKf" firstAttribute="leading" secondItem="oBe-7l-kk9" secondAttribute="leadingMargin" constant="3" id="EjH-HK-gE8"/>
+                    <constraint firstItem="Rdh-Kp-cdO" firstAttribute="leading" secondItem="tXK-fV-KKf" secondAttribute="trailing" constant="4" id="O8X-ab-qB9"/>
+                    <constraint firstItem="Rdh-Kp-cdO" firstAttribute="centerY" secondItem="tXK-fV-KKf" secondAttribute="centerY" id="Ri8-N6-bY3"/>
+                    <constraint firstItem="Rdh-Kp-cdO" firstAttribute="trailing" secondItem="La5-Wr-E7U" secondAttribute="trailing" id="SKy-lX-fDG"/>
+                    <constraint firstItem="NXR-R8-h71" firstAttribute="centerY" secondItem="oBe-7l-kk9" secondAttribute="centerY" id="Wgh-ZT-xTS"/>
+                    <constraint firstItem="tXK-fV-KKf" firstAttribute="leading" secondItem="La5-Wr-E7U" secondAttribute="leading" id="a62-eq-iDh"/>
+                    <constraint firstItem="NXR-R8-h71" firstAttribute="leading" secondItem="La5-Wr-E7U" secondAttribute="trailing" priority="750" constant="10" id="f1g-oR-1ne"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="La5-Wr-E7U" secondAttribute="bottom" constant="-0.5" id="o42-Xc-6Zy"/>
+                    <constraint firstItem="tXK-fV-KKf" firstAttribute="top" secondItem="oBe-7l-kk9" secondAttribute="topMargin" constant="4" id="ulf-cs-p5u"/>
+                </constraints>
+            </tableViewCellContentView>
             <connections>
-                <outlet property="dateLabel" destination="PUo-Jf-nB7" id="kN1-yl-gaa"/>
-                <outlet property="nameLabel" destination="zG2-kM-LMn" id="MSE-vF-ZQ3"/>
-                <outlet property="stackedView" destination="a1S-0y-cF9" id="YwL-1O-gSV"/>
+                <outlet property="dateLabel" destination="Rdh-Kp-cdO" id="x3t-r2-MqZ"/>
+                <outlet property="nameLabel" destination="La5-Wr-E7U" id="UR3-bN-fXf"/>
+                <outlet property="stackedView" destination="NXR-R8-h71" id="g5z-fY-aKR"/>
             </connections>
-            <point key="canvasLocation" x="-27" y="107"/>
-        </view>
+            <point key="canvasLocation" x="-27" y="-25"/>
+        </tableViewCell>
     </objects>
     <resources>
         <image name="Clock" width="64" height="64"/>

@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "BTStackedBarView.h"
+#import "SWTableViewCell.h"
 
 @class BTWorkout;
 
-@interface WorkoutTableViewCell : UITableViewCell <BTStackedBarViewDataSource>
+@interface WorkoutTableViewCell : SWTableViewCell <BTStackedBarViewDataSource>
 
 @property (nonatomic) NSDictionary *exerciseTypeColors;
 

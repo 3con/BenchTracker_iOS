@@ -54,7 +54,6 @@
     [self pushAWSWorkout:awsWorkout withCompletionBlock:^{
         
     }];
-    [self saveCoreData];
     [self.delegate workoutManager:self didCreateWorkout:workout]; //add to recentEdits list, send new user
     return workout;
 }
@@ -64,19 +63,17 @@
     [self pushAWSWorkout:awsWorkout withCompletionBlock:^{
         
     }];
-    [self saveCoreData];
     [self.delegate workoutManager:self didEditWorkout:workout]; //add to recentEdits list, send new user
 }
 
 - (void)deleteWorkout: (BTWorkout *)workout {
-    [self.delegate workoutManager:self didDeleteWorkout:workout]; //add to recentEdits list, send new user
     BTAWSWorkout *awsWorkout = [BTAWSWorkout new];
     awsWorkout.uuid = workout.uuid;
-    [self.mapper remove:awsWorkout completionHandler:^(NSError * _Nullable error) {
-        if (error)NSLog(@"workoutManager error: %@",error);
+    [[self.mapper remove:awsWorkout] continueWithBlock:^id(AWSTask *task) {
+        if (task.error) NSLog(@"workoutManager error: %@",task.error);
+        return nil;
     }];
-    [self.context deleteObject:workout];
-    [self saveCoreData];
+    [self.delegate workoutManager:self didDeleteWorkout:workout]; //add to recentEdits list, send new user
 }
 
 #pragma mark - server -> client
@@ -89,7 +86,7 @@
                 BTAWSWorkout *awsWorkout = task.result;
                 completed([self workoutForAWSWorkout:awsWorkout]);
             }
-            else NSLog(@"AWS user not found");
+            else NSLog(@"AWS workout not found");
             completed(nil);
         }
         return nil;

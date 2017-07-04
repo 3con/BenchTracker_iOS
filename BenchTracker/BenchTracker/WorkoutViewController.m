@@ -86,16 +86,22 @@
                                  message:@"Are you sure you want to delete this workout? You will lose all you hard work! This action cannot be undone."
                                  preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction* deleteButton = [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
-        [self.workoutManager deleteWorkout:self.workout];
-        [self.delegate workoutViewController:self willDismissWithResultWorkout:nil];
-        [self dismissViewControllerAnimated:YES completion:^{
-            
-        }];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self deleteWorkout];
+        });
     }];
-    UIAlertAction* cancelButton = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {}];
+    UIAlertAction* cancelButton = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
     [alert addAction:cancelButton];
     [alert addAction:deleteButton];
     [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)deleteWorkout {
+    [self.workoutManager deleteWorkout:self.workout];
+    [self.delegate workoutViewController:self willDismissWithResultWorkout:nil];
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
 }
 
 #pragma mark - tableView dataSource

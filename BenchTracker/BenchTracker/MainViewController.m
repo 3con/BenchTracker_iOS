@@ -244,6 +244,7 @@
     BTWorkout *workout = [_fetchedResultsController objectAtIndexPath:indexPath];
     if (self.settings.exerciseTypeColors)
         cell.exerciseTypeColors = [NSKeyedUnarchiver unarchiveObjectWithData:self.settings.exerciseTypeColors];
+    cell.delegate = self;
     [cell loadWorkout:workout];
 }
 
@@ -259,6 +260,14 @@
     BTWorkout *workout = [_fetchedResultsController objectAtIndexPath:indexPath];
     //[self.workoutManager deleteWorkout:workout];
     [self presentWorkoutViewControllerWithWorkout:workout];
+}
+
+#pragma mark - SWTableViewCell delegate
+
+- (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerLeftUtilityButtonWithIndex:(NSInteger)index {
+    NSIndexPath *indexPath = [self.listTableView indexPathForCell:cell];
+    NSLog(@"%@",indexPath);
+    [self.workoutManager deleteWorkout:[self.fetchedResultsController objectAtIndexPath:indexPath]];
 }
 
 #pragma mark - view handling
