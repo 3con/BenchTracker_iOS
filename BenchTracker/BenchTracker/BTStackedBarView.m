@@ -37,9 +37,9 @@
             sum += val;
         }
         for (int i = 0; i < self.barValues.count; i++) {
-            float barWidth = self.barValues[i].floatValue / sum * self.frame.size.width;
-            float barXPos = self.subSums[i].floatValue / sum * self.frame.size.width;
-            UIView *bar = [[UIView alloc] initWithFrame:CGRectMake(barXPos, 0, barWidth, self.frame.size.height)];
+            float barWidth = self.barValues[i].floatValue / sum * self.bounds.size.width;
+            float barXPos = self.subSums[i].floatValue / sum * self.bounds.size.width;
+            UIView *bar = [[UIView alloc] initWithFrame:CGRectMake(barXPos, 0, barWidth, self.bounds.size.height)];
             id color;
             if ([self.dataSource respondsToSelector:@selector(stackedBarView:colorForBarAtIndex:)])
                 color = [self.dataSource stackedBarView:self colorForBarAtIndex:i];
@@ -47,7 +47,7 @@
             else bar.backgroundColor = [UIColor colorWithWhite:(arc4random()%180/256.0) alpha:1.0];
             [self addSubview:bar];
             if ([self.dataSource respondsToSelector:@selector(stackedBarView:nameForBarAtIndex:)]) {
-                UILabel *barLabel = [[UILabel alloc] initWithFrame:CGRectMake(barXPos-15, 15, self.frame.size.height, 10)];
+                UILabel *barLabel = [[UILabel alloc] initWithFrame:CGRectMake(barXPos-15, 15, self.bounds.size.height, 10)];
                 [barLabel setTransform:CGAffineTransformMakeRotation(M_PI / 2)];
                 barLabel.text = [[self.dataSource stackedBarView:self nameForBarAtIndex:i] componentsSeparatedByString:@" "].firstObject;
                 barLabel.font = [UIFont systemFontOfSize:8 weight:UIFontWeightBold];

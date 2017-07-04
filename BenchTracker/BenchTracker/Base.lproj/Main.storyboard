@@ -6,7 +6,9 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -643,6 +645,103 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2kJ-gm-Xcb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-378.26086956521743" y="-816.03260869565224"/>
+        </scene>
+        <!--Workout Selection View Controller-->
+        <scene sceneID="E5h-6p-CSk">
+            <objects>
+                <viewController storyboardIdentifier="ws" id="gn5-02-7eP" customClass="WorkoutSelectionViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5Sk-a8-52k"/>
+                        <viewControllerLayoutGuide type="bottom" id="t7Q-4P-9cX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="c4k-gn-tHB">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bG1-WO-5V7">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.59999999999999998" colorSpace="calibratedWhite"/>
+                            </view>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mWa-d0-998">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <subviews>
+                                    <view multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jtr-vB-ISv">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="JCH-zA-5dI" appends="YES" id="BMq-fk-MRi"/>
+                                        </connections>
+                                    </view>
+                                    <view opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vA9-wr-oL6">
+                                        <rect key="frame" x="46" y="110" width="322" height="516"/>
+                                        <subviews>
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZX0-5h-YD9">
+                                                <rect key="frame" x="0.0" y="0.0" width="322" height="516"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            </tableView>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <gestureRecognizers/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="440" id="5b3-2Q-RFQ"/>
+                                            <constraint firstAttribute="width" secondItem="vA9-wr-oL6" secondAttribute="height" multiplier="5:8" id="Bsb-yO-w6j"/>
+                                            <constraint firstItem="ZX0-5h-YD9" firstAttribute="centerY" secondItem="vA9-wr-oL6" secondAttribute="centerY" id="SGa-kV-oRY"/>
+                                            <constraint firstItem="ZX0-5h-YD9" firstAttribute="height" secondItem="vA9-wr-oL6" secondAttribute="height" priority="750" id="f11-6I-uGP"/>
+                                            <constraint firstItem="ZX0-5h-YD9" firstAttribute="width" secondItem="vA9-wr-oL6" secondAttribute="width" id="fXS-k1-AgY"/>
+                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="800" id="hXn-OJ-a7r"/>
+                                            <constraint firstItem="ZX0-5h-YD9" firstAttribute="centerX" secondItem="vA9-wr-oL6" secondAttribute="centerX" id="htU-kH-OJx"/>
+                                        </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="cgh-TW-fWK" appends="YES" id="LlR-tT-0sZ"/>
+                                        </connections>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="vA9-wr-oL6" firstAttribute="height" secondItem="mWa-d0-998" secondAttribute="height" multiplier="0.7" priority="999" id="5r2-RX-eDH"/>
+                                    <constraint firstAttribute="bottom" secondItem="jtr-vB-ISv" secondAttribute="bottom" id="Eq0-hk-Vj0"/>
+                                    <constraint firstItem="vA9-wr-oL6" firstAttribute="centerY" secondItem="mWa-d0-998" secondAttribute="centerY" id="NVl-iO-KPd"/>
+                                    <constraint firstAttribute="trailing" secondItem="jtr-vB-ISv" secondAttribute="trailing" id="W6Y-eX-Ct8"/>
+                                    <constraint firstItem="jtr-vB-ISv" firstAttribute="centerX" secondItem="mWa-d0-998" secondAttribute="centerX" id="hKE-0N-ktm"/>
+                                    <constraint firstItem="jtr-vB-ISv" firstAttribute="top" secondItem="mWa-d0-998" secondAttribute="top" id="lXO-Wp-TU8"/>
+                                    <constraint firstItem="vA9-wr-oL6" firstAttribute="centerX" secondItem="mWa-d0-998" secondAttribute="centerX" id="lqL-Yu-dYh"/>
+                                    <constraint firstItem="jtr-vB-ISv" firstAttribute="leading" secondItem="mWa-d0-998" secondAttribute="leading" id="vfg-rn-2tR"/>
+                                    <constraint firstItem="jtr-vB-ISv" firstAttribute="centerY" secondItem="mWa-d0-998" secondAttribute="centerY" id="zhA-p2-yxr"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="mWa-d0-998" firstAttribute="height" secondItem="c4k-gn-tHB" secondAttribute="height" id="GE6-vl-7h4"/>
+                            <constraint firstItem="bG1-WO-5V7" firstAttribute="height" secondItem="c4k-gn-tHB" secondAttribute="height" id="Lf1-eh-anr"/>
+                            <constraint firstItem="mWa-d0-998" firstAttribute="width" secondItem="c4k-gn-tHB" secondAttribute="width" id="SLG-fj-tsS"/>
+                            <constraint firstItem="bG1-WO-5V7" firstAttribute="width" secondItem="c4k-gn-tHB" secondAttribute="width" id="bqx-aE-Sva"/>
+                            <constraint firstItem="bG1-WO-5V7" firstAttribute="centerX" secondItem="c4k-gn-tHB" secondAttribute="centerX" id="kkd-aH-XSw"/>
+                            <constraint firstItem="bG1-WO-5V7" firstAttribute="centerY" secondItem="c4k-gn-tHB" secondAttribute="centerY" id="trb-Ps-vkV"/>
+                            <constraint firstItem="mWa-d0-998" firstAttribute="centerX" secondItem="c4k-gn-tHB" secondAttribute="centerX" id="v0I-Al-7PT"/>
+                            <constraint firstItem="mWa-d0-998" firstAttribute="centerY" secondItem="c4k-gn-tHB" secondAttribute="centerY" id="wVy-ft-o4v"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="backgroundView" destination="bG1-WO-5V7" id="sTe-XN-YmQ"/>
+                        <outlet property="containingView" destination="vA9-wr-oL6" id="vTr-1Z-7hg"/>
+                        <outlet property="scrollView" destination="mWa-d0-998" id="p8e-j3-mfV"/>
+                        <outlet property="tableView" destination="ZX0-5h-YD9" id="wn1-Ix-z2b"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vJz-vA-msG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="JCH-zA-5dI">
+                    <connections>
+                        <action selector="tapGesture:" destination="gn5-02-7eP" id="WPS-Qg-FxY"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="cgh-TW-fWK">
+                    <connections>
+                        <action selector="tapGesture2:" destination="gn5-02-7eP" id="97E-O2-zXb"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="-378.26086956521743" y="489.13043478260875"/>
         </scene>
     </scenes>
 </document>

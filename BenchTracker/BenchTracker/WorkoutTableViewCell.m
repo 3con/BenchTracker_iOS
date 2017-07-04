@@ -38,6 +38,11 @@
     return rightUtilityButtons;
 }
 
+- (void)layoutIfNeeded {
+    [super layoutIfNeeded];
+    [self.stackedView reloadData];
+}
+
 - (void)loadWorkout:(BTWorkout *)workout {
     self.leftUtilityButtons = [self leftButtons];
     self.workout = workout;
@@ -56,8 +61,6 @@
             NSString *sNum = [s componentsSeparatedByString:@" "].firstObject;
             [self.tempSummary addObject:@[[s substringFromIndex:sNum.length+1], [NSNumber numberWithInteger:sNum.integerValue]]];
         }
-        [self.stackedView setNeedsLayout];
-        [self.stackedView layoutIfNeeded];
         self.stackedView.dataSource = self;
         [self.stackedView reloadData];
     }

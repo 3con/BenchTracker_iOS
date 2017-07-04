@@ -31,6 +31,11 @@
     self.stackedView.clipsToBounds = YES;
 }
 
+- (void)layoutIfNeeded {
+    [super layoutIfNeeded];
+    [self.stackedView reloadData];
+}
+
 - (void)loadDate:(NSDate *)date {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"E";

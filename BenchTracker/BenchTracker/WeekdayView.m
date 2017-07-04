@@ -37,16 +37,23 @@
 
 - (void)reloadData {
     if (self.user) {
-        NSDateComponents* comp = [[NSCalendar currentCalendar] components:NSCalendarUnitWeekday fromDate:[NSDate date]];
+        NSDate *today = [self normalizedDateForDate:[NSDate date]];
+        NSDateComponents *comp = [[NSCalendar currentCalendar] components:NSCalendarUnitWeekday fromDate:today];
         NSInteger offset = (comp.weekday != 1) ? -(comp.weekday-2) : -6;
-        self.firstDayOfWeekDate = [NSDate dateWithTimeIntervalSinceNow:offset*86400];
+        self.firstDayOfWeekDate = [today dateByAddingTimeInterval:offset*86400];
         comp = [[NSCalendar currentCalendar] components:NSCalendarUnitWeekday fromDate:self.user.dateCreated];
         offset = (comp.weekday != 1) ? -(comp.weekday-2) : -6;
-        self.firstDayDate = [self.user.dateCreated dateByAddingTimeInterval:offset*86400-70*86400];
+        NSDate *dayOfCreation = [self normalizedDateForDate:self.user.dateCreated];
+        self.firstDayDate = [dayOfCreation dateByAddingTimeInterval:offset*86400-70*86400];
         [self.tableView reloadData];
         [self updateTitles];
         [self scrollViewDidScroll:self.tableView];
     }
+}
+
+- (NSDate *)normalizedDateForDate:(NSDate *)date {
+    NSDateComponents *components = [NSCalendar.currentCalendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:date];
+    return [NSCalendar.currentCalendar dateFromComponents:components];
 }
 
 - (void)scrollToDate:(NSDate *)date {
@@ -91,9 +98,15 @@
 #pragma mark - tableView delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    //BTWorkout *workout = [_fetchedResultsController objectAtIndexPath:indexPath];
-    //[self.workoutManager deleteWorkout:workout];
-    //[self presentWorkoutViewControllerWithWorkout:workout];
+    NSDate *date = [self.firstDayDate dateByAddingTimeInterval:86400*indexPath.row];
+    CGRect frame = [tableView rectForRowAtIndexPath:indexPath];
+    [self.delegate weekdayView:self userSelectedDate:date atPoint:
+        CGPointMake(frame.origin.x+frame.size.width/2.0, frame.origin.y+frame.size.height/2.0+self.frame.origin.y-tableView.contentOffset.y)];
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    [cell setNeedsLayout];
+    [cell layoutIfNeeded];
 }
 
 #pragma mark - scrollview delegate, title methods

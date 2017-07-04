@@ -10,11 +10,12 @@
 #import "LoginViewController.h"
 #import "WorkoutViewController.h"
 #import "SettingsViewController.h"
+#import "WorkoutSelectionViewController.h"
 #import "WeekdayView.h"
 #import "FSCalendar.h"
 #import "SWTableViewCell.h"
 
-@interface MainViewController : UIViewController <WorkoutViewControllerDelegate, SettingsViewControllerDelegate, LoginViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance, SWTableViewCellDelegate>
+@interface MainViewController : UIViewController <WorkoutViewControllerDelegate, SettingsViewControllerDelegate, LoginViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance, SWTableViewCellDelegate, WeekdayViewDelegate>
 
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @property NSManagedObjectContext *context;

@@ -57,6 +57,7 @@
     [super viewDidLayoutSubviews];
     if (!self.weekdayView) { //first load
         self.weekdayView = [[NSBundle mainBundle] loadNibNamed:@"WeekdayView" owner:self options:nil].firstObject;
+        self.weekdayView.delegate = self;
         self.weekdayView.context = self.context;
         self.weekdayView.settings = self.settings;
         self.weekdayView.workoutManager = self.workoutManager;
@@ -148,8 +149,11 @@
     return 0;
 }
 
-- (void)calendar:(FSCalendar *)calendar didSelectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition {
-    [calendar deselectDate:date];
+- (BOOL)calendar:(FSCalendar *)calendar shouldSelectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition {
+    CGRect frame = [calendar frameForDate:date];
+    CGPoint point = CGPointMake(frame.origin.x+frame.size.width/2.0, frame.origin.y+frame.size.height/2.0+self.calendarView.frame.origin.y);
+    [self presentWorkoutSelectionViewControllerWithOriginPoint:point date:date];
+    return NO;
 }
 
 #pragma mark - segmedtedControl
@@ -262,12 +266,22 @@
     [self presentWorkoutViewControllerWithWorkout:workout];
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    [cell setNeedsLayout];
+    [cell layoutIfNeeded];
+}
+
 #pragma mark - SWTableViewCell delegate
 
 - (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerLeftUtilityButtonWithIndex:(NSInteger)index {
     NSIndexPath *indexPath = [self.listTableView indexPathForCell:cell];
-    NSLog(@"%@",indexPath);
     [self.workoutManager deleteWorkout:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+}
+
+#pragma mark - weekdayView delegate
+
+- (void)weekdayView:(WeekdayView *)weekdayView userSelectedDate:(NSDate *)date atPoint:(CGPoint)point {
+    [self presentWorkoutSelectionViewControllerWithOriginPoint:point date:date];
 }
 
 #pragma mark - view handling
@@ -323,6 +337,24 @@
     workoutVC.transitioningDelegate = self.animator;
     workoutVC.modalPresentationStyle = UIModalPresentationFullScreen;
     [self presentViewController:workoutVC animated:YES completion:nil];
+}
+
+- (void)presentWorkoutSelectionViewControllerWithOriginPoint:(CGPoint)point date:(NSDate *)date {
+    WorkoutSelectionViewController *wsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ws"];
+    wsVC.context = self.context;
+    wsVC.workoutManager = self.workoutManager;
+    wsVC.date = date;
+    wsVC.originPoint = point;
+    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:wsVC];
+    self.animator.dragable = NO;
+    self.animator.bounces = YES;
+    self.animator.behindViewAlpha = 1.0;
+    self.animator.behindViewScale = 1.0;
+    self.animator.transitionDuration = 0.0;
+    self.animator.direction = ZFModalTransitonDirectionBottom;
+    wsVC.transitioningDelegate = self.animator;
+    wsVC.modalPresentationStyle = UIModalPresentationCustom;
+    [self presentViewController:wsVC animated:YES completion:nil];
 }
 
 #pragma mark - workoutVC delegate

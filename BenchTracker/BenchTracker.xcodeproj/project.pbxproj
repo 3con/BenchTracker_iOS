@@ -56,6 +56,7 @@
 		F9DA75281F02EE9600347B0D /* BTWorkout+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F9DA751F1F02EE9600347B0D /* BTWorkout+CoreDataClass.m */; };
 		F9DA75291F02EE9600347B0D /* BTWorkout+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F9DA75211F02EE9600347B0D /* BTWorkout+CoreDataProperties.m */; };
 		F9DA75331F02F0B800347B0D /* BTTypeListManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F9DA75321F02F0B800347B0D /* BTTypeListManager.m */; };
+		F9FA47261F0B39D700A4AF98 /* WorkoutSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9FA47251F0B39D700A4AF98 /* WorkoutSelectionViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -161,6 +162,8 @@
 		F9DA75311F02F0B800347B0D /* BTTypeListManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTypeListManager.h; sourceTree = "<group>"; };
 		F9DA75321F02F0B800347B0D /* BTTypeListManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTypeListManager.m; sourceTree = "<group>"; };
 		F9DA75341F02F64D00347B0D /* BenchTrackerKeys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BenchTrackerKeys.h; sourceTree = "<group>"; };
+		F9FA47241F0B39D700A4AF98 /* WorkoutSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkoutSelectionViewController.h; sourceTree = "<group>"; };
+		F9FA47251F0B39D700A4AF98 /* WorkoutSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkoutSelectionViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -390,6 +393,7 @@
 			children = (
 				F95F93391F034DA500A19C4D /* MainViewController.h */,
 				F95F933A1F034DA500A19C4D /* MainViewController.m */,
+				F9FA47271F0B39DF00A4AF98 /* Workout selection */,
 				F97B1CA81F097D9100B3EEC7 /* Weekday view */,
 				F9AF06801F075360003A2200 /* Workout cell */,
 			);
@@ -568,6 +572,15 @@
 				F95F93341F03425000A19C4D /* TypeListManager */,
 			);
 			name = Managers;
+			sourceTree = "<group>";
+		};
+		F9FA47271F0B39DF00A4AF98 /* Workout selection */ = {
+			isa = PBXGroup;
+			children = (
+				F9FA47241F0B39D700A4AF98 /* WorkoutSelectionViewController.h */,
+				F9FA47251F0B39D700A4AF98 /* WorkoutSelectionViewController.m */,
+			);
+			name = "Workout selection";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -811,6 +824,7 @@
 				F9640BD91F080E590053C9C0 /* BTSettings+CoreDataProperties.m in Sources */,
 				F95F932F1F02FC5000A19C4D /* TypeListModel.m in Sources */,
 				F95F5CF61F08B54500A567FA /* SettingsViewController.m in Sources */,
+				F9FA47261F0B39D700A4AF98 /* WorkoutSelectionViewController.m in Sources */,
 				F9DA75261F02EE9600347B0D /* BTExerciseType+CoreDataClass.m in Sources */,
 				F95F93331F03410500A19C4D /* BTAWSUser.m in Sources */,
 			);
