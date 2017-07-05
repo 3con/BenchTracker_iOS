@@ -15,6 +15,8 @@
 #import "BenchTrackerKeys.h"
 #import "ExerciseModel.h"
 #import "BTUserManager.h"
+#import "MJExtension.h"
+#import "BTJSONWorkout.h"
 
 @interface BTWorkoutManager ()
 
@@ -35,6 +37,72 @@
         sharedInstance.mapper = [AWSDynamoDBObjectMapper defaultDynamoDBObjectMapper];
     });
     return sharedInstance;
+}
+
+#pragma mark - client only
+
+- (NSString *)jsonForWorkout:(BTWorkout *)workout {
+    BTJSONWorkout *workoutModel = [[BTJSONWorkout alloc] init];
+    workoutModel.uuid = workout.uuid;
+    workoutModel.name = workout.name;
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+    workoutModel.date = [dateFormatter stringFromDate:workout.date];
+    workoutModel.duration = [NSNumber numberWithInteger:workout.duration];
+    workoutModel.summary = workout.summary;
+    workoutModel.exercises = [[NSMutableArray alloc] init];
+    for (BTExercise *exercise in workout.exercises) {
+        BTJSONExercise *exerciseModel = [[BTJSONExercise alloc] init];
+        exerciseModel.name = exercise.name;
+        exerciseModel.iteration = exercise.iteration;
+        exerciseModel.category = exercise.category;
+        exerciseModel.style = exercise.style;
+        exerciseModel.sets = [NSKeyedUnarchiver unarchiveObjectWithData:exercise.sets];
+        [workoutModel.exercises addObject:exerciseModel];
+    }
+    workoutModel.supersets = [[NSMutableArray alloc] init];
+    for (NSMutableArray <NSNumber *> *superset in [NSKeyedUnarchiver unarchiveObjectWithData:workout.supersets]) {
+        NSString *s = @"";
+        for (NSNumber *num in superset) s = [NSString stringWithFormat:@"%@ %d", s, num.intValue];
+        [workoutModel.supersets addObject:[s substringFromIndex:1]];
+    }
+    NSDictionary *json = workoutModel.mj_keyValues;
+    [self createWorkoutWithJSON:json];
+    return [NSString stringWithFormat:@"%@",json];
+}
+
+- (BTWorkout *)createWorkoutWithJSON:(NSString *)jsonString {
+    [BTJSONWorkout mj_setupObjectClassInArray:^NSDictionary *{return @{@"exercises" : @"BTJSONExercise"};}];
+    BTJSONWorkout *workoutModel = [BTJSONWorkout mj_objectWithKeyValues:jsonString];
+    BTWorkout *workout = [NSEntityDescription insertNewObjectForEntityForName:@"BTWorkout" inManagedObjectContext:self.context];
+    workout.uuid = workoutModel.uuid;
+    workout.name = workoutModel.name;
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+    workout.date = [dateFormatter dateFromString:workoutModel.date];
+    workout.duration = workoutModel.duration.integerValue;
+    workout.summary = workoutModel.summary;
+    NSMutableArray <NSMutableArray <NSNumber *> *> *tempSupersets = [NSMutableArray array];
+    for (NSString *string in workoutModel.supersets) {
+        NSMutableArray *numArr = [NSMutableArray array];
+        for (NSString *s in [string componentsSeparatedByString:@" "])
+            [numArr addObject:[NSNumber numberWithInt:s.intValue]];
+        [tempSupersets addObject:numArr];
+    }
+    workout.supersets = [NSKeyedArchiver archivedDataWithRootObject:tempSupersets];
+    workout.exercises = [[NSOrderedSet alloc] init];
+    for (BTJSONExercise *exerciseModel in workoutModel.exercises) {
+        BTExercise *exercise = [NSEntityDescription insertNewObjectForEntityForName:@"BTExercise" inManagedObjectContext:self.context];
+        exercise.name = exerciseModel.name;
+        exercise.iteration = exerciseModel.iteration;
+        exercise.category = exerciseModel.category;
+        exercise.style = exerciseModel.style;
+        exercise.sets = [NSKeyedArchiver archivedDataWithRootObject:exerciseModel.sets];
+        exercise.workout = workout;
+        [workout addExercisesObject:exercise];
+    }
+    [self saveCoreData];
+    return workout;
 }
 
 #pragma mark - client -> server
@@ -58,7 +126,7 @@
     return workout;
 }
 
-- (void)saveEditedWorkout: (BTWorkout *)workout {
+- (void)saveEditedWorkout:(BTWorkout *)workout {
     BTAWSWorkout *awsWorkout = [self awsWorkoutForWorkout:workout];
     [self pushAWSWorkout:awsWorkout withCompletionBlock:^{
         
@@ -66,7 +134,7 @@
     [self.delegate workoutManager:self didEditWorkout:workout]; //add to recentEdits list, send new user
 }
 
-- (void)deleteWorkout: (BTWorkout *)workout {
+- (void)deleteWorkout:(BTWorkout *)workout {
     BTAWSWorkout *awsWorkout = [BTAWSWorkout new];
     awsWorkout.uuid = workout.uuid;
     [[self.mapper remove:awsWorkout] continueWithBlock:^id(AWSTask *task) {

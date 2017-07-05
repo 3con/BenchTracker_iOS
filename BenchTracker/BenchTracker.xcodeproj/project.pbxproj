@@ -17,6 +17,7 @@
 		F917BB501F0D24E500614AB1 /* BTPDFGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = F917BB4F1F0D24E500614AB1 /* BTPDFGenerator.m */; };
 		F917BB541F0D2AB200614AB1 /* BTWorkoutPDF.m in Sources */ = {isa = PBXBuildFile; fileRef = F917BB531F0D2AB200614AB1 /* BTWorkoutPDF.m */; };
 		F917BB571F0D2AC400614AB1 /* BTWorkoutPDF.xib in Resources */ = {isa = PBXBuildFile; fileRef = F917BB561F0D2AC400614AB1 /* BTWorkoutPDF.xib */; };
+		F917BB5A1F0DA6AB00614AB1 /* BTJSONWorkout.m in Sources */ = {isa = PBXBuildFile; fileRef = F917BB591F0DA6AB00614AB1 /* BTJSONWorkout.m */; };
 		F927D14F1F0C9BD70004CF3A /* IterationSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F927D14E1F0C9BD70004CF3A /* IterationSelectionViewController.m */; };
 		F927D1541F0C9DDB0004CF3A /* IterationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F927D1521F0C9DDB0004CF3A /* IterationTableViewCell.m */; };
 		F927D1551F0C9DDB0004CF3A /* IterationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F927D1531F0C9DDB0004CF3A /* IterationTableViewCell.xib */; };
@@ -97,6 +98,8 @@
 		F917BB521F0D2AB200614AB1 /* BTWorkoutPDF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTWorkoutPDF.h; sourceTree = "<group>"; };
 		F917BB531F0D2AB200614AB1 /* BTWorkoutPDF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTWorkoutPDF.m; sourceTree = "<group>"; };
 		F917BB561F0D2AC400614AB1 /* BTWorkoutPDF.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BTWorkoutPDF.xib; sourceTree = "<group>"; };
+		F917BB581F0DA6AB00614AB1 /* BTJSONWorkout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BTJSONWorkout.h; path = BenchTracker/BTJSONWorkout.h; sourceTree = "<group>"; };
+		F917BB591F0DA6AB00614AB1 /* BTJSONWorkout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BTJSONWorkout.m; path = BenchTracker/BTJSONWorkout.m; sourceTree = "<group>"; };
 		F927D14D1F0C9BD70004CF3A /* IterationSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IterationSelectionViewController.h; sourceTree = "<group>"; };
 		F927D14E1F0C9BD70004CF3A /* IterationSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IterationSelectionViewController.m; sourceTree = "<group>"; };
 		F927D1511F0C9DDB0004CF3A /* IterationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IterationTableViewCell.h; sourceTree = "<group>"; };
@@ -561,6 +564,8 @@
 				F9DA751F1F02EE9600347B0D /* BTWorkout+CoreDataClass.m */,
 				F9DA75201F02EE9600347B0D /* BTWorkout+CoreDataProperties.h */,
 				F9DA75211F02EE9600347B0D /* BTWorkout+CoreDataProperties.m */,
+				F917BB581F0DA6AB00614AB1 /* BTJSONWorkout.h */,
+				F917BB591F0DA6AB00614AB1 /* BTJSONWorkout.m */,
 			);
 			name = BTWorkout;
 			sourceTree = "<group>";
@@ -873,6 +878,7 @@
 				F9DA75291F02EE9600347B0D /* BTWorkout+CoreDataProperties.m in Sources */,
 				F95F93441F03738B00A19C4D /* WorkoutViewController.m in Sources */,
 				F9418FA31F048B1E0083C3DC /* AddExerciseTableViewCell.m in Sources */,
+				F917BB5A1F0DA6AB00614AB1 /* BTJSONWorkout.m in Sources */,
 				F97B1CA71F097D8A00B3EEC7 /* WeekdayView.m in Sources */,
 				F9DA75111F02DC1700347B0D /* BTDataModel.xcdatamodeld in Sources */,
 				F927D14F1F0C9BD70004CF3A /* IterationSelectionViewController.m in Sources */,

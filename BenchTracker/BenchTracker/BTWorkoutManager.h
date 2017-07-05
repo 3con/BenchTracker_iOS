@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "BTWorkout+CoreDataClass.h"
 
+@class UIImage;
 @class BTWorkoutManager;
 
 @protocol BTWorkoutManagerDelegate <NSObject>
@@ -23,6 +24,12 @@
 @property id<BTWorkoutManagerDelegate> delegate;
 
 + (id)sharedInstance;
+
+//client only
+
+- (NSString *)jsonForWorkout:(BTWorkout *)workout;
+
+- (BTWorkout *)createWorkoutWithJSON: (NSString *)jsonString;
 
 //client -> server
 

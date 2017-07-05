@@ -24,7 +24,7 @@ In order to get the app to fully function correctly, the file 'BenchTrackerKeys.
 #define AWS_BUCKET_NAME          @"bucket-name"
 #define DEFAULT_LIST_NAME        @"defaultName.txt"
 
-#define AWS_EMPTY 			     @"<EMPTY>"
+#define AWS_EMPTY                @"<EMPTY>"
 
 #endif
 ```
@@ -32,11 +32,12 @@ In order to get the app to fully function correctly, the file 'BenchTrackerKeys.
 #### Cocoapods
 [Cocoapods](https://cocoapods.org) is a dependency manager for Swift and ObjC projects. This app does not require additional setup to enable the pods to be used. This app uses the following pods and frameowrks:
 * [AWS iOS SDK](https://github.com/aws/aws-sdk-ios) - database solution
-* [JSONModel](https://github.com/jsonmodel/jsonmodel) - data translation
+* [JSONModel](https://github.com/jsonmodel/jsonmodel) - data translation for server
 * [ZFDragableModalTransition](https://github.com/zoonooz/ZFDragableModalTransition) - popup views
 * [HMSegmentedControl](https://github.com/HeshamMegid/HMSegmentedControl) - custom segmented control
 * [FSCalendar](https://github.com/WenchaoD/FSCalendar) - calendar view
 * [SWTableViewCell](https://github.com/CEWendel/SWTableViewCell) - swipe-to-delete workout cells
+* [MJExtension](https://github.com/CoderMJLee/MJExtension) - QR code data serialization
 * [Core Data](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/CoreData/index.html) - on-device data storage
 * [Core Graphics / Text](https://developer.apple.com/library/content/documentation/StringsTextFonts/Conceptual/CoreText_Programming/Overview/Overview.html) - workout PDF generation
 

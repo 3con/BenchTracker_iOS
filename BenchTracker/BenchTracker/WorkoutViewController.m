@@ -45,15 +45,24 @@
     self.deleteWorkoutButton.clipsToBounds = YES;
     self.workoutManager = [BTWorkoutManager sharedInstance];
     if (!self.workout) self.workout = [self.workoutManager createWorkout];
+    [self.workoutManager jsonForWorkout:self.workout];
     self.nameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:self.workout.name
         attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor], NSFontAttributeName:[UIFont italicSystemFontOfSize:22]}];
     self.tempSupersets = [NSKeyedUnarchiver unarchiveObjectWithData:self.workout.supersets];
     self.startDate = [NSDate date];
+    [[NSNotificationCenter defaultCenter] addObserver: self
+                                             selector: @selector(handleEnteredBackground:)
+                                                 name: UIApplicationDidEnterBackgroundNotification
+                                               object: nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.addExerciseButton.alpha = 1;
+}
+
+- (void)handleEnteredBackground:(id)sender {
+    [self updateWorkout];
 }
 
 - (IBAction)pdfButtonPressed:(id)sender {
@@ -94,6 +103,7 @@
 - (void)updateWorkout {
     NSTimeInterval timeInterval = [self.startDate timeIntervalSinceNow];
     self.workout.duration += -timeInterval+1;
+    self.startDate = [NSDate date];
     if (self.nameTextField.text.length > 0) self.workout.name = self.nameTextField.text;
     NSMutableDictionary <NSString *, NSNumber *> *dict = [[NSMutableDictionary alloc] init];
     for (BTExercise *exercise in self.workout.exercises) {
@@ -107,6 +117,7 @@
         self.workout.summary = [self.workout.summary substringFromIndex:2];
     }
     self.workout.supersets = [NSKeyedArchiver archivedDataWithRootObject:self.tempSupersets];
+    [self.context save:nil];
 }
 
 - (IBAction)deleteWorkoutButtonPressed:(UIButton *)sender {

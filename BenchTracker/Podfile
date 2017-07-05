@@ -13,6 +13,7 @@ target 'BenchTracker' do
   pod 'HMSegmentedControl'
   pod 'FSCalendar'
   pod 'SWTableViewCell'
+  pod 'MJExtension'
 
   # Pods for BenchTracker
 
