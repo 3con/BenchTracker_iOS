@@ -51,7 +51,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     if (self.tempIerations.count == 0) {
-        [self.delegate iterationSelectionVC:self willDismissWithSelectedIteration:self.tempIerations[0]];
+        [self.delegate iterationSelectionVC:self willDismissWithSelectedIteration:nil];
         [self dismissViewControllerAnimated:NO completion:^{
             
         }];

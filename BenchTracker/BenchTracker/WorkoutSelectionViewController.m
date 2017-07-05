@@ -89,6 +89,10 @@
     [self animateOut];
 }
 
+- (IBAction)tapGesture3:(UITapGestureRecognizer *)sender {
+    [self animateOut];
+}
+
 #pragma mark - fetchedResultsController
 
 - (NSFetchedResultsController *)fetchedResultsController {

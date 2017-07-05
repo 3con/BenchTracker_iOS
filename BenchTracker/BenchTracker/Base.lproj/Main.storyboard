@@ -677,24 +677,43 @@
                                         <rect key="frame" x="46" y="110" width="322" height="516"/>
                                         <subviews>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZX0-5h-YD9">
-                                                <rect key="frame" x="0.0" y="0.0" width="322" height="516"/>
+                                                <rect key="frame" x="0.0" y="25" width="322" height="466"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             </tableView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zZv-Tl-y3m">
+                                                <rect key="frame" x="0.0" y="0.0" width="322" height="25"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="cgh-TW-fWK" appends="YES" id="7D4-TB-Y6M"/>
+                                                </connections>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o9K-eN-193">
+                                                <rect key="frame" x="0.0" y="491" width="322" height="25"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="Ddg-W0-4FC" appends="YES" id="kaL-7a-NeX"/>
+                                                </connections>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                         <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="440" id="5b3-2Q-RFQ"/>
                                             <constraint firstAttribute="width" secondItem="vA9-wr-oL6" secondAttribute="height" multiplier="5:8" id="Bsb-yO-w6j"/>
+                                            <constraint firstItem="o9K-eN-193" firstAttribute="centerX" secondItem="vA9-wr-oL6" secondAttribute="centerX" id="PZp-dZ-sFT"/>
+                                            <constraint firstItem="zZv-Tl-y3m" firstAttribute="width" secondItem="vA9-wr-oL6" secondAttribute="width" id="Rbw-kI-HnW"/>
                                             <constraint firstItem="ZX0-5h-YD9" firstAttribute="centerY" secondItem="vA9-wr-oL6" secondAttribute="centerY" id="SGa-kV-oRY"/>
-                                            <constraint firstItem="ZX0-5h-YD9" firstAttribute="height" secondItem="vA9-wr-oL6" secondAttribute="height" priority="750" id="f11-6I-uGP"/>
+                                            <constraint firstItem="ZX0-5h-YD9" firstAttribute="top" secondItem="zZv-Tl-y3m" secondAttribute="bottom" id="aXv-9J-OvU"/>
+                                            <constraint firstItem="zZv-Tl-y3m" firstAttribute="top" secondItem="vA9-wr-oL6" secondAttribute="top" id="ace-nK-otZ"/>
+                                            <constraint firstItem="o9K-eN-193" firstAttribute="top" secondItem="ZX0-5h-YD9" secondAttribute="bottom" id="d9a-bR-f9r"/>
+                                            <constraint firstItem="ZX0-5h-YD9" firstAttribute="height" secondItem="vA9-wr-oL6" secondAttribute="height" priority="750" constant="-50" id="f11-6I-uGP"/>
                                             <constraint firstItem="ZX0-5h-YD9" firstAttribute="width" secondItem="vA9-wr-oL6" secondAttribute="width" id="fXS-k1-AgY"/>
                                             <constraint firstAttribute="height" relation="lessThanOrEqual" constant="800" id="hXn-OJ-a7r"/>
                                             <constraint firstItem="ZX0-5h-YD9" firstAttribute="centerX" secondItem="vA9-wr-oL6" secondAttribute="centerX" id="htU-kH-OJx"/>
+                                            <constraint firstItem="o9K-eN-193" firstAttribute="width" secondItem="vA9-wr-oL6" secondAttribute="width" id="meo-8b-czL"/>
+                                            <constraint firstAttribute="bottom" secondItem="o9K-eN-193" secondAttribute="bottom" id="pqC-hH-HrM"/>
+                                            <constraint firstItem="zZv-Tl-y3m" firstAttribute="centerX" secondItem="vA9-wr-oL6" secondAttribute="centerX" id="rhI-Uj-ewk"/>
                                         </constraints>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="cgh-TW-fWK" appends="YES" id="LlR-tT-0sZ"/>
-                                        </connections>
                                     </view>
                                 </subviews>
                                 <constraints>
@@ -738,6 +757,11 @@
                 <tapGestureRecognizer id="cgh-TW-fWK">
                     <connections>
                         <action selector="tapGesture2:" destination="gn5-02-7eP" id="97E-O2-zXb"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="Ddg-W0-4FC">
+                    <connections>
+                        <action selector="tapGesture3:" destination="gn5-02-7eP" id="llq-0B-ebK"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>

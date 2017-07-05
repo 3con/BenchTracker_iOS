@@ -20,11 +20,11 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bench Press" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vcw-eh-YBV">
-                        <rect key="frame" x="10" y="8" width="250" height="34"/>
+                        <rect key="frame" x="10" y="8" width="342" height="34"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="34" id="Mqf-y6-VqY"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -59,10 +59,10 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="PR0-pa-Rrz" firstAttribute="centerX" secondItem="e4s-oa-lEz" secondAttribute="centerX" id="5vK-nY-8wV"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Vcw-eh-YBV" secondAttribute="trailing" id="DcA-rb-uo7"/>
                     <constraint firstAttribute="leadingMargin" secondItem="Vcw-eh-YBV" secondAttribute="leading" constant="-2" id="FRc-ZV-y6u"/>
                     <constraint firstItem="WXi-q0-Rzv" firstAttribute="centerX" secondItem="PR0-pa-Rrz" secondAttribute="centerX" id="Fke-Fx-T2s"/>
                     <constraint firstItem="PR0-pa-Rrz" firstAttribute="top" secondItem="e4s-oa-lEz" secondAttribute="bottom" constant="1" id="I5C-uf-Nml"/>
-                    <constraint firstItem="e4s-oa-lEz" firstAttribute="leading" secondItem="Vcw-eh-YBV" secondAttribute="trailing" constant="10" id="NGE-92-3ep"/>
                     <constraint firstItem="WXi-q0-Rzv" firstAttribute="top" secondItem="PR0-pa-Rrz" secondAttribute="bottom" id="Nn4-BE-3Bo"/>
                     <constraint firstAttribute="trailingMargin" secondItem="e4s-oa-lEz" secondAttribute="trailing" constant="-8" id="SeA-vW-CVS"/>
                     <constraint firstItem="Vcw-eh-YBV" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="YMM-tg-jhp"/>

@@ -30,7 +30,7 @@
 - (void)loadExerciseType:(BTExerciseType *)exerciseType {
     self.exerciseType = exerciseType;
     NSArray *iterations = [NSKeyedUnarchiver unarchiveObjectWithData:exerciseType.iterations];
-    self.iterationLabel1.text = iterations[0];
+    self.iterationLabel1.text = (iterations.count > 0) ? iterations[0] : @"";
     self.iterationLabel2.text = (iterations.count > 1) ? iterations[1] : @"";
     self.iterationLabel3.text = (iterations.count > 2) ? iterations[2] : @"";
     if (iterations.count > 3) self.iterationLabel3.text = [self.iterationLabel3.text stringByAppendingString:@" ++"];
@@ -42,13 +42,19 @@
         self.iterationLabel1.alpha = 0;
         self.iterationLabel2.alpha = 0;
         self.iterationLabel3.alpha = 0;
-        self.nameLabel.text = [NSString stringWithFormat:@"%@ %@",iteration,self.exerciseType.name];
+        NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ %@", iteration, self.exerciseType.name]];
+        [str addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:15 weight:UIFontWeightBold]
+                    range:NSMakeRange(0, iteration.length)];
+        [str addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:15 weight:UIFontWeightRegular]
+                    range:NSMakeRange(iteration.length, str.length-iteration.length)];
+        self.nameLabel.attributedText = str;
     }
     else {
         self.iterationLabel1.alpha = 1;
         self.iterationLabel2.alpha = 1;
         self.iterationLabel3.alpha = 1;
         self.nameLabel.text = self.exerciseType.name;
+        self.nameLabel.font = [UIFont systemFontOfSize:15 weight:UIFontWeightRegular];
     }
 }
 
