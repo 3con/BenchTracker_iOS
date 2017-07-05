@@ -59,11 +59,24 @@
 - (IBAction)pdfButtonPressed:(id)sender {
     [self updateWorkout];
     NSString *path = [BTPDFGenerator generatePDFWithWorkouts:@[self.workout]];
+    /*
     UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     NSURL *targetURL = [NSURL fileURLWithPath:path];
     NSURLRequest *request = [NSURLRequest requestWithURL:targetURL];
     [webView loadRequest:request];
     [self.view addSubview:webView];
+     */
+    UIPrintInteractionController *printController = [UIPrintInteractionController sharedPrintController];
+    //printController.delegate = self;
+    UIPrintInfo *printInfo = [UIPrintInfo printInfo];
+    printInfo.outputType = UIPrintInfoOutputGeneral;
+    printInfo.jobName = self.workout.name;
+    printInfo.duplex = UIPrintInfoDuplexLongEdge;
+    printController.printInfo = printInfo;
+    printController.printingItem = [NSData dataWithContentsOfURL:[NSURL fileURLWithPath:path]];
+    [printController presentAnimated:YES completionHandler:^(UIPrintInteractionController *printInteractionController, BOOL completed, NSError *error){
+        if (!completed && error) NSLog(@"FAILED! due to error in domain %@ with error code %lu", error.domain, (long)error.code);
+    }];
 }
 
 - (IBAction)addExerciseButtonPressed:(UIButton *)sender {

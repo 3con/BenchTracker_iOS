@@ -1,6 +1,6 @@
 # BenchTracker_iOS
 ## Intro
-This app uses Core Data to record, analyze, and display a user's workouts through cataloging date, duration, exercises, sets, rep details, and more. In addition, the local Core Data stores are regularly synced with [Amazon Web Services](https://aws.amazon.com) servers so they can be synced across devices and eventually cross-platform. By using a simple username system, a user can easily log into their account on any iOS device ad keep track of their workout.
+This app uses Core Data to record, analyze, and display a user's workouts through cataloging date, duration, exercises, sets, rep details, and more. In addition, the local Core Data stores are regularly synced with [Amazon Web Services](https://aws.amazon.com) servers so they can be synced across devices and eventually cross-platform. By using a simple username system, a user can easily log into their account on any iOS device ad keep track of their workout. Additionaly, users can export their workouts to PDF form and print them so they can be saved phyically in addition to electronically.
 
 ## Installation
 #### AWS Servers
@@ -24,6 +24,8 @@ In order to get the app to fully function correctly, the file 'BenchTrackerKeys.
 #define AWS_BUCKET_NAME          @"bucket-name"
 #define DEFAULT_LIST_NAME        @"defaultName.txt"
 
+#define AWS_EMPTY 			     @"<EMPTY>"
+
 #endif
 ```
 
@@ -34,8 +36,9 @@ In order to get the app to fully function correctly, the file 'BenchTrackerKeys.
 * [ZFDragableModalTransition](https://github.com/zoonooz/ZFDragableModalTransition) - popup views
 * [HMSegmentedControl](https://github.com/HeshamMegid/HMSegmentedControl) - custom segmented control
 * [FSCalendar](https://github.com/WenchaoD/FSCalendar) - calendar view
-* [MGSwipeTableCell](https://github.com/MortimerGoro/MGSwipeTableCell) - swipe-to-delete workout cells
+* [SWTableViewCell](https://github.com/CEWendel/SWTableViewCell) - swipe-to-delete workout cells
 * [Core Data](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/CoreData/index.html) - on-device data storage
+* [Core Graphics / Text](https://developer.apple.com/library/content/documentation/StringsTextFonts/Conceptual/CoreText_Programming/Overview/Overview.html) - workout PDF generation
 
 ## Images
 #### User login
@@ -45,13 +48,18 @@ In order to get the app to fully function correctly, the file 'BenchTrackerKeys.
 <img src="./Screenshots/image2.png" alt="Drawing" width="300 px"/>
 <img src="./Screenshots/image3.png" alt="Drawing" width="300 px"/>
 <img src="./Screenshots/image4.png" alt="Drawing" width="300 px"/>
-
-#### Exercise list
 <img src="./Screenshots/image5.png" alt="Drawing" width="300 px"/>
 
-#### Workout in progress
+#### Exercise selection
 <img src="./Screenshots/image6.png" alt="Drawing" width="300 px"/>
+<img src="./Screenshots/image7.png" alt="Drawing" width="300 px"/>
+
+#### Workout in progress
+<img src="./Screenshots/image8.png" alt="Drawing" width="300 px"/>
 
 #### Rep tracking
-<img src="./Screenshots/image7.png" alt="Drawing" width="300 px"/>
-<img src="./Screenshots/image8.png" alt="Drawing" width="300 px"/>
+<img src="./Screenshots/image9.png" alt="Drawing" width="300 px"/>
+<img src="./Screenshots/image10.png" alt="Drawing" width="300 px"/>
+
+#### Export Workout to PDF
+<img src="./Screenshots/image11.png" alt="Drawing" width="300 px"/>

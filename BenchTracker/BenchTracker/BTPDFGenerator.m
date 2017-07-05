@@ -34,32 +34,58 @@
     UIGraphicsBeginPDFPageWithInfo(CGRectMake(0, 0, 612, 792), nil);
     BTWorkoutPDF *page = [[NSBundle mainBundle] loadNibNamed:@"BTWorkoutPDF" owner:self options:nil].firstObject;
     [page loadWorkout:workout];
-    NSLog(@"%@",page.titleLabel);
-    NSLog(@"%@",page.tableView);
-    NSLog(@"%@",page.metadataLabel1);
-    NSLog(@"%@",page.metadataLabel2);
     [self drawLabel:page.titleLabel];
     [self drawLabel:page.metadataLabel1];
     [self drawLabel:page.metadataLabel2];
     int i = 0;
+    UILabel *label = [[UILabel alloc] init];
+    label.font = [UIFont fontWithName:@"Helvetica" size:15];
+    label.textColor = [UIColor blackColor];
+    label.numberOfLines = 2;
+    NSMutableArray <NSNumber *> *labelTops = [NSMutableArray array];
+    NSMutableArray <NSNumber *> *labelBottoms = [NSMutableArray array];
     for (BTExercise *exercise in workout.exercises) {
-        NSString *fStr;
-        NSArray <NSString *> *tempSets = [NSKeyedUnarchiver unarchiveObjectWithData:exercise.sets];
-        NSString *str = [self formattedArray:tempSets];
-        if (exercise.iteration) fStr = [NSString stringWithFormat:@"%@ %@: %@",exercise.iteration,exercise.name, str];
-        else fStr = [NSString stringWithFormat:@"%@: %@",exercise.name, str];
-        [self drawText:fStr inFrame:CGRectMake(page.tableView.frame.origin.x, page.tableView.frame.origin.y+30*i,
-                                              page.tableView.frame.size.width, 30)
-              fontName:@"Helvetica" size:15 color:[UIColor blackColor] centerAlign:NO];
-        i++;
+        NSString *str = [self formattedArray:[NSKeyedUnarchiver unarchiveObjectWithData:exercise.sets]];
+        if (exercise.iteration) label.text = [NSString stringWithFormat:@"%@ %@:  %@",exercise.iteration,exercise.name, str];
+        else label.text = [NSString stringWithFormat:@"%@:  %@",exercise.name, str];
+        label.frame = CGRectMake(page.tableView.frame.origin.x, page.tableView.frame.origin.y+i, page.tableView.frame.size.width, 40);
+        [self drawLabel:label];
+        int increment = ([self lineCountForLabel:label] == 2) ? 40 : 25;
+        [labelTops addObject:[NSNumber numberWithFloat:label.frame.origin.y]];
+        [labelBottoms addObject:[NSNumber numberWithFloat:label.frame.origin.y+increment]];
+        i += increment;
+    }
+    for (NSArray *superset in [NSKeyedUnarchiver unarchiveObjectWithData:workout.supersets]) {
+        float yTop = labelTops[[superset.firstObject intValue]].floatValue+5;
+        float yBottom = labelBottoms[[superset.lastObject intValue]].floatValue-8;
+        [self drawLineFromPoint:CGPointMake(39, yTop)
+                        toPoint:CGPointMake(45, yTop)];
+        
+        [self drawLineFromPoint:CGPointMake(40, yTop)
+                        toPoint:CGPointMake(40, yBottom)];
+        
+        [self drawLineFromPoint:CGPointMake(39, yBottom)
+                        toPoint:CGPointMake(45, yBottom)];
     }
     //[self drawTableView:page.tableView];
+}
+
++ (int)lineCountForLabel:(UILabel *)label {
+    CGRect rect = [label.text boundingRectWithSize: CGSizeMake(label.frame.size.width, CGFLOAT_MAX)
+        options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: label.font} context:nil];
+    return ceil(rect.size.height / label.font.lineHeight);
 }
 
 + (NSString *)formattedArray:(NSArray *)array {
     if (!array.count) return @"";
     NSString *s = @"";
-    for (NSString *x in array) s = [NSString stringWithFormat:@"%@, %@",s,x];
+    for (NSString *x in array) {
+        NSArray *a = [x componentsSeparatedByString:@" "];
+        if ([x containsString:@"~"]) s = [NSString stringWithFormat:@"%@, %@",s,[x substringFromIndex:2]];
+        if ([x containsString:@"s"])
+             s = (a.count == 3) ? [NSString stringWithFormat:@"%@, %@ secs (%@)",s,a[1],a[2]] : [NSString stringWithFormat:@"%@, %@ secs",s,a[1]];
+        else s = (a.count == 2) ? [NSString stringWithFormat:@"%@, %@x%@",s,a[0],a[1]] : [NSString stringWithFormat:@"%@, %@",s,a[0]];
+    }
     return [s substringFromIndex:2];
 }
 
@@ -72,8 +98,10 @@
     CTFontRef font = CTFontCreateWithName((CFStringRef)fontName, fontSize, NULL);
     
     // Prepare the text using a Core Text Framesetter.
+    CGFloat lineSpacing = 0;
     CTTextAlignment theAlignment = (centerAlign) ? kCTTextAlignmentCenter : kCTTextAlignmentLeft;
-    CTParagraphStyleSetting theSettings[1] = {{ kCTParagraphStyleSpecifierAlignment, sizeof(CTTextAlignment), &theAlignment }};
+    CTParagraphStyleSetting theSettings[2] = {{ kCTParagraphStyleSpecifierAlignment, sizeof(CTTextAlignment), &theAlignment},
+                                              {kCTParagraphStyleSpecifierMaximumLineSpacing, sizeof(CGFloat), &lineSpacing}};
     CFStringRef keys[] = { kCTFontAttributeName, kCTForegroundColorAttributeName, kCTParagraphStyleAttributeName };
     CFTypeRef values[] = { font, color.CGColor, CTParagraphStyleCreate(theSettings, 1)};
     CFDictionaryRef attr = CFDictionaryCreate(NULL, (const void **)&keys, (const void **)&values,
@@ -111,6 +139,21 @@
     CFRelease(frameRef);
     CFRelease(stringRef);
     CFRelease(framesetter);
+}
+
++ (void)drawLineFromPoint:(CGPoint)from toPoint:(CGPoint)to {
+    NSLog(@"%f %f",from.y,to.y);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetLineWidth(context, 2.0);
+    CGColorSpaceRef colorspace = CGColorSpaceCreateDeviceRGB();
+    CGFloat components[] = {0.75, 0.75, 0.75, 1};
+    CGColorRef color = CGColorCreate(colorspace, components);
+    CGContextSetStrokeColorWithColor(context, color);
+    CGContextMoveToPoint(context, from.x, from.y);
+    CGContextAddLineToPoint(context, to.x, to.y);
+    CGContextStrokePath(context);
+    CGColorSpaceRelease(colorspace);
+    CGColorRelease(color);
 }
 
 + (void)drawTableView:(UITableView *)tableView {

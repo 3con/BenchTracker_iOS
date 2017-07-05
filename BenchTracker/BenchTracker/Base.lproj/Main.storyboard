@@ -304,10 +304,13 @@
                                             <action selector="deleteWorkoutButtonPressed:" destination="H2S-2B-J58" eventType="touchUpInside" id="ARf-T6-mxs"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1J2-jh-rSG">
-                                        <rect key="frame" x="376" y="28" width="30" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="PDF">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1J2-jh-rSG">
+                                        <rect key="frame" x="377" y="30" width="25" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="5Mb-IP-jsk"/>
+                                            <constraint firstAttribute="width" constant="25" id="wth-w7-TbN"/>
+                                        </constraints>
+                                        <state key="normal" image="Print">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -320,6 +323,8 @@
                                     <constraint firstItem="W1s-v4-xf3" firstAttribute="top" secondItem="D7n-as-euy" secondAttribute="top" constant="27" id="1Fq-2x-Pqw"/>
                                     <constraint firstItem="W1s-v4-xf3" firstAttribute="centerX" secondItem="D7n-as-euy" secondAttribute="centerX" id="8ic-L8-OPm"/>
                                     <constraint firstItem="mHc-np-Ijl" firstAttribute="centerX" secondItem="D7n-as-euy" secondAttribute="centerX" id="CFu-wX-ddY"/>
+                                    <constraint firstAttribute="trailing" secondItem="1J2-jh-rSG" secondAttribute="trailing" constant="12" id="NoO-oE-sA8"/>
+                                    <constraint firstItem="1J2-jh-rSG" firstAttribute="centerY" secondItem="Pj3-Pj-9H7" secondAttribute="centerY" id="Tnh-NF-EdE"/>
                                     <constraint firstItem="Pj3-Pj-9H7" firstAttribute="leading" secondItem="D7n-as-euy" secondAttribute="leading" constant="12" id="X9d-Zt-eJ3"/>
                                     <constraint firstAttribute="bottom" secondItem="mHc-np-Ijl" secondAttribute="bottom" constant="12" id="Xr0-sV-17r"/>
                                     <constraint firstItem="Pj3-Pj-9H7" firstAttribute="top" secondItem="D7n-as-euy" secondAttribute="top" constant="30" id="fEe-Qe-5zu"/>
@@ -900,4 +905,7 @@
             <point key="canvasLocation" x="950.72463768115949" y="-816.03260869565224"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Print" width="21" height="21"/>
+    </resources>
 </document>
