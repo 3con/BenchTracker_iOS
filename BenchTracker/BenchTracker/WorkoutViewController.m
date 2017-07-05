@@ -13,6 +13,7 @@
 #import "ZFModalTransitionAnimator.h"
 #import "ExerciseTableViewCell.h"
 #import "PassTouchesView.h"
+#import "BTPDFGenerator.h"
 
 @interface WorkoutViewController ()
 
@@ -55,11 +56,29 @@
     self.addExerciseButton.alpha = 1;
 }
 
+- (IBAction)pdfButtonPressed:(id)sender {
+    [self updateWorkout];
+    NSString *path = [BTPDFGenerator generatePDFWithWorkouts:@[self.workout]];
+    UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    NSURL *targetURL = [NSURL fileURLWithPath:path];
+    NSURLRequest *request = [NSURLRequest requestWithURL:targetURL];
+    [webView loadRequest:request];
+    [self.view addSubview:webView];
+}
+
 - (IBAction)addExerciseButtonPressed:(UIButton *)sender {
     [self presentAddExerciseViewController];
 }   
 
 - (IBAction)finishWorkoutButtonPressed:(UIButton *)sender {
+    [self updateWorkout];
+    [self.delegate workoutViewController:self willDismissWithResultWorkout:self.workout];
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
+
+- (void)updateWorkout {
     NSTimeInterval timeInterval = [self.startDate timeIntervalSinceNow];
     self.workout.duration += -timeInterval+1;
     if (self.nameTextField.text.length > 0) self.workout.name = self.nameTextField.text;
@@ -75,10 +94,6 @@
         self.workout.summary = [self.workout.summary substringFromIndex:2];
     }
     self.workout.supersets = [NSKeyedArchiver archivedDataWithRootObject:self.tempSupersets];
-    [self.delegate workoutViewController:self willDismissWithResultWorkout:self.workout];
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
 }
 
 - (IBAction)deleteWorkoutButtonPressed:(UIButton *)sender {
