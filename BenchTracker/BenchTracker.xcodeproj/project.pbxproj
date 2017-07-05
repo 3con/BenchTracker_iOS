@@ -14,6 +14,9 @@
 		F90712B319415FB1008694E5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F90712B119415FB1008694E5 /* Main.storyboard */; };
 		F90712B519415FB2008694E5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F90712B419415FB2008694E5 /* Images.xcassets */; };
 		F90712C119415FB4008694E5 /* BenchTrackerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F90712C019415FB4008694E5 /* BenchTrackerTests.m */; };
+		F927D14F1F0C9BD70004CF3A /* IterationSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F927D14E1F0C9BD70004CF3A /* IterationSelectionViewController.m */; };
+		F927D1541F0C9DDB0004CF3A /* IterationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F927D1521F0C9DDB0004CF3A /* IterationTableViewCell.m */; };
+		F927D1551F0C9DDB0004CF3A /* IterationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F927D1531F0C9DDB0004CF3A /* IterationTableViewCell.xib */; };
 		F9418F9E1F0433980083C3DC /* AddExerciseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9418F9D1F0433980083C3DC /* AddExerciseViewController.m */; };
 		F9418FA31F048B1E0083C3DC /* AddExerciseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F9418FA11F048B1E0083C3DC /* AddExerciseTableViewCell.m */; };
 		F9418FA41F048B1E0083C3DC /* AddExerciseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9418FA21F048B1E0083C3DC /* AddExerciseTableViewCell.xib */; };
@@ -86,6 +89,11 @@
 		F90712BA19415FB4008694E5 /* BenchTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BenchTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F90712BF19415FB4008694E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F90712C019415FB4008694E5 /* BenchTrackerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BenchTrackerTests.m; sourceTree = "<group>"; };
+		F927D14D1F0C9BD70004CF3A /* IterationSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IterationSelectionViewController.h; sourceTree = "<group>"; };
+		F927D14E1F0C9BD70004CF3A /* IterationSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IterationSelectionViewController.m; sourceTree = "<group>"; };
+		F927D1511F0C9DDB0004CF3A /* IterationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IterationTableViewCell.h; sourceTree = "<group>"; };
+		F927D1521F0C9DDB0004CF3A /* IterationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IterationTableViewCell.m; sourceTree = "<group>"; };
+		F927D1531F0C9DDB0004CF3A /* IterationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IterationTableViewCell.xib; sourceTree = "<group>"; };
 		F9418F9C1F0433980083C3DC /* AddExerciseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddExerciseViewController.h; sourceTree = "<group>"; };
 		F9418F9D1F0433980083C3DC /* AddExerciseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddExerciseViewController.m; sourceTree = "<group>"; };
 		F9418FA01F048B1E0083C3DC /* AddExerciseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddExerciseTableViewCell.h; sourceTree = "<group>"; };
@@ -269,24 +277,45 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		F927D1501F0C9BDA0004CF3A /* Iteration Selection */ = {
+			isa = PBXGroup;
+			children = (
+				F927D14D1F0C9BD70004CF3A /* IterationSelectionViewController.h */,
+				F927D14E1F0C9BD70004CF3A /* IterationSelectionViewController.m */,
+				F927D1561F0C9DDE0004CF3A /* Iteration cell */,
+			);
+			name = "Iteration Selection";
+			sourceTree = "<group>";
+		};
+		F927D1561F0C9DDE0004CF3A /* Iteration cell */ = {
+			isa = PBXGroup;
+			children = (
+				F927D1511F0C9DDB0004CF3A /* IterationTableViewCell.h */,
+				F927D1521F0C9DDB0004CF3A /* IterationTableViewCell.m */,
+				F927D1531F0C9DDB0004CF3A /* IterationTableViewCell.xib */,
+			);
+			name = "Iteration cell";
+			sourceTree = "<group>";
+		};
 		F9418F9F1F04339E0083C3DC /* Add Exercise */ = {
 			isa = PBXGroup;
 			children = (
 				F9418F9C1F0433980083C3DC /* AddExerciseViewController.h */,
 				F9418F9D1F0433980083C3DC /* AddExerciseViewController.m */,
-				F9418FA51F048B230083C3DC /* Add Exercise Cell */,
+				F927D1501F0C9BDA0004CF3A /* Iteration Selection */,
+				F9418FA51F048B230083C3DC /* Add Exercise cell */,
 			);
 			name = "Add Exercise";
 			sourceTree = "<group>";
 		};
-		F9418FA51F048B230083C3DC /* Add Exercise Cell */ = {
+		F9418FA51F048B230083C3DC /* Add Exercise cell */ = {
 			isa = PBXGroup;
 			children = (
 				F9418FA01F048B1E0083C3DC /* AddExerciseTableViewCell.h */,
 				F9418FA11F048B1E0083C3DC /* AddExerciseTableViewCell.m */,
 				F9418FA21F048B1E0083C3DC /* AddExerciseTableViewCell.xib */,
 			);
-			name = "Add Exercise Cell";
+			name = "Add Exercise cell";
 			sourceTree = "<group>";
 		};
 		F9418FA91F04A50C0083C3DC /* Exercise */ = {
@@ -673,6 +702,7 @@
 				F9418FAF1F04A96C0083C3DC /* ExerciseView.xib in Resources */,
 				F97B1CA31F09759000B3EEC7 /* WeekdayTableViewCell.xib in Resources */,
 				F981D5891F022D9A00E7B456 /* LaunchScreen.xib in Resources */,
+				F927D1551F0C9DDB0004CF3A /* IterationTableViewCell.xib in Resources */,
 				F97B1CAA1F097DA600B3EEC7 /* WeekdayView.xib in Resources */,
 				F9418FA41F048B1E0083C3DC /* AddExerciseTableViewCell.xib in Resources */,
 				F90712B319415FB1008694E5 /* Main.storyboard in Resources */,
@@ -813,9 +843,11 @@
 				F9418FA31F048B1E0083C3DC /* AddExerciseTableViewCell.m in Sources */,
 				F97B1CA71F097D8A00B3EEC7 /* WeekdayView.m in Sources */,
 				F9DA75111F02DC1700347B0D /* BTDataModel.xcdatamodeld in Sources */,
+				F927D14F1F0C9BD70004CF3A /* IterationSelectionViewController.m in Sources */,
 				F95F93411F03713200A19C4D /* BTAWSWorkout.m in Sources */,
 				F90712A719415FB1008694E5 /* main.m in Sources */,
 				F9418FB21F04C83F0083C3DC /* SetFlowLayout.m in Sources */,
+				F927D1541F0C9DDB0004CF3A /* IterationTableViewCell.m in Sources */,
 				F97B1CA21F09759000B3EEC7 /* WeekdayTableViewCell.m in Sources */,
 				F9418FA81F04A4F80083C3DC /* ExerciseViewController.m in Sources */,
 				F9AF06831F07596F003A2200 /* BTStackedBarView.m in Sources */,

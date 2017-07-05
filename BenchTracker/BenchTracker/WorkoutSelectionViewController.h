@@ -14,11 +14,10 @@
 
 @interface WorkoutSelectionViewController : UIViewController <UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, SWTableViewCellDelegate>
 
-@property NSManagedObjectContext *context;
+@property (nonatomic) NSManagedObjectContext *context;
 @property (nonatomic) BTWorkoutManager *workoutManager;
 
-@property CGPoint originPoint;
-@property UIView *parentView;
-@property NSDate *date;
+@property (nonatomic) CGPoint originPoint;
+@property (nonatomic) NSDate *date;
 
 @end

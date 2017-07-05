@@ -8,12 +8,17 @@
 
 #import "AddExerciseViewController.h"
 #import "BTExerciseType+CoreDataClass.h"
-#import "AddExerciseTableViewCell.h"
 #import "BTSettings+CoreDataClass.h"
+#import "AddExerciseTableViewCell.h"
+#import "ZFModalTransitionAnimator.h"
 
 @interface AddExerciseViewController ()
 
+@property (nonatomic) ZFModalTransitionAnimator *animator;
+
 @property (nonatomic) NSDictionary *exerciseTypeColors;
+
+@property (nonatomic) NSMutableDictionary <NSIndexPath *, NSString *> *selectedIterations;
 
 @property (nonatomic) BOOL supersettingEnabled;
 
@@ -25,6 +30,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.selectedIterations = [[NSMutableDictionary alloc] init];
     NSError *error;
     self.searchString = @"";
     if (![[self fetchedResultsController] performFetch:&error]) {
@@ -36,6 +42,12 @@
     if (settings.exerciseTypeColors) self.exerciseTypeColors = [NSKeyedUnarchiver unarchiveObjectWithData:settings.exerciseTypeColors];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+    singleTap.delegate = self;
+    singleTap.numberOfTapsRequired = 1;
+    singleTap.numberOfTouchesRequired = 1;
+    singleTap.cancelsTouchesInView = NO;
+    [self.tableView addGestureRecognizer:singleTap];
     [self loadSearchBar];
     self.supersettingEnabled = NO;
 }
@@ -45,10 +57,10 @@
     self.searchController.searchResultsUpdater = self;
     self.searchController.dimsBackgroundDuringPresentation = NO;
     self.searchController.searchBar.delegate = self;
-    self.searchController.searchBar.barTintColor = [UIColor colorWithWhite:.97 alpha:1];
+    self.searchController.searchBar.barTintColor = [UIColor colorWithRed:20/255.0 green:20/255.0 blue:84/255.0 alpha:1];
     self.searchController.searchBar.tintColor = self.addExerciseButton.backgroundColor;
     self.searchController.searchBar.layer.borderWidth = 1;
-    self.searchController.searchBar.layer.borderColor = [UIColor colorWithWhite:.97 alpha:1].CGColor;
+    self.searchController.searchBar.layer.borderColor = self.searchController.searchBar.barTintColor.CGColor;
     self.tableView.tableHeaderView = self.searchController.searchBar;
     self.definesPresentationContext = YES;
     [self.searchController.searchBar sizeToFit];
@@ -81,10 +93,12 @@
 }
 
 - (IBAction)addExerciseButtonPressed:(UIButton *)sender {
-    NSMutableArray <BTExerciseType *> *exerciseTypes = [[NSMutableArray alloc] init];
-    for (NSIndexPath *path in self.tableView.indexPathsForSelectedRows)
-        [exerciseTypes addObject: [self.fetchedResultsController objectAtIndexPath:path]];
-    [self.delegate addExerciseViewController:self willDismissWithSelectedTypes:exerciseTypes];
+    NSMutableArray <NSArray *> *exerciseTIs = [[NSMutableArray alloc] init];
+    for (NSIndexPath *path in self.tableView.indexPathsForSelectedRows) {
+        NSString *iteration = self.selectedIterations[path];
+        [exerciseTIs addObject: @[[self.fetchedResultsController objectAtIndexPath:path], (iteration) ? iteration : [NSNull null]]];
+    }
+    [self.delegate addExerciseViewController:self willDismissWithSelectedTypeIterationCombinations:exerciseTIs];
     [self dismissViewControllerAnimated:YES completion:^{
         
     }];
@@ -176,6 +190,8 @@
     cell.color = self.exerciseTypeColors[key];
     if (!cell.color) cell.color = [UIColor groupTableViewBackgroundColor];
     [cell loadExerciseType:type];
+    if (self.selectedIterations[indexPath])
+        [cell loadIteration:self.selectedIterations[indexPath]];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -185,16 +201,37 @@
     return cell;
 }
 
+#pragma mark - tap gesture delegate
+
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
+    UITableView *tableView = (UITableView *)gestureRecognizer.view;
+    CGPoint p = [gestureRecognizer locationInView:gestureRecognizer.view];
+    return [tableView indexPathForRowAtPoint:p];
+}
+
+- (void)handleTap:(UITapGestureRecognizer *)sender {
+    if (UIGestureRecognizerStateEnded == sender.state) {
+        UITableView *tableView = (UITableView *)sender.view;
+        NSIndexPath *indexPath = [tableView indexPathForRowAtPoint:[sender locationInView:sender.view]];
+        AddExerciseTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        CGPoint pointInCell = [sender locationInView:cell];
+        if (!cell.cellSelected && pointInCell.x > cell.frame.size.width-120)
+            [self presentIterationSelectionViewControllerWithOriginPoint:[sender locationInView:self.view] indexPath:indexPath];
+    }
+}
+
 #pragma mark - tableView delegate
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([tableView.indexPathsForSelectedRows containsObject:indexPath]) {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        [self.selectedIterations removeObjectForKey:indexPath];
         [self tableView:tableView didDeselectRowAtIndexPath:indexPath];
         return nil;
     }
     else if (tableView.indexPathsForSelectedRows.count == 5) {
         [tableView deselectRowAtIndexPath:tableView.indexPathsForSelectedRows.firstObject animated:YES];
+        [self.selectedIterations removeObjectForKey:tableView.indexPathsForSelectedRows.firstObject];
     }
     return indexPath;
 }
@@ -219,6 +256,36 @@
     else [self.addExerciseButton setTitle:(numSelected == 1) ? @"Add Exercise" :
                                     [NSString stringWithFormat:@"Superset %d Exercises",numSelected]
                                  forState:UIControlStateNormal];
+}
+
+#pragma mark - iterationSelectionVC delegate
+
+- (void)iterationSelectionVC:(IterationSelectionViewController *)iterationVC willDismissWithSelectedIteration:(NSString *)iteration {
+    NSIndexPath *indexPath = [_fetchedResultsController indexPathForObject:iterationVC.exerciseType];
+    AddExerciseTableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    [cell loadIteration:iteration];
+    self.selectedIterations[indexPath] = iteration;
+}
+
+#pragma mark - view handling
+
+- (void)presentIterationSelectionViewControllerWithOriginPoint:(CGPoint)point indexPath:(NSIndexPath *)indexPath {
+    IterationSelectionViewController *isVC = [self.storyboard instantiateViewControllerWithIdentifier:@"is"];
+    isVC.delegate = self;
+    isVC.exerciseType = [_fetchedResultsController objectAtIndexPath:indexPath];
+    isVC.originPoint = point;
+    NSString *key = _fetchedResultsController.sections[indexPath.section].name;
+    isVC.color = self.exerciseTypeColors[key];
+    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:isVC];
+    self.animator.dragable = NO;
+    self.animator.bounces = YES;
+    self.animator.behindViewAlpha = 1.0;
+    self.animator.behindViewScale = 1.0;
+    self.animator.transitionDuration = 0.0;
+    self.animator.direction = ZFModalTransitonDirectionBottom;
+    isVC.transitioningDelegate = self.animator;
+    isVC.modalPresentationStyle = UIModalPresentationCustom;
+    [self presentViewController:isVC animated:YES completion:nil];
 }
 
 #pragma mark - fetchedResultsController delegate

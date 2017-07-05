@@ -55,7 +55,8 @@
     else if ([self.supersetMode isEqualToString:SUPERSET_BELOW]) self.belowSupersetView.alpha = 0;
     self.exercise = exercise;
     self.tempSets = [NSKeyedUnarchiver unarchiveObjectWithData:self.exercise.sets];
-    self.nameLabel.text = [NSString stringWithFormat:@"%@ %@",exercise.iteration,exercise.name];
+    if (exercise.iteration) self.nameLabel.text = [NSString stringWithFormat:@"%@ %@",exercise.iteration,exercise.name];
+    else                    self.nameLabel.text = exercise.name;
     self.categoryLabel.text = exercise.category;
     self.maxCells = (int)self.collectionView.frame.size.width / 70;
     [self.collectionView reloadData];

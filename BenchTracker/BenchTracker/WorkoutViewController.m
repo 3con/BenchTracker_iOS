@@ -158,11 +158,12 @@
 
 #pragma mark - addVC delegate
 
-- (void)addExerciseViewController:(AddExerciseViewController *)addVC willDismissWithSelectedTypes:(NSArray<BTExerciseType *> *)selectedTypes {
+- (void)addExerciseViewController:(AddExerciseViewController *)addVC
+        willDismissWithSelectedTypeIterationCombinations:(NSArray<NSArray *> *)selectedTypeIterationCombinations {
     NSMutableArray <NSNumber *> *supersetArr = [[NSMutableArray alloc] init];
     NSMutableArray <NSIndexPath *> *indexPaths = [[NSMutableArray alloc] init];
-    for (BTExerciseType *type in selectedTypes) {
-        [self.workout addExercisesObject:[self exerciseForExerciseType:type]];
+    for (NSArray *tiCombo in selectedTypeIterationCombinations) {
+        [self.workout addExercisesObject:[self exerciseForExerciseType:tiCombo[0] iteration:tiCombo[1]]];
         [supersetArr addObject:[NSNumber numberWithInt:(int)self.workout.exercises.count-1]];
         [indexPaths addObject:[NSIndexPath indexPathForRow:self.workout.exercises.count-1 inSection:0]];
     }
@@ -177,10 +178,10 @@
     [CATransaction commit];
 }
 
-- (BTExercise *)exerciseForExerciseType: (BTExerciseType *)type {
+- (BTExercise *)exerciseForExerciseType: (BTExerciseType *)type iteration: (id)iteration {
     BTExercise *exercise = [NSEntityDescription insertNewObjectForEntityForName:@"BTExercise" inManagedObjectContext:self.context];
     exercise.name = type.name;
-    exercise.iteration = [NSKeyedUnarchiver unarchiveObjectWithData:type.iterations][0];
+    exercise.iteration = ([iteration isKindOfClass:[NSNull class]]) ? nil : iteration;
     exercise.category = type.category;
     exercise.style = type.style;
     exercise.sets = [NSKeyedArchiver archivedDataWithRootObject:[[NSMutableArray alloc] init]];

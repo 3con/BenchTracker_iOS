@@ -214,7 +214,7 @@
     NSString *r = @"{";
     r = [NSString stringWithFormat:@"%@\"style\":\"%@\",",r, exercise.style];
     r = [NSString stringWithFormat:@"%@\"name\":\"%@\",",r, exercise.name];
-    r = [NSString stringWithFormat:@"%@\"iteration\":\"%@\",",r, exercise.iteration];
+    r = [NSString stringWithFormat:@"%@\"iteration\":\"%@\",",r, (exercise.iteration) ? AWS_EMPTY : exercise.iteration];
     r = [NSString stringWithFormat:@"%@\"category\":\"%@\",",r, exercise.category];
     r = [NSString stringWithFormat:@"%@\"sets\":%@",r, [self stringForSetsData: exercise.sets]];
     return [NSString stringWithFormat:@"%@}",r];
@@ -226,7 +226,7 @@
     if(error) NSLog(@"workoutManager JSON model error:%@",error);
     BTExercise *exercise = [NSEntityDescription insertNewObjectForEntityForName:@"BTExercise" inManagedObjectContext:self.context];
     exercise.name = model.name;
-    exercise.iteration = model.iteration;
+    exercise.iteration = ([model.iteration isEqualToString:AWS_EMPTY]) ? nil : model.iteration;
     exercise.category = model.category;
     exercise.style = model.style;
     if ([model.sets.firstObject isEqualToString:AWS_EMPTY])

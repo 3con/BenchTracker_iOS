@@ -8,16 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import "IterationSelectionViewController.h"
 
 @class BTExerciseType;
 @class AddExerciseViewController;
 
 @protocol AddExerciseViewControllerDelegate <NSObject>
 @required
-- (void) addExerciseViewController:(AddExerciseViewController *)addVC willDismissWithSelectedTypes:(NSArray <BTExerciseType *> *)selectedTypes;
+- (void) addExerciseViewController:(AddExerciseViewController *)addVC willDismissWithSelectedTypeIterationCombinations:(NSArray <NSArray *> *)selectedTypeIterationCombinations;
 @end
 
-@interface AddExerciseViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating>
+@interface AddExerciseViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating, UIGestureRecognizerDelegate, IterationSelectionViewControllerDelegate>
 
 @property id<AddExerciseViewControllerDelegate> delegate;
 

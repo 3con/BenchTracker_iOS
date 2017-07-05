@@ -49,6 +49,7 @@
     [self.view addConstraint:constraint];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tableView.scrollEnabled = NO;
     self.tableView.tableFooterView = [UIView new];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"ACell"];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"BCell"];

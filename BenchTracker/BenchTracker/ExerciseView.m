@@ -69,7 +69,8 @@
     [self.collectionView registerNib:[UINib nibWithNibName:@"SetCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"Cell"];
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"ACell"];
     self.exercise = exercise;
-    self.nameLabel.text = [NSString stringWithFormat:@"%@ %@", exercise.iteration, exercise.name];
+    if (exercise.iteration) self.nameLabel.text = [NSString stringWithFormat:@"%@ %@", exercise.iteration, exercise.name];
+    else                    self.nameLabel.text = exercise.name;
     self.categoryLabel.text = exercise.category;
     self.tempSets = [NSKeyedUnarchiver unarchiveObjectWithData:exercise.sets];
     if ([self styleIs:STYLE_CUSTOM]) [self loadTextField];

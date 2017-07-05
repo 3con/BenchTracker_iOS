@@ -12,9 +12,14 @@
 
 @interface AddExerciseTableViewCell : UITableViewCell
 
-@property BTExerciseType *exerciseType;
-@property UIColor *color;
+@property (nonatomic) BOOL cellSelected;
+
+@property (nonatomic) BTExerciseType *exerciseType;
+@property (nonatomic) NSString *iteration;
+@property (nonatomic) UIColor *color;
 
 - (void)loadExerciseType: (BTExerciseType *)exerciseType;
+
+- (void)loadIteration:(NSString *)iteration;
 
 @end
