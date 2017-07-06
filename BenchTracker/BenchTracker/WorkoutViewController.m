@@ -15,6 +15,7 @@
 #import "PassTouchesView.h"
 #import "BTPDFGenerator.h"
 #import "MMQRCodeMakerUtil.h"
+#import "QRDisplayViewController.h"
 
 @interface WorkoutViewController ()
 
@@ -90,9 +91,7 @@
 
 - (IBAction)qrButtonPressed:(id)sender {
     [self updateWorkout];
-    NSString *jsonString = [self.workoutManager jsonForWorkout:self.workout];
-    UIImage *qr = [MMQRCodeMakerUtil qrImageWithContent:jsonString logoImage:nil qrColor:nil qrWidth:400];
-    NSLog(@"gen");
+    [self presentQRDisplayViewController];
 }
 
 - (IBAction)addExerciseButtonPressed:(UIButton *)sender {
@@ -310,6 +309,24 @@
     eVC.transitioningDelegate = self.animator;
     eVC.modalPresentationStyle = UIModalPresentationCustom;
     [self presentViewController:eVC animated:YES completion:nil];
+}
+
+- (void)presentQRDisplayViewController {
+    NSString *jsonString = [self.workoutManager jsonForWorkout:self.workout];
+    NSString *jsonString2 = [self.workoutManager jsonForTemplateWorkout:self.workout];
+    QRDisplayViewController *qVC = [self.storyboard instantiateViewControllerWithIdentifier:@"qd"];
+    qVC.image1 = [MMQRCodeMakerUtil qrImageWithContent:jsonString logoImage:nil qrColor:nil qrWidth:500];
+    qVC.image2 = [MMQRCodeMakerUtil qrImageWithContent:jsonString2 logoImage:nil qrColor:nil qrWidth:500];
+    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:qVC];
+    self.animator.bounces = NO;
+    self.animator.dragable = NO;
+    self.animator.behindViewAlpha = 0.2;
+    self.animator.behindViewScale = 0.92;
+    self.animator.transitionDuration = 0.75;
+    self.animator.direction = ZFModalTransitonDirectionBottom;
+    qVC.transitioningDelegate = self.animator;
+    qVC.modalPresentationStyle = UIModalPresentationCustom;
+    [self presentViewController:qVC animated:YES completion:nil];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {

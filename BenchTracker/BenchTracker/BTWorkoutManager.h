@@ -29,6 +29,8 @@
 
 - (NSString *)jsonForWorkout:(BTWorkout *)workout;
 
+- (NSString *)jsonForTemplateWorkout:(BTWorkout *)workout;
+
 - (BTWorkout *)createWorkoutWithJSON: (NSString *)jsonString;
 
 //client -> server

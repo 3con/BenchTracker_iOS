@@ -17,6 +17,7 @@
 #import "BTUserManager.h"
 #import "MJExtension.h"
 #import "BTJSONWorkout.h"
+#import "BTJSONWorkoutTemplate.h"
 
 @interface BTWorkoutManager ()
 
@@ -47,13 +48,11 @@
                  @"name" : @"n",
                  @"date" : @"d",
                  @"duration" : @"t",
-                 @"summary" : @"s",
                  @"supersets" : @"z",
                  @"exercises" : @"e", }; }];
     [BTJSONExercise mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
         return @{@"name" : @"n",
                  @"iteration" : @"i",
-                 @"date" : @"d",
                  @"category" : @"c",
                  @"style" : @"s",
                  @"sets" : @"x" }; }];
@@ -64,7 +63,6 @@
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
     workoutModel.date = [dateFormatter stringFromDate:workout.date];
     workoutModel.duration = [NSNumber numberWithInteger:workout.duration];
-    workoutModel.summary = workout.summary;
     workoutModel.exercises = [[NSMutableArray alloc] init];
     for (BTExercise *exercise in workout.exercises) {
         BTJSONExercise *exerciseModel = [[BTJSONExercise alloc] init];
@@ -85,10 +83,41 @@
     NSError *error;
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:json options:0 error:&error];
     if (error) NSLog(@"Workout Manager dict to string error: %@",error);
-    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    NSLog(@"%ld",jsonString.length);
-    [self createWorkoutWithJSON:jsonString];
-    return [NSString stringWithFormat:@"%@",jsonString];
+    return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+}
+
+- (NSString *)jsonForTemplateWorkout:(BTWorkout *)workout {
+    [BTJSONWorkoutTemplate mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
+        return @{@"name" : @"n",
+                 @"supersets" : @"z",
+                 @"exercises" : @"e", }; }];
+    [BTJSONExerciseTemplate mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
+        return @{@"name" : @"n",
+                 @"iteration" : @"i",
+                 @"category" : @"c",
+                 @"style" : @"s" }; }];
+    BTJSONWorkoutTemplate *workoutModel = [[BTJSONWorkoutTemplate alloc] init];
+    workoutModel.name = workout.name;
+    workoutModel.exercises = [[NSMutableArray alloc] init];
+    for (BTExercise *exercise in workout.exercises) {
+        BTJSONExerciseTemplate *exerciseModel = [[BTJSONExerciseTemplate alloc] init];
+        exerciseModel.name = exercise.name;
+        exerciseModel.iteration = exercise.iteration;
+        exerciseModel.category = exercise.category;
+        exerciseModel.style = exercise.style;
+        [workoutModel.exercises addObject:exerciseModel];
+    }
+    workoutModel.supersets = [[NSMutableArray alloc] init];
+    for (NSMutableArray <NSNumber *> *superset in [NSKeyedUnarchiver unarchiveObjectWithData:workout.supersets]) {
+        NSString *s = @"";
+        for (NSNumber *num in superset) s = [NSString stringWithFormat:@"%@ %d", s, num.intValue];
+        [workoutModel.supersets addObject:[s substringFromIndex:1]];
+    }
+    NSDictionary *json = workoutModel.mj_keyValues;
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:json options:0 error:&error];
+    if (error) NSLog(@"Workout Manager dict to string error: %@",error);
+    return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 }
 
 - (BTWorkout *)createWorkoutWithJSON:(NSString *)jsonString {
@@ -98,25 +127,23 @@
                  @"name" : @"n",
                  @"date" : @"d",
                  @"duration" : @"t",
-                 @"summary" : @"s",
                  @"supersets" : @"z",
                  @"exercises" : @"e", }; }];
     [BTJSONExercise mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
         return @{@"name" : @"n",
                  @"iteration" : @"i",
-                 @"date" : @"d",
                  @"category" : @"c",
                  @"style" : @"s",
                  @"sets" : @"x" }; }];
     BTJSONWorkout *workoutModel = [BTJSONWorkout mj_objectWithKeyValues:jsonString];
     BTWorkout *workout = [NSEntityDescription insertNewObjectForEntityForName:@"BTWorkout" inManagedObjectContext:self.context];
-    workout.uuid = workoutModel.uuid;
+    workout.uuid = (workoutModel.uuid) ? workoutModel.uuid : [[NSUUID UUID] UUIDString];
     workout.name = workoutModel.name;
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
-    workout.date = [dateFormatter dateFromString:workoutModel.date];
-    workout.duration = workoutModel.duration.integerValue;
-    workout.summary = workoutModel.summary;
+    workout.date = (workoutModel.date) ? [dateFormatter dateFromString: workoutModel.date] : [NSDate date];
+    workout.duration = (workoutModel.duration) ? workoutModel.duration.integerValue : 0;
+    workout.summary = @"0";
     NSMutableArray <NSMutableArray <NSNumber *> *> *tempSupersets = [NSMutableArray array];
     for (NSString *string in workoutModel.supersets) {
         NSMutableArray *numArr = [NSMutableArray array];
@@ -132,7 +159,7 @@
         exercise.iteration = exerciseModel.iteration;
         exercise.category = exerciseModel.category;
         exercise.style = exerciseModel.style;
-        exercise.sets = [NSKeyedArchiver archivedDataWithRootObject:exerciseModel.sets];
+        exercise.sets = [NSKeyedArchiver archivedDataWithRootObject:(exerciseModel.sets) ? exerciseModel.sets : [NSMutableArray array]];
         exercise.workout = workout;
         [workout addExercisesObject:exercise];
     }

@@ -18,6 +18,8 @@
 		F917BB541F0D2AB200614AB1 /* BTWorkoutPDF.m in Sources */ = {isa = PBXBuildFile; fileRef = F917BB531F0D2AB200614AB1 /* BTWorkoutPDF.m */; };
 		F917BB571F0D2AC400614AB1 /* BTWorkoutPDF.xib in Resources */ = {isa = PBXBuildFile; fileRef = F917BB561F0D2AC400614AB1 /* BTWorkoutPDF.xib */; };
 		F917BB5A1F0DA6AB00614AB1 /* BTJSONWorkout.m in Sources */ = {isa = PBXBuildFile; fileRef = F917BB591F0DA6AB00614AB1 /* BTJSONWorkout.m */; };
+		F917BB5D1F0DCA6A00614AB1 /* BTJSONWorkoutTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = F917BB5C1F0DCA6A00614AB1 /* BTJSONWorkoutTemplate.m */; };
+		F917BB601F0DD40200614AB1 /* QRDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F917BB5F1F0DD40200614AB1 /* QRDisplayViewController.m */; };
 		F927D14F1F0C9BD70004CF3A /* IterationSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F927D14E1F0C9BD70004CF3A /* IterationSelectionViewController.m */; };
 		F927D1541F0C9DDB0004CF3A /* IterationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F927D1521F0C9DDB0004CF3A /* IterationTableViewCell.m */; };
 		F927D1551F0C9DDB0004CF3A /* IterationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F927D1531F0C9DDB0004CF3A /* IterationTableViewCell.xib */; };
@@ -100,6 +102,10 @@
 		F917BB561F0D2AC400614AB1 /* BTWorkoutPDF.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BTWorkoutPDF.xib; sourceTree = "<group>"; };
 		F917BB581F0DA6AB00614AB1 /* BTJSONWorkout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BTJSONWorkout.h; path = BenchTracker/BTJSONWorkout.h; sourceTree = "<group>"; };
 		F917BB591F0DA6AB00614AB1 /* BTJSONWorkout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BTJSONWorkout.m; path = BenchTracker/BTJSONWorkout.m; sourceTree = "<group>"; };
+		F917BB5B1F0DCA6A00614AB1 /* BTJSONWorkoutTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BTJSONWorkoutTemplate.h; path = BenchTracker/BTJSONWorkoutTemplate.h; sourceTree = "<group>"; };
+		F917BB5C1F0DCA6A00614AB1 /* BTJSONWorkoutTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BTJSONWorkoutTemplate.m; path = BenchTracker/BTJSONWorkoutTemplate.m; sourceTree = "<group>"; };
+		F917BB5E1F0DD40200614AB1 /* QRDisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRDisplayViewController.h; sourceTree = "<group>"; };
+		F917BB5F1F0DD40200614AB1 /* QRDisplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRDisplayViewController.m; sourceTree = "<group>"; };
 		F927D14D1F0C9BD70004CF3A /* IterationSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IterationSelectionViewController.h; sourceTree = "<group>"; };
 		F927D14E1F0C9BD70004CF3A /* IterationSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IterationSelectionViewController.m; sourceTree = "<group>"; };
 		F927D1511F0C9DDB0004CF3A /* IterationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IterationTableViewCell.h; sourceTree = "<group>"; };
@@ -308,6 +314,15 @@
 			name = "Workout PDF";
 			sourceTree = "<group>";
 		};
+		F917BB611F0DD40500614AB1 /* QR display */ = {
+			isa = PBXGroup;
+			children = (
+				F917BB5E1F0DD40200614AB1 /* QRDisplayViewController.h */,
+				F917BB5F1F0DD40200614AB1 /* QRDisplayViewController.m */,
+			);
+			name = "QR display";
+			sourceTree = "<group>";
+		};
 		F927D1501F0C9BDA0004CF3A /* Iteration Selection */ = {
 			isa = PBXGroup;
 			children = (
@@ -443,6 +458,7 @@
 				F95F93431F03738B00A19C4D /* WorkoutViewController.m */,
 				F9B7D7D51F06303700376201 /* PassTouchesView.h */,
 				F9B7D7D61F06303700376201 /* passTouchesView.m */,
+				F917BB611F0DD40500614AB1 /* QR display */,
 				F917BB511F0D24EB00614AB1 /* PDF generator */,
 				F96207731F05DCF800DE2330 /* Exercise cell */,
 			);
@@ -566,6 +582,8 @@
 				F9DA75211F02EE9600347B0D /* BTWorkout+CoreDataProperties.m */,
 				F917BB581F0DA6AB00614AB1 /* BTJSONWorkout.h */,
 				F917BB591F0DA6AB00614AB1 /* BTJSONWorkout.m */,
+				F917BB5B1F0DCA6A00614AB1 /* BTJSONWorkoutTemplate.h */,
+				F917BB5C1F0DCA6A00614AB1 /* BTJSONWorkoutTemplate.m */,
 			);
 			name = BTWorkout;
 			sourceTree = "<group>";
@@ -867,6 +885,7 @@
 				F95F93371F03426F00A19C4D /* BTUserManager.m in Sources */,
 				F9B7D7D71F06303700376201 /* passTouchesView.m in Sources */,
 				F917BB501F0D24E500614AB1 /* BTPDFGenerator.m in Sources */,
+				F917BB601F0DD40200614AB1 /* QRDisplayViewController.m in Sources */,
 				F9DA75251F02EE9600347B0D /* BTExercise+CoreDataProperties.m in Sources */,
 				F9640BD81F080E590053C9C0 /* BTSettings+CoreDataClass.m in Sources */,
 				F95F933E1F034FA300A19C4D /* LoginViewController.m in Sources */,
@@ -894,6 +913,7 @@
 				F9640BD91F080E590053C9C0 /* BTSettings+CoreDataProperties.m in Sources */,
 				F95F932F1F02FC5000A19C4D /* TypeListModel.m in Sources */,
 				F95F5CF61F08B54500A567FA /* SettingsViewController.m in Sources */,
+				F917BB5D1F0DCA6A00614AB1 /* BTJSONWorkoutTemplate.m in Sources */,
 				F9FA47261F0B39D700A4AF98 /* WorkoutSelectionViewController.m in Sources */,
 				F9DA75261F02EE9600347B0D /* BTExerciseType+CoreDataClass.m in Sources */,
 				F95F93331F03410500A19C4D /* BTAWSUser.m in Sources */,

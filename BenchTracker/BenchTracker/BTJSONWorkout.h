@@ -16,7 +16,6 @@
 @property (nonatomic)                   NSString* name;
 @property (nonatomic)                   NSString* date;
 @property (nonatomic)                   NSNumber* duration;
-@property (nonatomic)                   NSString* summary;   //"1 biceps#2 legs#..."
 @property (nonatomic) NSMutableArray<NSString *>* supersets; //[ "1 2 3", "5 6", ... ]
 @property (nonatomic) NSMutableArray<BTJSONExercise *>* exercises;
 
