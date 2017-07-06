@@ -11,11 +11,12 @@
 #import "WorkoutViewController.h"
 #import "SettingsViewController.h"
 #import "WorkoutSelectionViewController.h"
+#import "BTQRScannerViewController.h"
 #import "WeekdayView.h"
 #import "FSCalendar.h"
 #import "SWTableViewCell.h"
 
-@interface MainViewController : UIViewController <WorkoutViewControllerDelegate, SettingsViewControllerDelegate, LoginViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance, SWTableViewCellDelegate, WeekdayViewDelegate>
+@interface MainViewController : UIViewController <WorkoutViewControllerDelegate, SettingsViewControllerDelegate, LoginViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance, SWTableViewCellDelegate, WeekdayViewDelegate, BTQRScannerViewControllerDelegate>
 
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @property NSManagedObjectContext *context;
@@ -26,5 +27,7 @@
 @property (weak, nonatomic) IBOutlet UIView *weekdayContainerView;
 @property (weak, nonatomic) IBOutlet WeekdayView *weekdayView;
 @property (weak, nonatomic) IBOutlet FSCalendar *calendarView;
+
+@property (weak, nonatomic) IBOutlet UIButton *scanWorkoutButton;
 
 @end

@@ -10,6 +10,8 @@
 #import "BTWorkout+CoreDataClass.h"
 #import "BTExercise+CoreDataClass.h"
 #import "BTUserManager.h"
+#import "BTWorkoutManager.h"
+#import "MMQRCodeMakerUtil.h"
 
 @interface BTWorkoutPDF ()
 
@@ -21,6 +23,7 @@
 
 - (void)loadWorkout:(BTWorkout *)workout {
     self.workout = workout;
+    self.nameLabel.text = workout.name;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"EEEE, MMMM d yyyy";
     self.titleLabel.text = [formatter stringFromDate:workout.date];
@@ -33,6 +36,11 @@
                                 [workout.summary stringByReplacingOccurrencesOfString:@"#" withString:@"; "]];
     self.metadataLabel2.text = [NSString stringWithFormat:@"User: %@, UUID: %@",
                                 [(BTUserManager *)[BTUserManager sharedInstance] user].username, workout.uuid];
+    BTWorkoutManager *workoutManager = [BTWorkoutManager sharedInstance];
+    NSString *jsonString = [workoutManager jsonForWorkout:workout];
+    NSString *jsonString2 = [workoutManager jsonForTemplateWorkout:workout];
+    self.imageView1.image = [MMQRCodeMakerUtil qrImageWithContent:jsonString logoImage:nil qrColor:nil qrWidth:500];
+    self.imageView2.image = [MMQRCodeMakerUtil qrImageWithContent:jsonString2 logoImage:nil qrColor:nil qrWidth:500];
 }
 
 #pragma mark - tableView datasource

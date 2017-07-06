@@ -12,8 +12,13 @@
 
 @interface BTWorkoutPDF : UIView <UITableViewDelegate, UITableViewDataSource>
 
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView1;
+@property (weak, nonatomic) IBOutlet UILabel *imageLabel1;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView2;
+@property (weak, nonatomic) IBOutlet UILabel *imageLabel2;
 @property (weak, nonatomic) IBOutlet UILabel *metadataLabel1;
 @property (weak, nonatomic) IBOutlet UILabel *metadataLabel2;
 

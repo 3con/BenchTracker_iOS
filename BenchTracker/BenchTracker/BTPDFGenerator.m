@@ -34,7 +34,10 @@
     UIGraphicsBeginPDFPageWithInfo(CGRectMake(0, 0, 612, 792), nil);
     BTWorkoutPDF *page = [[NSBundle mainBundle] loadNibNamed:@"BTWorkoutPDF" owner:self options:nil].firstObject;
     [page loadWorkout:workout];
+    [self drawLabel:page.nameLabel];
     [self drawLabel:page.titleLabel];
+    [self drawLabel:page.imageLabel1];
+    [self drawLabel:page.imageLabel2];
     [self drawLabel:page.metadataLabel1];
     [self drawLabel:page.metadataLabel2];
     int i = 0;
@@ -68,6 +71,8 @@
                         toPoint:CGPointMake(45, yBottom)];
     }
     //[self drawTableView:page.tableView];
+    [self drawImageView:page.imageView1];
+    [self drawImageView:page.imageView2];
 }
 
 + (int)lineCountForLabel:(UILabel *)label {
@@ -154,6 +159,10 @@
     CGContextStrokePath(context);
     CGColorSpaceRelease(colorspace);
     CGColorRelease(color);
+}
+
++ (void)drawImageView:(UIImageView *)imageView {
+    [imageView.image drawInRect:imageView.frame];
 }
 
 + (void)drawTableView:(UITableView *)tableView {

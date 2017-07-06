@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Bench Tracker can scan QR codes directly from your camera roll. Please allow access to use this feature.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Bench Tracker uses the camera to read workout QR codes. Please allow access to use this feature.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>

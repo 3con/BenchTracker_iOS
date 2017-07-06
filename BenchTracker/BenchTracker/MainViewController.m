@@ -47,6 +47,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    self.scanWorkoutButton.layer.cornerRadius = 12;
+    self.scanWorkoutButton.clipsToBounds = YES;
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"BTSettings"];
     NSError *error;
     self.settings = [self.context executeFetchRequest:fetchRequest error:&error].firstObject;
@@ -92,6 +94,22 @@
 
 - (IBAction)settingsButtonPressed:(UIButton *)sender {
     [self presentSettingsViewController];
+}
+
+- (IBAction)scanWorkoutButtonPressed:(UIButton *)sender {
+    /*
+    MMScannerController *scanner = [[MMScannerController alloc] init];
+    scanner.showGalleryOption = NO;
+    scanner.showFlashlight = NO;
+    scanner.supportBarcode = NO;
+    [scanner setCompletion:^(NSString *scanConetent) {
+        NSLog(@"%@",scanConetent);
+    }];
+    [self presentViewController:scanner animated:YES completion:^{
+        
+    }];
+     */
+    [self presentQRScannerViewController];
 }
 
 #pragma mark - calendarView
@@ -190,17 +208,21 @@
             self.listTableView.alpha = 1;
             self.weekdayContainerView.alpha = 0;
             self.calendarView.alpha = 0;
+            self.scanWorkoutButton.alpha = 1;
         } completion:^(BOOL finished) {
             self.listTableView.userInteractionEnabled = YES;
+            self.scanWorkoutButton.userInteractionEnabled = YES;
         }];
     }
     else if (index == 1) {
         self.listTableView.userInteractionEnabled = NO;
         self.calendarView.userInteractionEnabled = NO;
+        self.scanWorkoutButton.userInteractionEnabled = NO;
         [UIView animateWithDuration:.2 animations:^{
             self.listTableView.alpha = 0;
             self.weekdayContainerView.alpha = 1;
             self.calendarView.alpha = 0;
+            self.scanWorkoutButton.alpha = 0;
         } completion:^(BOOL finished) {
             self.weekdayContainerView.userInteractionEnabled = YES;
         }];
@@ -208,10 +230,12 @@
     else {
         self.listTableView.userInteractionEnabled = NO;
         self.weekdayContainerView.userInteractionEnabled = NO;
+        self.scanWorkoutButton.userInteractionEnabled = NO;
         [UIView animateWithDuration:.2 animations:^{
             self.listTableView.alpha = 0;
             self.weekdayContainerView.alpha = 0;
             self.calendarView.alpha = 1;
+            self.scanWorkoutButton.alpha = 0;
         } completion:^(BOOL finished) {
             self.calendarView.userInteractionEnabled = YES;
         }];
@@ -284,6 +308,13 @@
     [self presentWorkoutSelectionViewControllerWithOriginPoint:point date:date];
 }
 
+#pragma mark - QRScanner delegate
+
+- (void)qrScannerVC:(BTQRScannerViewController *)qrVC didDismissWithScannedString:(NSString *)string {
+    BTWorkout *workout = [self.workoutManager createWorkoutWithJSON:string];
+    [self presentWorkoutViewControllerWithWorkout:workout];
+}
+
 #pragma mark - view handling
 
 - (IBAction)workoutButtonPressed:(UIButton *)sender {
@@ -299,7 +330,7 @@
     self.animator.dragable = NO;
     self.animator.behindViewAlpha = 0.8;
     self.animator.behindViewScale = 0.92;
-    self.animator.transitionDuration = 0.75;
+    self.animator.transitionDuration = 0.5;
     self.animator.direction = ZFModalTransitonDirectionBottom;
     loginVC.transitioningDelegate = self.animator;
     loginVC.modalPresentationStyle = UIModalPresentationFullScreen;
@@ -315,7 +346,7 @@
     self.animator.dragable = NO;
     self.animator.behindViewAlpha = 0.8;
     self.animator.behindViewScale = 0.92;
-    self.animator.transitionDuration = 0.75;
+    self.animator.transitionDuration = 0.5;
     self.animator.direction = ZFModalTransitonDirectionBottom;
     settingsVC.transitioningDelegate = self.animator;
     settingsVC.modalPresentationStyle = UIModalPresentationFullScreen;
@@ -355,6 +386,21 @@
     wsVC.transitioningDelegate = self.animator;
     wsVC.modalPresentationStyle = UIModalPresentationCustom;
     [self presentViewController:wsVC animated:YES completion:nil];
+}
+
+- (void)presentQRScannerViewController {
+    BTQRScannerViewController *qrVC = [[NSBundle mainBundle] loadNibNamed:@"BTQRScannerViewController" owner:self options:nil].firstObject;
+    qrVC.delegate = self;
+    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:qrVC];
+    self.animator.dragable = NO;
+    self.animator.bounces = YES;
+    self.animator.behindViewAlpha = 0.8;
+    self.animator.behindViewScale = 0.92;
+    self.animator.transitionDuration = 0.5;
+    self.animator.direction = ZFModalTransitonDirectionBottom;
+    qrVC.transitioningDelegate = self.animator;
+    qrVC.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self presentViewController:qrVC animated:YES completion:nil];
 }
 
 #pragma mark - workoutVC delegate

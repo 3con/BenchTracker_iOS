@@ -20,6 +20,8 @@
 		F917BB5A1F0DA6AB00614AB1 /* BTJSONWorkout.m in Sources */ = {isa = PBXBuildFile; fileRef = F917BB591F0DA6AB00614AB1 /* BTJSONWorkout.m */; };
 		F917BB5D1F0DCA6A00614AB1 /* BTJSONWorkoutTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = F917BB5C1F0DCA6A00614AB1 /* BTJSONWorkoutTemplate.m */; };
 		F917BB601F0DD40200614AB1 /* QRDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F917BB5F1F0DD40200614AB1 /* QRDisplayViewController.m */; };
+		F917BB641F0DEA7C00614AB1 /* BTQRScannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F917BB631F0DEA7C00614AB1 /* BTQRScannerViewController.m */; };
+		F917BB671F0DEAE000614AB1 /* BTQRScannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F917BB661F0DEAE000614AB1 /* BTQRScannerViewController.xib */; };
 		F927D14F1F0C9BD70004CF3A /* IterationSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F927D14E1F0C9BD70004CF3A /* IterationSelectionViewController.m */; };
 		F927D1541F0C9DDB0004CF3A /* IterationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F927D1521F0C9DDB0004CF3A /* IterationTableViewCell.m */; };
 		F927D1551F0C9DDB0004CF3A /* IterationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F927D1531F0C9DDB0004CF3A /* IterationTableViewCell.xib */; };
@@ -106,6 +108,9 @@
 		F917BB5C1F0DCA6A00614AB1 /* BTJSONWorkoutTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BTJSONWorkoutTemplate.m; path = BenchTracker/BTJSONWorkoutTemplate.m; sourceTree = "<group>"; };
 		F917BB5E1F0DD40200614AB1 /* QRDisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRDisplayViewController.h; sourceTree = "<group>"; };
 		F917BB5F1F0DD40200614AB1 /* QRDisplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRDisplayViewController.m; sourceTree = "<group>"; };
+		F917BB621F0DEA7C00614AB1 /* BTQRScannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTQRScannerViewController.h; sourceTree = "<group>"; };
+		F917BB631F0DEA7C00614AB1 /* BTQRScannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTQRScannerViewController.m; sourceTree = "<group>"; };
+		F917BB661F0DEAE000614AB1 /* BTQRScannerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BTQRScannerViewController.xib; sourceTree = "<group>"; };
 		F927D14D1F0C9BD70004CF3A /* IterationSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IterationSelectionViewController.h; sourceTree = "<group>"; };
 		F927D14E1F0C9BD70004CF3A /* IterationSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IterationSelectionViewController.m; sourceTree = "<group>"; };
 		F927D1511F0C9DDB0004CF3A /* IterationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IterationTableViewCell.h; sourceTree = "<group>"; };
@@ -323,6 +328,16 @@
 			name = "QR display";
 			sourceTree = "<group>";
 		};
+		F917BB651F0DEA9700614AB1 /* QR scanner */ = {
+			isa = PBXGroup;
+			children = (
+				F917BB621F0DEA7C00614AB1 /* BTQRScannerViewController.h */,
+				F917BB631F0DEA7C00614AB1 /* BTQRScannerViewController.m */,
+				F917BB661F0DEAE000614AB1 /* BTQRScannerViewController.xib */,
+			);
+			name = "QR scanner";
+			sourceTree = "<group>";
+		};
 		F927D1501F0C9BDA0004CF3A /* Iteration Selection */ = {
 			isa = PBXGroup;
 			children = (
@@ -470,6 +485,7 @@
 			children = (
 				F95F93391F034DA500A19C4D /* MainViewController.h */,
 				F95F933A1F034DA500A19C4D /* MainViewController.m */,
+				F917BB651F0DEA9700614AB1 /* QR scanner */,
 				F9FA47271F0B39DF00A4AF98 /* Workout selection */,
 				F97B1CA81F097D9100B3EEC7 /* Weekday view */,
 				F9AF06801F075360003A2200 /* Workout cell */,
@@ -756,6 +772,7 @@
 				F981D5891F022D9A00E7B456 /* LaunchScreen.xib in Resources */,
 				F927D1551F0C9DDB0004CF3A /* IterationTableViewCell.xib in Resources */,
 				F97B1CAA1F097DA600B3EEC7 /* WeekdayView.xib in Resources */,
+				F917BB671F0DEAE000614AB1 /* BTQRScannerViewController.xib in Resources */,
 				F9418FA41F048B1E0083C3DC /* AddExerciseTableViewCell.xib in Resources */,
 				F90712B319415FB1008694E5 /* Main.storyboard in Resources */,
 				F96207721F05DCF200DE2330 /* ExerciseTableViewCell.xib in Resources */,
@@ -901,6 +918,7 @@
 				F97B1CA71F097D8A00B3EEC7 /* WeekdayView.m in Sources */,
 				F9DA75111F02DC1700347B0D /* BTDataModel.xcdatamodeld in Sources */,
 				F927D14F1F0C9BD70004CF3A /* IterationSelectionViewController.m in Sources */,
+				F917BB641F0DEA7C00614AB1 /* BTQRScannerViewController.m in Sources */,
 				F95F93411F03713200A19C4D /* BTAWSWorkout.m in Sources */,
 				F90712A719415FB1008694E5 /* main.m in Sources */,
 				F9418FB21F04C83F0083C3DC /* SetFlowLayout.m in Sources */,

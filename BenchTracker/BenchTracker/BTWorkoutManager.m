@@ -163,6 +163,17 @@
         exercise.workout = workout;
         [workout addExercisesObject:exercise];
     }
+    NSMutableDictionary <NSString *, NSNumber *> *dict = [[NSMutableDictionary alloc] init];
+    for (BTExercise *exercise in workout.exercises) {
+        if (dict[exercise.category]) dict[exercise.category] = [NSNumber numberWithInt:dict[exercise.category].intValue + 1];
+        else                         dict[exercise.category] = [NSNumber numberWithInt:1];
+    }
+    workout.summary = @"0";
+    if (workout.exercises.count > 0) {
+        for (NSString *key in dict.allKeys)
+            workout.summary = [NSString stringWithFormat:@"%@#%@ %@",workout.summary, dict[key], key];
+        workout.summary = [workout.summary substringFromIndex:2];
+    }
     [self saveCoreData];
     return workout;
 }

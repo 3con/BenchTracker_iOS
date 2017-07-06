@@ -215,12 +215,28 @@
                                     <constraint firstItem="Nca-iP-Olh" firstAttribute="top" secondItem="oFE-yj-bhY" secondAttribute="top" constant="28" id="tww-Kb-D7f"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7wv-bp-GGA">
+                                <rect key="frame" x="107" y="646" width="200" height="50"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="21g-gU-nk5"/>
+                                    <constraint firstAttribute="height" constant="50" id="wMi-yN-Ied"/>
+                                </constraints>
+                                <state key="normal" title="Scan Workout">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="scanWorkoutButtonPressed:" destination="BUy-cN-Z34" eventType="touchUpInside" id="ADc-xT-zCE"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Kjz-wY-iG2" firstAttribute="width" secondItem="aTT-hA-cJA" secondAttribute="width" id="0QB-Ew-Enc"/>
+                            <constraint firstItem="7wv-bp-GGA" firstAttribute="centerX" secondItem="aTT-hA-cJA" secondAttribute="centerX" id="ACL-KX-vos"/>
                             <constraint firstItem="IiY-s6-C0p" firstAttribute="centerX" secondItem="aTT-hA-cJA" secondAttribute="centerX" id="AlO-V1-AaN"/>
                             <constraint firstItem="oFE-yj-bhY" firstAttribute="width" secondItem="aTT-hA-cJA" secondAttribute="width" id="Dfr-hh-XIQ"/>
+                            <constraint firstItem="8dM-gR-6yE" firstAttribute="top" secondItem="7wv-bp-GGA" secondAttribute="bottom" constant="40" id="EzQ-YT-YbZ"/>
                             <constraint firstItem="8dM-gR-6yE" firstAttribute="top" secondItem="IiY-s6-C0p" secondAttribute="bottom" id="KGd-9R-YVe"/>
                             <constraint firstItem="hx4-hj-moB" firstAttribute="width" secondItem="aTT-hA-cJA" secondAttribute="width" id="KOJ-o4-YbM"/>
                             <constraint firstItem="8dM-gR-6yE" firstAttribute="top" secondItem="Kjz-wY-iG2" secondAttribute="bottom" id="RCT-Sn-xoy"/>
@@ -239,6 +255,7 @@
                     <connections>
                         <outlet property="calendarView" destination="hx4-hj-moB" id="xN0-eT-g7h"/>
                         <outlet property="listTableView" destination="IiY-s6-C0p" id="D8b-nc-pda"/>
+                        <outlet property="scanWorkoutButton" destination="7wv-bp-GGA" id="9ae-hR-T5e"/>
                         <outlet property="segmentedControl" destination="2Oe-gD-jXD" id="SHV-tO-87F"/>
                         <outlet property="segmentedControlContainerView" destination="2Oe-gD-jXD" id="bPy-Tq-Zt0"/>
                         <outlet property="weekdayContainerView" destination="Kjz-wY-iG2" id="AoP-ls-kXd"/>
