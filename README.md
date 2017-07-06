@@ -1,6 +1,12 @@
 # BenchTracker_iOS
 ## Intro
-This app uses Core Data to record, analyze, and display a user's workouts through cataloging date, duration, exercises, sets, rep details, and more. In addition, the local Core Data stores are regularly synced with [Amazon Web Services](https://aws.amazon.com) servers so they can be synced across devices and eventually cross-platform. By using a simple username system, a user can easily log into their account on any iOS device ad keep track of their workout. Additionaly, users can export their workouts to PDF form and print them so they can be saved phyically in addition to electronically.
+This app uses Core Data to record, analyze, and display a user's workouts through cataloging date, duration, exercises, sets, rep details, and more. In addition, the local Core Data stores are regularly synced with [Amazon Web Services](https://aws.amazon.com) servers so they can be synced across devices and eventually cross-platform. By using a simple username system, a user can easily log into their account on any iOS device ad keep track of their workout. Additionaly, users can export their workouts to PDF form and print them so they can be saved phyically in addition to electronically. QR codes included on the pdf can be used to re-digitize the workout at any time or create an empty replica.
+
+#### Backend Syncing
+Whenever a user opens up their app, the user with the matching ```username``` is pulled from DynamoDB. Both user's recent edits are then compared and the appropriate workouts are downloaded and deleted. The local and server exercise type list versions are then compared to determine whether or not an updated version must be downloaded. Whenever either of these updates are made, the fetched AWS object must be translated into its Core Data counterpart and vice versa when uploading. To save space and speed up server calls, certain data such as exercises are strategically converted to json format. Translating back and forth provides the advantage of speed and accessibility client-side and effieiency server-side.
+
+#### QR code generation and scanning
+To make sharing workouts between users more efficient, a system of QR code generation has been implimented to make downloading external workouts seamless. Furthermore, this implimentation can be used offline as it is not server-dependent. With the help of the MJExtension library, special techniques are used to dramatically downsize workouts to a more managable size (for example: one workout was shortened from 2600 characters to 550 without any data loss). These raw JSON strings are then translated in QR codes and can be either displayed on the device itself or printed out. Any user is then welcome to scan the code and instantly either load the same workout with dates, durations, sets and more preserved or use it as a template for their own workout (no sets etc.).
 
 ## Installation
 #### AWS Servers
@@ -32,12 +38,13 @@ In order to get the app to fully function correctly, the file 'BenchTrackerKeys.
 #### Cocoapods
 [Cocoapods](https://cocoapods.org) is a dependency manager for Swift and ObjC projects. This app does not require additional setup to enable the pods to be used. This app uses the following pods and frameowrks:
 * [AWS iOS SDK](https://github.com/aws/aws-sdk-ios) - database solution
-* [JSONModel](https://github.com/jsonmodel/jsonmodel) - data translation for server
+* [JSONModel](https://github.com/jsonmodel/jsonmodel) - JSON serialization for server
 * [ZFDragableModalTransition](https://github.com/zoonooz/ZFDragableModalTransition) - popup views
 * [HMSegmentedControl](https://github.com/HeshamMegid/HMSegmentedControl) - custom segmented control
 * [FSCalendar](https://github.com/WenchaoD/FSCalendar) - calendar view
 * [SWTableViewCell](https://github.com/CEWendel/SWTableViewCell) - swipe-to-delete workout cells
-* [MJExtension](https://github.com/CoderMJLee/MJExtension) - QR code data serialization
+* [MJExtension](https://github.com/CoderMJLee/MJExtension) - workout JSON serialization for QR codes
+* [MMQRCodeScanner](https://github.com/dexianyinjiu/MMQRCodeScanner) - QR code generation and scanning
 * [Core Data](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/CoreData/index.html) - on-device data storage
 * [Core Graphics / Text](https://developer.apple.com/library/content/documentation/StringsTextFonts/Conceptual/CoreText_Programming/Overview/Overview.html) - workout PDF generation
 
@@ -62,5 +69,9 @@ In order to get the app to fully function correctly, the file 'BenchTrackerKeys.
 <img src="./Screenshots/image9.png" alt="Drawing" width="300 px"/>
 <img src="./Screenshots/image10.png" alt="Drawing" width="300 px"/>
 
-#### Export Workout to PDF
+#### Export workout to PDF
 <img src="./Screenshots/image11.png" alt="Drawing" width="300 px"/>
+
+#### QR code generation and scanning
+<img src="./Screenshots/image12.png" alt="Drawing" width="300 px"/>
+<img src="./Screenshots/image13.png" alt="Drawing" width="300 px"/>
