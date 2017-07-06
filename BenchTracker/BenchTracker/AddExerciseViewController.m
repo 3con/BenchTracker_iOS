@@ -18,7 +18,7 @@
 
 @property (nonatomic) NSDictionary *exerciseTypeColors;
 
-@property (nonatomic) NSMutableDictionary <NSIndexPath *, NSString *> *selectedIterations;
+@property (nonatomic) NSMutableDictionary <NSString *, NSString *> *selectedIterations; //name, iteration
 
 @property (nonatomic) BOOL supersettingEnabled;
 
@@ -54,11 +54,12 @@
 
 - (void)loadSearchBar {
     self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+    self.searchController.delegate = self;
     self.searchController.searchResultsUpdater = self;
     self.searchController.dimsBackgroundDuringPresentation = NO;
     self.searchController.searchBar.delegate = self;
     self.searchController.searchBar.barTintColor = [UIColor colorWithRed:20/255.0 green:20/255.0 blue:84/255.0 alpha:1];
-    self.searchController.searchBar.tintColor = self.addExerciseButton.backgroundColor;
+    self.searchController.searchBar.tintColor = [UIColor whiteColor];
     self.searchController.searchBar.layer.borderWidth = 1;
     self.searchController.searchBar.layer.borderColor = self.searchController.searchBar.barTintColor.CGColor;
     self.tableView.tableHeaderView = self.searchController.searchBar;
@@ -95,8 +96,9 @@
 - (IBAction)addExerciseButtonPressed:(UIButton *)sender {
     NSMutableArray <NSArray *> *exerciseTIs = [[NSMutableArray alloc] init];
     for (NSIndexPath *path in self.tableView.indexPathsForSelectedRows) {
-        NSString *iteration = self.selectedIterations[path];
-        [exerciseTIs addObject: @[[self.fetchedResultsController objectAtIndexPath:path], (iteration) ? iteration : [NSNull null]]];
+        BTExerciseType *type = [self.fetchedResultsController objectAtIndexPath:path];
+        NSString *iteration = self.selectedIterations[type.name];
+        [exerciseTIs addObject: @[type, (iteration) ? iteration : [NSNull null]]];
     }
     [self.delegate addExerciseViewController:self willDismissWithSelectedTypeIterationCombinations:exerciseTIs];
     [self dismissViewControllerAnimated:YES completion:^{
@@ -124,7 +126,7 @@
 
 #pragma mark - searchController methods
 
-- (void)searchForText: (NSString *) string scope: (NSInteger) index {
+- (void)searchForText:(NSString *)string scope:(NSInteger)index {
     self.searchString = string;
     NSError *error;
     if (self.searchString.length)
@@ -148,10 +150,16 @@
     [self updateSearchResultsForSearchController:self.searchController];
 }
 
+- (void)didPresentSearchController:(UISearchController *)searchController {
+    [self.searchController.searchBar becomeFirstResponder];
+    NSLog(@"present");
+}
+
 #pragma mark - searchBar delegate mathods
 
-- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
-    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 45, 0);
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar*)searchBar {
+    [self.searchController setActive:YES];
+    return YES;
 }
 
 #pragma mark - tableView dataSource
@@ -173,10 +181,6 @@
     [header.textLabel setTextColor:[UIColor whiteColor]];
     NSString *key = [_fetchedResultsController sections][section].name;
     header.contentView.backgroundColor = self.exerciseTypeColors[key];
-    
-    // Another way to set the background color
-    // Note: does not preserve gradient effect of original header
-    // header.contentView.backgroundColor = [UIColor blackColor];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -190,8 +194,7 @@
     cell.color = self.exerciseTypeColors[key];
     if (!cell.color) cell.color = [UIColor groupTableViewBackgroundColor];
     [cell loadExerciseType:type];
-    if (self.selectedIterations[indexPath])
-        [cell loadIteration:self.selectedIterations[indexPath]];
+    if (self.selectedIterations[type.name]) [cell loadIteration:self.selectedIterations[type.name]];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -215,23 +218,26 @@
         NSIndexPath *indexPath = [tableView indexPathForRowAtPoint:[sender locationInView:sender.view]];
         AddExerciseTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         CGPoint pointInCell = [sender locationInView:cell];
-        if (!cell.cellSelected && pointInCell.x > cell.frame.size.width-120)
+        if (!cell.cellSelected && pointInCell.x > cell.frame.size.width-120) {
+            [self.searchController setActive:NO];
             [self presentIterationSelectionViewControllerWithOriginPoint:[sender locationInView:self.view] indexPath:indexPath];
+        }
     }
 }
 
 #pragma mark - tableView delegate
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    BTExerciseType *type = [_fetchedResultsController objectAtIndexPath:indexPath];
     if ([tableView.indexPathsForSelectedRows containsObject:indexPath]) {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
-        [self.selectedIterations removeObjectForKey:indexPath];
+        [self.selectedIterations removeObjectForKey:type.name];
         [self tableView:tableView didDeselectRowAtIndexPath:indexPath];
         return nil;
     }
     else if (tableView.indexPathsForSelectedRows.count == 5) {
         [tableView deselectRowAtIndexPath:tableView.indexPathsForSelectedRows.firstObject animated:YES];
-        [self.selectedIterations removeObjectForKey:tableView.indexPathsForSelectedRows.firstObject];
+        [self.selectedIterations removeObjectForKey:type.name];
     }
     return indexPath;
 }
@@ -258,13 +264,23 @@
                                  forState:UIControlStateNormal];
 }
 
+#pragma mark - scrollView delegate
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    if (self.searchController.searchBar.isFirstResponder) [self.searchController.searchBar resignFirstResponder];
+}
+
 #pragma mark - iterationSelectionVC delegate
 
 - (void)iterationSelectionVC:(IterationSelectionViewController *)iterationVC willDismissWithSelectedIteration:(NSString *)iteration {
     NSIndexPath *indexPath = [_fetchedResultsController indexPathForObject:iterationVC.exerciseType];
     AddExerciseTableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
     [cell loadIteration:iteration];
-    self.selectedIterations[indexPath] = iteration;
+    self.selectedIterations[iterationVC.exerciseType.name] = iteration;
+}
+
+- (void)iterationSelectionVCDidDismiss:(IterationSelectionViewController *)iterationVC {
+    
 }
 
 #pragma mark - view handling
@@ -321,6 +337,8 @@
         case NSFetchedResultsChangeDelete:
             [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
             break;
+        case NSFetchedResultsChangeUpdate: break;
+        case NSFetchedResultsChangeMove: break;
     }
 }
 

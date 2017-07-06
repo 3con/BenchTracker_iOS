@@ -13,6 +13,7 @@
 
 @protocol IterationSelectionViewControllerDelegate <NSObject>
 - (void)iterationSelectionVC:(IterationSelectionViewController *)iterationVC willDismissWithSelectedIteration:(NSString *)iteration;
+- (void)iterationSelectionVCDidDismiss:(IterationSelectionViewController *)iterationVC;
 @end
 
 @interface IterationSelectionViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate>

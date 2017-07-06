@@ -9,17 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "LoginViewController.h"
 #import "WorkoutViewController.h"
-#import "SettingsViewController.h"
 #import "WorkoutSelectionViewController.h"
 #import "BTQRScannerViewController.h"
+#import "AnalyticsViewController.h"
 #import "WeekdayView.h"
 #import "FSCalendar.h"
 #import "SWTableViewCell.h"
 
-@interface MainViewController : UIViewController <WorkoutViewControllerDelegate, SettingsViewControllerDelegate, LoginViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance, SWTableViewCellDelegate, WeekdayViewDelegate, BTQRScannerViewControllerDelegate>
+@interface MainViewController : UIViewController <WorkoutViewControllerDelegate, LoginViewControllerDelegate, AnalyticsViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance, SWTableViewCellDelegate, WeekdayViewDelegate, BTQRScannerViewControllerDelegate>
 
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
-@property NSManagedObjectContext *context;
+@property (nonatomic) NSManagedObjectContext *context;
 
 @property (weak, nonatomic) IBOutlet UIView *segmentedControlContainerView;
 

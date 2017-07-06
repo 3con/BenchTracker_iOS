@@ -92,8 +92,8 @@
     [self.weekdayView reloadData];
 }
 
-- (IBAction)settingsButtonPressed:(UIButton *)sender {
-    [self presentSettingsViewController];
+- (IBAction)analyicsButtonPressed:(UIButton *)sender {
+    [self presentAnalyticsViewController];
 }
 
 - (IBAction)scanWorkoutButtonPressed:(UIButton *)sender {
@@ -337,20 +337,20 @@
     [self presentViewController:loginVC animated:YES completion:nil];
 }
 
-- (void)presentSettingsViewController {
-    SettingsViewController *settingsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"s"];
-    settingsVC.delegate = self;
-    settingsVC.context = self.context;
-    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:settingsVC];
+- (void)presentAnalyticsViewController {
+    AnalyticsViewController *analyiticsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"a"];
+    analyiticsVC.delegate = self;
+    analyiticsVC.context = self.context;
+    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:analyiticsVC];
     self.animator.bounces = NO;
     self.animator.dragable = NO;
     self.animator.behindViewAlpha = 0.8;
     self.animator.behindViewScale = 0.92;
     self.animator.transitionDuration = 0.5;
     self.animator.direction = ZFModalTransitonDirectionBottom;
-    settingsVC.transitioningDelegate = self.animator;
-    settingsVC.modalPresentationStyle = UIModalPresentationFullScreen;
-    [self presentViewController:settingsVC animated:YES completion:nil];
+    analyiticsVC.transitioningDelegate = self.animator;
+    analyiticsVC.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self presentViewController:analyiticsVC animated:YES completion:nil];
 }
 
 - (void)presentWorkoutViewControllerWithWorkout: (BTWorkout *)workout {

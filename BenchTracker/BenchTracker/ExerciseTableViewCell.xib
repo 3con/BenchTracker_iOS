@@ -34,7 +34,7 @@
                 <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ay-7l-wv5">
                     <rect key="frame" x="5" y="5" width="403" height="55"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="abcdefghijklmnopqrstuvwxyz" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="17" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lUd-aL-ZKX">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Testing having a very long name to make sure" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="17" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lUd-aL-ZKX">
                             <rect key="frame" x="10" y="6" width="293" height="23"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="23" id="fR2-7h-dKt"/>
@@ -86,7 +86,7 @@
                 <constraint firstItem="3QT-9B-pVr" firstAttribute="leading" secondItem="G3U-Ip-JYx" secondAttribute="leading" priority="750" constant="5" id="COg-yJ-XHU"/>
                 <constraint firstAttribute="bottom" secondItem="3QT-9B-pVr" secondAttribute="bottom" id="Cdu-Hx-UJK"/>
                 <constraint firstItem="3QT-9B-pVr" firstAttribute="centerX" secondItem="G3U-Ip-JYx" secondAttribute="centerX" id="OmK-YD-L8s"/>
-                <constraint firstItem="4ay-7l-wv5" firstAttribute="leading" secondItem="G3U-Ip-JYx" secondAttribute="leading" priority="750" constant="5" id="RQb-wI-uVC"/>
+                <constraint firstItem="4ay-7l-wv5" firstAttribute="leading" secondItem="G3U-Ip-JYx" secondAttribute="leading" priority="999" constant="5" id="RQb-wI-uVC"/>
                 <constraint firstItem="1bG-Et-wWm" firstAttribute="top" secondItem="G3U-Ip-JYx" secondAttribute="top" id="Unh-OL-q9L"/>
                 <constraint firstAttribute="bottom" secondItem="4ay-7l-wv5" secondAttribute="bottom" id="dl2-6q-lv2"/>
                 <constraint firstItem="4ay-7l-wv5" firstAttribute="centerX" secondItem="G3U-Ip-JYx" secondAttribute="centerX" id="eSp-Hn-YbT"/>

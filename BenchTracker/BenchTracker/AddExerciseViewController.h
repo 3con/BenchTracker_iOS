@@ -18,7 +18,7 @@
 - (void) addExerciseViewController:(AddExerciseViewController *)addVC willDismissWithSelectedTypeIterationCombinations:(NSArray <NSArray *> *)selectedTypeIterationCombinations;
 @end
 
-@interface AddExerciseViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating, UIGestureRecognizerDelegate, IterationSelectionViewControllerDelegate>
+@interface AddExerciseViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating, UIGestureRecognizerDelegate, IterationSelectionViewControllerDelegate, UIScrollViewDelegate>
 
 @property id<AddExerciseViewControllerDelegate> delegate;
 

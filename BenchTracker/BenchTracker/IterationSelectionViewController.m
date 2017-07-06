@@ -53,7 +53,7 @@
     if (self.tempIerations.count == 0) {
         [self.delegate iterationSelectionVC:self willDismissWithSelectedIteration:nil];
         [self dismissViewControllerAnimated:NO completion:^{
-            
+            [self.delegate iterationSelectionVCDidDismiss:self];
         }];
     }
     else [self animateIn];
@@ -171,7 +171,9 @@
         self.backgroundView.alpha = 0.0;
         self.tableView.alpha = 0.0;
     } completion:^(BOOL finished) {
-        [self dismissViewControllerAnimated:NO completion:nil];
+        [self dismissViewControllerAnimated:NO completion:^{
+            [self.delegate iterationSelectionVCDidDismiss:self];
+        }];
     }];
 }
 
