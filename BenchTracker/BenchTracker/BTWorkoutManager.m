@@ -42,6 +42,21 @@
 #pragma mark - client only
 
 - (NSString *)jsonForWorkout:(BTWorkout *)workout {
+    [BTJSONWorkout mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
+        return @{@"uuid" : @"u",
+                 @"name" : @"n",
+                 @"date" : @"d",
+                 @"duration" : @"t",
+                 @"summary" : @"s",
+                 @"supersets" : @"z",
+                 @"exercises" : @"e", }; }];
+    [BTJSONExercise mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
+        return @{@"name" : @"n",
+                 @"iteration" : @"i",
+                 @"date" : @"d",
+                 @"category" : @"c",
+                 @"style" : @"s",
+                 @"sets" : @"x" }; }];
     BTJSONWorkout *workoutModel = [[BTJSONWorkout alloc] init];
     workoutModel.uuid = workout.uuid;
     workoutModel.name = workout.name;
@@ -67,12 +82,32 @@
         [workoutModel.supersets addObject:[s substringFromIndex:1]];
     }
     NSDictionary *json = workoutModel.mj_keyValues;
-    [self createWorkoutWithJSON:json];
-    return [NSString stringWithFormat:@"%@",json];
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:json options:0 error:&error];
+    if (error) NSLog(@"Workout Manager dict to string error: %@",error);
+    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    NSLog(@"%ld",jsonString.length);
+    [self createWorkoutWithJSON:jsonString];
+    return [NSString stringWithFormat:@"%@",jsonString];
 }
 
 - (BTWorkout *)createWorkoutWithJSON:(NSString *)jsonString {
     [BTJSONWorkout mj_setupObjectClassInArray:^NSDictionary *{return @{@"exercises" : @"BTJSONExercise"};}];
+    [BTJSONWorkout mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
+        return @{@"uuid" : @"u",
+                 @"name" : @"n",
+                 @"date" : @"d",
+                 @"duration" : @"t",
+                 @"summary" : @"s",
+                 @"supersets" : @"z",
+                 @"exercises" : @"e", }; }];
+    [BTJSONExercise mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
+        return @{@"name" : @"n",
+                 @"iteration" : @"i",
+                 @"date" : @"d",
+                 @"category" : @"c",
+                 @"style" : @"s",
+                 @"sets" : @"x" }; }];
     BTJSONWorkout *workoutModel = [BTJSONWorkout mj_objectWithKeyValues:jsonString];
     BTWorkout *workout = [NSEntityDescription insertNewObjectForEntityForName:@"BTWorkout" inManagedObjectContext:self.context];
     workout.uuid = workoutModel.uuid;

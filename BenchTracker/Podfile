@@ -14,6 +14,7 @@ target 'BenchTracker' do
   pod 'FSCalendar'
   pod 'SWTableViewCell'
   pod 'MJExtension'
+  pod 'MMQRCodeScanner'
 
   # Pods for BenchTracker
 

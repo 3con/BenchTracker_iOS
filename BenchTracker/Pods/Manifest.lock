@@ -10,6 +10,7 @@ PODS:
   - HMSegmentedControl (1.5.4)
   - JSONModel (1.7.0)
   - MJExtension (3.0.13)
+  - MMQRCodeScanner (1.1)
   - SWTableViewCell (0.3.7)
   - ZFDragableModalTransition (0.6)
 
@@ -21,6 +22,7 @@ DEPENDENCIES:
   - HMSegmentedControl
   - JSONModel
   - MJExtension
+  - MMQRCodeScanner
   - SWTableViewCell
   - ZFDragableModalTransition
 
@@ -33,9 +35,10 @@ SPEC CHECKSUMS:
   HMSegmentedControl: b25bc4ec44766e073d62c473188fb354ee244b76
   JSONModel: 840bc0fcffb24b8454d2c026bf26fea454b8e98d
   MJExtension: 5932755f451458eefa24239358817f8d291240c7
+  MMQRCodeScanner: aa923a6297cfb47b214aac4a7c5e78495d7fc8c0
   SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
   ZFDragableModalTransition: 0d294eaaba6edfcb9839595de765f9ca06a4b524
 
-PODFILE CHECKSUM: 60a421efe46525e236d0c2e8939a6de5e970ba68
+PODFILE CHECKSUM: 8ebbe16944c7f69be56dadc41a95a181c6b909af
 
 COCOAPODS: 1.2.1

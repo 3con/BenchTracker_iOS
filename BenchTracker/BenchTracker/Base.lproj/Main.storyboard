@@ -305,7 +305,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1J2-jh-rSG">
-                                        <rect key="frame" x="377" y="30" width="25" height="25"/>
+                                        <rect key="frame" x="377" y="30.666666666666664" width="25" height="24.999999999999993"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="5Mb-IP-jsk"/>
                                             <constraint firstAttribute="width" constant="25" id="wth-w7-TbN"/>
@@ -315,6 +315,14 @@
                                         </state>
                                         <connections>
                                             <action selector="pdfButtonPressed:" destination="H2S-2B-J58" eventType="touchUpInside" id="cxx-rC-oMb"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lrz-Zq-IUE">
+                                        <rect key="frame" x="366" y="63" width="46" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="QR"/>
+                                        <connections>
+                                            <action selector="qrButtonPressed:" destination="H2S-2B-J58" eventType="touchUpInside" id="UJf-El-TtS"/>
                                         </connections>
                                     </button>
                                 </subviews>

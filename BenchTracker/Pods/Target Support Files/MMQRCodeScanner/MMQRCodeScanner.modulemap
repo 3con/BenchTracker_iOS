@@ -1,0 +1,6 @@
+framework module MMQRCodeScanner {
+  umbrella header "MMQRCodeScanner-umbrella.h"
+
+  export *
+  module * { export * }
+}

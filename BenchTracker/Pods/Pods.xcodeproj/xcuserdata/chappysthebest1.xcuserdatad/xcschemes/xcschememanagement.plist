@@ -44,6 +44,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>MMQRCodeScanner.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-BenchTracker.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -67,6 +72,21 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>108D9A24E65BF2A0521C1D059C94C45E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1CB26B3CFF88A17D80304E6CB454BB5B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4820ABD5CCD86B622EFA0EF07928BA59</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>53C6112213829CB147F47E473C93F271</key>
 		<dict>
 			<key>primary</key>
@@ -87,17 +107,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7AB08A89A8905C0655CF1258DFF7676A</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>9F7098779713B711F6C591B62A41F242</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>A9DB7342C042D5BC1D83AEEE32826F20</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -112,12 +122,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D7EE09DB7E2257B24442658BD14C2977</key>
+		<key>D96E772729B009E0EA59AED2ABA23EFC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D96E772729B009E0EA59AED2ABA23EFC</key>
+		<key>DAF8DB1B7B94DF50FCABD396278499C2</key>
 		<dict>
 			<key>primary</key>
 			<true/>

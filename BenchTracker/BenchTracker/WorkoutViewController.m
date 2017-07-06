@@ -14,6 +14,7 @@
 #import "ExerciseTableViewCell.h"
 #import "PassTouchesView.h"
 #import "BTPDFGenerator.h"
+#import "MMQRCodeMakerUtil.h"
 
 @interface WorkoutViewController ()
 
@@ -45,7 +46,6 @@
     self.deleteWorkoutButton.clipsToBounds = YES;
     self.workoutManager = [BTWorkoutManager sharedInstance];
     if (!self.workout) self.workout = [self.workoutManager createWorkout];
-    [self.workoutManager jsonForWorkout:self.workout];
     self.nameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:self.workout.name
         attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor], NSFontAttributeName:[UIFont italicSystemFontOfSize:22]}];
     self.tempSupersets = [NSKeyedUnarchiver unarchiveObjectWithData:self.workout.supersets];
@@ -86,6 +86,13 @@
     [printController presentAnimated:YES completionHandler:^(UIPrintInteractionController *printInteractionController, BOOL completed, NSError *error){
         if (!completed && error) NSLog(@"FAILED! due to error in domain %@ with error code %lu", error.domain, (long)error.code);
     }];
+}
+
+- (IBAction)qrButtonPressed:(id)sender {
+    [self updateWorkout];
+    NSString *jsonString = [self.workoutManager jsonForWorkout:self.workout];
+    UIImage *qr = [MMQRCodeMakerUtil qrImageWithContent:jsonString logoImage:nil qrColor:nil qrWidth:400];
+    NSLog(@"gen");
 }
 
 - (IBAction)addExerciseButtonPressed:(UIButton *)sender {
