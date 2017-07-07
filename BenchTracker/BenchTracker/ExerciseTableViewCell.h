@@ -20,6 +20,8 @@
 
 @property (nonatomic) BTExercise *exercise;
 
+@property (nonatomic) UIColor *color;
+
 @property (nonatomic) NSString *supersetMode;
 
 - (void)loadExercise:(BTExercise *)exercise;

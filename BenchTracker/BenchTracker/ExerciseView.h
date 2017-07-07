@@ -14,6 +14,8 @@
 
 @property (nonatomic) BOOL isDeleted;
 
+@property (nonatomic) UIColor *color;
+
 - (void)loadExercise:(BTExercise *)exercise;
 
 - (BTExercise *)getExercise;

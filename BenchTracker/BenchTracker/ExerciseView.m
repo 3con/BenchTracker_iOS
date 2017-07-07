@@ -58,6 +58,12 @@
 - (void)loadExercise:(BTExercise *)exercise {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(exerciseViewScrollNotification)
                                                  name:@"ExerciseViewScroll" object:nil];
+    if (self.color) {
+        self.contentView.backgroundColor = self.color;
+        UIColor *darkerColor = [self darkerColorForColor:self.color];
+        for (UITextField *tF in @[self.textField, self.leftTextField, self.centerTextField, self.rightTextField])
+            tF.backgroundColor = darkerColor;
+    }
     self.isDeleted = NO;
     self.deletedView.alpha = 0;
     self.deletedView.userInteractionEnabled = NO;
@@ -75,7 +81,7 @@
     SetFlowLayout *flowLayout = [[SetFlowLayout alloc] init];
     flowLayout.itemSize = CGSizeMake(70, 45);
     flowLayout.minimumInteritemSpacing = 10.0;
-    flowLayout.sectionInset = UIEdgeInsetsMake(10, 10, 7, 10);
+    flowLayout.sectionInset = UIEdgeInsetsMake(7, 10, 8, 10);
     flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     [self.collectionView setCollectionViewLayout:flowLayout];
     [self.collectionView registerNib:[UINib nibWithNibName:@"SetCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"Cell"];
@@ -293,13 +299,13 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) { //first cell: add set
         UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ACell" forIndexPath:indexPath];
-        cell.backgroundColor = [UIColor colorWithRed:30/255.0 green:30/255.0 blue:128/255.0 alpha:1];
+        cell.backgroundColor = [self darkerColorForColor:self.color];
         cell.layer.cornerRadius = 12;
         cell.clipsToBounds = YES;
         if (cell.subviews.count == 1) {
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, -2, 70, 45)];
             label.backgroundColor = [UIColor clearColor];
-            label.textColor = [UIColor colorWithRed:95/255.0 green:100/255.0 blue:255/255.0 alpha:1];
+            label.textColor = [self lighterColorForColor:self.color];
             label.text = @"+";
             label.textAlignment = NSTextAlignmentCenter;
             label.font = [UIFont systemFontOfSize:34 weight:UIFontWeightHeavy];
@@ -308,6 +314,7 @@
         return cell;
     }
     SetCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
+    cell.color = [self darkerColorForColor:self.color];
     [cell loadSetWithString:self.tempSets[self.tempSets.count-(indexPath.row-1)-1]];
     return cell;
 }
@@ -407,6 +414,22 @@
     if (textField == self.rightTextField && rStr.length <= 4) return YES;
     if (rStr.length <= 3) return YES;
     return NO;
+}
+
+#pragma mark - color methods
+
+- (UIColor *)lighterColorForColor:(UIColor *)color {
+    CGFloat h, s, b, a;
+    if ([color getHue:&h saturation:&s brightness:&b alpha:&a])
+        return [UIColor colorWithHue:h saturation:s brightness:MIN(b*1.6, 1.0) alpha:a];
+    return nil;
+}
+
+- (UIColor *)darkerColorForColor:(UIColor *)color {
+    CGFloat h, s, b, a;
+    if ([color getHue:&h saturation:&s brightness:&b alpha:&a])
+        return [UIColor colorWithHue:h saturation:s brightness:b*0.8 alpha:a];
+    return nil;
 }
 
 /*

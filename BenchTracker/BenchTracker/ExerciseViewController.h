@@ -10,6 +10,7 @@
 
 @class ExerciseViewController;
 @class BTExercise;
+@class BTSettings;
 
 @protocol ExerciseViewControllerDelegate <NSObject>
 @required
@@ -20,6 +21,8 @@
 @interface ExerciseViewController : UIViewController <UIScrollViewDelegate>
 
 @property id<ExerciseViewControllerDelegate> delegate;
+
+@property (nonatomic) BTSettings *settings;
 
 @property (nonatomic) NSArray <BTExercise *> *exercises;
 

@@ -16,11 +16,14 @@
 #import "BTPDFGenerator.h"
 #import "MMQRCodeMakerUtil.h"
 #import "QRDisplayViewController.h"
+#import "BTSettings+CoreDataClass.h"
 
 @interface WorkoutViewController ()
 
 @property (nonatomic) ZFModalTransitionAnimator *animator;
 @property BTWorkoutManager *workoutManager;
+@property (nonatomic) BTSettings *settings;
+@property (nonatomic) NSDictionary *exerciseTypeColors;
 
 @property (nonatomic) NSMutableArray <NSMutableArray <NSNumber *> *> *tempSupersets;
 
@@ -35,6 +38,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"BTSettings"];
+    NSError *error;
+    self.settings = [self.context executeFetchRequest:fetchRequest error:&error].firstObject;
+    if (error) NSLog(@"settings fetcher errror: %@",error);
+    if (self.settings) self.exerciseTypeColors = [NSKeyedUnarchiver unarchiveObjectWithData:self.settings.exerciseTypeColors];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -162,10 +170,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ExerciseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    BTExercise *exercise = self.workout.exercises[indexPath.row];
     if (cell == nil) cell = [[NSBundle mainBundle] loadNibNamed:@"ExerciseTableViewCell" owner:self options:nil].firstObject;
     cell.supersetMode = [self supersetTypeForIndexPath:indexPath];
     cell.delegate = self;
-    [cell loadExercise:self.workout.exercises[indexPath.row]];
+    cell.color = self.exerciseTypeColors[exercise.category];
+    [cell loadExercise:exercise];
     return cell;
 }
 
@@ -331,8 +341,9 @@
 
 - (void)presentExerciseViewControllerWithExercises: (NSArray<BTExercise *> *)exercises {
     ExerciseViewController *eVC = [self.storyboard instantiateViewControllerWithIdentifier:@"e"];
-    eVC.exercises = exercises;
     eVC.delegate = self;
+    eVC.exercises = exercises;
+    eVC.settings = self.settings;
     self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:eVC];
     self.animator.bounces = NO;
     self.animator.dragable = NO;

@@ -10,6 +10,8 @@
 
 @interface SetCollectionViewCell : UICollectionViewCell
 
+@property (nonatomic) UIColor *color;
+
 - (void)loadSetWithString: (NSString *)set;
 
 - (void)performDeleteAnimationWithDuration: (float)duration;

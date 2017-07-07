@@ -86,7 +86,8 @@
     [output setMetadataObjectsDelegate:self queue:dispatch_get_main_queue()];
     if ([self.inputDevice lockForConfiguration:&error]) {
         [self.inputDevice setExposureMode:AVCaptureExposureModeContinuousAutoExposure];
-        [self.inputDevice setTorchMode:AVCaptureTorchModeAuto];
+        if (self.inputDevice.torchAvailable)
+            [self.inputDevice setTorchMode:AVCaptureTorchModeAuto];
         [self.inputDevice unlockForConfiguration];
     }
     [self.session setSessionPreset:AVCaptureSessionPreset1920x1080];
@@ -101,7 +102,8 @@
     }];
     [self.view.layer insertSublayer:layer atIndex:0];
     [self.view insertSubview:self.spinner atIndex:1];
-    [self.view insertSubview:self.flashlightView atIndex:1];
+    if (self.inputDevice.torchAvailable)
+        [self.view insertSubview:self.flashlightView atIndex:1];
     [self.view insertSubview:self.warnView atIndex:1];
     [self.view insertSubview:self.noteLab atIndex:1];
     [self.view insertSubview:self.scanView atIndex:1];

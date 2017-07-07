@@ -67,6 +67,11 @@
     self.categoryLabel.text = exercise.category;
     self.maxCells = (int)self.collectionView.frame.size.width / 70;
     [self.collectionView reloadData];
+    if (self.color) {
+        self.containerView.backgroundColor = self.color;
+        self.aboveSupersetView.backgroundColor = self.color;
+        self.belowSupersetView.backgroundColor = self.color;
+    }
 }
 
 #pragma mark - collectionView datasource

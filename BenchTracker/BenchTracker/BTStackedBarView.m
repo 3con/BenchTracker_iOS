@@ -51,7 +51,7 @@
                 [UIView beginAnimations:nil context:NULL];
                 [UIView setAnimationDuration:0];
                 [barLabel setTransform:CGAffineTransformMakeRotation(M_PI / 2)];
-                barLabel.frame = CGRectMake(barXPos, 0, 10, self.bounds.size.height);
+                barLabel.frame = CGRectMake(barXPos, 2, 10, self.bounds.size.height-4);
                 [UIView commitAnimations];
                 barLabel.text = [[self.dataSource stackedBarView:self nameForBarAtIndex:i] componentsSeparatedByString:@" "].firstObject;
                 barLabel.font = [UIFont systemFontOfSize:8 weight:UIFontWeightBold];

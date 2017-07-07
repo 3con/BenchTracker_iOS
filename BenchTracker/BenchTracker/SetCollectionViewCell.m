@@ -30,6 +30,7 @@
 }
 
 - (void)loadSetWithString: (NSString *)set {
+    if (self.color) self.containerView.backgroundColor = self.color;
     self.containerView.frame = CGRectMake(0, 0, 70, 45);
     NSArray *strings = [set componentsSeparatedByString:@" "];
     if ([strings[0] isEqualToString:@"~"]) { //custom

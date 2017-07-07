@@ -9,6 +9,7 @@
 #import "ExerciseViewController.h"
 #import "ExerciseView.h"
 #import "BTExercise+CoreDataClass.h"
+#import "BTSettings+CoreDataClass.h"
 
 @interface ExerciseViewController ()
 
@@ -34,8 +35,11 @@
     self.doneButton.clipsToBounds = YES;
     self.exerciseViews = [[NSMutableArray alloc] init];
     int h = 185;
+    NSDictionary *exerciseTypeColors;
+    if (self.settings) exerciseTypeColors = [NSKeyedUnarchiver unarchiveObjectWithData:self.settings.exerciseTypeColors];
     for (BTExercise *exercise in self.exercises) {
         ExerciseView *view = [[NSBundle mainBundle] loadNibNamed:@"ExerciseView" owner:self options:nil].firstObject;
+        view.color = exerciseTypeColors[exercise.category];
         [view loadExercise:exercise];
         [self.exerciseViews addObject:view];
         [self.contentView addSubview:view];
