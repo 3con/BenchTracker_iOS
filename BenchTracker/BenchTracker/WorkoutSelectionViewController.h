@@ -10,9 +10,17 @@
 #import <CoreData/CoreData.h>
 #import "SWTableViewCell.h"
 
+@class WorkoutSelectionViewController;
 @class BTWorkoutManager;
+@class BTWorkout;
+
+@protocol WorkoutSelectionViewControllerDelegate <NSObject>
+- (void)workoutSelectionVC:(WorkoutSelectionViewController *)wsVC didDismissWithSelectedWorkout:(BTWorkout *)workout;
+@end
 
 @interface WorkoutSelectionViewController : UIViewController <UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, SWTableViewCellDelegate>
+
+@property (nonatomic) id<WorkoutSelectionViewControllerDelegate> delegate;
 
 @property (nonatomic) NSManagedObjectContext *context;
 @property (nonatomic) BTWorkoutManager *workoutManager;

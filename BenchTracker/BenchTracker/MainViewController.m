@@ -373,6 +373,7 @@
 
 - (void)presentWorkoutSelectionViewControllerWithOriginPoint:(CGPoint)point date:(NSDate *)date {
     WorkoutSelectionViewController *wsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ws"];
+    wsVC.delegate = self;
     wsVC.context = self.context;
     wsVC.workoutManager = self.workoutManager;
     wsVC.date = date;
@@ -424,6 +425,12 @@
 - (void)loginViewController:(LoginViewController *)loginVC willDismissWithUser:(BTUser *)user {
     self.user = user;
     [self loadUser];
+}
+
+#pragma mark - workoutSelectionVC delegate
+
+- (void)workoutSelectionVC:(WorkoutSelectionViewController *)wsVC didDismissWithSelectedWorkout:(BTWorkout *)workout {
+    [self presentWorkoutViewControllerWithWorkout:workout];
 }
 
 #pragma mark - fetchedResultsController delegate

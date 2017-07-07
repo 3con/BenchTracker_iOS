@@ -18,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet UIView *containingView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+@property (nonatomic) NSLayoutConstraint *tableHeightConstraint;
+
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 
 @property (nonatomic) BTSettings *settings;
@@ -38,15 +40,7 @@
     if (![[self fetchedResultsController] performFetch:&error]) {
         NSLog(@"Main fetch error: %@, %@", error, [error userInfo]);
     }
-    NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self.tableView
-                                                                 attribute:NSLayoutAttributeHeight
-                                                                 relatedBy:NSLayoutRelationEqual
-                                                                    toItem:nil
-                                                                 attribute:NSLayoutAttributeNotAnAttribute
-                                                                multiplier:1
-                                                                  constant:
-        (self.fetchedResultsController.sections[0].numberOfObjects == 0) ? 45+120 :45+60*self.fetchedResultsController.sections[0].numberOfObjects];
-    [self.view addConstraint:constraint];
+    [self.view addConstraint:self.tableHeightConstraint];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.scrollEnabled = NO;
@@ -164,8 +158,10 @@
 #pragma mark - tableView delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    //BTWorkout *workout = [_fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row-1 inSection:0]];
-    //[self presentWorkoutViewControllerWithWorkout:workout];
+    BTWorkout *workout = [_fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row-1 inSection:0]];
+    [self dismissViewControllerAnimated:YES completion:^{
+        [self.delegate workoutSelectionVC:self didDismissWithSelectedWorkout:workout];
+    }];
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -239,24 +235,28 @@
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
     UITableView *tableView = self.tableView;
+    NSIndexPath *newPath = [NSIndexPath indexPathForRow:newIndexPath.row+1 inSection:newIndexPath.section];
+    NSIndexPath *path = [NSIndexPath indexPathForRow:indexPath.row+1 inSection:indexPath.section];
     switch(type) {
         case NSFetchedResultsChangeInsert:
-            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
         case NSFetchedResultsChangeDelete:
-            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:path] withRowAnimation:UITableViewRowAnimationFade];
+            if (controller.sections[0].objects.count == 0)
+                [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
         case NSFetchedResultsChangeUpdate:
-            [self configureWorkoutCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+            [self configureWorkoutCell:[tableView cellForRowAtIndexPath:path] atIndexPath:path];
             break;
         case NSFetchedResultsChangeMove:
-            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:path] withRowAnimation:UITableViewRowAnimationFade];
+            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
     }
 }
 
-- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id )sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
+- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
     switch(type) {
         case NSFetchedResultsChangeInsert:
             [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
@@ -271,15 +271,23 @@
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
     [self.tableView endUpdates];
-    NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self.tableView
-                                                                 attribute:NSLayoutAttributeHeight
-                                                                 relatedBy:NSLayoutRelationEqual
-                                                                    toItem:nil
-                                                                 attribute:NSLayoutAttributeNotAnAttribute
-                                                                multiplier:1
-                                                                  constant:
-                                     (self.fetchedResultsController.sections[0].numberOfObjects == 0) ? 45+120 :45+60*self.fetchedResultsController.sections[0].numberOfObjects];
-    [self.view addConstraint:constraint];
+    [self.view removeConstraint:self.tableHeightConstraint];
+    [self.view addConstraint:self.tableHeightConstraint];
+}
+
+- (NSLayoutConstraint *)tableHeightConstraint {
+    if (!_tableHeightConstraint) {
+        _tableHeightConstraint = [NSLayoutConstraint constraintWithItem:self.tableView
+                                                              attribute:NSLayoutAttributeHeight
+                                                              relatedBy:NSLayoutRelationEqual
+                                                                 toItem:nil
+                                                              attribute:NSLayoutAttributeNotAnAttribute
+                                                             multiplier:1
+                                                               constant:0];
+    }
+    _tableHeightConstraint.constant = (self.fetchedResultsController.sections[0].numberOfObjects == 0) ?
+        45+120 : 45+60*self.fetchedResultsController.sections[0].numberOfObjects;
+    return _tableHeightConstraint;
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {

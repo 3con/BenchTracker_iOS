@@ -87,19 +87,28 @@
         label.backgroundColor = [UIColor clearColor];
         label.textColor = [UIColor colorWithRed:95/255.0 green:100/255.0 blue:255/255.0 alpha:1];
         label.textAlignment = NSTextAlignmentCenter;
-        label.font = [UIFont systemFontOfSize:12 weight:UIFontWeightMedium];
+        label.allowsDefaultTighteningForTruncation = YES;
+        label.minimumScaleFactor = 0.8;
         [cell addSubview:label];
     }
     else label = cell.subviews[1];
     if (self.tempSets.count > self.maxCells && indexPath.row == self.maxCells-1) {
         label.text = [NSString stringWithFormat:@"+%ld more",self.tempSets.count-self.maxCells];
-        label.font = [UIFont systemFontOfSize:10 weight:UIFontWeightBold];
+        label.font = [UIFont systemFontOfSize:8 weight:UIFontWeightHeavy];
     }
     else {
-        label.text = self.tempSets[indexPath.row];
-        label.font = [UIFont systemFontOfSize:12 weight:UIFontWeightMedium];
+        label.text = [self formattedSetForSet:self.tempSets[indexPath.row]];
+        label.font = [UIFont systemFontOfSize:10 weight:UIFontWeightMedium];
     }
     return cell;
+}
+
+- (NSString *)formattedSetForSet:(NSString *)set {
+    if ([set containsString:@"~"]) return [set substringFromIndex:2];
+    NSArray *a = [set componentsSeparatedByString:@" "];
+    if ([set containsString:@"s"])
+        return (a.count == 3) ? [NSString stringWithFormat:@"%@s (%@)", a[1], a[2]] : [NSString stringWithFormat:@"%@ secs", a[1]];
+    return (a.count == 2) ? [NSString stringWithFormat:@"%@x%@", a[0], a[1]] : [NSString stringWithFormat:@"%@", a[0]];
 }
 
 #pragma mark - collectionView delegate

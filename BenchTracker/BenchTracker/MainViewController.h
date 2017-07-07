@@ -16,7 +16,7 @@
 #import "FSCalendar.h"
 #import "SWTableViewCell.h"
 
-@interface MainViewController : UIViewController <WorkoutViewControllerDelegate, LoginViewControllerDelegate, AnalyticsViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance, SWTableViewCellDelegate, WeekdayViewDelegate, BTQRScannerViewControllerDelegate>
+@interface MainViewController : UIViewController <WorkoutViewControllerDelegate, LoginViewControllerDelegate, AnalyticsViewControllerDelegate, WorkoutSelectionViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance, SWTableViewCellDelegate, WeekdayViewDelegate, BTQRScannerViewControllerDelegate>
 
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic) NSManagedObjectContext *context;
