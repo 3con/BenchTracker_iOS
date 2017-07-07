@@ -164,7 +164,7 @@
 #pragma mark - tableView delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    BTWorkout *workout = [_fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row-1 inSection:0]];
+    //BTWorkout *workout = [_fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row-1 inSection:0]];
     //[self presentWorkoutViewControllerWithWorkout:workout];
 }
 
@@ -264,6 +264,8 @@
         case NSFetchedResultsChangeDelete:
             [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
             break;
+        case NSFetchedResultsChangeUpdate: break;
+        case NSFetchedResultsChangeMove: break;
     }
 }
 
@@ -277,6 +279,7 @@
                                                                 multiplier:1
                                                                   constant:
                                      (self.fetchedResultsController.sections[0].numberOfObjects == 0) ? 45+120 :45+60*self.fetchedResultsController.sections[0].numberOfObjects];
+    [self.view addConstraint:constraint];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {

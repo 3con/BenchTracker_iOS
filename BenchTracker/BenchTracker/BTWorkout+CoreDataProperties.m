@@ -19,6 +19,8 @@
 @dynamic date;
 @dynamic duration;
 @dynamic name;
+@dynamic supersets;
+@dynamic user;
 @dynamic exercises;
 
 @end

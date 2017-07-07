@@ -23,7 +23,7 @@
         <attribute name="recentEdits" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="typeListVersion" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="workouts" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="BTWorkout" syncable="YES"/>
+        <relationship name="workouts" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="BTWorkout" inverseName="user" inverseEntity="BTWorkout" syncable="YES"/>
     </entity>
     <entity name="BTWorkout" representedClassName="BTWorkout" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
@@ -33,12 +33,13 @@
         <attribute name="supersets" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="exercises" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="BTExercise" inverseName="workout" inverseEntity="BTExercise" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BTUser" inverseName="workouts" inverseEntity="BTUser" syncable="YES"/>
     </entity>
     <elements>
         <element name="BTExercise" positionX="-137" positionY="-108" width="128" height="135"/>
         <element name="BTExerciseType" positionX="-137" positionY="-249" width="128" height="103"/>
         <element name="BTSettings" positionX="-315" positionY="-117" width="128" height="60"/>
         <element name="BTUser" positionX="-488" positionY="-105" width="128" height="135"/>
-        <element name="BTWorkout" positionX="-306" positionY="-105" width="128" height="150"/>
+        <element name="BTWorkout" positionX="-306" positionY="-105" width="128" height="165"/>
     </elements>
 </model>

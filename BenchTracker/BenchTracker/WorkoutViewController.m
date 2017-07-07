@@ -164,6 +164,7 @@
     ExerciseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     if (cell == nil) cell = [[NSBundle mainBundle] loadNibNamed:@"ExerciseTableViewCell" owner:self options:nil].firstObject;
     cell.supersetMode = [self supersetTypeForIndexPath:indexPath];
+    cell.delegate = self;
     [cell loadExercise:self.workout.exercises[indexPath.row]];
     return cell;
 }
@@ -200,6 +201,26 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [self presentExerciseViewControllerWithExercises:self.selectedExercises];
     });
+}
+
+#pragma mark - SWTableViewCell delegate
+
+- (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerLeftUtilityButtonWithIndex:(NSInteger)index {
+    NSIndexPath *path = [self.tableView indexPathForCell:cell];
+    self.selectedIndexPaths = [NSMutableArray array];
+    for (NSMutableArray *superset in self.tempSupersets) {
+        for (NSNumber *num in superset) {
+            if (num.integerValue == path.row) {
+                for (NSNumber *num in superset)
+                    if (num.integerValue != path.row)
+                        [self.selectedIndexPaths addObject:[NSIndexPath indexPathForRow:num.integerValue inSection:0]];
+    }   }   }
+    [self.tableView beginUpdates];
+    [self.tableView deleteRowsAtIndexPaths:[self indexPathsForDeletedExercises:@[((ExerciseTableViewCell *)cell).exercise]]
+                          withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableView reloadRowsAtIndexPaths:self.selectedIndexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableView endUpdates];
+    [self updateWorkout];
 }
 
 #pragma mark - addVC delegate
@@ -239,6 +260,15 @@
 
 - (void)exerciseViewController:(ExerciseViewController *)exerciseVC willDismissWithEditedExercises:(NSArray<BTExercise *> *)exercises
                                                                                   deletedExercises:(NSArray<BTExercise *> *)deleted {
+    NSArray *deletedIndexPaths = [self indexPathsForDeletedExercises:deleted];
+    [self.tableView beginUpdates];
+    [self.tableView deleteRowsAtIndexPaths:deletedIndexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableView reloadRowsAtIndexPaths:self.selectedIndexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableView endUpdates];
+    [self updateWorkout];
+}
+
+- (NSArray <NSIndexPath *> *)indexPathsForDeletedExercises:(NSArray <BTExercise *> *)deleted {
     NSMutableArray <NSIndexPath *> *deletedIndexPaths = [[NSMutableArray alloc] init];
     for (BTExercise *exercise in deleted) {
         NSInteger index = [self.workout.exercises indexOfObject:exercise];
@@ -255,19 +285,14 @@
             for (int i = (int)superset.count-1; i >= 0; i--) {
                 if (superset[i].integerValue == index.row) [superset removeObjectAtIndex:i];
                 else if (superset[i].integerValue > index.row) superset[i] = [NSNumber numberWithInt:superset[i].intValue - 1];
-            }
-        }
-    }
+    }   }   }
     for (NSInteger i = self.tempSupersets.count-1; i >= 0; i--)
         if (self.tempSupersets[i].count <= 1) [self.tempSupersets removeObjectAtIndex:i];
     for (BTExercise *exercise in deleted) {
         [self.workout removeExercisesObject:exercise];
         [self.context deleteObject:exercise];
     }
-    [self.tableView beginUpdates];
-    [self.tableView deleteRowsAtIndexPaths:deletedIndexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
-    [self.tableView reloadRowsAtIndexPaths:self.selectedIndexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
-    [self.tableView endUpdates];
+    return deletedIndexPaths;
 }
 
 #pragma mark - textField delegate

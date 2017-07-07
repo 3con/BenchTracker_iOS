@@ -138,6 +138,7 @@
     BTJSONWorkout *workoutModel = [BTJSONWorkout mj_objectWithKeyValues:jsonString];
     BTWorkout *workout = [NSEntityDescription insertNewObjectForEntityForName:@"BTWorkout" inManagedObjectContext:self.context];
     workout.uuid = (workoutModel.uuid) ? workoutModel.uuid : [[NSUUID UUID] UUIDString];
+    workout.user = [(BTUserManager *)[BTUserManager sharedInstance] user];
     workout.name = workoutModel.name;
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
@@ -182,6 +183,7 @@
 
 - (BTWorkout *)createWorkout {
     BTWorkout *workout = [NSEntityDescription insertNewObjectForEntityForName:@"BTWorkout" inManagedObjectContext:self.context];
+    workout.user = [(BTUserManager *)[BTUserManager sharedInstance] user];
     workout.uuid = [[NSUUID UUID] UUIDString];
     int h = (int)[[[NSCalendar currentCalendar] components:(NSCalendarUnitHour) fromDate:[NSDate date]] hour];
     NSString *timeStr = (h > 22 || h < 4 ) ? @"Dusk" : (h < 11) ? @"Morning" : (h < 13) ? @"Mid Day" : (h < 19) ? @"Afternoon" : @"Evening";
@@ -320,6 +322,7 @@
 
 - (BTWorkout *)workoutForAWSWorkout: (BTAWSWorkout *)awsWorkout { //doesnt add to recentEdits
     BTWorkout *workout = [NSEntityDescription insertNewObjectForEntityForName:@"BTWorkout" inManagedObjectContext:self.context];
+    workout.user = [(BTUserManager *)[BTUserManager sharedInstance] user];
     workout.uuid = awsWorkout.uuid;
     workout.name = awsWorkout.name;
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];

@@ -11,7 +11,6 @@
 
 @interface ExerciseTableViewCell ()
 
-@property (nonatomic) BTExercise *exercise;
 @property (nonatomic) NSArray *tempSets;
 
 @property (weak, nonatomic) IBOutlet UIView *containerView;
@@ -46,7 +45,15 @@
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"Cell"];
 }
 
+- (NSArray *)leftButtons {
+    NSMutableArray *rightUtilityButtons = [NSMutableArray new];
+    [rightUtilityButtons sw_addUtilityButtonWithColor:[UIColor colorWithRed:1.0f green:0.231f blue:0.188 alpha:1.0f]
+                                                title:@"Delete"];
+    return rightUtilityButtons;
+}
+
 - (void)loadExercise:(BTExercise *)exercise {
+    self.leftUtilityButtons = [self leftButtons];
     if ([self.supersetMode isEqualToString:SUPERSET_NONE]) {
         self.aboveSupersetView.alpha = 0;
         self.belowSupersetView.alpha = 0;

@@ -38,6 +38,16 @@
     }];
 }
 
+#pragma mark - tableView dataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 0;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return nil;
+}
+
 #pragma mark - view handling
 
 - (void)presentSettingsViewController {

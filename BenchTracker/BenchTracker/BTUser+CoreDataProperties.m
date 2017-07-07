@@ -15,6 +15,8 @@
 }
 
 @dynamic username;
+@dynamic dateCreated;
+@dynamic lastUpdate;
 @dynamic typeListVersion;
 @dynamic recentEdits;
 @dynamic workouts;

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SWTableViewCell.h"
 
 #define SUPERSET_NONE  @"none"
 #define SUPERSET_ABOVE @"above"
@@ -15,7 +16,9 @@
 
 @class BTExercise;
 
-@interface ExerciseTableViewCell : UITableViewCell <UICollectionViewDelegate, UICollectionViewDataSource>
+@interface ExerciseTableViewCell : SWTableViewCell <UICollectionViewDelegate, UICollectionViewDataSource>
+
+@property (nonatomic) BTExercise *exercise;
 
 @property (nonatomic) NSString *supersetMode;
 
