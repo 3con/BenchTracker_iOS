@@ -90,9 +90,9 @@
     }];
 }
 
-- (IBAction)qrButtonPressed:(id)sender {
+- (IBAction)qrButtonPressed:(UIButton *)sender {
     [self updateWorkout];
-    [self presentQRDisplayViewController];
+    [self presentQRDisplayViewControllerWithPoint:sender.center];
 }
 
 - (IBAction)addExerciseButtonPressed:(UIButton *)sender {
@@ -345,18 +345,19 @@
     [self presentViewController:eVC animated:YES completion:nil];
 }
 
-- (void)presentQRDisplayViewController {
+- (void)presentQRDisplayViewControllerWithPoint:(CGPoint)point {
     NSString *jsonString = [self.workoutManager jsonForWorkout:self.workout];
     NSString *jsonString2 = [self.workoutManager jsonForTemplateWorkout:self.workout];
     QRDisplayViewController *qVC = [self.storyboard instantiateViewControllerWithIdentifier:@"qd"];
-    qVC.image1 = [MMQRCodeMakerUtil qrImageWithContent:jsonString logoImage:nil qrColor:nil qrWidth:500];
-    qVC.image2 = [MMQRCodeMakerUtil qrImageWithContent:jsonString2 logoImage:nil qrColor:nil qrWidth:500];
+    qVC.image1 = [MMQRCodeMakerUtil qrImageWithContent:jsonString logoImage:nil qrColor:nil qrWidth:440];
+    qVC.image2 = [MMQRCodeMakerUtil qrImageWithContent:jsonString2 logoImage:nil qrColor:nil qrWidth:440];
+    qVC.point = point;
     self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:qVC];
     self.animator.bounces = NO;
     self.animator.dragable = NO;
-    self.animator.behindViewAlpha = 0.2;
-    self.animator.behindViewScale = 0.92;
-    self.animator.transitionDuration = 0.75;
+    self.animator.behindViewAlpha = 1;
+    self.animator.behindViewScale = 1;
+    self.animator.transitionDuration = 0;
     self.animator.direction = ZFModalTransitonDirectionBottom;
     qVC.transitioningDelegate = self.animator;
     qVC.modalPresentationStyle = UIModalPresentationCustom;

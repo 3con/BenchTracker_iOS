@@ -61,17 +61,18 @@ In order to get the app to fully function correctly, the file 'BenchTrackerKeys.
 #### Exercise selection
 <img src="./Screenshots/image6.png" alt="Drawing" width="300 px"/>
 <img src="./Screenshots/image7.png" alt="Drawing" width="300 px"/>
-
-#### Workout in progress
 <img src="./Screenshots/image8.png" alt="Drawing" width="300 px"/>
 
-#### Rep tracking
+#### Workout in progress
 <img src="./Screenshots/image9.png" alt="Drawing" width="300 px"/>
-<img src="./Screenshots/image10.png" alt="Drawing" width="300 px"/>
 
-#### Export workout to PDF
+#### Rep tracking
+<img src="./Screenshots/image10.png" alt="Drawing" width="300 px"/>
 <img src="./Screenshots/image11.png" alt="Drawing" width="300 px"/>
 
-#### QR code generation and scanning
+#### Export workout to PDF
 <img src="./Screenshots/image12.png" alt="Drawing" width="300 px"/>
+
+#### QR code generation and scanning
 <img src="./Screenshots/image13.png" alt="Drawing" width="300 px"/>
+<img src="./Screenshots/image14.png" alt="Drawing" width="300 px"/>

@@ -152,7 +152,6 @@
 }
 
 - (void)selectRowClosestTo:(float)value inComponent:(int)component {
-    NSLog(@"%f %d",value,component);
     if (component == 1) { //weight
         if (value < 11) [self.pickerView selectRow:MAX(0, (int)value) inComponent:1 animated:YES]; //0-10
         else if (value < 15) [self.pickerView selectRow:11 inComponent:1 animated:YES]; //12.5

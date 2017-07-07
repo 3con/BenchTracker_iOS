@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface QRDisplayViewController : UIViewController
+@interface QRDisplayViewController : UIViewController <UIScrollViewDelegate>
+
+@property (nonatomic) CGPoint point;
 
 @property (nonatomic) UIImage *image1;
 @property (nonatomic) UIImage *image2;
