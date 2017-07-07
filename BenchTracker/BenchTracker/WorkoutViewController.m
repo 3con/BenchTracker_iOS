@@ -46,7 +46,7 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 95, 0);
+    self.tableView.contentInset = UIEdgeInsetsMake(2.5, 0, 92.5, 0);
     self.addExerciseButton.layer.cornerRadius = 12;
     self.addExerciseButton.clipsToBounds = YES;
     self.nameTextField.delegate = self;

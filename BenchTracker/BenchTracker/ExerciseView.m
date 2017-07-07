@@ -58,12 +58,6 @@
 - (void)loadExercise:(BTExercise *)exercise {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(exerciseViewScrollNotification)
                                                  name:@"ExerciseViewScroll" object:nil];
-    if (self.color) {
-        self.contentView.backgroundColor = self.color;
-        UIColor *darkerColor = [self darkerColorForColor:self.color];
-        for (UITextField *tF in @[self.textField, self.leftTextField, self.centerTextField, self.rightTextField])
-            tF.backgroundColor = darkerColor;
-    }
     self.isDeleted = NO;
     self.deletedView.alpha = 0;
     self.deletedView.userInteractionEnabled = NO;
@@ -299,13 +293,13 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) { //first cell: add set
         UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ACell" forIndexPath:indexPath];
-        cell.backgroundColor = [self darkerColorForColor:self.color];
+        cell.backgroundColor = [UIColor colorWithRed:30/255.0 green:30/255.0 blue:120/255.0 alpha:1];
         cell.layer.cornerRadius = 12;
         cell.clipsToBounds = YES;
         if (cell.subviews.count == 1) {
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, -2, 70, 45)];
             label.backgroundColor = [UIColor clearColor];
-            label.textColor = [self lighterColorForColor:self.color];
+            label.textColor = [self lighterColorForColor:[UIColor colorWithRed:30/255.0 green:30/255.0 blue:120/255.0 alpha:1]];
             label.text = @"+";
             label.textAlignment = NSTextAlignmentCenter;
             label.font = [UIFont systemFontOfSize:34 weight:UIFontWeightHeavy];
@@ -314,7 +308,6 @@
         return cell;
     }
     SetCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
-    cell.color = [self darkerColorForColor:self.color];
     [cell loadSetWithString:self.tempSets[self.tempSets.count-(indexPath.row-1)-1]];
     return cell;
 }
@@ -421,7 +414,7 @@
 - (UIColor *)lighterColorForColor:(UIColor *)color {
     CGFloat h, s, b, a;
     if ([color getHue:&h saturation:&s brightness:&b alpha:&a])
-        return [UIColor colorWithHue:h saturation:s brightness:MIN(b*1.6, 1.0) alpha:a];
+        return [UIColor colorWithHue:h saturation:s brightness:MIN(b*2.5, 1.0) alpha:a];
     return nil;
 }
 

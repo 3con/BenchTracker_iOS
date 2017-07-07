@@ -15,6 +15,10 @@
 
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 
+@property (weak, nonatomic) IBOutlet UIView *colorView1;
+@property (weak, nonatomic) IBOutlet UIView *colorView2;
+@property (weak, nonatomic) IBOutlet UIView *colorView3;
+
 @property (weak, nonatomic) IBOutlet UIView *aboveSupersetView;
 @property (weak, nonatomic) IBOutlet UIView *belowSupersetView;
 
@@ -68,9 +72,9 @@
     self.maxCells = (int)self.collectionView.frame.size.width / 70;
     [self.collectionView reloadData];
     if (self.color) {
-        self.containerView.backgroundColor = self.color;
-        self.aboveSupersetView.backgroundColor = self.color;
-        self.belowSupersetView.backgroundColor = self.color;
+        self.colorView1.backgroundColor = self.color;
+        self.colorView2.backgroundColor = self.color;
+        self.colorView3.backgroundColor = self.color;
     }
 }
 
@@ -90,7 +94,7 @@
         cell.clipsToBounds = YES;
         label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 60, 16)];
         label.backgroundColor = [UIColor clearColor];
-        label.textColor = [UIColor colorWithRed:95/255.0 green:100/255.0 blue:255/255.0 alpha:1];
+        label.textColor = [UIColor colorWithRed:30/255.0 green:30/255.0 blue:120/255.0 alpha:1];
         label.textAlignment = NSTextAlignmentCenter;
         label.allowsDefaultTighteningForTruncation = YES;
         label.minimumScaleFactor = 0.8;
