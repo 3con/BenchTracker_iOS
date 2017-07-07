@@ -20,8 +20,6 @@
 
 @property (nonatomic) NSMutableDictionary <NSManagedObjectID *, NSString *> *selectedTypesAndIterations; //type, iteration
 
-@property (nonatomic) BOOL supersettingEnabled;
-
 @property (nonatomic) NSString *searchString;
 
 @end
@@ -50,7 +48,6 @@
     singleTap.cancelsTouchesInView = NO;
     [self.tableView addGestureRecognizer:singleTap];
     [self loadSearchBar];
-    self.supersettingEnabled = NO;
 }
 
 - (void)loadSearchBar {
@@ -69,10 +66,14 @@
 - (void)viewWillAppear:(BOOL)animated {
     self.containerView.layer.cornerRadius = 12;
     self.containerView.clipsToBounds = YES;
-    self.addExerciseButton.layer.cornerRadius = 12;
-    self.addExerciseButton.clipsToBounds = YES;
-    self.addExerciseButton.userInteractionEnabled = NO;
-    self.addExerciseButton.alpha = 0;
+    for (UIButton *button in @[self.supersetButton, self.addExerciseButton, self.clearButton]) {
+        button.layer.cornerRadius = 12;
+        button.clipsToBounds = YES;
+        button.titleLabel.numberOfLines = 2;
+        button.titleLabel.textAlignment = NSTextAlignmentCenter;
+        button.userInteractionEnabled = NO;
+        button.alpha = 0;
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -80,31 +81,36 @@
 }
 
 - (IBAction)cancelButtonPressed:(UIButton *)sender {
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)supersetButtonPressed:(UIButton *)sender {
-    [self.selectedTypesAndIterations removeAllObjects];
-    self.addExerciseButton.userInteractionEnabled = NO;
-    self.addExerciseButton.alpha = 0;
-    self.supersettingEnabled = !self.supersettingEnabled;
-    [self.supersetButton setTitle:(self.supersettingEnabled) ? @"One Set" : @"Superset" forState:UIControlStateNormal];
-    [self.tableView reloadData];
+    [self.delegate addExerciseViewController:self willDismissWithSelectedTypeIterationCombinations:[self typeIterationPairs] superset:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)addExerciseButtonPressed:(UIButton *)sender {
+    [self.delegate addExerciseViewController:self willDismissWithSelectedTypeIterationCombinations:[self typeIterationPairs] superset:NO];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)clearButtonPressed:(UIButton *)sender {
+    [self.selectedTypesAndIterations removeAllObjects];
+    for (UIButton *button in @[self.supersetButton, self.addExerciseButton, self.clearButton]) {
+        button.userInteractionEnabled = NO;
+        button.alpha = 0;
+    }
+    [self.tableView reloadData];
+}
+
+- (NSMutableArray <NSArray *> *)typeIterationPairs {
     NSMutableArray <NSArray *> *exerciseTIs = [[NSMutableArray alloc] init];
     for (NSManagedObjectID *moID in self.selectedTypesAndIterations.allKeys) {
         BTExerciseType *type = [self.context objectWithID:moID];
         NSString *iteration = self.selectedTypesAndIterations[moID];
         [exerciseTIs addObject: @[type, (iteration && iteration.length > 0) ? iteration : [NSNull null]]];
     }
-    [self.delegate addExerciseViewController:self willDismissWithSelectedTypeIterationCombinations:exerciseTIs];
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+    return exerciseTIs;
 }
 
 #pragma mark - fetchedResultsController
@@ -193,7 +199,6 @@
     cell.color = self.exerciseTypeColors[key];
     if (!cell.color) cell.color = [UIColor groupTableViewBackgroundColor];
     [cell loadExerciseType:type];
-    if (self.selectedTypesAndIterations[type.objectID]) [cell loadIteration:self.selectedTypesAndIterations[type.objectID]];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -205,7 +210,8 @@
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     BTExerciseType *type = self.fetchedResultsController.sections[indexPath.section].objects[indexPath.row];
-    if (self.selectedTypesAndIterations[type.objectID]) [cell setSelected:YES animated:YES];
+    [cell setSelected:self.selectedTypesAndIterations[type.objectID] animated:YES];
+    [(AddExerciseTableViewCell *)cell loadIteration:self.selectedTypesAndIterations[type.objectID]];
 }
 
 #pragma mark - tap gesture delegate
@@ -213,17 +219,16 @@
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
     UITableView *tableView = (UITableView *)gestureRecognizer.view;
     CGPoint p = [gestureRecognizer locationInView:gestureRecognizer.view];
-    return [tableView indexPathForRowAtPoint:p];
+    NSIndexPath *indexPath = [tableView indexPathForRowAtPoint:p];
+    AddExerciseTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    if ([[NSKeyedUnarchiver unarchiveObjectWithData:cell.exerciseType.iterations] count] == 0) return NO;
+    return indexPath && p.x > cell.frame.size.width-120 && !cell.cellSelected;
 }
 
 - (void)handleTap:(UITapGestureRecognizer *)sender {
     if (UIGestureRecognizerStateEnded == sender.state) {
-        UITableView *tableView = (UITableView *)sender.view;
-        NSIndexPath *indexPath = [tableView indexPathForRowAtPoint:[sender locationInView:sender.view]];
-        AddExerciseTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-        CGPoint pointInCell = [sender locationInView:cell];
-        if (!cell.cellSelected && pointInCell.x > cell.frame.size.width-120)
-            [self presentIterationSelectionViewControllerWithOriginPoint:[sender locationInView:self.view] indexPath:indexPath];
+        NSIndexPath *indexPath = [(UITableView *)sender.view indexPathForRowAtPoint:[sender locationInView:sender.view]];
+        [self presentIterationSelectionViewControllerWithOriginPoint:[sender locationInView:self.view] indexPath:indexPath];
     }
 }
 
@@ -238,11 +243,6 @@
         [self tableView:tableView didDeselectRowAtIndexPath:indexPath];
         return nil;
     }
-    else if (!self.supersettingEnabled && self.selectedTypesAndIterations.count) {
-        [[tableView cellForRowAtIndexPath:[_fetchedResultsController indexPathForObject:
-            [self.context objectWithID:self.selectedTypesAndIterations.allKeys[0]]]] setSelected:NO animated:YES];
-        [self.selectedTypesAndIterations removeAllObjects];
-    }
     else if (self.selectedTypesAndIterations.count == 5) return nil;
     return indexPath;
 }
@@ -252,23 +252,39 @@
     self.selectedTypesAndIterations[type.objectID] = @"";
     NSInteger numSelected = self.selectedTypesAndIterations.count;
     if (numSelected == 1) {
-        self.addExerciseButton.alpha = 1;
-        self.addExerciseButton.userInteractionEnabled = YES;
+        for (UIButton *button in @[self.supersetButton, self.addExerciseButton, self.clearButton]) {
+            button.userInteractionEnabled = YES;
+            button.alpha = 1;
+        }
     }
-    [self.addExerciseButton setTitle:(numSelected == 1) ? @"Add Exercise" :
-                               [NSString stringWithFormat:@"Superset %ld Exercises",numSelected]
-                            forState:UIControlStateNormal];
+    [self.addExerciseButton setTitle:(numSelected == 1) ? @"Add\nExercise" :
+                                [NSString stringWithFormat:@"Add\n%ld Exercises",numSelected]
+                                    forState:UIControlStateNormal];
+    [self.supersetButton setTitle:(numSelected == 1) ? @"" :
+                                [NSString stringWithFormat:@"Superset\n%ld Exercises",numSelected]
+                                    forState:UIControlStateNormal];
+    [self.supersetButton setEnabled:numSelected != 1];
+    self.supersetButton.alpha = (numSelected != 1) ? 1 : .4;
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger numSelected = self.selectedTypesAndIterations.count;
     if (numSelected == 0) {
-        self.addExerciseButton.userInteractionEnabled = NO;
-        self.addExerciseButton.alpha = 0;
+        for (UIButton *button in @[self.supersetButton, self.addExerciseButton, self.clearButton]) {
+            button.userInteractionEnabled = NO;
+            button.alpha = 0;
+        }
     }
-    else [self.addExerciseButton setTitle:(numSelected == 1) ? @"Add Exercise" :
-                                    [NSString stringWithFormat:@"Superset %ld Exercises",numSelected]
-                                 forState:UIControlStateNormal];
+    else {
+        [self.addExerciseButton setTitle:(numSelected == 1) ? @"Add\nExercise" :
+                                    [NSString stringWithFormat:@"Add\n%ld Exercises",numSelected]
+                                        forState:UIControlStateNormal];
+        [self.supersetButton setTitle:(numSelected == 1) ? @"" :
+                                    [NSString stringWithFormat:@"Superset\n%ld Exercises",numSelected]
+                                        forState:UIControlStateNormal];
+        [self.supersetButton setEnabled:numSelected != 1];
+        self.supersetButton.alpha = (numSelected != 1) ? 1 : .4;
+    }
 }
 
 #pragma mark - scrollView delegate

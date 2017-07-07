@@ -47,8 +47,12 @@
             else bar.backgroundColor = [UIColor colorWithWhite:(arc4random()%180/256.0) alpha:1.0];
             [self addSubview:bar];
             if ([self.dataSource respondsToSelector:@selector(stackedBarView:nameForBarAtIndex:)]) {
-                UILabel *barLabel = [[UILabel alloc] initWithFrame:CGRectMake(barXPos-15, 15, self.bounds.size.height, 10)];
+                UILabel *barLabel = [[UILabel alloc] init];
+                [UIView beginAnimations:nil context:NULL];
+                [UIView setAnimationDuration:0];
                 [barLabel setTransform:CGAffineTransformMakeRotation(M_PI / 2)];
+                barLabel.frame = CGRectMake(barXPos, 0, 10, self.bounds.size.height);
+                [UIView commitAnimations];
                 barLabel.text = [[self.dataSource stackedBarView:self nameForBarAtIndex:i] componentsSeparatedByString:@" "].firstObject;
                 barLabel.font = [UIFont systemFontOfSize:8 weight:UIFontWeightBold];
                 barLabel.adjustsFontSizeToFitWidth = YES;

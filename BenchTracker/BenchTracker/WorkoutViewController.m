@@ -226,15 +226,23 @@
 #pragma mark - addVC delegate
 
 - (void)addExerciseViewController:(AddExerciseViewController *)addVC
-        willDismissWithSelectedTypeIterationCombinations:(NSArray<NSArray *> *)selectedTypeIterationCombinations {
-    NSMutableArray <NSNumber *> *supersetArr = [[NSMutableArray alloc] init];
+        willDismissWithSelectedTypeIterationCombinations:(NSArray<NSArray *> *)selectedTypeIterationCombinations superset:(BOOL)superset {
     NSMutableArray <NSIndexPath *> *indexPaths = [[NSMutableArray alloc] init];
-    for (NSArray *tiCombo in selectedTypeIterationCombinations) {
-        [self.workout addExercisesObject:[self exerciseForExerciseType:tiCombo[0] iteration:tiCombo[1]]];
-        [supersetArr addObject:[NSNumber numberWithInt:(int)self.workout.exercises.count-1]];
-        [indexPaths addObject:[NSIndexPath indexPathForRow:self.workout.exercises.count-1 inSection:0]];
+    if (!superset) {
+        for (NSArray *tiCombo in selectedTypeIterationCombinations) {
+            [self.workout addExercisesObject:[self exerciseForExerciseType:tiCombo[0] iteration:tiCombo[1]]];
+            [indexPaths addObject:[NSIndexPath indexPathForRow:self.workout.exercises.count-1 inSection:0]];
+        }
     }
-    if (supersetArr.count > 1) [self.tempSupersets addObject:supersetArr];
+    else {
+        NSMutableArray <NSNumber *> *supersetArr = [[NSMutableArray alloc] init];
+        for (NSArray *tiCombo in selectedTypeIterationCombinations) {
+            [self.workout addExercisesObject:[self exerciseForExerciseType:tiCombo[0] iteration:tiCombo[1]]];
+            [supersetArr addObject:[NSNumber numberWithInt:(int)self.workout.exercises.count-1]];
+            [indexPaths addObject:[NSIndexPath indexPathForRow:self.workout.exercises.count-1 inSection:0]];
+        }
+        if (supersetArr.count > 1) [self.tempSupersets addObject:supersetArr];
+    }
     [CATransaction begin];
     [CATransaction setCompletionBlock: ^{
         [self.tableView reloadData];

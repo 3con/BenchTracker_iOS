@@ -579,7 +579,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VSj-Bx-meF">
-                                <rect key="frame" x="27" y="60" width="360" height="571"/>
+                                <rect key="frame" x="27" y="50" width="360" height="576"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rhg-8M-RWr">
                                         <rect key="frame" x="15" y="6" width="100" height="35"/>
@@ -595,22 +595,8 @@
                                             <action selector="cancelButtonPressed:" destination="W94-Ss-m6t" eventType="touchUpInside" id="fOl-hI-o5W"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W1i-9F-XhW">
-                                        <rect key="frame" x="245" y="6" width="100" height="35"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="35" id="K6T-U9-E1o"/>
-                                            <constraint firstAttribute="width" constant="100" id="vux-R8-vxC"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                        <state key="normal" title="Superset?">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="supersetButtonPressed:" destination="W94-Ss-m6t" eventType="touchUpInside" id="wus-7n-gfk"/>
-                                        </connections>
-                                    </button>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bFD-A5-3Xk">
-                                        <rect key="frame" x="0.0" y="45" width="360" height="526"/>
+                                        <rect key="frame" x="0.0" y="45" width="360" height="531"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </tableView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exercises" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="25L-X6-4fD">
@@ -630,48 +616,92 @@
                                     <constraint firstItem="Rhg-8M-RWr" firstAttribute="leading" secondItem="VSj-Bx-meF" secondAttribute="leading" constant="15" id="FJu-Sf-0Uz"/>
                                     <constraint firstAttribute="bottom" secondItem="bFD-A5-3Xk" secondAttribute="bottom" id="Kcx-VH-vaf"/>
                                     <constraint firstItem="25L-X6-4fD" firstAttribute="top" secondItem="VSj-Bx-meF" secondAttribute="top" constant="8" id="M4B-Pl-5u3"/>
-                                    <constraint firstItem="W1i-9F-XhW" firstAttribute="top" secondItem="VSj-Bx-meF" secondAttribute="top" constant="6" id="MsG-5U-jaN"/>
                                     <constraint firstItem="Rhg-8M-RWr" firstAttribute="top" secondItem="VSj-Bx-meF" secondAttribute="top" constant="6" id="Zlr-fO-ZMj"/>
                                     <constraint firstItem="25L-X6-4fD" firstAttribute="centerX" secondItem="VSj-Bx-meF" secondAttribute="centerX" id="hb3-kx-apT"/>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="360" id="jtM-T3-SBS"/>
-                                    <constraint firstAttribute="trailing" secondItem="W1i-9F-XhW" secondAttribute="trailing" constant="15" id="lgs-Po-Vev"/>
                                     <constraint firstItem="bFD-A5-3Xk" firstAttribute="top" secondItem="VSj-Bx-meF" secondAttribute="top" constant="45" id="ujO-X4-MKK"/>
                                     <constraint firstItem="bFD-A5-3Xk" firstAttribute="width" secondItem="VSj-Bx-meF" secondAttribute="width" id="xYQ-Uh-Z3u"/>
                                     <constraint firstItem="bFD-A5-3Xk" firstAttribute="centerX" secondItem="VSj-Bx-meF" secondAttribute="centerX" id="yOR-zY-zmu"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mhu-3f-kqQ">
-                                <rect key="frame" x="107" y="646" width="200" height="50"/>
-                                <color key="backgroundColor" red="0.98532205820083618" green="0.75445228815078735" blue="0.17619404196739197" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0qq-lJ-4Fz">
+                                <rect key="frame" x="47" y="626" width="320" height="70"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fkn-7j-kjl">
+                                        <rect key="frame" x="5" y="20" width="120" height="50"/>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="ZUs-83-3VB"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                        <state key="normal" title="Superset Exercises">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="supersetButtonPressed:" destination="W94-Ss-m6t" eventType="touchUpInside" id="OQL-Kc-fgO"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5oh-a6-cZW">
+                                        <rect key="frame" x="265" y="20" width="50" height="50"/>
+                                        <color key="backgroundColor" red="0.80025946579999996" green="0.14866781030000001" blue="0.14117555979999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="etH-bB-D5s"/>
+                                            <constraint firstAttribute="height" constant="50" id="vdl-rZ-ilQ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                        <state key="normal" title="Clear">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="clearButtonPressed:" destination="W94-Ss-m6t" eventType="touchUpInside" id="iiJ-FC-wwA"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mhu-3f-kqQ">
+                                        <rect key="frame" x="135" y="20" width="120" height="50"/>
+                                        <color key="backgroundColor" red="0.98532205820083618" green="0.75445228815078735" blue="0.17619404196739197" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="WzM-0a-ntx"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                        <state key="normal" title="Add Exercise">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="addExerciseButtonPressed:" destination="W94-Ss-m6t" eventType="touchUpInside" id="3NR-2B-E0r"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="Wbi-sF-r1N"/>
-                                    <constraint firstAttribute="height" constant="50" id="WzM-0a-ntx"/>
+                                    <constraint firstItem="Fkn-7j-kjl" firstAttribute="width" secondItem="Mhu-3f-kqQ" secondAttribute="width" id="CqH-IM-lRi"/>
+                                    <constraint firstItem="Mhu-3f-kqQ" firstAttribute="leading" secondItem="Fkn-7j-kjl" secondAttribute="trailing" constant="10" id="FHy-41-bDN"/>
+                                    <constraint firstAttribute="width" constant="320" id="KZg-t3-3jG"/>
+                                    <constraint firstItem="Fkn-7j-kjl" firstAttribute="leading" secondItem="0qq-lJ-4Fz" secondAttribute="leading" constant="5" id="LVO-tm-P8I"/>
+                                    <constraint firstItem="Mhu-3f-kqQ" firstAttribute="centerY" secondItem="Fkn-7j-kjl" secondAttribute="centerY" id="NNt-Sa-prQ"/>
+                                    <constraint firstAttribute="bottom" secondItem="Mhu-3f-kqQ" secondAttribute="bottom" id="add-98-9lp"/>
+                                    <constraint firstItem="Mhu-3f-kqQ" firstAttribute="centerY" secondItem="5oh-a6-cZW" secondAttribute="centerY" id="bnG-fY-0Xi"/>
+                                    <constraint firstItem="5oh-a6-cZW" firstAttribute="leading" secondItem="Mhu-3f-kqQ" secondAttribute="trailing" constant="10" id="buU-OW-3A5"/>
+                                    <constraint firstAttribute="height" constant="70" id="f0m-cx-X6E"/>
+                                    <constraint firstAttribute="trailing" secondItem="5oh-a6-cZW" secondAttribute="trailing" constant="5" id="mWD-lB-bta"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                <state key="normal" title="Add Exercise">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="addExerciseButtonPressed:" destination="W94-Ss-m6t" eventType="touchUpInside" id="3NR-2B-E0r"/>
-                                </connections>
-                            </button>
+                            </view>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="Mhu-3f-kqQ" firstAttribute="centerX" secondItem="bFD-A5-3Xk" secondAttribute="centerX" id="X7u-KL-O1X"/>
-                            <constraint firstItem="VSj-Bx-meF" firstAttribute="top" secondItem="R44-7F-77u" secondAttribute="bottom" priority="750" constant="40" id="ezL-yp-IYm"/>
-                            <constraint firstItem="Mhu-3f-kqQ" firstAttribute="top" secondItem="VSj-Bx-meF" secondAttribute="bottom" constant="15" id="rTA-kA-Mgj"/>
+                            <constraint firstItem="w4u-oc-UQQ" firstAttribute="top" secondItem="0qq-lJ-4Fz" secondAttribute="bottom" constant="40" id="0qw-Ze-mVI"/>
+                            <constraint firstItem="VSj-Bx-meF" firstAttribute="top" secondItem="R44-7F-77u" secondAttribute="bottom" priority="750" constant="30" id="ezL-yp-IYm"/>
                             <constraint firstItem="VSj-Bx-meF" firstAttribute="leading" secondItem="J1Y-Xe-CpR" secondAttribute="leadingMargin" priority="250" constant="5" id="tkL-v6-EfJ"/>
-                            <constraint firstItem="Mhu-3f-kqQ" firstAttribute="top" relation="greaterThanOrEqual" secondItem="bFD-A5-3Xk" secondAttribute="bottom" constant="15" id="xva-2q-KMu"/>
+                            <constraint firstItem="0qq-lJ-4Fz" firstAttribute="top" secondItem="bFD-A5-3Xk" secondAttribute="bottom" id="ub4-F9-GYW"/>
                             <constraint firstItem="VSj-Bx-meF" firstAttribute="centerX" secondItem="J1Y-Xe-CpR" secondAttribute="centerX" id="xwo-HO-fSQ"/>
-                            <constraint firstItem="w4u-oc-UQQ" firstAttribute="top" secondItem="Mhu-3f-kqQ" secondAttribute="bottom" constant="40" id="yu5-yq-udy"/>
+                            <constraint firstItem="0qq-lJ-4Fz" firstAttribute="centerX" secondItem="bFD-A5-3Xk" secondAttribute="centerX" id="zDg-j3-5Jx"/>
                         </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="addExerciseButton" destination="Mhu-3f-kqQ" id="4lT-Yw-adv"/>
                         <outlet property="cancelButton" destination="Rhg-8M-RWr" id="1FC-4n-1dy"/>
+                        <outlet property="clearButton" destination="5oh-a6-cZW" id="N0W-GU-Lm3"/>
                         <outlet property="containerView" destination="VSj-Bx-meF" id="KZu-gf-wpa"/>
-                        <outlet property="supersetButton" destination="W1i-9F-XhW" id="DAr-zG-qBC"/>
+                        <outlet property="supersetButton" destination="Fkn-7j-kjl" id="Kcd-qE-m4h"/>
                         <outlet property="tableView" destination="bFD-A5-3Xk" id="O59-YV-pMp"/>
                     </connections>
                 </viewController>
