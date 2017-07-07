@@ -17,7 +17,7 @@
                                                                                    deletedExercises:(NSArray <BTExercise *> *)deleted;
 @end
 
-@interface ExerciseViewController : UIViewController
+@interface ExerciseViewController : UIViewController <UIScrollViewDelegate>
 
 @property id<ExerciseViewControllerDelegate> delegate;
 

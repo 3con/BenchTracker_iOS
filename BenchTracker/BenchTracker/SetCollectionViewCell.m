@@ -37,13 +37,13 @@
         self.bottomLabel.text = [set substringFromIndex:2];
     }
     else if ([strings[0] containsString:@"s"]) {
-        if(strings.count == 2) { //timeWeight
-            self.topLabel.text = [NSString stringWithFormat:@"%@ lbs",strings[1]];
-            self.bottomLabel.text = [NSString stringWithFormat:@"%@ secs",[set substringToIndex:[strings[0] length]-1]];
+        if(strings.count == 3) { //timeWeight
+            self.topLabel.text = [NSString stringWithFormat:@"%@ lbs",strings[2]];
+            self.bottomLabel.text = [NSString stringWithFormat:@"%@ secs",strings[1]];
         }
         else { //time
             self.topLabel.text = @"";
-            self.bottomLabel.text = [NSString stringWithFormat:@"%@ secs",[set substringToIndex:set.length-1]];
+            self.bottomLabel.text = [NSString stringWithFormat:@"%@ secs",strings[1]];
         }
     }
     else {

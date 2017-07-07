@@ -35,6 +35,9 @@
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 
 @property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
+@property (weak, nonatomic) IBOutlet UITextField *leftTextField;
+@property (weak, nonatomic) IBOutlet UITextField *centerTextField;
+@property (weak, nonatomic) IBOutlet UITextField *rightTextField;
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
@@ -46,7 +49,15 @@
 
 @implementation ExerciseView
 
-- (void)loadExercise: (BTExercise *)exercise {
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark - public methods
+
+- (void)loadExercise:(BTExercise *)exercise {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(exerciseViewScrollNotification)
+                                                 name:@"ExerciseViewScroll" object:nil];
     self.isDeleted = NO;
     self.deletedView.alpha = 0;
     self.deletedView.userInteractionEnabled = NO;
@@ -54,16 +65,17 @@
     self.deleteButton.clipsToBounds = YES;
     self.contentView.layer.cornerRadius = 12;
     self.contentView.clipsToBounds = YES;
-    self.textField.delegate = self;
     self.pickerView.dataSource = self;
     self.pickerView.delegate = self;
+    self.pickerView.showsSelectionIndicator = NO;
+    [self loadTextFields];
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
     self.collectionView.showsHorizontalScrollIndicator = NO;
     SetFlowLayout *flowLayout = [[SetFlowLayout alloc] init];
     flowLayout.itemSize = CGSizeMake(70, 45);
     flowLayout.minimumInteritemSpacing = 10.0;
-    flowLayout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
+    flowLayout.sectionInset = UIEdgeInsetsMake(10, 10, 7, 10);
     flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     [self.collectionView setCollectionViewLayout:flowLayout];
     [self.collectionView registerNib:[UINib nibWithNibName:@"SetCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"Cell"];
@@ -73,16 +85,101 @@
     else                    self.nameLabel.text = exercise.name;
     self.categoryLabel.text = exercise.category;
     self.tempSets = [NSKeyedUnarchiver unarchiveObjectWithData:exercise.sets];
-    if ([self styleIs:STYLE_CUSTOM]) [self loadTextField];
-    else [self loadPickerView];                                                             //Reps, Time
-    [self.pickerView selectRow:([self styleIs:STYLE_REPSWEIGHT] || [self styleIs:STYLE_REPS]) ? 9 : 29 inComponent:0 animated:NO];
-    if (self.pickerView.numberOfComponents == 2) [self.pickerView selectRow: 17 inComponent:1 animated:NO];
-    [self.collectionView reloadData];                                     //Weight
+    if ([self styleIs:STYLE_CUSTOM]) {
+        [self showTextField];
+        self.textField.text = (self.tempSets.count) ? [self.tempSets.lastObject substringFromIndex:2] : @"";
+    }
+    else {
+        [self showPickerView];
+        [self selectAppropriatePickerViewRows];
+    }
+    [self.collectionView reloadData];
 }
 
 - (BTExercise *)getExercise {
     self.exercise.sets = [NSKeyedArchiver archivedDataWithRootObject:self.tempSets];
     return self.exercise;
+}
+
+#pragma mark - private methods
+
+- (void)selectAppropriatePickerViewRows {
+    NSArray <NSString *> *set = [self.tempSets.lastObject componentsSeparatedByString:@" "];
+    if ([self styleIs:STYLE_REPSWEIGHT]) {
+        self.centerTextField.alpha = 0;
+        self.centerTextField.userInteractionEnabled = NO;
+        if (set) {
+            [self selectRowClosestTo:set[0].floatValue inComponent:0];
+            [self selectRowClosestTo:set[1].floatValue inComponent:1];
+            self.leftTextField.text = set[0];
+            self.rightTextField.text = set[1];
+        }
+    }
+    else if ([self styleIs:STYLE_REPS]) {
+        self.leftTextField.alpha = 0;
+        self.leftTextField.userInteractionEnabled = NO;
+        self.rightTextField.alpha = 0;
+        self.rightTextField.userInteractionEnabled = NO;
+        if (set) {
+            [self selectRowClosestTo:set[0].floatValue inComponent:0];
+            self.centerTextField.text = set[0];
+        }
+    }
+    else if ([self styleIs:STYLE_TIME]) {
+        self.leftTextField.alpha = 0;
+        self.leftTextField.userInteractionEnabled = NO;
+        self.rightTextField.alpha = 0;
+        self.rightTextField.userInteractionEnabled = NO;
+        if (set) {
+            [self selectRowClosestTo:set[1].floatValue inComponent:0];
+            self.centerTextField.text = set[1];
+        }
+    }
+    else { //TIME_WEIGHT
+        self.centerTextField.alpha = 0;
+        self.centerTextField.userInteractionEnabled = NO;
+        if (set) {
+            [self selectRowClosestTo:set[1].floatValue inComponent:0];
+            [self selectRowClosestTo:set[2].floatValue inComponent:1];
+            self.leftTextField.text = set[1];
+            self.rightTextField.text = set[2];
+        }
+    }
+    if (!set) {                                                                                 //Reps, Time
+        [self.pickerView selectRow:([self styleIs:STYLE_REPSWEIGHT] || [self styleIs:STYLE_REPS]) ? 9 : 29 inComponent:0 animated:NO];
+        if (self.pickerView.numberOfComponents == 2) [self.pickerView selectRow: 17 inComponent:1 animated:NO];
+    }
+}
+
+- (void)selectRowClosestTo:(float)value inComponent:(int)component {
+    NSLog(@"%f %d",value,component);
+    if (component == 1) { //weight
+        if (value < 11) [self.pickerView selectRow:MAX(0, (int)value) inComponent:1 animated:YES]; //0-10
+        else if (value < 15) [self.pickerView selectRow:11 inComponent:1 animated:YES]; //12.5
+        else [self.pickerView selectRow:MIN(129, ((int)value)/5+9) inComponent:1 animated:YES]; //15-600+ (12)
+    }
+    else if ([self styleIs:STYLE_REPSWEIGHT] || [self styleIs:STYLE_REPS]) { //reps
+        if (value < 51) [self.pickerView selectRow:MAX(0, (int)value-1) inComponent:0 animated:YES];
+        else [self.pickerView selectRow:MIN(69, ((int)value)/5+39) inComponent:0 animated:YES];
+    }
+    else { //time
+        if (value < 31) [self.pickerView selectRow:MAX(0, (int)value-1) inComponent:0 animated:YES];
+        else [self.pickerView selectRow:MIN(47, ((int)value)/5+23) inComponent:0 animated:YES];
+    }
+}
+
+- (void)exerciseViewScrollNotification {
+    for (UITextField *tF in @[self.textField, self.leftTextField, self.centerTextField, self.rightTextField])
+        if (tF.isFirstResponder) [tF resignFirstResponder];
+}
+
+- (void)loadTextFields {
+    for (UITextField *tF in @[self.textField, self.leftTextField, self.centerTextField, self.rightTextField]) {
+        tF.delegate = self;
+        tF.layer.cornerRadius = 8;
+        tF.clipsToBounds = YES;
+    }
+    self.textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Enter a custom set" attributes:@{NSForegroundColorAttributeName: [UIColor colorWithWhite:1 alpha:.5]}];
 }
 
 - (IBAction)deleteButtonPressed:(UIButton *)sender {
@@ -103,14 +200,22 @@
     }];
 }
 
-- (void)loadTextField {
+- (void)showTextField {
     self.pickerView.alpha = 0;
     self.pickerView.userInteractionEnabled = NO;
+    for (UITextField *tF in @[self.leftTextField, self.centerTextField, self.rightTextField]) {
+        tF.alpha = 0;
+        tF.userInteractionEnabled = NO;
+    }
 }
 
-- (void)loadPickerView {
+- (void)showPickerView {
     self.textField.alpha = 0;
     self.textField.userInteractionEnabled = NO;
+}
+
+- (BOOL)styleIs:(NSString *)string {
+    return [self.exercise.style isEqualToString:string];
 }
 
 #pragma mark - pickerView dataSource
@@ -142,18 +247,18 @@
         label.textColor = [UIColor whiteColor];
         label.textAlignment = NSTextAlignmentCenter;
     }
-    if ([self styleIs:STYLE_REPS] || ([self styleIs:STYLE_REPSWEIGHT] && component == 0)) {             //REPS
-        NSInteger num = (row < 50) ? row+1 : (row-49)*5+50;
-        label.text = [NSString stringWithFormat:@"%ld %@", num, (num == 1) ? @"rep" : @"reps"];
-        label.tag = num;
-    }
-    else if (([self styleIs:STYLE_REPSWEIGHT] || [self styleIs:STYLE_TIMEWEIGHT]) && component == 1) {  //WEIGHT
+    if (component == 1) { //weight
         NSInteger num = (row < 12) ? row : (row-11)*5+10;
         label.text = [NSString stringWithFormat:@"%ld %@", num, (num == 0) ? @"(bodyweight)" : (num == 1) ? @"lb" : @"lbs"];
         label.tag = num;
         if (row == 11) label.text = @"12.5 lbs";
     }
-    else {                                                                                              //TIME
+    else if ([self styleIs:STYLE_REPSWEIGHT] || [self styleIs:STYLE_REPS]) { //reps
+        NSInteger num = (row < 50) ? row+1 : (row-49)*5+50;
+        label.text = [NSString stringWithFormat:@"%ld %@", num, (num == 1) ? @"rep" : @"reps"];
+        label.tag = num;
+    }
+    else { //time
         NSInteger num = (row < 30) ? row+1 : (row-29)*5+30;
         label.text = [NSString stringWithFormat:@"%ld %@", num, (num == 1) ? @"sec" : @"secs"];
         label.tag = num;
@@ -162,6 +267,15 @@
 }
 
 #pragma mark - pickerView delegate
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    if (component == 1) //right
+        self.rightTextField.text = [NSString stringWithFormat:@"%ld",[pickerView viewForRow:row forComponent:component].tag];
+    else if (pickerView.numberOfComponents == 2) //left
+        self.leftTextField.text = [NSString stringWithFormat:@"%ld",[pickerView viewForRow:row forComponent:component].tag];
+    else //center
+        self.centerTextField.text = [NSString stringWithFormat:@"%ld",[pickerView viewForRow:row forComponent:component].tag];
+}
 
 #pragma mark - collectionView dataSource
 
@@ -205,26 +319,34 @@
     if (indexPath.row == 0) { //add set
         if (self.tempSets.count < 12) {
             [self.collectionView performBatchUpdates:^{
+                float val1 = (self.leftTextField.text.length) ? self.leftTextField.text.floatValue : -1;
+                float val2 = (self.centerTextField.text.length) ? self.centerTextField.text.floatValue : -1;
+                float val3 = (self.rightTextField.text.length) ? self.rightTextField.text.floatValue : -1;
                 NSString *result;
                 if ([self styleIs:STYLE_REPSWEIGHT]) {
-                    int reps = (int)[(UILabel *)[self.pickerView viewForRow:[self.pickerView selectedRowInComponent:0] forComponent:0] tag];
-                    int weight = (int)[(UILabel *)[self.pickerView viewForRow:[self.pickerView selectedRowInComponent:1] forComponent:1] tag];
+                    int reps = (val1 >= 0) ? val1 :
+                                        (int)[self.pickerView viewForRow:[self.pickerView selectedRowInComponent:0] forComponent:0].tag;
+                    float weight = (val3 >= 0) ? val3 :
+                                          (float)[self.pickerView viewForRow:[self.pickerView selectedRowInComponent:1] forComponent:1].tag;
                     if (weight == 11)   result = [NSString stringWithFormat:@"%d 12.5",reps];
-                    else                result = [NSString stringWithFormat:@"%d %d",reps,weight];
+                    else                result = [NSString stringWithFormat:@"%d %.1f",reps,weight];
                 }
                 else if ([self styleIs:STYLE_REPS]) {
-                    int reps = (int)[(UILabel *)[self.pickerView viewForRow:[self.pickerView selectedRowInComponent:0] forComponent:0] tag];
+                    int reps = (val2 >= 0) ? val2 :
+                                             (int)[self.pickerView viewForRow:[self.pickerView selectedRowInComponent:0] forComponent:0].tag;
                     result = [NSString stringWithFormat:@"%d",reps];
                 }
                 else if ([self styleIs:STYLE_TIME]) {
-                    int time = (int)[(UILabel *)[self.pickerView viewForRow:[self.pickerView selectedRowInComponent:0] forComponent:0] tag];
+                    int time = (val2 >= 0) ? val2 :
+                                        (int)[self.pickerView viewForRow:[self.pickerView selectedRowInComponent:0] forComponent:0].tag;
                     result = [NSString stringWithFormat:@"s %d",time];
                 }
                 else if ([self styleIs:STYLE_TIMEWEIGHT]) {
-                    int time = (int)[(UILabel *)[self.pickerView viewForRow:[self.pickerView selectedRowInComponent:0] forComponent:0] tag];
-                    int weight = (int)[(UILabel *)[self.pickerView viewForRow:[self.pickerView selectedRowInComponent:1] forComponent:1] tag];
-                    if (weight == 11)   result = [NSString stringWithFormat:@"s %d 12.5",time];
-                    else                result = [NSString stringWithFormat:@"s %d %d",time,weight];
+                    int time = (val1 >= 0) ? val1 :
+                                        (int)[self.pickerView viewForRow:[self.pickerView selectedRowInComponent:0] forComponent:0].tag;
+                    float weight = (val3 >= 0) ? val3 :
+                                          (float)[self.pickerView viewForRow:[self.pickerView selectedRowInComponent:1] forComponent:1].tag;
+                    result = [NSString stringWithFormat:@"s %d %.1f",time,weight];
                 }
                 else result = [NSString stringWithFormat:@"~ %@",self.textField.text];
                 [self.tempSets addObject:result];
@@ -248,9 +370,7 @@
                             label.text = @"+";
                             [UIView animateWithDuration:.2 animations:^{
                                 label.alpha = 1;
-                            } completion:^(BOOL finished) {
-                                
-                            }];
+                            } completion:nil];
                         }];
                     });
                 }];
@@ -275,8 +395,19 @@
     return YES;
 }
 
-- (BOOL)styleIs:(NSString *)string {
-    return [self.exercise.style isEqualToString:string];
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    NSLog(@"end");
+    if (textField == self.leftTextField) [self selectRowClosestTo:self.leftTextField.text.floatValue inComponent:0];
+    else if (textField == self.rightTextField) [self selectRowClosestTo:self.rightTextField.text.floatValue inComponent:1];
+    else if (textField == self.centerTextField) [self selectRowClosestTo:self.centerTextField.text.floatValue inComponent:0];
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    NSString *rStr = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    if (textField == self.textField && rStr.length <= 30) return YES;
+    if (textField == self.rightTextField && rStr.length <= 4) return YES;
+    if (rStr.length <= 3) return YES;
+    return NO;
 }
 
 /*

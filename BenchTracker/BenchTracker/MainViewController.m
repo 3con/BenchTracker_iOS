@@ -42,6 +42,7 @@
     }
     self.listTableView.dataSource = self;
     self.listTableView.delegate = self;
+    self.listTableView.contentInset = UIEdgeInsetsMake(0, 0, 95, 0);
     [self.listTableView registerNib:[UINib nibWithNibName:@"WorkoutTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"Cell"];
 }
 

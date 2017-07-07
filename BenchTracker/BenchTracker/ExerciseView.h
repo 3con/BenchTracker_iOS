@@ -14,7 +14,7 @@
 
 @property (nonatomic) BOOL isDeleted;
 
-- (void)loadExercise: (BTExercise *)exercise;
+- (void)loadExercise:(BTExercise *)exercise;
 
 - (BTExercise *)getExercise;
 

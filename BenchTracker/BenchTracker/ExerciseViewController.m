@@ -25,6 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.scrollView.delegate = self;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -32,14 +33,14 @@
     self.doneButton.layer.cornerRadius = 12;
     self.doneButton.clipsToBounds = YES;
     self.exerciseViews = [[NSMutableArray alloc] init];
-    int h = 167;
+    int h = 185;
     for (BTExercise *exercise in self.exercises) {
         ExerciseView *view = [[NSBundle mainBundle] loadNibNamed:@"ExerciseView" owner:self options:nil].firstObject;
         [view loadExercise:exercise];
         [self.exerciseViews addObject:view];
         [self.contentView addSubview:view];
         view.center = CGPointMake(self.contentView.frame.size.width*.5, h);
-        h += 267;
+        h += 290;
     }
     if (self.exercises.count < 3) {
         if (self.exercises.count == 1) self.exerciseViews[0].center = CGPointMake(self.contentView.frame.size.width*.5,
@@ -74,6 +75,12 @@
     [self dismissViewControllerAnimated:YES completion:^{
                                  
     }];
+}
+
+#pragma mark - scrollView delegate
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"ExerciseViewScroll" object:nil];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
