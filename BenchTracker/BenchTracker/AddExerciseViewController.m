@@ -18,7 +18,8 @@
 
 @property (nonatomic) NSDictionary *exerciseTypeColors;
 
-@property (nonatomic) NSMutableDictionary <NSManagedObjectID *, NSString *> *selectedTypesAndIterations; //type, iteration
+@property (nonatomic) NSMutableArray <BTExerciseType *> *selectedTypes;
+@property (nonatomic) NSMutableArray <NSString *> *selectedIterations;
 
 @property (nonatomic) NSString *searchString;
 
@@ -28,7 +29,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.selectedTypesAndIterations = [[NSMutableDictionary alloc] init];
     NSError *error;
     self.searchString = @"";
     if (![[self fetchedResultsController] performFetch:&error]) {
@@ -95,20 +95,14 @@
 }
 
 - (IBAction)clearButtonPressed:(UIButton *)sender {
-    [self.selectedTypesAndIterations removeAllObjects];
-    for (UIButton *button in @[self.supersetButton, self.addExerciseButton, self.clearButton]) {
-        button.userInteractionEnabled = NO;
-        button.alpha = 0;
-    }
-    [self.tableView reloadData];
+    [self clearTypeIterations];
 }
 
-- (NSMutableArray <NSArray *> *)typeIterationPairs {
+- (NSArray <NSArray *> *)typeIterationPairs {
     NSMutableArray <NSArray *> *exerciseTIs = [[NSMutableArray alloc] init];
-    for (NSManagedObjectID *moID in self.selectedTypesAndIterations.allKeys) {
-        BTExerciseType *type = [self.context objectWithID:moID];
-        NSString *iteration = self.selectedTypesAndIterations[moID];
-        [exerciseTIs addObject: @[type, (iteration && iteration.length > 0) ? iteration : [NSNull null]]];
+    for (int i = 0; i < self.selectedTypes.count; i++) {
+        NSString *iteration = self.selectedIterations[i];
+        [exerciseTIs addObject: @[self.selectedTypes[i], (iteration && iteration.length > 0) ? iteration : [NSNull null]]];
     }
     return exerciseTIs;
 }
@@ -120,8 +114,9 @@
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"BTExerciseType" inManagedObjectContext:self.context];
     [fetchRequest setEntity:entity];
-    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"category" ascending:YES];
-    [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]];
+    NSSortDescriptor *sort1 = [[NSSortDescriptor alloc] initWithKey:@"category" ascending:YES];
+    NSSortDescriptor *sort2 = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+    [fetchRequest setSortDescriptors:@[sort1, sort2]];
     [fetchRequest setFetchBatchSize:20];
     NSFetchedResultsController *theFetchedResultsController = [[NSFetchedResultsController alloc]
                                                                initWithFetchRequest:fetchRequest managedObjectContext:self.context
@@ -210,8 +205,8 @@
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     BTExerciseType *type = self.fetchedResultsController.sections[indexPath.section].objects[indexPath.row];
-    [cell setSelected:self.selectedTypesAndIterations[type.objectID] animated:YES];
-    [(AddExerciseTableViewCell *)cell loadIteration:self.selectedTypesAndIterations[type.objectID]];
+    [cell setSelected:[self typeExists:type] animated:YES];
+    [(AddExerciseTableViewCell *)cell loadIteration:[self iterationForType:type]];
 }
 
 #pragma mark - tap gesture delegate
@@ -236,21 +231,21 @@
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     BTExerciseType *type = [_fetchedResultsController objectAtIndexPath:indexPath];
-    if (self.selectedTypesAndIterations[type.objectID]) {
+    if ([self typeExists:type]) {
         [[tableView cellForRowAtIndexPath:indexPath] setSelected:NO animated:YES];
         //[tableView deselectRowAtIndexPath:indexPath animated:YES];
-        [self.selectedTypesAndIterations removeObjectForKey:type.objectID];
+        [self removeType:type];
         [self tableView:tableView didDeselectRowAtIndexPath:indexPath];
         return nil;
     }
-    else if (self.selectedTypesAndIterations.count == 5) return nil;
+    else if (self.selectedTypes.count == 5) return nil;
     return indexPath;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     BTExerciseType *type = [_fetchedResultsController objectAtIndexPath:indexPath];
-    self.selectedTypesAndIterations[type.objectID] = @"";
-    NSInteger numSelected = self.selectedTypesAndIterations.count;
+    [self addType:type andIteration:@""];
+    NSInteger numSelected = self.selectedTypes.count;
     if (numSelected == 1) {
         for (UIButton *button in @[self.supersetButton, self.addExerciseButton, self.clearButton]) {
             button.userInteractionEnabled = YES;
@@ -268,7 +263,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSInteger numSelected = self.selectedTypesAndIterations.count;
+    NSInteger numSelected = self.selectedTypes.count;
     if (numSelected == 0) {
         for (UIButton *button in @[self.supersetButton, self.addExerciseButton, self.clearButton]) {
             button.userInteractionEnabled = NO;
@@ -298,8 +293,9 @@
 - (void)iterationSelectionVC:(IterationSelectionViewController *)iterationVC willDismissWithSelectedIteration:(NSString *)iteration {
     NSIndexPath *indexPath = [_fetchedResultsController indexPathForObject:iterationVC.exerciseType];
     AddExerciseTableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    [self removeType:iterationVC.exerciseType];
+    [self addType:iterationVC.exerciseType andIteration:iteration];
     [cell loadIteration:iteration];
-    self.selectedTypesAndIterations[iterationVC.exerciseType.objectID] = iteration;
 }
 
 - (void)iterationSelectionVCDidDismiss:(IterationSelectionViewController *)iterationVC {
@@ -371,6 +367,42 @@
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
+}
+     
+#pragma mark - TI methods
+
+- (BOOL)typeExists:(BTExerciseType *)type {
+    return [self.selectedTypes containsObject:type];
+}
+     
+- (NSString *)iterationForType:(BTExerciseType *)type {
+    if (![self typeExists:type]) return nil;
+    NSInteger index = [self.selectedTypes indexOfObject:type];
+    NSString *s = self.selectedIterations[index];
+    return (!s || s.length == 0) ? nil : s;
+}
+     
+- (void)addType:(BTExerciseType *)type andIteration:(NSString *)iteration {
+    if(!self.selectedTypes) self.selectedTypes = [NSMutableArray array];
+    if(!self.selectedIterations) self.selectedIterations = [NSMutableArray array];
+    [self.selectedTypes addObject:type];
+    [self.selectedIterations addObject:iteration];
+}
+
+- (void)removeType:(BTExerciseType *)type {
+    NSInteger index = [self.selectedTypes indexOfObject:type];
+    [self.selectedTypes removeObjectAtIndex:index];
+    [self.selectedIterations removeObjectAtIndex:index];
+}
+     
+- (void)clearTypeIterations {
+    [self.selectedTypes removeAllObjects];
+    [self.selectedIterations removeAllObjects];
+    for (UIButton *button in @[self.supersetButton, self.addExerciseButton, self.clearButton]) {
+        button.userInteractionEnabled = NO;
+        button.alpha = 0;
+    }
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {

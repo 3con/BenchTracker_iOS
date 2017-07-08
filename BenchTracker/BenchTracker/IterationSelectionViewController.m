@@ -51,7 +51,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     if (self.tempIerations.count == 0) {
-        [self.delegate iterationSelectionVC:self willDismissWithSelectedIteration:nil];
+        [self.delegate iterationSelectionVC:self willDismissWithSelectedIteration:@""];
         [self dismissViewControllerAnimated:NO completion:^{
             [self.delegate iterationSelectionVCDidDismiss:self];
         }];
@@ -60,17 +60,17 @@
 }
 
 - (IBAction)tapGesture:(UITapGestureRecognizer *)sender {
-    [self.delegate iterationSelectionVC:self willDismissWithSelectedIteration:nil];
+    [self.delegate iterationSelectionVC:self willDismissWithSelectedIteration:@""];
     [self animateOut];
 }
 
 - (IBAction)tapGesture2:(UITapGestureRecognizer *)sender {
-    [self.delegate iterationSelectionVC:self willDismissWithSelectedIteration:nil];
+    [self.delegate iterationSelectionVC:self willDismissWithSelectedIteration:@""];
     [self animateOut];
 }
 
 - (IBAction)tapGesture3:(UITapGestureRecognizer *)sender {
-    [self.delegate iterationSelectionVC:self willDismissWithSelectedIteration:nil];
+    [self.delegate iterationSelectionVC:self willDismissWithSelectedIteration:@""];
     [self animateOut];
 }
 
@@ -119,7 +119,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row != 0) {
-        if (indexPath.row == 1) [self.delegate iterationSelectionVC:self willDismissWithSelectedIteration:nil];
+        if (indexPath.row == 1) [self.delegate iterationSelectionVC:self willDismissWithSelectedIteration:@""];
         else [self.delegate iterationSelectionVC:self willDismissWithSelectedIteration:self.tempIerations[indexPath.row-2]];
         [self animateOut];
     }
@@ -136,7 +136,7 @@
     if (neglegable && offset < 60.0) { } //no dismiss
     else if (!neglegable && (offsetPositive != velocityPositive)) { } //no dismiss
     else { //dismiss
-        [self.delegate iterationSelectionVC:self willDismissWithSelectedIteration:nil];
+        [self.delegate iterationSelectionVC:self willDismissWithSelectedIteration:@""];
         [self animateOut];
         [UIView animateWithDuration:.75 delay:.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
             if (scrollView.contentOffset.y >= 0)

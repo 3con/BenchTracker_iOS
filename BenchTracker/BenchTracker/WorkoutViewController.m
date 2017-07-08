@@ -59,7 +59,6 @@
     self.nameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:self.workout.name
         attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor], NSFontAttributeName:[UIFont italicSystemFontOfSize:22]}];
     self.tempSupersets = [NSKeyedUnarchiver unarchiveObjectWithData:self.workout.supersets];
-    self.startDate = [NSDate date];
     [[NSNotificationCenter defaultCenter] addObserver: self
                                              selector: @selector(handleEnteredBackground:)
                                                  name: UIApplicationDidEnterBackgroundNotification
@@ -77,6 +76,7 @@
 
 - (IBAction)pdfButtonPressed:(id)sender {
     [self updateWorkout];
+    self.startDate = nil;
     NSString *path = [BTPDFGenerator generatePDFWithWorkouts:@[self.workout]];
     /*
     UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
@@ -104,6 +104,7 @@
 }
 
 - (IBAction)addExerciseButtonPressed:(UIButton *)sender {
+    if (!self.startDate) self.startDate = [NSDate date];
     [self presentAddExerciseViewController];
 }   
 
@@ -116,9 +117,11 @@
 }
 
 - (void)updateWorkout {
-    NSTimeInterval timeInterval = [self.startDate timeIntervalSinceNow];
-    self.workout.duration += -timeInterval+1;
-    self.startDate = [NSDate date];
+    if (self.startDate) {
+        NSTimeInterval timeInterval = [self.startDate timeIntervalSinceNow];
+        self.workout.duration += -timeInterval+1;
+        self.startDate = [NSDate date];
+    }
     if (self.nameTextField.text.length > 0) self.workout.name = self.nameTextField.text;
     NSMutableDictionary <NSString *, NSNumber *> *dict = [[NSMutableDictionary alloc] init];
     for (BTExercise *exercise in self.workout.exercises) {
@@ -227,8 +230,8 @@
     }   }   }
     [self.tableView beginUpdates];
     [self.tableView deleteRowsAtIndexPaths:[self indexPathsForDeletedExercises:@[((ExerciseTableViewCell *)cell).exercise]]
-                          withRowAnimation:UITableViewRowAnimationAutomatic];
-    [self.tableView reloadRowsAtIndexPaths:self.selectedIndexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+                          withRowAnimation:UITableViewRowAnimationFade];
+    [self.tableView reloadRowsAtIndexPaths:self.selectedIndexPaths withRowAnimation:UITableViewRowAnimationFade];
     [self.tableView endUpdates];
     [self updateWorkout];
 }
@@ -280,8 +283,8 @@
                                                                                   deletedExercises:(NSArray<BTExercise *> *)deleted {
     NSArray *deletedIndexPaths = [self indexPathsForDeletedExercises:deleted];
     [self.tableView beginUpdates];
-    [self.tableView deleteRowsAtIndexPaths:deletedIndexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
-    [self.tableView reloadRowsAtIndexPaths:self.selectedIndexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableView deleteRowsAtIndexPaths:deletedIndexPaths withRowAnimation:UITableViewRowAnimationFade];
+    [self.tableView reloadRowsAtIndexPaths:self.selectedIndexPaths withRowAnimation:UITableViewRowAnimationFade];
     [self.tableView endUpdates];
     [self updateWorkout];
 }

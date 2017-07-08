@@ -54,16 +54,16 @@
 }
 
 - (void)loadStackedView {
+    self.tempSummary = [NSMutableArray array];
     if (self.workout.summary.length > 1) {
-        self.tempSummary = [NSMutableArray array];
         NSArray *sArr = [self.workout.summary componentsSeparatedByString:@"#"];
         for (NSString *s in sArr) {
             NSString *sNum = [s componentsSeparatedByString:@" "].firstObject;
             [self.tempSummary addObject:@[[s substringFromIndex:sNum.length+1], [NSNumber numberWithInteger:sNum.integerValue]]];
         }
-        self.stackedView.dataSource = self;
-        [self.stackedView reloadData];
     }
+    self.stackedView.dataSource = self;
+    [self.stackedView reloadData];
 }
 
 #pragma mark - stackedView datasource

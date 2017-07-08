@@ -97,6 +97,10 @@
     [self presentAnalyticsViewController];
 }
 
+- (IBAction)workoutButtonPressed:(UIButton *)sender {
+    [self presentWorkoutViewControllerWithWorkout:nil];
+}
+
 - (IBAction)scanWorkoutButtonPressed:(UIButton *)sender {
     /*
     MMScannerController *scanner = [[MMScannerController alloc] init];
@@ -317,10 +321,6 @@
 }
 
 #pragma mark - view handling
-
-- (IBAction)workoutButtonPressed:(UIButton *)sender {
-    [self presentWorkoutViewControllerWithWorkout:nil];
-}
 
 - (void)presentLoginViewController {
     LoginViewController *loginVC = [self.storyboard instantiateViewControllerWithIdentifier:@"l"];

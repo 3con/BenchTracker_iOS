@@ -466,7 +466,7 @@
                                     <constraint firstAttribute="height" constant="50" id="ra8-Yk-xow"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                <state key="normal" title="Add Exercise">
+                                <state key="normal" title="Add Exercises">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
