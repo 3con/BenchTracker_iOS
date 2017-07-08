@@ -48,8 +48,11 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.scanWorkoutButton.layer.cornerRadius = 12;
-    self.scanWorkoutButton.clipsToBounds = YES;
+    for (UIButton *button in @[self.scanWorkoutButton, self.blankWorkoutButton, self.rightBarButton]) {
+        button.layer.cornerRadius = 12;
+        button.clipsToBounds = YES;
+    }
+    self.scanWorkoutButton.imageEdgeInsets = UIEdgeInsetsMake(15, 15, 15, 15);
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"BTSettings"];
     NSError *error;
     self.settings = [self.context executeFetchRequest:fetchRequest error:&error].firstObject;
@@ -97,23 +100,17 @@
     [self presentAnalyticsViewController];
 }
 
+- (IBAction)rightBarButtonPressed:(UIButton *)sender {
+    if(self.segmentedControl.selectedSegmentIndex == 0)
+         [self presentSettingsViewController];
+    else [self workoutButtonPressed:sender];
+}
+
 - (IBAction)workoutButtonPressed:(UIButton *)sender {
     [self presentWorkoutViewControllerWithWorkout:nil];
 }
 
 - (IBAction)scanWorkoutButtonPressed:(UIButton *)sender {
-    /*
-    MMScannerController *scanner = [[MMScannerController alloc] init];
-    scanner.showGalleryOption = NO;
-    scanner.showFlashlight = NO;
-    scanner.supportBarcode = NO;
-    [scanner setCompletion:^(NSString *scanConetent) {
-        NSLog(@"%@",scanConetent);
-    }];
-    [self presentViewController:scanner animated:YES completion:^{
-        
-    }];
-     */
     [self presentQRScannerViewController];
 }
 
@@ -207,40 +204,64 @@
 
 - (void)setSelectedViewIndex:(NSInteger)index {
     if (index == 0) {
+        self.rightBarButton.alpha = 0;
+        self.rightBarButton.backgroundColor = [UIColor clearColor];
+        self.rightBarButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+        self.rightBarButton.titleLabel.font = [UIFont systemFontOfSize:17 weight:UIFontWeightMedium];
+        [self.rightBarButton setTitle:@"Settings" forState:UIControlStateNormal];
         self.calendarView.userInteractionEnabled = NO;
         self.weekdayContainerView.userInteractionEnabled = NO;
         [UIView animateWithDuration:.2 animations:^{
             self.listTableView.alpha = 1;
             self.weekdayContainerView.alpha = 0;
             self.calendarView.alpha = 0;
+            self.blankWorkoutButton.alpha = 1;
             self.scanWorkoutButton.alpha = 1;
+            self.rightBarButton.alpha = 1;
         } completion:^(BOOL finished) {
             self.listTableView.userInteractionEnabled = YES;
+            self.blankWorkoutButton.userInteractionEnabled = YES;
             self.scanWorkoutButton.userInteractionEnabled = YES;
         }];
     }
     else if (index == 1) {
+        self.rightBarButton.alpha = 0;
+        self.rightBarButton.backgroundColor = self.blankWorkoutButton.backgroundColor;
+        self.rightBarButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+        self.rightBarButton.titleLabel.font = [UIFont systemFontOfSize:13 weight:UIFontWeightMedium];
+        [self.rightBarButton setTitle:@"New Workout" forState:UIControlStateNormal];
         self.listTableView.userInteractionEnabled = NO;
         self.calendarView.userInteractionEnabled = NO;
+        self.blankWorkoutButton.userInteractionEnabled = NO;
         self.scanWorkoutButton.userInteractionEnabled = NO;
         [UIView animateWithDuration:.2 animations:^{
             self.listTableView.alpha = 0;
             self.weekdayContainerView.alpha = 1;
             self.calendarView.alpha = 0;
+            self.blankWorkoutButton.alpha = 0;
             self.scanWorkoutButton.alpha = 0;
+            self.rightBarButton.alpha = 1;
         } completion:^(BOOL finished) {
             self.weekdayContainerView.userInteractionEnabled = YES;
         }];
     }
     else {
+        self.rightBarButton.alpha = 0;
+        self.rightBarButton.backgroundColor = self.blankWorkoutButton.backgroundColor;
+        self.rightBarButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+        self.rightBarButton.titleLabel.font = [UIFont systemFontOfSize:13 weight:UIFontWeightMedium];
+        [self.rightBarButton setTitle:@"New Workout" forState:UIControlStateNormal];
         self.listTableView.userInteractionEnabled = NO;
         self.weekdayContainerView.userInteractionEnabled = NO;
+        self.blankWorkoutButton.userInteractionEnabled = NO;
         self.scanWorkoutButton.userInteractionEnabled = NO;
         [UIView animateWithDuration:.2 animations:^{
             self.listTableView.alpha = 0;
             self.weekdayContainerView.alpha = 0;
             self.calendarView.alpha = 1;
+            self.blankWorkoutButton.alpha = 0;
             self.scanWorkoutButton.alpha = 0;
+            self.rightBarButton.alpha = 1;
         } completion:^(BOOL finished) {
             self.calendarView.userInteractionEnabled = YES;
         }];
@@ -405,6 +426,22 @@
     [self presentViewController:qrVC animated:YES completion:nil];
 }
 
+- (void)presentSettingsViewController {
+    SettingsViewController *settingsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"s"];
+    settingsVC.delegate = self;
+    settingsVC.context = self.context;
+    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:settingsVC];
+    self.animator.bounces = NO;
+    self.animator.dragable = NO;
+    self.animator.behindViewAlpha = 0.8;
+    self.animator.behindViewScale = 0.92;
+    self.animator.transitionDuration = 0.5;
+    self.animator.direction = ZFModalTransitonDirectionBottom;
+    settingsVC.transitioningDelegate = self.animator;
+    settingsVC.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self presentViewController:settingsVC animated:YES completion:nil];
+}
+
 #pragma mark - workoutVC delegate
 
 - (void)workoutViewController:(WorkoutViewController *)workoutVC willDismissWithResultWorkout:(BTWorkout *)workout {
@@ -425,6 +462,7 @@
 - (void)loginViewController:(LoginViewController *)loginVC willDismissWithUser:(BTUser *)user {
     self.user = user;
     [self loadUser];
+    [self.weekdayView scrollToDate:[NSDate date]];
 }
 
 #pragma mark - workoutSelectionVC delegate

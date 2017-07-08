@@ -28,9 +28,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
-- (IBAction)settingsButtonPressed:(UIButton *)sender {
-    [self presentSettingsViewController];
-}
 
 - (IBAction)doneButtonPressed:(UIButton *)sender {
     [self dismissViewControllerAnimated:YES completion:^{
@@ -46,30 +43,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     return nil;
-}
-
-#pragma mark - view handling
-
-- (void)presentSettingsViewController {
-    SettingsViewController *settingsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"s"];
-    settingsVC.delegate = self;
-    settingsVC.context = self.context;
-    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:settingsVC];
-    self.animator.bounces = NO;
-    self.animator.dragable = NO;
-    self.animator.behindViewAlpha = 0.8;
-    self.animator.behindViewScale = 0.92;
-    self.animator.transitionDuration = 0.5;
-    self.animator.direction = ZFModalTransitonDirectionBottom;
-    settingsVC.transitioningDelegate = self.animator;
-    settingsVC.modalPresentationStyle = UIModalPresentationFullScreen;
-    [self presentViewController:settingsVC animated:YES completion:nil];
-}
-
-#pragma mark - settingsVC delegate
-
-- (void)settingsViewControllerDidRequestUserLogout:(SettingsViewController *)settingsVC {
-    
 }
 
 - (void)didReceiveMemoryWarning {

@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SettingsViewController.h"
 
 @class AnalyticsViewController;
 
@@ -15,7 +14,7 @@
 
 @end
 
-@interface AnalyticsViewController : UIViewController <SettingsViewControllerDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface AnalyticsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic) id<AnalyticsViewControllerDelegate> delegate;
 

@@ -30,6 +30,7 @@
 @property (nonatomic) NSMutableArray <BTExercise *> *selectedExercises;
 @property (nonatomic) NSMutableArray <NSIndexPath *> *selectedIndexPaths;
 
+@property (nonatomic) BOOL paused;
 @property (nonatomic) NSDate *startDate;
 
 @end
@@ -38,6 +39,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.paused = NO;
+    self.pauseView.alpha = 0;
+    self.pauseView.userInteractionEnabled = NO;
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"BTSettings"];
     NSError *error;
     self.settings = [self.context executeFetchRequest:fetchRequest error:&error].firstObject;
@@ -214,6 +218,23 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [self presentExerciseViewControllerWithExercises:self.selectedExercises];
     });
+}
+
+#pragma mark - gesture handling
+
+- (IBAction)pauseGestureActivated:(UITapGestureRecognizer *)sender {
+    if (self.paused) {
+        self.pauseView.alpha = 0;
+        self.pauseView.userInteractionEnabled = NO;
+        self.startDate = [NSDate date];
+    }
+    else {
+        self.pauseView.alpha = 1;
+        self.pauseView.userInteractionEnabled = YES;
+        [self updateWorkout];
+        self.startDate = nil;
+    }
+    self.paused = !self.paused;
 }
 
 #pragma mark - SWTableViewCell delegate
