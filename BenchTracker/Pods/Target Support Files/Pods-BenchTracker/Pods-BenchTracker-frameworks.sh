@@ -98,7 +98,9 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/JSONModel/JSONModel.framework"
   install_framework "$BUILT_PRODUCTS_DIR/MJExtension/MJExtension.framework"
   install_framework "$BUILT_PRODUCTS_DIR/MMQRCodeScanner/MMQRCodeScanner.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/PNChart/PNChart.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SWTableViewCell/SWTableViewCell.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/UICountingLabel/UICountingLabel.framework"
   install_framework "$BUILT_PRODUCTS_DIR/ZFDragableModalTransition/ZFDragableModalTransition.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -111,7 +113,9 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/JSONModel/JSONModel.framework"
   install_framework "$BUILT_PRODUCTS_DIR/MJExtension/MJExtension.framework"
   install_framework "$BUILT_PRODUCTS_DIR/MMQRCodeScanner/MMQRCodeScanner.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/PNChart/PNChart.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SWTableViewCell/SWTableViewCell.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/UICountingLabel/UICountingLabel.framework"
   install_framework "$BUILT_PRODUCTS_DIR/ZFDragableModalTransition/ZFDragableModalTransition.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then

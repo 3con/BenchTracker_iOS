@@ -12,14 +12,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="AnalyticsCollectionViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="424" height="500"/>
+            <rect key="frame" x="0.0" y="0.0" width="280" height="396"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="424" height="500"/>
+                <rect key="frame" x="0.0" y="0.0" width="280" height="396"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Test Page" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="28c-mU-YVs">
-                        <rect key="frame" x="87" y="20" width="250" height="30"/>
+                        <rect key="frame" x="15" y="20" width="250" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="4iI-OT-PkW"/>
                             <constraint firstAttribute="width" constant="250" id="Wjv-na-UHL"/>
@@ -29,7 +29,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NsY-tI-qsV">
-                        <rect key="frame" x="122" y="430" width="180" height="50"/>
+                        <rect key="frame" x="50" y="326" width="180" height="50"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="50" id="Fer-Ku-q31"/>
@@ -38,28 +38,47 @@
                         <state key="normal" title="See More">
                             <color key="titleColor" red="0.11678832309999999" green="0.1157350471" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </state>
+                        <connections>
+                            <action selector="seeMoreButtonPressed:" destination="gTV-IL-0wX" eventType="touchUpInside" id="K8i-qV-gu7"/>
+                        </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This Week" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQx-o5-tc9">
-                        <rect key="frame" x="137" y="50" width="150" height="20"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recent Workouts" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQx-o5-tc9">
+                        <rect key="frame" x="65" y="50" width="150" height="20"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="150" id="4Fn-hB-vIJ"/>
                             <constraint firstAttribute="height" constant="20" id="ucc-li-1Zy"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
+                        <color key="textColor" white="1" alpha="0.80000000000000004" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZfE-sf-WBc">
+                        <rect key="frame" x="20" y="85" width="240" height="210"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="210" id="0Cv-Hb-Xmp"/>
+                        </constraints>
+                    </view>
                 </subviews>
             </view>
             <color key="backgroundColor" red="0.11678832309999999" green="0.1157350471" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="MQx-o5-tc9" firstAttribute="top" secondItem="28c-mU-YVs" secondAttribute="bottom" id="8Ib-U6-6up"/>
+                <constraint firstAttribute="trailing" secondItem="ZfE-sf-WBc" secondAttribute="trailing" constant="20" id="9do-Id-2PQ"/>
                 <constraint firstItem="NsY-tI-qsV" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="FyM-ol-eJ9"/>
+                <constraint firstItem="ZfE-sf-WBc" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="Lco-cS-8bb"/>
                 <constraint firstItem="MQx-o5-tc9" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="T2Q-AP-Cxe"/>
+                <constraint firstItem="ZfE-sf-WBc" firstAttribute="top" secondItem="MQx-o5-tc9" secondAttribute="bottom" constant="15" id="aRP-F5-kmD"/>
                 <constraint firstItem="28c-mU-YVs" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="br5-CX-i6z"/>
                 <constraint firstAttribute="bottom" secondItem="NsY-tI-qsV" secondAttribute="bottom" constant="20" id="cyL-Tc-rdZ"/>
                 <constraint firstItem="28c-mU-YVs" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="20" id="yA7-Bc-j4Q"/>
             </constraints>
+            <connections>
+                <outlet property="graphContainerView" destination="ZfE-sf-WBc" id="TOR-4n-iDf"/>
+                <outlet property="seeMoreButton" destination="NsY-tI-qsV" id="GGO-tD-5yc"/>
+                <outlet property="subtitleLabel" destination="MQx-o5-tc9" id="9gD-2v-FrH"/>
+                <outlet property="titleLabel" destination="28c-mU-YVs" id="MkZ-9s-zpU"/>
+            </connections>
         </collectionViewCell>
     </objects>
 </document>

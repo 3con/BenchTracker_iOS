@@ -49,6 +49,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>PNChart.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-BenchTracker.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -64,6 +69,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>UICountingLabel.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>ZFDragableModalTransition.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -72,12 +82,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>108D9A24E65BF2A0521C1D059C94C45E</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>1CB26B3CFF88A17D80304E6CB454BB5B</key>
+		<key>0FC1CB21D1B64FAAC47A6478616DA728</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -97,6 +102,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>63830EB290583B6C1B085E12EE7CD0DF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>764BF5F8A7793010994AF3D12E8FB7BF</key>
 		<dict>
 			<key>primary</key>
@@ -108,6 +118,16 @@
 			<true/>
 		</dict>
 		<key>9F7098779713B711F6C591B62A41F242</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A3E5940FF75AE93116CE0ADC0FA6FD2D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>ABE8544E95CDB7AF281A75C3E66579CA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -127,7 +147,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DAF8DB1B7B94DF50FCABD396278499C2</key>
+		<key>DA392EE8E5B24D16FB9910405A0AFC2E</key>
 		<dict>
 			<key>primary</key>
 			<true/>

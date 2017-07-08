@@ -45,6 +45,8 @@ In order to get the app to fully function correctly, the file 'BenchTrackerKeys.
 * [SWTableViewCell](https://github.com/CEWendel/SWTableViewCell) - swipe-to-delete workout cells
 * [MJExtension](https://github.com/CoderMJLee/MJExtension) - workout JSON serialization for QR codes
 * [MMQRCodeScanner](https://github.com/dexianyinjiu/MMQRCodeScanner) - QR code generation and scanning
+* [StickyCollectionView](https://github.com/matbeich/StickyCollectionView) - Analysis view card animation
+* [PNChart](https://github.com/kevinzhow/PNChart) - Analysis view graphs
 * [Core Data](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/CoreData/index.html) - on-device data storage
 * [Core Graphics / Text](https://developer.apple.com/library/content/documentation/StringsTextFonts/Conceptual/CoreText_Programming/Overview/Overview.html) - workout PDF generation
 
@@ -70,9 +72,12 @@ In order to get the app to fully function correctly, the file 'BenchTrackerKeys.
 <img src="./Screenshots/image10.png" alt="Drawing" width="300 px"/>
 <img src="./Screenshots/image11.png" alt="Drawing" width="300 px"/>
 
-#### Export workout to PDF
+#### Analysis view
 <img src="./Screenshots/image12.png" alt="Drawing" width="300 px"/>
 
-#### QR code generation and scanning
+#### Export workout to PDF
 <img src="./Screenshots/image13.png" alt="Drawing" width="300 px"/>
+
+#### QR code generation and scanning
 <img src="./Screenshots/image14.png" alt="Drawing" width="300 px"/>
+<img src="./Screenshots/image15.png" alt="Drawing" width="300 px"/>
