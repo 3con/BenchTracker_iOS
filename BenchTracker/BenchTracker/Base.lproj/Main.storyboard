@@ -138,25 +138,32 @@
                                     <constraint firstItem="Qsx-Sk-HQ8" firstAttribute="top" secondItem="u0q-f3-L3b" secondAttribute="top" constant="28" id="z4M-cW-OLt"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qhp-uS-ugu">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="eUA-P5-CbN">
                                 <rect key="frame" x="0.0" y="72" width="414" height="664"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="9cW-qp-FLR">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="qhp-uS-ugu" firstAttribute="centerX" secondItem="u0q-f3-L3b" secondAttribute="centerX" id="H2l-8L-ay1"/>
                             <constraint firstItem="u0q-f3-L3b" firstAttribute="centerX" secondItem="lEN-R6-h8U" secondAttribute="centerX" id="VVD-Y7-fxf"/>
-                            <constraint firstItem="qhp-uS-ugu" firstAttribute="top" secondItem="u0q-f3-L3b" secondAttribute="bottom" id="bGw-3q-d6r"/>
+                            <constraint firstItem="eUA-P5-CbN" firstAttribute="width" secondItem="lEN-R6-h8U" secondAttribute="width" id="b5B-Le-TcS"/>
                             <constraint firstItem="u0q-f3-L3b" firstAttribute="top" secondItem="i4t-aB-QJ7" secondAttribute="bottom" constant="-20" id="bzi-la-0Gj"/>
-                            <constraint firstItem="ZDU-SR-YGE" firstAttribute="top" secondItem="qhp-uS-ugu" secondAttribute="bottom" id="il8-AM-mrx"/>
-                            <constraint firstItem="qhp-uS-ugu" firstAttribute="width" secondItem="u0q-f3-L3b" secondAttribute="width" id="sfG-on-Owm"/>
+                            <constraint firstItem="eUA-P5-CbN" firstAttribute="top" secondItem="u0q-f3-L3b" secondAttribute="bottom" id="diL-K3-Xwx"/>
+                            <constraint firstItem="ZDU-SR-YGE" firstAttribute="top" secondItem="eUA-P5-CbN" secondAttribute="bottom" id="hbO-kq-9EG"/>
                             <constraint firstAttribute="width" secondItem="u0q-f3-L3b" secondAttribute="width" id="tLX-LN-TTq"/>
+                            <constraint firstItem="eUA-P5-CbN" firstAttribute="centerX" secondItem="lEN-R6-h8U" secondAttribute="centerX" id="y6e-Np-8Xd"/>
                         </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
-                        <outlet property="tableView" destination="qhp-uS-ugu" id="sDR-2M-XGp"/>
+                        <outlet property="collectionView" destination="eUA-P5-CbN" id="EDc-I3-oDX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="auv-05-gfD" userLabel="First Responder" sceneMemberID="firstResponder"/>

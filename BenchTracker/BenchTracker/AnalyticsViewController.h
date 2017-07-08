@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AnalyticsCollectionViewCell.h"
 
 @class AnalyticsViewController;
 
@@ -14,7 +15,7 @@
 
 @end
 
-@interface AnalyticsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface AnalyticsViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic) id<AnalyticsViewControllerDelegate> delegate;
 

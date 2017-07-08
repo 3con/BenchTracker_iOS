@@ -56,6 +56,9 @@
 		F9AF067E1F07535C003A2200 /* WorkoutTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F9AF067C1F07535C003A2200 /* WorkoutTableViewCell.m */; };
 		F9AF067F1F07535C003A2200 /* WorkoutTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9AF067D1F07535C003A2200 /* WorkoutTableViewCell.xib */; };
 		F9AF06831F07596F003A2200 /* BTStackedBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = F9AF06821F07596F003A2200 /* BTStackedBarView.m */; };
+		F9B27CE11F1170F5008FCC7F /* StickCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B27CE01F1170F5008FCC7F /* StickCollectionViewFlowLayout.m */; };
+		F9B27CE51F117852008FCC7F /* AnalyticsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B27CE31F117852008FCC7F /* AnalyticsCollectionViewCell.m */; };
+		F9B27CE61F117852008FCC7F /* AnalyticsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9B27CE41F117852008FCC7F /* AnalyticsCollectionViewCell.xib */; };
 		F9B7D7D71F06303700376201 /* passTouchesView.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B7D7D61F06303700376201 /* passTouchesView.m */; };
 		F9DA75111F02DC1700347B0D /* BTDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F9DA750F1F02DC1700347B0D /* BTDataModel.xcdatamodeld */; };
 		F9DA75221F02EE9600347B0D /* BTUser+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F9DA75131F02EE9600347B0D /* BTUser+CoreDataClass.m */; };
@@ -171,6 +174,11 @@
 		F9AF067D1F07535C003A2200 /* WorkoutTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WorkoutTableViewCell.xib; sourceTree = "<group>"; };
 		F9AF06811F07596F003A2200 /* BTStackedBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTStackedBarView.h; sourceTree = "<group>"; };
 		F9AF06821F07596F003A2200 /* BTStackedBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTStackedBarView.m; sourceTree = "<group>"; };
+		F9B27CDF1F1170F5008FCC7F /* StickCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StickCollectionViewFlowLayout.h; path = "Third Party/StickCollectionViewFlowLayout.h"; sourceTree = "<group>"; };
+		F9B27CE01F1170F5008FCC7F /* StickCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StickCollectionViewFlowLayout.m; path = "Third Party/StickCollectionViewFlowLayout.m"; sourceTree = "<group>"; };
+		F9B27CE21F117852008FCC7F /* AnalyticsCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyticsCollectionViewCell.h; sourceTree = "<group>"; };
+		F9B27CE31F117852008FCC7F /* AnalyticsCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyticsCollectionViewCell.m; sourceTree = "<group>"; };
+		F9B27CE41F117852008FCC7F /* AnalyticsCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnalyticsCollectionViewCell.xib; sourceTree = "<group>"; };
 		F9B7D7D51F06303700376201 /* PassTouchesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PassTouchesView.h; sourceTree = "<group>"; };
 		F9B7D7D61F06303700376201 /* passTouchesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = passTouchesView.m; sourceTree = "<group>"; };
 		F9DA75101F02DC1700347B0D /* BTDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BTDataModel.xcdatamodel; sourceTree = "<group>"; };
@@ -246,6 +254,7 @@
 				F90712BD19415FB4008694E5 /* BenchTrackerTests */,
 				F90712A219415FB0008694E5 /* Products */,
 				07B860C0B22B1DD50ACEC6C0 /* Pods */,
+				F9B27CDE1F1170E0008FCC7F /* Third Party */,
 				B57455EDB36A13EE7AEA1ED6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -591,6 +600,26 @@
 			name = "Stacked bar";
 			sourceTree = "<group>";
 		};
+		F9B27CDE1F1170E0008FCC7F /* Third Party */ = {
+			isa = PBXGroup;
+			children = (
+				F9B27CDF1F1170F5008FCC7F /* StickCollectionViewFlowLayout.h */,
+				F9B27CE01F1170F5008FCC7F /* StickCollectionViewFlowLayout.m */,
+			);
+			name = "Third Party";
+			path = BenchTracker;
+			sourceTree = "<group>";
+		};
+		F9B27CE71F117B76008FCC7F /* Analytics cell */ = {
+			isa = PBXGroup;
+			children = (
+				F9B27CE21F117852008FCC7F /* AnalyticsCollectionViewCell.h */,
+				F9B27CE31F117852008FCC7F /* AnalyticsCollectionViewCell.m */,
+				F9B27CE41F117852008FCC7F /* AnalyticsCollectionViewCell.xib */,
+			);
+			name = "Analytics cell";
+			sourceTree = "<group>";
+		};
 		F9DA752A1F02F00200347B0D /* BTWorkout */ = {
 			isa = PBXGroup;
 			children = (
@@ -680,6 +709,7 @@
 			children = (
 				F9F442121F0EA96D008D4956 /* AnalyticsViewController.h */,
 				F9F442131F0EA96D008D4956 /* AnalyticsViewController.m */,
+				F9B27CE71F117B76008FCC7F /* Analytics cell */,
 			);
 			name = Analytics;
 			sourceTree = "<group>";
@@ -785,6 +815,7 @@
 				F981D5891F022D9A00E7B456 /* LaunchScreen.xib in Resources */,
 				F927D1551F0C9DDB0004CF3A /* IterationTableViewCell.xib in Resources */,
 				F97B1CAA1F097DA600B3EEC7 /* WeekdayView.xib in Resources */,
+				F9B27CE61F117852008FCC7F /* AnalyticsCollectionViewCell.xib in Resources */,
 				F917BB671F0DEAE000614AB1 /* BTQRScannerViewController.xib in Resources */,
 				F9418FA41F048B1E0083C3DC /* AddExerciseTableViewCell.xib in Resources */,
 				F90712B319415FB1008694E5 /* Main.storyboard in Resources */,
@@ -926,6 +957,7 @@
 				F9418F9E1F0433980083C3DC /* AddExerciseViewController.m in Sources */,
 				F9DA75291F02EE9600347B0D /* BTWorkout+CoreDataProperties.m in Sources */,
 				F95F93441F03738B00A19C4D /* WorkoutViewController.m in Sources */,
+				F9B27CE51F117852008FCC7F /* AnalyticsCollectionViewCell.m in Sources */,
 				F9418FA31F048B1E0083C3DC /* AddExerciseTableViewCell.m in Sources */,
 				F917BB5A1F0DA6AB00614AB1 /* BTJSONWorkout.m in Sources */,
 				F97B1CA71F097D8A00B3EEC7 /* WeekdayView.m in Sources */,
@@ -946,6 +978,7 @@
 				F95F932F1F02FC5000A19C4D /* TypeListModel.m in Sources */,
 				F95F5CF61F08B54500A567FA /* SettingsViewController.m in Sources */,
 				F917BB5D1F0DCA6A00614AB1 /* BTJSONWorkoutTemplate.m in Sources */,
+				F9B27CE11F1170F5008FCC7F /* StickCollectionViewFlowLayout.m in Sources */,
 				F9FA47261F0B39D700A4AF98 /* WorkoutSelectionViewController.m in Sources */,
 				F9DA75261F02EE9600347B0D /* BTExerciseType+CoreDataClass.m in Sources */,
 				F95F93331F03410500A19C4D /* BTAWSUser.m in Sources */,
