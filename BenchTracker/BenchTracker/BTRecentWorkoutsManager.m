@@ -108,18 +108,8 @@
 - (NSArray <NSNumber *> *)workoutVolumes {
     if (!self.recentWorkouts) [self performFetch];
     NSMutableArray *volumes = [NSMutableArray array];
-    for (BTWorkout *workout in self.recentWorkouts) {
-        float i = 0;
-        for (BTExercise *exercise in workout.exercises) {
-            if ([exercise.style isEqualToString:STYLE_REPSWEIGHT]) {
-                for (NSString *set in [NSKeyedUnarchiver unarchiveObjectWithData:exercise.sets]) {
-                    NSArray <NSString *> *split = [set componentsSeparatedByString:@" "];
-                    i += split[0].floatValue * split[1].floatValue;
-                }
-            }
-        }
-        [volumes addObject:[NSNumber numberWithFloat:i/1000]];
-    }
+    for (BTWorkout *workout in self.recentWorkouts)
+        [volumes addObject:[NSNumber numberWithFloat:workout.volume/1000]];
     return volumes;
 }
 

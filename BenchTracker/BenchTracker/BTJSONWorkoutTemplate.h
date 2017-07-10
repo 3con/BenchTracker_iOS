@@ -13,7 +13,6 @@
 @interface BTJSONWorkoutTemplate : NSObject
 
 @property (nonatomic)                   NSString* name;
-@property (nonatomic)                   NSString* summary;   //"1 biceps#2 legs#..."
 @property (nonatomic) NSMutableArray<NSString *>* supersets; //[ "1 2 3", "5 6", ... ]
 @property (nonatomic) NSMutableArray<BTJSONExerciseTemplate *>* exercises;
 

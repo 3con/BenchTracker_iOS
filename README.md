@@ -45,8 +45,8 @@ In order to get the app to fully function correctly, the file 'BenchTrackerKeys.
 * [SWTableViewCell](https://github.com/CEWendel/SWTableViewCell) - swipe-to-delete workout cells
 * [MJExtension](https://github.com/CoderMJLee/MJExtension) - workout JSON serialization for QR codes
 * [MMQRCodeScanner](https://github.com/dexianyinjiu/MMQRCodeScanner) - QR code generation and scanning
-* [StickyCollectionView](https://github.com/matbeich/StickyCollectionView) - Analysis view card animation
-* [PNChart](https://github.com/kevinzhow/PNChart) - Analysis view graphs
+* [StickyCollectionView](https://github.com/matbeich/StickyCollectionView) - Analytics view card animation
+* [PNChart](https://github.com/kevinzhow/PNChart) - Analytics view graphs
 * [Core Data](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/CoreData/index.html) - on-device data storage
 * [Core Graphics / Text](https://developer.apple.com/library/content/documentation/StringsTextFonts/Conceptual/CoreText_Programming/Overview/Overview.html) - workout PDF generation
 

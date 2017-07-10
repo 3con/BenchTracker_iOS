@@ -15,6 +15,7 @@
 #import "BTAnalyticsPieChart.h"
 #import "BTAnalyticsBarChart.h"
 #import "BTRecentWorkoutsManager.h"
+#import "AnalyticsDetailViewController.h"
 
 @interface AnalyticsViewController ()
 
@@ -147,7 +148,8 @@
 #pragma mark - collectionView delegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%ld",indexPath.row);
+    [self presentAnalyticsDetailViewControllerWithIndex:indexPath.row
+                                                   cell:(AnalyticsCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:indexPath]];
 }
 
 #pragma mark - flowLayout delegate
@@ -166,6 +168,26 @@
     unsigned rgbValue = 0;
     [[NSScanner scannerWithString:hexString] scanHexInt:&rgbValue];
     return [UIColor colorWithRed:((rgbValue & 0xFF0000) >> 16)/255.0 green:((rgbValue & 0xFF00) >> 8)/255.0 blue:(rgbValue & 0xFF)/255.0 alpha:1.0];
+}
+
+#pragma mark - view handling
+
+- (void)presentAnalyticsDetailViewControllerWithIndex:(NSInteger)index cell:(AnalyticsCollectionViewCell *)cell {
+    AnalyticsDetailViewController *adVC;
+    if (true) adVC = [[NSBundle mainBundle] loadNibNamed:@"ADWorkoutsViewController" owner:self options:nil].firstObject;
+    adVC.context = self.context;
+    adVC.color = cell.backgroundColor;
+    adVC.titleString = cell.titleLabel.text;
+    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:adVC];
+    self.animator.bounces = NO;
+    self.animator.dragable = NO;
+    self.animator.behindViewAlpha = 0.6;
+    self.animator.behindViewScale = 1.0;
+    self.animator.transitionDuration = 0.35;
+    self.animator.direction = ZFModalTransitonDirectionRight;
+    adVC.transitioningDelegate = self.animator;
+    adVC.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self presentViewController:adVC animated:YES completion:nil];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {

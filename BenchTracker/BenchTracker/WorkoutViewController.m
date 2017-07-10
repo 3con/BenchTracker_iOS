@@ -128,9 +128,16 @@
     }
     if (self.nameTextField.text.length > 0) self.workout.name = self.nameTextField.text;
     NSMutableDictionary <NSString *, NSNumber *> *dict = [[NSMutableDictionary alloc] init];
+    self.workout.volume = 0;
     for (BTExercise *exercise in self.workout.exercises) {
         if (dict[exercise.category]) dict[exercise.category] = [NSNumber numberWithInt:dict[exercise.category].intValue + 1];
         else                         dict[exercise.category] = [NSNumber numberWithInt:1];
+        if ([exercise.style isEqualToString:STYLE_REPSWEIGHT]) {
+            for (NSString *set in [NSKeyedUnarchiver unarchiveObjectWithData:exercise.sets]) {
+                NSArray <NSString *> *split = [set componentsSeparatedByString:@" "];
+                self.workout.volume += split[0].floatValue*split[1].floatValue;
+            }
+        }
     }
     self.workout.summary = @"0";
     if (self.workout.exercises.count > 0) {

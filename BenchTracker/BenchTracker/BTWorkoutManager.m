@@ -154,6 +154,7 @@
     }
     workout.supersets = [NSKeyedArchiver archivedDataWithRootObject:tempSupersets];
     workout.exercises = [[NSOrderedSet alloc] init];
+    workout.volume = 0;
     for (BTJSONExercise *exerciseModel in workoutModel.exercises) {
         BTExercise *exercise = [NSEntityDescription insertNewObjectForEntityForName:@"BTExercise" inManagedObjectContext:self.context];
         exercise.name = exerciseModel.name;
@@ -161,6 +162,12 @@
         exercise.category = exerciseModel.category;
         exercise.style = exerciseModel.style;
         exercise.sets = [NSKeyedArchiver archivedDataWithRootObject:(exerciseModel.sets) ? exerciseModel.sets : [NSMutableArray array]];
+        if ([exerciseModel.style isEqualToString:STYLE_REPSWEIGHT]) {
+            for (NSString *set in exerciseModel.sets) {
+                NSArray <NSString *> *split = [set componentsSeparatedByString:@" "];
+                workout.volume += split[0].floatValue*split[1].floatValue;
+            }
+        }
         exercise.workout = workout;
         [workout addExercisesObject:exercise];
     }
@@ -190,6 +197,7 @@
     workout.name = [NSString stringWithFormat:@"%@ Workout",timeStr];
     workout.date = [NSDate date];
     workout.duration = 0;
+    workout.volume = 0;
     workout.summary = @"0";
     workout.supersets = [NSKeyedArchiver archivedDataWithRootObject:[NSMutableArray array]];
     workout.exercises = [[NSOrderedSet alloc] init];
@@ -305,6 +313,7 @@
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
     awsWorkout.date = [dateFormatter stringFromDate:workout.date];
     awsWorkout.duration = [NSNumber numberWithInteger:workout.duration];
+    awsWorkout.volume = [NSNumber numberWithInteger:workout.volume];
     awsWorkout.summary = workout.summary;
     awsWorkout.exercises = [[NSMutableArray alloc] init];
     for (BTExercise *exercise in workout.exercises)
@@ -329,6 +338,7 @@
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
     workout.date = [dateFormatter dateFromString:awsWorkout.date];
     workout.duration = awsWorkout.duration.integerValue;
+    workout.volume = awsWorkout.volume.integerValue;
     workout.summary = awsWorkout.summary;
     if ([awsWorkout.supersets.firstObject isEqualToString:AWS_EMPTY])
          workout.supersets = [NSKeyedArchiver archivedDataWithRootObject:[NSMutableArray array]];
