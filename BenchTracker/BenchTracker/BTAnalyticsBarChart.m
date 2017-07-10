@@ -21,12 +21,18 @@
     NSMutableArray *xData = [NSMutableArray array];
     NSMutableArray *yData = [NSMutableArray array];
     NSArray *orderedKeys = [data keysSortedByValueUsingComparator:^NSComparisonResult(id obj1, id obj2){
-        return [obj1 compare:obj2];
+        return [obj2 compare:obj1];
     }];
     for (int i = 0; i < 8; i++) {
         [xData addObject:orderedKeys[i]];
         [yData addObject:data[orderedKeys[i]]];
     }
+    self.yMaxValue = data[orderedKeys[0]].intValue+1; //FIX: PNbarChart.m
+                                                      //updateBar:
+                                                         //bar = [[PNBar alloc] initWithFrame:CGRectMake(barXPosition, _chartMarginTop, barWidth, self.showLevelLine ? chartCavanHeight/2.0:chartCavanHeight)];
+                                                      //__addYCoordinateLabelsValues:
+                                                         //label.frame = (CGRect){0, sectionHeight * i + _chartMarginTop - kYLabelHeight/2.0 , _yChartLabelWidth, kYLabelHeight};
+    self.yLabelSum = MIN(5, data[orderedKeys[0]].intValue+1);
     [self setXLabels:xData];
     [self setYValues:yData];
 }
@@ -36,8 +42,14 @@
 - (void)loadLayout {
     self.backgroundColor = [UIColor clearColor];
     self.labelFont = [UIFont systemFontOfSize:10 weight:UIFontWeightBold];
-    self.xLabelWidth = 80;
+    self.xLabelWidth = 20;
+    self.barBackgroundColor = [UIColor colorWithWhite:1 alpha:.1];
     self.strokeColor = [UIColor whiteColor];
+    self.barWidth = 20;
+    self.barRadius = 6;
+    self.labelTextColor = [UIColor whiteColor];
+    self.rotateForXAxisText = YES;
+    self.chartMarginBottom = 32;
 }
 
 /*

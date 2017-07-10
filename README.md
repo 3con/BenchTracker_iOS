@@ -72,12 +72,17 @@ In order to get the app to fully function correctly, the file 'BenchTrackerKeys.
 <img src="./Screenshots/image10.png" alt="Drawing" width="300 px"/>
 <img src="./Screenshots/image11.png" alt="Drawing" width="300 px"/>
 
-#### Analysis view
+#### Analytics view
 <img src="./Screenshots/image12.png" alt="Drawing" width="300 px"/>
-
-#### Export workout to PDF
 <img src="./Screenshots/image13.png" alt="Drawing" width="300 px"/>
-
-#### QR code generation and scanning
 <img src="./Screenshots/image14.png" alt="Drawing" width="300 px"/>
 <img src="./Screenshots/image15.png" alt="Drawing" width="300 px"/>
+<img src="./Screenshots/image16.png" alt="Drawing" width="300 px"/>
+<img src="./Screenshots/image17.png" alt="Drawing" width="300 px"/>
+
+#### Export workout to PDF
+<img src="./Screenshots/image18.png" alt="Drawing" width="300 px"/>
+
+#### QR code generation and scanning
+<img src="./Screenshots/image19.png" alt="Drawing" width="300 px"/>
+<img src="./Screenshots/image20.png" alt="Drawing" width="300 px"/>

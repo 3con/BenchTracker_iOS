@@ -17,7 +17,7 @@
     return self;
 }
 
-+ (NSArray *)pieDataForDictionary:(NSDictionary <NSString *, NSNumber *> *)data withColorDict:(NSDictionary *)colors {
++ (NSArray *)pieDataForDictionary:(NSDictionary <NSString *, NSNumber *> *)data {
     NSMutableArray *items = [NSMutableArray array];
     float max = -MAXFLOAT;
     float min = MAXFLOAT;
@@ -26,7 +26,10 @@
         if (x < min) min = x;
         if (x > max) max = x;
     }
-    for (NSString *key in data.allKeys)
+    NSArray *orderedKeys = [data keysSortedByValueUsingComparator:^NSComparisonResult(id obj1, id obj2){
+        return [obj2 compare:obj1];
+    }];
+    for (NSString *key in orderedKeys)
         [items addObject:[PNPieChartDataItem dataItemWithValue:data[key].floatValue
                                                          color:[UIColor colorWithWhite:1 alpha:(data[key].floatValue-min)/(max-min)*.4+.1]
                                                    description:key]];

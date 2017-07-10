@@ -20,6 +20,9 @@
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Test Page" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="28c-mU-YVs">
                         <rect key="frame" x="25" y="20" width="250" height="30"/>
+                        <accessibility key="accessibilityConfiguration">
+                            <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
+                        </accessibility>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="4iI-OT-PkW"/>
                             <constraint firstAttribute="width" constant="250" id="Wjv-na-UHL"/>
@@ -31,6 +34,9 @@
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NsY-tI-qsV">
                         <rect key="frame" x="60" y="380" width="180" height="50"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <accessibility key="accessibilityConfiguration">
+                            <accessibilityTraits key="traits" button="YES" notEnabled="YES"/>
+                        </accessibility>
                         <constraints>
                             <constraint firstAttribute="height" constant="50" id="Fer-Ku-q31"/>
                             <constraint firstAttribute="width" constant="180" id="siW-Ph-0x3"/>
@@ -38,12 +44,12 @@
                         <state key="normal" title="See More">
                             <color key="titleColor" red="0.11678832309999999" green="0.1157350471" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </state>
-                        <connections>
-                            <action selector="seeMoreButtonPressed:" destination="gTV-IL-0wX" eventType="touchUpInside" id="K8i-qV-gu7"/>
-                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recent Workouts" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQx-o5-tc9">
                         <rect key="frame" x="75" y="50" width="150" height="20"/>
+                        <accessibility key="accessibilityConfiguration">
+                            <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
+                        </accessibility>
                         <constraints>
                             <constraint firstAttribute="width" constant="150" id="4Fn-hB-vIJ"/>
                             <constraint firstAttribute="height" constant="20" id="ucc-li-1Zy"/>
@@ -55,37 +61,44 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZfE-sf-WBc">
                         <rect key="frame" x="20" y="85" width="260" height="210"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                        <accessibility key="accessibilityConfiguration">
+                            <accessibilityTraits key="traits" notEnabled="YES"/>
+                        </accessibility>
                         <constraints>
                             <constraint firstAttribute="height" constant="210" id="0Cv-Hb-Xmp"/>
                         </constraints>
                     </view>
-                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="T7i-9F-yPs" customClass="BTAnalyticsTableView">
-                        <rect key="frame" x="20" y="310" width="260" height="54"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dsL-C1-bKb">
+                        <rect key="frame" x="20" y="310.5" width="260" height="54"/>
                         <color key="backgroundColor" white="1" alpha="0.20000000000000001" colorSpace="calibratedWhite"/>
-                    </tableView>
+                        <accessibility key="accessibilityConfiguration">
+                            <accessibilityTraits key="traits" notEnabled="YES"/>
+                        </accessibility>
+                    </view>
                 </subviews>
             </view>
             <color key="backgroundColor" red="0.11678832309999999" green="0.1157350471" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="dsL-C1-bKb" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="1Bg-IT-AKg"/>
                 <constraint firstItem="MQx-o5-tc9" firstAttribute="top" secondItem="28c-mU-YVs" secondAttribute="bottom" id="8Ib-U6-6up"/>
                 <constraint firstAttribute="trailing" secondItem="ZfE-sf-WBc" secondAttribute="trailing" constant="20" id="9do-Id-2PQ"/>
+                <constraint firstItem="dsL-C1-bKb" firstAttribute="width" secondItem="ZfE-sf-WBc" secondAttribute="width" id="ETq-BA-YdG"/>
                 <constraint firstItem="NsY-tI-qsV" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="FyM-ol-eJ9"/>
-                <constraint firstItem="NsY-tI-qsV" firstAttribute="top" secondItem="T7i-9F-yPs" secondAttribute="bottom" constant="16" id="JZx-RB-FZw"/>
+                <constraint firstItem="NsY-tI-qsV" firstAttribute="top" secondItem="dsL-C1-bKb" secondAttribute="bottom" constant="15.5" id="K5G-X6-JvZ"/>
                 <constraint firstItem="ZfE-sf-WBc" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="Lco-cS-8bb"/>
-                <constraint firstItem="T7i-9F-yPs" firstAttribute="top" secondItem="ZfE-sf-WBc" secondAttribute="bottom" constant="15" id="Rdr-eL-GEM"/>
                 <constraint firstItem="MQx-o5-tc9" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="T2Q-AP-Cxe"/>
-                <constraint firstItem="T7i-9F-yPs" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="YHI-Ll-sAm"/>
+                <constraint firstItem="dsL-C1-bKb" firstAttribute="top" secondItem="ZfE-sf-WBc" secondAttribute="bottom" constant="15.5" id="UjM-2q-svN"/>
                 <constraint firstItem="ZfE-sf-WBc" firstAttribute="top" secondItem="MQx-o5-tc9" secondAttribute="bottom" constant="15" id="aRP-F5-kmD"/>
                 <constraint firstItem="28c-mU-YVs" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="br5-CX-i6z"/>
                 <constraint firstAttribute="bottom" secondItem="NsY-tI-qsV" secondAttribute="bottom" constant="20" id="cyL-Tc-rdZ"/>
                 <constraint firstItem="28c-mU-YVs" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="20" id="yA7-Bc-j4Q"/>
-                <constraint firstItem="T7i-9F-yPs" firstAttribute="width" secondItem="ZfE-sf-WBc" secondAttribute="width" id="z5h-KX-uvZ"/>
             </constraints>
             <connections>
                 <outlet property="graphContainerView" destination="ZfE-sf-WBc" id="TOR-4n-iDf"/>
+                <outlet property="graphHeightConstraint" destination="0Cv-Hb-Xmp" id="Vu2-fv-mWJ"/>
                 <outlet property="seeMoreButton" destination="NsY-tI-qsV" id="GGO-tD-5yc"/>
                 <outlet property="subtitleLabel" destination="MQx-o5-tc9" id="9gD-2v-FrH"/>
-                <outlet property="tableView" destination="T7i-9F-yPs" id="Ctp-rS-v2t"/>
+                <outlet property="tableContainerView" destination="dsL-C1-bKb" id="3uK-uv-nw9"/>
                 <outlet property="titleLabel" destination="28c-mU-YVs" id="MkZ-9s-zpU"/>
             </connections>
         </collectionViewCell>

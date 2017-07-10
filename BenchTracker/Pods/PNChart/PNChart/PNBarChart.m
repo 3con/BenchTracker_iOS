@@ -130,7 +130,7 @@
       
     [self addSubview:label];
       
-    label.frame = (CGRect){0, sectionHeight * i + _chartMarginTop - kYLabelHeight/2.0, _yChartLabelWidth, kYLabelHeight};
+    label.frame = (CGRect){0, sectionHeight * i + _chartMarginTop - kYLabelHeight/2.0 , _yChartLabelWidth, kYLabelHeight};
 
     [_yChartLabels addObject:label];
   }
@@ -235,10 +235,7 @@
                 }
             }
 
-            bar = [[PNBar alloc] initWithFrame:CGRectMake(barXPosition, //Bar X position
-                                                          self.frame.size.height - chartCavanHeight - kXLabelHeight - _chartMarginBottom + _chartMarginTop , //Bar Y position
-                                                          barWidth, // Bar witdh
-                                                          self.showLevelLine ? chartCavanHeight/2.0:chartCavanHeight)]; //Bar height
+            bar = [[PNBar alloc] initWithFrame:CGRectMake(barXPosition, _chartMarginTop, barWidth, self.showLevelLine ? chartCavanHeight/2.0:chartCavanHeight)];
 
             //Change Bar Radius
             bar.barRadius = _barRadius;

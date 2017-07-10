@@ -12,6 +12,6 @@
 
 - (id)initWithFrame:(CGRect)frame items:(NSArray *)items;
 
-+ (NSArray *)pieDataForDictionary:(NSDictionary <NSString *, NSNumber *> *)data withColorDict:(NSDictionary *)colors;
++ (NSArray *)pieDataForDictionary:(NSDictionary <NSString *, NSNumber *> *)data;
 
 @end

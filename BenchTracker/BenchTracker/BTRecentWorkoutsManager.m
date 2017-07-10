@@ -16,6 +16,8 @@
 @property (nonatomic) NSManagedObjectContext *context;
 
 @property (nonatomic) NSMutableArray <BTWorkout *> *recentWorkouts;
+@property (nonatomic) NSMutableArray <NSString *> *workoutNamesCache;
+@property (nonatomic) NSMutableArray <NSString *> *workoutShortDatesCache;
 @property (nonatomic) NSMutableArray <NSString *> *workoutDatesCache;
 
 @end
@@ -38,12 +40,32 @@
     return (self.recentWorkouts) ? self.recentWorkouts.count : 0;
 }
 
+- (NSArray <NSString *> *)workoutNames {
+    if (!self.recentWorkouts) [self performFetch];
+    if (self.workoutNamesCache) return self.workoutNamesCache;
+    self.workoutNamesCache = [NSMutableArray array];
+    for (BTWorkout *workout in self.recentWorkouts)
+        [self.workoutNamesCache addObject:workout.name];
+    return self.workoutNamesCache;
+}
+
+- (NSArray <NSString *> *)workoutShortDates {
+    if (!self.recentWorkouts) [self performFetch];
+    if (self.workoutShortDatesCache) return self.workoutShortDatesCache;
+    self.workoutShortDatesCache = [NSMutableArray array];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"MMMMM d";
+    for (BTWorkout *workout in self.recentWorkouts)
+        [self.workoutShortDatesCache addObject:[formatter stringFromDate:workout.date]];
+    return self.workoutShortDatesCache;
+}
+
 - (NSArray <NSString *> *)workoutDates {
     if (!self.recentWorkouts) [self performFetch];
     if (self.workoutDatesCache) return self.workoutDatesCache;
     self.workoutDatesCache = [NSMutableArray array];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"MMMMM d";
+    formatter.dateFormat = @"E MMMM d";
     for (BTWorkout *workout in self.recentWorkouts)
         [self.workoutDatesCache addObject:[formatter stringFromDate:workout.date]];
     return self.workoutDatesCache;

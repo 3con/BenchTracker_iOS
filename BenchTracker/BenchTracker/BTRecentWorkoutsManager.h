@@ -18,6 +18,10 @@
 
 - (NSInteger)numberOfRecentWorkouts;
 
+- (NSArray <NSString *> *)workoutNames;
+
+- (NSArray <NSString *> *)workoutShortDates;
+
 - (NSArray <NSString *> *)workoutDates;
 
 - (NSDictionary <NSString *, NSNumber *> *)workoutExercises;
