@@ -11,13 +11,16 @@
 #import "BTWorkoutManager.h"
 #import "BTSettings+CoreDataClass.h"
 #import "StickCollectionViewFlowLayout.h"
-#import "PNChart.h"
+#import "BTAnalyticsLineChart.h"
+#import "BTAnalyticsPieChart.h"
+#import "BTAnalyticsBarChart.m"
+#import "BTRecentWorkoutsManager.h"
 
 @interface AnalyticsViewController ()
 
 @property (nonatomic) ZFModalTransitionAnimator *animator;
 
-@property (nonatomic) BTWorkoutManager *workoutManager;
+@property (nonatomic) BTRecentWorkoutsManager *recentWorkoutsManager;
 @property (nonatomic) BTSettings *settings;
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -28,6 +31,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"BTSettings"];
+    NSError *error;
+    self.settings = [self.context executeFetchRequest:fetchRequest error:&error].firstObject;
+    if (error) NSLog(@"settings fetcher errror: %@",error);
+    self.recentWorkoutsManager = [[BTRecentWorkoutsManager alloc] init];
+    self.recentWorkoutsManager.maxFetch = 11;
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     self.collectionView.showsVerticalScrollIndicator = NO;
@@ -56,35 +65,44 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     AnalyticsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
     cell.backgroundColor = [self colorFromHexString:
-        @[@"00BCD4", @"2196F3", @"673AB7", @"EC407A", @"F44336", @"FF9800"][indexPath.row]];
+        @[@"00BCD4",
+          @"2196F3",
+          @"673AB7",
+          @"EC407A",
+          @"F44336",
+          @"FF9800"][indexPath.row]];
     cell.titleLabel.text =
-        @[@"Exercise Progress", @"All Exercises", @"Muscle Split", @"Workout Length", @"Workout Volume", @"Workout Duration"][indexPath.row];
+        @[@"Favorite Exercises",
+          @"All Exercises",
+          @"Muscle Split",
+          @"Number of Exercises",
+          @"Volume (1000s of lbs)",
+          @"Duration (minutes)"][indexPath.row];
     [cell.seeMoreButton setTitleColor:cell.backgroundColor forState:UIControlStateNormal];
     if (!cell.graphView) {
-        PNLineChart *lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(0, 0, cell.frame.size.width-40, 230)];
-        lineChart.layer.cornerRadius = 8;
-        lineChart.clipsToBounds = YES;
-        lineChart.showSmoothLines = YES; //FIX in PNLineChart.h: chartLine.fillColor = [[UIColor clearColor] CGColor];
-        lineChart.backgroundColor = [UIColor colorWithWhite:1 alpha:.2];
-        lineChart.yLabelFont = [UIFont systemFontOfSize:10 weight:UIFontWeightBold];
-        lineChart.xLabelFont = [UIFont systemFontOfSize:10 weight:UIFontWeightBold];
-        lineChart.yFixedValueMin = 220.0;
-        lineChart.yFixedValueMax = 280.0;
-        lineChart.yLabelNum = (lineChart.yFixedValueMax-lineChart.yFixedValueMin)/20;
-        lineChart.xLabelColor = [UIColor whiteColor];
-        lineChart.xLabelWidth = 80;
-        lineChart.yLabelColor = [UIColor whiteColor];
-        [lineChart setXLabels:@[@"J 7",@"",@"J 15",@"",@"J 20",@"",@"J 26",@"",@"J 3",@"",@"J 8"]];
-        NSArray *dataArray = @[@230, @245, @240, @243, @254, @250, @248, @260, @263, @267, @261];
-        PNLineChartData *data = [PNLineChartData new];
-        data.color = [UIColor whiteColor];
-        data.lineWidth = 5;
-        data.itemCount = lineChart.xLabels.count;
-        data.getData = ^(NSUInteger index) { return [PNLineChartDataItem dataItemWithY:[dataArray[index] floatValue]]; };
-        lineChart.chartData = @[data];
-        [lineChart strokeChart];
-        cell.graphView = lineChart;
+        if (indexPath.row == 0) {
+            BTAnalyticsBarChart *barChart = [[BTAnalyticsBarChart alloc] initWithFrame:CGRectMake(5, 10, cell.frame.size.width-20, 198)];
+            [barChart setBarData:[self.recentWorkoutsManager workoutExercises]];
+            cell.graphView = barChart;
+        }
+        if (indexPath.row == 2) {
+            BTAnalyticsPieChart *pieChart = [[BTAnalyticsPieChart alloc] initWithFrame:CGRectMake((cell.frame.size.width-210)/2.0, 20, 170, 170)
+                items:[BTAnalyticsPieChart pieDataForDictionary:[self.recentWorkoutsManager workoutExerciseTypes]
+                                                  withColorDict:[NSKeyedUnarchiver unarchiveObjectWithData:self.settings.exerciseTypeColors]]];
+            cell.graphView = pieChart;
+        }
+        else if (indexPath.row > 2) { //line charts
+            BTAnalyticsLineChart *lineChart = [[BTAnalyticsLineChart alloc] initWithFrame:CGRectMake(5, 10, cell.frame.size.width-20, 198)];
+            [lineChart setXAxisData:[self.recentWorkoutsManager workoutDates]];
+            if (indexPath.row == 3) [lineChart setYAxisData:[self.recentWorkoutsManager workoutNumExercises]];
+            else if (indexPath.row == 4) [lineChart setYAxisData:[self.recentWorkoutsManager workoutVolumes]];
+            else [lineChart setYAxisData:[self.recentWorkoutsManager workoutDurations]];
+            cell.graphView = lineChart;
+        }
     }
+    if (indexPath.row == 0) [(BTAnalyticsPieChart *)cell.graphView strokeChart];
+    if (indexPath.row == 2) [(BTAnalyticsPieChart *)cell.graphView strokeChart];
+    if (indexPath.row > 2) [(BTAnalyticsLineChart *)cell.graphView strokeChart];
     return cell;
 }
 

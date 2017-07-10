@@ -11,12 +11,6 @@
 #import "SetCollectionViewCell.h"
 #import "SetFlowLayout.h"
 
-#define STYLE_REPSWEIGHT @"repsWeight"
-#define STYLE_REPS       @"reps"
-#define STYLE_TIMEWEIGHT @"timeWeight"
-#define STYLE_TIME       @"time"
-#define STYLE_CUSTOM     @"custom"
-
 #define PICKER_REPS      70  //1-50 by 1, 55-150 by 5
 #define PICKER_WEIGHT    130 //0-10 by 1, 12.5, 15-600 by 5
 #define PICKER_TIME      48  //1-30 by 1, 35-120 by 5

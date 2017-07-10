@@ -9,6 +9,12 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+#define STYLE_REPSWEIGHT @"repsWeight"
+#define STYLE_REPS       @"reps"
+#define STYLE_TIMEWEIGHT @"timeWeight"
+#define STYLE_TIME       @"time"
+#define STYLE_CUSTOM     @"custom"
+
 @class BTWorkout;
 
 NS_ASSUME_NONNULL_BEGIN

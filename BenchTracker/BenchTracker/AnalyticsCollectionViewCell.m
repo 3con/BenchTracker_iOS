@@ -8,6 +8,7 @@
 
 #import "AnalyticsCollectionViewCell.h"
 #import "PNChart.h"
+#import "BTAnalyticsTableView.h"
 
 @interface AnalyticsCollectionViewCell()
 
@@ -21,8 +22,13 @@
     [super awakeFromNib];
     self.layer.cornerRadius = 12;
     self.clipsToBounds = YES;
+    self.graphContainerView.layer.masksToBounds = NO;
+    self.graphContainerView.layer.cornerRadius = 8;
+    self.graphContainerView.clipsToBounds = YES;
     self.seeMoreButton.layer.cornerRadius = 12;
     self.seeMoreButton.clipsToBounds = YES;
+    self.tableView.layer.cornerRadius = 12;
+    self.tableView.clipsToBounds = YES;
 }
 
 - (void)setGraphView:(PNGenericChart *)graphView {
@@ -33,7 +39,7 @@
     [super layoutSubviews];
     if (self.graphView) {
         [self.graphContainerView addSubview:self.graphView];
-        self.graphView.frame = CGRectMake(0, 10, self.graphContainerView.frame.size.width, self.graphContainerView.frame.size.height-20);
+        [self.graphContainerView sizeToFit];
     }
 }
 
