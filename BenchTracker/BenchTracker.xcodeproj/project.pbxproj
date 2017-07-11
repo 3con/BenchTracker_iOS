@@ -79,6 +79,12 @@
 		F9FA47261F0B39D700A4AF98 /* WorkoutSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9FA47251F0B39D700A4AF98 /* WorkoutSelectionViewController.m */; };
 		F9FD19E31F141FF300AB3FEE /* ADWorkoutsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9FD19E11F141FF300AB3FEE /* ADWorkoutsViewController.m */; };
 		F9FD19E41F141FF300AB3FEE /* ADWorkoutsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9FD19E21F141FF300AB3FEE /* ADWorkoutsViewController.xib */; };
+		F9FD19E91F14746E00AB3FEE /* ADMuscleSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9FD19E71F14746E00AB3FEE /* ADMuscleSplitViewController.m */; };
+		F9FD19EA1F14746E00AB3FEE /* ADMuscleSplitViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9FD19E81F14746E00AB3FEE /* ADMuscleSplitViewController.xib */; };
+		F9FD19EF1F14748800AB3FEE /* ADExercisesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9FD19ED1F14748800AB3FEE /* ADExercisesViewController.m */; };
+		F9FD19F01F14748800AB3FEE /* ADExercisesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9FD19EE1F14748800AB3FEE /* ADExercisesViewController.xib */; };
+		F9FD19F51F147F7600AB3FEE /* ADExercisesDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9FD19F31F147F7600AB3FEE /* ADExercisesDetailViewController.m */; };
+		F9FD19F61F147F7600AB3FEE /* ADExercisesDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9FD19F41F147F7600AB3FEE /* ADExercisesDetailViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -225,6 +231,15 @@
 		F9FD19E01F141FF300AB3FEE /* ADWorkoutsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADWorkoutsViewController.h; sourceTree = "<group>"; };
 		F9FD19E11F141FF300AB3FEE /* ADWorkoutsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADWorkoutsViewController.m; sourceTree = "<group>"; };
 		F9FD19E21F141FF300AB3FEE /* ADWorkoutsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ADWorkoutsViewController.xib; sourceTree = "<group>"; };
+		F9FD19E61F14746E00AB3FEE /* ADMuscleSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADMuscleSplitViewController.h; sourceTree = "<group>"; };
+		F9FD19E71F14746E00AB3FEE /* ADMuscleSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADMuscleSplitViewController.m; sourceTree = "<group>"; };
+		F9FD19E81F14746E00AB3FEE /* ADMuscleSplitViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ADMuscleSplitViewController.xib; sourceTree = "<group>"; };
+		F9FD19EC1F14748800AB3FEE /* ADExercisesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADExercisesViewController.h; sourceTree = "<group>"; };
+		F9FD19ED1F14748800AB3FEE /* ADExercisesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADExercisesViewController.m; sourceTree = "<group>"; };
+		F9FD19EE1F14748800AB3FEE /* ADExercisesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ADExercisesViewController.xib; sourceTree = "<group>"; };
+		F9FD19F21F147F7600AB3FEE /* ADExercisesDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADExercisesDetailViewController.h; sourceTree = "<group>"; };
+		F9FD19F31F147F7600AB3FEE /* ADExercisesDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADExercisesDetailViewController.m; sourceTree = "<group>"; };
+		F9FD19F41F147F7600AB3FEE /* ADExercisesDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ADExercisesDetailViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -641,6 +656,8 @@
 			children = (
 				F9A5494F1F134A3100743897 /* AnalyticsDetailViewController.h */,
 				F9A549501F134A3100743897 /* AnalyticsDetailViewController.m */,
+				F9FD19F11F14748B00AB3FEE /* Exercises */,
+				F9FD19EB1F14747100AB3FEE /* Muscle split */,
 				F9FD19E51F141FF600AB3FEE /* Workouts */,
 			);
 			name = Details;
@@ -804,6 +821,37 @@
 			name = Workouts;
 			sourceTree = "<group>";
 		};
+		F9FD19EB1F14747100AB3FEE /* Muscle split */ = {
+			isa = PBXGroup;
+			children = (
+				F9FD19E61F14746E00AB3FEE /* ADMuscleSplitViewController.h */,
+				F9FD19E71F14746E00AB3FEE /* ADMuscleSplitViewController.m */,
+				F9FD19E81F14746E00AB3FEE /* ADMuscleSplitViewController.xib */,
+			);
+			name = "Muscle split";
+			sourceTree = "<group>";
+		};
+		F9FD19F11F14748B00AB3FEE /* Exercises */ = {
+			isa = PBXGroup;
+			children = (
+				F9FD19EC1F14748800AB3FEE /* ADExercisesViewController.h */,
+				F9FD19ED1F14748800AB3FEE /* ADExercisesViewController.m */,
+				F9FD19EE1F14748800AB3FEE /* ADExercisesViewController.xib */,
+				F9FD19F71F147F7900AB3FEE /* Exercises detail */,
+			);
+			name = Exercises;
+			sourceTree = "<group>";
+		};
+		F9FD19F71F147F7900AB3FEE /* Exercises detail */ = {
+			isa = PBXGroup;
+			children = (
+				F9FD19F21F147F7600AB3FEE /* ADExercisesDetailViewController.h */,
+				F9FD19F31F147F7600AB3FEE /* ADExercisesDetailViewController.m */,
+				F9FD19F41F147F7600AB3FEE /* ADExercisesDetailViewController.xib */,
+			);
+			name = "Exercises detail";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -891,15 +939,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9FD19F61F147F7600AB3FEE /* ADExercisesDetailViewController.xib in Resources */,
 				F9418FAF1F04A96C0083C3DC /* ExerciseView.xib in Resources */,
 				F97B1CA31F09759000B3EEC7 /* WeekdayTableViewCell.xib in Resources */,
 				F981D5891F022D9A00E7B456 /* LaunchScreen.xib in Resources */,
 				F927D1551F0C9DDB0004CF3A /* IterationTableViewCell.xib in Resources */,
 				F97B1CAA1F097DA600B3EEC7 /* WeekdayView.xib in Resources */,
+				F9FD19F01F14748800AB3FEE /* ADExercisesViewController.xib in Resources */,
 				F9B27CE61F117852008FCC7F /* AnalyticsCollectionViewCell.xib in Resources */,
 				F917BB671F0DEAE000614AB1 /* BTQRScannerViewController.xib in Resources */,
 				F9418FA41F048B1E0083C3DC /* AddExerciseTableViewCell.xib in Resources */,
 				F90712B319415FB1008694E5 /* Main.storyboard in Resources */,
+				F9FD19EA1F14746E00AB3FEE /* ADMuscleSplitViewController.xib in Resources */,
 				F96207721F05DCF200DE2330 /* ExerciseTableViewCell.xib in Resources */,
 				F917BB571F0D2AC400614AB1 /* BTWorkoutPDF.xib in Resources */,
 				F90712B519415FB2008694E5 /* Images.xcassets in Resources */,
@@ -1017,6 +1068,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9A549461F13065500743897 /* BTAnalyticsPieChart.m in Sources */,
+				F9FD19F51F147F7600AB3FEE /* ADExercisesDetailViewController.m in Sources */,
 				F90712AA19415FB1008694E5 /* AppDelegate.m in Sources */,
 				F9418FBC1F04CEE80083C3DC /* SetCollectionViewCell.m in Sources */,
 				F9DA75281F02EE9600347B0D /* BTWorkout+CoreDataClass.m in Sources */,
@@ -1031,11 +1083,13 @@
 				F95F93371F03426F00A19C4D /* BTUserManager.m in Sources */,
 				F9A5494C1F13067B00743897 /* BTRecentWorkoutsManager.m in Sources */,
 				F9B7D7D71F06303700376201 /* passTouchesView.m in Sources */,
+				F9FD19E91F14746E00AB3FEE /* ADMuscleSplitViewController.m in Sources */,
 				F9FD19E31F141FF300AB3FEE /* ADWorkoutsViewController.m in Sources */,
 				F917BB501F0D24E500614AB1 /* BTPDFGenerator.m in Sources */,
 				F917BB601F0DD40200614AB1 /* QRDisplayViewController.m in Sources */,
 				F9DA75251F02EE9600347B0D /* BTExercise+CoreDataProperties.m in Sources */,
 				F9640BD81F080E590053C9C0 /* BTSettings+CoreDataClass.m in Sources */,
+				F9FD19EF1F14748800AB3FEE /* ADExercisesViewController.m in Sources */,
 				F95F933E1F034FA300A19C4D /* LoginViewController.m in Sources */,
 				F9AF067E1F07535C003A2200 /* WorkoutTableViewCell.m in Sources */,
 				F96207711F05DCF200DE2330 /* ExerciseTableViewCell.m in Sources */,

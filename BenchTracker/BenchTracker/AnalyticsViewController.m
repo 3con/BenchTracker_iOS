@@ -138,7 +138,7 @@
                                              [NSString stringWithFormat:@"%@%@ %@", intVal, suffix, dates[i]]];
             [mS setAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:17 weight:UIFontWeightHeavy]}
                         range:NSMakeRange(0, intVal.length+suffix.length)];
-            [displayStrings addObject:mS];
+            [displayStrings insertObject:mS atIndex:0];
         }
     }
     cell.displayStrings = displayStrings;
@@ -174,13 +174,15 @@
 
 - (void)presentAnalyticsDetailViewControllerWithIndex:(NSInteger)index cell:(AnalyticsCollectionViewCell *)cell {
     AnalyticsDetailViewController *adVC;
-    if (true) adVC = [[NSBundle mainBundle] loadNibNamed:@"ADWorkoutsViewController" owner:self options:nil].firstObject;
+    if (index < 2)       adVC = [[NSBundle mainBundle] loadNibNamed:@"ADExercisesViewController" owner:self options:nil].firstObject;
+    else if (index == 2) adVC = [[NSBundle mainBundle] loadNibNamed:@"ADMuscleSplitViewController" owner:self options:nil].firstObject;
+    else                 adVC = [[NSBundle mainBundle] loadNibNamed:@"ADWorkoutsViewController" owner:self options:nil].firstObject;
     adVC.context = self.context;
     adVC.color = cell.backgroundColor;
     adVC.titleString = cell.titleLabel.text;
     self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:adVC];
     self.animator.bounces = NO;
-    self.animator.dragable = NO;
+    self.animator.dragable = YES;
     self.animator.behindViewAlpha = 0.6;
     self.animator.behindViewScale = 1.0;
     self.animator.transitionDuration = 0.35;

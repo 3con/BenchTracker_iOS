@@ -117,7 +117,6 @@
     NSSortDescriptor *sort1 = [[NSSortDescriptor alloc] initWithKey:@"category" ascending:YES];
     NSSortDescriptor *sort2 = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
     [fetchRequest setSortDescriptors:@[sort1, sort2]];
-    [fetchRequest setFetchBatchSize:20];
     NSFetchedResultsController *theFetchedResultsController = [[NSFetchedResultsController alloc]
                                                                initWithFetchRequest:fetchRequest managedObjectContext:self.context
                                                                sectionNameKeyPath:@"category" cacheName:nil];
@@ -243,6 +242,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.searchBar.isFirstResponder) [self.searchBar resignFirstResponder];
     BTExerciseType *type = [_fetchedResultsController objectAtIndexPath:indexPath];
     [self addType:type andIteration:@""];
     NSInteger numSelected = self.selectedTypes.count;

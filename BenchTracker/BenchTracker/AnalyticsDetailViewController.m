@@ -21,9 +21,13 @@
     [super viewDidLoad];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+- (void)setColor:(UIColor *)color {
+    _color = color;
     self.navView.backgroundColor = self.color;
+}
+
+- (void)setTitleString:(NSString *)titleString {
+    _titleString = titleString;
     self.titleLabel.text = self.titleString;
 }
 
