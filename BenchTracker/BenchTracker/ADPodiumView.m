@@ -38,20 +38,34 @@
     self.podiumView3.backgroundColor = color;
     self.podiumView2.backgroundColor = color;
     self.podiumView1.backgroundColor = color;
+    self.dateLabel3.textColor = color;
+    self.dateLabel2.textColor = color;
+    self.dateLabel1.textColor = color;
 }
 
-- (void)setDates:(NSArray<NSString *> *)dates {
+- (void)setDates:(NSArray<NSDate *> *)dates {
     _dates = dates;
-    self.dateLabel3.text = dates[2];
-    self.dateLabel2.text = dates[1];
-    self.dateLabel1.text = dates[0];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"MMM d ''yy";
+    self.dateLabel3.text = (dates.count > 2) ? [formatter stringFromDate:dates[2]] : @"";
+    self.dateLabel2.text = (dates.count > 1) ? [formatter stringFromDate:dates[1]] : @"";
+    self.dateLabel1.text = (dates.count > 0) ? [formatter stringFromDate:dates[0]] : @"";
 }
 
 - (void)setValues:(NSArray<NSString *> *)values {
     _values = values;
-    self.valueLabel3.text = values[2];
-    self.valueLabel2.text = values[1];
-    self.valueLabel1.text = values[0];
+    self.valueLabel3.text = (values.count > 2) ? values[2] : @"";
+    self.valueLabel2.text = (values.count > 1) ? values[1] : @"";
+    self.valueLabel1.text = (values.count > 0) ? values[0] : @"";
+}
+
+#pragma mark - helper methods
+
+- (UIColor *)color:(UIColor *)color withMultiplier:(CGFloat)multiplier {
+    CGFloat h, s, b, a;
+    if ([color getHue:&h saturation:&s brightness:&b alpha:&a])
+        return [UIColor colorWithHue:h saturation:s brightness:MIN(b * multiplier, 1.0) alpha:a];
+    return nil;
 }
 
 /*

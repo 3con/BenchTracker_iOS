@@ -65,7 +65,7 @@
     if (self.workoutDatesCache) return self.workoutDatesCache;
     self.workoutDatesCache = [NSMutableArray array];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"E MMMM d";
+    formatter.dateFormat = @"E, MMMM d";
     for (BTWorkout *workout in self.recentWorkouts)
         [self.workoutDatesCache addObject:[formatter stringFromDate:workout.date]];
     return self.workoutDatesCache;

@@ -49,7 +49,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.queryType = ([self.titleString containsString:@"ume"]) ? 0 :
-                     ([self.titleString containsString:@"uta"]) ? 1 :
+                     ([self.titleString containsString:@"ura"]) ? 1 :
                      ([self.titleString containsString:@"xer"]) ? 2 : 3;
     if (self.queryType == QUERY_TYPE_VOLUME)            self.titleString = @"Exercise Volume";
     else if (self.queryType == QUERY_TYPE_DURATION)     self.titleString = @"Exercise Duration";
@@ -59,15 +59,22 @@
     if (![[self fetchedResultsController] performFetch:&error]) {
         NSLog(@"Main fetch error: %@, %@", error, [error userInfo]);
     }
-    self.tableView.backgroundColor = self.color;
+    self.tableView.backgroundColor = [self.color colorWithAlphaComponent:.8];
     [self setUpSegmentedControl];
     self.podiumView = [[NSBundle mainBundle] loadNibNamed:@"ADPodiumView" owner:self options:nil].firstObject;
     self.podiumView.frame = CGRectMake(0, 0, self.podiumContainerView.frame.size.width,
                                              self.podiumContainerView.frame.size.height);
     [self.podiumContainerView addSubview:self.podiumView];
-    self.podiumView.color = self.color;
-    self.podiumView.dates = @[@"1", @"2", @"3"];
-    self.podiumView.values = @[@"1v", @"2v", @"3v"];
+    self.podiumView.color = [self.color colorWithAlphaComponent:.8];
+    NSMutableArray *dateArray = [NSMutableArray array];
+    NSMutableArray *valueArray = [NSMutableArray array];
+    for (int i = 0; i < 3; i++) {
+        NSArray *a = [self dateAndValueForIndex:i];
+        [dateArray addObject:a[0]];
+        [valueArray addObject:a[1]];
+    }
+    self.podiumView.dates = dateArray;
+    self.podiumView.values = valueArray;
 }
 
 #pragma mark - segmedtedControl
@@ -93,11 +100,12 @@
 }
 
 - (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl {
-    [self setSelectedViewIndex:self.segmentedControl.selectedSegmentIndex];
-}
-
-- (void)setSelectedViewIndex:(NSInteger)index {
-    
+    [self updateFetchRequest:self.fetchedResultsController.fetchRequest];
+    NSError *error;
+    if (![[self fetchedResultsController] performFetch:&error]) {
+        NSLog(@"Main fetch error: %@, %@", error, [error userInfo]);
+    }
+    [self.tableView reloadData];
 }
 
 #pragma mark - fetchedResultsController
@@ -106,13 +114,7 @@
     if (_fetchedResultsController != nil) return _fetchedResultsController;
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     [fetchRequest setEntity:[NSEntityDescription entityForName:@"BTWorkout" inManagedObjectContext:self.context]];
-    if (self.queryType == QUERY_TYPE_VOLUME)
-        [fetchRequest setSortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"volume" ascending:NO]]];
-    else if (self.queryType == QUERY_TYPE_DURATION)
-        [fetchRequest setSortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"duration" ascending:NO]]];
-    else if (self.queryType == QUERY_TYPE_NUMEXERCISES)
-        [fetchRequest setSortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"numExercises" ascending:NO]]];
-    else[fetchRequest setSortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"numSets" ascending:NO]]];
+    [self updateFetchRequest:fetchRequest];
     [fetchRequest setFetchBatchSize:20];
     NSFetchedResultsController *theFetchedResultsController = [[NSFetchedResultsController alloc]
                                                                initWithFetchRequest:fetchRequest managedObjectContext:self.context
@@ -122,6 +124,19 @@
     return _fetchedResultsController;
 }
 
+- (void)updateFetchRequest:(NSFetchRequest *)request {
+    if (self.segmentedControl.selectedSegmentIndex == 0) {
+        if (self.queryType == QUERY_TYPE_VOLUME)
+            [request setSortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"volume" ascending:NO]]];
+        else if (self.queryType == QUERY_TYPE_DURATION)
+            [request setSortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"duration" ascending:NO]]];
+        else if (self.queryType == QUERY_TYPE_NUMEXERCISES)
+            [request setSortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"numExercises" ascending:NO]]];
+        else[request setSortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"numSets" ascending:NO]]];
+    }
+    else    [request setSortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO]]];
+}
+
 #pragma mark - tableView dataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -129,12 +144,12 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 50;
+    return 40;
 }
 
 - (void)configureWorkoutCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    BTWorkout *workout = [_fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = workout.name;
+    NSArray *a = [self dateAndValueForIndex:indexPath.row];
+    cell.textLabel.attributedText = [self attributedStringForDate:a[0] value:a[1]];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -154,9 +169,24 @@
     //BTWorkout *workout = [_fetchedResultsController objectAtIndexPath:indexPath];
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    [cell setNeedsLayout];
-    [cell layoutIfNeeded];
+#pragma mark - helper methods
+
+- (NSArray *)dateAndValueForIndex:(NSInteger)index {
+    BTWorkout *workout = self.fetchedResultsController.fetchedObjects[index];
+    NSString *suffix = (self.queryType == QUERY_TYPE_VOLUME) ? @"k lbs" : (self.queryType == QUERY_TYPE_DURATION) ? @" min" : @"";
+    long value = (self.queryType == QUERY_TYPE_VOLUME) ? workout.volume/1000 :
+                 (self.queryType == QUERY_TYPE_DURATION) ? workout.duration/60 :
+                 (self.queryType == QUERY_TYPE_NUMEXERCISES) ? workout.numExercises : workout.numSets;
+    return @[workout.date, [NSString stringWithFormat:@"%ld%@",value,suffix]];
+}
+
+- (NSAttributedString *)attributedStringForDate:(NSDate *)date value:(NSString *)value {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"E, MMM d";
+    NSMutableAttributedString *mAS = [[NSMutableAttributedString alloc] initWithString:
+                                      [NSString stringWithFormat:@"%@ %@", value, [formatter stringFromDate:date]]];
+    [mAS setAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:17 weight:UIFontWeightHeavy]} range:NSMakeRange(0, value.length)];
+    return mAS;
 }
 
 #pragma mark - fetchedResultsController delegate

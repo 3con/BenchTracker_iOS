@@ -12,7 +12,7 @@
 
 @property (nonatomic) UIColor *color;
 
-@property (nonatomic) NSArray <NSString *> *dates;
+@property (nonatomic) NSArray <NSDate *> *dates;
 @property (nonatomic) NSArray <NSString *> *values;
 
 @end

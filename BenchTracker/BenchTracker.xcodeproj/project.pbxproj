@@ -36,6 +36,8 @@
 		F9418FBE1F04CEF80083C3DC /* SetCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9418FBD1F04CEF80083C3DC /* SetCollectionViewCell.xib */; };
 		F94C89391F15448C006C6BDD /* ADPodiumView.m in Sources */ = {isa = PBXBuildFile; fileRef = F94C89381F15448C006C6BDD /* ADPodiumView.m */; };
 		F94C893B1F154498006C6BDD /* ADPodiumView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F94C893A1F154498006C6BDD /* ADPodiumView.xib */; };
+		F94C89401F15B68D006C6BDD /* ADMuscleSplitTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F94C893E1F15B68D006C6BDD /* ADMuscleSplitTableViewCell.m */; };
+		F94C89411F15B68D006C6BDD /* ADMuscleSplitTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F94C893F1F15B68D006C6BDD /* ADMuscleSplitTableViewCell.xib */; };
 		F95F5CF61F08B54500A567FA /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F95F5CF51F08B54500A567FA /* SettingsViewController.m */; };
 		F95F932F1F02FC5000A19C4D /* TypeListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F95F932E1F02FC5000A19C4D /* TypeListModel.m */; };
 		F95F93331F03410500A19C4D /* BTAWSUser.m in Sources */ = {isa = PBXBuildFile; fileRef = F95F93321F03410500A19C4D /* BTAWSUser.m */; };
@@ -153,6 +155,9 @@
 		F94C89371F15448C006C6BDD /* ADPodiumView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADPodiumView.h; sourceTree = "<group>"; };
 		F94C89381F15448C006C6BDD /* ADPodiumView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADPodiumView.m; sourceTree = "<group>"; };
 		F94C893A1F154498006C6BDD /* ADPodiumView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ADPodiumView.xib; sourceTree = "<group>"; };
+		F94C893D1F15B68D006C6BDD /* ADMuscleSplitTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADMuscleSplitTableViewCell.h; sourceTree = "<group>"; };
+		F94C893E1F15B68D006C6BDD /* ADMuscleSplitTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADMuscleSplitTableViewCell.m; sourceTree = "<group>"; };
+		F94C893F1F15B68D006C6BDD /* ADMuscleSplitTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ADMuscleSplitTableViewCell.xib; sourceTree = "<group>"; };
 		F95F5CF41F08B54500A567FA /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		F95F5CF51F08B54500A567FA /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		F95F932D1F02FC5000A19C4D /* TypeListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeListModel.h; sourceTree = "<group>"; };
@@ -480,6 +485,16 @@
 				F94C893A1F154498006C6BDD /* ADPodiumView.xib */,
 			);
 			name = "Podium view";
+			sourceTree = "<group>";
+		};
+		F94C89421F15B690006C6BDD /* Muscle split cell */ = {
+			isa = PBXGroup;
+			children = (
+				F94C893D1F15B68D006C6BDD /* ADMuscleSplitTableViewCell.h */,
+				F94C893E1F15B68D006C6BDD /* ADMuscleSplitTableViewCell.m */,
+				F94C893F1F15B68D006C6BDD /* ADMuscleSplitTableViewCell.xib */,
+			);
+			name = "Muscle split cell";
 			sourceTree = "<group>";
 		};
 		F95F5CF71F08B55700A567FA /* Settings */ = {
@@ -843,6 +858,7 @@
 				F9FD19E61F14746E00AB3FEE /* ADMuscleSplitViewController.h */,
 				F9FD19E71F14746E00AB3FEE /* ADMuscleSplitViewController.m */,
 				F9FD19E81F14746E00AB3FEE /* ADMuscleSplitViewController.xib */,
+				F94C89421F15B690006C6BDD /* Muscle split cell */,
 			);
 			name = "Muscle split";
 			sourceTree = "<group>";
@@ -971,6 +987,7 @@
 				F917BB571F0D2AC400614AB1 /* BTWorkoutPDF.xib in Resources */,
 				F94C893B1F154498006C6BDD /* ADPodiumView.xib in Resources */,
 				F90712B519415FB2008694E5 /* Images.xcassets in Resources */,
+				F94C89411F15B68D006C6BDD /* ADMuscleSplitTableViewCell.xib in Resources */,
 				F9418FBE1F04CEF80083C3DC /* SetCollectionViewCell.xib in Resources */,
 				F9FD19E41F141FF300AB3FEE /* ADWorkoutsViewController.xib in Resources */,
 				F9AF067F1F07535C003A2200 /* WorkoutTableViewCell.xib in Resources */,
@@ -1106,6 +1123,7 @@
 				F917BB601F0DD40200614AB1 /* QRDisplayViewController.m in Sources */,
 				F9DA75251F02EE9600347B0D /* BTExercise+CoreDataProperties.m in Sources */,
 				F9640BD81F080E590053C9C0 /* BTSettings+CoreDataClass.m in Sources */,
+				F94C89401F15B68D006C6BDD /* ADMuscleSplitTableViewCell.m in Sources */,
 				F9FD19EF1F14748800AB3FEE /* ADExercisesViewController.m in Sources */,
 				F94C89391F15448C006C6BDD /* ADPodiumView.m in Sources */,
 				F95F933E1F034FA300A19C4D /* LoginViewController.m in Sources */,

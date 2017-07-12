@@ -8,6 +8,6 @@
 
 #import "AnalyticsDetailViewController.h"
 
-@interface ADMuscleSplitViewController : AnalyticsDetailViewController
+@interface ADMuscleSplitViewController : AnalyticsDetailViewController <UITableViewDelegate, UITableViewDataSource>
 
 @end

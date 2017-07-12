@@ -29,7 +29,7 @@
                                     <constraint firstAttribute="height" constant="30" id="LnA-Im-MOa"/>
                                     <constraint firstAttribute="width" constant="180" id="k4A-q9-rKM"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -57,24 +57,26 @@
                             <constraint firstItem="sxI-gZ-Ke9" firstAttribute="centerY" secondItem="YfW-I7-0zI" secondAttribute="centerY" id="tDW-vS-qeI"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Muscle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WJ7-Ni-Zmb">
-                        <rect key="frame" x="74" y="327" width="55" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="APy-Dw-oB4">
+                        <rect key="frame" x="0.0" y="72" width="414" height="664"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </tableView>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 <constraints>
+                    <constraint firstItem="APy-Dw-oB4" firstAttribute="width" secondItem="WmB-vS-E7M" secondAttribute="width" id="GWD-jp-BHh"/>
+                    <constraint firstItem="APy-Dw-oB4" firstAttribute="centerX" secondItem="WmB-vS-E7M" secondAttribute="centerX" id="Ltr-tg-FNT"/>
                     <constraint firstItem="Yme-o5-qll" firstAttribute="width" secondItem="WmB-vS-E7M" secondAttribute="width" id="M16-OS-w03"/>
+                    <constraint firstItem="APy-Dw-oB4" firstAttribute="top" secondItem="Yme-o5-qll" secondAttribute="bottom" id="SmS-eG-8eC"/>
                     <constraint firstItem="Yme-o5-qll" firstAttribute="top" secondItem="E3c-kc-Lhr" secondAttribute="bottom" constant="-20" id="UMx-Z2-E8x"/>
                     <constraint firstItem="Yme-o5-qll" firstAttribute="centerX" secondItem="WmB-vS-E7M" secondAttribute="centerX" id="c9i-yl-s6U"/>
+                    <constraint firstItem="XX2-gg-2VK" firstAttribute="top" secondItem="APy-Dw-oB4" secondAttribute="bottom" id="qqi-7f-KOV"/>
                 </constraints>
             </view>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
             <connections>
                 <outlet property="navView" destination="Yme-o5-qll" id="Pgd-gb-Bfg"/>
+                <outlet property="tableView" destination="APy-Dw-oB4" id="EjO-Ot-Crc"/>
                 <outlet property="titleLabel" destination="YfW-I7-0zI" id="0vW-4h-PKa"/>
             </connections>
             <point key="canvasLocation" x="24" y="-84"/>
