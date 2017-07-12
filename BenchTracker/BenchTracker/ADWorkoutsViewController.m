@@ -19,6 +19,7 @@
 @interface ADWorkoutsViewController ()
 
 @property (weak, nonatomic) IBOutlet UIView *podiumContainerView;
+@property (weak, nonatomic) IBOutlet UILabel *podiumTitleLabel;
 @property (nonatomic) ADPodiumView *podiumView;
 
 @property (weak, nonatomic) IBOutlet UIView *segmentedControlContainerView;
@@ -28,7 +29,6 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewHeightConstraint;
 
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
-
 @property (nonatomic) NSInteger queryType;
 
 @end
@@ -42,7 +42,6 @@
     self.tableView.allowsSelection = NO;
     self.tableView.showsVerticalScrollIndicator = NO;
     self.tableView.separatorColor = [UIColor clearColor];
-    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 15, 0);
     self.tableView.layer.cornerRadius = 12;
     self.tableView.clipsToBounds = YES;
     self.tableView.scrollEnabled = NO;
@@ -63,11 +62,17 @@
     }
     self.tableView.backgroundColor = [self.color colorWithAlphaComponent:.8];
     [self setUpSegmentedControl];
+    [self loadPodiumView];
+    self.tableViewHeightConstraint.constant = MAX(self.view.frame.size.height-(294+72), self.fetchedResultsController.fetchedObjects.count*40);
+}
+
+- (void)loadPodiumView {
     self.podiumView = [[NSBundle mainBundle] loadNibNamed:@"ADPodiumView" owner:self options:nil].firstObject;
     self.podiumView.frame = CGRectMake(0, 0, self.podiumContainerView.frame.size.width,
-                                             self.podiumContainerView.frame.size.height);
+                                       self.podiumContainerView.frame.size.height);
     [self.podiumContainerView addSubview:self.podiumView];
     self.podiumView.color = [self.color colorWithAlphaComponent:.8];
+    self.podiumTitleLabel.textColor = self.color;
     NSMutableArray *dateArray = [NSMutableArray array];
     NSMutableArray *valueArray = [NSMutableArray array];
     for (int i = 0; i < 3; i++) {
@@ -77,7 +82,6 @@
     }
     self.podiumView.dates = dateArray;
     self.podiumView.values = valueArray;
-    self.tableViewHeightConstraint.constant = MAX(self.view.frame.size.height-(294+72), self.fetchedResultsController.fetchedObjects.count*50);
 }
 
 #pragma mark - segmedtedControl
@@ -130,14 +134,14 @@
 - (void)updateFetchRequest:(NSFetchRequest *)request {
     if (self.segmentedControl.selectedSegmentIndex == 0) {
         if (self.queryType == QUERY_TYPE_VOLUME)
-            [request setSortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"volume" ascending:NO]]];
+             [request setSortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"volume" ascending:NO]]];
         else if (self.queryType == QUERY_TYPE_DURATION)
-            [request setSortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"duration" ascending:NO]]];
+             [request setSortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"duration" ascending:NO]]];
         else if (self.queryType == QUERY_TYPE_NUMEXERCISES)
-            [request setSortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"numExercises" ascending:NO]]];
-        else[request setSortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"numSets" ascending:NO]]];
+             [request setSortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"numExercises" ascending:NO]]];
+        else [request setSortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"numSets" ascending:NO]]];
     }
-    else    [request setSortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO]]];
+    else     [request setSortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO]]];
 }
 
 #pragma mark - tableView dataSource
