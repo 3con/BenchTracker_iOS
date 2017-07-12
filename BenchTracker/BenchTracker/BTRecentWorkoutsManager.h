@@ -28,10 +28,12 @@
 
 - (NSDictionary <NSString *, NSNumber *> *)workoutExerciseTypes;
 
-- (NSArray <NSNumber *> *)workoutNumExercises;
-
 - (NSArray <NSNumber *> *)workoutVolumes;
 
 - (NSArray <NSNumber *> *)workoutDurations;
+
+- (NSArray <NSNumber *> *)workoutNumExercises;
+
+- (NSArray <NSNumber *> *)workoutNumSets;
 
 @end

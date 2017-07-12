@@ -255,11 +255,11 @@
     [self.addExerciseButton setTitle:(numSelected == 1) ? @"Add\nExercise" :
                                 [NSString stringWithFormat:@"Add\n%ld Exercises",numSelected]
                                     forState:UIControlStateNormal];
-    [self.supersetButton setTitle:(numSelected == 1) ? @"" :
-                                [NSString stringWithFormat:@"Superset\n%ld Exercises",numSelected]
+    [self.supersetButton setTitle:[NSString stringWithFormat:@"Superset\n%ld Exercises",numSelected]
                                     forState:UIControlStateNormal];
-    [self.supersetButton setEnabled:numSelected != 1];
-    self.supersetButton.alpha = (numSelected != 1) ? 1 : .4;
+    self.supersetButton.alpha = (numSelected != 1);
+    self.supersetButton.userInteractionEnabled = (numSelected != 1);
+    self.addExerciseConstraint.constant = (numSelected != 1) ? 135 : 5;
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -274,11 +274,11 @@
         [self.addExerciseButton setTitle:(numSelected == 1) ? @"Add\nExercise" :
                                     [NSString stringWithFormat:@"Add\n%ld Exercises",numSelected]
                                         forState:UIControlStateNormal];
-        [self.supersetButton setTitle:(numSelected == 1) ? @"" :
-                                    [NSString stringWithFormat:@"Superset\n%ld Exercises",numSelected]
+        [self.supersetButton setTitle:[NSString stringWithFormat:@"Superset\n%ld Exercises",numSelected]
                                         forState:UIControlStateNormal];
-        [self.supersetButton setEnabled:numSelected != 1];
-        self.supersetButton.alpha = (numSelected != 1) ? 1 : .4;
+        self.supersetButton.alpha = (numSelected != 1);
+        self.supersetButton.userInteractionEnabled = (numSelected != 1);
+        self.addExerciseConstraint.constant = (numSelected != 1) ? 135 : 5;
     }
 }
 

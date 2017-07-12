@@ -35,5 +35,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *supersetButton;
 @property (weak, nonatomic) IBOutlet UIButton *addExerciseButton;
 @property (weak, nonatomic) IBOutlet UIButton *clearButton;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *addExerciseConstraint;
 
 @end

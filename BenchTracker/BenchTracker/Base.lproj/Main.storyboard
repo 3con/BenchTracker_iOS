@@ -687,6 +687,7 @@
                                         <rect key="frame" x="5" y="20" width="120" height="50"/>
                                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
+                                            <constraint firstAttribute="width" constant="120" id="9tW-TZ-NdH"/>
                                             <constraint firstAttribute="height" constant="50" id="ZUs-83-3VB"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
@@ -729,8 +730,6 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="Fkn-7j-kjl" firstAttribute="width" secondItem="Mhu-3f-kqQ" secondAttribute="width" id="CqH-IM-lRi"/>
-                                    <constraint firstItem="Mhu-3f-kqQ" firstAttribute="leading" secondItem="Fkn-7j-kjl" secondAttribute="trailing" constant="10" id="FHy-41-bDN"/>
                                     <constraint firstAttribute="width" constant="320" id="KZg-t3-3jG"/>
                                     <constraint firstItem="Fkn-7j-kjl" firstAttribute="leading" secondItem="0qq-lJ-4Fz" secondAttribute="leading" constant="5" id="LVO-tm-P8I"/>
                                     <constraint firstItem="Mhu-3f-kqQ" firstAttribute="centerY" secondItem="Fkn-7j-kjl" secondAttribute="centerY" id="NNt-Sa-prQ"/>
@@ -739,6 +738,7 @@
                                     <constraint firstItem="5oh-a6-cZW" firstAttribute="leading" secondItem="Mhu-3f-kqQ" secondAttribute="trailing" constant="10" id="buU-OW-3A5"/>
                                     <constraint firstAttribute="height" constant="70" id="f0m-cx-X6E"/>
                                     <constraint firstAttribute="trailing" secondItem="5oh-a6-cZW" secondAttribute="trailing" constant="5" id="mWD-lB-bta"/>
+                                    <constraint firstItem="Mhu-3f-kqQ" firstAttribute="leading" secondItem="0qq-lJ-4Fz" secondAttribute="leading" constant="135" id="wiH-H1-E7m"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -754,6 +754,7 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="addExerciseButton" destination="Mhu-3f-kqQ" id="4lT-Yw-adv"/>
+                        <outlet property="addExerciseConstraint" destination="wiH-H1-E7m" id="CEB-jl-vlZ"/>
                         <outlet property="cancelButton" destination="Rhg-8M-RWr" id="1FC-4n-1dy"/>
                         <outlet property="clearButton" destination="5oh-a6-cZW" id="N0W-GU-Lm3"/>
                         <outlet property="containerView" destination="VSj-Bx-meF" id="KZu-gf-wpa"/>

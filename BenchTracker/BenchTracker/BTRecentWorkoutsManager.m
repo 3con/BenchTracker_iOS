@@ -97,14 +97,6 @@
     return exerciseTypes;
 }
 
-- (NSArray <NSNumber *> *)workoutNumExercises {
-    if (!self.recentWorkouts) [self performFetch];
-    NSMutableArray *numExercises = [NSMutableArray array];
-    for (BTWorkout *workout in self.recentWorkouts)
-        [numExercises addObject:[NSNumber numberWithFloat:workout.exercises.count]];
-    return numExercises;
-}
-
 - (NSArray <NSNumber *> *)workoutVolumes {
     if (!self.recentWorkouts) [self performFetch];
     NSMutableArray *volumes = [NSMutableArray array];
@@ -119,6 +111,22 @@
     for (BTWorkout *workout in self.recentWorkouts)
         [durations addObject:[NSNumber numberWithFloat:workout.duration/60]];
     return durations;
+}
+
+- (NSArray <NSNumber *> *)workoutNumExercises {
+    if (!self.recentWorkouts) [self performFetch];
+    NSMutableArray *numExercises = [NSMutableArray array];
+    for (BTWorkout *workout in self.recentWorkouts)
+        [numExercises addObject:[NSNumber numberWithFloat:workout.numExercises]];
+    return numExercises;
+}
+
+- (NSArray <NSNumber *> *)workoutNumSets {
+    if (!self.recentWorkouts) [self performFetch];
+    NSMutableArray *numSets = [NSMutableArray array];
+    for (BTWorkout *workout in self.recentWorkouts)
+        [numSets addObject:[NSNumber numberWithFloat:workout.numSets]];
+    return numSets;
 }
 
 #pragma mark - private methods

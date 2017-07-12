@@ -60,7 +60,7 @@
 #pragma mark - collectionView dataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 6;
+    return 7;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -69,6 +69,7 @@
     cell.graphHeight = (indexPath.row == 1) ? 0 : 210;
     cell.backgroundColor = [self colorFromHexString:
         @[@"00BCD4",
+          @"2ECC71",
           @"2196F3",
           @"673AB7",
           @"EC407A",
@@ -78,9 +79,10 @@
         @[@"Favorite Exercises",
           @"All Exercises",
           @"Muscle Split",
-          @"Number of Exercises",
           @"Volume (1000s of lbs)",
-          @"Duration (minutes)"][indexPath.row];
+          @"Duration (minutes)",
+          @"Number of Exercises",
+          @"Number of Sets",][indexPath.row];
     [cell.seeMoreButton setTitleColor:cell.backgroundColor forState:UIControlStateNormal];
     NSMutableArray <NSAttributedString *> *displayStrings = [NSMutableArray array];
     if (indexPath.row == 0) {
@@ -118,16 +120,20 @@
         BTAnalyticsLineChart *lineChart = [[BTAnalyticsLineChart alloc] initWithFrame:CGRectMake(5, 10, collectionView.frame.size.width-60, 198)];
         [lineChart setXAxisData:[self.recentWorkoutsManager workoutShortDates]];
         if (indexPath.row == 3) {
-            data = [self.recentWorkoutsManager workoutNumExercises];
-            suffix = @"";
-        }
-        else if (indexPath.row == 4) {
             data = [self.recentWorkoutsManager workoutVolumes];
             suffix = @"k lbs";
         }
-        else {
+        else if (indexPath.row == 4) {
             data = [self.recentWorkoutsManager workoutDurations];
             suffix = @" min";
+        }
+        else if (indexPath.row == 5) {
+            data = [self.recentWorkoutsManager workoutNumExercises];
+            suffix = @"";
+        }
+        else {
+            data = [self.recentWorkoutsManager workoutNumSets];
+            suffix = @"";
         }
         [lineChart setYAxisData:data];
         cell.graphView = lineChart;

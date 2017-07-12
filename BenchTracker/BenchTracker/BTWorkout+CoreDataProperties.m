@@ -18,6 +18,9 @@
 @dynamic summary;
 @dynamic date;
 @dynamic duration;
+@dynamic volume;
+@dynamic numExercises;
+@dynamic numSets;
 @dynamic name;
 @dynamic supersets;
 @dynamic user;

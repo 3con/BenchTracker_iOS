@@ -20,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSDate *date;
 @property (nonatomic) int64_t duration;
 @property (nonatomic) int64_t volume;
+@property (nonatomic) int64_t numExercises;
+@property (nonatomic) int64_t numSets;
 @property (nullable, nonatomic, copy) NSString *summary;   //"1 biceps#2 legs#..."
 @property (nullable, nonatomic, retain) NSData *supersets; //[ [1, 2, 3], [5, 6], ... ]
 @property (nullable, nonatomic, retain) BTUser *user;
