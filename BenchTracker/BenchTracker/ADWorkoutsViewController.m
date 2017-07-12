@@ -25,6 +25,7 @@
 @property (nonatomic) HMSegmentedControl *segmentedControl;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewHeightConstraint;
 
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 
@@ -44,6 +45,7 @@
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 15, 0);
     self.tableView.layer.cornerRadius = 12;
     self.tableView.clipsToBounds = YES;
+    self.tableView.scrollEnabled = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -75,6 +77,7 @@
     }
     self.podiumView.dates = dateArray;
     self.podiumView.values = valueArray;
+    self.tableViewHeightConstraint.constant = MAX(self.view.frame.size.height-(294+72), self.fetchedResultsController.fetchedObjects.count*50);
 }
 
 #pragma mark - segmedtedControl

@@ -52,7 +52,8 @@
 }
 
 - (NSDate *)normalizedDateForDate:(NSDate *)date {
-    NSDateComponents *components = [NSCalendar.currentCalendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:date];
+    NSDateComponents *components = [NSCalendar.currentCalendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay
+                                                                 fromDate:date];
     return [NSCalendar.currentCalendar dateFromComponents:components];
 }
 

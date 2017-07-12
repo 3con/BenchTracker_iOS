@@ -15,6 +15,7 @@
 }
 
 @dynamic sets;
+@dynamic oneRM;
 @dynamic style;
 @dynamic name;
 @dynamic iteration;

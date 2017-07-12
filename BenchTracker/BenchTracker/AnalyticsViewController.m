@@ -83,6 +83,14 @@
           @"Duration (minutes)",
           @"Number of Exercises",
           @"Number of Sets",][indexPath.row];
+    cell.subtitleLabel.text =
+        @[@"Recent Workouts",
+          @"",
+          @"Recent Workouts",
+          @"Recent Workouts",
+          @"Recent Workouts",
+          @"Recent Workouts",
+          @"Recent Workouts",][indexPath.row];
     [cell.seeMoreButton setTitleColor:cell.backgroundColor forState:UIControlStateNormal];
     NSMutableArray <NSAttributedString *> *displayStrings = [NSMutableArray array];
     if (indexPath.row == 0) {

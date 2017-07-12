@@ -38,6 +38,7 @@
 		F94C893B1F154498006C6BDD /* ADPodiumView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F94C893A1F154498006C6BDD /* ADPodiumView.xib */; };
 		F94C89401F15B68D006C6BDD /* ADMuscleSplitTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F94C893E1F15B68D006C6BDD /* ADMuscleSplitTableViewCell.m */; };
 		F94C89411F15B68D006C6BDD /* ADMuscleSplitTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F94C893F1F15B68D006C6BDD /* ADMuscleSplitTableViewCell.xib */; };
+		F94C89451F15D5B6006C6BDD /* BT1RMCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = F94C89441F15D5B6006C6BDD /* BT1RMCalculator.m */; };
 		F95F5CF61F08B54500A567FA /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F95F5CF51F08B54500A567FA /* SettingsViewController.m */; };
 		F95F932F1F02FC5000A19C4D /* TypeListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F95F932E1F02FC5000A19C4D /* TypeListModel.m */; };
 		F95F93331F03410500A19C4D /* BTAWSUser.m in Sources */ = {isa = PBXBuildFile; fileRef = F95F93321F03410500A19C4D /* BTAWSUser.m */; };
@@ -158,6 +159,8 @@
 		F94C893D1F15B68D006C6BDD /* ADMuscleSplitTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADMuscleSplitTableViewCell.h; sourceTree = "<group>"; };
 		F94C893E1F15B68D006C6BDD /* ADMuscleSplitTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADMuscleSplitTableViewCell.m; sourceTree = "<group>"; };
 		F94C893F1F15B68D006C6BDD /* ADMuscleSplitTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ADMuscleSplitTableViewCell.xib; sourceTree = "<group>"; };
+		F94C89431F15D5B6006C6BDD /* BT1RMCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BT1RMCalculator.h; sourceTree = "<group>"; };
+		F94C89441F15D5B6006C6BDD /* BT1RMCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BT1RMCalculator.m; sourceTree = "<group>"; };
 		F95F5CF41F08B54500A567FA /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		F95F5CF51F08B54500A567FA /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		F95F932D1F02FC5000A19C4D /* TypeListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeListModel.h; sourceTree = "<group>"; };
@@ -497,6 +500,23 @@
 			name = "Muscle split cell";
 			sourceTree = "<group>";
 		};
+		F94C89461F15D5BC006C6BDD /* 1RM calculator */ = {
+			isa = PBXGroup;
+			children = (
+				F94C89431F15D5B6006C6BDD /* BT1RMCalculator.h */,
+				F94C89441F15D5B6006C6BDD /* BT1RMCalculator.m */,
+			);
+			name = "1RM calculator";
+			sourceTree = "<group>";
+		};
+		F94C89471F15D5C5006C6BDD /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				F94C89461F15D5BC006C6BDD /* 1RM calculator */,
+			);
+			name = Utility;
+			sourceTree = "<group>";
+		};
 		F95F5CF71F08B55700A567FA /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -806,6 +826,7 @@
 			children = (
 				F9DA752E1F02F08200347B0D /* CoreData Models */,
 				F9DA75301F02F09300347B0D /* Managers */,
+				F94C89471F15D5C5006C6BDD /* Utility */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1141,6 +1162,7 @@
 				F97B1CA71F097D8A00B3EEC7 /* WeekdayView.m in Sources */,
 				F9DA75111F02DC1700347B0D /* BTDataModel.xcdatamodeld in Sources */,
 				F927D14F1F0C9BD70004CF3A /* IterationSelectionViewController.m in Sources */,
+				F94C89451F15D5B6006C6BDD /* BT1RMCalculator.m in Sources */,
 				F917BB641F0DEA7C00614AB1 /* BTQRScannerViewController.m in Sources */,
 				F95F93411F03713200A19C4D /* BTAWSWorkout.m in Sources */,
 				F90712A719415FB1008694E5 /* main.m in Sources */,

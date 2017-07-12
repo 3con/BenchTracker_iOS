@@ -17,6 +17,7 @@
 #import "MMQRCodeMakerUtil.h"
 #import "QRDisplayViewController.h"
 #import "BTSettings+CoreDataClass.h"
+#import "BT1RMCalculator.h"
 
 @interface WorkoutViewController ()
 
@@ -135,10 +136,12 @@
         if (dict[exercise.category]) dict[exercise.category] = [NSNumber numberWithInt:dict[exercise.category].intValue + 1];
         else                         dict[exercise.category] = [NSNumber numberWithInt:1];
         if ([exercise.style isEqualToString:STYLE_REPSWEIGHT]) {
+            exercise.oneRM = 0;
             for (NSString *set in [NSKeyedUnarchiver unarchiveObjectWithData:exercise.sets]) {
                 NSArray <NSString *> *split = [set componentsSeparatedByString:@" "];
                 self.workout.volume += split[0].floatValue*split[1].floatValue;
                 self.workout.numSets ++;
+                exercise.oneRM = MAX(exercise.oneRM, [BT1RMCalculator equivilentForReps:split[0].intValue weight:split[1].floatValue]);
             }
         }
     }
@@ -303,6 +306,7 @@
     exercise.iteration = ([iteration isKindOfClass:[NSNull class]]) ? nil : iteration;
     exercise.category = type.category;
     exercise.style = type.style;
+    exercise.oneRM = 0;
     exercise.sets = [NSKeyedArchiver archivedDataWithRootObject:[[NSMutableArray alloc] init]];
     exercise.workout = self.workout;
     return exercise;

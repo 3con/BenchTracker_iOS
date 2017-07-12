@@ -14,6 +14,7 @@
 @property (nonatomic, strong) NSString *iteration;
 @property (nonatomic, strong) NSString *category;
 @property (nonatomic, strong) NSString *style;
+@property (nonatomic, strong) NSNumber *oneRM;
 @property (nonatomic, strong) NSArray <NSString *> *sets;
 
 @end

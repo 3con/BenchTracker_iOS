@@ -18,6 +18,7 @@
 #import "MJExtension.h"
 #import "BTJSONWorkout.h"
 #import "BTJSONWorkoutTemplate.h"
+#import "BT1RMCalculator.h"
 
 @interface BTWorkoutManager ()
 
@@ -165,10 +166,12 @@
         exercise.style = exerciseModel.style;
         workout.numSets += (exerciseModel.sets) ? exerciseModel.sets.count : 0;
         exercise.sets = [NSKeyedArchiver archivedDataWithRootObject:(exerciseModel.sets) ? exerciseModel.sets : [NSMutableArray array]];
+        exercise.oneRM = 0;
         if ([exerciseModel.style isEqualToString:STYLE_REPSWEIGHT]) {
             for (NSString *set in exerciseModel.sets) {
                 NSArray <NSString *> *split = [set componentsSeparatedByString:@" "];
                 workout.volume += split[0].floatValue*split[1].floatValue;
+                exercise.oneRM = MAX(exercise.oneRM, [BT1RMCalculator equivilentForReps:split[0].intValue weight:split[1].floatValue]);
             }
         }
         exercise.workout = workout;
@@ -379,6 +382,7 @@
     r = [NSString stringWithFormat:@"%@\"name\":\"%@\",",r, exercise.name];
     r = [NSString stringWithFormat:@"%@\"iteration\":\"%@\",",r, (exercise.iteration) ? AWS_EMPTY : exercise.iteration];
     r = [NSString stringWithFormat:@"%@\"category\":\"%@\",",r, exercise.category];
+    r = [NSString stringWithFormat:@"%@\"oneRM\":\"%lld\",",r, exercise.oneRM];
     r = [NSString stringWithFormat:@"%@\"sets\":%@",r, [self stringForSetsData: exercise.sets]];
     return [NSString stringWithFormat:@"%@}",r];
 }
@@ -392,6 +396,7 @@
     exercise.iteration = ([model.iteration isEqualToString:AWS_EMPTY]) ? nil : model.iteration;
     exercise.category = model.category;
     exercise.style = model.style;
+    exercise.oneRM = model.oneRM.longLongValue;
     if ([model.sets.firstObject isEqualToString:AWS_EMPTY])
          exercise.sets = [NSKeyedArchiver archivedDataWithRootObject:[NSMutableArray array]];
     else exercise.sets = [NSKeyedArchiver archivedDataWithRootObject:model.sets];

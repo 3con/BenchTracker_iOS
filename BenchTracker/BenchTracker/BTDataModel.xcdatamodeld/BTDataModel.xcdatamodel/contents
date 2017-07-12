@@ -4,6 +4,7 @@
         <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="iteration" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="oneRM" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="sets" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="style" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="workout" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BTWorkout" inverseName="exercises" inverseEntity="BTWorkout" syncable="YES"/>
@@ -39,7 +40,7 @@
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BTUser" inverseName="workouts" inverseEntity="BTUser" syncable="YES"/>
     </entity>
     <elements>
-        <element name="BTExercise" positionX="-137" positionY="-108" width="128" height="135"/>
+        <element name="BTExercise" positionX="-137" positionY="-108" width="128" height="150"/>
         <element name="BTExerciseType" positionX="-137" positionY="-249" width="128" height="103"/>
         <element name="BTSettings" positionX="-315" positionY="-117" width="128" height="60"/>
         <element name="BTUser" positionX="-488" positionY="-105" width="128" height="135"/>
