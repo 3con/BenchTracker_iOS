@@ -27,13 +27,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.user = [(BTUserManager *)[BTUserManager sharedInstance] user];
-    self.workoutManager = [BTWorkoutManager sharedInstance];
-    [self loadWeekLogic];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorColor = [UIColor clearColor];
     self.tableView.contentInset = UIEdgeInsetsMake(10, 0, 10, 0);
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.user = [(BTUserManager *)[BTUserManager sharedInstance] user];
+    self.workoutManager = [BTWorkoutManager sharedInstance];
+    [self loadWeekLogic];
+    self.titleString = @"Muscle Split";
 }
 
 - (void)loadWeekLogic {
@@ -41,10 +46,22 @@
     NSDateComponents *comp = [[NSCalendar currentCalendar] components:NSCalendarUnitWeekday fromDate:today];
     NSInteger offset = (comp.weekday != 1) ? -(comp.weekday-2) : -6;
     self.firstDayOfWeekDate = [today dateByAddingTimeInterval:offset*86400];
-    comp = [[NSCalendar currentCalendar] components:NSCalendarUnitWeekday fromDate:self.user.dateCreated];
+    NSDate *firstWorkout = [self dateOfFirstWorkout];
+    NSDate *firstDate = ([firstWorkout compare:self.user.dateCreated] == 1) ? self.user.dateCreated : firstWorkout;
+    comp = [[NSCalendar currentCalendar] components:NSCalendarUnitWeekday fromDate:firstDate];
     offset = (comp.weekday != 1) ? -(comp.weekday-2) : -6;
-    NSDate *dayOfCreation = [self normalizedDateForDate:self.user.dateCreated];
-    self.firstDayDate = [dayOfCreation dateByAddingTimeInterval:offset*86400];
+    NSDate *dayOfFirst = [self normalizedDateForDate:firstDate];
+    self.firstDayDate = [dayOfFirst dateByAddingTimeInterval:offset*86400];
+}
+
+- (NSDate *)dateOfFirstWorkout {
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"BTWorkout"];
+    request.fetchBatchSize = 11;
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES]];
+    NSError *error;
+    NSArray <BTWorkout *> *arr = [self.context executeFetchRequest:request error:&error];
+    if (error) NSLog(@"muscle split error: %@",error);
+    return (arr && arr.count > 0) ? arr.firstObject.date : nil;
 }
 
 - (NSDate *)normalizedDateForDate:(NSDate *)date {
@@ -56,11 +73,6 @@
 - (NSArray <BTWorkout *> *)workoutsForIndexPath:(NSIndexPath *)indexPath {
     return [self.workoutManager workoutsBetweenBeginDate:[self.firstDayOfWeekDate dateByAddingTimeInterval:-86400*7*indexPath.row]
                                               andEndDate:[self.firstDayOfWeekDate dateByAddingTimeInterval:-86400*7*(indexPath.row-1)]];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    self.titleString = @"Muscle Split";
 }
 
 #pragma mark - tableView datasource

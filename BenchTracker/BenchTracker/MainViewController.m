@@ -23,8 +23,9 @@
 @property (nonatomic) BTUserManager *userManager;
 @property (nonatomic) BTWorkoutManager *workoutManager;
 @property (nonatomic) BTSettings *settings;
-
 @property (nonatomic) BTUser *user;
+
+@property (nonatomic) NSDate *firstDay;
 
 @end
 
@@ -62,6 +63,7 @@
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     if (!self.weekdayView) { //first load
+        [self determineFirstDay];
         self.weekdayView = [[NSBundle mainBundle] loadNibNamed:@"WeekdayView" owner:self options:nil].firstObject;
         self.weekdayView.delegate = self;
         self.weekdayView.context = self.context;
@@ -116,6 +118,23 @@
 
 #pragma mark - calendarView
 
+- (void)determineFirstDay {
+    if (self.user) {
+        NSDate *firstWorkout = [self dateOfFirstWorkout];
+        self.firstDay = ([firstWorkout compare:self.user.dateCreated] == 1) ? self.user.dateCreated : firstWorkout;
+    }
+}
+
+- (NSDate *)dateOfFirstWorkout {
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"BTWorkout"];
+    request.fetchBatchSize = 11;
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES]];
+    NSError *error;
+    NSArray <BTWorkout *> *arr = [self.context executeFetchRequest:request error:&error];
+    if (error) NSLog(@"muscle split error: %@",error);
+    return (arr && arr.count > 0) ? arr.firstObject.date : nil;
+}
+
 - (void)setUpCalendarView {
     self.calendarView.delegate = self;
     self.calendarView.dataSource = self;
@@ -125,7 +144,7 @@
 }
 
 - (NSDate *)minimumDateForCalendar:(FSCalendar *)calendar {
-    return [NSDate dateWithTimeInterval:-75*86400 sinceDate:self.user.dateCreated];
+    return [NSDate dateWithTimeInterval:-75*86400 sinceDate:self.firstDay];
 }
 
 - (NSDate *)maximumDateForCalendar:(FSCalendar *)calendar {
@@ -146,7 +165,7 @@
     if ([date compare:self.calendarView.maximumDate] == NSOrderedDescending ||
         [date compare:self.calendarView.minimumDate] == NSOrderedAscending) return [UIColor whiteColor];
     else if ([date compare:[NSDate date]] == NSOrderedDescending ||
-             [date compare:[self.user.dateCreated dateByAddingTimeInterval:-86400]] == NSOrderedAscending) return [UIColor lightGrayColor];
+             [date compare:[self.firstDay dateByAddingTimeInterval:-86400]] == NSOrderedAscending) return [UIColor lightGrayColor];
     else if ([self.workoutManager workoutsBetweenBeginDate:date andEndDate:[date dateByAddingTimeInterval:86400]].count > 0)
         return [UIColor whiteColor];
     return [UIColor colorWithRed:20/255.0 green:20/255.0 blue:84/255.0 alpha:1];

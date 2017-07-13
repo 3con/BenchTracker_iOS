@@ -37,18 +37,34 @@
 
 - (void)reloadData {
     if (self.user) {
-        NSDate *today = [self normalizedDateForDate:[NSDate date]];
-        NSDateComponents *comp = [[NSCalendar currentCalendar] components:NSCalendarUnitWeekday fromDate:today];
-        NSInteger offset = (comp.weekday != 1) ? -(comp.weekday-2) : -6;
-        self.firstDayOfWeekDate = [today dateByAddingTimeInterval:offset*86400];
-        comp = [[NSCalendar currentCalendar] components:NSCalendarUnitWeekday fromDate:self.user.dateCreated];
-        offset = (comp.weekday != 1) ? -(comp.weekday-2) : -6;
-        NSDate *dayOfCreation = [self normalizedDateForDate:self.user.dateCreated];
-        self.firstDayDate = [dayOfCreation dateByAddingTimeInterval:offset*86400-70*86400];
+        [self loadWeekLogic];
         [self.tableView reloadData];
         [self updateTitles];
         [self scrollViewDidScroll:self.tableView];
     }
+}
+
+- (void)loadWeekLogic {
+    NSDate *today = [self normalizedDateForDate:[NSDate date]];
+    NSDateComponents *comp = [[NSCalendar currentCalendar] components:NSCalendarUnitWeekday fromDate:today];
+    NSInteger offset = (comp.weekday != 1) ? -(comp.weekday-2) : -6;
+    self.firstDayOfWeekDate = [today dateByAddingTimeInterval:offset*86400];
+    NSDate *firstWorkout = [self dateOfFirstWorkout];
+    NSDate *firstDate = ([firstWorkout compare:self.user.dateCreated] == 1) ? self.user.dateCreated : firstWorkout;
+    comp = [[NSCalendar currentCalendar] components:NSCalendarUnitWeekday fromDate:firstDate];
+    offset = (comp.weekday != 1) ? -(comp.weekday-2) : -6;
+    NSDate *dayOfFirst = [self normalizedDateForDate:firstDate];
+    self.firstDayDate = [dayOfFirst dateByAddingTimeInterval:offset*86400-70*86400];
+}
+
+- (NSDate *)dateOfFirstWorkout {
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"BTWorkout"];
+    request.fetchBatchSize = 11;
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES]];
+    NSError *error;
+    NSArray <BTWorkout *> *arr = [self.context executeFetchRequest:request error:&error];
+    if (error) NSLog(@"muscle split error: %@",error);
+    return (arr && arr.count > 0) ? arr.firstObject.date : nil;
 }
 
 - (NSDate *)normalizedDateForDate:(NSDate *)date {

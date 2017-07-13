@@ -11,12 +11,14 @@
 #import "BTSettings+CoreDataClass.h"
 #import "BTExerciseType+CoreDataClass.h"
 #import "ADExercisesDetailViewController.h"
+#import "ADExerciseTypeTableViewCell.h"
 
 @interface ADExercisesViewController ()
 
 @property (nonatomic) ZFModalTransitionAnimator *animator;
 
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic, retain) NSFetchRequest *cachedFetchRequest;
 
 @property (nonatomic) NSDictionary *exerciseTypeColors;
 
@@ -143,17 +145,24 @@
     return [[_fetchedResultsController sections] objectAtIndex:section].numberOfObjects;
 }
 
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+- (void)configureCell:(ADExerciseTypeTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     BTExerciseType *type = self.fetchedResultsController.sections[indexPath.section].objects[indexPath.row];
-    cell.textLabel.text = type.name;
+    [cell loadWithName:type.name num:[self numberOfExercisesForType:type] color:self.color];
+}
+
+- (NSInteger)numberOfExercisesForType:(BTExerciseType *)type {
+    if (!self.cachedFetchRequest) {
+        self.cachedFetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"BTExercise"];
+        self.cachedFetchRequest.fetchBatchSize = 11;
+    }
+    self.cachedFetchRequest.predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"name == '%@'",type.name]];
+    return [self.context executeFetchRequest:self.cachedFetchRequest error:nil].count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    ADExerciseTypeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.textLabel.textColor = [UIColor darkGrayColor];
+        cell = [[NSBundle mainBundle] loadNibNamed:@"ADExerciseTypeTableViewCell" owner:self options:nil].firstObject;
     }
     [self configureCell:cell atIndexPath:indexPath];
     return cell;
@@ -164,6 +173,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     BTExerciseType *type = [_fetchedResultsController objectAtIndexPath:indexPath];
     [self presentExerciseDetailViewControllerWithType:type];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 #pragma mark - scrollView delegate

@@ -52,6 +52,8 @@
 		F96207721F05DCF200DE2330 /* ExerciseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F96207701F05DCF200DE2330 /* ExerciseTableViewCell.xib */; };
 		F9640BD81F080E590053C9C0 /* BTSettings+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F9640BD41F080E590053C9C0 /* BTSettings+CoreDataClass.m */; };
 		F9640BD91F080E590053C9C0 /* BTSettings+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F9640BD61F080E590053C9C0 /* BTSettings+CoreDataProperties.m */; };
+		F97773E11F1726A2009AEDE3 /* ADExerciseTypeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F97773DF1F1726A2009AEDE3 /* ADExerciseTypeTableViewCell.m */; };
+		F97773E21F1726A2009AEDE3 /* ADExerciseTypeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97773E01F1726A2009AEDE3 /* ADExerciseTypeTableViewCell.xib */; };
 		F97B1CA21F09759000B3EEC7 /* WeekdayTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F97B1CA01F09759000B3EEC7 /* WeekdayTableViewCell.m */; };
 		F97B1CA31F09759000B3EEC7 /* WeekdayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97B1CA11F09759000B3EEC7 /* WeekdayTableViewCell.xib */; };
 		F97B1CA71F097D8A00B3EEC7 /* WeekdayView.m in Sources */ = {isa = PBXBuildFile; fileRef = F97B1CA61F097D8A00B3EEC7 /* WeekdayView.m */; };
@@ -186,6 +188,9 @@
 		F9640BD41F080E590053C9C0 /* BTSettings+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "BTSettings+CoreDataClass.m"; path = "BenchTracker/BTSettings+CoreDataClass.m"; sourceTree = "<group>"; };
 		F9640BD51F080E590053C9C0 /* BTSettings+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "BTSettings+CoreDataProperties.h"; path = "BenchTracker/BTSettings+CoreDataProperties.h"; sourceTree = "<group>"; };
 		F9640BD61F080E590053C9C0 /* BTSettings+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "BTSettings+CoreDataProperties.m"; path = "BenchTracker/BTSettings+CoreDataProperties.m"; sourceTree = "<group>"; };
+		F97773DE1F1726A2009AEDE3 /* ADExerciseTypeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADExerciseTypeTableViewCell.h; sourceTree = "<group>"; };
+		F97773DF1F1726A2009AEDE3 /* ADExerciseTypeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADExerciseTypeTableViewCell.m; sourceTree = "<group>"; };
+		F97773E01F1726A2009AEDE3 /* ADExerciseTypeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ADExerciseTypeTableViewCell.xib; sourceTree = "<group>"; };
 		F97B1C9F1F09759000B3EEC7 /* WeekdayTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeekdayTableViewCell.h; sourceTree = "<group>"; };
 		F97B1CA01F09759000B3EEC7 /* WeekdayTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeekdayTableViewCell.m; sourceTree = "<group>"; };
 		F97B1CA11F09759000B3EEC7 /* WeekdayTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeekdayTableViewCell.xib; sourceTree = "<group>"; };
@@ -635,6 +640,16 @@
 			name = BTSettings;
 			sourceTree = "<group>";
 		};
+		F97773E31F1726A6009AEDE3 /* Exercise type cell */ = {
+			isa = PBXGroup;
+			children = (
+				F97773DE1F1726A2009AEDE3 /* ADExerciseTypeTableViewCell.h */,
+				F97773DF1F1726A2009AEDE3 /* ADExerciseTypeTableViewCell.m */,
+				F97773E01F1726A2009AEDE3 /* ADExerciseTypeTableViewCell.xib */,
+			);
+			name = "Exercise type cell";
+			sourceTree = "<group>";
+		};
 		F97B1CA41F09759700B3EEC7 /* Weekday cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -891,6 +906,7 @@
 				F9FD19ED1F14748800AB3FEE /* ADExercisesViewController.m */,
 				F9FD19EE1F14748800AB3FEE /* ADExercisesViewController.xib */,
 				F9FD19F71F147F7900AB3FEE /* Exercises detail */,
+				F97773E31F1726A6009AEDE3 /* Exercise type cell */,
 			);
 			name = Exercises;
 			sourceTree = "<group>";
@@ -993,6 +1009,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9FD19F61F147F7600AB3FEE /* ADExercisesDetailViewController.xib in Resources */,
+				F97773E21F1726A2009AEDE3 /* ADExerciseTypeTableViewCell.xib in Resources */,
 				F9418FAF1F04A96C0083C3DC /* ExerciseView.xib in Resources */,
 				F97B1CA31F09759000B3EEC7 /* WeekdayTableViewCell.xib in Resources */,
 				F981D5891F022D9A00E7B456 /* LaunchScreen.xib in Resources */,
@@ -1166,6 +1183,7 @@
 				F917BB641F0DEA7C00614AB1 /* BTQRScannerViewController.m in Sources */,
 				F95F93411F03713200A19C4D /* BTAWSWorkout.m in Sources */,
 				F90712A719415FB1008694E5 /* main.m in Sources */,
+				F97773E11F1726A2009AEDE3 /* ADExerciseTypeTableViewCell.m in Sources */,
 				F9418FB21F04C83F0083C3DC /* SetFlowLayout.m in Sources */,
 				F927D1541F0C9DDB0004CF3A /* IterationTableViewCell.m in Sources */,
 				F97B1CA21F09759000B3EEC7 /* WeekdayTableViewCell.m in Sources */,

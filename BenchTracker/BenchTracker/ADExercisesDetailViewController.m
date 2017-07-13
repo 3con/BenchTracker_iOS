@@ -144,11 +144,13 @@
         if (topArr.count > i) {
             [dateArray addObject:topArr[i].workout.date];
             [valueArray addObject:[NSString stringWithFormat:@"%lld lbs", topArr[i].oneRM]];
-            for (NSString *set in [NSKeyedUnarchiver unarchiveObjectWithData:topArr[i].sets]) {
-                NSArray <NSString *> *a = [set componentsSeparatedByString:@" "];
-                if ([BT1RMCalculator equivilentForReps:a[0].intValue weight:a[1].floatValue] == topArr[i].oneRM) {
-                    [subValueArray addObject:[set stringByReplacingOccurrencesOfString:@" " withString:@" x "]];
-                    break;
+            if ([topArr[i].style isEqualToString:STYLE_REPSWEIGHT]) {
+                for (NSString *set in [NSKeyedUnarchiver unarchiveObjectWithData:topArr[i].sets]) {
+                    NSArray <NSString *> *a = [set componentsSeparatedByString:@" "];
+                    if ([BT1RMCalculator equivilentForReps:a[0].intValue weight:a[1].floatValue] == topArr[i].oneRM) {
+                        [subValueArray addObject:[set stringByReplacingOccurrencesOfString:@" " withString:@" x "]];
+                        break;
+                    }
                 }
             }
         }
