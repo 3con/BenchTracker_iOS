@@ -66,6 +66,11 @@
     self.tableViewHeightConstraint.constant = MAX(self.view.frame.size.height-(294+72), self.fetchedResultsController.fetchedObjects.count*40);
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self.podiumView animateIn];
+}
+
 - (void)loadPodiumView {
     self.podiumView = [[NSBundle mainBundle] loadNibNamed:@"ADPodiumView" owner:self options:nil].firstObject;
     self.podiumView.frame = CGRectMake(0, 0, self.podiumContainerView.frame.size.width,

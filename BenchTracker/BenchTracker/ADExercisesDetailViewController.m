@@ -7,13 +7,17 @@
 //
 
 #import "ADExercisesDetailViewController.h"
+#import "BTExerciseType+CoreDataClass.h"
 #import "ZFModalTransitionAnimator.h"
+#import "ADEDExerciseTableViewCell.h"
 #import "BTExercise+CoreDataClass.h"
 #import "BTWorkout+CoreDataClass.h"
 #import "ADPodiumView.h"
 #import "BTAnalyticsLineChart.h"
 #import "HMSegmentedControl.h"
 #import "BT1RMCalculator.h"
+
+#define CELL_HEIGHT 55
 
 @interface ADExercisesDetailViewController ()
 
@@ -51,8 +55,8 @@
     self.tableView.dataSource = self;
     self.tableView.allowsSelection = NO;
     self.tableView.showsVerticalScrollIndicator = NO;
-    self.tableView.separatorColor = [UIColor clearColor];
     self.tableView.scrollEnabled = NO;
+    self.tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);
     self.iteration = nil;
 }
 
@@ -63,7 +67,9 @@
     if (![[self fetchedResultsController] performFetch:&error]) {
         NSLog(@"AD exercise detail fetch error: %@, %@", error, [error userInfo]);
     }
-    self.tableViewHeightConstraint.constant = MAX(self.view.frame.size.height-624-72, self.fetchedResultsController.fetchedObjects.count*40);
+    self.tableView.separatorColor = self.color;
+    self.tableViewHeightConstraint.constant = MAX(self.view.frame.size.height-624-72,
+                                                  self.fetchedResultsController.fetchedObjects.count*CELL_HEIGHT);
     for (UIView *view in @[self.iterationButton, self.podiumContainerView, self.graphContainerView, self.tableView]) {
         view.layer.cornerRadius = 12;
         view.clipsToBounds = YES;
@@ -72,6 +78,11 @@
     [self loadPodiumView];
     [self loadGraphView];
     [self loadIterationButton];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self.podiumView animateIn];
 }
 
 - (IBAction)iterationButtonPressed:(UIButton *)sender {
@@ -167,14 +178,25 @@
 }
 
 - (void)updateIterationButtonText {
-    NSString *buttonText = (self.iteration.length > 0) ?
-        [NSString stringWithFormat:@"Variation: %@ %@\nTap to Change", self.iteration, self.titleString] :
-        [NSString stringWithFormat:@"%@: All Variations\nTap to Change", self.titleString];
-    NSMutableAttributedString *mAS = [[NSMutableAttributedString alloc] initWithString:buttonText];
-    [mAS setAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:13 weight:UIFontWeightBold],
-                         NSForegroundColorAttributeName: [UIColor colorWithWhite:1 alpha:.8]}
-                 range:NSMakeRange(mAS.length-13, 13)];
-    [self.iterationButton setAttributedTitle:mAS forState:UIControlStateNormal];
+    if ([[NSKeyedUnarchiver unarchiveObjectWithData:self.exerciseType.iterations] count] == 0) {
+        NSString *buttonText = [NSString stringWithFormat:@"%@\nNo Variations",self.exerciseType.name];
+        NSMutableAttributedString *mAS = [[NSMutableAttributedString alloc] initWithString:buttonText];
+        [mAS setAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:13 weight:UIFontWeightBold],
+                             NSForegroundColorAttributeName: [UIColor colorWithWhite:1 alpha:.8]}
+                     range:NSMakeRange(mAS.length-13, 13)];
+        [self.iterationButton setAttributedTitle:mAS forState:UIControlStateNormal];
+        self.iterationButton.enabled = NO;
+    }
+    else {
+        NSString *buttonText = (self.iteration.length > 0) ?
+            [NSString stringWithFormat:@"Variation: %@ %@\nTap to Change", self.iteration, self.titleString] :
+            [NSString stringWithFormat:@"%@: All Variations\nTap to Change", self.titleString];
+        NSMutableAttributedString *mAS = [[NSMutableAttributedString alloc] initWithString:buttonText];
+        [mAS setAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:13 weight:UIFontWeightBold],
+                             NSForegroundColorAttributeName: [UIColor colorWithWhite:1 alpha:.8]}
+                     range:NSMakeRange(mAS.length-13, 13)];
+        [self.iterationButton setAttributedTitle:mAS forState:UIControlStateNormal];
+    }
 }
 
 #pragma mark - segmedtedControl
@@ -225,7 +247,7 @@
 
 - (void)updateFetchRequest:(NSFetchRequest *)request {
     if (self.segmentedControl.selectedSegmentIndex == 0)
-         [request setSortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"workout.date" ascending:YES]]];
+         [request setSortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"workout.date" ascending:NO]]];
     else if (self.segmentedControl.selectedSegmentIndex == 1)
          [request setSortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"oneRM" ascending:NO]]];
     else [request setSortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"oneRM" ascending:NO]]];
@@ -246,20 +268,19 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 40;
+    return CELL_HEIGHT;
 }
 
-- (void)configureExerciseCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+- (void)configureExerciseCell:(ADEDExerciseTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     BTExercise *exercise = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@",exercise.name,exercise.sets];
+    cell.color = self.color;
+    [cell loadExercise:exercise];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    ADEDExerciseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
-        cell.textLabel.textColor = [UIColor whiteColor];
-        cell.backgroundColor = [UIColor clearColor];
+        cell = [[NSBundle mainBundle] loadNibNamed:@"ADEDExerciseTableViewCell" owner:self options:nil].firstObject;
     }
     [self configureExerciseCell:cell atIndexPath:indexPath];
     return cell;
@@ -278,6 +299,7 @@
     self.iteration = iteration;
     [self updateIterationButtonText];
     [self updatePodiumView];
+    [self.podiumView animateIn];
     NSError *error;
     [self updateFetchRequest:self.fetchedResultsController.fetchRequest];
     if (![[self fetchedResultsController] performFetch:&error]) {
@@ -285,7 +307,8 @@
     }
     [self updateGraphView];
     [self.tableView reloadData];
-    self.tableViewHeightConstraint.constant = MAX(self.view.frame.size.height-624-72, self.fetchedResultsController.fetchedObjects.count*40);
+    self.tableViewHeightConstraint.constant = MAX(self.view.frame.size.height-624-72,
+                                                  self.fetchedResultsController.fetchedObjects.count*CELL_HEIGHT);
 }
 
 - (void)iterationSelectionVCDidDismiss:(IterationSelectionViewController *)iterationVC {

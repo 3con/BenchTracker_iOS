@@ -73,6 +73,8 @@
 		F9B27CE51F117852008FCC7F /* AnalyticsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B27CE31F117852008FCC7F /* AnalyticsCollectionViewCell.m */; };
 		F9B27CE61F117852008FCC7F /* AnalyticsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9B27CE41F117852008FCC7F /* AnalyticsCollectionViewCell.xib */; };
 		F9B7D7D71F06303700376201 /* passTouchesView.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B7D7D61F06303700376201 /* passTouchesView.m */; };
+		F9C2406E1F17D94900A268F3 /* ADEDExerciseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F9C2406C1F17D94900A268F3 /* ADEDExerciseTableViewCell.m */; };
+		F9C2406F1F17D94900A268F3 /* ADEDExerciseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9C2406D1F17D94900A268F3 /* ADEDExerciseTableViewCell.xib */; };
 		F9DA75111F02DC1700347B0D /* BTDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F9DA750F1F02DC1700347B0D /* BTDataModel.xcdatamodeld */; };
 		F9DA75221F02EE9600347B0D /* BTUser+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F9DA75131F02EE9600347B0D /* BTUser+CoreDataClass.m */; };
 		F9DA75231F02EE9600347B0D /* BTUser+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F9DA75151F02EE9600347B0D /* BTUser+CoreDataProperties.m */; };
@@ -222,6 +224,9 @@
 		F9B27CE41F117852008FCC7F /* AnalyticsCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnalyticsCollectionViewCell.xib; sourceTree = "<group>"; };
 		F9B7D7D51F06303700376201 /* PassTouchesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PassTouchesView.h; sourceTree = "<group>"; };
 		F9B7D7D61F06303700376201 /* passTouchesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = passTouchesView.m; sourceTree = "<group>"; };
+		F9C2406B1F17D94900A268F3 /* ADEDExerciseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADEDExerciseTableViewCell.h; sourceTree = "<group>"; };
+		F9C2406C1F17D94900A268F3 /* ADEDExerciseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADEDExerciseTableViewCell.m; sourceTree = "<group>"; };
+		F9C2406D1F17D94900A268F3 /* ADEDExerciseTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ADEDExerciseTableViewCell.xib; sourceTree = "<group>"; };
 		F9DA75101F02DC1700347B0D /* BTDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BTDataModel.xcdatamodel; sourceTree = "<group>"; };
 		F9DA75121F02EE9600347B0D /* BTUser+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "BTUser+CoreDataClass.h"; path = "BenchTracker/BTUser+CoreDataClass.h"; sourceTree = "<group>"; };
 		F9DA75131F02EE9600347B0D /* BTUser+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "BTUser+CoreDataClass.m"; path = "BenchTracker/BTUser+CoreDataClass.m"; sourceTree = "<group>"; };
@@ -771,6 +776,16 @@
 			name = "Analytics cell";
 			sourceTree = "<group>";
 		};
+		F9C240701F17D94F00A268F3 /* Exercise cell */ = {
+			isa = PBXGroup;
+			children = (
+				F9C2406B1F17D94900A268F3 /* ADEDExerciseTableViewCell.h */,
+				F9C2406C1F17D94900A268F3 /* ADEDExerciseTableViewCell.m */,
+				F9C2406D1F17D94900A268F3 /* ADEDExerciseTableViewCell.xib */,
+			);
+			name = "Exercise cell";
+			sourceTree = "<group>";
+		};
 		F9DA752A1F02F00200347B0D /* BTWorkout */ = {
 			isa = PBXGroup;
 			children = (
@@ -917,6 +932,7 @@
 				F9FD19F21F147F7600AB3FEE /* ADExercisesDetailViewController.h */,
 				F9FD19F31F147F7600AB3FEE /* ADExercisesDetailViewController.m */,
 				F9FD19F41F147F7600AB3FEE /* ADExercisesDetailViewController.xib */,
+				F9C240701F17D94F00A268F3 /* Exercise cell */,
 			);
 			name = "Exercises detail";
 			sourceTree = "<group>";
@@ -1009,6 +1025,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9FD19F61F147F7600AB3FEE /* ADExercisesDetailViewController.xib in Resources */,
+				F9C2406F1F17D94900A268F3 /* ADEDExerciseTableViewCell.xib in Resources */,
 				F97773E21F1726A2009AEDE3 /* ADExerciseTypeTableViewCell.xib in Resources */,
 				F9418FAF1F04A96C0083C3DC /* ExerciseView.xib in Resources */,
 				F97B1CA31F09759000B3EEC7 /* WeekdayTableViewCell.xib in Resources */,
@@ -1200,6 +1217,7 @@
 				F9FA47261F0B39D700A4AF98 /* WorkoutSelectionViewController.m in Sources */,
 				F9DA75261F02EE9600347B0D /* BTExerciseType+CoreDataClass.m in Sources */,
 				F95F93331F03410500A19C4D /* BTAWSUser.m in Sources */,
+				F9C2406E1F17D94900A268F3 /* ADEDExerciseTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

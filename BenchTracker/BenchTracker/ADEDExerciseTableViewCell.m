@@ -1,27 +1,19 @@
 //
-//  ExerciseTableViewCell.m
+//  ADEDExerciseTableViewCell.m
 //  BenchTracker
 //
-//  Created by Chappy Asel on 6/29/17.
+//  Created by Chappy Asel on 7/13/17.
 //  Copyright © 2017 CD. All rights reserved.
 //
 
-#import "ExerciseTableViewCell.h"
+#import "ADEDExerciseTableViewCell.h"
 #import "BTExercise+CoreDataClass.h"
+#import "BTWorkout+CoreDataClass.h"
 
-@interface ExerciseTableViewCell ()
-
-@property (weak, nonatomic) IBOutlet UIView *containerView;
-
-@property (weak, nonatomic) IBOutlet UIView *colorView1;
-@property (weak, nonatomic) IBOutlet UIView *colorView2;
-@property (weak, nonatomic) IBOutlet UIView *colorView3;
-
-@property (weak, nonatomic) IBOutlet UIView *aboveSupersetView;
-@property (weak, nonatomic) IBOutlet UIView *belowSupersetView;
-
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *categoryLabel;
+@interface ADEDExerciseTableViewCell()
+@property (weak, nonatomic) IBOutlet UILabel *badgeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic) NSArray *tempSets;
@@ -29,13 +21,11 @@
 
 @end
 
-@implementation ExerciseTableViewCell
+@implementation ADEDExerciseTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-    self.containerView.layer.cornerRadius = 8;
-    self.containerView.clipsToBounds = YES;
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
@@ -47,33 +37,17 @@
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"Cell"];
 }
 
-- (NSArray *)leftButtons {
-    NSMutableArray *rightUtilityButtons = [NSMutableArray new];
-    [rightUtilityButtons sw_addUtilityButtonWithColor:[UIColor colorWithRed:1.0f green:0.231f blue:0.188 alpha:1.0f]
-                                                title:@"Delete"];
-    return rightUtilityButtons;
-}
-
 - (void)loadExercise:(BTExercise *)exercise {
-    self.leftUtilityButtons = [self leftButtons];
-    if ([self.supersetMode isEqualToString:SUPERSET_NONE]) {
-        self.aboveSupersetView.alpha = 0;
-        self.belowSupersetView.alpha = 0;
-    }
-    else if ([self.supersetMode isEqualToString:SUPERSET_ABOVE]) self.aboveSupersetView.alpha = 0;
-    else if ([self.supersetMode isEqualToString:SUPERSET_BELOW]) self.belowSupersetView.alpha = 0;
-    self.exercise = exercise;
-    self.tempSets = [NSKeyedUnarchiver unarchiveObjectWithData:self.exercise.sets];
-    if (exercise.iteration) self.nameLabel.text = [NSString stringWithFormat:@"%@ %@",exercise.iteration,exercise.name];
-    else                    self.nameLabel.text = exercise.name;
-    self.categoryLabel.text = exercise.category;
+    self.contentView.backgroundColor = self.color;
+    self.badgeLabel.text = [NSString stringWithFormat:@"1RM: %lld lbs",exercise.oneRM];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"MMMM d ''yy";
+    self.dateLabel.text = [formatter stringFromDate:exercise.workout.date];
+    if (exercise.iteration) self.titleLabel.text = [NSString stringWithFormat:@"%@ %@",exercise.iteration,exercise.name];
+    else                    self.titleLabel.text = exercise.name;
+    self.tempSets = [NSKeyedUnarchiver unarchiveObjectWithData:exercise.sets];
     self.maxCells = (int)self.collectionView.frame.size.width / 70;
     [self.collectionView reloadData];
-    if (self.color) {
-        self.colorView1.backgroundColor = self.color;
-        self.colorView2.backgroundColor = self.color;
-        self.colorView3.backgroundColor = self.color;
-    }
 }
 
 #pragma mark - collectionView datasource
@@ -92,7 +66,7 @@
         cell.clipsToBounds = YES;
         label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 60, 16)];
         label.backgroundColor = [UIColor clearColor];
-        label.textColor = [UIColor colorWithRed:30/255.0 green:30/255.0 blue:120/255.0 alpha:1];
+        label.textColor = self.color;
         label.textAlignment = NSTextAlignmentCenter;
         label.allowsDefaultTighteningForTruncation = YES;
         label.minimumScaleFactor = 0.8;
@@ -116,13 +90,6 @@
     if ([set containsString:@"s"])
         return (a.count == 3) ? [NSString stringWithFormat:@"%@s (%@)", a[1], a[2]] : [NSString stringWithFormat:@"%@ secs", a[1]];
     return (a.count == 2) ? [NSString stringWithFormat:@"%@x%@", a[0], a[1]] : [NSString stringWithFormat:@"%@", a[0]];
-}
-
-#pragma mark - collectionView delegate
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
 }
 
 @end

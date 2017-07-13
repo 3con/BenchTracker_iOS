@@ -25,6 +25,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel2;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel1;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *heightConstraint3; //60
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *heightConstraint2; //90
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *heightConstraint1; //120
+
 @end
 
 @implementation ADPodiumView
@@ -68,6 +72,42 @@
     self.subLabel3.text = (subValues.count > 2) ? subValues[2] : @"";
     self.subLabel2.text = (subValues.count > 1) ? subValues[1] : @"";
     self.subLabel1.text = (subValues.count > 0) ? subValues[0] : @"";
+}
+
+- (void)animateIn {
+    [self alpa:0 forPodium:3];
+    [self alpa:0 forPodium:2];
+    [self alpa:0 forPodium:1];
+    self.heightConstraint3.constant = 16;
+    self.heightConstraint2.constant = 16;
+    self.heightConstraint1.constant = 16;
+    [self.superview layoutIfNeeded];
+    self.heightConstraint3.constant = 60;
+    [UIView animateWithDuration:.5 delay:.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        [self.superview layoutIfNeeded];
+        [self alpa:1 forPodium:3];
+    } completion:^(BOOL finished) {
+        self.heightConstraint2.constant = 90;
+        [UIView animateWithDuration:.5 delay:.25 options:UIViewAnimationOptionCurveEaseIn animations:^{
+            [self.superview layoutIfNeeded];
+            [self alpa:1 forPodium:2];
+        } completion:^(BOOL finished) {
+            self.heightConstraint1.constant = 120;
+            [UIView animateWithDuration:.5 delay:.25 options:UIViewAnimationOptionCurveEaseIn animations:^{
+                [self.superview layoutIfNeeded];
+                [self alpa:1 forPodium:1];
+            } completion:^(BOOL finished) {
+                
+            }];
+        }];
+    }];
+}
+
+- (void)alpa:(float)alpha forPodium:(int)podium {
+    NSArray *a = (podium == 3)? @[self.dateLabel3, self.valueLabel3, self.subLabel3] : (podium == 2) ?
+                                @[self.dateLabel2, self.valueLabel2, self.subLabel2] :
+                                @[self.dateLabel1, self.valueLabel1, self.subLabel1];
+    for (UIView *v in a) v.alpha = alpha;
 }
 
 #pragma mark - helper methods
