@@ -14,5 +14,6 @@
 
 @property (nonatomic) NSArray <NSDate *> *dates;
 @property (nonatomic) NSArray <NSString *> *values;
+@property (nonatomic) NSArray <NSString *> *subValues;
 
 @end

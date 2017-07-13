@@ -7,12 +7,17 @@
 //
 
 #import "ADExercisesDetailViewController.h"
+#import "ZFModalTransitionAnimator.h"
 #import "BTExercise+CoreDataClass.h"
+#import "BTWorkout+CoreDataClass.h"
 #import "ADPodiumView.h"
 #import "BTAnalyticsLineChart.h"
 #import "HMSegmentedControl.h"
+#import "BT1RMCalculator.h"
 
 @interface ADExercisesDetailViewController ()
+
+@property (nonatomic) ZFModalTransitionAnimator *animator;
 
 @property (weak, nonatomic) IBOutlet UIButton *iterationButton;
 
@@ -23,6 +28,7 @@
 @property (weak, nonatomic) IBOutlet UIView *graphContainerView;
 @property (weak, nonatomic) IBOutlet UILabel *graphTitleLabel;
 @property (nonatomic) BTAnalyticsLineChart *graphView;
+@property (weak, nonatomic) IBOutlet UILabel *graphNoDataLabel;
 
 @property (weak, nonatomic) IBOutlet UIView *segmentedControllerContainerView;
 @property (nonatomic) HMSegmentedControl *segmentedControl;
@@ -31,6 +37,9 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewHeightConstraint;
 
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
+
+@property (nonatomic) BTExerciseType *exerciseType;
+@property (nonatomic) NSString *iteration;
 
 @end
 
@@ -44,34 +53,67 @@
     self.tableView.showsVerticalScrollIndicator = NO;
     self.tableView.separatorColor = [UIColor clearColor];
     self.tableView.scrollEnabled = NO;
+    self.iteration = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self loadExerciseType];
     NSError *error;
     if (![[self fetchedResultsController] performFetch:&error]) {
-        NSLog(@"Main fetch error: %@, %@", error, [error userInfo]);
+        NSLog(@"AD exercise detail fetch error: %@, %@", error, [error userInfo]);
     }
-    self.tableViewHeightConstraint.constant = MAX(120, self.fetchedResultsController.fetchedObjects.count*40);
+    self.tableViewHeightConstraint.constant = MAX(self.view.frame.size.height-624-72, self.fetchedResultsController.fetchedObjects.count*40);
     for (UIView *view in @[self.iterationButton, self.podiumContainerView, self.graphContainerView, self.tableView]) {
         view.layer.cornerRadius = 12;
         view.clipsToBounds = YES;
         view.backgroundColor = [self.color colorWithAlphaComponent:.8];
     }
     [self loadPodiumView];
-    [self loadGraph];
+    [self loadGraphView];
     [self loadIterationButton];
 }
 
-- (void)loadGraph {
+- (IBAction)iterationButtonPressed:(UIButton *)sender {
+    [self presentIterationSelectionViewControllerWithOriginPoint:sender.center];
+}
+
+- (void)loadExerciseType {
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:[NSEntityDescription entityForName:@"BTExerciseType" inManagedObjectContext:self.context]];
+    [request setPredicate:[NSPredicate predicateWithFormat:[NSString stringWithFormat:@"name == '%@'",self.titleString]]];
+    [request setFetchBatchSize:1];
+    NSError *error;
+    self.exerciseType = [self.context executeFetchRequest:request error:&error].firstObject;
+    if (error) NSLog(@"AD exercise detail type fetch error: %@, %@", error, [error userInfo]);
+}
+
+- (void)loadGraphView {
     BTAnalyticsLineChart *lineChart = [[BTAnalyticsLineChart alloc]
                                        initWithFrame:CGRectMake(5, 10, self.graphContainerView.frame.size.width+10, 198)];
-    [lineChart setXAxisData:@[@"J 30", @"J 30", @"J 30", @"J 30", @"J 30", @"J 30", @"J 30", @"J 30", @"J 30", @"J 30"]];
-    [lineChart setYAxisData:@[@200, @205, @202, @215, @218, @210, @212, @205, @220, @223]];
+    lineChart.yAxisSpaceTop = 2;
     self.graphView = lineChart;
     [self.graphContainerView addSubview:self.graphView];
+    [self updateGraphView];
+}
+
+- (void)updateGraphView {
+    NSMutableArray *xAxisArr = [NSMutableArray array];
+    NSMutableArray *yAxisArr = [NSMutableArray array];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"MMMMM d";
+    for (BTExercise *exercise in self.fetchedResultsController.fetchedObjects) {
+        [xAxisArr addObject:[formatter stringFromDate:exercise.workout.date]];
+        [yAxisArr addObject:[NSNumber numberWithFloat:exercise.oneRM]];
+    }
+    if (xAxisArr.count == 1) { //prevents crash with one data point
+        [xAxisArr insertObject:@"" atIndex:0];
+        [yAxisArr addObject:yAxisArr[0]];
+    }
+    self.graphNoDataLabel.alpha = (xAxisArr.count == 0);
+    [self.graphView setXAxisData:xAxisArr];
+    [self.graphView setYAxisData:yAxisArr];
     [self.graphView strokeChart];
-    self.graphTitleLabel.text = [NSString stringWithFormat:@"Last %ld %@",self.graphView.xLabels.count,@"1RM Equivilents"];
 }
 
 - (void)loadPodiumView {
@@ -83,22 +125,50 @@
     [self.podiumContainerView addSubview:self.podiumView];
     self.podiumView.color = [self.color colorWithAlphaComponent:.8];
     self.podiumTitleLabel.textColor = self.color;
+    [self updatePodiumView];
+}
+
+- (void)updatePodiumView {
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:[NSEntityDescription entityForName:@"BTExercise" inManagedObjectContext:self.context]];
+    [request setSortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"oneRM" ascending:NO]]];
+    [request setPredicate:[self predicateForExerciseTypeAndIteration]];
+    [request setFetchBatchSize:3];
+    NSError *error;
+    NSArray <BTExercise *> *topArr = [self.context executeFetchRequest:request error:&error];
+    if (error) NSLog(@"AD exercise detail top fetch error: %@, %@", error, [error userInfo]);
     NSMutableArray *dateArray = [NSMutableArray array];
     NSMutableArray *valueArray = [NSMutableArray array];
+    NSMutableArray *subValueArray = [NSMutableArray array];
     for (int i = 0; i < 3; i++) {
-        //        NSArray *a = [self dateAndValueForIndex:i];
-        //        [dateArray addObject:a[0]];
-        //        [valueArray addObject:a[1]];
+        if (topArr.count > i) {
+            [dateArray addObject:topArr[i].workout.date];
+            [valueArray addObject:[NSString stringWithFormat:@"%lld lbs", topArr[i].oneRM]];
+            for (NSString *set in [NSKeyedUnarchiver unarchiveObjectWithData:topArr[i].sets]) {
+                NSArray <NSString *> *a = [set componentsSeparatedByString:@" "];
+                if ([BT1RMCalculator equivilentForReps:a[0].intValue weight:a[1].floatValue] == topArr[i].oneRM) {
+                    [subValueArray addObject:[set stringByReplacingOccurrencesOfString:@" " withString:@" x "]];
+                    break;
+                }
+            }
+        }
     }
     self.podiumView.dates = dateArray;
     self.podiumView.values = valueArray;
+    self.podiumView.subValues = subValueArray;
 }
 
 - (void)loadIterationButton {
     self.iterationButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     self.iterationButton.titleLabel.textAlignment = NSTextAlignmentCenter;
-    NSMutableAttributedString *mAS = [[NSMutableAttributedString alloc] initWithString:
-                                      [NSString stringWithFormat:@"%@: All Variations\nTap to Change", self.titleString]];
+    [self updateIterationButtonText];
+}
+
+- (void)updateIterationButtonText {
+    NSString *buttonText = (self.iteration.length > 0) ?
+        [NSString stringWithFormat:@"Variation: %@ %@\nTap to Change", self.iteration, self.titleString] :
+        [NSString stringWithFormat:@"%@: All Variations\nTap to Change", self.titleString];
+    NSMutableAttributedString *mAS = [[NSMutableAttributedString alloc] initWithString:buttonText];
     [mAS setAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:13 weight:UIFontWeightBold],
                          NSForegroundColorAttributeName: [UIColor colorWithWhite:1 alpha:.8]}
                  range:NSMakeRange(mAS.length-13, 13)];
@@ -142,12 +212,10 @@
     if (_fetchedResultsController != nil) return _fetchedResultsController;
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     [fetchRequest setEntity:[NSEntityDescription entityForName:@"BTExercise" inManagedObjectContext:self.context]];
-    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:[NSString stringWithFormat:@"name == '%@'",self.titleString]]];
     [self updateFetchRequest:fetchRequest];
     [fetchRequest setFetchBatchSize:20];
-    NSFetchedResultsController *theFetchedResultsController = [[NSFetchedResultsController alloc]
-                                                               initWithFetchRequest:fetchRequest managedObjectContext:self.context
-                                                               sectionNameKeyPath:nil cacheName:nil];
+    NSFetchedResultsController *theFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
+                                                                managedObjectContext:self.context sectionNameKeyPath:nil cacheName:nil];
     self.fetchedResultsController = theFetchedResultsController;
     _fetchedResultsController.delegate = self;
     return _fetchedResultsController;
@@ -155,10 +223,18 @@
 
 - (void)updateFetchRequest:(NSFetchRequest *)request {
     if (self.segmentedControl.selectedSegmentIndex == 0)
-         [request setSortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"workout.date" ascending:NO]]];
+         [request setSortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"workout.date" ascending:YES]]];
     else if (self.segmentedControl.selectedSegmentIndex == 1)
          [request setSortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"oneRM" ascending:NO]]];
     else [request setSortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"oneRM" ascending:NO]]];
+    [request setPredicate:[self predicateForExerciseTypeAndIteration]];
+}
+
+- (NSPredicate *)predicateForExerciseTypeAndIteration {
+    NSPredicate *p1 = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"name == '%@'",self.titleString]];
+    NSPredicate *p2;
+    if (self.iteration.length > 0) p2 = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"iteration == '%@'",self.iteration]];
+    return (p2) ? [NSCompoundPredicate andPredicateWithSubpredicates:@[p1, p2]] : p1;
 }
 
 #pragma mark - tableView dataSource
@@ -171,7 +247,7 @@
     return 40;
 }
 
-- (void)configureWorkoutCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+- (void)configureExerciseCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     BTExercise *exercise = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = [NSString stringWithFormat:@"%@ %@",exercise.name,exercise.sets];
 }
@@ -183,7 +259,7 @@
         cell.textLabel.textColor = [UIColor whiteColor];
         cell.backgroundColor = [UIColor clearColor];
     }
-    [self configureWorkoutCell:cell atIndexPath:indexPath];
+    [self configureExerciseCell:cell atIndexPath:indexPath];
     return cell;
 }
 
@@ -191,6 +267,86 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     //BTWorkout *workout = [_fetchedResultsController objectAtIndexPath:indexPath];
+}
+
+#pragma mrk - iterationVC delegate
+
+- (void)iterationSelectionVC:(IterationSelectionViewController *)iterationVC willDismissWithSelectedIteration:(NSString *)iteration {
+    [self.segmentedControl setSelectedSegmentIndex:0 animated:YES];
+    self.iteration = iteration;
+    [self updateIterationButtonText];
+    [self updatePodiumView];
+    NSError *error;
+    [self updateFetchRequest:self.fetchedResultsController.fetchRequest];
+    if (![[self fetchedResultsController] performFetch:&error]) {
+        NSLog(@"AD exercise detail fetch error: %@, %@", error, [error userInfo]);
+    }
+    [self updateGraphView];
+    [self.tableView reloadData];
+    self.tableViewHeightConstraint.constant = MAX(self.view.frame.size.height-624-72, self.fetchedResultsController.fetchedObjects.count*40);
+}
+
+- (void)iterationSelectionVCDidDismiss:(IterationSelectionViewController *)iterationVC {
+    
+}
+
+#pragma mark - view handling
+
+- (void)presentIterationSelectionViewControllerWithOriginPoint:(CGPoint)point {
+    IterationSelectionViewController *isVC = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]]
+                                                      instantiateViewControllerWithIdentifier:@"is"];
+    isVC.delegate = self;
+    isVC.exerciseType = self.exerciseType;
+    isVC.originPoint = point;
+    isVC.color = self.color;
+    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:isVC];
+    self.animator.dragable = NO;
+    self.animator.bounces = YES;
+    self.animator.behindViewAlpha = 1.0;
+    self.animator.behindViewScale = 1.0;
+    self.animator.transitionDuration = 0.0;
+    self.animator.direction = ZFModalTransitonDirectionBottom;
+    isVC.transitioningDelegate = self.animator;
+    isVC.modalPresentationStyle = UIModalPresentationCustom;
+    [self presentViewController:isVC animated:YES completion:nil];
+}
+
+#pragma mark - fetchedResultsController delegate
+
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
+    [self.tableView beginUpdates];
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
+    UITableView *tableView = self.tableView;
+    switch(type) {
+        case NSFetchedResultsChangeInsert:
+            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+        case NSFetchedResultsChangeDelete:
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+        case NSFetchedResultsChangeUpdate:
+            [self configureExerciseCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+            break;
+        case NSFetchedResultsChangeMove:
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+    }
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
+    switch(type) {
+        case NSFetchedResultsChangeInsert:
+            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+        case NSFetchedResultsChangeDelete:
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+        case NSFetchedResultsChangeUpdate: break;
+        case NSFetchedResultsChangeMove: break;
+    }
 }
 
 @end

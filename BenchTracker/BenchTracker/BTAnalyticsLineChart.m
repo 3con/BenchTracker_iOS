@@ -13,6 +13,7 @@
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
+        self.yAxisSpaceTop = 1;
         [self loadLayout];
     }
     return self;
@@ -45,7 +46,7 @@
     else interval = 250;
     interval = interval*scaleFactor;
     self.yFixedValueMin = MAX(0, ((int)min)/interval*interval-interval);
-    self.yFixedValueMax = MAX(10, ((int)max)/interval*interval+interval);
+    self.yFixedValueMax = MAX(10, ((int)max)/interval*interval+interval*self.yAxisSpaceTop);
     self.yLabelNum = (self.yFixedValueMax-self.yFixedValueMin)/interval;
     PNLineChartData *yData = [PNLineChartData new];
     yData.color = [UIColor whiteColor];
@@ -59,6 +60,7 @@
 
 - (void)loadLayout {
     self.showSmoothLines = YES; //FIX in PNLineChart.h: chartLine.fillColor = [[UIColor clearColor] CGColor];
+                                //FIX in PNLineChart.h: (self.showSmoothLines && chartData.itemCount >= 3)
     self.backgroundColor = [UIColor clearColor];
     self.yLabelFont = [UIFont systemFontOfSize:10 weight:UIFontWeightBold];
     self.yLabelColor = [UIColor whiteColor];

@@ -10,6 +10,8 @@
 
 @interface BTAnalyticsLineChart : PNLineChart
 
+@property (nonatomic) int yAxisSpaceTop;
+
 - (id)initWithFrame:(CGRect)frame;
 
 - (void)setXAxisData:(NSArray <NSString *> *)data;

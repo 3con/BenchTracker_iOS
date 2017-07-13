@@ -82,6 +82,7 @@
     }
     self.podiumView.dates = dateArray;
     self.podiumView.values = valueArray;
+    self.podiumView.subValues = @[];
 }
 
 #pragma mark - segmedtedControl

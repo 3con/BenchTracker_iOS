@@ -13,6 +13,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *valueLabel2;
 @property (weak, nonatomic) IBOutlet UILabel *valueLabel1;
 
+@property (weak, nonatomic) IBOutlet UILabel *subLabel3;
+@property (weak, nonatomic) IBOutlet UILabel *subLabel2;
+@property (weak, nonatomic) IBOutlet UILabel *subLabel1;
+
 @property (weak, nonatomic) IBOutlet UIView *podiumView3;
 @property (weak, nonatomic) IBOutlet UIView *podiumView2;
 @property (weak, nonatomic) IBOutlet UIView *podiumView1;
@@ -47,16 +51,23 @@
     _dates = dates;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"MMM d ''yy";
-    self.dateLabel3.text = (dates.count > 2) ? [formatter stringFromDate:dates[2]] : @"";
-    self.dateLabel2.text = (dates.count > 1) ? [formatter stringFromDate:dates[1]] : @"";
-    self.dateLabel1.text = (dates.count > 0) ? [formatter stringFromDate:dates[0]] : @"";
+    self.dateLabel3.text = (dates.count > 2) ? [formatter stringFromDate:dates[2]] : @"N/A";
+    self.dateLabel2.text = (dates.count > 1) ? [formatter stringFromDate:dates[1]] : @"N/A";
+    self.dateLabel1.text = (dates.count > 0) ? [formatter stringFromDate:dates[0]] : @"N/A";
 }
 
 - (void)setValues:(NSArray<NSString *> *)values {
     _values = values;
-    self.valueLabel3.text = (values.count > 2) ? values[2] : @"";
-    self.valueLabel2.text = (values.count > 1) ? values[1] : @"";
-    self.valueLabel1.text = (values.count > 0) ? values[0] : @"";
+    self.valueLabel3.text = (values.count > 2) ? values[2] : @"-";
+    self.valueLabel2.text = (values.count > 1) ? values[1] : @"-";
+    self.valueLabel1.text = (values.count > 0) ? values[0] : @"-";
+}
+
+- (void)setSubValues:(NSArray<NSString *> *)subValues {
+    _subValues = subValues;
+    self.subLabel3.text = (subValues.count > 2) ? subValues[2] : @"";
+    self.subLabel2.text = (subValues.count > 1) ? subValues[1] : @"";
+    self.subLabel1.text = (subValues.count > 0) ? subValues[0] : @"";
 }
 
 #pragma mark - helper methods

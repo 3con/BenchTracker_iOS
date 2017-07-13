@@ -495,7 +495,7 @@
             last_y = y;
         }
 
-        if (self.showSmoothLines && chartData.itemCount >= 4) {
+        if (self.showSmoothLines && chartData.itemCount >= 3) {
             [progressline moveToPoint:[progrssLinePaths[0][@"from"] CGPointValue]];
             for (NSDictionary<NSString *, NSValue *> *item in progrssLinePaths) {
                 CGPoint p1 = [item[@"from"] CGPointValue];
