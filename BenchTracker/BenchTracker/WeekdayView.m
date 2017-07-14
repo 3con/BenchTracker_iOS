@@ -52,7 +52,7 @@
     NSInteger offset = (comp.weekday != 1) ? -(comp.weekday-2) : -6;
     self.firstDayOfWeekDate = [today dateByAddingTimeInterval:offset*86400];
     NSDate *firstWorkout = [self dateOfFirstWorkout];
-    NSDate *firstDate = ([firstWorkout compare:self.user.dateCreated] == 1) ? self.user.dateCreated : firstWorkout;
+    NSDate *firstDate = (!firstWorkout || [firstWorkout compare:self.user.dateCreated] == 1) ? self.user.dateCreated : firstWorkout;
     comp = [[NSCalendar currentCalendar] components:NSCalendarUnitWeekday fromDate:firstDate];
     offset = (comp.weekday != 1) ? -(comp.weekday-2) : -6;
     NSDate *dayOfFirst = [self normalizedDateForDate:firstDate];

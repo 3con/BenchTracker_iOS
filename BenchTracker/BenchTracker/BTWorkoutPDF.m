@@ -34,8 +34,9 @@
     self.metadataLabel1.text = [NSString stringWithFormat:@"Start time: %@, Duration: %lld minutes, Types: %@",
                                 [formatter stringFromDate:workout.date].lowercaseString, workout.duration/60,
                                 [workout.summary stringByReplacingOccurrencesOfString:@"#" withString:@"; "]];
-    self.metadataLabel2.text = [NSString stringWithFormat:@"User: %@, UUID: %@",
-                                [(BTUserManager *)[BTUserManager sharedInstance] user].username, workout.uuid];
+    self.metadataLabel2.text = [NSString stringWithFormat:@"User: %@, Number of exercises: %lld, Number of sets: %lld, Volume: %lld",
+                                [(BTUserManager *)[BTUserManager sharedInstance] user].username, workout.numExercises,
+                                workout.numSets, workout.volume];
     BTWorkoutManager *workoutManager = [BTWorkoutManager sharedInstance];
     NSString *jsonString = [workoutManager jsonForWorkout:workout];
     NSString *jsonString2 = [workoutManager jsonForTemplateWorkout:workout];

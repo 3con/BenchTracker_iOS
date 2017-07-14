@@ -55,7 +55,6 @@
             [self loadTypeListModelToCoreData:model];
         }];
     }
-    else NSLog(@"Type List found");
 }
 
 - (void)fetchTypeList {

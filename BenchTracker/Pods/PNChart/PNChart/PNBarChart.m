@@ -172,7 +172,7 @@
 
             if (labelAddCount == _xLabelSkip) {
                 NSString *labelText = [_xLabels[index] description];
-                PNChartLabel * label = [[PNChartLabel alloc] initWithFrame:CGRectMake(0, 0, _xLabelWidth, kXLabelHeight)];
+                PNChartLabel *label = [[PNChartLabel alloc] initWithFrame:CGRectMake(0, 0, 42, kXLabelHeight)];
                 label.font = _labelFont;
                 label.textColor = _labelTextColor;
                 [label setTextAlignment:NSTextAlignmentCenter];
@@ -181,13 +181,12 @@
                 CGFloat labelXPosition;
                 if (_rotateForXAxisText){
                     label.transform = CGAffineTransformMakeRotation(M_PI / 4);
-                    labelXPosition = (index *  _xLabelWidth + _chartMarginLeft + _xLabelWidth /1.5);
+                    labelXPosition = (index *  _xLabelWidth + _chartMarginLeft + _xLabelWidth / 2.0);
                 }
                 else{
                     labelXPosition = (index *  _xLabelWidth + _chartMarginLeft + _xLabelWidth /2.0 );
                 }
-                label.center = CGPointMake(labelXPosition,
-                                           self.frame.size.height - kXLabelHeight - _chartMarginTop + label.frame.size.height /2.0 + _labelMarginTop);
+                label.center = CGPointMake(labelXPosition, self.frame.size.height - kXLabelHeight - _chartMarginTop + 20 + _labelMarginTop);
                 labelAddCount = 0;
 
                 [_xChartLabels addObject:label];

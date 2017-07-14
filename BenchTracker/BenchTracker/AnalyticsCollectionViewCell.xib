@@ -60,12 +60,26 @@
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZfE-sf-WBc">
                         <rect key="frame" x="20" y="85" width="260" height="210"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Data" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Tc-vp-IEQ">
+                                <rect key="frame" x="55" y="90.5" width="150" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="VI7-rS-9Eh"/>
+                                    <constraint firstAttribute="width" constant="150" id="bQZ-1v-l3d"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="15"/>
+                                <color key="textColor" white="1" alpha="0.59999999999999998" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                         <accessibility key="accessibilityConfiguration">
                             <accessibilityTraits key="traits" notEnabled="YES"/>
                         </accessibility>
                         <constraints>
                             <constraint firstAttribute="height" constant="210" id="0Cv-Hb-Xmp"/>
+                            <constraint firstItem="7Tc-vp-IEQ" firstAttribute="centerX" secondItem="ZfE-sf-WBc" secondAttribute="centerX" id="SOh-Mp-Fnh"/>
+                            <constraint firstItem="7Tc-vp-IEQ" firstAttribute="centerY" secondItem="ZfE-sf-WBc" secondAttribute="centerY" id="TMR-hM-naI"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dsL-C1-bKb">
@@ -96,6 +110,7 @@
             <connections>
                 <outlet property="graphContainerView" destination="ZfE-sf-WBc" id="TOR-4n-iDf"/>
                 <outlet property="graphHeightConstraint" destination="0Cv-Hb-Xmp" id="Vu2-fv-mWJ"/>
+                <outlet property="noDataLabel" destination="7Tc-vp-IEQ" id="2c9-lW-mRr"/>
                 <outlet property="seeMoreButton" destination="NsY-tI-qsV" id="GGO-tD-5yc"/>
                 <outlet property="subtitleLabel" destination="MQx-o5-tc9" id="9gD-2v-FrH"/>
                 <outlet property="tableContainerView" destination="dsL-C1-bKb" id="3uK-uv-nw9"/>

@@ -12,6 +12,7 @@
 
 - (id)initWithFrame:(CGRect)frame items:(NSArray *)items {
     if (self = [super initWithFrame:frame items:items]) {
+        self.tag = (items.count == 0) ? -1 : 0;
         [self loadLayout];
     }
     return self;
@@ -31,8 +32,7 @@
     }];
     for (NSString *key in orderedKeys)
         [items addObject:[PNPieChartDataItem dataItemWithValue:data[key].floatValue
-                                                         color:[UIColor colorWithWhite:1 alpha:(data[key].floatValue-min)/(max-min)*.4+.1]
-                                                   description:key]];
+            color:[UIColor colorWithWhite:1 alpha:(max==min) ? .3 : (data[key].floatValue-min)/(max-min)*.4+.1] description:key]];
     return items;
 }
 

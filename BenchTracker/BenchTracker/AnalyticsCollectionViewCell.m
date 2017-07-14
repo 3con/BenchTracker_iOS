@@ -12,6 +12,7 @@
 @interface AnalyticsCollectionViewCell()
 
 @property (weak, nonatomic) IBOutlet UIView *graphContainerView;
+@property (weak, nonatomic) IBOutlet UILabel *noDataLabel;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *graphHeightConstraint;
 
@@ -53,6 +54,7 @@
     self.graphView.userInteractionEnabled = NO;
     [self.graphContainerView addSubview:self.graphView];
     [(PNBarChart *)self.graphView strokeChart];
+    self.noDataLabel.alpha = (self.graphView.tag == -1);
 }
 
 - (void)setGraphHeight:(CGFloat)graphHeight {

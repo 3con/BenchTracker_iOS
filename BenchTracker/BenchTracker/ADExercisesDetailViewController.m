@@ -76,6 +76,7 @@
         view.backgroundColor = [self.color colorWithAlphaComponent:.8];
     }
     [self loadPodiumView];
+    [self loadSegmentedControl];
     [self loadGraphView];
     [self loadIterationButton];
 }
@@ -117,10 +118,6 @@
         [xAxisArr addObject:[formatter stringFromDate:exercise.workout.date]];
         [yAxisArr addObject:[NSNumber numberWithFloat:exercise.oneRM]];
     }
-    if (xAxisArr.count == 1) { //prevents crash with one data point
-        [xAxisArr insertObject:@"" atIndex:0];
-        [yAxisArr addObject:yAxisArr[0]];
-    }
     self.graphNoDataLabel.alpha = (xAxisArr.count == 0);
     [self.graphView setXAxisData:xAxisArr];
     [self.graphView setYAxisData:yAxisArr];
@@ -129,7 +126,6 @@
 
 - (void)loadPodiumView {
     self.podiumContainerView.backgroundColor = [UIColor clearColor];
-    [self setUpSegmentedControl];
     self.podiumView = [[NSBundle mainBundle] loadNibNamed:@"ADPodiumView" owner:self options:nil].firstObject;
     self.podiumView.frame = CGRectMake(0, 0, self.podiumContainerView.frame.size.width,
                                        self.podiumContainerView.frame.size.height);
@@ -201,7 +197,7 @@
 
 #pragma mark - segmedtedControl
 
-- (void)setUpSegmentedControl {
+- (void)loadSegmentedControl {
     self.segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"Recent", @"Top", @"1RM Only"]];
     self.segmentedControl.frame = CGRectMake(0, 0, self.segmentedControllerContainerView.frame.size.width,
                                              self.segmentedControllerContainerView.frame.size.height);

@@ -24,7 +24,7 @@
         <attribute name="recentEdits" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="typeListVersion" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="workouts" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="BTWorkout" inverseName="user" inverseEntity="BTWorkout" syncable="YES"/>
+        <relationship name="workouts" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="BTWorkout" inverseName="user" inverseEntity="BTWorkout" syncable="YES"/>
     </entity>
     <entity name="BTWorkout" representedClassName="BTWorkout" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
@@ -36,7 +36,7 @@
         <attribute name="supersets" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="volume" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="exercises" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="BTExercise" inverseName="workout" inverseEntity="BTExercise" syncable="YES"/>
+        <relationship name="exercises" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="BTExercise" inverseName="workout" inverseEntity="BTExercise" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BTUser" inverseName="workouts" inverseEntity="BTUser" syncable="YES"/>
     </entity>
     <elements>

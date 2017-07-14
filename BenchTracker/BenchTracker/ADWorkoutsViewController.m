@@ -49,21 +49,23 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.queryType = ([self.titleString containsString:@"ume"]) ? 0 :
-                     ([self.titleString containsString:@"ura"]) ? 1 :
-                     ([self.titleString containsString:@"xer"]) ? 2 : 3;
-    if (self.queryType == QUERY_TYPE_VOLUME)            self.titleString = @"Exercise Volume";
-    else if (self.queryType == QUERY_TYPE_DURATION)     self.titleString = @"Exercise Duration";
-    else if (self.queryType == QUERY_TYPE_NUMEXERCISES) self.titleString = @"Number of Exercises";
-    else                                                self.titleString = @"Number of Sets";
-    NSError *error;
-    if (![[self fetchedResultsController] performFetch:&error]) {
-        NSLog(@"Main fetch error: %@, %@", error, [error userInfo]);
+    if (!self.podiumView) { //first load
+        self.queryType = ([self.titleString containsString:@"ume"]) ? 0 :
+                         ([self.titleString containsString:@"ura"]) ? 1 :
+                         ([self.titleString containsString:@"xer"]) ? 2 : 3;
+        if (self.queryType == QUERY_TYPE_VOLUME)            self.titleString = @"Exercise Volume";
+        else if (self.queryType == QUERY_TYPE_DURATION)     self.titleString = @"Exercise Duration";
+        else if (self.queryType == QUERY_TYPE_NUMEXERCISES) self.titleString = @"Number of Exercises";
+        else                                                self.titleString = @"Number of Sets";
+        NSError *error;
+        if (![[self fetchedResultsController] performFetch:&error]) {
+            NSLog(@"Main fetch error: %@, %@", error, [error userInfo]);
+        }
+        self.tableView.backgroundColor = [self.color colorWithAlphaComponent:.8];
+        [self setUpSegmentedControl];
+        [self loadPodiumView];
+        self.tableViewHeightConstraint.constant = MAX(self.view.frame.size.height-(314+72), self.fetchedResultsController.fetchedObjects.count*40);
     }
-    self.tableView.backgroundColor = [self.color colorWithAlphaComponent:.8];
-    [self setUpSegmentedControl];
-    [self loadPodiumView];
-    self.tableViewHeightConstraint.constant = MAX(self.view.frame.size.height-(294+72), self.fetchedResultsController.fetchedObjects.count*40);
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -80,7 +82,7 @@
     self.podiumTitleLabel.textColor = self.color;
     NSMutableArray *dateArray = [NSMutableArray array];
     NSMutableArray *valueArray = [NSMutableArray array];
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < MIN(self.fetchedResultsController.fetchedObjects.count, 3); i++) {
         NSArray *a = [self dateAndValueForIndex:i];
         [dateArray addObject:a[0]];
         [valueArray addObject:a[1]];

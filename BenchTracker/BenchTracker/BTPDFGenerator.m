@@ -147,7 +147,6 @@
 }
 
 + (void)drawLineFromPoint:(CGPoint)from toPoint:(CGPoint)to {
-    NSLog(@"%f %f",from.y,to.y);
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetLineWidth(context, 2.0);
     CGColorSpaceRef colorspace = CGColorSpaceCreateDeviceRGB();

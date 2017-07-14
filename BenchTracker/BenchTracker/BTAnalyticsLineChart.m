@@ -20,10 +20,17 @@
 }
 
 - (void)setXAxisData:(NSArray <NSString *> *)data {
-    [self setXLabels:data]; //FIX in PNLineChart.h -> setXLabel:withWidth: NSInteger x = (index * _xLabelWidth + _chartMarginLeft);
+    if (data.count == 1) [self setXLabels:@[@"", data[0]]];
+    else [self setXLabels:data]; //FIX in PNLineChart.h -> setXLabel:withWidth: NSInteger x = (index * _xLabelWidth + _chartMarginLeft);
 }
 
 - (void)setYAxisData:(NSArray <NSNumber *> *)data {
+    if (data.count == 0) {
+        self.tag = -1;
+        return;
+    }
+    else self.tag = 0;
+    if (data.count == 1) data = @[data[0], data[0]];
     float max = -MAXFLOAT;
     float min = MAXFLOAT;
     for (NSNumber *num in data) {

@@ -49,6 +49,7 @@
     long volume = 0;
     for (BTWorkout *workout in workouts) {
         for (NSString *exerciseType in [workout.summary componentsSeparatedByString:@"#"]) {
+            if (exerciseType.length < 2) break;
             NSArray <NSString *> *splt = [exerciseType componentsSeparatedByString:@" "];
             NSString *name = [exerciseType substringFromIndex:splt[0].length+1];
             if (!exerciseTypes[name]) exerciseTypes[name] = [NSNumber numberWithInt:splt[0].intValue];

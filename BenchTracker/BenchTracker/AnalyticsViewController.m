@@ -126,7 +126,7 @@
     }
     else if (indexPath.row == 2) { //all exercises
         NSArray *data = [self.recentWorkoutsManager workoutExercises].allKeys;
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < MIN(data.count, 20); i++)
             [displayStrings addObject:[[NSMutableAttributedString alloc] initWithString:data[i]]];
     }
     else if (indexPath.row > 2) { //line charts

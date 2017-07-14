@@ -732,8 +732,8 @@
 			children = (
 				F9A5494F1F134A3100743897 /* AnalyticsDetailViewController.h */,
 				F9A549501F134A3100743897 /* AnalyticsDetailViewController.m */,
-				F9FD19F11F14748B00AB3FEE /* Exercises */,
 				F9FD19EB1F14747100AB3FEE /* Muscle split */,
+				F9FD19F11F14748B00AB3FEE /* Exercises */,
 				F9FD19E51F141FF600AB3FEE /* Workouts */,
 			);
 			name = Details;
