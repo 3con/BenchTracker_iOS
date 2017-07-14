@@ -15,6 +15,7 @@ PODS:
     - UICountingLabel (~> 1.2.0)
   - SWTableViewCell (0.3.7)
   - UICountingLabel (1.2.0)
+  - XLForm (3.3.0)
   - ZFDragableModalTransition (0.6)
 
 DEPENDENCIES:
@@ -28,6 +29,7 @@ DEPENDENCIES:
   - MMQRCodeScanner
   - PNChart
   - SWTableViewCell
+  - XLForm
   - ZFDragableModalTransition
 
 SPEC CHECKSUMS:
@@ -43,8 +45,9 @@ SPEC CHECKSUMS:
   PNChart: 84774d225c2126ded6c93d4dbe6ae98c3a73c2d2
   SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
   UICountingLabel: 1db4e7d023e1762171eb226d6dff47a7a84f27aa
+  XLForm: d5c391dfc62865927b5bcab0a5a0dbfb3e02b0ec
   ZFDragableModalTransition: 0d294eaaba6edfcb9839595de765f9ca06a4b524
 
-PODFILE CHECKSUM: e2eb7df23dfee86cd082f2e0ea7028cf182fc06e
+PODFILE CHECKSUM: 363cc685332d75fbb66543bda9a3ef316f5fbee1
 
 COCOAPODS: 1.2.1

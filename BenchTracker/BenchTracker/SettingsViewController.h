@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "XLForm.h"
 
 @class SettingsViewController;
 
@@ -14,7 +15,7 @@
 - (void)settingsViewControllerDidRequestUserLogout:(SettingsViewController *)settingsVC;
 @end
 
-@interface SettingsViewController : UIViewController
+@interface SettingsViewController : XLFormViewController
 
 @property (nonatomic) id<SettingsViewControllerDelegate> delegate;
 
