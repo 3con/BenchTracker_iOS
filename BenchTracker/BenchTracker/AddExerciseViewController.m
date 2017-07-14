@@ -14,6 +14,20 @@
 
 @interface AddExerciseViewController ()
 
+@property (weak, nonatomic) IBOutlet UIView *containerView;
+
+@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic) UISearchBar *searchBar;
+
+@property (weak, nonatomic) IBOutlet UIButton *supersetButton;
+@property (weak, nonatomic) IBOutlet UIButton *addExerciseButton;
+@property (weak, nonatomic) IBOutlet UIButton *clearButton;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *addExerciseConstraint;
+
+@property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
+
 @property (nonatomic) ZFModalTransitionAnimator *animator;
 
 @property (nonatomic) NSDictionary *exerciseTypeColors;
@@ -29,6 +43,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.containerView.backgroundColor = [UIColor BTPrimaryColor];
+    self.addExerciseButton.backgroundColor = [UIColor BTButtonPrimaryColor];
+    self.supersetButton.backgroundColor = [UIColor BTButtonSecondaryColor];
+    self.clearButton.backgroundColor = [UIColor BTRedColor];
     NSError *error;
     self.searchString = @"";
     if (![[self fetchedResultsController] performFetch:&error]) {
@@ -53,7 +71,7 @@
 - (void)loadSearchBar {
     self.searchBar = [[UISearchBar alloc] init];
     self.searchBar.delegate = self;
-    self.searchBar.barTintColor = [UIColor colorWithRed:20/255.0 green:20/255.0 blue:84/255.0 alpha:1];
+    self.searchBar.barTintColor = [UIColor BTPrimaryColor];
     self.searchBar.tintColor = [UIColor whiteColor];
     self.searchBar.layer.borderWidth = 1;
     self.searchBar.layer.borderColor = self.searchBar.barTintColor.CGColor;

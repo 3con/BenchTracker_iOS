@@ -21,6 +21,18 @@
 
 @interface WorkoutViewController ()
 
+@property (weak, nonatomic) IBOutlet UIView *navView;
+@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
+
+@property (weak, nonatomic) IBOutlet UIButton *finishWorkoutButton;
+@property (weak, nonatomic) IBOutlet UIButton *deleteWorkoutButton;
+
+@property (weak, nonatomic) IBOutlet UIView *pauseView;
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+@property (weak, nonatomic) IBOutlet UIButton *addExerciseButton;
+
 @property (nonatomic) ZFModalTransitionAnimator *animator;
 @property BTWorkoutManager *workoutManager;
 @property (nonatomic) BTSettings *settings;
@@ -40,6 +52,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navView.backgroundColor = [UIColor BTPrimaryColor];
+    self.finishWorkoutButton.backgroundColor = [UIColor BTSecondaryColor];
+    self.addExerciseButton.backgroundColor = [UIColor BTButtonPrimaryColor];
+    self.deleteWorkoutButton.backgroundColor = [UIColor BTRedColor];
     self.paused = NO;
     self.pauseView.alpha = 0;
     self.pauseView.userInteractionEnabled = NO;

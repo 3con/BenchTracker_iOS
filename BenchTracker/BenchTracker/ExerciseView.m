@@ -43,6 +43,16 @@
 
 @implementation ExerciseView
 
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    self.contentView.backgroundColor = [UIColor BTPrimaryColor];
+    self.textField.backgroundColor = [UIColor BTSecondaryColor];
+    self.leftTextField.backgroundColor = [UIColor BTSecondaryColor];
+    self.centerTextField.backgroundColor = [UIColor BTSecondaryColor];
+    self.rightTextField.backgroundColor = [UIColor BTSecondaryColor];
+    self.deleteButton.backgroundColor = [UIColor BTRedColor];
+}
+
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
@@ -287,13 +297,13 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) { //first cell: add set
         UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ACell" forIndexPath:indexPath];
-        cell.backgroundColor = [UIColor colorWithRed:30/255.0 green:30/255.0 blue:120/255.0 alpha:1];
+        cell.backgroundColor = [UIColor BTSecondaryColor];
         cell.layer.cornerRadius = 12;
         cell.clipsToBounds = YES;
         if (cell.subviews.count == 1) {
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, -2, 70, 45)];
             label.backgroundColor = [UIColor clearColor];
-            label.textColor = [self lighterColorForColor:[UIColor colorWithRed:30/255.0 green:30/255.0 blue:120/255.0 alpha:1]];
+            label.textColor = [UIColor BTTertiaryColor];
             label.text = @"+";
             label.textAlignment = NSTextAlignmentCenter;
             label.font = [UIFont systemFontOfSize:34 weight:UIFontWeightHeavy];

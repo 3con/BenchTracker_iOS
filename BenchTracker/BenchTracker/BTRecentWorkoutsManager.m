@@ -20,6 +20,8 @@
 @property (nonatomic) NSMutableArray <NSString *> *workoutShortDatesCache;
 @property (nonatomic) NSMutableArray <NSString *> *workoutDatesCache;
 
+@property (nonatomic) NSDate *firstDayOfWeek;
+
 @end
 
 @implementation BTRecentWorkoutsManager
@@ -27,8 +29,18 @@
 - (id)init {
     if (self = [super init]) {
         self.context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+        NSDate *today = [self normalizedDateForDate:[NSDate date]];
+        NSDateComponents *comp = [[NSCalendar currentCalendar] components:NSCalendarUnitWeekday fromDate:today];
+        NSInteger offset = (comp.weekday != 1) ? -(comp.weekday-2) : -6;
+        self.firstDayOfWeek = [today dateByAddingTimeInterval:offset*86400];
     }
     return self;
+}
+
+- (NSDate *)normalizedDateForDate:(NSDate *)date {
+    NSDateComponents *components = [NSCalendar.currentCalendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay
+                                                                 fromDate:date];
+    return [NSCalendar.currentCalendar dateFromComponents:components];
 }
 
 - (void)reloadData {
@@ -83,18 +95,42 @@
     return exercises;
 }
 
-- (NSDictionary *)workoutExerciseTypes {
+- (NSString *)formattedFirstDayOfWeek {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"MMMM d";
+    return [formatter stringFromDate:self.firstDayOfWeek];
+}
+
+- (NSDictionary *)workoutExerciseTypesThisWeek {
     if (!self.recentWorkouts) [self performFetch];
     NSMutableDictionary <NSString *, NSNumber *> *exerciseTypes = [NSMutableDictionary dictionary];
     for (BTWorkout *workout in self.recentWorkouts) {
-        for (NSString *exerciseType in [workout.summary componentsSeparatedByString:@"#"]) {
-            NSArray <NSString *> *splt = [exerciseType componentsSeparatedByString:@" "];
-            NSString *name = [exerciseType substringFromIndex:splt[0].length+1];
-            if (!exerciseTypes[name]) exerciseTypes[name] = [NSNumber numberWithInt:splt[0].intValue];
-            else exerciseTypes[name] = [NSNumber numberWithInt:exerciseTypes[name].intValue+splt[0].intValue];
+        if ([workout.date compare:self.firstDayOfWeek] != NSOrderedAscending) {
+            for (NSString *exerciseType in [workout.summary componentsSeparatedByString:@"#"]) {
+                if (exerciseType.length < 2) break;
+                NSArray <NSString *> *splt = [exerciseType componentsSeparatedByString:@" "];
+                NSString *name = [exerciseType substringFromIndex:splt[0].length+1];
+                if (!exerciseTypes[name]) exerciseTypes[name] = [NSNumber numberWithInt:splt[0].intValue];
+                else exerciseTypes[name] = [NSNumber numberWithInt:exerciseTypes[name].intValue+splt[0].intValue];
+            }
         }
     }
     return exerciseTypes;
+}
+
+- (NSArray <NSString *> *)otherDataThisWeek {
+    if (!self.recentWorkouts) [self performFetch];
+    int workouts = 0, exercises = 0, sets = 0, volume = 0;
+    for (BTWorkout *workout in self.recentWorkouts) {
+        if ([workout.date compare:self.firstDayOfWeek] != NSOrderedAscending) {
+            workouts ++;
+            exercises += workout.numExercises;
+            sets += workout.numSets;
+            volume += workout.volume;
+        }
+    }
+    return @[[NSString stringWithFormat:@"%d",workouts], [NSString stringWithFormat:@"%d",exercises],
+             [NSString stringWithFormat:@"%d",sets], [NSString stringWithFormat:@"%dk lbs",volume/1000]];
 }
 
 - (NSArray <NSNumber *> *)workoutVolumes {

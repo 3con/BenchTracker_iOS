@@ -18,6 +18,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    self.nameLabel.textColor = [UIColor BTBlackColor];
 }
 
 - (void)loadName:(NSString *)name iteration:(NSString *)iteration {
@@ -27,13 +28,13 @@
                                               range:NSMakeRange(0, iteration.length)];
         [str addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:15 weight:UIFontWeightRegular]
                                               range:NSMakeRange(iteration.length, str.length-iteration.length)];
-        [str addAttribute:NSForegroundColorAttributeName value:[UIColor grayColor]
+        [str addAttribute:NSForegroundColorAttributeName value:[UIColor BTGrayColor]
                                               range:NSMakeRange(iteration.length, str.length-iteration.length)];
         self.nameLabel.attributedText = str;
     }
     else {
         self.nameLabel.text = [NSString stringWithFormat:@"%@ (Default)",name];
-        self.nameLabel.textColor = [UIColor grayColor];
+        self.nameLabel.textColor = [UIColor BTGrayColor];
         self.nameLabel.font = [UIFont systemFontOfSize:15 weight:UIFontWeightRegular];
     }
 }

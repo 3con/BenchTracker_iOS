@@ -128,7 +128,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ACell"];
-        cell.backgroundColor = [UIColor colorWithRed:20/255.0 green:20/255.0 blue:84/255.0 alpha:1];
+        cell.backgroundColor = [UIColor BTPrimaryColor];
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.frame.size.width, cell.frame.size.height)];
         label.textColor = [UIColor whiteColor];
         label.textAlignment = NSTextAlignmentCenter;
@@ -143,7 +143,7 @@
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BCell"];
         cell.backgroundColor = [UIColor whiteColor];
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.frame.size.width, 120)];
-        label.textColor = [UIColor colorWithRed:20/255.0 green:20/255.0 blue:84/255.0 alpha:1];
+        label.textColor = [UIColor BTPrimaryColor];
         label.textAlignment = NSTextAlignmentCenter;
         label.font = [UIFont systemFontOfSize:24 weight:UIFontWeightBold];
         label.text = [NSString stringWithFormat:@"No Workouts"];

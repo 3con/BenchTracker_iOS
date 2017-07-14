@@ -16,6 +16,8 @@
 
 - (void)reloadData;
 
+#pragma mark - general methods
+
 - (NSInteger)numberOfRecentWorkouts;
 
 - (NSArray <NSString *> *)workoutNames;
@@ -24,9 +26,15 @@
 
 - (NSArray <NSString *> *)workoutDates;
 
+#pragma mark - data methods
+
 - (NSDictionary <NSString *, NSNumber *> *)workoutExercises;
 
-- (NSDictionary <NSString *, NSNumber *> *)workoutExerciseTypes;
+- (NSString *)formattedFirstDayOfWeek;
+
+- (NSDictionary <NSString *, NSNumber *> *)workoutExerciseTypesThisWeek;
+
+- (NSArray <NSString *> *)otherDataThisWeek;
 
 - (NSArray <NSNumber *> *)workoutVolumes;
 

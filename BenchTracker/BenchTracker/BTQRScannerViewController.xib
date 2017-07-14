@@ -80,6 +80,9 @@
                 </constraints>
             </view>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+            <connections>
+                <outlet property="navView" destination="WvP-3e-0TQ" id="jKT-ho-rI9"/>
+            </connections>
             <point key="canvasLocation" x="482" y="55"/>
         </viewController>
     </objects>

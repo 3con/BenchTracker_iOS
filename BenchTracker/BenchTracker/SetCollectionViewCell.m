@@ -23,6 +23,8 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    self.containerView.backgroundColor = [UIColor BTSecondaryColor];
+    self.cornerLabel.backgroundColor = [UIColor BTRedColor];
     self.containerView.layer.cornerRadius = 12;
     self.containerView.clipsToBounds = YES;
     self.cornerLabel.layer.cornerRadius = 7.5;

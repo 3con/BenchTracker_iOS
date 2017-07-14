@@ -26,15 +26,4 @@
 @property NSManagedObjectContext *context;
 @property BTWorkout *workout;
 
-@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
-
-@property (weak, nonatomic) IBOutlet UIButton *finishWorkoutButton;
-@property (weak, nonatomic) IBOutlet UIButton *deleteWorkoutButton;
-
-@property (weak, nonatomic) IBOutlet UIView *pauseView;
-
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-
-@property (weak, nonatomic) IBOutlet UIButton *addExerciseButton;
-
 @end

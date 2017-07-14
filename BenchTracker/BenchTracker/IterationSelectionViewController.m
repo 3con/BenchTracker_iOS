@@ -12,6 +12,8 @@
 
 @interface IterationSelectionViewController ()
 
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 @property (weak, nonatomic) IBOutlet UIView *backgroundView;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIView *containingView;
@@ -100,7 +102,7 @@
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ACell"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         if (self.color) cell.backgroundColor = self.color;
-        else cell.backgroundColor = [UIColor colorWithRed:20/255.0 green:20/255.0 blue:84/255.0 alpha:1];
+        else cell.backgroundColor = [UIColor BTPrimaryColor];
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.frame.size.width, cell.frame.size.height)];
         label.textColor = [UIColor whiteColor];
         label.textAlignment = NSTextAlignmentCenter;

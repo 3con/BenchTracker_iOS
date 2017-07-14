@@ -19,6 +19,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    self.titleLabel.textColor = [UIColor BTGrayColor];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.badgeLabel.layer.cornerRadius = 7;
     self.badgeLabel.clipsToBounds = YES;

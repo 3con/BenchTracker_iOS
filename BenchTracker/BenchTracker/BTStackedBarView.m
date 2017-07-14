@@ -62,7 +62,7 @@
                 const CGFloat *components = CGColorGetComponents(((UIColor *)color).CGColor);
                 CGFloat colorBrightness = 0;
                 if (components) colorBrightness = ((components[0] * 299) + (components[1] * 587) + (components[2] * 114)) / 1000;
-                barLabel.textColor = (colorBrightness > .75) ? [UIColor blackColor] : [UIColor whiteColor];
+                barLabel.textColor = (colorBrightness > .75) ? [UIColor BTBlackColor] : [UIColor whiteColor];
                 [self addSubview:barLabel];
             }
         }

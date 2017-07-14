@@ -17,6 +17,23 @@
 
 @interface MainViewController ()
 
+@property (weak, nonatomic) IBOutlet UIView *navView;
+
+@property (weak, nonatomic) IBOutlet UIButton *leftBarButton;
+@property (weak, nonatomic) IBOutlet UIButton *rightBarButton;
+
+@property (weak, nonatomic) IBOutlet UIView *segmentedControlContainerView;
+
+@property (weak, nonatomic) IBOutlet UITableView *listTableView;
+@property (weak, nonatomic) IBOutlet UIView *weekdayContainerView;
+@property (weak, nonatomic) IBOutlet WeekdayView *weekdayView;
+@property (weak, nonatomic) IBOutlet FSCalendar *calendarView;
+
+@property (weak, nonatomic) IBOutlet UIButton *blankWorkoutButton;
+@property (weak, nonatomic) IBOutlet UIButton *scanWorkoutButton;
+
+@property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
+
 @property (nonatomic) HMSegmentedControl *segmentedControl;
 
 @property (nonatomic) ZFModalTransitionAnimator *animator;
@@ -33,6 +50,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navView.backgroundColor = [UIColor BTPrimaryColor];
+    self.blankWorkoutButton.backgroundColor = [UIColor BTButtonPrimaryColor];
+    self.scanWorkoutButton.backgroundColor = [UIColor BTButtonSecondaryColor];
     self.context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
     self.userManager = [BTUserManager sharedInstance];
     self.user = [self.userManager user];
@@ -139,8 +159,8 @@
     self.calendarView.delegate = self;
     self.calendarView.dataSource = self;
     self.calendarView.scrollDirection = FSCalendarScrollDirectionVertical;
-    self.calendarView.calendarWeekdayView.backgroundColor = [UIColor colorWithRed:20/255.0 green:20/255.0 blue:84/255.0 alpha:1];
-    self.calendarView.calendarHeaderView.backgroundColor = [UIColor colorWithRed:20/255.0 green:20/255.0 blue:84/255.0 alpha:1];
+    self.calendarView.calendarWeekdayView.backgroundColor = [UIColor BTPrimaryColor];
+    self.calendarView.calendarHeaderView.backgroundColor = [UIColor BTPrimaryColor];
 }
 
 - (NSDate *)minimumDateForCalendar:(FSCalendar *)calendar {
@@ -153,12 +173,12 @@
 
 - (UIColor *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance fillDefaultColorForDate:(NSDate *)date {
     if ([self.workoutManager workoutsBetweenBeginDate:date andEndDate:[date dateByAddingTimeInterval:86400]].count > 0)
-        return [UIColor colorWithRed:67/255.0 green:160/255.0 blue:71/255.0 alpha:1];
+        return [UIColor BTTertiaryColor];
     return [UIColor whiteColor];
 }
 
 - (UIColor *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance fillSelectionColorForDate:(NSDate *)date {
-    return [UIColor colorWithRed:20/255.0 green:20/255.0 blue:84/255.0 alpha:1];
+    return [UIColor BTPrimaryColor];
 }
 
 - (UIColor *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance titleDefaultColorForDate:(NSDate *)date {
@@ -168,7 +188,7 @@
              [date compare:[self.firstDay dateByAddingTimeInterval:-86400]] == NSOrderedAscending) return [UIColor lightGrayColor];
     else if ([self.workoutManager workoutsBetweenBeginDate:date andEndDate:[date dateByAddingTimeInterval:86400]].count > 0)
         return [UIColor whiteColor];
-    return [UIColor colorWithRed:20/255.0 green:20/255.0 blue:84/255.0 alpha:1];
+    return [UIColor BTPrimaryColor];
 }
 
 - (UIColor *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance titleSelectionColorForDate:(NSDate *)date {
@@ -176,11 +196,11 @@
 }
 
 - (NSArray<UIColor *> *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance eventDefaultColorsForDate:(NSDate *)date {
-    return @[[UIColor colorWithRed:20/255.0 green:20/255.0 blue:84/255.0 alpha:1]];
+    return @[[UIColor BTPrimaryColor]];
 }
 
 - (NSArray<UIColor *> *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance eventSelectionColorsForDate:(nonnull NSDate *)date {
-    return @[[UIColor colorWithRed:30/255.0 green:30/255.0 blue:120/255.0 alpha:1]];
+    return @[[UIColor BTSecondaryColor]];
 }
 
 - (NSInteger)calendar:(FSCalendar *)calendar numberOfEventsForDate:(NSDate *)date {
@@ -205,7 +225,7 @@
     self.segmentedControl.clipsToBounds = YES;
     self.segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleBox;
     self.segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationNone;
-    self.segmentedControl.backgroundColor = [UIColor colorWithRed:30/255.0 green:30/255.0 blue:120/255.0 alpha:1];
+    self.segmentedControl.backgroundColor = [UIColor BTSecondaryColor];
     self.segmentedControl.selectionIndicatorBoxColor = [UIColor whiteColor];
     self.segmentedControl.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
                                                  [UIColor whiteColor], NSForegroundColorAttributeName,

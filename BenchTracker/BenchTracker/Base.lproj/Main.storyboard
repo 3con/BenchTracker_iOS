@@ -82,6 +82,9 @@
                         </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <connections>
+                        <outlet property="navView" destination="BKf-EK-lTX" id="vj9-Fl-E8Z"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tme-eh-CID" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -164,6 +167,7 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="collectionView" destination="eUA-P5-CbN" id="EDc-I3-oDX"/>
+                        <outlet property="navView" destination="u0q-f3-L3b" id="ngo-9D-gv7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="auv-05-gfD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -357,6 +361,7 @@
                         <outlet property="calendarView" destination="hx4-hj-moB" id="xN0-eT-g7h"/>
                         <outlet property="leftBarButton" destination="xOh-gd-Bbp" id="r4q-Jq-nTl"/>
                         <outlet property="listTableView" destination="IiY-s6-C0p" id="D8b-nc-pda"/>
+                        <outlet property="navView" destination="oFE-yj-bhY" id="0sA-dQ-XtJ"/>
                         <outlet property="rightBarButton" destination="W1F-YY-ujm" id="BRt-aa-Lne"/>
                         <outlet property="scanWorkoutButton" destination="uiM-xA-gS4" id="8K3-S2-ACH"/>
                         <outlet property="segmentedControl" destination="2Oe-gD-jXD" id="SHV-tO-87F"/>
@@ -543,6 +548,7 @@
                         <outlet property="deleteWorkoutButton" destination="Pj3-Pj-9H7" id="Xzb-GN-ncU"/>
                         <outlet property="finishWorkoutButton" destination="mHc-np-Ijl" id="FZW-sB-tJg"/>
                         <outlet property="nameTextField" destination="W1s-v4-xf3" id="FsI-3M-6Jk"/>
+                        <outlet property="navView" destination="D7n-as-euy" id="hGf-YU-aLy"/>
                         <outlet property="pauseView" destination="bCM-CD-4b0" id="mlh-kZ-QOF"/>
                         <outlet property="tableView" destination="nkC-SS-85L" id="tAV-Xq-K7X"/>
                     </connections>

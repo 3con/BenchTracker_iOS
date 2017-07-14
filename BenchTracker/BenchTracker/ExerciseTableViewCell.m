@@ -33,6 +33,9 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    self.containerView.backgroundColor = [UIColor BTSecondaryColor];
+    self.aboveSupersetView.backgroundColor = [UIColor BTSecondaryColor];
+    self.belowSupersetView.backgroundColor = [UIColor BTSecondaryColor];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.containerView.layer.cornerRadius = 8;
     self.containerView.clipsToBounds = YES;
@@ -49,8 +52,7 @@
 
 - (NSArray *)leftButtons {
     NSMutableArray *rightUtilityButtons = [NSMutableArray new];
-    [rightUtilityButtons sw_addUtilityButtonWithColor:[UIColor colorWithRed:1.0f green:0.231f blue:0.188 alpha:1.0f]
-                                                title:@"Delete"];
+    [rightUtilityButtons sw_addUtilityButtonWithColor:[UIColor BTRedColor] title:@"Delete"];
     return rightUtilityButtons;
 }
 
@@ -92,7 +94,7 @@
         cell.clipsToBounds = YES;
         label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 60, 16)];
         label.backgroundColor = [UIColor clearColor];
-        label.textColor = [UIColor colorWithRed:30/255.0 green:30/255.0 blue:120/255.0 alpha:1];
+        label.textColor = [UIColor BTSecondaryColor];
         label.textAlignment = NSTextAlignmentCenter;
         label.allowsDefaultTighteningForTruncation = YES;
         label.minimumScaleFactor = 0.8;

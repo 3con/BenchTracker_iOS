@@ -26,6 +26,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.doneButton.backgroundColor = [UIColor BTButtonPrimaryColor];
     self.scrollView.delegate = self;
 }
 

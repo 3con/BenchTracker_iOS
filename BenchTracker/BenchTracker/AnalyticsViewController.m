@@ -24,6 +24,8 @@
 @property (nonatomic) BTRecentWorkoutsManager *recentWorkoutsManager;
 @property (nonatomic) BTSettings *settings;
 
+@property (weak, nonatomic) IBOutlet UIView *navView;
+
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @end
@@ -32,6 +34,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navView.backgroundColor = [UIColor BTPrimaryColor];
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"BTSettings"];
     NSError *error;
     self.settings = [self.context executeFetchRequest:fetchRequest error:&error].firstObject;
@@ -66,7 +69,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     AnalyticsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
     cell.originSize = CGSizeMake(self.view.frame.size.width-40, self.view.frame.size.height-172);
-    cell.graphHeight = (indexPath.row == 1) ? 0 : 210;
+    cell.graphHeight = (indexPath.row == 2) ? 0 : 210;
     cell.backgroundColor = [self colorFromHexString:
         @[@"00BCD4",
           @"2ECC71",
@@ -76,24 +79,40 @@
           @"F44336",
           @"FF9800"][indexPath.row]];
     cell.titleLabel.text =
-        @[@"Favorite Exercises",
-          @"All Exercises",
-          @"Muscle Split",
-          @"Volume (1000s of lbs)",
-          @"Duration (minutes)",
+        @[@"Weekly Summary",
+          @"Favorite Exercises",
+          @"Track your Progress",
+          @"Volume",
+          @"Duration",
           @"Number of Exercises",
           @"Number of Sets",][indexPath.row];
     cell.subtitleLabel.text =
-        @[@"Recent Workouts",
-          @"",
+        @[@"Week of ---",
           @"Recent Workouts",
+          @"",
           @"Recent Workouts",
           @"Recent Workouts",
           @"Recent Workouts",
           @"Recent Workouts",][indexPath.row];
     [cell.seeMoreButton setTitleColor:cell.backgroundColor forState:UIControlStateNormal];
     NSMutableArray <NSAttributedString *> *displayStrings = [NSMutableArray array];
-    if (indexPath.row == 0) {
+    if (indexPath.row == 0) { //pie chart
+        cell.subtitleLabel.text = [NSString stringWithFormat:@"Week of %@",[self.recentWorkoutsManager formattedFirstDayOfWeek]];
+        NSDictionary *data = [self.recentWorkoutsManager workoutExerciseTypesThisWeek];
+        BTAnalyticsPieChart *pieChart = [[BTAnalyticsPieChart alloc]
+                                         initWithFrame:CGRectMake((collectionView.frame.size.width-250)/2.0, 20, 170, 170) items:[BTAnalyticsPieChart pieDataForDictionary:data]];
+        cell.graphView = pieChart;
+        NSArray <NSString *> *data2 = [self.recentWorkoutsManager otherDataThisWeek];
+        NSArray <NSString *> *strArr = @[@"Workouts", @"Exercises", @"Sets", @"Lifted"];
+        for (int i = 0; i < data2.count; i++) {
+            NSMutableAttributedString *mS = [[NSMutableAttributedString alloc] initWithString:
+                                             [NSString stringWithFormat:@"%@ %@", data2[i], strArr[i]]];
+            [mS setAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:17 weight:UIFontWeightHeavy]}
+                        range:NSMakeRange(0, data2[i].length)];
+            [displayStrings addObject:mS];
+        }
+    }
+    else if (indexPath.row == 1) { //fav exercises
         NSDictionary *data = [self.recentWorkoutsManager workoutExercises];
         BTAnalyticsBarChart *barChart = [[BTAnalyticsBarChart alloc] initWithFrame:CGRectMake(5, 10, collectionView.frame.size.width-70, 198)];
         [barChart setBarData:data];
@@ -105,22 +124,10 @@
             [displayStrings addObject:mS];
         }
     }
-    else if (indexPath.row == 1) {
+    else if (indexPath.row == 2) { //all exercises
         NSArray *data = [self.recentWorkoutsManager workoutExercises].allKeys;
         for (int i = 0; i < 20; i++)
             [displayStrings addObject:[[NSMutableAttributedString alloc] initWithString:data[i]]];
-    }
-    else if (indexPath.row == 2) {
-        NSDictionary *data = [self.recentWorkoutsManager workoutExerciseTypes];
-        BTAnalyticsPieChart *pieChart = [[BTAnalyticsPieChart alloc]
-            initWithFrame:CGRectMake((collectionView.frame.size.width-250)/2.0, 20, 170, 170) items:[BTAnalyticsPieChart pieDataForDictionary:data]];
-        cell.graphView = pieChart;
-        for (PNPieChartDataItem *item in pieChart.items) {
-            NSMutableAttributedString *mS = [[NSMutableAttributedString alloc] initWithString:
-                                             [NSString stringWithFormat:@"%.0f %@", item.value, item.textDescription]];
-            [mS setAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:17 weight:UIFontWeightHeavy]} range:NSMakeRange(0, 2)];
-            [displayStrings addObject:mS];
-        }
     }
     else if (indexPath.row > 2) { //line charts
         NSArray *data;
@@ -188,9 +195,9 @@
 
 - (void)presentAnalyticsDetailViewControllerWithIndex:(NSInteger)index cell:(AnalyticsCollectionViewCell *)cell {
     AnalyticsDetailViewController *adVC;
-    if (index < 2)       adVC = [[NSBundle mainBundle] loadNibNamed:@"ADExercisesViewController" owner:self options:nil].firstObject;
-    else if (index == 2) adVC = [[NSBundle mainBundle] loadNibNamed:@"ADMuscleSplitViewController" owner:self options:nil].firstObject;
-    else                 adVC = [[NSBundle mainBundle] loadNibNamed:@"ADWorkoutsViewController" owner:self options:nil].firstObject;
+    if (index == 0)     adVC = [[NSBundle mainBundle] loadNibNamed:@"ADMuscleSplitViewController" owner:self options:nil].firstObject;
+    else if (index < 3) adVC = [[NSBundle mainBundle] loadNibNamed:@"ADExercisesViewController" owner:self options:nil].firstObject;
+    else                adVC = [[NSBundle mainBundle] loadNibNamed:@"ADWorkoutsViewController" owner:self options:nil].firstObject;
     adVC.context = self.context;
     adVC.color = cell.backgroundColor;
     adVC.titleString = cell.titleLabel.text;

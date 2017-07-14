@@ -69,10 +69,10 @@
     }
     else {
         self.backgroundColor = [UIColor whiteColor];
-        self.nameLabel.textColor = [UIColor blackColor];
-        self.iterationLabel1.textColor = [UIColor blackColor];
-        self.iterationLabel2.textColor = [UIColor blackColor];
-        self.iterationLabel3.textColor = [UIColor blackColor];
+        self.nameLabel.textColor = [UIColor BTBlackColor];
+        self.iterationLabel1.textColor = [UIColor BTGrayColor];
+        self.iterationLabel2.textColor = [UIColor BTGrayColor];
+        self.iterationLabel3.textColor = [UIColor BTGrayColor];
         self.cellSelected = NO;
         self.iteration = nil;
     }

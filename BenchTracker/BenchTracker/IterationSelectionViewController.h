@@ -24,6 +24,4 @@
 @property (nonatomic) CGPoint originPoint;
 @property (nonatomic) UIColor *color;
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-
 @end

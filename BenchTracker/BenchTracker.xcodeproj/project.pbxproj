@@ -75,6 +75,7 @@
 		F9B7D7D71F06303700376201 /* passTouchesView.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B7D7D61F06303700376201 /* passTouchesView.m */; };
 		F9C2406E1F17D94900A268F3 /* ADEDExerciseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F9C2406C1F17D94900A268F3 /* ADEDExerciseTableViewCell.m */; };
 		F9C2406F1F17D94900A268F3 /* ADEDExerciseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9C2406D1F17D94900A268F3 /* ADEDExerciseTableViewCell.xib */; };
+		F9C240731F17F9B300A268F3 /* UIColor+BTColors.m in Sources */ = {isa = PBXBuildFile; fileRef = F9C240721F17F9B300A268F3 /* UIColor+BTColors.m */; };
 		F9DA75111F02DC1700347B0D /* BTDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F9DA750F1F02DC1700347B0D /* BTDataModel.xcdatamodeld */; };
 		F9DA75221F02EE9600347B0D /* BTUser+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F9DA75131F02EE9600347B0D /* BTUser+CoreDataClass.m */; };
 		F9DA75231F02EE9600347B0D /* BTUser+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F9DA75151F02EE9600347B0D /* BTUser+CoreDataProperties.m */; };
@@ -227,6 +228,9 @@
 		F9C2406B1F17D94900A268F3 /* ADEDExerciseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADEDExerciseTableViewCell.h; sourceTree = "<group>"; };
 		F9C2406C1F17D94900A268F3 /* ADEDExerciseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADEDExerciseTableViewCell.m; sourceTree = "<group>"; };
 		F9C2406D1F17D94900A268F3 /* ADEDExerciseTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ADEDExerciseTableViewCell.xib; sourceTree = "<group>"; };
+		F9C240711F17F9B300A268F3 /* UIColor+BTColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+BTColors.h"; sourceTree = "<group>"; };
+		F9C240721F17F9B300A268F3 /* UIColor+BTColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+BTColors.m"; sourceTree = "<group>"; };
+		F9C240751F183D0B00A268F3 /* BenchTrackerPrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BenchTrackerPrefixHeader.pch; sourceTree = "<group>"; };
 		F9DA75101F02DC1700347B0D /* BTDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BTDataModel.xcdatamodel; sourceTree = "<group>"; };
 		F9DA75121F02EE9600347B0D /* BTUser+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "BTUser+CoreDataClass.h"; path = "BenchTracker/BTUser+CoreDataClass.h"; sourceTree = "<group>"; };
 		F9DA75131F02EE9600347B0D /* BTUser+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "BTUser+CoreDataClass.m"; path = "BenchTracker/BTUser+CoreDataClass.m"; sourceTree = "<group>"; };
@@ -343,6 +347,7 @@
 		F90712A419415FB0008694E5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F9C240751F183D0B00A268F3 /* BenchTrackerPrefixHeader.pch */,
 				F9DA75341F02F64D00347B0D /* BenchTrackerKeys.h */,
 				F90712A519415FB0008694E5 /* Info.plist */,
 				F90712B419415FB2008694E5 /* Images.xcassets */,
@@ -523,6 +528,7 @@
 			isa = PBXGroup;
 			children = (
 				F94C89461F15D5BC006C6BDD /* 1RM calculator */,
+				F9C240741F17FA7800A268F3 /* BTColor extension */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -784,6 +790,15 @@
 				F9C2406D1F17D94900A268F3 /* ADEDExerciseTableViewCell.xib */,
 			);
 			name = "Exercise cell";
+			sourceTree = "<group>";
+		};
+		F9C240741F17FA7800A268F3 /* BTColor extension */ = {
+			isa = PBXGroup;
+			children = (
+				F9C240711F17F9B300A268F3 /* UIColor+BTColors.h */,
+				F9C240721F17F9B300A268F3 /* UIColor+BTColors.m */,
+			);
+			name = "BTColor extension";
 			sourceTree = "<group>";
 		};
 		F9DA752A1F02F00200347B0D /* BTWorkout */ = {
@@ -1198,6 +1213,7 @@
 				F927D14F1F0C9BD70004CF3A /* IterationSelectionViewController.m in Sources */,
 				F94C89451F15D5B6006C6BDD /* BT1RMCalculator.m in Sources */,
 				F917BB641F0DEA7C00614AB1 /* BTQRScannerViewController.m in Sources */,
+				F9C240731F17F9B300A268F3 /* UIColor+BTColors.m in Sources */,
 				F95F93411F03713200A19C4D /* BTAWSWorkout.m in Sources */,
 				F90712A719415FB1008694E5 /* main.m in Sources */,
 				F97773E11F1726A2009AEDE3 /* ADExerciseTypeTableViewCell.m in Sources */,
@@ -1349,6 +1365,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = AE4TCQ8Z49;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "${SRCROOT}/BenchTracker/BenchTrackerPrefixHeader.pch";
 				INFOPLIST_FILE = BenchTracker/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1365,6 +1383,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = AE4TCQ8Z49;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "${SRCROOT}/BenchTracker/BenchTrackerPrefixHeader.pch";
 				INFOPLIST_FILE = BenchTracker/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

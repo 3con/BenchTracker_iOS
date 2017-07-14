@@ -53,6 +53,7 @@
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="navView" destination="dXz-xM-msQ" id="4PQ-TJ-rof"/>
                 <outlet property="tableView" destination="O1N-gM-HWk" id="Pw7-7T-wKM"/>
                 <outlet property="titleView" destination="MEN-cR-5p2" id="XPL-O5-4dZ"/>
             </connections>

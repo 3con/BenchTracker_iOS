@@ -18,7 +18,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.view.backgroundColor = [UIColor BTSecondaryColor];
+    self.textField.tintColor = [UIColor BTSecondaryColor];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

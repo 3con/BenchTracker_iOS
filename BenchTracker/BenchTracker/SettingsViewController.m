@@ -11,6 +11,8 @@
 
 @interface SettingsViewController ()
 
+@property (weak, nonatomic) IBOutlet UIView *navView;
+
 @property (nonatomic) BTUserManager *userManager;
 
 @end
@@ -19,6 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navView.backgroundColor = [UIColor BTPrimaryColor];
     self.userManager = [BTUserManager sharedInstance];
 }
 

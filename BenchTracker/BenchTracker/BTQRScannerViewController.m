@@ -11,6 +11,8 @@
 
 @interface BTQRScannerViewController ()<AVCaptureMetadataOutputObjectsDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 
+@property (weak, nonatomic) IBOutlet UIView *navView;
+
 @property (nonatomic, strong) MMScanerLayerView *scanView;
 @property (nonatomic, strong) AVCaptureSession *session;
 @property (nonatomic, strong) AVCaptureDevice *inputDevice;
@@ -31,6 +33,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navView.backgroundColor = [UIColor BTPrimaryColor];
     [self setUpUI];
 }
 
@@ -61,7 +64,7 @@
 - (IBAction)galleryButtonPressed:(UIButton *)sender {
     UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
     imagePicker.delegate = self;
-    imagePicker.navigationBar.tintColor = [UIColor blackColor];
+    imagePicker.navigationBar.tintColor = [UIColor BTBlackColor];
     [self presentViewController:imagePicker animated:YES completion:nil];
 }
 
@@ -117,7 +120,7 @@
     if (!_scanView) {
         _scanView = [[MMScanerLayerView alloc] initWithFrame:self.view.bounds];
         _scanView.qrScanArea = self.qrScanArea;
-        _scanView.qrScanLayerBorderColor = [UIColor colorWithRed:30/255.5 green:30/255.0 blue:120/255.0 alpha:1];;
+        _scanView.qrScanLayerBorderColor = [UIColor BTSecondaryColor];;
         _scanView.qrScanLineAnimateDuration = 1;
         _scanView.qrScanLineImageName = self.qrScanLineImageName;
         _scanView.contentMode = UIViewContentModeRedraw;
@@ -147,7 +150,7 @@
 - (UIView *)warnView {
     if (!_warnView) {
         _warnView = [[UIView alloc] initWithFrame:self.view.bounds];
-        _warnView.backgroundColor = [UIColor blackColor];
+        _warnView.backgroundColor = [UIColor BTBlackColor];
         _warnView.alpha = 0.7;
         _warnView.userInteractionEnabled = YES;
         [_warnView addSubview:self.warnLab];
@@ -179,7 +182,7 @@
 - (UILabel *)noteLab {
     if (!_noteLab) {
         _noteLab = [[UILabel alloc] initWithFrame:CGRectMake(0, self.qrScanArea.origin.y+self.qrScanArea.size.height+10, self.view.width, 20)];
-        _noteLab.textColor = [UIColor grayColor];
+        _noteLab.textColor = [UIColor BTGrayColor];
         _noteLab.text = @"Center your Bench Tracker QR code here";
         _noteLab.textAlignment = NSTextAlignmentCenter;
         _noteLab.backgroundColor = [UIColor clearColor];

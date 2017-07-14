@@ -14,6 +14,7 @@
 
 @interface WeekdayView ()
 
+@property (weak, nonatomic) IBOutlet UIView *navView;
 @property (nonatomic) IBOutlet UIView *titleView;
 @property (nonatomic) NSArray <UILabel *> *titleViews;
 @property (nonatomic) NSArray <NSString *> *titleArray;
@@ -30,6 +31,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    self.navView.backgroundColor = [UIColor BTPrimaryColor];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self loadTitleView];

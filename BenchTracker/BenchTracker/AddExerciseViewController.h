@@ -22,19 +22,6 @@
 
 @property id<AddExerciseViewControllerDelegate> delegate;
 
-@property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @property NSManagedObjectContext *context;
-
-@property (weak, nonatomic) IBOutlet UIView *containerView;
-
-@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
-
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic) UISearchBar *searchBar;
-
-@property (weak, nonatomic) IBOutlet UIButton *supersetButton;
-@property (weak, nonatomic) IBOutlet UIButton *addExerciseButton;
-@property (weak, nonatomic) IBOutlet UIButton *clearButton;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *addExerciseConstraint;
 
 @end
