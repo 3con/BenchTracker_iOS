@@ -74,10 +74,7 @@
         button.clipsToBounds = YES;
     }
     self.scanWorkoutButton.imageEdgeInsets = UIEdgeInsetsMake(15, 15, 15, 15);
-    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"BTSettings"];
-    NSError *error;
-    self.settings = [self.context executeFetchRequest:fetchRequest error:&error].firstObject;
-    if (error) NSLog(@"settings fetcher errror: %@",error);
+    self.settings = [BTSettings sharedInstance];
 }
 
 - (void)viewDidLayoutSubviews {

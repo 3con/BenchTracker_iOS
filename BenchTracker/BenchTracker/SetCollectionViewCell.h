@@ -12,7 +12,7 @@
 
 @property (nonatomic) UIColor *color;
 
-- (void)loadSetWithString: (NSString *)set;
+- (void)loadSetWithString:(NSString *)set weightSuffix:(NSString *)suffix;
 
 - (void)performDeleteAnimationWithDuration: (float)duration;
 

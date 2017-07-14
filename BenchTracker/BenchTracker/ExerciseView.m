@@ -8,6 +8,7 @@
 
 #import "ExerciseView.h"
 #import "BTExercise+CoreDataClass.h"
+#import "BTSettings+CoreDataClass.h"
 #import "SetCollectionViewCell.h"
 #import "SetFlowLayout.h"
 
@@ -51,6 +52,18 @@
     self.centerTextField.backgroundColor = [UIColor BTSecondaryColor];
     self.rightTextField.backgroundColor = [UIColor BTSecondaryColor];
     self.deleteButton.backgroundColor = [UIColor BTRedColor];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:self.superview.window];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:self.superview.window];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(exerciseViewScrollNotification)
+                                                 name:@"ExerciseViewScroll"
+                                               object:nil];
 }
 
 - (void)dealloc {
@@ -60,8 +73,6 @@
 #pragma mark - public methods
 
 - (void)loadExercise:(BTExercise *)exercise {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(exerciseViewScrollNotification)
-                                                 name:@"ExerciseViewScroll" object:nil];
     self.isDeleted = NO;
     self.deletedView.alpha = 0;
     self.deletedView.userInteractionEnabled = NO;
@@ -172,8 +183,7 @@
 }
 
 - (void)exerciseViewScrollNotification {
-    for (UITextField *tF in @[self.textField, self.leftTextField, self.centerTextField, self.rightTextField])
-        if (tF.isFirstResponder) [tF resignFirstResponder];
+    [self resignFirstResponderAllTextFields];
 }
 
 - (void)loadTextFields {
@@ -186,6 +196,7 @@
 }
 
 - (IBAction)deleteButtonPressed:(UIButton *)sender {
+    [self resignFirstResponderAllTextFields];
     self.isDeleted = YES;
     self.deletedView.userInteractionEnabled = YES;
     [UIView animateWithDuration:.3 animations:^{
@@ -252,9 +263,9 @@
     }
     if (component == 1) { //weight
         NSInteger num = (row < 12) ? row : (row-11)*5+10;
-        label.text = [NSString stringWithFormat:@"%ld %@", num, (num == 0) ? @"(bodyweight)" : (num == 1) ? @"lb" : @"lbs"];
+        label.text = [NSString stringWithFormat:@"%ld %@", num, (num == 0) ? @"(bodyweight)" : self.settings.weightSuffix];
         label.tag = num;
-        if (row == 11) label.text = @"12.5 lbs";
+        if (row == 11) label.text = [NSString stringWithFormat:@"12.5 %@", self.settings.weightSuffix];
     }
     else if ([self styleIs:STYLE_REPSWEIGHT] || [self styleIs:STYLE_REPS]) { //reps
         NSInteger num = (row < 50) ? row+1 : (row-49)*5+50;
@@ -303,7 +314,7 @@
         if (cell.subviews.count == 1) {
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, -2, 70, 45)];
             label.backgroundColor = [UIColor clearColor];
-            label.textColor = [UIColor BTTertiaryColor];
+            label.textColor = [self lighterColorForColor:[UIColor BTSecondaryColor]];
             label.text = @"+";
             label.textAlignment = NSTextAlignmentCenter;
             label.font = [UIFont systemFontOfSize:34 weight:UIFontWeightHeavy];
@@ -312,19 +323,23 @@
         return cell;
     }
     SetCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
-    [cell loadSetWithString:self.tempSets[self.tempSets.count-(indexPath.row-1)-1]];
+    [cell loadSetWithString:self.tempSets[self.tempSets.count-(indexPath.row-1)-1] weightSuffix:self.settings.weightSuffix];
     return cell;
 }
 
 #pragma mark - collectionView delegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    [self resignFirstResponderAllTextFields];
     if (indexPath.row == 0) { //add set
         if (self.tempSets.count < 12) {
             [self.collectionView performBatchUpdates:^{
                 float val1 = (self.leftTextField.text.length) ? self.leftTextField.text.floatValue : -1;
                 float val2 = (self.centerTextField.text.length) ? self.centerTextField.text.floatValue : -1;
                 float val3 = (self.rightTextField.text.length) ? self.rightTextField.text.floatValue : -1;
+                if (self.leftTextField.text.length) [self selectRowClosestTo:self.leftTextField.text.floatValue inComponent:0];
+                if (self.centerTextField.text.length) [self selectRowClosestTo:self.centerTextField.text.floatValue inComponent:0];
+                if (self.rightTextField.text.length) [self selectRowClosestTo:self.rightTextField.text.floatValue inComponent:1];
                 NSString *result;
                 if ([self styleIs:STYLE_REPSWEIGHT]) {
                     int reps = (val1 >= 0) ? val1 :
@@ -393,24 +408,52 @@
 
 #pragma mark - textField delegate
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [textField resignFirstResponder];
-    return YES;
-}
-
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-    NSLog(@"end");
     if (textField == self.leftTextField) [self selectRowClosestTo:self.leftTextField.text.floatValue inComponent:0];
     else if (textField == self.rightTextField) [self selectRowClosestTo:self.rightTextField.text.floatValue inComponent:1];
     else if (textField == self.centerTextField) [self selectRowClosestTo:self.centerTextField.text.floatValue inComponent:0];
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
+
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     NSString *rStr = [textField.text stringByReplacingCharactersInRange:range withString:string];
     if (textField == self.textField && rStr.length <= 30) return YES;
-    if (textField == self.rightTextField && rStr.length <= 4) return YES;
+    if (textField == self.rightTextField) {
+        if ([rStr containsString:@"."] && rStr.length <= 5) return YES;
+        else if (rStr.length <= 4) return YES;
+    }
     if (rStr.length <= 3) return YES;
     return NO;
+}
+
+- (void)resignFirstResponderAllTextFields {
+    for (UITextField *tF in @[self.textField, self.leftTextField, self.centerTextField, self.rightTextField])
+      if (tF.isFirstResponder) [tF resignFirstResponder];
+}
+
+- (BOOL)hasFirstResponder {
+    for (UITextField *tF in @[self.textField, self.leftTextField, self.centerTextField, self.rightTextField])
+        if (tF.isFirstResponder) return YES;
+    return NO;
+}
+
+#pragma mark - keyboard handling
+
+- (void)keyboardWillShow:(NSNotification *)n {
+    if ([self hasFirstResponder]) {
+        UIScrollView *scrollView = (UIScrollView *)self.superview.superview;
+        float keyboardHeight = [[[n userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
+        [scrollView scrollRectToVisible:
+            CGRectMake(0, self.frame.origin.y, 1, self.contentView.frame.size.height+keyboardHeight+30) animated:YES];
+    }
+}
+
+- (void)keyboardWillHide:(NSNotification *)n {
+
 }
 
 #pragma mark - color methods

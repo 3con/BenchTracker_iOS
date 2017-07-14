@@ -8,7 +8,6 @@
 
 #import "ADExercisesViewController.h"
 #import "ZFModalTransitionAnimator.h"
-#import "BTSettings+CoreDataClass.h"
 #import "BTExerciseType+CoreDataClass.h"
 #import "ADExercisesDetailViewController.h"
 #import "ADExerciseTypeTableViewCell.h"
@@ -47,10 +46,7 @@
     if (![[self fetchedResultsController] performFetch:&error]) {
         NSLog(@"Main fetch error: %@, %@", error, [error userInfo]);
     }
-    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"BTSettings"];
-    BTSettings *settings = [self.context executeFetchRequest:fetchRequest error:&error].firstObject;
-    if (error) NSLog(@"settings fetcher errror: %@",error);
-    if (settings.exerciseTypeColors) self.exerciseTypeColors = [NSKeyedUnarchiver unarchiveObjectWithData:settings.exerciseTypeColors];
+    self.exerciseTypeColors = [NSKeyedUnarchiver unarchiveObjectWithData:self.settings.exerciseTypeColors];
 }
 
 - (void)loadSearchBar {

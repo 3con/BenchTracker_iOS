@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BTSettings+CoreDataClass.h"
 
 @interface AnalyticsDetailViewController : UIViewController
 
 @property (nonatomic) NSManagedObjectContext *context;
+@property (nonatomic) BTSettings *settings;
 
 @property (nonatomic) UIColor *color;
 @property (nonatomic) NSString *titleString;

@@ -13,6 +13,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BTSettings : NSManagedObject
 
++ (BTSettings *) sharedInstance;
+
+- (NSString *)weightSuffix;
+
 @end
 
 NS_ASSUME_NONNULL_END

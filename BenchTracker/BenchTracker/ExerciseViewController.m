@@ -40,6 +40,7 @@
     if (self.settings) exerciseTypeColors = [NSKeyedUnarchiver unarchiveObjectWithData:self.settings.exerciseTypeColors];
     for (BTExercise *exercise in self.exercises) {
         ExerciseView *view = [[NSBundle mainBundle] loadNibNamed:@"ExerciseView" owner:self options:nil].firstObject;
+        view.settings = self.settings;
         view.color = exerciseTypeColors[exercise.category];
         [view loadExercise:exercise];
         [self.exerciseViews addObject:view];
@@ -47,26 +48,15 @@
         view.center = CGPointMake(self.contentView.frame.size.width*.5, h);
         h += 290;
     }
-    if (self.exercises.count < 3) {
-        if (self.exercises.count == 1) self.exerciseViews[0].center = CGPointMake(self.contentView.frame.size.width*.5,
-                                                                                 (self.view.frame.size.height-40-50)*.5);
-        [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.contentView
-                                                              attribute:NSLayoutAttributeHeight
-                                                              relatedBy:NSLayoutRelationEqual
-                                                                 toItem:nil
-                                                              attribute:NSLayoutAttributeNotAnAttribute
-                                                             multiplier:1.0
-                                                               constant:self.view.frame.size.height+1]];
-    }
-    else {
-        [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.contentView
-                                                              attribute:NSLayoutAttributeHeight
-                                                              relatedBy:NSLayoutRelationEqual
-                                                                 toItem:nil
-                                                              attribute:NSLayoutAttributeNotAnAttribute
-                                                             multiplier:1.0
-                                                               constant:h-20]];
-    }
+    if (self.exercises.count == 1) self.exerciseViews[0].center =
+        CGPointMake(self.contentView.frame.size.width*.5, (self.view.frame.size.height-40-50)*.5);
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.contentView
+                                                          attribute:NSLayoutAttributeHeight
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:nil
+                                                          attribute:NSLayoutAttributeNotAnAttribute
+                                                         multiplier:1.0
+                                                           constant:MAX(self.view.frame.size.height+1, h+101)]]; //Keyboard: 226px
 }
 
 - (IBAction)doneButtonPressed:(UIButton *)sender {

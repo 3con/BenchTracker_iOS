@@ -39,7 +39,7 @@
     self.containerView.backgroundColor = [color colorWithAlphaComponent:.8];
 }
 
-- (void)loadWithDate:(NSDate *)date workouts:(NSArray <BTWorkout *> *)workouts {
+- (void)loadWithDate:(NSDate *)date workouts:(NSArray <BTWorkout *> *)workouts weightSuffix:(NSString *)suffix {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"MMM d";
     self.titleLabel.text = [NSString stringWithFormat:@"Week of %@",[formatter stringFromDate:date]];
@@ -62,7 +62,7 @@
     self.subtitileLabel1.text = [NSString stringWithFormat:@"%ld workouts",workouts.count];
     self.subtitileLabel2.text = [NSString stringWithFormat:@"%ld exercises",numExercises];
     self.subtitileLabel3.text = [NSString stringWithFormat:@"%ld sets",numSets];
-    self.subtitileLabel4.text = [NSString stringWithFormat:@"%ldk lbs",volume/1000];
+    self.subtitileLabel4.text = [NSString stringWithFormat:@"%ldk %@",volume/1000,suffix];
     [self.graphView removeFromSuperview];
     self.graphView = [[BTAnalyticsPieChart alloc] initWithFrame:CGRectMake(0, 0, 150, 150)
                                                           items:[BTAnalyticsPieChart pieDataForDictionary:exerciseTypes]];

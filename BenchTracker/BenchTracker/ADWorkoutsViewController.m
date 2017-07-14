@@ -10,6 +10,7 @@
 #import "ADPodiumView.h"
 #import "HMSegmentedControl.h"
 #import "BTWorkout+CoreDataClass.h"
+#import "BTSettings+CoreDataClass.h"
 
 #define QUERY_TYPE_VOLUME       0
 #define QUERY_TYPE_DURATION     1
@@ -29,6 +30,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewHeightConstraint;
 
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic) BTSettings *settings;
 @property (nonatomic) NSInteger queryType;
 
 @end
@@ -37,6 +39,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.settings = [BTSettings sharedInstance];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.allowsSelection = NO;
@@ -188,7 +191,8 @@
 
 - (NSArray *)dateAndValueForIndex:(NSInteger)index {
     BTWorkout *workout = self.fetchedResultsController.fetchedObjects[index];
-    NSString *suffix = (self.queryType == QUERY_TYPE_VOLUME) ? @"k lbs" : (self.queryType == QUERY_TYPE_DURATION) ? @" min" : @"";
+    NSString *suffix = (self.queryType == QUERY_TYPE_VOLUME) ? [NSString stringWithFormat:@"k %@", self.settings.weightSuffix] :
+                       (self.queryType == QUERY_TYPE_DURATION) ? @" min" : @"";
     long value = (self.queryType == QUERY_TYPE_VOLUME) ? workout.volume/1000 :
                  (self.queryType == QUERY_TYPE_DURATION) ? workout.duration/60 :
                  (self.queryType == QUERY_TYPE_NUMEXERCISES) ? workout.numExercises : workout.numSets;

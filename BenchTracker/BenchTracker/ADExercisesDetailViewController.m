@@ -8,6 +8,7 @@
 
 #import "ADExercisesDetailViewController.h"
 #import "BTExerciseType+CoreDataClass.h"
+#import "BTSettings+CoreDataClass.h"
 #import "ZFModalTransitionAnimator.h"
 #import "ADEDExerciseTableViewCell.h"
 #import "BTExercise+CoreDataClass.h"
@@ -150,7 +151,7 @@
     for (int i = 0; i < 3; i++) {
         if (topArr.count > i) {
             [dateArray addObject:topArr[i].workout.date];
-            [valueArray addObject:[NSString stringWithFormat:@"%lld lbs", topArr[i].oneRM]];
+            [valueArray addObject:[NSString stringWithFormat:@"%lld %@", topArr[i].oneRM, self.settings.weightSuffix]];
             if ([topArr[i].style isEqualToString:STYLE_REPSWEIGHT]) {
                 for (NSString *set in [NSKeyedUnarchiver unarchiveObjectWithData:topArr[i].sets]) {
                     NSArray <NSString *> *a = [set componentsSeparatedByString:@" "];
@@ -270,7 +271,7 @@
 - (void)configureExerciseCell:(ADEDExerciseTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     BTExercise *exercise = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.color = self.color;
-    [cell loadExercise:exercise];
+    [cell loadExercise:exercise withWeightSuffix:[self.settings weightSuffix]];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

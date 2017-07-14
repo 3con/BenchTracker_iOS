@@ -9,11 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @class BTExercise;
+@class BTSettings;
 
 @interface ExerciseView : UIView <UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (nonatomic) BOOL isDeleted;
 
+@property (nonatomic) BTSettings *settings;
 @property (nonatomic) UIColor *color;
 
 - (void)loadExercise:(BTExercise *)exercise;

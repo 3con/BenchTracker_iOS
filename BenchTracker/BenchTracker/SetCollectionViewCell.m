@@ -31,7 +31,7 @@
     self.cornerLabel.clipsToBounds = YES;
 }
 
-- (void)loadSetWithString: (NSString *)set {
+- (void)loadSetWithString:(NSString *)set weightSuffix:(NSString *)suffix {
     if (self.color) self.containerView.backgroundColor = self.color;
     self.containerView.frame = CGRectMake(0, 0, 70, 45);
     NSArray *strings = [set componentsSeparatedByString:@" "];
@@ -41,7 +41,7 @@
     }
     else if ([strings[0] containsString:@"s"]) {
         if(strings.count == 3) { //timeWeight
-            self.topLabel.text = [NSString stringWithFormat:@"%@ lbs",strings[2]];
+            self.topLabel.text = [NSString stringWithFormat:@"%@ %@",strings[2], suffix];
             self.bottomLabel.text = [NSString stringWithFormat:@"%@ secs",strings[1]];
         }
         else { //time
@@ -52,7 +52,7 @@
     else {
         if(strings.count == 2) { //repsWeight
             self.topLabel.text = [NSString stringWithFormat:@"%@ reps",strings[0]];
-            self.bottomLabel.text = [NSString stringWithFormat:@"%@ lbs",strings[1]];
+            self.bottomLabel.text = [NSString stringWithFormat:@"%@ %@",strings[1], suffix];
         }
         else { //reps
             self.topLabel.text = @"";

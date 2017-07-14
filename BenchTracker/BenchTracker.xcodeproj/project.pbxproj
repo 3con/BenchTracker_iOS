@@ -584,8 +584,7 @@
 			children = (
 				F95F93421F03738B00A19C4D /* WorkoutViewController.h */,
 				F95F93431F03738B00A19C4D /* WorkoutViewController.m */,
-				F9B7D7D51F06303700376201 /* PassTouchesView.h */,
-				F9B7D7D61F06303700376201 /* passTouchesView.m */,
+				F9F522F11F193E4400061AF0 /* Pass touches view */,
 				F917BB611F0DD40500614AB1 /* QR display */,
 				F917BB511F0D24EB00614AB1 /* PDF generator */,
 				F96207731F05DCF800DE2330 /* Exercise cell */,
@@ -896,6 +895,15 @@
 				F9A5494D1F13068100743897 /* Recent workouts manager */,
 			);
 			name = Analytics;
+			sourceTree = "<group>";
+		};
+		F9F522F11F193E4400061AF0 /* Pass touches view */ = {
+			isa = PBXGroup;
+			children = (
+				F9B7D7D51F06303700376201 /* PassTouchesView.h */,
+				F9B7D7D61F06303700376201 /* passTouchesView.m */,
+			);
+			name = "Pass touches view";
 			sourceTree = "<group>";
 		};
 		F9FA47271F0B39DF00A4AF98 /* Workout selection */ = {

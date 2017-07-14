@@ -92,7 +92,7 @@
         cell.color = self.color;
     }
     [cell loadWithDate:[self.firstDayOfWeekDate dateByAddingTimeInterval:-86400*7*indexPath.row]
-              workouts:[self workoutsForIndexPath:indexPath]];
+              workouts:[self workoutsForIndexPath:indexPath] weightSuffix:self.settings.weightSuffix];
     return cell;
 }
 

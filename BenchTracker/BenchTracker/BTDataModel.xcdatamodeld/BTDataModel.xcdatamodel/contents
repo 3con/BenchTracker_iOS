@@ -16,7 +16,10 @@
         <attribute name="style" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="BTSettings" representedClassName="BTSettings" syncable="YES">
+        <attribute name="disableSleep" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="exerciseTypeColors" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="startWeekOnMonday" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="weightInLbs" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="BTUser" representedClassName="BTUser" syncable="YES">
         <attribute name="dateCreated" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
@@ -42,7 +45,7 @@
     <elements>
         <element name="BTExercise" positionX="-137" positionY="-108" width="128" height="150"/>
         <element name="BTExerciseType" positionX="-137" positionY="-249" width="128" height="103"/>
-        <element name="BTSettings" positionX="-315" positionY="-117" width="128" height="60"/>
+        <element name="BTSettings" positionX="-315" positionY="-117" width="128" height="105"/>
         <element name="BTUser" positionX="-488" positionY="-105" width="128" height="135"/>
         <element name="BTWorkout" positionX="-306" positionY="-105" width="128" height="210"/>
     </elements>

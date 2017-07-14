@@ -47,15 +47,12 @@
     self.addExerciseButton.backgroundColor = [UIColor BTButtonPrimaryColor];
     self.supersetButton.backgroundColor = [UIColor BTButtonSecondaryColor];
     self.clearButton.backgroundColor = [UIColor BTRedColor];
-    NSError *error;
     self.searchString = @"";
+    NSError *error;
     if (![[self fetchedResultsController] performFetch:&error]) {
         NSLog(@"Main fetch error: %@, %@", error, [error userInfo]);
     }
-    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"BTSettings"];
-    BTSettings *settings = [self.context executeFetchRequest:fetchRequest error:&error].firstObject;
-    if (error) NSLog(@"settings fetcher errror: %@",error);
-    if (settings.exerciseTypeColors) self.exerciseTypeColors = [NSKeyedUnarchiver unarchiveObjectWithData:settings.exerciseTypeColors];
+    self.exerciseTypeColors = [NSKeyedUnarchiver unarchiveObjectWithData:[BTSettings sharedInstance].exerciseTypeColors];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.allowsMultipleSelection = YES;
@@ -185,10 +182,6 @@
     return [_fetchedResultsController sections].count;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 50;
-}
-
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     return [_fetchedResultsController sections][section].name;
 }
@@ -202,6 +195,10 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [[_fetchedResultsController sections] objectAtIndex:section].numberOfObjects;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 50;
 }
 
 - (void)configureCell:(AddExerciseTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {

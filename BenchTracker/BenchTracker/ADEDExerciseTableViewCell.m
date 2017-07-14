@@ -37,9 +37,9 @@
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"Cell"];
 }
 
-- (void)loadExercise:(BTExercise *)exercise {
+- (void)loadExercise:(BTExercise *)exercise withWeightSuffix:(NSString *)suffix {
     self.contentView.backgroundColor = self.color;
-    self.badgeLabel.text = [NSString stringWithFormat:@"1RM: %lld lbs",exercise.oneRM];
+    self.badgeLabel.text = [NSString stringWithFormat:@"1RM: %lld %@",exercise.oneRM, suffix];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"MMMM d ''yy";
     self.dateLabel.text = [formatter stringFromDate:exercise.workout.date];

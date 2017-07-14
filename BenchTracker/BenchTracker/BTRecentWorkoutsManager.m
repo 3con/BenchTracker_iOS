@@ -9,11 +9,13 @@
 #import "BTRecentWorkoutsManager.h"
 #import "BTWorkout+CoreDataClass.h"
 #import "BTExercise+CoreDataClass.h"
+#import "BTSettings+CoreDataClass.h"
 #import "AppDelegate.h"
 
 @interface BTRecentWorkoutsManager ()
 
 @property (nonatomic) NSManagedObjectContext *context;
+@property (nonatomic) BTSettings *settings;
 
 @property (nonatomic) NSMutableArray <BTWorkout *> *recentWorkouts;
 @property (nonatomic) NSMutableArray <NSString *> *workoutNamesCache;
@@ -29,6 +31,7 @@
 - (id)init {
     if (self = [super init]) {
         self.context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+        self.settings = [BTSettings sharedInstance];
         NSDate *today = [self normalizedDateForDate:[NSDate date]];
         NSDateComponents *comp = [[NSCalendar currentCalendar] components:NSCalendarUnitWeekday fromDate:today];
         NSInteger offset = (comp.weekday != 1) ? -(comp.weekday-2) : -6;
@@ -129,8 +132,8 @@
             volume += workout.volume;
         }
     }
-    return @[[NSString stringWithFormat:@"%d",workouts], [NSString stringWithFormat:@"%d",exercises],
-             [NSString stringWithFormat:@"%d",sets], [NSString stringWithFormat:@"%dk lbs",volume/1000]];
+    return @[[NSString stringWithFormat:@"%d",workouts], [NSString stringWithFormat:@"%d", exercises],
+             [NSString stringWithFormat:@"%d",sets], [NSString stringWithFormat:@"%dk %@", volume/1000, self.settings.weightSuffix]];
 }
 
 - (NSArray <NSNumber *> *)workoutVolumes {

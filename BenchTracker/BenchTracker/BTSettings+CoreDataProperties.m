@@ -2,7 +2,7 @@
 //  BTSettings+CoreDataProperties.m
 //  
 //
-//  Created by Chappy Asel on 7/1/17.
+//  Created by Chappy Asel on 7/14/17.
 //
 //
 
@@ -15,5 +15,8 @@
 }
 
 @dynamic exerciseTypeColors;
+@dynamic startWeekOnMonday;
+@dynamic disableSleep;
+@dynamic weightInLbs;
 
 @end

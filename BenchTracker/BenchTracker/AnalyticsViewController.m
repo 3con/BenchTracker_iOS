@@ -8,8 +8,8 @@
 
 #import "AnalyticsViewController.h"
 #import "ZFModalTransitionAnimator.h"
-#import "BTWorkoutManager.h"
 #import "BTSettings+CoreDataClass.h"
+#import "BTWorkoutManager.h"
 #import "StickCollectionViewFlowLayout.h"
 #import "BTAnalyticsLineChart.h"
 #import "BTAnalyticsPieChart.h"
@@ -35,10 +35,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navView.backgroundColor = [UIColor BTPrimaryColor];
-    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"BTSettings"];
-    NSError *error;
-    self.settings = [self.context executeFetchRequest:fetchRequest error:&error].firstObject;
-    if (error) NSLog(@"settings fetcher errror: %@",error);
+    self.settings = [BTSettings sharedInstance];
     self.recentWorkoutsManager = [[BTRecentWorkoutsManager alloc] init];
     self.recentWorkoutsManager.maxFetch = 11;
     self.collectionView.delegate = self;
@@ -136,7 +133,7 @@
         [lineChart setXAxisData:[self.recentWorkoutsManager workoutShortDates]];
         if (indexPath.row == 3) {
             data = [self.recentWorkoutsManager workoutVolumes];
-            suffix = @"k lbs";
+            suffix = [NSString stringWithFormat:@"k %@", self.settings.weightSuffix];
         }
         else if (indexPath.row == 4) {
             data = [self.recentWorkoutsManager workoutDurations];
@@ -199,6 +196,7 @@
     else if (index < 3) adVC = [[NSBundle mainBundle] loadNibNamed:@"ADExercisesViewController" owner:self options:nil].firstObject;
     else                adVC = [[NSBundle mainBundle] loadNibNamed:@"ADWorkoutsViewController" owner:self options:nil].firstObject;
     adVC.context = self.context;
+    adVC.settings = self.settings;
     adVC.color = cell.backgroundColor;
     adVC.titleString = cell.titleLabel.text;
     self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:adVC];

@@ -14,6 +14,6 @@
 
 @property (nonatomic) UIColor *color;
 
-- (void)loadExercise:(BTExercise *)exercise;
+- (void)loadExercise:(BTExercise *)exercise withWeightSuffix:(NSString *)suffix;
 
 @end

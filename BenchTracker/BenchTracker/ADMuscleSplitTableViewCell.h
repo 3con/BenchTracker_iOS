@@ -14,6 +14,6 @@
 
 @property (nonatomic) UIColor *color;
 
-- (void)loadWithDate:(NSDate *)date workouts:(NSArray <BTWorkout *> *)workouts;
+- (void)loadWithDate:(NSDate *)date workouts:(NSArray <BTWorkout *> *)workouts weightSuffix:(NSString *)suffix;
 
 @end

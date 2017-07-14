@@ -111,7 +111,7 @@
         type.category = eT.category;
         type.style = eT.style;
     }
-    BTSettings *settings = [NSEntityDescription insertNewObjectForEntityForName:@"BTSettings" inManagedObjectContext:self.context];
+    BTSettings *settings = [BTSettings sharedInstance];
     for (int i = 0; i < model.colors.allKeys.count; i++) {
         NSString *key = model.colors.allKeys[i];
         model.colors[key] = [self colorForHex:model.colors[key]];

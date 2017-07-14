@@ -59,11 +59,8 @@
     self.paused = NO;
     self.pauseView.alpha = 0;
     self.pauseView.userInteractionEnabled = NO;
-    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"BTSettings"];
-    NSError *error;
-    self.settings = [self.context executeFetchRequest:fetchRequest error:&error].firstObject;
-    if (error) NSLog(@"settings fetcher errror: %@",error);
-    if (self.settings) self.exerciseTypeColors = [NSKeyedUnarchiver unarchiveObjectWithData:self.settings.exerciseTypeColors];
+    self.settings = [BTSettings sharedInstance];
+    self.exerciseTypeColors = [NSKeyedUnarchiver unarchiveObjectWithData:self.settings.exerciseTypeColors];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -89,6 +86,12 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.addExerciseButton.alpha = 1;
+    if (self.settings.disableSleep) [UIApplication sharedApplication].idleTimerDisabled = YES;
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [UIApplication sharedApplication].idleTimerDisabled = NO;
 }
 
 - (void)handleEnteredBackground:(id)sender {

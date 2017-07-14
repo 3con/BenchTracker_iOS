@@ -48,9 +48,7 @@
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"ACell"];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"BCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"WorkoutTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"Cell"];
-    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"BTSettings"];
-    self.settings = [self.context executeFetchRequest:fetchRequest error:&error].firstObject;
-    if (error) NSLog(@"settings fetcher errror: %@",error);
+    self.settings = [BTSettings sharedInstance];
 }
 
 - (void)viewDidLayoutSubviews {
