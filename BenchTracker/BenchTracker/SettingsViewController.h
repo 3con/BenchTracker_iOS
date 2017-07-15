@@ -13,9 +13,10 @@
 
 @protocol SettingsViewControllerDelegate <NSObject>
 - (void)settingsViewControllerDidRequestUserLogout:(SettingsViewController *)settingsVC;
+- (void)settingsViewWillDismiss:(SettingsViewController *)settingsVC;
 @end
 
-@interface SettingsViewController : XLFormViewController
+@interface SettingsViewController : XLFormViewController <XLFormDescriptorDelegate>
 
 @property (nonatomic) id<SettingsViewControllerDelegate> delegate;
 

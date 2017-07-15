@@ -8,6 +8,7 @@
 
 #import "SettingsViewController.h"
 #import "BTUserManager.h"
+#import "BTButtonFormCell.h"
 
 @interface SettingsViewController ()
 
@@ -26,6 +27,8 @@
     self.userManager = [BTUserManager sharedInstance];
     self.settings = [BTSettings sharedInstance];
     [self loadForm];
+    [self.view sendSubviewToBack:self.tableView];
+    self.tableView.contentInset = UIEdgeInsetsMake(72, 0, 0, 0);
 }
 
 - (void)loadForm {
@@ -35,18 +38,25 @@
     form = [XLFormDescriptor formDescriptor];
     
     // Section 1: Edit exercise types
+    section = [XLFormSectionDescriptor formSection];
+    section.footerTitle = @"Customize the exercises and variations you can choose from when working out.";
+    [form addFormSection:section];
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"editExercises" rowType:XLFormRowDescriptorTypeSelectorPush title:@"Edit exercises"];
+    row.value = nil;
+    [section addFormRow:row];
     
     // Section 2: Weight Unit
     section = [XLFormSectionDescriptor formSection];
-    section.footerTitle = @"FOOTER";
+    section.footerTitle = @"Show all weights in 🇪🇺 (kg). 🇺🇸 (lbs) is the default.";
     [form addFormSection:section];
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"weightInKg" rowType:XLFormRowDescriptorTypeBooleanSwitch title:@"Weight in kilograms"];
     row.value = [NSNumber numberWithBool:!self.settings.weightInLbs];
+    //WARN USER PAST WORKOUTS WILL NOT BE ADJUSTED
     [section addFormRow:row];
     
     // Section 3: Start week on Sunday
     section = [XLFormSectionDescriptor formSection];
-    section.footerTitle = @"FOOTER";
+    section.footerTitle = @"Start your workout week on Sunday. Monday is the default.";
     [form addFormSection:section];
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"startWeekOnSunday" rowType:XLFormRowDescriptorTypeBooleanSwitch title:@"Start week on Sunday"];
     row.value = [NSNumber numberWithBool:!self.settings.startWeekOnMonday];
@@ -54,7 +64,7 @@
     
     // Section 4: Disable screen sleep
     section = [XLFormSectionDescriptor formSection];
-    section.footerTitle = @"FOOTER";
+    section.footerTitle = @"Prevent your device from going to sleep while you are in the process of working out.";
     [form addFormSection:section];
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"disableSleep" rowType:XLFormRowDescriptorTypeBooleanSwitch title:@"Disable screen sleep"];
     row.value = [NSNumber numberWithBool:self.settings.disableSleep];
@@ -84,18 +94,34 @@
     // Section 6: Reset data
     section = [XLFormSectionDescriptor formSection];
     [form addFormSection:section];
-    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"share" rowType:XLFormRowDescriptorTypeButton title:@"Reset Data"];
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"reset" rowType:XLFormRowDescriptorTypeBTButton title:@"Reset Data"];
     [row.cellConfig setObject:@(NSTextAlignmentNatural) forKey:@"textLabel.textAlignment"];
-    row.action.formBlock = ^(XLFormRowDescriptor * sender){ [self logOutButtonPressed:nil]; };
+    //WARN USER DATA WILL BE DELETED, SUGGEST DOWNLOADING DATA
+    row.action.formBlock = ^(XLFormRowDescriptor * sender){
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Reset Data"
+                                                                        message:@"Are you sure you want to reset your accout? You will lose all you hard work! This action cannot be undone."
+                                                                 preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* deleteButton = [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
+            dispatch_async(dispatch_get_main_queue(), ^{ [self logOutButtonPressed:nil]; });
+        }];
+        UIAlertAction* cancelButton = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:cancelButton];
+        [alert addAction:deleteButton];
+        [self presentViewController:alert animated:YES completion:nil];
+    };
     [section addFormRow:row];
-    
+    for (XLFormSectionDescriptor *section in form.formSections) {
+        for (XLFormRowDescriptor *row in section.formRows) {
+            [row.cellConfig setObject:[UIColor BTBlackColor] forKey:@"textLabel.textColor"];
+        }
+    }
     self.form = form;
 }
 
 - (IBAction)doneButtonPressed:(UIButton *)sender {
     NSMutableDictionary *result = [NSMutableDictionary dictionary];
     for (XLFormSectionDescriptor *section in self.form.formSections) {
-        for (XLFormRowDescriptor * row in section.formRows) {
+        for (XLFormRowDescriptor *row in section.formRows) {
             if (row.tag && ![row.tag isEqualToString:@""])
                 [result setObject:(row.value ?: [NSNull null]) forKey:row.tag];
         }
@@ -104,6 +130,7 @@
     self.settings.startWeekOnMonday = ![result[@"startWeekOnSunday"] boolValue];
     self.settings.disableSleep = [result[@"disableSleep"] boolValue];
     [self.context save:nil];
+    [self.delegate settingsViewWillDismiss:self];
     [self dismissViewControllerAnimated:YES completion:^{
         
     }];
@@ -125,23 +152,20 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
+#pragma mark - XLForm delegate
+
+-(void)formRowDescriptorValueHasChanged:(XLFormRowDescriptor *)formRow oldValue:(id)oldValue newValue:(id)newValue {
+    if ([formRow.title containsString:@"eight"]) {
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Warning"
+                                                                        message:@"Please be aware that changing your weight units WILL NOT adjust the relative weights of your previous workouts. Instead, they will simply display as the other unit and remain un-converted."
+                                                                 preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil]];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+}
+
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

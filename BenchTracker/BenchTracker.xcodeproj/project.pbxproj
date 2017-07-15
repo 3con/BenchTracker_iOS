@@ -86,6 +86,9 @@
 		F9DA75281F02EE9600347B0D /* BTWorkout+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F9DA751F1F02EE9600347B0D /* BTWorkout+CoreDataClass.m */; };
 		F9DA75291F02EE9600347B0D /* BTWorkout+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F9DA75211F02EE9600347B0D /* BTWorkout+CoreDataProperties.m */; };
 		F9DA75331F02F0B800347B0D /* BTTypeListManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F9DA75321F02F0B800347B0D /* BTTypeListManager.m */; };
+		F9F522F51F195B7200061AF0 /* BTButtonFormCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F522F31F195B7200061AF0 /* BTButtonFormCell.m */; };
+		F9F522F61F195B7200061AF0 /* BTButtonFormCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9F522F41F195B7200061AF0 /* BTButtonFormCell.xib */; };
+		F9F522FA1F19BC0C00061AF0 /* EditExercisesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F522F91F19BC0C00061AF0 /* EditExercisesViewController.m */; };
 		F9FA47261F0B39D700A4AF98 /* WorkoutSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9FA47251F0B39D700A4AF98 /* WorkoutSelectionViewController.m */; };
 		F9FD19E31F141FF300AB3FEE /* ADWorkoutsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9FD19E11F141FF300AB3FEE /* ADWorkoutsViewController.m */; };
 		F9FD19E41F141FF300AB3FEE /* ADWorkoutsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9FD19E21F141FF300AB3FEE /* ADWorkoutsViewController.xib */; };
@@ -253,6 +256,11 @@
 		F9DA75341F02F64D00347B0D /* BenchTrackerKeys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BenchTrackerKeys.h; sourceTree = "<group>"; };
 		F9F442121F0EA96D008D4956 /* AnalyticsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyticsViewController.h; sourceTree = "<group>"; };
 		F9F442131F0EA96D008D4956 /* AnalyticsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyticsViewController.m; sourceTree = "<group>"; };
+		F9F522F21F195B7200061AF0 /* BTButtonFormCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTButtonFormCell.h; sourceTree = "<group>"; };
+		F9F522F31F195B7200061AF0 /* BTButtonFormCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTButtonFormCell.m; sourceTree = "<group>"; };
+		F9F522F41F195B7200061AF0 /* BTButtonFormCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BTButtonFormCell.xib; sourceTree = "<group>"; };
+		F9F522F81F19BC0C00061AF0 /* EditExercisesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditExercisesViewController.h; sourceTree = "<group>"; };
+		F9F522F91F19BC0C00061AF0 /* EditExercisesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditExercisesViewController.m; sourceTree = "<group>"; };
 		F9FA47241F0B39D700A4AF98 /* WorkoutSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkoutSelectionViewController.h; sourceTree = "<group>"; };
 		F9FA47251F0B39D700A4AF98 /* WorkoutSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkoutSelectionViewController.m; sourceTree = "<group>"; };
 		F9FD19E01F141FF300AB3FEE /* ADWorkoutsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADWorkoutsViewController.h; sourceTree = "<group>"; };
@@ -538,6 +546,7 @@
 			children = (
 				F95F5CF41F08B54500A567FA /* SettingsViewController.h */,
 				F95F5CF51F08B54500A567FA /* SettingsViewController.m */,
+				F9F522F71F195B7A00061AF0 /* Button form cell */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -615,6 +624,7 @@
 				F95F93461F03739E00A19C4D /* Workout */,
 				F9418F9F1F04339E0083C3DC /* Add Exercise */,
 				F9418FA91F04A50C0083C3DC /* Exercise */,
+				F9F522FB1F19BC1000061AF0 /* Edit Exercises */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -906,6 +916,25 @@
 			name = "Pass touches view";
 			sourceTree = "<group>";
 		};
+		F9F522F71F195B7A00061AF0 /* Button form cell */ = {
+			isa = PBXGroup;
+			children = (
+				F9F522F21F195B7200061AF0 /* BTButtonFormCell.h */,
+				F9F522F31F195B7200061AF0 /* BTButtonFormCell.m */,
+				F9F522F41F195B7200061AF0 /* BTButtonFormCell.xib */,
+			);
+			name = "Button form cell";
+			sourceTree = "<group>";
+		};
+		F9F522FB1F19BC1000061AF0 /* Edit Exercises */ = {
+			isa = PBXGroup;
+			children = (
+				F9F522F81F19BC0C00061AF0 /* EditExercisesViewController.h */,
+				F9F522F91F19BC0C00061AF0 /* EditExercisesViewController.m */,
+			);
+			name = "Edit Exercises";
+			sourceTree = "<group>";
+		};
 		F9FA47271F0B39DF00A4AF98 /* Workout selection */ = {
 			isa = PBXGroup;
 			children = (
@@ -1061,6 +1090,7 @@
 				F9418FA41F048B1E0083C3DC /* AddExerciseTableViewCell.xib in Resources */,
 				F90712B319415FB1008694E5 /* Main.storyboard in Resources */,
 				F9FD19EA1F14746E00AB3FEE /* ADMuscleSplitViewController.xib in Resources */,
+				F9F522F61F195B7200061AF0 /* BTButtonFormCell.xib in Resources */,
 				F96207721F05DCF200DE2330 /* ExerciseTableViewCell.xib in Resources */,
 				F917BB571F0D2AC400614AB1 /* BTWorkoutPDF.xib in Resources */,
 				F94C893B1F154498006C6BDD /* ADPodiumView.xib in Resources */,
@@ -1199,6 +1229,7 @@
 				F9FD19E31F141FF300AB3FEE /* ADWorkoutsViewController.m in Sources */,
 				F917BB501F0D24E500614AB1 /* BTPDFGenerator.m in Sources */,
 				F917BB601F0DD40200614AB1 /* QRDisplayViewController.m in Sources */,
+				F9F522FA1F19BC0C00061AF0 /* EditExercisesViewController.m in Sources */,
 				F9DA75251F02EE9600347B0D /* BTExercise+CoreDataProperties.m in Sources */,
 				F9640BD81F080E590053C9C0 /* BTSettings+CoreDataClass.m in Sources */,
 				F94C89401F15B68D006C6BDD /* ADMuscleSplitTableViewCell.m in Sources */,
@@ -1207,6 +1238,7 @@
 				F95F933E1F034FA300A19C4D /* LoginViewController.m in Sources */,
 				F9AF067E1F07535C003A2200 /* WorkoutTableViewCell.m in Sources */,
 				F96207711F05DCF200DE2330 /* ExerciseTableViewCell.m in Sources */,
+				F9F522F51F195B7200061AF0 /* BTButtonFormCell.m in Sources */,
 				F97B1CAD1F09F67300B3EEC7 /* ExerciseModel.m in Sources */,
 				F9DA75331F02F0B800347B0D /* BTTypeListManager.m in Sources */,
 				F9418F9E1F0433980083C3DC /* AddExerciseViewController.m in Sources */,

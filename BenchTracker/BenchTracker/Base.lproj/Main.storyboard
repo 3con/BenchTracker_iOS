@@ -62,17 +62,6 @@
                                     <constraint firstAttribute="trailing" secondItem="6qd-uE-Whm" secondAttribute="trailing" constant="10" id="yei-O0-LiC"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w65-mR-3oA">
-                                <rect key="frame" x="163" y="670" width="89" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                <state key="normal" title="Log Out">
-                                    <color key="titleColor" red="0.64724154069999995" green="0.1202409802" blue="0.11418132590000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="logOutButtonPressed:" destination="DUe-Vz-gR3" eventType="touchUpInside" id="9Mf-WE-OUM"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -627,6 +616,71 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5UI-Rh-Fqn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="950.72463768115949" y="-167.11956521739131"/>
+        </scene>
+        <!--Edit Exercises View Controller-->
+        <scene sceneID="Zse-ho-uhB">
+            <objects>
+                <viewController storyboardIdentifier="ee" id="x1n-AM-xPU" customClass="EditExercisesViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kOx-lx-Bfv"/>
+                        <viewControllerLayoutGuide type="bottom" id="wNL-Qa-8nc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="UYM-TA-vwA">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fJx-NX-g40">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="72"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lId-e1-jKx">
+                                        <rect key="frame" x="304" y="28" width="100" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="9be-Gn-qcK"/>
+                                            <constraint firstAttribute="height" constant="30" id="P3G-sP-dwL"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                        <state key="normal" title="Done">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="doneButtonPressed:" destination="DUe-Vz-gR3" eventType="touchUpInside" id="3rc-79-ODz"/>
+                                            <action selector="doneButtonPressed:" destination="yeC-sQ-pzk" eventType="touchUpInside" id="5Sk-85-Oo7"/>
+                                            <action selector="workoutButtonPressed:" destination="BUy-cN-Z34" eventType="touchUpInside" id="cjc-Tp-rcU"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Exercises" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gDt-4I-E9o">
+                                        <rect key="frame" x="117" y="28" width="180" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="BYA-hH-TXH"/>
+                                            <constraint firstAttribute="width" constant="180" id="TY7-NQ-8Rp"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.078297413890000001" green="0.077457226810000002" blue="0.32783538099999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="72" id="8Mp-bR-ogg"/>
+                                    <constraint firstItem="gDt-4I-E9o" firstAttribute="top" secondItem="fJx-NX-g40" secondAttribute="top" constant="28" id="MRq-8l-oe5"/>
+                                    <constraint firstAttribute="trailing" secondItem="lId-e1-jKx" secondAttribute="trailing" constant="10" id="hRJ-ih-h4M"/>
+                                    <constraint firstItem="lId-e1-jKx" firstAttribute="centerY" secondItem="gDt-4I-E9o" secondAttribute="centerY" id="iun-bX-Z3O"/>
+                                    <constraint firstItem="gDt-4I-E9o" firstAttribute="centerX" secondItem="fJx-NX-g40" secondAttribute="centerX" id="s6u-ia-Zjj"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="fJx-NX-g40" firstAttribute="centerX" secondItem="UYM-TA-vwA" secondAttribute="centerX" id="Qrk-yl-Qhl"/>
+                            <constraint firstItem="fJx-NX-g40" firstAttribute="width" secondItem="UYM-TA-vwA" secondAttribute="width" id="d0H-F3-r6N"/>
+                            <constraint firstItem="fJx-NX-g40" firstAttribute="top" secondItem="kOx-lx-Bfv" secondAttribute="bottom" constant="-20" id="s7B-e5-4N4"/>
+                        </constraints>
+                    </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dvp-bi-hU7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="287" y="-1482"/>
         </scene>
         <!--Add Exercise View Controller-->
         <scene sceneID="HhT-q4-mIV">

@@ -35,6 +35,7 @@
         NSDate *today = [self normalizedDateForDate:[NSDate date]];
         NSDateComponents *comp = [[NSCalendar currentCalendar] components:NSCalendarUnitWeekday fromDate:today];
         NSInteger offset = (comp.weekday != 1) ? -(comp.weekday-2) : -6;
+        if (!self.settings.startWeekOnMonday) offset = (comp.weekday != 1) ? -(comp.weekday-1) : 0;
         self.firstDayOfWeek = [today dateByAddingTimeInterval:offset*86400];
     }
     return self;

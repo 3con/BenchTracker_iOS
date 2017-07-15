@@ -50,11 +50,13 @@
     NSDate *today = [self normalizedDateForDate:[NSDate date]];
     NSDateComponents *comp = [[NSCalendar currentCalendar] components:NSCalendarUnitWeekday fromDate:today];
     NSInteger offset = (comp.weekday != 1) ? -(comp.weekday-2) : -6;
+    if (!self.settings.startWeekOnMonday) offset = (comp.weekday != 1) ? -(comp.weekday-1) : 0;
     self.firstDayOfWeekDate = [today dateByAddingTimeInterval:offset*86400];
     NSDate *firstWorkout = [self dateOfFirstWorkout];
     NSDate *firstDate = (!firstWorkout || [firstWorkout compare:self.user.dateCreated] == 1) ? self.user.dateCreated : firstWorkout;
     comp = [[NSCalendar currentCalendar] components:NSCalendarUnitWeekday fromDate:firstDate];
     offset = (comp.weekday != 1) ? -(comp.weekday-2) : -6;
+    if (!self.settings.startWeekOnMonday) offset = (comp.weekday != 1) ? -(comp.weekday-1) : 0;
     NSDate *dayOfFirst = [self normalizedDateForDate:firstDate];
     self.firstDayDate = [dayOfFirst dateByAddingTimeInterval:offset*86400-70*86400];
 }
@@ -79,6 +81,7 @@
     if (self.user) {
         NSDateComponents* comp = [[NSCalendar currentCalendar] components:NSCalendarUnitWeekday fromDate:date];
         NSInteger offset = (comp.weekday != 1) ? -(comp.weekday-2) : -6;
+        if (!self.settings.startWeekOnMonday) offset = (comp.weekday != 1) ? -(comp.weekday-1) : 0;
         NSDate *targetDate = [date dateByAddingTimeInterval:offset*86400];
         [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:
             [targetDate timeIntervalSinceDate:self.firstDayDate]/86400 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];

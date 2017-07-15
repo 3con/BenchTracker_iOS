@@ -103,7 +103,7 @@
     if (!self.user) { //No user in CoreData
         [self presentLoginViewController];
     }
-    [self.userManager setAutoRefresh:YES];
+    [self.userManager setAutoRefresh:NO];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -153,6 +153,7 @@
 }
 
 - (void)setUpCalendarView {
+    self.calendarView.firstWeekday = (self.settings.startWeekOnMonday) ? 2 : 1;
     self.calendarView.delegate = self;
     self.calendarView.dataSource = self;
     self.calendarView.scrollDirection = FSCalendarScrollDirectionVertical;
@@ -491,6 +492,12 @@
 - (void)settingsViewControllerDidRequestUserLogout:(SettingsViewController *)settingsVC {
     self.user = nil;
     [(AppDelegate *)[[UIApplication sharedApplication] delegate] resetCoreData];
+}
+
+- (void)settingsViewWillDismiss:(SettingsViewController *)settingsVC {
+    [self.weekdayView reloadData];
+    self.calendarView.firstWeekday = (self.settings.startWeekOnMonday) ? 2 : 1;
+    [self.calendarView reloadData];
 }
 
 #pragma mark - loginVC delegate
