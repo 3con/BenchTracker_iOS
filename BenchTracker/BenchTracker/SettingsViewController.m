@@ -9,10 +9,14 @@
 #import "SettingsViewController.h"
 #import "BTUserManager.h"
 #import "BTButtonFormCell.h"
+#import "ZFModalTransitionAnimator.h"
+#import "EditExercisesViewController.h"
 
 @interface SettingsViewController ()
 
 @property (weak, nonatomic) IBOutlet UIView *navView;
+
+@property (nonatomic) ZFModalTransitionAnimator *animator;
 
 @property (nonatomic) BTUserManager *userManager;
 @property (nonatomic) BTSettings *settings;
@@ -42,7 +46,6 @@
     section.footerTitle = @"Customize the exercises and variations you can choose from when working out.";
     [form addFormSection:section];
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"editExercises" rowType:XLFormRowDescriptorTypeSelectorPush title:@"Edit exercises"];
-    row.value = nil;
     [section addFormRow:row];
     
     // Section 2: Weight Unit
@@ -76,7 +79,7 @@
     //Share
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"share" rowType:XLFormRowDescriptorTypeButton title:@"Share Bench Tracker"];
     [row.cellConfig setObject:@(NSTextAlignmentNatural) forKey:@"textLabel.textAlignment"];
-    row.action.formBlock = ^(XLFormRowDescriptor * sender){
+    row.action.formBlock = ^(XLFormRowDescriptor *sender){
         NSArray* dataToShare = @[@"Go download Bench Tracker on the iOS App Store! https://itunes.apple.com/app/id1097438761"];
         UIActivityViewController* activityViewController = [[UIActivityViewController alloc] initWithActivityItems:dataToShare
                                                                                              applicationActivities:nil];
@@ -86,7 +89,7 @@
     //Rate
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"rate" rowType:XLFormRowDescriptorTypeButton title:@"Rate Bench Tracker"];
     [row.cellConfig setObject:@(NSTextAlignmentNatural) forKey:@"textLabel.textAlignment"];
-    row.action.formBlock = ^(XLFormRowDescriptor * sender){
+    row.action.formBlock = ^(XLFormRowDescriptor *sender){
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=1097438761&onlyLatestVersion=true&pageNumber=0&sortOrdering=1&type=Purple+Software"]];
     };
     [section addFormRow:row];
@@ -97,7 +100,7 @@
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"reset" rowType:XLFormRowDescriptorTypeBTButton title:@"Reset Data"];
     [row.cellConfig setObject:@(NSTextAlignmentNatural) forKey:@"textLabel.textAlignment"];
     //WARN USER DATA WILL BE DELETED, SUGGEST DOWNLOADING DATA
-    row.action.formBlock = ^(XLFormRowDescriptor * sender){
+    row.action.formBlock = ^(XLFormRowDescriptor *sender){
         UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Reset Data"
                                                                         message:@"Are you sure you want to reset your accout? You will lose all you hard work! This action cannot be undone."
                                                                  preferredStyle:UIAlertControllerStyleAlert];
@@ -164,8 +167,31 @@
     }
 }
 
+- (void)didSelectFormRow:(XLFormRowDescriptor *)formRow {
+    if ([formRow.tag isEqualToString:@"editExercises"])
+        [self presentEditExercisesViewController];
+}
+
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
+}
+
+#pragma mark - view handling
+
+- (void)presentEditExercisesViewController {
+    EditExercisesViewController *eeVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ee"];
+    //eeVC.delegate = self;
+    eeVC.context = self.context;
+    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:eeVC];
+    self.animator.bounces = NO;
+    self.animator.dragable = YES;
+    self.animator.behindViewAlpha = 0.6;
+    self.animator.behindViewScale = 1.0;
+    self.animator.transitionDuration = 0.35;
+    self.animator.direction = ZFModalTransitonDirectionRight;
+    eeVC.transitioningDelegate = self.animator;
+    eeVC.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self presentViewController:eeVC animated:YES completion:nil];
 }
 
 @end

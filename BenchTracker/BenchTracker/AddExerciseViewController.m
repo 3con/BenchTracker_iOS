@@ -11,6 +11,7 @@
 #import "BTSettings+CoreDataClass.h"
 #import "AddExerciseTableViewCell.h"
 #import "ZFModalTransitionAnimator.h"
+#import "EditExercisesViewController.h"
 
 @interface AddExerciseViewController ()
 
@@ -97,6 +98,10 @@
 
 - (IBAction)cancelButtonPressed:(UIButton *)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)editButtonPressed:(UIButton *)sender {
+    [self presentEditExercisesViewController];
 }
 
 - (IBAction)supersetButtonPressed:(UIButton *)sender {
@@ -336,6 +341,22 @@
     isVC.transitioningDelegate = self.animator;
     isVC.modalPresentationStyle = UIModalPresentationCustom;
     [self presentViewController:isVC animated:YES completion:nil];
+}
+
+- (void)presentEditExercisesViewController {
+    EditExercisesViewController *eeVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ee"];
+    //eeVC.delegate = self;
+    eeVC.context = self.context;
+    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:eeVC];
+    self.animator.dragable = NO;
+    self.animator.bounces = YES;
+    self.animator.behindViewAlpha = 0.8;
+    self.animator.behindViewScale = 0.92;
+    self.animator.transitionDuration = 0.5;
+    self.animator.direction = ZFModalTransitonDirectionBottom;
+    eeVC.transitioningDelegate = self.animator;
+    eeVC.modalPresentationStyle = UIModalPresentationCustom;
+    [self presentViewController:eeVC animated:YES completion:nil];
 }
 
 #pragma mark - fetchedResultsController delegate

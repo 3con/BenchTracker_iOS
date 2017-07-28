@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		50636F2A1F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50636F281F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.m */; };
+		50636F2B1F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50636F291F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.xib */; };
+		50636F2F1F2B9E0D00FB65B4 /* EEDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50636F2E1F2B9E0D00FB65B4 /* EEDetailViewController.m */; };
 		6FF44576CFF404C6C4707802 /* Pods_BenchTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C83D3A0EA46ECDF1788C990 /* Pods_BenchTracker.framework */; };
 		F77B8D13565A4E6664DC71A8 /* Pods_BenchTrackerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40B18DFBDA158AF111B21958 /* Pods_BenchTrackerTests.framework */; };
 		F90712A719415FB1008694E5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F90712A619415FB1008694E5 /* main.m */; };
@@ -115,6 +118,11 @@
 		2C3B197020A386DB147CEDEE /* Pods-BenchTrackerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BenchTrackerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BenchTrackerTests/Pods-BenchTrackerTests.release.xcconfig"; sourceTree = "<group>"; };
 		2C83D3A0EA46ECDF1788C990 /* Pods_BenchTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BenchTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		40B18DFBDA158AF111B21958 /* Pods_BenchTrackerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BenchTrackerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		50636F271F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EEExerciseTypeTableViewCell.h; sourceTree = "<group>"; };
+		50636F281F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EEExerciseTypeTableViewCell.m; sourceTree = "<group>"; };
+		50636F291F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EEExerciseTypeTableViewCell.xib; sourceTree = "<group>"; };
+		50636F2D1F2B9E0D00FB65B4 /* EEDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EEDetailViewController.h; sourceTree = "<group>"; };
+		50636F2E1F2B9E0D00FB65B4 /* EEDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EEDetailViewController.m; sourceTree = "<group>"; };
 		791833EF2E04B86CA95AD6B3 /* Pods-BenchTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BenchTracker.release.xcconfig"; path = "Pods/Target Support Files/Pods-BenchTracker/Pods-BenchTracker.release.xcconfig"; sourceTree = "<group>"; };
 		EABA566C7706F85FACB19B97 /* Pods-BenchTrackerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BenchTrackerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BenchTrackerTests/Pods-BenchTrackerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F90712A119415FB0008694E5 /* BenchTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BenchTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -306,6 +314,25 @@
 				2C3B197020A386DB147CEDEE /* Pods-BenchTrackerTests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		50636F2C1F2B9C0200FB65B4 /* Exercise type cell */ = {
+			isa = PBXGroup;
+			children = (
+				50636F271F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.h */,
+				50636F281F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.m */,
+				50636F291F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.xib */,
+			);
+			name = "Exercise type cell";
+			sourceTree = "<group>";
+		};
+		50636F301F2B9E1200FB65B4 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				50636F2D1F2B9E0D00FB65B4 /* EEDetailViewController.h */,
+				50636F2E1F2B9E0D00FB65B4 /* EEDetailViewController.m */,
+			);
+			name = Detail;
 			sourceTree = "<group>";
 		};
 		B57455EDB36A13EE7AEA1ED6 /* Frameworks */ = {
@@ -931,6 +958,8 @@
 			children = (
 				F9F522F81F19BC0C00061AF0 /* EditExercisesViewController.h */,
 				F9F522F91F19BC0C00061AF0 /* EditExercisesViewController.m */,
+				50636F301F2B9E1200FB65B4 /* Detail */,
+				50636F2C1F2B9C0200FB65B4 /* Exercise type cell */,
 			);
 			name = "Edit Exercises";
 			sourceTree = "<group>";
@@ -1083,6 +1112,7 @@
 				F97B1CA31F09759000B3EEC7 /* WeekdayTableViewCell.xib in Resources */,
 				F981D5891F022D9A00E7B456 /* LaunchScreen.xib in Resources */,
 				F927D1551F0C9DDB0004CF3A /* IterationTableViewCell.xib in Resources */,
+				50636F2B1F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.xib in Resources */,
 				F97B1CAA1F097DA600B3EEC7 /* WeekdayView.xib in Resources */,
 				F9FD19F01F14748800AB3FEE /* ADExercisesViewController.xib in Resources */,
 				F9B27CE61F117852008FCC7F /* AnalyticsCollectionViewCell.xib in Resources */,
@@ -1232,6 +1262,7 @@
 				F9F522FA1F19BC0C00061AF0 /* EditExercisesViewController.m in Sources */,
 				F9DA75251F02EE9600347B0D /* BTExercise+CoreDataProperties.m in Sources */,
 				F9640BD81F080E590053C9C0 /* BTSettings+CoreDataClass.m in Sources */,
+				50636F2A1F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.m in Sources */,
 				F94C89401F15B68D006C6BDD /* ADMuscleSplitTableViewCell.m in Sources */,
 				F9FD19EF1F14748800AB3FEE /* ADExercisesViewController.m in Sources */,
 				F94C89391F15448C006C6BDD /* ADPodiumView.m in Sources */,
@@ -1249,6 +1280,7 @@
 				F9A549431F13065000743897 /* BTAnalyticsLineChart.m in Sources */,
 				F917BB5A1F0DA6AB00614AB1 /* BTJSONWorkout.m in Sources */,
 				F97B1CA71F097D8A00B3EEC7 /* WeekdayView.m in Sources */,
+				50636F2F1F2B9E0D00FB65B4 /* EEDetailViewController.m in Sources */,
 				F9DA75111F02DC1700347B0D /* BTDataModel.xcdatamodeld in Sources */,
 				F927D14F1F0C9BD70004CF3A /* IterationSelectionViewController.m in Sources */,
 				F94C89451F15D5B6006C6BDD /* BT1RMCalculator.m in Sources */,

@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import "EEDetailViewController.h"
 
-@interface EditExercisesViewController : UIViewController
+@interface EditExercisesViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, UISearchBarDelegate, EEDetailViewControllerDelegate>
+
+@property (nonatomic) NSManagedObjectContext *context;
 
 @end

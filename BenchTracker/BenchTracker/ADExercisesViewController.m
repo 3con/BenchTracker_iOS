@@ -36,12 +36,12 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.separatorColor = [UIColor clearColor];
+    [self loadSearchBar];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.titleString = @"Choose an Exercise";
-    [self loadSearchBar];
     NSError *error;
     if (![[self fetchedResultsController] performFetch:&error]) {
         NSLog(@"Main fetch error: %@, %@", error, [error userInfo]);
@@ -183,6 +183,7 @@
 - (void)presentExerciseDetailViewControllerWithType:(BTExerciseType *)type {
     ADExercisesDetailViewController *adedVC = [[NSBundle mainBundle] loadNibNamed:@"ADExercisesDetailViewController"
                                                                             owner:self options:nil].firstObject;
+    adedVC.settings = self.settings;
     adedVC.context = self.context;
     adedVC.color = self.color;
     adedVC.titleString = type.name;
