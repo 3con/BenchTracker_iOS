@@ -33,7 +33,7 @@
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="button" destination="m5P-Hg-j2j" id="25f-Zu-vkr"/>
+                <outlet property="label" destination="m5P-Hg-j2j" id="VLe-fO-PVk"/>
             </connections>
         </view>
     </objects>

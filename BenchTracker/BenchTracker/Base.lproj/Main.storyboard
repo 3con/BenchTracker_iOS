@@ -636,7 +636,7 @@
                                             <constraint firstAttribute="height" constant="30" id="P3G-sP-dwL"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                                        <state key="normal" title="Back">
+                                        <state key="normal" title="Done">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -727,11 +727,11 @@
                                             <constraint firstAttribute="height" constant="30" id="lTX-YO-uQT"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                                        <state key="normal" title="Back">
+                                        <state key="normal" title="Cancel">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="backButtonPressed:" destination="saa-z8-dmv" eventType="touchUpInside" id="gim-cm-fgs"/>
+                                            <action selector="cancelButtonPressed:" destination="saa-z8-dmv" eventType="touchUpInside" id="MKq-C0-CPg"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Exercise" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oQJ-af-gST">
@@ -744,12 +744,28 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eMg-zl-wCl">
+                                        <rect key="frame" x="304" y="28" width="100" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="KRq-0i-bjx"/>
+                                            <constraint firstAttribute="height" constant="30" id="zsv-vo-uHv"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                        <state key="normal" title="Save">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="saveButtonPressed:" destination="saa-z8-dmv" eventType="touchUpInside" id="wMH-sA-Ylv"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.078297413890000001" green="0.077457226810000002" blue="0.32783538099999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstItem="eMg-zl-wCl" firstAttribute="centerY" secondItem="oQJ-af-gST" secondAttribute="centerY" id="5yu-ir-re3"/>
                                     <constraint firstItem="BQm-T7-8Vs" firstAttribute="leading" secondItem="GQy-IM-r96" secondAttribute="leading" constant="10" id="Dft-sR-5BF"/>
                                     <constraint firstAttribute="height" constant="72" id="Ice-fs-sJP"/>
                                     <constraint firstItem="oQJ-af-gST" firstAttribute="top" secondItem="GQy-IM-r96" secondAttribute="top" constant="28" id="LSv-Ui-ViV"/>
+                                    <constraint firstAttribute="trailing" secondItem="eMg-zl-wCl" secondAttribute="trailing" constant="10" id="edv-cq-1Nv"/>
                                     <constraint firstItem="oQJ-af-gST" firstAttribute="centerX" secondItem="GQy-IM-r96" secondAttribute="centerX" id="oVL-aX-SV7"/>
                                     <constraint firstItem="BQm-T7-8Vs" firstAttribute="centerY" secondItem="oQJ-af-gST" secondAttribute="centerY" id="rih-Vz-ryx"/>
                                 </constraints>
@@ -764,6 +780,7 @@
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
+                        <outlet property="navLabel" destination="oQJ-af-gST" id="gFR-Dt-DkG"/>
                         <outlet property="navView" destination="GQy-IM-r96" id="T2m-3J-kgX"/>
                     </connections>
                 </viewController>

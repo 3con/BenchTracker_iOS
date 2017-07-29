@@ -12,6 +12,7 @@
 
 @interface EEDetailViewController ()
 
+@property (weak, nonatomic) IBOutlet UILabel *navLabel;
 @property (weak, nonatomic) IBOutlet UIView *navView;
 
 @end
@@ -26,17 +27,9 @@
     self.tableView.contentInset = UIEdgeInsetsMake(72, 0, 0, 0);
 }
 
-- (IBAction)backButtonPressed:(UIButton *)sender {
-    NSMutableDictionary *result = [NSMutableDictionary dictionary];
-    for (XLFormSectionDescriptor *section in self.form.formSections) {
-        for (XLFormRowDescriptor *row in section.formRows) {
-            if (row.tag && ![row.tag isEqualToString:@""])
-                [result setObject:(row.value ?: [NSNull null]) forKey:row.tag];
-        }
-    }
-    //self.settings.weightInLbs = ![result[@"weightInKg"] boolValue];
-    [self.delegate editExerciseDetailViewControllerWillDismiss:self];
-    [self dismissViewControllerAnimated:YES completion:nil];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.navLabel.text = (self.type) ? @"Edit Exercise" : @"New Exercise";
 }
 
 - (void)loadForm {
@@ -59,7 +52,7 @@
     section.footerTitle = @"The primary style / muscle this exercise works.";
     [form addFormSection:section];
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"category" rowType:XLFormRowDescriptorTypeSelectorPickerView title:@"Category"];
-    row.value = (self.type) ? self.type.category : @"Cardio";
+    row.value = (self.type) ? self.type.category : @"Abs / Core";
     row.selectorOptions = @[@"Abs / Core", @"Back", @"Biceps", @"Cardio", @"Chest", @"Legs", @"Olympic", @"Shoulders", @"Triceps"];
     [section addFormRow:row];
     
@@ -81,11 +74,13 @@
     section.footerTitle = @"Specify the possible variations in which the exercise can be performed to track them individually.";
     section.multivaluedTag = @"variations";
     section.multivaluedAddButton.title = @"Add a variation";
-    [section.multivaluedRowTemplate.cellConfig setObject:[UIColor BTBlackColor] forKey:@"textLabel.textColor"];
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:nil rowType:XLFormRowDescriptorTypeText title:nil];
+    [row.cellConfig setObject:[UIColor BTBlackColor] forKey:@"textLabel.textColor"];
+    [row.cellConfig setObject:@"Varitaion name" forKey:@"textField.placeholder"];
+    section.multivaluedRowTemplate = row;
     if (self.type) {
         for (NSString *varitaion in [NSKeyedUnarchiver unarchiveObjectWithData:self.type.iterations]) {
-            row = [XLFormRowDescriptor formRowDescriptorWithTag:nil rowType:XLFormRowDescriptorTypeText title:nil];
-            [[row cellConfig] setObject:@"Varitaion name" forKey:@"textField.placeholder"];
+            row = [section.multivaluedRowTemplate copy];
             row.value = varitaion;
             [section addFormRow:row];
         }
@@ -93,33 +88,50 @@
     [form addFormSection:section];
     
     // Section 5: Delete
-    section = [XLFormSectionDescriptor formSection];
-    [form addFormSection:section];
-    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"delete" rowType:XLFormRowDescriptorTypeBTButton title:@"Delete Exercise"];
-    [row.cellConfig setObject:@(NSTextAlignmentNatural) forKey:@"textLabel.textAlignment"];
-    row.action.formBlock = ^(XLFormRowDescriptor *sender){
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Delete Exercise"
-                                                                        message:@"Are you sure you want to delete this exercise? You will no longer be able to see your progress for this exercise. This action can be undone but it is not easy."
-                                                                 preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *deleteButton = [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self dismissViewControllerAnimated:YES completion:nil];
-            });
-        }];
-        UIAlertAction *cancelButton = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
-        [alert addAction:cancelButton];
-        [alert addAction:deleteButton];
-        [self presentViewController:alert animated:YES completion:nil];
-    };
-    [section addFormRow:row];
+    if (self.type) {
+        section = [XLFormSectionDescriptor formSection];
+        [form addFormSection:section];
+        row = [XLFormRowDescriptor formRowDescriptorWithTag:@"delete" rowType:XLFormRowDescriptorTypeBTButton title:@"Delete Exercise"];
+        [section addFormRow:row];
+    }
     
     for (XLFormSectionDescriptor *section in form.formSections) {
         for (XLFormRowDescriptor *row in section.formRows) {
             [row.cellConfig setObject:[UIColor BTBlackColor] forKey:@"textLabel.textColor"];
-            [row.cellConfig setObject:@(UITableViewCellSelectionStyleNone) forKey:@"selectionStyle"];
             [row.cellConfig setObject:[UIColor BTSecondaryColor] forKey:@"tintColor"];
     }   }
     self.form = form;
+}
+
+- (IBAction)saveButtonPressed:(UIButton *)sender {
+    NSMutableDictionary *result = [NSMutableDictionary dictionary];
+    for (XLFormSectionDescriptor *section in self.form.formSections) {
+        if ([section.multivaluedTag isEqualToString:@"variations"]) {
+            NSMutableArray *vals = [NSMutableArray array];
+            for (XLFormRowDescriptor *row in section.formRows)
+                if (row.value) [vals addObject:row.value];
+            result[@"variations"] = vals;
+        }
+        else {
+            for (XLFormRowDescriptor *row in section.formRows) {
+                if (row.tag && ![row.tag isEqualToString:@""])
+                    [result setObject:(row.value ?: [NSNull null]) forKey:row.tag];
+            }
+        }
+    }
+    if (!self.type) self.type = [NSEntityDescription insertNewObjectForEntityForName:@"BTExerciseType" inManagedObjectContext:self.context];
+    self.type.name = ([result[@"name"] length] > 0) ? result[@"name"] : @"Untitled Exercise";
+    self.type.category = result[@"category"];
+    self.type.style = result[@"style"];
+    self.type.iterations = [NSKeyedArchiver archivedDataWithRootObject:result[@"variations"]];
+    [self.context save:nil];
+    [self.delegate editExerciseDetailViewControllerWillDismiss:self];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)cancelButtonPressed:(UIButton *)sender {
+    [self.delegate editExerciseDetailViewControllerWillDismiss:self];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - XLForm delegate
@@ -129,7 +141,24 @@
 }
 
 - (void)didSelectFormRow:(XLFormRowDescriptor *)formRow {
-   
+    if ([formRow.tag isEqualToString:@"delete"]) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Delete Exercise"
+                                                                       message:@"Are you sure you want to delete this exercise? You will no longer be able to see your progress for this exercise. This action can be undone but it is not easy."
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *deleteButton = [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.context deleteObject:self.type];
+                [self.context save:nil];
+                [self.delegate editExerciseDetailViewControllerWillDismiss:self];
+                [self dismissViewControllerAnimated:YES completion:nil];
+            });
+        }];
+        UIAlertAction *cancelButton = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:cancelButton];
+        [alert addAction:deleteButton];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {

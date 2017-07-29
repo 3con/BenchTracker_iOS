@@ -46,7 +46,7 @@
     [super viewWillAppear:animated];
     NSError *error;
     if (![[self fetchedResultsController] performFetch:&error]) {
-        NSLog(@"Main fetch error: %@, %@", error, [error userInfo]);
+        NSLog(@"EE fetch error: %@, %@", error, [error userInfo]);
     }
     self.exerciseTypeColors = [NSKeyedUnarchiver unarchiveObjectWithData:[BTSettings sharedInstance].exerciseTypeColors];
 }
@@ -129,7 +129,7 @@
 #pragma mark - tableView dataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [_fetchedResultsController sections].count;
+    return _fetchedResultsController.sections.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -148,21 +148,12 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[_fetchedResultsController sections] objectAtIndex:section].numberOfObjects;
+    return _fetchedResultsController.sections[section].numberOfObjects;
 }
 
 - (void)configureCell:(EEExerciseTypeTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     BTExerciseType *type = self.fetchedResultsController.sections[indexPath.section].objects[indexPath.row];
     [cell loadWithName:type.name];
-}
-
-- (NSInteger)numberOfExercisesForType:(BTExerciseType *)type {
-    if (!self.cachedFetchRequest) {
-        self.cachedFetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"BTExercise"];
-        self.cachedFetchRequest.fetchBatchSize = 11;
-    }
-    self.cachedFetchRequest.predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"name == '%@'",type.name]];
-    return [self.context executeFetchRequest:self.cachedFetchRequest error:nil].count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -191,6 +182,7 @@
 - (void)presentExerciseDetailViewControllerWithType:(BTExerciseType *)type {
     EEDetailViewController *eedVC = [self.storyboard instantiateViewControllerWithIdentifier:@"eed"];
     eedVC.delegate = self;
+    eedVC.context = self.context;
     eedVC.type = type;
     self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:eedVC];
     self.animator.bounces = NO;
@@ -206,11 +198,7 @@
 
 #pragma mark - eedVC delegate
 
-- (void)editExerciseDetailViewController:(EEDetailViewController *)eedVC willDismissWithResultExerciseType:(BTExerciseType *)type {
-    
-}
-
-- (void)editExerciseDetailViewController:(EEDetailViewController *)eedVC willDismissWithDeletedExerciseType:(BTExerciseType *)type {
+- (void)editExerciseDetailViewControllerWillDismiss:(EEDetailViewController *)eedVC {
     
 }
 
@@ -223,14 +211,14 @@
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
     UITableView *tableView = self.tableView;
     switch(type) {
+        case NSFetchedResultsChangeUpdate:
+            [self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+            break;
         case NSFetchedResultsChangeInsert:
             [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
         case NSFetchedResultsChangeDelete:
             [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-        case NSFetchedResultsChangeUpdate:
-            [self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
             break;
         case NSFetchedResultsChangeMove:
             [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
@@ -250,6 +238,10 @@
         case NSFetchedResultsChangeUpdate: break;
         case NSFetchedResultsChangeMove: break;
     }
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+    [self.tableView endUpdates];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {

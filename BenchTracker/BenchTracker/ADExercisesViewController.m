@@ -36,7 +36,6 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.separatorColor = [UIColor clearColor];
-    [self loadSearchBar];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -47,6 +46,7 @@
         NSLog(@"Main fetch error: %@, %@", error, [error userInfo]);
     }
     self.exerciseTypeColors = [NSKeyedUnarchiver unarchiveObjectWithData:self.settings.exerciseTypeColors];
+    [self loadSearchBar];
 }
 
 - (void)loadSearchBar {
@@ -235,6 +235,10 @@
         case NSFetchedResultsChangeUpdate: break;
         case NSFetchedResultsChangeMove: break;
     }
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+    [self.tableView endUpdates];
 }
 
 @end

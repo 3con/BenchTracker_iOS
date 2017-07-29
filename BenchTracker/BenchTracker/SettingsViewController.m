@@ -79,19 +79,10 @@
     //Share
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"share" rowType:XLFormRowDescriptorTypeButton title:@"Share Bench Tracker"];
     [row.cellConfig setObject:@(NSTextAlignmentNatural) forKey:@"textLabel.textAlignment"];
-    row.action.formBlock = ^(XLFormRowDescriptor *sender){
-        NSArray* dataToShare = @[@"Go download Bench Tracker on the iOS App Store! https://itunes.apple.com/app/id1097438761"];
-        UIActivityViewController* activityViewController = [[UIActivityViewController alloc] initWithActivityItems:dataToShare
-                                                                                             applicationActivities:nil];
-        [self presentViewController:activityViewController animated:YES completion:^{}];
-    };
     [section addFormRow:row];
     //Rate
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"rate" rowType:XLFormRowDescriptorTypeButton title:@"Rate Bench Tracker"];
     [row.cellConfig setObject:@(NSTextAlignmentNatural) forKey:@"textLabel.textAlignment"];
-    row.action.formBlock = ^(XLFormRowDescriptor *sender){
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=1097438761&onlyLatestVersion=true&pageNumber=0&sortOrdering=1&type=Purple+Software"]];
-    };
     [section addFormRow:row];
     
     // Section 6: Reset data
@@ -99,19 +90,6 @@
     [form addFormSection:section];
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"reset" rowType:XLFormRowDescriptorTypeBTButton title:@"Reset Data"];
     [row.cellConfig setObject:@(NSTextAlignmentNatural) forKey:@"textLabel.textAlignment"];
-    //WARN USER DATA WILL BE DELETED, SUGGEST DOWNLOADING DATA
-    row.action.formBlock = ^(XLFormRowDescriptor *sender){
-        UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Reset Data"
-                                                                        message:@"Are you sure you want to reset your accout? You will lose all you hard work! This action cannot be undone."
-                                                                 preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction* deleteButton = [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
-            dispatch_async(dispatch_get_main_queue(), ^{ [self logOutButtonPressed:nil]; });
-        }];
-        UIAlertAction* cancelButton = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
-        [alert addAction:cancelButton];
-        [alert addAction:deleteButton];
-        [self presentViewController:alert animated:YES completion:nil];
-    };
     [section addFormRow:row];
     
     for (XLFormSectionDescriptor *section in form.formSections) {
@@ -169,12 +147,29 @@
 }
 
 - (void)didSelectFormRow:(XLFormRowDescriptor *)formRow {
-    if ([formRow.tag isEqualToString:@"editExercises"])
-        [self presentEditExercisesViewController];
-}
-
-- (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
+    if ([formRow.tag isEqualToString:@"editExercises"]) [self presentEditExercisesViewController];
+    else if ([formRow.tag isEqualToString:@"share"]) {
+        NSArray* dataToShare = @[@"Go download Bench Tracker on the iOS App Store! https://itunes.apple.com/app/id1097438761"];
+        UIActivityViewController* activityViewController = [[UIActivityViewController alloc] initWithActivityItems:dataToShare
+                                                                                             applicationActivities:nil];
+        [self presentViewController:activityViewController animated:YES completion:nil];
+    }
+    else if ([formRow.tag isEqualToString:@"rate"])
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=1097438761&onlyLatestVersion=true&pageNumber=0&sortOrdering=1&type=Purple+Software"]];
+    else if ([formRow.tag isEqualToString:@"reset"]) {
+        //WARN USER DATA WILL BE DELETED, SUGGEST DOWNLOADING DATA
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Reset Data"
+                                                                        message:@"Are you sure you want to reset your accout? You will lose all you hard work! This action cannot be undone."
+                                                                 preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* deleteButton = [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
+            dispatch_async(dispatch_get_main_queue(), ^{ [self logOutButtonPressed:nil]; });
+        }];
+        UIAlertAction* cancelButton = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:cancelButton];
+        [alert addAction:deleteButton];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
 }
 
 #pragma mark - view handling
@@ -193,6 +188,10 @@
     eeVC.transitioningDelegate = self.animator;
     eeVC.modalPresentationStyle = UIModalPresentationFullScreen;
     [self presentViewController:eeVC animated:YES completion:nil];
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 @end

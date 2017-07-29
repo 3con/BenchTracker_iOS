@@ -29,7 +29,7 @@
 NSString * const XLFormRowDescriptorTypeBTButton = @"XLFormRowDescriptorTypeBTButton";
 
 @interface BTButtonFormCell ()
-@property (weak, nonatomic) IBOutlet UILabel *button;
+@property (weak, nonatomic) IBOutlet UILabel *label;
 @end
 
 @implementation BTButtonFormCell
@@ -52,7 +52,7 @@ NSString * const XLFormRowDescriptorTypeBTButton = @"XLFormRowDescriptorTypeBTBu
 
 -(void)update {
     [super update];
-    self.button.text = self.rowDescriptor.title;
+    self.label.text = self.rowDescriptor.title;
 }
 
 
