@@ -7,18 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "XLForm.h"
 #import "BTExerciseType+CoreDataClass.h"
 
 @class EEDetailViewController;
 
 @protocol EEDetailViewControllerDelegate <NSObject>
-- (void)editExerciseDetailViewController:(EEDetailViewController *)eedVC willDismissWithResultExerciseType:(BTExerciseType *)type;
-- (void)editExerciseDetailViewController:(EEDetailViewController *)eedVC willDismissWithDeletedExerciseType:(BTExerciseType *)type;
+- (void)editExerciseDetailViewControllerWillDismiss:(EEDetailViewController *)eedVC;
 @end
 
-@interface EEDetailViewController : UIViewController
+@interface EEDetailViewController : XLFormViewController <XLFormDescriptorDelegate>
 
 @property (nonatomic) id<EEDetailViewControllerDelegate> delegate;
+
+@property (nonatomic) NSManagedObjectContext *context;
 
 @property (nonatomic) BTExerciseType *type;
 

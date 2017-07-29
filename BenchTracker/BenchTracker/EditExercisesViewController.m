@@ -68,6 +68,10 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (IBAction)newButtonPressed:(UIButton *)sender {
+    [self presentExerciseDetailViewControllerWithType:nil];
+}
+
 #pragma mark - fetchedResultsController
 
 - (NSFetchedResultsController *)fetchedResultsController {
@@ -190,7 +194,7 @@
     eedVC.type = type;
     self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:eedVC];
     self.animator.bounces = NO;
-    self.animator.dragable = YES;
+    self.animator.dragable = NO;
     self.animator.behindViewAlpha = 0.6;
     self.animator.behindViewScale = 1.0;
     self.animator.transitionDuration = 0.35;

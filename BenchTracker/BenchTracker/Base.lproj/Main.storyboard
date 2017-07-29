@@ -39,7 +39,6 @@
                                         </state>
                                         <connections>
                                             <action selector="doneButtonPressed:" destination="DUe-Vz-gR3" eventType="touchUpInside" id="aud-FS-sXn"/>
-                                            <action selector="workoutButtonPressed:" destination="BUy-cN-Z34" eventType="touchUpInside" id="hed-JW-Zw1"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ML-2s-rPl">
@@ -105,9 +104,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="doneButtonPressed:" destination="DUe-Vz-gR3" eventType="touchUpInside" id="MM8-hO-taI"/>
                                             <action selector="doneButtonPressed:" destination="yeC-sQ-pzk" eventType="touchUpInside" id="oLc-De-tD4"/>
-                                            <action selector="workoutButtonPressed:" destination="BUy-cN-Z34" eventType="touchUpInside" id="e5z-cF-kSq"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Analytics" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qsx-Sk-HQ8">
@@ -643,10 +640,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="doneButtonPressed:" destination="DUe-Vz-gR3" eventType="touchUpInside" id="3rc-79-ODz"/>
-                                            <action selector="doneButtonPressed:" destination="yeC-sQ-pzk" eventType="touchUpInside" id="5Sk-85-Oo7"/>
                                             <action selector="editButtonPressed:" destination="x1n-AM-xPU" eventType="touchUpInside" id="EHV-YY-RBx"/>
-                                            <action selector="workoutButtonPressed:" destination="BUy-cN-Z34" eventType="touchUpInside" id="cjc-Tp-rcU"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Exercises" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gDt-4I-E9o">
@@ -659,11 +653,27 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lHr-LD-bYj">
+                                        <rect key="frame" x="304" y="28" width="100" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="KGL-Rk-oSF"/>
+                                            <constraint firstAttribute="height" constant="30" id="Uxt-PX-GM0"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                        <state key="normal" title="New">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="newButtonPressed:" destination="x1n-AM-xPU" eventType="touchUpInside" id="6j1-WC-dV7"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.078297413890000001" green="0.077457226810000002" blue="0.32783538099999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="72" id="8Mp-bR-ogg"/>
                                     <constraint firstItem="gDt-4I-E9o" firstAttribute="top" secondItem="fJx-NX-g40" secondAttribute="top" constant="28" id="MRq-8l-oe5"/>
+                                    <constraint firstItem="lHr-LD-bYj" firstAttribute="centerY" secondItem="gDt-4I-E9o" secondAttribute="centerY" id="TkD-NR-qfE"/>
+                                    <constraint firstAttribute="trailing" secondItem="lHr-LD-bYj" secondAttribute="trailing" constant="10" id="Zuv-Gv-O6Y"/>
                                     <constraint firstItem="lId-e1-jKx" firstAttribute="centerY" secondItem="gDt-4I-E9o" secondAttribute="centerY" id="iun-bX-Z3O"/>
                                     <constraint firstItem="lId-e1-jKx" firstAttribute="leading" secondItem="fJx-NX-g40" secondAttribute="leading" constant="10" id="qfB-33-RZz"/>
                                     <constraint firstItem="gDt-4I-E9o" firstAttribute="centerX" secondItem="fJx-NX-g40" secondAttribute="centerX" id="s6u-ia-Zjj"/>
@@ -722,13 +732,9 @@
                                         </state>
                                         <connections>
                                             <action selector="backButtonPressed:" destination="saa-z8-dmv" eventType="touchUpInside" id="gim-cm-fgs"/>
-                                            <action selector="doneButtonPressed:" destination="yeC-sQ-pzk" eventType="touchUpInside" id="38d-kB-pdy"/>
-                                            <action selector="doneButtonPressed:" destination="DUe-Vz-gR3" eventType="touchUpInside" id="A9P-8b-NPi"/>
-                                            <action selector="editButtonPressed:" destination="x1n-AM-xPU" eventType="touchUpInside" id="8Lb-u6-aPw"/>
-                                            <action selector="workoutButtonPressed:" destination="BUy-cN-Z34" eventType="touchUpInside" id="e5e-9c-j3I"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bench Press" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oQJ-af-gST">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Exercise" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oQJ-af-gST">
                                         <rect key="frame" x="117" y="28" width="180" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="5yh-48-fHR"/>

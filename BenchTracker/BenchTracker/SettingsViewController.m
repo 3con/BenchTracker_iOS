@@ -113,6 +113,7 @@
         [self presentViewController:alert animated:YES completion:nil];
     };
     [section addFormRow:row];
+    
     for (XLFormSectionDescriptor *section in form.formSections) {
         for (XLFormRowDescriptor *row in section.formRows) {
             [row.cellConfig setObject:[UIColor BTBlackColor] forKey:@"textLabel.textColor"];
@@ -184,7 +185,7 @@
     eeVC.context = self.context;
     self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:eeVC];
     self.animator.bounces = NO;
-    self.animator.dragable = YES;
+    self.animator.dragable = NO;
     self.animator.behindViewAlpha = 0.6;
     self.animator.behindViewScale = 1.0;
     self.animator.transitionDuration = 0.35;

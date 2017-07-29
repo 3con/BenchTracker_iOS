@@ -201,7 +201,7 @@
     adVC.titleString = cell.titleLabel.text;
     self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:adVC];
     self.animator.bounces = NO;
-    self.animator.dragable = YES;
+    self.animator.dragable = NO;
     self.animator.behindViewAlpha = 0.6;
     self.animator.behindViewScale = 1.0;
     self.animator.transitionDuration = 0.35;

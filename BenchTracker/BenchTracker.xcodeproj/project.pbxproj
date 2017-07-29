@@ -10,6 +10,7 @@
 		50636F2A1F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50636F281F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.m */; };
 		50636F2B1F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50636F291F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.xib */; };
 		50636F2F1F2B9E0D00FB65B4 /* EEDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50636F2E1F2B9E0D00FB65B4 /* EEDetailViewController.m */; };
+		50636F331F2C37B000FB65B4 /* BTExerciseTypeStyleTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 50636F321F2C37B000FB65B4 /* BTExerciseTypeStyleTransformer.m */; };
 		6FF44576CFF404C6C4707802 /* Pods_BenchTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C83D3A0EA46ECDF1788C990 /* Pods_BenchTracker.framework */; };
 		F77B8D13565A4E6664DC71A8 /* Pods_BenchTrackerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40B18DFBDA158AF111B21958 /* Pods_BenchTrackerTests.framework */; };
 		F90712A719415FB1008694E5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F90712A619415FB1008694E5 /* main.m */; };
@@ -123,6 +124,8 @@
 		50636F291F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EEExerciseTypeTableViewCell.xib; sourceTree = "<group>"; };
 		50636F2D1F2B9E0D00FB65B4 /* EEDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EEDetailViewController.h; sourceTree = "<group>"; };
 		50636F2E1F2B9E0D00FB65B4 /* EEDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EEDetailViewController.m; sourceTree = "<group>"; };
+		50636F311F2C37B000FB65B4 /* BTExerciseTypeStyleTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTExerciseTypeStyleTransformer.h; sourceTree = "<group>"; };
+		50636F321F2C37B000FB65B4 /* BTExerciseTypeStyleTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTExerciseTypeStyleTransformer.m; sourceTree = "<group>"; };
 		791833EF2E04B86CA95AD6B3 /* Pods-BenchTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BenchTracker.release.xcconfig"; path = "Pods/Target Support Files/Pods-BenchTracker/Pods-BenchTracker.release.xcconfig"; sourceTree = "<group>"; };
 		EABA566C7706F85FACB19B97 /* Pods-BenchTrackerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BenchTrackerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BenchTrackerTests/Pods-BenchTrackerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F90712A119415FB0008694E5 /* BenchTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BenchTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -331,8 +334,18 @@
 			children = (
 				50636F2D1F2B9E0D00FB65B4 /* EEDetailViewController.h */,
 				50636F2E1F2B9E0D00FB65B4 /* EEDetailViewController.m */,
+				50636F341F2C37B700FB65B4 /* Style transformer */,
 			);
 			name = Detail;
+			sourceTree = "<group>";
+		};
+		50636F341F2C37B700FB65B4 /* Style transformer */ = {
+			isa = PBXGroup;
+			children = (
+				50636F311F2C37B000FB65B4 /* BTExerciseTypeStyleTransformer.h */,
+				50636F321F2C37B000FB65B4 /* BTExerciseTypeStyleTransformer.m */,
+			);
+			name = "Style transformer";
 			sourceTree = "<group>";
 		};
 		B57455EDB36A13EE7AEA1ED6 /* Frameworks */ = {
@@ -1293,6 +1306,7 @@
 				F927D1541F0C9DDB0004CF3A /* IterationTableViewCell.m in Sources */,
 				F97B1CA21F09759000B3EEC7 /* WeekdayTableViewCell.m in Sources */,
 				F9418FA81F04A4F80083C3DC /* ExerciseViewController.m in Sources */,
+				50636F331F2C37B000FB65B4 /* BTExerciseTypeStyleTransformer.m in Sources */,
 				F9AF06831F07596F003A2200 /* BTStackedBarView.m in Sources */,
 				F9DA75241F02EE9600347B0D /* BTExercise+CoreDataClass.m in Sources */,
 				F9DA75231F02EE9600347B0D /* BTUser+CoreDataProperties.m in Sources */,
