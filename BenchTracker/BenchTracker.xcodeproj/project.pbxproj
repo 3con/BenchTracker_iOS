@@ -11,6 +11,8 @@
 		50636F2B1F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50636F291F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.xib */; };
 		50636F2F1F2B9E0D00FB65B4 /* EEDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50636F2E1F2B9E0D00FB65B4 /* EEDetailViewController.m */; };
 		50636F331F2C37B000FB65B4 /* BTExerciseTypeStyleTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 50636F321F2C37B000FB65B4 /* BTExerciseTypeStyleTransformer.m */; };
+		50971E741F2E4AB700B10D70 /* AETableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50971E731F2E4AB700B10D70 /* AETableHeaderView.m */; };
+		50971E761F2E4AC400B10D70 /* AETableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50971E751F2E4AC400B10D70 /* AETableHeaderView.xib */; };
 		6FF44576CFF404C6C4707802 /* Pods_BenchTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C83D3A0EA46ECDF1788C990 /* Pods_BenchTracker.framework */; };
 		F77B8D13565A4E6664DC71A8 /* Pods_BenchTrackerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40B18DFBDA158AF111B21958 /* Pods_BenchTrackerTests.framework */; };
 		F90712A719415FB1008694E5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F90712A619415FB1008694E5 /* main.m */; };
@@ -126,6 +128,9 @@
 		50636F2E1F2B9E0D00FB65B4 /* EEDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EEDetailViewController.m; sourceTree = "<group>"; };
 		50636F311F2C37B000FB65B4 /* BTExerciseTypeStyleTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTExerciseTypeStyleTransformer.h; sourceTree = "<group>"; };
 		50636F321F2C37B000FB65B4 /* BTExerciseTypeStyleTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTExerciseTypeStyleTransformer.m; sourceTree = "<group>"; };
+		50971E721F2E4AB700B10D70 /* AETableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AETableHeaderView.h; sourceTree = "<group>"; };
+		50971E731F2E4AB700B10D70 /* AETableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AETableHeaderView.m; sourceTree = "<group>"; };
+		50971E751F2E4AC400B10D70 /* AETableHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AETableHeaderView.xib; sourceTree = "<group>"; };
 		791833EF2E04B86CA95AD6B3 /* Pods-BenchTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BenchTracker.release.xcconfig"; path = "Pods/Target Support Files/Pods-BenchTracker/Pods-BenchTracker.release.xcconfig"; sourceTree = "<group>"; };
 		EABA566C7706F85FACB19B97 /* Pods-BenchTrackerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BenchTrackerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BenchTrackerTests/Pods-BenchTrackerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F90712A119415FB0008694E5 /* BenchTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BenchTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -348,6 +353,16 @@
 			name = "Style transformer";
 			sourceTree = "<group>";
 		};
+		50971E771F2E4BBC00B10D70 /* Table header view */ = {
+			isa = PBXGroup;
+			children = (
+				50971E721F2E4AB700B10D70 /* AETableHeaderView.h */,
+				50971E731F2E4AB700B10D70 /* AETableHeaderView.m */,
+				50971E751F2E4AC400B10D70 /* AETableHeaderView.xib */,
+			);
+			name = "Table header view";
+			sourceTree = "<group>";
+		};
 		B57455EDB36A13EE7AEA1ED6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -486,6 +501,7 @@
 			children = (
 				F9418F9C1F0433980083C3DC /* AddExerciseViewController.h */,
 				F9418F9D1F0433980083C3DC /* AddExerciseViewController.m */,
+				50971E771F2E4BBC00B10D70 /* Table header view */,
 				F927D1501F0C9BDA0004CF3A /* Iteration Selection */,
 				F9418FA51F048B230083C3DC /* Add Exercise cell */,
 			);
@@ -1125,6 +1141,7 @@
 				F97B1CA31F09759000B3EEC7 /* WeekdayTableViewCell.xib in Resources */,
 				F981D5891F022D9A00E7B456 /* LaunchScreen.xib in Resources */,
 				F927D1551F0C9DDB0004CF3A /* IterationTableViewCell.xib in Resources */,
+				50971E761F2E4AC400B10D70 /* AETableHeaderView.xib in Resources */,
 				50636F2B1F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.xib in Resources */,
 				F97B1CAA1F097DA600B3EEC7 /* WeekdayView.xib in Resources */,
 				F9FD19F01F14748800AB3FEE /* ADExercisesViewController.xib in Resources */,
@@ -1265,6 +1282,7 @@
 				F917BB541F0D2AB200614AB1 /* BTWorkoutPDF.m in Sources */,
 				F9DA75221F02EE9600347B0D /* BTUser+CoreDataClass.m in Sources */,
 				F95F934B1F037C9500A19C4D /* BTWorkoutManager.m in Sources */,
+				50971E741F2E4AB700B10D70 /* AETableHeaderView.m in Sources */,
 				F95F93371F03426F00A19C4D /* BTUserManager.m in Sources */,
 				F9A5494C1F13067B00743897 /* BTRecentWorkoutsManager.m in Sources */,
 				F9B7D7D71F06303700376201 /* passTouchesView.m in Sources */,

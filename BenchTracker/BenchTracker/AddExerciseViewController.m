@@ -12,6 +12,7 @@
 #import "AddExerciseTableViewCell.h"
 #import "ZFModalTransitionAnimator.h"
 #import "EditExercisesViewController.h"
+#import "AETableHeaderView.h"
 
 @interface AddExerciseViewController ()
 
@@ -32,6 +33,7 @@
 @property (nonatomic) ZFModalTransitionAnimator *animator;
 
 @property (nonatomic) NSDictionary *exerciseTypeColors;
+@property (nonatomic) NSMutableArray *tempHiddenSections;
 
 @property (nonatomic) NSMutableArray <BTExerciseType *> *selectedTypes;
 @property (nonatomic) NSMutableArray <NSString *> *selectedIterations;
@@ -53,7 +55,9 @@
     if (![[self fetchedResultsController] performFetch:&error]) {
         NSLog(@"Main fetch error: %@, %@", error, [error userInfo]);
     }
-    self.exerciseTypeColors = [NSKeyedUnarchiver unarchiveObjectWithData:[BTSettings sharedInstance].exerciseTypeColors];
+    BTSettings *settings = [BTSettings sharedInstance];
+    self.exerciseTypeColors = [NSKeyedUnarchiver unarchiveObjectWithData:settings.exerciseTypeColors];
+    self.tempHiddenSections = [NSKeyedUnarchiver unarchiveObjectWithData:settings.hiddenExerciseTypeSections];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.allowsMultipleSelection = YES;
@@ -94,6 +98,11 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [BTSettings sharedInstance].hiddenExerciseTypeSections = [NSKeyedArchiver archivedDataWithRootObject:self.tempHiddenSections];
+    [self.context save:nil];
 }
 
 - (IBAction)cancelButtonPressed:(UIButton *)sender {
@@ -187,18 +196,25 @@
     return [_fetchedResultsController sections].count;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return [_fetchedResultsController sections][section].name;
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 32;
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
-    UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
-    [header.textLabel setTextColor:[UIColor whiteColor]];
-    NSString *key = [_fetchedResultsController sections][section].name;
-    header.contentView.backgroundColor = self.exerciseTypeColors[key];
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    NSString *sectionName = _fetchedResultsController.sections[section].name;
+    AETableHeaderView *headerView = [[NSBundle mainBundle] loadNibNamed:@"AETableHeaderView" owner:self options:nil].firstObject;
+    headerView.frame = CGRectMake(0, 0, tableView.frame.size.width, 32);
+    headerView.color = self.exerciseTypeColors[sectionName];
+    headerView.name = sectionName;
+    headerView.expanded = ![self.tempHiddenSections containsObject:sectionName];
+    headerView.delegate = self;
+    headerView.section = section;
+    return headerView;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSString *sectionName = _fetchedResultsController.sections[section].name;
+    if ([self.tempHiddenSections containsObject:sectionName]) return 0;
     return [[_fetchedResultsController sections] objectAtIndex:section].numberOfObjects;
 }
 
@@ -300,6 +316,28 @@
         self.supersetButton.userInteractionEnabled = (numSelected != 1);
         self.addExerciseConstraint.constant = (numSelected != 1) ? 135 : 5;
     }
+}
+
+#pragma mark - headerView delegate
+
+- (void)headerView:(AETableHeaderView *)headerView didChangeExpanded:(BOOL)expanded {
+    [self.tableView beginUpdates];
+    if (expanded && [self.tempHiddenSections containsObject:headerView.name]) {
+        [self.tempHiddenSections removeObject:headerView.name];
+        [self.tableView insertRowsAtIndexPaths:[self indexPathsForSection:headerView.section] withRowAnimation:UITableViewRowAnimationFade];
+    }
+    else {
+        [self.tempHiddenSections addObject:headerView.name];
+        [self.tableView deleteRowsAtIndexPaths:[self indexPathsForSection:headerView.section] withRowAnimation:UITableViewRowAnimationFade];
+    }
+    [self.tableView endUpdates];
+}
+
+- (NSArray *)indexPathsForSection:(NSInteger)section {
+    NSMutableArray *arr = [NSMutableArray array];
+    for (int i = 0; i < _fetchedResultsController.sections[section].objects.count; i++)
+        [arr addObject:[NSIndexPath indexPathForRow:i inSection:section]];
+    return arr;
 }
 
 #pragma mark - scrollView delegate

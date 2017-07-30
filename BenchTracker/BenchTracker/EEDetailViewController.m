@@ -25,11 +25,13 @@
     [self loadForm];
     [self.view sendSubviewToBack:self.tableView];
     self.tableView.contentInset = UIEdgeInsetsMake(72, 0, 0, 0);
+    self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(72, 0, 0, 0);
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navLabel.text = (self.type) ? @"Edit Exercise" : @"New Exercise";
+    self.tableView.contentOffset = CGPointMake(0, 0);
 }
 
 - (void)loadForm {

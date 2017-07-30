@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSFetchRequest<BTSettings *> *)fetchRequest;
 
+@property (nullable, nonatomic, retain) NSData *hiddenExerciseTypeSections;
 @property (nullable, nonatomic, retain) NSData *exerciseTypeColors;
 @property (nonatomic) BOOL startWeekOnMonday;
 @property (nonatomic) BOOL disableSleep;

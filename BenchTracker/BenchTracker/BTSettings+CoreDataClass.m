@@ -35,6 +35,7 @@
     if (error || object.count == 0) {
         NSLog(@"BTSettings coreData error or creation: %@",error);
         BTSettings *settings = [NSEntityDescription insertNewObjectForEntityForName:@"BTSettings" inManagedObjectContext:context];
+        settings.hiddenExerciseTypeSections = [NSKeyedArchiver archivedDataWithRootObject:[NSMutableArray array]];
         settings.startWeekOnMonday = YES;
         settings.disableSleep = YES;
         settings.weightInLbs = YES;
