@@ -122,8 +122,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSDate *date = [self.firstDayDate dateByAddingTimeInterval:86400*indexPath.row];
     CGRect frame = [tableView rectForRowAtIndexPath:indexPath];
-    [self.delegate weekdayView:self userSelectedDate:date atPoint:
-        CGPointMake(frame.origin.x+frame.size.width/2.0, frame.origin.y+frame.size.height/2.0+self.frame.origin.y-tableView.contentOffset.y)];
+    CGFloat offset = self.tableView.contentOffset.y-self.frame.origin.y-self.superview.frame.origin.y;
+    CGPoint point = CGPointMake(frame.origin.x+frame.size.width/2.0, frame.origin.y+frame.size.height/2.0-offset);
+    [self.delegate weekdayView:self userSelectedDate:date atPoint:point];
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {

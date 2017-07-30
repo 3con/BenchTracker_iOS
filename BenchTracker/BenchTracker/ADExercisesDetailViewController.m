@@ -102,6 +102,14 @@
 }
 
 - (void)loadGraphView {
+    if ([self.exerciseType.style isEqualToString:STYLE_REPSWEIGHT])      self.graphTitleLabel.text = @"Recent 1RM Equivilents";
+    else if ([self.exerciseType.style isEqualToString:STYLE_REPS])       self.graphTitleLabel.text = @"Recent Max Reps";
+    else if ([self.exerciseType.style isEqualToString:STYLE_TIMEWEIGHT]) self.graphTitleLabel.text = @"Recent Max Loads";
+    else if ([self.exerciseType.style isEqualToString:STYLE_TIME])       self.graphTitleLabel.text = @"Recent Max Durations";
+    else {
+        self.graphTitleLabel.text = @"";
+        self.graphNoDataLabel.text = @"No Graph Available";
+    }
     BTAnalyticsLineChart *lineChart = [[BTAnalyticsLineChart alloc]
                                        initWithFrame:CGRectMake(5, 10, self.graphContainerView.frame.size.width+10, 198)];
     lineChart.yAxisSpaceTop = 2;
@@ -120,8 +128,8 @@
         [yAxisArr addObject:[NSNumber numberWithFloat:exercise.oneRM]];
     }
     self.graphNoDataLabel.alpha = (xAxisArr.count == 0);
-    [self.graphView setXAxisData:xAxisArr];
-    [self.graphView setYAxisData:yAxisArr];
+    [self.graphView setXAxisData:[[xAxisArr reverseObjectEnumerator] allObjects]];
+    [self.graphView setYAxisData:[[yAxisArr reverseObjectEnumerator] allObjects]];
     [self.graphView strokeChart];
 }
 
@@ -150,8 +158,16 @@
     NSMutableArray *subValueArray = [NSMutableArray array];
     for (int i = 0; i < 3; i++) {
         if (topArr.count > i) {
+            if ([topArr[i].style isEqualToString:STYLE_CUSTOM]) break;
             [dateArray addObject:topArr[i].workout.date];
-            [valueArray addObject:[NSString stringWithFormat:@"%lld %@", topArr[i].oneRM, self.settings.weightSuffix]];
+            if ([topArr[i].style isEqualToString:STYLE_REPSWEIGHT])
+                [valueArray addObject:[NSString stringWithFormat:@"%lld %@", topArr[i].oneRM, self.settings.weightSuffix]];
+            else if ([topArr[i].style isEqualToString:STYLE_REPS])
+                [valueArray addObject:[NSString stringWithFormat:@"%lld reps", topArr[i].oneRM]];
+            else if ([topArr[i].style isEqualToString:STYLE_TIME])
+                [valueArray addObject:[NSString stringWithFormat:@"%lld secs", topArr[i].oneRM]];
+            else if ([topArr[i].style isEqualToString:STYLE_TIMEWEIGHT])
+                [valueArray addObject:[NSString stringWithFormat:@"%lld %@", topArr[i].oneRM, self.settings.weightSuffix]];
             if ([topArr[i].style isEqualToString:STYLE_REPSWEIGHT]) {
                 for (NSString *set in [NSKeyedUnarchiver unarchiveObjectWithData:topArr[i].sets]) {
                     NSArray <NSString *> *a = [set componentsSeparatedByString:@" "];
@@ -161,6 +177,7 @@
                     }
                 }
             }
+            else [subValueArray addObject:@""];
         }
     }
     self.podiumView.dates = dateArray;
@@ -199,7 +216,7 @@
 #pragma mark - segmedtedControl
 
 - (void)loadSegmentedControl {
-    self.segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"Recent", @"Top", @"1RM Only"]];
+    self.segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"Recent", @"Top"]];
     self.segmentedControl.frame = CGRectMake(0, 0, self.segmentedControllerContainerView.frame.size.width,
                                              self.segmentedControllerContainerView.frame.size.height);
     self.segmentedControl.layer.cornerRadius = 12;

@@ -39,12 +39,19 @@
 
 - (void)loadExercise:(BTExercise *)exercise withWeightSuffix:(NSString *)suffix {
     self.contentView.backgroundColor = self.color;
-    self.badgeLabel.text = [NSString stringWithFormat:@"1RM: %lld %@",exercise.oneRM, suffix];
+    NSString *s;
+    if ([exercise.style isEqualToString:STYLE_REPSWEIGHT])      s = [NSString stringWithFormat:@"1RM: %lld %@",exercise.oneRM, suffix];
+    else if ([exercise.style isEqualToString:STYLE_REPS])       s = [NSString stringWithFormat:@"Max: %lld reps",exercise.oneRM];
+    else if ([exercise.style isEqualToString:STYLE_TIMEWEIGHT]) s = [NSString stringWithFormat:@"Max: %lld %@",exercise.oneRM, suffix];
+    else if ([exercise.style isEqualToString:STYLE_TIME])       s = [NSString stringWithFormat:@"Max: %lld secs",exercise.oneRM];
+    else                                                        s = @"MAX: N/A";
+    self.badgeLabel.text = s;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"MMMM d ''yy";
     self.dateLabel.text = [formatter stringFromDate:exercise.workout.date];
-    if (exercise.iteration) self.titleLabel.text = [NSString stringWithFormat:@"%@ %@",exercise.iteration,exercise.name];
-    else                    self.titleLabel.text = exercise.name;
+    if (exercise.iteration && ![exercise.iteration isEqualToString:@"(null)"])
+         self.titleLabel.text = [NSString stringWithFormat:@"%@ %@",exercise.iteration,exercise.name];
+    else self.titleLabel.text = exercise.name;
     self.tempSets = [NSKeyedUnarchiver unarchiveObjectWithData:exercise.sets];
     self.maxCells = (int)self.collectionView.frame.size.width / 70;
     [self.collectionView reloadData];

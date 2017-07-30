@@ -208,7 +208,7 @@
 
 - (BOOL)calendar:(FSCalendar *)calendar shouldSelectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition {
     CGRect frame = [calendar frameForDate:date];
-    CGPoint point = CGPointMake(frame.origin.x+frame.size.width/2.0, frame.origin.y+frame.size.height/2.0+self.calendarView.frame.origin.y);
+    CGPoint point = CGPointMake(frame.origin.x+frame.size.width/2.0, frame.origin.y+frame.size.height/2.0);
     [self presentWorkoutSelectionViewControllerWithOriginPoint:point date:date];
     return NO;
 }
@@ -412,7 +412,7 @@
     [self presentViewController:analyiticsVC animated:YES completion:nil];
 }
 
-- (void)presentWorkoutViewControllerWithWorkout: (BTWorkout *)workout {
+- (void)presentWorkoutViewControllerWithWorkout:(BTWorkout *)workout {
     WorkoutViewController *workoutVC = [self.storyboard instantiateViewControllerWithIdentifier:@"w"];
     workoutVC.delegate = self;
     workoutVC.context = self.context;

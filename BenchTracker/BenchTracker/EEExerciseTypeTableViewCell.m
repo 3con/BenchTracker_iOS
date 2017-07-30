@@ -21,12 +21,19 @@
     self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
+- (NSArray *)leftButtons {
+    NSMutableArray *rightUtilityButtons = [NSMutableArray new];
+    [rightUtilityButtons sw_addUtilityButtonWithColor:[UIColor BTRedColor] title:@"Delete"];
+    return rightUtilityButtons;
 }
 
 - (void)loadWithName:(NSString *)name {
     self.titleLabel.text = name;
+    self.leftUtilityButtons = [self leftButtons];
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
 }
 
 @end

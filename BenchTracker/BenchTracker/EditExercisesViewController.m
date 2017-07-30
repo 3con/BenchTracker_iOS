@@ -159,6 +159,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     EEExerciseTypeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     if (cell == nil) cell = [[NSBundle mainBundle] loadNibNamed:@"EEExerciseTypeTableViewCell" owner:self options:nil].firstObject;
+    cell.delegate = self;
     [self configureCell:cell atIndexPath:indexPath];
     return cell;
 }
@@ -200,6 +201,14 @@
 
 - (void)editExerciseDetailViewControllerWillDismiss:(EEDetailViewController *)eedVC {
     
+}
+
+#pragma mark - SWTableViewCell delegate
+
+- (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerLeftUtilityButtonWithIndex:(NSInteger)index {
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    [self.context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+    [self.context save:nil];
 }
 
 #pragma mark - fetchedResultsController delegate

@@ -37,7 +37,7 @@
     self.navView.backgroundColor = [UIColor BTPrimaryColor];
     self.settings = [BTSettings sharedInstance];
     self.recentWorkoutsManager = [[BTRecentWorkoutsManager alloc] init];
-    self.recentWorkoutsManager.maxFetch = 11;
+    self.recentWorkoutsManager.maxFetch = 8;
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     self.collectionView.showsVerticalScrollIndicator = NO;
@@ -130,7 +130,8 @@
         NSArray *data;
         NSString *suffix;
         BTAnalyticsLineChart *lineChart = [[BTAnalyticsLineChart alloc] initWithFrame:CGRectMake(5, 10, collectionView.frame.size.width-60, 198)];
-        [lineChart setXAxisData:[self.recentWorkoutsManager workoutShortDates]];
+        NSArray *xAxisData = [self.recentWorkoutsManager workoutShortDates];
+        [lineChart setXAxisData:[[xAxisData reverseObjectEnumerator] allObjects]];
         if (indexPath.row == 3) {
             data = [self.recentWorkoutsManager workoutVolumes];
             suffix = [NSString stringWithFormat:@"k %@", self.settings.weightSuffix];
@@ -147,7 +148,7 @@
             data = [self.recentWorkoutsManager workoutNumSets];
             suffix = @"";
         }
-        [lineChart setYAxisData:data];
+        [lineChart setYAxisData:[[data reverseObjectEnumerator] allObjects]];
         cell.graphView = lineChart;
         NSArray *dates = [self.recentWorkoutsManager workoutDates];
         for (int i = 0; i < data.count; i++) {
@@ -156,7 +157,7 @@
                                              [NSString stringWithFormat:@"%@%@ %@", intVal, suffix, dates[i]]];
             [mS setAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:17 weight:UIFontWeightHeavy]}
                         range:NSMakeRange(0, intVal.length+suffix.length)];
-            [displayStrings insertObject:mS atIndex:0];
+            [displayStrings addObject:mS];
         }
     }
     cell.displayStrings = displayStrings;

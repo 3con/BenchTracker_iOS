@@ -174,7 +174,7 @@
 - (void)performFetch {
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"BTWorkout"];
     request.fetchLimit = self.maxFetch;
-    NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES];
+    NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO];
     request.sortDescriptors = @[descriptor];
     NSError *error;
     self.recentWorkouts = [NSMutableArray arrayWithArray:[self.context executeFetchRequest:request error:&error]];

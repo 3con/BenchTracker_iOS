@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SWTableViewCell.h"
 
-@interface EEExerciseTypeTableViewCell : UITableViewCell
+@interface EEExerciseTypeTableViewCell : SWTableViewCell
 
 - (void)loadWithName:(NSString *)name;
 

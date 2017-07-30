@@ -12,7 +12,7 @@
 
 + (int)equivilentForReps:(int)reps weight:(float)weight {
     if(reps<18) return (100*weight)/(48.8+53.8*powf(M_E, -.075*reps)); //Wathan Equation
-    return weight*(1+reps/30); //Epley Formula
+    return weight*(1+reps/30.0); //Epley Formula
     //According to LeSuer et al. 1997 (based off bench, squat, and deadlift; men and women; early 20s)
 }
 

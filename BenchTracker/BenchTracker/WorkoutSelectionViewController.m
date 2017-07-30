@@ -126,6 +126,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ACell"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [UIColor BTPrimaryColor];
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.frame.size.width, cell.frame.size.height)];
         label.textColor = [UIColor whiteColor];
@@ -141,7 +142,7 @@
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BCell"];
         cell.backgroundColor = [UIColor whiteColor];
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.frame.size.width, 120)];
-        label.textColor = [UIColor BTPrimaryColor];
+        label.textColor = [UIColor BTGrayColor];
         label.textAlignment = NSTextAlignmentCenter;
         label.font = [UIFont systemFontOfSize:24 weight:UIFontWeightBold];
         label.text = [NSString stringWithFormat:@"No Workouts"];
@@ -156,6 +157,7 @@
 #pragma mark - tableView delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (_fetchedResultsController.sections[0].numberOfObjects == 0 || indexPath.row == 0) return;
     BTWorkout *workout = [_fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row-1 inSection:0]];
     [self dismissViewControllerAnimated:YES completion:^{
         [self.delegate workoutSelectionVC:self didDismissWithSelectedWorkout:workout];

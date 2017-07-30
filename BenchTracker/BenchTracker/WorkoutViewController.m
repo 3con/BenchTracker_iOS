@@ -154,14 +154,20 @@
     for (BTExercise *exercise in self.workout.exercises) {
         if (dict[exercise.category]) dict[exercise.category] = [NSNumber numberWithInt:dict[exercise.category].intValue + 1];
         else                         dict[exercise.category] = [NSNumber numberWithInt:1];
-        if ([exercise.style isEqualToString:STYLE_REPSWEIGHT]) {
-            exercise.oneRM = 0;
-            for (NSString *set in [NSKeyedUnarchiver unarchiveObjectWithData:exercise.sets]) {
-                NSArray <NSString *> *split = [set componentsSeparatedByString:@" "];
+        exercise.oneRM = 0;
+        for (NSString *set in [NSKeyedUnarchiver unarchiveObjectWithData:exercise.sets]) {
+            NSArray <NSString *> *split = [set componentsSeparatedByString:@" "];
+            if ([exercise.style isEqualToString:STYLE_REPSWEIGHT]) {
                 self.workout.volume += split[0].floatValue*split[1].floatValue;
-                self.workout.numSets ++;
                 exercise.oneRM = MAX(exercise.oneRM, [BT1RMCalculator equivilentForReps:split[0].intValue weight:split[1].floatValue]);
             }
+            else if ([exercise.style isEqualToString:STYLE_REPS])
+                exercise.oneRM = MAX(exercise.oneRM, split[0].intValue);
+            else if ([exercise.style isEqualToString:STYLE_TIME])
+                exercise.oneRM = MAX(exercise.oneRM, split[1].intValue);
+            else if ([exercise.style isEqualToString:STYLE_TIMEWEIGHT])
+                exercise.oneRM = MAX(exercise.oneRM, split[2].floatValue);
+            self.workout.numSets ++;
         }
     }
     self.workout.summary = @"0";
@@ -236,6 +242,7 @@
 #pragma mark - tableView delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (!self.startDate) self.startDate = [NSDate date];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     self.selectedIndexPaths = [[NSMutableArray alloc] init];
     self.selectedExercises = [[NSMutableArray alloc] init];
@@ -435,20 +442,5 @@
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
