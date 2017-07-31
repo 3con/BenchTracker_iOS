@@ -44,7 +44,7 @@
     else if ([exercise.style isEqualToString:STYLE_REPS])       s = [NSString stringWithFormat:@"Max: %lld reps",exercise.oneRM];
     else if ([exercise.style isEqualToString:STYLE_TIMEWEIGHT]) s = [NSString stringWithFormat:@"Max: %lld %@",exercise.oneRM, suffix];
     else if ([exercise.style isEqualToString:STYLE_TIME])       s = [NSString stringWithFormat:@"Max: %lld secs",exercise.oneRM];
-    else                                                        s = @"MAX: N/A";
+    else                                                        s = @"Max: N/A";
     self.badgeLabel.text = s;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"MMMM d ''yy";

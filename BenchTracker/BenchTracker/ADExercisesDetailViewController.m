@@ -119,6 +119,10 @@
 }
 
 - (void)updateGraphView {
+    if ([self.exerciseType.style isEqualToString:STYLE_CUSTOM]) {
+        self.graphView.alpha = 0;
+        return;
+    }
     NSMutableArray *xAxisArr = [NSMutableArray array];
     NSMutableArray *yAxisArr = [NSMutableArray array];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];

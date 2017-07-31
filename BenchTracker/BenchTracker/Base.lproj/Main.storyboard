@@ -526,6 +526,7 @@
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="c89-0U-hnt" appends="YES" id="ART-QX-0XZ"/>
+                            <outletCollection property="gestureRecognizers" destination="Fvj-Zk-kdz" appends="YES" id="zCG-mg-eco"/>
                         </connections>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
@@ -545,6 +546,11 @@
                         <action selector="pauseGestureActivated:" destination="H2S-2B-J58" id="uSF-8k-0po"/>
                     </connections>
                 </tapGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="Fvj-Zk-kdz">
+                    <connections>
+                        <action selector="handleLongPress:" destination="H2S-2B-J58" id="v7c-Ts-f5d"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="286.95652173913044" y="-167.11956521739131"/>
         </scene>

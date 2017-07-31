@@ -63,6 +63,10 @@
     self.exerciseTypeColors = [NSKeyedUnarchiver unarchiveObjectWithData:self.settings.exerciseTypeColors];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    UILongPressGestureRecognizer *lP = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
+    lP.minimumPressDuration = .15;
+    lP.delegate = self;
+    [self.tableView addGestureRecognizer:lP];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.contentInset = UIEdgeInsetsMake(2.5, 0, 92.5, 0);
     self.addExerciseButton.layer.cornerRadius = 12;
@@ -233,8 +237,8 @@
     return SUPERSET_BOTH;
 }
 
-- (NSArray <NSNumber *> *)supersetForIndexPath:(NSIndexPath *)indexPath {
-    for (NSArray *arr in self.tempSupersets)
+- (NSMutableArray <NSNumber *> *)supersetForIndexPath:(NSIndexPath *)indexPath {
+    for (NSMutableArray *arr in self.tempSupersets)
         if([arr containsObject:[NSNumber numberWithInt:(int)indexPath.row]]) return arr;
     return nil;
 }
@@ -257,6 +261,155 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [self presentExerciseViewControllerWithExercises:self.selectedExercises];
     });
+}
+
+- (void)handleLongPress:(UILongPressGestureRecognizer *)sender {
+    CGPoint location = [sender locationInView:self.tableView];
+    NSIndexPath *iP = [self.tableView indexPathForRowAtPoint:location];
+    NSInteger destinationRow = (iP)? iP.row : -1;
+    static UIView *snapshot = nil;
+    static NSInteger sourceRow;
+    static NSMutableArray <NSNumber *> *sourceSuperset = nil;
+    switch (sender.state) {
+        case UIGestureRecognizerStateBegan: {
+            if (destinationRow >= 0) {
+                sourceSuperset = [self supersetForIndexPath:[NSIndexPath indexPathForRow:destinationRow inSection:0]];
+                if (!sourceSuperset) sourceSuperset = @[[NSNumber numberWithInteger:destinationRow]].mutableCopy;
+                sourceRow = sourceSuperset.firstObject.integerValue;
+                NSArray <ExerciseTableViewCell *> *cells = [self cellsForSuperset:sourceSuperset];
+                snapshot = [self snapshotForCells:cells];
+                __block CGPoint center = cells.firstObject.center;
+                snapshot.center = center;
+                snapshot.alpha = 0.0;
+                [self.tableView addSubview:snapshot];
+                [UIView animateWithDuration:0.25 animations:^{
+                    center.y = location.y;
+                    snapshot.center = center;
+                    snapshot.transform = CGAffineTransformMakeScale(1.05, 1.05);
+                    snapshot.alpha = 0.98;
+                    for (ExerciseTableViewCell *cell in cells) {
+                        cell.alpha = 0.0;
+                        cell.hidden = YES;
+                    }
+                }];
+            } break;
+        }
+        case UIGestureRecognizerStateChanged: {
+            CGPoint center = snapshot.center;
+            center.y = location.y;
+            snapshot.center = center;
+            if (destinationRow >= 0) {
+                if (destinationRow > sourceRow) { //moving down (to higher indexs)
+                    NSInteger tempDestinationRow = destinationRow+sourceSuperset.count-1;
+                    NSMutableArray <NSNumber *> *destinationSuperset =
+                        [self supersetForIndexPath:[NSIndexPath indexPathForRow:tempDestinationRow inSection:0]];
+                    BOOL isPastDestinationSuperset = !destinationSuperset || destinationRow-sourceRow >= destinationSuperset.count;
+                    if (isPastDestinationSuperset && tempDestinationRow < self.workout.exercises.count) {
+                        NSMutableOrderedSet *tempExercises = self.workout.exercises.mutableCopy;
+                        for (int i = 0; i < destinationSuperset.count; i++) {
+                            BTExercise *tempExercise = [tempExercises objectAtIndex:sourceRow+sourceSuperset.count+i];
+                            [tempExercises removeObjectAtIndex:sourceRow+sourceSuperset.count+i];
+                            [tempExercises insertObject:tempExercise atIndex:sourceRow+i];
+                            [self.tableView moveRowAtIndexPath:[NSIndexPath indexPathForRow:sourceRow+sourceSuperset.count+i inSection:0]
+                                                   toIndexPath:[NSIndexPath indexPathForRow:sourceRow+i inSection:0]];
+                        }
+                        NSInteger sourceIndex = [self.tempSupersets indexOfObject:sourceSuperset];
+                        NSInteger destinationIndex = [self.tempSupersets indexOfObject:destinationSuperset];
+                        for (int i = 0; i < sourceSuperset.count; i++) {
+                            sourceSuperset[i] = [NSNumber numberWithInteger:sourceSuperset[i].integerValue+destinationSuperset.count];
+                            self.tempSupersets[sourceIndex][i] = sourceSuperset[i];
+                        }
+                        for (int i = 0; i < destinationSuperset.count; i++) {
+                            self.tempSupersets[destinationIndex][i] =
+                                                [NSNumber numberWithInteger:destinationSuperset[i].integerValue-sourceSuperset.count];
+                        }
+                        [self.tempSupersets exchangeObjectAtIndex:sourceIndex withObjectAtIndex:destinationIndex];
+                        self.workout.exercises = tempExercises;
+                        sourceRow = destinationRow;
+                    }
+                }
+                else if (sourceRow > destinationRow) { //moving up (to lower indexs)
+                    NSMutableArray <NSNumber *> *destinationSuperset =
+                        [self supersetForIndexPath:[NSIndexPath indexPathForRow:destinationRow inSection:0]];
+                    BOOL isPastDestinationSuperset = !destinationSuperset || sourceRow-destinationRow >= destinationSuperset.count;
+                    if (isPastDestinationSuperset) {
+                        NSMutableOrderedSet *tempExercises = self.workout.exercises.mutableCopy;
+                        for (int i = 0; i < sourceSuperset.count; i++) {
+                            BTExercise *tempExercise = [tempExercises objectAtIndex:sourceRow+i];
+                            [tempExercises removeObjectAtIndex:sourceRow+i];
+                            [tempExercises insertObject:tempExercise atIndex:destinationRow+i];
+                            [self.tableView moveRowAtIndexPath:[NSIndexPath indexPathForRow:sourceRow+i inSection:0]
+                                                   toIndexPath:[NSIndexPath indexPathForRow:destinationRow+i inSection:0]];
+                        }
+                        NSInteger sourceIndex = [self.tempSupersets indexOfObject:sourceSuperset];
+                        NSInteger destinationIndex = [self.tempSupersets indexOfObject:destinationSuperset];
+                        for (int i = 0; i < sourceSuperset.count; i++) {
+                            sourceSuperset[i] = [NSNumber numberWithInteger:sourceSuperset[i].integerValue-destinationSuperset.count];
+                            self.tempSupersets[sourceIndex][i] = sourceSuperset[i];
+                        }
+                        for (int i = 0; i < destinationSuperset.count; i++) {
+                            self.tempSupersets[destinationIndex][i] =
+                            [NSNumber numberWithInteger:destinationSuperset[i].integerValue+sourceSuperset.count];
+                        }
+                        [self.tempSupersets exchangeObjectAtIndex:sourceIndex withObjectAtIndex:destinationIndex];
+                        self.workout.exercises = tempExercises;
+                        sourceRow = destinationRow;
+                    }
+                }
+                
+            } break;
+        }
+        default: {
+            NSArray <ExerciseTableViewCell *> *cells = [self cellsForSuperset:sourceSuperset];
+            for (ExerciseTableViewCell *cell in cells) cell.alpha = 0;
+            [UIView animateWithDuration:0.25 animations:^{
+                snapshot.center = cells.firstObject.center;
+                snapshot.transform = CGAffineTransformIdentity;
+                snapshot.alpha = 0.0;
+                for (ExerciseTableViewCell *cell in cells) cell.alpha = 1;
+            } completion:^(BOOL finished) {
+                for (ExerciseTableViewCell *cell in cells) cell.hidden = NO;
+                sourceRow = -1;
+                [snapshot removeFromSuperview];
+            }]; break;
+        }
+    }
+}
+
+- (NSArray <ExerciseTableViewCell *> *)cellsForSuperset:(NSArray <NSNumber *> *)superset {
+    NSMutableArray <ExerciseTableViewCell *> *cells = [NSMutableArray array];
+    for (NSNumber *n in superset)
+        [cells addObject:[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:n.integerValue inSection:0]]];
+    return cells;
+}
+
+- (UIView *)snapshotForCells:(NSArray <ExerciseTableViewCell *> *)cells {
+    UIView *cV = [[UIView alloc] initWithFrame:
+        CGRectMake(0, 0, cells.firstObject.frame.size.width, cells.firstObject.frame.size.height*cells.count)];
+    for (int i = 0; i < cells.count; i++) {
+        ExerciseTableViewCell *cell = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject:cells[i]]];
+        cell.contentView.center = CGPointMake(cV.frame.size.width/2, cell.frame.size.height*(.5+i));
+        [cV addSubview:cell.contentView];
+    }
+    UIGraphicsBeginImageContextWithOptions(cV.bounds.size, NO, 0);
+    [cV.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    UIView *snapshot = [[UIImageView alloc] initWithImage:image];
+    snapshot.layer.masksToBounds = NO;
+    snapshot.layer.cornerRadius = 0.0;
+    snapshot.layer.shadowOffset = CGSizeMake(-5.0, 0.0);
+    snapshot.layer.shadowRadius = 5.0;
+    snapshot.layer.shadowOpacity = 0.4;
+    return snapshot;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+    //Even if the method is empty you should be seeing both rearrangement icon and animation.
 }
 
 #pragma mark - gesture handling
