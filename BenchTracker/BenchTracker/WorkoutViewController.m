@@ -217,14 +217,18 @@
     return 60;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    ExerciseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+- (void)configureCell:(ExerciseTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     BTExercise *exercise = self.workout.exercises[indexPath.row];
-    if (cell == nil) cell = [[NSBundle mainBundle] loadNibNamed:@"ExerciseTableViewCell" owner:self options:nil].firstObject;
     cell.supersetMode = [self supersetTypeForIndexPath:indexPath];
     cell.delegate = self;
     cell.color = self.exerciseTypeColors[exercise.category];
     [cell loadExercise:exercise];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    ExerciseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    if (cell == nil) cell = [[NSBundle mainBundle] loadNibNamed:@"ExerciseTableViewCell" owner:self options:nil].firstObject;
+    [self configureCell:cell atIndexPath:indexPath];
     return cell;
 }
 
@@ -278,7 +282,8 @@
                 sourceRow = sourceSuperset.firstObject.integerValue;
                 NSArray <ExerciseTableViewCell *> *cells = [self cellsForSuperset:sourceSuperset];
                 snapshot = [self snapshotForCells:cells];
-                __block CGPoint center = cells.firstObject.center;
+                __block CGPoint center =
+                    CGPointMake(self.tableView.frame.size.width/2.0, cells.firstObject.frame.origin.y+snapshot.frame.size.height/2.0);
                 snapshot.center = center;
                 snapshot.alpha = 0.0;
                 [self.tableView addSubview:snapshot];
@@ -298,11 +303,13 @@
             CGPoint center = snapshot.center;
             center.y = location.y;
             snapshot.center = center;
-            if (destinationRow >= 0) {
+            if (destinationRow >= 0 && [self.tableView.indexPathsForVisibleRows containsObject:
+                                            [NSIndexPath indexPathForRow:destinationRow inSection:0]]) {
                 if (destinationRow > sourceRow) { //moving down (to higher indexs)
                     NSInteger tempDestinationRow = destinationRow+sourceSuperset.count-1;
                     NSMutableArray <NSNumber *> *destinationSuperset =
                         [self supersetForIndexPath:[NSIndexPath indexPathForRow:tempDestinationRow inSection:0]];
+                    if (!destinationSuperset) destinationSuperset = @[[NSNumber numberWithInteger:destinationRow]].mutableCopy;
                     BOOL isPastDestinationSuperset = !destinationSuperset || destinationRow-sourceRow >= destinationSuperset.count;
                     if (isPastDestinationSuperset && tempDestinationRow < self.workout.exercises.count) {
                         NSMutableOrderedSet *tempExercises = self.workout.exercises.mutableCopy;
@@ -313,24 +320,28 @@
                             [self.tableView moveRowAtIndexPath:[NSIndexPath indexPathForRow:sourceRow+sourceSuperset.count+i inSection:0]
                                                    toIndexPath:[NSIndexPath indexPathForRow:sourceRow+i inSection:0]];
                         }
+                        self.workout.exercises = tempExercises;
                         NSInteger sourceIndex = [self.tempSupersets indexOfObject:sourceSuperset];
                         NSInteger destinationIndex = [self.tempSupersets indexOfObject:destinationSuperset];
                         for (int i = 0; i < sourceSuperset.count; i++) {
                             sourceSuperset[i] = [NSNumber numberWithInteger:sourceSuperset[i].integerValue+destinationSuperset.count];
-                            self.tempSupersets[sourceIndex][i] = sourceSuperset[i];
+                            if (sourceSuperset.count > 1)
+                                self.tempSupersets[sourceIndex][i] = sourceSuperset[i];
                         }
                         for (int i = 0; i < destinationSuperset.count; i++) {
-                            self.tempSupersets[destinationIndex][i] =
-                                                [NSNumber numberWithInteger:destinationSuperset[i].integerValue-sourceSuperset.count];
+                            if (destinationSuperset.count > 1)
+                                self.tempSupersets[destinationIndex][i] =
+                                    [NSNumber numberWithInteger:destinationSuperset[i].integerValue-sourceSuperset.count];
                         }
-                        [self.tempSupersets exchangeObjectAtIndex:sourceIndex withObjectAtIndex:destinationIndex];
-                        self.workout.exercises = tempExercises;
+                        if (sourceSuperset.count > 1 && destinationSuperset.count > 1)
+                            [self.tempSupersets exchangeObjectAtIndex:sourceIndex withObjectAtIndex:destinationIndex];
                         sourceRow = destinationRow;
                     }
                 }
                 else if (sourceRow > destinationRow) { //moving up (to lower indexs)
                     NSMutableArray <NSNumber *> *destinationSuperset =
                         [self supersetForIndexPath:[NSIndexPath indexPathForRow:destinationRow inSection:0]];
+                    if (!destinationSuperset) destinationSuperset = @[[NSNumber numberWithInteger:destinationRow]].mutableCopy;
                     BOOL isPastDestinationSuperset = !destinationSuperset || sourceRow-destinationRow >= destinationSuperset.count;
                     if (isPastDestinationSuperset) {
                         NSMutableOrderedSet *tempExercises = self.workout.exercises.mutableCopy;
@@ -341,18 +352,21 @@
                             [self.tableView moveRowAtIndexPath:[NSIndexPath indexPathForRow:sourceRow+i inSection:0]
                                                    toIndexPath:[NSIndexPath indexPathForRow:destinationRow+i inSection:0]];
                         }
+                        self.workout.exercises = tempExercises;
                         NSInteger sourceIndex = [self.tempSupersets indexOfObject:sourceSuperset];
                         NSInteger destinationIndex = [self.tempSupersets indexOfObject:destinationSuperset];
                         for (int i = 0; i < sourceSuperset.count; i++) {
                             sourceSuperset[i] = [NSNumber numberWithInteger:sourceSuperset[i].integerValue-destinationSuperset.count];
-                            self.tempSupersets[sourceIndex][i] = sourceSuperset[i];
+                            if (sourceSuperset.count > 1)
+                                self.tempSupersets[sourceIndex][i] = sourceSuperset[i];
                         }
                         for (int i = 0; i < destinationSuperset.count; i++) {
-                            self.tempSupersets[destinationIndex][i] =
-                            [NSNumber numberWithInteger:destinationSuperset[i].integerValue+sourceSuperset.count];
+                            if (destinationSuperset.count > 1)
+                                self.tempSupersets[destinationIndex][i] =
+                                    [NSNumber numberWithInteger:destinationSuperset[i].integerValue+sourceSuperset.count];
                         }
-                        [self.tempSupersets exchangeObjectAtIndex:sourceIndex withObjectAtIndex:destinationIndex];
-                        self.workout.exercises = tempExercises;
+                        if (sourceSuperset.count > 1 && destinationSuperset.count > 1)
+                            [self.tempSupersets exchangeObjectAtIndex:sourceIndex withObjectAtIndex:destinationIndex];
                         sourceRow = destinationRow;
                     }
                 }
@@ -363,7 +377,7 @@
             NSArray <ExerciseTableViewCell *> *cells = [self cellsForSuperset:sourceSuperset];
             for (ExerciseTableViewCell *cell in cells) cell.alpha = 0;
             [UIView animateWithDuration:0.25 animations:^{
-                snapshot.center = cells.firstObject.center;
+                snapshot.center = CGPointMake(self.tableView.frame.size.width/2.0, cells.firstObject.frame.origin.y+snapshot.frame.size.height/2.0);
                 snapshot.transform = CGAffineTransformIdentity;
                 snapshot.alpha = 0.0;
                 for (ExerciseTableViewCell *cell in cells) cell.alpha = 1;
@@ -378,8 +392,15 @@
 
 - (NSArray <ExerciseTableViewCell *> *)cellsForSuperset:(NSArray <NSNumber *> *)superset {
     NSMutableArray <ExerciseTableViewCell *> *cells = [NSMutableArray array];
-    for (NSNumber *n in superset)
-        [cells addObject:[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:n.integerValue inSection:0]]];
+    for (NSNumber *n in superset) {
+        if ([self.tableView.indexPathsForVisibleRows containsObject:[NSIndexPath indexPathForRow:n.integerValue inSection:0]])
+            [cells addObject:[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:n.integerValue inSection:0]]];
+        else {
+            ExerciseTableViewCell *cell = [[NSBundle mainBundle] loadNibNamed:@"ExerciseTableViewCell" owner:self options:nil].firstObject;
+            [self configureCell:cell atIndexPath:[NSIndexPath indexPathForRow:n.integerValue inSection:0]];
+            [cells addObject:cell];
+        }
+    }
     return cells;
 }
 
@@ -388,7 +409,7 @@
         CGRectMake(0, 0, cells.firstObject.frame.size.width, cells.firstObject.frame.size.height*cells.count)];
     for (int i = 0; i < cells.count; i++) {
         ExerciseTableViewCell *cell = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject:cells[i]]];
-        cell.contentView.center = CGPointMake(cV.frame.size.width/2, cell.frame.size.height*(.5+i));
+        cell.contentView.center = CGPointMake(cV.frame.size.width/2, cell.frame.size.height*(.5+i)-i);
         [cV addSubview:cell.contentView];
     }
     UIGraphicsBeginImageContextWithOptions(cV.bounds.size, NO, 0);
