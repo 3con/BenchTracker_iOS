@@ -93,9 +93,19 @@
     if (self.settings.disableSleep) [UIApplication sharedApplication].idleTimerDisabled = YES;
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    if (self.workout) self.startDate = [NSDate date];
+    self.settings.activeWorkout = self.workout;
+    [self.context save:nil];
+}
+
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [UIApplication sharedApplication].idleTimerDisabled = NO;
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)handleEnteredBackground:(id)sender {
@@ -137,6 +147,7 @@
 }   
 
 - (IBAction)finishWorkoutButtonPressed:(UIButton *)sender {
+    self.settings.activeWorkout = nil;
     [self updateWorkout];
     [self.delegate workoutViewController:self willDismissWithResultWorkout:self.workout];
     [self dismissViewControllerAnimated:YES completion:^{
@@ -200,6 +211,7 @@
 }
 
 - (void)deleteWorkout {
+    self.settings.activeWorkout = nil;
     [self.workoutManager deleteWorkout:self.workout];
     [self.delegate workoutViewController:self willDismissWithResultWorkout:nil];
     [self dismissViewControllerAnimated:YES completion:^{
@@ -463,7 +475,7 @@
                         [self.selectedIndexPaths addObject:[NSIndexPath indexPathForRow:num.integerValue inSection:0]];
     }   }   }
     [self.tableView beginUpdates];
-    [self.tableView deleteRowsAtIndexPaths:[self indexPathsForDeletedExercises:@[((ExerciseTableViewCell *)cell).exercise]]
+    [self.tableView deleteRowsAtIndexPaths:[self resultIndexPathsFromDeleteExercisesActionWithExercises:@[((ExerciseTableViewCell *)cell).exercise]]
                           withRowAnimation:UITableViewRowAnimationFade];
     [self.tableView reloadRowsAtIndexPaths:self.selectedIndexPaths withRowAnimation:UITableViewRowAnimationFade];
     [self.tableView endUpdates];
@@ -514,17 +526,20 @@
 
 #pragma mark - exerciseVC delegate
 
-- (void)exerciseViewController:(ExerciseViewController *)exerciseVC willDismissWithEditedExercises:(NSArray<BTExercise *> *)exercises
-                                                                                  deletedExercises:(NSArray<BTExercise *> *)deleted {
-    NSArray *deletedIndexPaths = [self indexPathsForDeletedExercises:deleted];
-    [self.tableView beginUpdates];
-    [self.tableView deleteRowsAtIndexPaths:deletedIndexPaths withRowAnimation:UITableViewRowAnimationFade];
-    [self.tableView reloadRowsAtIndexPaths:self.selectedIndexPaths withRowAnimation:UITableViewRowAnimationFade];
-    [self.tableView endUpdates];
+- (void)exerciseViewController:(ExerciseViewController *)exerciseVC didRequestSaveWithEditedExercises:(NSArray<BTExercise *> *)exercises
+                                                                                     deletedExercises:(NSArray<BTExercise *> *)deleted
+                                                                                             animated:(BOOL)animated {
+    if (animated) {
+        NSArray *deletedIndexPaths = [self resultIndexPathsFromDeleteExercisesActionWithExercises:deleted];
+        [self.tableView beginUpdates];
+        [self.tableView deleteRowsAtIndexPaths:deletedIndexPaths withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableView reloadRowsAtIndexPaths:self.selectedIndexPaths withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableView endUpdates];
+    }
     [self updateWorkout];
 }
 
-- (NSArray <NSIndexPath *> *)indexPathsForDeletedExercises:(NSArray <BTExercise *> *)deleted {
+- (NSArray <NSIndexPath *> *)resultIndexPathsFromDeleteExercisesActionWithExercises:(NSArray <BTExercise *> *)deleted {
     NSMutableArray <NSIndexPath *> *deletedIndexPaths = [[NSMutableArray alloc] init];
     for (BTExercise *exercise in deleted) {
         NSInteger index = [self.workout.exercises indexOfObject:exercise];

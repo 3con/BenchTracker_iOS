@@ -35,10 +35,12 @@
     if (error || object.count == 0) {
         NSLog(@"BTSettings coreData error or creation: %@",error);
         BTSettings *settings = [NSEntityDescription insertNewObjectForEntityForName:@"BTSettings" inManagedObjectContext:context];
+        settings.activeWorkout = nil;
         settings.hiddenExerciseTypeSections = [NSKeyedArchiver archivedDataWithRootObject:[NSMutableArray array]];
+        settings.exerciseTypeColors = nil;
         settings.startWeekOnMonday = YES;
         settings.disableSleep = YES;
-        settings.weightInLbs = YES;
+        settings.weightInLbs = ![[[NSLocale currentLocale] objectForKey:NSLocaleUsesMetricSystem] boolValue];;
         [context save:nil];
         return settings;
     }

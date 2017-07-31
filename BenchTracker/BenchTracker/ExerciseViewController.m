@@ -28,6 +28,10 @@
     [super viewDidLoad];
     self.doneButton.backgroundColor = [UIColor BTButtonPrimaryColor];
     self.scrollView.delegate = self;
+    [[NSNotificationCenter defaultCenter] addObserver: self
+                                             selector: @selector(handleEnterBackground:)
+                                                 name: UIApplicationDidEnterBackgroundNotification
+                                               object: nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -59,17 +63,29 @@
                                                            constant:MAX(self.view.frame.size.height+1, h+101)]]; //Keyboard: 226px
 }
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)handleEnterBackground:(id)sender {
+    [self saveExercisesAnimated:NO];
+}
+
 - (IBAction)doneButtonPressed:(UIButton *)sender {
+    [self saveExercisesAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:^{
+                                 
+    }];
+}
+
+- (void)saveExercisesAnimated:(BOOL)animated {
     NSMutableArray *dArr = [[NSMutableArray alloc] init];
     NSMutableArray *eArr = [[NSMutableArray alloc] init];
     for (ExerciseView *view in self.exerciseViews) {
         if (!view.isDeleted) [eArr addObject:[view getExercise]];
         else                 [dArr addObject:[view getExercise]];
     }
-    [self.delegate exerciseViewController:self willDismissWithEditedExercises:eArr deletedExercises:dArr];
-    [self dismissViewControllerAnimated:YES completion:^{
-                                 
-    }];
+    [self.delegate exerciseViewController:self didRequestSaveWithEditedExercises:eArr deletedExercises:dArr animated:animated];
 }
 
 #pragma mark - scrollView delegate

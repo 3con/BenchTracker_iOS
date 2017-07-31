@@ -100,6 +100,8 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    if (self.settings.activeWorkout)
+        [self presentWorkoutViewControllerWithWorkout:self.settings.activeWorkout];
     if (!self.user) { //No user in CoreData
         [self presentLoginViewController];
     }

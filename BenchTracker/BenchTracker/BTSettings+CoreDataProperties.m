@@ -14,8 +14,10 @@
 	return [[NSFetchRequest alloc] initWithEntityName:@"BTSettings"];
 }
 
+@dynamic activeWorkout;
 @dynamic hiddenExerciseTypeSections;
 @dynamic exerciseTypeColors;
+
 @dynamic startWeekOnMonday;
 @dynamic disableSleep;
 @dynamic weightInLbs;
