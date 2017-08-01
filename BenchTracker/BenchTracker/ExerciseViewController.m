@@ -7,9 +7,10 @@
 //
 
 #import "ExerciseViewController.h"
-#import "ExerciseView.h"
 #import "BTExercise+CoreDataClass.h"
 #import "BTSettings+CoreDataClass.h"
+#import "EquivalencyChartViewController.h"
+#import "ZFModalTransitionAnimator.h"
 
 @interface ExerciseViewController ()
 
@@ -20,12 +21,17 @@
 
 @property (nonatomic) NSMutableArray<ExerciseView *> *exerciseViews;
 
+@property (nonatomic) ZFModalTransitionAnimator *animator;
+
+@property (nonatomic) BOOL firstShow;
+
 @end
 
 @implementation ExerciseViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.firstShow = YES;
     self.doneButton.backgroundColor = [UIColor BTButtonPrimaryColor];
     self.scrollView.delegate = self;
     [[NSNotificationCenter defaultCenter] addObserver: self
@@ -36,31 +42,36 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.doneButton.layer.cornerRadius = 12;
-    self.doneButton.clipsToBounds = YES;
-    self.exerciseViews = [[NSMutableArray alloc] init];
-    int h = 185;
-    NSDictionary *exerciseTypeColors;
-    if (self.settings) exerciseTypeColors = [NSKeyedUnarchiver unarchiveObjectWithData:self.settings.exerciseTypeColors];
-    for (BTExercise *exercise in self.exercises) {
-        ExerciseView *view = [[NSBundle mainBundle] loadNibNamed:@"ExerciseView" owner:self options:nil].firstObject;
-        view.settings = self.settings;
-        view.color = exerciseTypeColors[exercise.category];
-        [view loadExercise:exercise];
-        [self.exerciseViews addObject:view];
-        [self.contentView addSubview:view];
-        view.center = CGPointMake(self.contentView.frame.size.width*.5, h);
-        h += 290;
+    if (self.firstShow) {
+        self.firstShow = NO;
+        self.doneButton.layer.cornerRadius = 12;
+        self.doneButton.clipsToBounds = YES;
+        self.exerciseViews = [[NSMutableArray alloc] init];
+        int h = 185;
+        NSDictionary *exerciseTypeColors;
+        if (self.settings) exerciseTypeColors = [NSKeyedUnarchiver unarchiveObjectWithData:self.settings.exerciseTypeColors];
+        for (BTExercise *exercise in self.exercises) {
+            ExerciseView *view = [[NSBundle mainBundle] loadNibNamed:@"ExerciseView" owner:self options:nil].firstObject;
+            view.frame = CGRectMake(0, 0, self.contentView.frame.size.width, 260);
+            view.delegate = self;
+            view.settings = self.settings;
+            view.color = exerciseTypeColors[exercise.category];
+            [view loadExercise:exercise];
+            [self.exerciseViews addObject:view];
+            [self.contentView addSubview:view];
+            view.center = CGPointMake(self.contentView.frame.size.width*.5, h);
+            h += 290;
+        }
+        if (self.exercises.count == 1) self.exerciseViews[0].center =
+            CGPointMake(self.contentView.frame.size.width*.5, (self.view.frame.size.height-40-50)*.5);
+        [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.contentView
+                                                              attribute:NSLayoutAttributeHeight
+                                                              relatedBy:NSLayoutRelationEqual
+                                                                 toItem:nil
+                                                              attribute:NSLayoutAttributeNotAnAttribute
+                                                             multiplier:1.0
+                                                               constant:MAX(self.view.frame.size.height+1, h+101)]]; //Keyboard: 226px
     }
-    if (self.exercises.count == 1) self.exerciseViews[0].center =
-        CGPointMake(self.contentView.frame.size.width*.5, (self.view.frame.size.height-40-50)*.5);
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.contentView
-                                                          attribute:NSLayoutAttributeHeight
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:nil
-                                                          attribute:NSLayoutAttributeNotAnAttribute
-                                                         multiplier:1.0
-                                                           constant:MAX(self.view.frame.size.height+1, h+101)]]; //Keyboard: 226px
 }
 
 - (void)dealloc {
@@ -88,6 +99,12 @@
     [self.delegate exerciseViewController:self didRequestSaveWithEditedExercises:eArr deletedExercises:dArr animated:animated];
 }
 
+#pragma mark - exerciseView delegate
+
+- (void)exerciseViewRequestedShowTable:(ExerciseView *)exerciseView {
+    [self presentEquivalencyChartViewController];
+}
+
 #pragma mark - scrollView delegate
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
@@ -98,19 +115,21 @@
     return UIStatusBarStyleLightContent;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+#pragma mark - view handling
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)presentEquivalencyChartViewController {
+    EquivalencyChartViewController *ecVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ec"];
+    ecVC.settings = self.settings;
+    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:ecVC];
+    self.animator.dragable = NO;
+    self.animator.bounces = YES;
+    self.animator.behindViewAlpha = 0.8;
+    self.animator.behindViewScale = 0.92;
+    self.animator.transitionDuration = 0.5;
+    self.animator.direction = ZFModalTransitonDirectionBottom;
+    ecVC.transitioningDelegate = self.animator;
+    ecVC.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self presentViewController:ecVC animated:YES completion:nil];
 }
-*/
 
 @end

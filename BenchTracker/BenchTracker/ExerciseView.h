@@ -10,8 +10,15 @@
 
 @class BTExercise;
 @class BTSettings;
+@class ExerciseView;
+
+@protocol ExerciseViewDelegate <NSObject>
+- (void)exerciseViewRequestedShowTable:(ExerciseView *)exerciseView;
+@end
 
 @interface ExerciseView : UIView <UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UICollectionViewDelegate, UICollectionViewDataSource>
+
+@property (nonatomic) id<ExerciseViewDelegate> delegate;
 
 @property (nonatomic) BOOL isDeleted;
 

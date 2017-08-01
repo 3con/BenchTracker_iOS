@@ -24,6 +24,8 @@
 @property (weak, nonatomic) IBOutlet UIView *undoDeleteButton;
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 
+@property (weak, nonatomic) IBOutlet UIButton *tableShowButton;
+
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *categoryLabel;
 
@@ -73,6 +75,10 @@
 #pragma mark - public methods
 
 - (void)loadExercise:(BTExercise *)exercise {
+    if (![exercise.style isEqualToString:STYLE_REPSWEIGHT]) {
+        self.tableShowButton.alpha = 0;
+        self.tableShowButton.userInteractionEnabled = NO;
+    }
     self.isDeleted = NO;
     self.deletedView.alpha = 0;
     self.deletedView.userInteractionEnabled = NO;
@@ -202,6 +208,10 @@
     [UIView animateWithDuration:.3 animations:^{
        self.deletedView.alpha = 1;
     }];
+}
+
+- (IBAction)tableShowButtonPressed:(UIButton *)sender {
+    [self.delegate exerciseViewRequestedShowTable:self];
 }
 
 - (IBAction)undoDeleteButtonPressed:(UIButton *)sender {

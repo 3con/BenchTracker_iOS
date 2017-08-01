@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ExerciseView.h"
 
 @class ExerciseViewController;
 @class BTExercise;
@@ -19,7 +20,7 @@
                                                                                               animated:(BOOL)animated;
 @end
 
-@interface ExerciseViewController : UIViewController <UIScrollViewDelegate>
+@interface ExerciseViewController : UIViewController <UIScrollViewDelegate, ExerciseViewDelegate>
 
 @property id<ExerciseViewControllerDelegate> delegate;
 

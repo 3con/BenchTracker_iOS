@@ -11,6 +11,11 @@
 		50636F2B1F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50636F291F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.xib */; };
 		50636F2F1F2B9E0D00FB65B4 /* EEDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50636F2E1F2B9E0D00FB65B4 /* EEDetailViewController.m */; };
 		50636F331F2C37B000FB65B4 /* BTExerciseTypeStyleTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 50636F321F2C37B000FB65B4 /* BTExerciseTypeStyleTransformer.m */; };
+		508568BB1F30E4090046A76F /* EquivalencyChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 508568BA1F30E4090046A76F /* EquivalencyChartViewController.m */; };
+		508568C61F31044B0046A76F /* ECTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 508568C41F31044B0046A76F /* ECTableViewCell.m */; };
+		508568C71F31044B0046A76F /* ECTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 508568C51F31044B0046A76F /* ECTableViewCell.xib */; };
+		508568CC1F310DDD0046A76F /* ECSideTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 508568CA1F310DDD0046A76F /* ECSideTableViewCell.m */; };
+		508568CD1F310DDD0046A76F /* ECSideTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 508568CB1F310DDD0046A76F /* ECSideTableViewCell.xib */; };
 		50971E741F2E4AB700B10D70 /* AETableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50971E731F2E4AB700B10D70 /* AETableHeaderView.m */; };
 		50971E761F2E4AC400B10D70 /* AETableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50971E751F2E4AC400B10D70 /* AETableHeaderView.xib */; };
 		6FF44576CFF404C6C4707802 /* Pods_BenchTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C83D3A0EA46ECDF1788C990 /* Pods_BenchTracker.framework */; };
@@ -128,6 +133,14 @@
 		50636F2E1F2B9E0D00FB65B4 /* EEDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EEDetailViewController.m; sourceTree = "<group>"; };
 		50636F311F2C37B000FB65B4 /* BTExerciseTypeStyleTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTExerciseTypeStyleTransformer.h; sourceTree = "<group>"; };
 		50636F321F2C37B000FB65B4 /* BTExerciseTypeStyleTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTExerciseTypeStyleTransformer.m; sourceTree = "<group>"; };
+		508568B91F30E4090046A76F /* EquivalencyChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EquivalencyChartViewController.h; sourceTree = "<group>"; };
+		508568BA1F30E4090046A76F /* EquivalencyChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EquivalencyChartViewController.m; sourceTree = "<group>"; };
+		508568C31F31044B0046A76F /* ECTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECTableViewCell.h; sourceTree = "<group>"; };
+		508568C41F31044B0046A76F /* ECTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECTableViewCell.m; sourceTree = "<group>"; };
+		508568C51F31044B0046A76F /* ECTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ECTableViewCell.xib; sourceTree = "<group>"; };
+		508568C91F310DDD0046A76F /* ECSideTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECSideTableViewCell.h; sourceTree = "<group>"; };
+		508568CA1F310DDD0046A76F /* ECSideTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECSideTableViewCell.m; sourceTree = "<group>"; };
+		508568CB1F310DDD0046A76F /* ECSideTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ECSideTableViewCell.xib; sourceTree = "<group>"; };
 		50971E721F2E4AB700B10D70 /* AETableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AETableHeaderView.h; sourceTree = "<group>"; };
 		50971E731F2E4AB700B10D70 /* AETableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AETableHeaderView.m; sourceTree = "<group>"; };
 		50971E751F2E4AC400B10D70 /* AETableHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AETableHeaderView.xib; sourceTree = "<group>"; };
@@ -353,6 +366,37 @@
 			name = "Style transformer";
 			sourceTree = "<group>";
 		};
+		508568BC1F30E4190046A76F /* Equivalency Chart VC */ = {
+			isa = PBXGroup;
+			children = (
+				508568B91F30E4090046A76F /* EquivalencyChartViewController.h */,
+				508568BA1F30E4090046A76F /* EquivalencyChartViewController.m */,
+				508568CE1F310DE00046A76F /* EC Side Cell */,
+				508568C81F3105330046A76F /* EC Main Cell */,
+			);
+			name = "Equivalency Chart VC";
+			sourceTree = "<group>";
+		};
+		508568C81F3105330046A76F /* EC Main Cell */ = {
+			isa = PBXGroup;
+			children = (
+				508568C31F31044B0046A76F /* ECTableViewCell.h */,
+				508568C41F31044B0046A76F /* ECTableViewCell.m */,
+				508568C51F31044B0046A76F /* ECTableViewCell.xib */,
+			);
+			name = "EC Main Cell";
+			sourceTree = "<group>";
+		};
+		508568CE1F310DE00046A76F /* EC Side Cell */ = {
+			isa = PBXGroup;
+			children = (
+				508568C91F310DDD0046A76F /* ECSideTableViewCell.h */,
+				508568CA1F310DDD0046A76F /* ECSideTableViewCell.m */,
+				508568CB1F310DDD0046A76F /* ECSideTableViewCell.xib */,
+			);
+			name = "EC Side Cell";
+			sourceTree = "<group>";
+		};
 		50971E771F2E4BBC00B10D70 /* Table header view */ = {
 			isa = PBXGroup;
 			children = (
@@ -524,6 +568,7 @@
 				F9418FA61F04A4F80083C3DC /* ExerciseViewController.h */,
 				F9418FA71F04A4F80083C3DC /* ExerciseViewController.m */,
 				F9418FAD1F04A9530083C3DC /* Exercise View */,
+				508568BC1F30E4190046A76F /* Equivalency Chart VC */,
 			);
 			name = Exercise;
 			sourceTree = "<group>";
@@ -1144,6 +1189,7 @@
 				50971E761F2E4AC400B10D70 /* AETableHeaderView.xib in Resources */,
 				50636F2B1F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.xib in Resources */,
 				F97B1CAA1F097DA600B3EEC7 /* WeekdayView.xib in Resources */,
+				508568C71F31044B0046A76F /* ECTableViewCell.xib in Resources */,
 				F9FD19F01F14748800AB3FEE /* ADExercisesViewController.xib in Resources */,
 				F9B27CE61F117852008FCC7F /* AnalyticsCollectionViewCell.xib in Resources */,
 				F917BB671F0DEAE000614AB1 /* BTQRScannerViewController.xib in Resources */,
@@ -1151,6 +1197,7 @@
 				F90712B319415FB1008694E5 /* Main.storyboard in Resources */,
 				F9FD19EA1F14746E00AB3FEE /* ADMuscleSplitViewController.xib in Resources */,
 				F9F522F61F195B7200061AF0 /* BTButtonFormCell.xib in Resources */,
+				508568CD1F310DDD0046A76F /* ECSideTableViewCell.xib in Resources */,
 				F96207721F05DCF200DE2330 /* ExerciseTableViewCell.xib in Resources */,
 				F917BB571F0D2AC400614AB1 /* BTWorkoutPDF.xib in Resources */,
 				F94C893B1F154498006C6BDD /* ADPodiumView.xib in Resources */,
@@ -1277,6 +1324,7 @@
 				F9DA75271F02EE9600347B0D /* BTExerciseType+CoreDataProperties.m in Sources */,
 				F9A5494E1F13075600743897 /* AnalyticsViewController.m in Sources */,
 				F9A549511F134A3100743897 /* AnalyticsDetailViewController.m in Sources */,
+				508568CC1F310DDD0046A76F /* ECSideTableViewCell.m in Sources */,
 				F95F933B1F034DA500A19C4D /* MainViewController.m in Sources */,
 				F9418FAC1F04A94E0083C3DC /* ExerciseView.m in Sources */,
 				F917BB541F0D2AB200614AB1 /* BTWorkoutPDF.m in Sources */,
@@ -1305,11 +1353,13 @@
 				F9DA75331F02F0B800347B0D /* BTTypeListManager.m in Sources */,
 				F9418F9E1F0433980083C3DC /* AddExerciseViewController.m in Sources */,
 				F9DA75291F02EE9600347B0D /* BTWorkout+CoreDataProperties.m in Sources */,
+				508568BB1F30E4090046A76F /* EquivalencyChartViewController.m in Sources */,
 				F95F93441F03738B00A19C4D /* WorkoutViewController.m in Sources */,
 				F9B27CE51F117852008FCC7F /* AnalyticsCollectionViewCell.m in Sources */,
 				F9418FA31F048B1E0083C3DC /* AddExerciseTableViewCell.m in Sources */,
 				F9A549431F13065000743897 /* BTAnalyticsLineChart.m in Sources */,
 				F917BB5A1F0DA6AB00614AB1 /* BTJSONWorkout.m in Sources */,
+				508568C61F31044B0046A76F /* ECTableViewCell.m in Sources */,
 				F97B1CA71F097D8A00B3EEC7 /* WeekdayView.m in Sources */,
 				50636F2F1F2B9E0D00FB65B4 /* EEDetailViewController.m in Sources */,
 				F9DA75111F02DC1700347B0D /* BTDataModel.xcdatamodeld in Sources */,

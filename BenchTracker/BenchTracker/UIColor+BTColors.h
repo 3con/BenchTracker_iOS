@@ -24,6 +24,8 @@
 
 + (UIColor *)BTGrayColor;
 
++ (UIColor *)BTLightGrayColor;
+
 + (UIColor *)BTRedColor;
 
 @end

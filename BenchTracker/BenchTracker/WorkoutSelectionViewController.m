@@ -142,7 +142,7 @@
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BCell"];
         cell.backgroundColor = [UIColor whiteColor];
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.frame.size.width, 120)];
-        label.textColor = [[UIColor BTGrayColor] colorWithAlphaComponent:.6];
+        label.textColor = [UIColor BTLightGrayColor];
         label.textAlignment = NSTextAlignmentCenter;
         label.font = [UIFont systemFontOfSize:24 weight:UIFontWeightBold];
         label.text = [NSString stringWithFormat:@"No Workouts"];

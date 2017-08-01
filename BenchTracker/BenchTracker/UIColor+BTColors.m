@@ -10,16 +10,16 @@
 
 @implementation UIColor (BTColor)
 
-+ (UIColor *)BTPrimaryColor {           //rgb(16,41,131)    //indigo 600 (darkened)
-    return [UIColor colorWithRed:21/255.0 green:54/255.0 blue:171/255.0 alpha:1];
++ (UIColor *)BTPrimaryColor {           //rgb(20,43,132)    //indigo 800 (r-20, g-10)
+    return [UIColor colorWithRed:15/255.0 green:43/255.0 blue:132/255.0 alpha:1];
 }
 
-+ (UIColor *)BTSecondaryColor {         //rgb(21,54,171)    //---
-    return [UIColor colorWithRed:25/255.0 green:64/255.0 blue:201/255.0 alpha:1];
++ (UIColor *)BTSecondaryColor {         //rgb(22,58,171)    //indigo 600 (r-25, g-15)
+    return [UIColor colorWithRed:22/255.0 green:58/255.0 blue:171/255.0 alpha:1];
 }
 
-+ (UIColor *)BTTertiaryColor {          //rgb(22,66,222)    //---
-    return [UIColor colorWithRed:34/255.0 green:78/255.0 blue:245/255.0 alpha:1];
++ (UIColor *)BTTertiaryColor {          //rgb(63,81,181)    //indigo 500 (r-30, g-20)
+    return [UIColor colorWithRed:33/255.0 green:61/255.0 blue:181/255.0 alpha:1];
 }
 
 + (UIColor *)BTButtonPrimaryColor {     //rgb(251,192,45)   //yellow 700
@@ -36,6 +36,10 @@
 
 + (UIColor *)BTGrayColor {              //rgb(97,97,97)     //gray 700
     return [UIColor colorWithRed:97/255.0 green:97/255.0 blue:97/255.0 alpha:1];
+}
+
++ (UIColor *)BTLightGrayColor {             //rgb(158,158,158)  //gray 500
+    return [UIColor colorWithRed:158/255.0 green:158/255.0 blue:158/255.0 alpha:1];
 }
 
 + (UIColor *)BTRedColor {               //rgb(229,57,53)    //red 600
