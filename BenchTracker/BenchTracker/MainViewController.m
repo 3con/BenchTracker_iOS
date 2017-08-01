@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UIView *segmentedControlContainerView;
 
 @property (weak, nonatomic) IBOutlet UITableView *listTableView;
+@property (weak, nonatomic) IBOutlet UIView *noWorkoutsView;
 @property (weak, nonatomic) IBOutlet UIView *weekdayContainerView;
 @property (weak, nonatomic) IBOutlet WeekdayView *weekdayView;
 @property (weak, nonatomic) IBOutlet FSCalendar *calendarView;
@@ -326,7 +327,12 @@
 #pragma mark - tableView dataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[[_fetchedResultsController sections] objectAtIndex:section] numberOfObjects];
+    NSInteger num = [[[_fetchedResultsController sections] objectAtIndex:section] numberOfObjects];
+    self.noWorkoutsView.userInteractionEnabled = (num == 0);
+    [UIView animateWithDuration:.25 animations:^{
+        self.noWorkoutsView.alpha = (num == 0);
+    }];
+    return num;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

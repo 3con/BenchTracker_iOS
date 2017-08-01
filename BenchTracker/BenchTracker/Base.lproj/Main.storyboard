@@ -175,6 +175,51 @@
                                 <rect key="frame" x="0.0" y="110" width="414" height="626"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PGW-Zz-iVP">
+                                <rect key="frame" x="0.0" y="110" width="414" height="626"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Workouts" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Yc-3R-J29">
+                                        <rect key="frame" x="93" y="191.66666666666669" width="228" height="55"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="55" id="cJq-t7-HaQ"/>
+                                            <constraint firstAttribute="width" constant="228" id="j3r-EL-9kg"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
+                                        <color key="textColor" red="0.61960784310000006" green="0.61960784310000006" blue="0.61960784310000006" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap here to create a new workout!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y9G-Ff-W7l">
+                                        <rect key="frame" x="132" y="446" width="150" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="150" id="13p-5j-NO5"/>
+                                            <constraint firstAttribute="height" constant="50" id="MVJ-Ka-FRl"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" red="0.3803921569" green="0.3803921569" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NewWorkoutArrow" translatesAutoresizingMaskIntoConstraints="NO" id="1ML-x6-owk">
+                                        <rect key="frame" x="244" y="478" width="35" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="35" id="23B-SU-9mn"/>
+                                            <constraint firstAttribute="width" secondItem="1ML-x6-owk" secondAttribute="height" multiplier="1:1" id="bto-0f-2eu"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="1ML-x6-owk" firstAttribute="top" secondItem="y9G-Ff-W7l" secondAttribute="bottom" constant="-18" id="CMw-1y-xPX"/>
+                                    <constraint firstItem="1ML-x6-owk" firstAttribute="leading" secondItem="y9G-Ff-W7l" secondAttribute="trailing" constant="-38" id="Py9-op-ffT"/>
+                                    <constraint firstAttribute="bottom" secondItem="y9G-Ff-W7l" secondAttribute="bottom" constant="130" id="Rkw-Cj-XIb"/>
+                                    <constraint firstItem="5Yc-3R-J29" firstAttribute="centerX" secondItem="PGW-Zz-iVP" secondAttribute="centerX" id="dKC-lo-pbo"/>
+                                    <constraint firstItem="y9G-Ff-W7l" firstAttribute="centerX" secondItem="PGW-Zz-iVP" secondAttribute="centerX" id="jEJ-zH-Fbj"/>
+                                    <constraint firstItem="5Yc-3R-J29" firstAttribute="centerY" secondItem="PGW-Zz-iVP" secondAttribute="centerY" multiplier="0.7" id="uEC-7y-NMI"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kjz-wY-iG2">
+                                <rect key="frame" x="0.0" y="110" width="414" height="626"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hx4-hj-moB" customClass="FSCalendar">
                                 <rect key="frame" x="0.0" y="109" width="414" height="627"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -218,10 +263,6 @@
                                         <color key="value" red="0.3780187216" green="0.3921568627" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kjz-wY-iG2">
-                                <rect key="frame" x="0.0" y="110" width="414" height="626"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oFE-yj-bhY">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="110"/>
@@ -319,8 +360,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="PGW-Zz-iVP" firstAttribute="centerY" secondItem="IiY-s6-C0p" secondAttribute="centerY" id="0Da-vK-h65"/>
                             <constraint firstItem="Kjz-wY-iG2" firstAttribute="width" secondItem="aTT-hA-cJA" secondAttribute="width" id="0QB-Ew-Enc"/>
+                            <constraint firstItem="PGW-Zz-iVP" firstAttribute="width" secondItem="IiY-s6-C0p" secondAttribute="width" id="38H-GS-ei8"/>
                             <constraint firstItem="uiM-xA-gS4" firstAttribute="centerY" secondItem="7wv-bp-GGA" secondAttribute="centerY" id="3Pe-oX-BbG"/>
+                            <constraint firstItem="PGW-Zz-iVP" firstAttribute="centerX" secondItem="IiY-s6-C0p" secondAttribute="centerX" id="52h-aO-Aea"/>
                             <constraint firstItem="7wv-bp-GGA" firstAttribute="centerX" secondItem="aTT-hA-cJA" secondAttribute="centerX" id="ACL-KX-vos"/>
                             <constraint firstItem="IiY-s6-C0p" firstAttribute="centerX" secondItem="aTT-hA-cJA" secondAttribute="centerX" id="AlO-V1-AaN"/>
                             <constraint firstItem="oFE-yj-bhY" firstAttribute="width" secondItem="aTT-hA-cJA" secondAttribute="width" id="Dfr-hh-XIQ"/>
@@ -333,6 +377,7 @@
                             <constraint firstItem="8dM-gR-6yE" firstAttribute="top" secondItem="hx4-hj-moB" secondAttribute="bottom" id="YEl-iG-IJZ"/>
                             <constraint firstItem="hx4-hj-moB" firstAttribute="centerX" secondItem="aTT-hA-cJA" secondAttribute="centerX" id="YcM-fI-xak"/>
                             <constraint firstItem="hx4-hj-moB" firstAttribute="top" secondItem="oFE-yj-bhY" secondAttribute="bottom" constant="-1" id="ZNc-Fb-H9p"/>
+                            <constraint firstItem="PGW-Zz-iVP" firstAttribute="height" secondItem="IiY-s6-C0p" secondAttribute="height" id="alM-rz-bfh"/>
                             <constraint firstItem="IiY-s6-C0p" firstAttribute="top" secondItem="oFE-yj-bhY" secondAttribute="bottom" id="cyF-xX-ymq"/>
                             <constraint firstItem="IiY-s6-C0p" firstAttribute="width" secondItem="aTT-hA-cJA" secondAttribute="width" id="ekI-e7-XVp"/>
                             <constraint firstItem="oFE-yj-bhY" firstAttribute="centerX" secondItem="aTT-hA-cJA" secondAttribute="centerX" id="nMS-Pe-R3l"/>
@@ -347,6 +392,7 @@
                         <outlet property="leftBarButton" destination="xOh-gd-Bbp" id="r4q-Jq-nTl"/>
                         <outlet property="listTableView" destination="IiY-s6-C0p" id="D8b-nc-pda"/>
                         <outlet property="navView" destination="oFE-yj-bhY" id="0sA-dQ-XtJ"/>
+                        <outlet property="noWorkoutsView" destination="PGW-Zz-iVP" id="qVC-HP-DEr"/>
                         <outlet property="rightBarButton" destination="W1F-YY-ujm" id="BRt-aa-Lne"/>
                         <outlet property="scanWorkoutButton" destination="uiM-xA-gS4" id="8K3-S2-ACH"/>
                         <outlet property="segmentedControl" destination="2Oe-gD-jXD" id="SHV-tO-87F"/>
@@ -1540,6 +1586,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="NewWorkoutArrow" width="170" height="170"/>
         <image name="Print" width="21" height="21"/>
         <image name="QrCode" width="42" height="42"/>
     </resources>
