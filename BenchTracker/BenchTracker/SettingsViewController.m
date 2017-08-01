@@ -149,19 +149,19 @@
 - (void)didSelectFormRow:(XLFormRowDescriptor *)formRow {
     if ([formRow.tag isEqualToString:@"editExercises"]) [self presentEditExercisesViewController];
     else if ([formRow.tag isEqualToString:@"share"]) {
-        NSArray* dataToShare = @[@"Go download Bench Tracker on the iOS App Store! https://itunes.apple.com/app/id1097438761"];
+        NSArray* dataToShare = @[@"Go download Bench Tracker on the iOS App Store! https://itunes.apple.com/app/id1266077653"];
         UIActivityViewController* activityViewController = [[UIActivityViewController alloc] initWithActivityItems:dataToShare
                                                                                              applicationActivities:nil];
         [self presentViewController:activityViewController animated:YES completion:nil];
     }
     else if ([formRow.tag isEqualToString:@"rate"])
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=1097438761&onlyLatestVersion=true&pageNumber=0&sortOrdering=1&type=Purple+Software"]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=1266077653&onlyLatestVersion=true&pageNumber=0&sortOrdering=1&type=Purple+Software"]];
     else if ([formRow.tag isEqualToString:@"reset"]) {
         //WARN USER DATA WILL BE DELETED, SUGGEST DOWNLOADING DATA
         UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Reset Data"
-                                                                        message:@"Are you sure you want to reset your accout? You will lose all you hard work! This action cannot be undone."
+                                                                        message:@"Are you sure you want to reset your accout? You will lose all your hard work! We suggest saving your workouts by printing them out before reseting your data. This action cannot be undone."
                                                                  preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction* deleteButton = [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
+        UIAlertAction* deleteButton = [UIAlertAction actionWithTitle:@"Reset" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
             dispatch_async(dispatch_get_main_queue(), ^{ [self logOutButtonPressed:nil]; });
         }];
         UIAlertAction* cancelButton = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];

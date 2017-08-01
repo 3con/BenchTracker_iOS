@@ -85,6 +85,10 @@
                                              selector: @selector(handleEnteredBackground:)
                                                  name: UIApplicationDidEnterBackgroundNotification
                                                object: nil];
+    [[NSNotificationCenter defaultCenter] addObserver: self
+                                             selector: @selector(handleWillTerminate:)
+                                                 name: UIApplicationWillTerminateNotification
+                                               object: nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -110,6 +114,11 @@
 
 - (void)handleEnteredBackground:(id)sender {
     [self updateWorkout];
+}
+
+- (void)handleWillTerminate:(id)sender {
+    self.settings.activeWorkout = nil;
+    [self.context save:nil];
 }
 
 - (IBAction)pdfButtonPressed:(id)sender {
