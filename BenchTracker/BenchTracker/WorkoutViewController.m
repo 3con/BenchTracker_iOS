@@ -7,7 +7,6 @@
 //
 
 #import "WorkoutViewController.h"
-#import "BTWorkoutManager.h"
 #import "BTExercise+CoreDataClass.h"
 #import "BTExerciseType+CoreDataClass.h"
 #import "ZFModalTransitionAnimator.h"
@@ -35,7 +34,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *addExerciseButton;
 
 @property (nonatomic) ZFModalTransitionAnimator *animator;
-@property BTWorkoutManager *workoutManager;
 @property (nonatomic) BTSettings *settings;
 @property (nonatomic) NSDictionary *exerciseTypeColors;
 
@@ -77,10 +75,9 @@
     self.finishWorkoutButton.clipsToBounds = YES;
     self.deleteWorkoutButton.layer.cornerRadius = 12.5;
     self.deleteWorkoutButton.clipsToBounds = YES;
-    self.workoutManager = [BTWorkoutManager sharedInstance];
     if (!self.workout) {
         [Appirater userDidSignificantEvent:YES];
-        self.workout = [self.workoutManager createWorkout];
+        self.workout = [BTWorkout createWorkout];
     }
     self.nameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:self.workout.name
         attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor], NSFontAttributeName:[UIFont italicSystemFontOfSize:22]}];
@@ -225,7 +222,8 @@
 
 - (void)deleteWorkout {
     self.settings.activeWorkout = nil;
-    [self.workoutManager deleteWorkout:self.workout];
+    [self.context deleteObject:self.workout];
+    [self.context save:nil];
     [self.delegate workoutViewController:self willDismissWithResultWorkout:nil];
     [self dismissViewControllerAnimated:YES completion:^{
         
@@ -623,8 +621,8 @@
 }
 
 - (void)presentQRDisplayViewControllerWithPoint:(CGPoint)point {
-    NSString *jsonString = [self.workoutManager jsonForWorkout:self.workout];
-    NSString *jsonString2 = [self.workoutManager jsonForTemplateWorkout:self.workout];
+    NSString *jsonString = [BTWorkout jsonForWorkout:self.workout];
+    NSString *jsonString2 = [BTWorkout jsonForTemplateWorkout:self.workout];
     QRDisplayViewController *qVC = [self.storyboard instantiateViewControllerWithIdentifier:@"qd"];
     qVC.image1 = [MMQRCodeMakerUtil qrImageWithContent:jsonString logoImage:nil qrColor:nil qrWidth:440];
     qVC.image2 = [MMQRCodeMakerUtil qrImageWithContent:jsonString2 logoImage:nil qrColor:nil qrWidth:440];

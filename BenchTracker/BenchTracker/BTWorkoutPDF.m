@@ -9,8 +9,6 @@
 #import "BTWorkoutPDF.h"
 #import "BTWorkout+CoreDataClass.h"
 #import "BTExercise+CoreDataClass.h"
-#import "BTUserManager.h"
-#import "BTWorkoutManager.h"
 #import "MMQRCodeMakerUtil.h"
 
 @interface BTWorkoutPDF ()
@@ -34,12 +32,10 @@
     self.metadataLabel1.text = [NSString stringWithFormat:@"Start time: %@, Duration: %lld minutes, Types: %@",
                                 [formatter stringFromDate:workout.date].lowercaseString, workout.duration/60,
                                 [workout.summary stringByReplacingOccurrencesOfString:@"#" withString:@"; "]];
-    self.metadataLabel2.text = [NSString stringWithFormat:@"User: %@, Number of exercises: %lld, Number of sets: %lld, Volume: %lld",
-                                [(BTUserManager *)[BTUserManager sharedInstance] user].username, workout.numExercises,
-                                workout.numSets, workout.volume];
-    BTWorkoutManager *workoutManager = [BTWorkoutManager sharedInstance];
-    NSString *jsonString = [workoutManager jsonForWorkout:workout];
-    NSString *jsonString2 = [workoutManager jsonForTemplateWorkout:workout];
+    self.metadataLabel2.text = [NSString stringWithFormat:@"Number of exercises: %lld, Number of sets: %lld, Volume: %lld",
+                                workout.numExercises,workout.numSets, workout.volume];
+    NSString *jsonString = [BTWorkout jsonForWorkout:workout];
+    NSString *jsonString2 = [BTWorkout jsonForTemplateWorkout:workout];
     self.imageView1.image = [MMQRCodeMakerUtil qrImageWithContent:jsonString logoImage:nil qrColor:nil qrWidth:500];
     self.imageView2.image = [MMQRCodeMakerUtil qrImageWithContent:jsonString2 logoImage:nil qrColor:nil qrWidth:500];
 }

@@ -8,7 +8,6 @@
 
 #import "WorkoutSelectionViewController.h"
 #import "WorkoutTableViewCell.h"
-#import "BTWorkoutManager.h"
 #import "BTSettings+CoreDataClass.h"
 
 @interface WorkoutSelectionViewController ()
@@ -173,7 +172,8 @@
 
 - (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerLeftUtilityButtonWithIndex:(NSInteger)index {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    [self.workoutManager deleteWorkout:[self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row-1 inSection:0]]];
+    [self.context deleteObject:[self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row-1 inSection:0]]];
+    [self.context save:nil];
 }
 
 #pragma mark - scrollView delegate

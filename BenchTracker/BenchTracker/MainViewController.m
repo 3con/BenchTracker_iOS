@@ -7,8 +7,7 @@
 //
 
 #import "MainViewController.h"
-#import "BTUserManager.h"
-#import "BTWorkoutManager.h"
+#import "BTSettings+CoreDataClass.h"
 #import "ZFModalTransitionAnimator.h"
 #import "AppDelegate.h"
 #import "WorkoutTableViewCell.h"
@@ -38,7 +37,6 @@
 @property (nonatomic) HMSegmentedControl *segmentedControl;
 
 @property (nonatomic) ZFModalTransitionAnimator *animator;
-@property (nonatomic) BTUserManager *userManager;
 @property (nonatomic) BTWorkoutManager *workoutManager;
 @property (nonatomic) BTSettings *settings;
 @property (nonatomic) BTUser *user;
@@ -55,9 +53,7 @@
     self.blankWorkoutButton.backgroundColor = [UIColor BTButtonPrimaryColor];
     self.scanWorkoutButton.backgroundColor = [UIColor BTButtonSecondaryColor];
     self.context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
-    self.userManager = [BTUserManager sharedInstance];
-    self.user = [self.userManager user];
-    self.workoutManager = [BTWorkoutManager sharedInstance];
+    self.user = [BTUser sharedInstance];
     NSError *error;
     if (![[self fetchedResultsController] performFetch:&error]) {
         NSLog(@"Main fetch error: %@, %@", error, [error userInfo]);
@@ -103,14 +99,6 @@
     [super viewDidAppear:animated];
     if (self.settings.activeWorkout)
         [self presentWorkoutViewControllerWithWorkout:self.settings.activeWorkout];
-    if (!self.user) { //No user in CoreData
-        [self presentLoginViewController];
-    }
-    [self.userManager setAutoRefresh:NO];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [self.userManager setAutoRefresh:NO];
 }
 
 - (void)loadUser {
@@ -173,7 +161,7 @@
 }
 
 - (UIColor *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance fillDefaultColorForDate:(NSDate *)date {
-    if ([self.workoutManager workoutsBetweenBeginDate:date andEndDate:[date dateByAddingTimeInterval:86400]].count > 0)
+    if ([BTWorkout workoutsBetweenBeginDate:date andEndDate:[date dateByAddingTimeInterval:86400]].count > 0)
         return [UIColor BTTertiaryColor];
     return [UIColor whiteColor];
 }
@@ -187,7 +175,7 @@
         [date compare:self.calendarView.minimumDate] == NSOrderedAscending) return [UIColor whiteColor];
     else if ([date compare:[NSDate date]] == NSOrderedDescending ||
              [date compare:[self.firstDay dateByAddingTimeInterval:-86400]] == NSOrderedAscending) return [UIColor lightGrayColor];
-    else if ([self.workoutManager workoutsBetweenBeginDate:date andEndDate:[date dateByAddingTimeInterval:86400]].count > 0)
+    else if ([BTWorkout workoutsBetweenBeginDate:date andEndDate:[date dateByAddingTimeInterval:86400]].count > 0)
         return [UIColor whiteColor];
     return [UIColor BTPrimaryColor];
 }
@@ -373,7 +361,8 @@
 
 - (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerLeftUtilityButtonWithIndex:(NSInteger)index {
     NSIndexPath *indexPath = [self.listTableView indexPathForCell:cell];
-    [self.workoutManager deleteWorkout:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+    [self.context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+    [self.context save:nil];
 }
 
 #pragma mark - weekdayView delegate
@@ -385,27 +374,11 @@
 #pragma mark - QRScanner delegate
 
 - (void)qrScannerVC:(BTQRScannerViewController *)qrVC didDismissWithScannedString:(NSString *)string {
-    BTWorkout *workout = [self.workoutManager createWorkoutWithJSON:string];
+    BTWorkout *workout = [BTWorkout createWorkoutWithJSON:string];
     [self presentWorkoutViewControllerWithWorkout:workout];
 }
 
 #pragma mark - view handling
-
-- (void)presentLoginViewController {
-    LoginViewController *loginVC = [self.storyboard instantiateViewControllerWithIdentifier:@"l"];
-    loginVC.delegate = self;
-    loginVC.userManager = self.userManager;
-    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:loginVC];
-    self.animator.bounces = NO;
-    self.animator.dragable = NO;
-    self.animator.behindViewAlpha = 0.8;
-    self.animator.behindViewScale = 0.92;
-    self.animator.transitionDuration = 0.5;
-    self.animator.direction = ZFModalTransitonDirectionBottom;
-    loginVC.transitioningDelegate = self.animator;
-    loginVC.modalPresentationStyle = UIModalPresentationFullScreen;
-    [self presentViewController:loginVC animated:YES completion:nil];
-}
 
 - (void)presentAnalyticsViewController {
     AnalyticsViewController *analyiticsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"a"];
@@ -493,7 +466,7 @@
 #pragma mark - workoutVC delegate
 
 - (void)workoutViewController:(WorkoutViewController *)workoutVC willDismissWithResultWorkout:(BTWorkout *)workout {
-    if (workout) [self.workoutManager saveEditedWorkout:workout];
+    [self.context save:nil];
     [self.calendarView reloadData];
     [self.weekdayView reloadData];
 }
@@ -509,14 +482,6 @@
     [self.weekdayView reloadData];
     self.calendarView.firstWeekday = (self.settings.startWeekOnMonday) ? 2 : 1;
     [self.calendarView reloadData];
-}
-
-#pragma mark - loginVC delegate
-
-- (void)loginViewController:(LoginViewController *)loginVC willDismissWithUser:(BTUser *)user {
-    self.user = user;
-    [self loadUser];
-    [self.weekdayView scrollToDate:[NSDate date]];
 }
 
 #pragma mark - workoutSelectionVC delegate

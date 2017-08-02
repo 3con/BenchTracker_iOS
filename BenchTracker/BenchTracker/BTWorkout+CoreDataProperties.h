@@ -24,7 +24,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) int64_t numSets;
 @property (nullable, nonatomic, copy) NSString *summary;   //"1 biceps#2 legs#..."
 @property (nullable, nonatomic, retain) NSData *supersets; //[ [1, 2, 3], [5, 6], ... ]
-@property (nullable, nonatomic, retain) BTUser *user;
 @property (nullable, nonatomic, retain) NSOrderedSet<BTExercise *> *exercises;
 
 @end

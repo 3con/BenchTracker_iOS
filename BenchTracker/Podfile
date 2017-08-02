@@ -6,9 +6,6 @@ target 'BenchTracker' do
   use_frameworks!
 
   pod 'JSONModel'
-  pod 'AWSCognito'
-  pod 'AWSDynamoDB'
-  pod 'AWSS3'
   pod 'ZFDragableModalTransition'
   pod 'HMSegmentedControl'
   pod 'FSCalendar'

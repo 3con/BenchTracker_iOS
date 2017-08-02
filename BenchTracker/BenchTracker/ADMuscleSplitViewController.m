@@ -8,14 +8,13 @@
 
 #import "ADMuscleSplitViewController.h"
 #import "ADMuscleSplitTableViewCell.h"
-#import "BTUserManager.h"
-#import "BTWorkoutManager.h"
+#import "BTUser+CoreDataClass.h"
+#import "BTWorkout+CoreDataClass.h"
 
 @interface ADMuscleSplitViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-@property (nonatomic) BTWorkoutManager *workoutManager;
 @property (nonatomic) BTUser *user;
 
 @property (nonatomic) NSDate *firstDayDate;
@@ -35,8 +34,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.user = [(BTUserManager *)[BTUserManager sharedInstance] user];
-    self.workoutManager = [BTWorkoutManager sharedInstance];
+    self.user = [BTUser sharedInstance];
     [self loadWeekLogic];
     self.titleString = @"Muscle Split";
 }
@@ -73,8 +71,8 @@
 }
 
 - (NSArray <BTWorkout *> *)workoutsForIndexPath:(NSIndexPath *)indexPath {
-    return [self.workoutManager workoutsBetweenBeginDate:[self.firstDayOfWeekDate dateByAddingTimeInterval:-86400*7*indexPath.row]
-                                              andEndDate:[self.firstDayOfWeekDate dateByAddingTimeInterval:-86400*7*(indexPath.row-1)]];
+    return [BTWorkout workoutsBetweenBeginDate:[self.firstDayOfWeekDate dateByAddingTimeInterval:-86400*7*indexPath.row]
+                                    andEndDate:[self.firstDayOfWeekDate dateByAddingTimeInterval:-86400*7*(indexPath.row-1)]];
 }
 
 #pragma mark - tableView datasource

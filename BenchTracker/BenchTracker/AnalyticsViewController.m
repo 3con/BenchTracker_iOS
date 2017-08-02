@@ -9,7 +9,6 @@
 #import "AnalyticsViewController.h"
 #import "ZFModalTransitionAnimator.h"
 #import "BTSettings+CoreDataClass.h"
-#import "BTWorkoutManager.h"
 #import "StickCollectionViewFlowLayout.h"
 #import "BTAnalyticsLineChart.h"
 #import "BTAnalyticsPieChart.h"

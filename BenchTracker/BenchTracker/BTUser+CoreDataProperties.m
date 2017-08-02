@@ -14,11 +14,5 @@
 	return [[NSFetchRequest alloc] initWithEntityName:@"BTUser"];
 }
 
-@dynamic username;
 @dynamic dateCreated;
-@dynamic lastUpdate;
-@dynamic typeListVersion;
-@dynamic recentEdits;
-@dynamic workouts;
-
 @end

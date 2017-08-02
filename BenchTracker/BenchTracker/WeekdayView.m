@@ -9,8 +9,8 @@
 #import "WeekdayView.h"
 #import "BTUser+CoreDataClass.h"
 #import "WeekdayTableViewCell.h"
-#import "BTWorkoutManager.h"
 #import "BTSettings+CoreDataClass.h"
+#import "BTWorkout+CoreDataClass.h"
 
 @interface WeekdayView ()
 
@@ -106,7 +106,7 @@
     cell.today = [[NSCalendar currentCalendar] isDate:date inSameDayAsDate:[NSDate date]];
     if (self.settings.exerciseTypeColors)
         cell.exerciseTypeColors = [NSKeyedUnarchiver unarchiveObjectWithData:self.settings.exerciseTypeColors];
-    [cell loadWithWorkouts:[self.workoutManager workoutsBetweenBeginDate:date andEndDate:[date dateByAddingTimeInterval:86400]]];
+    [cell loadWithWorkouts:[BTWorkout workoutsBetweenBeginDate:date andEndDate:[date dateByAddingTimeInterval:86400]]];
     [cell loadDate:date];
 }
 

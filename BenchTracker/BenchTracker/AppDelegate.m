@@ -7,11 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import <AWSCore/AWSCore.h>
-#import <AWSCognito/AWSCognito.h>
-#import "BenchTrackerKeys.h"
-#import "BTTypeListManager.h"
-#import "BTUserManager.h"
+#import "BTExerciseType+CoreDataClass.h"
 #import "Appirater.h"
 
 @interface AppDelegate ()
@@ -24,15 +20,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [UIApplication sharedApplication].idleTimerDisabled = NO;
-    //COGNITO HANDLING
-    AWSCognitoCredentialsProvider *credentialsProvider = [[AWSCognitoCredentialsProvider alloc]
-                                                          initWithRegionType:AWSRegionUSEast1
-                                                          identityPoolId:AWS_POOL_ID];
-    AWSServiceConfiguration *configuration = [[AWSServiceConfiguration alloc] initWithRegion:AWSRegionUSEast1 credentialsProvider:credentialsProvider];
-    [AWSServiceManager defaultServiceManager].defaultServiceConfiguration = configuration;
-    //CHECK FOR TYPE LIST UPDATES
-    [[BTTypeListManager sharedInstance] checkForExistingTypeList];
-    [[BTUserManager sharedInstance] updateUserFromAWS];
+    //TYPE LIST HANDLING
+    [BTExerciseType checkForExistingTypeList];
     //APPIRATER
     [Appirater setAppId:@"1266077653"];
     [Appirater setDaysUntilPrompt:0];

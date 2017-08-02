@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BTExerciseType : NSManagedObject
 
++ (void)checkForExistingTypeList;
+
 @end
 
 NS_ASSUME_NONNULL_END

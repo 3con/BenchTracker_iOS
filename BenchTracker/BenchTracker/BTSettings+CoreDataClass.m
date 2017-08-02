@@ -40,7 +40,7 @@
         settings.exerciseTypeColors = nil;
         settings.startWeekOnMonday = YES;
         settings.disableSleep = YES;
-        settings.weightInLbs = ![[[NSLocale currentLocale] objectForKey:NSLocaleUsesMetricSystem] boolValue];;
+        settings.weightInLbs = ![[[NSLocale currentLocale] objectForKey:NSLocaleUsesMetricSystem] boolValue];
         [context save:nil];
         return settings;
     }

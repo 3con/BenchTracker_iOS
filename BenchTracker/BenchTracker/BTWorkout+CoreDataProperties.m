@@ -23,7 +23,6 @@
 @dynamic numSets;
 @dynamic name;
 @dynamic supersets;
-@dynamic user;
 @dynamic exercises;
 
 @end

@@ -7,10 +7,11 @@
 //
 
 #import "SettingsViewController.h"
-#import "BTUserManager.h"
 #import "BTButtonFormCell.h"
 #import "ZFModalTransitionAnimator.h"
 #import "EditExercisesViewController.h"
+#import "BTSettings+CoreDataClass.h"
+#import "AppDelegate.h"
 
 @interface SettingsViewController ()
 
@@ -18,7 +19,6 @@
 
 @property (nonatomic) ZFModalTransitionAnimator *animator;
 
-@property (nonatomic) BTUserManager *userManager;
 @property (nonatomic) BTSettings *settings;
 
 @end
@@ -28,7 +28,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navView.backgroundColor = [UIColor BTPrimaryColor];
-    self.userManager = [BTUserManager sharedInstance];
     self.settings = [BTSettings sharedInstance];
     [self loadForm];
     [self.view sendSubviewToBack:self.tableView];
@@ -118,19 +117,15 @@
     }];
 }
 
-- (IBAction)logOutButtonPressed:(UIButton *)sender {
-    UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Log Out?"
-                                                                    message:@"Are you sure you want to log out of your account? Your local data stores will have to be re-downloaded if you log in on this device again."
+- (IBAction)resetDataButtonPressed:(UIButton *)sender {
+    [(AppDelegate *)[[UIApplication sharedApplication] delegate] resetCoreData];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Reset Complete"
+                                                                   message:@"Bench Tracker has reset your data. The app will now close to complete the process."
                                                              preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction* deleteButton = [UIAlertAction actionWithTitle:@"Log Out" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
-        [self.delegate settingsViewControllerDidRequestUserLogout:self];
-        [self dismissViewControllerAnimated:YES completion:^{
-            
-        }];
+    UIAlertAction *okButton = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+        assert(! "BT: User reset data. Intentional crash.");
     }];
-    UIAlertAction* cancelButton = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {}];
-    [alert addAction:cancelButton];
-    [alert addAction:deleteButton];
+    [alert addAction:okButton];
     [self presentViewController:alert animated:YES completion:nil];
 }
 
@@ -162,7 +157,7 @@
                                                                         message:@"Are you sure you want to reset your accout? You will lose all your hard work! We suggest saving your workouts by printing them out before reseting your data. This action cannot be undone."
                                                                  preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction* deleteButton = [UIAlertAction actionWithTitle:@"Reset" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
-            dispatch_async(dispatch_get_main_queue(), ^{ [self logOutButtonPressed:nil]; });
+            dispatch_async(dispatch_get_main_queue(), ^{ [self resetDataButtonPressed:nil]; });
         }];
         UIAlertAction* cancelButton = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
         [alert addAction:cancelButton];

@@ -4,26 +4,6 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>AWSCognito.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>AWSCore.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>AWSDynamoDB.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>AWSS3.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Appirater-Appirater.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -102,27 +82,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>179163B151C8EF83CDCBD2835D3F33D6</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>1E2F6447F1F821367D59193FE96C04F4</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>3254E865A12C840FC5F2DE73EA7F92D3</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>4820ABD5CCD86B622EFA0EF07928BA59</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>53C6112213829CB147F47E473C93F271</key>
+		<key>4CC77EFB5BA7C06F7BDDBB6EBE0A562E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>57CA3B38E6C7DABF8FD56D4DFB325A9D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -132,17 +102,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>764BF5F8A7793010994AF3D12E8FB7BF</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>7891E2B724C54EF58FB1692B34F1455C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>9F7098779713B711F6C591B62A41F242</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -162,11 +122,6 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C83B0F8778708382BFD09745CBCD1CBA</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>D96E772729B009E0EA59AED2ABA23EFC</key>
 		<dict>
 			<key>primary</key>
@@ -182,7 +137,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FF36D1792E3EAC3532FA920EC96C4C5B</key>
+		<key>F4BFA99347042EDE2B046BB955926D40</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F4D48E782A824E9A6901A6341D6A8CEF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
