@@ -15,15 +15,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BTWorkout : NSManagedObject
 
-+ (BTWorkout *)createWorkout;
-
-+ (NSArray <BTWorkout *> *)workoutsBetweenBeginDate:(NSDate *)d1 andEndDate:(NSDate *)d2;
++ (BTWorkout *)workout;
 
 + (NSString *)jsonForWorkout:(BTWorkout *)workout;
 
 + (NSString *)jsonForTemplateWorkout:(BTWorkout *)workout;
 
-+ (BTWorkout *)createWorkoutWithJSON: (NSString *)jsonString;
++ (BTWorkout *)workoutForJSON: (NSString *)jsonString;
+
++ (NSArray <BTWorkout *> *)workoutsBetweenBeginDate:(NSDate *)d1 andEndDate:(NSDate *)d2;
 
 @end
 

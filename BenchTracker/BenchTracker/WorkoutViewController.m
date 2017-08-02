@@ -77,7 +77,7 @@
     self.deleteWorkoutButton.clipsToBounds = YES;
     if (!self.workout) {
         [Appirater userDidSignificantEvent:YES];
-        self.workout = [BTWorkout createWorkout];
+        self.workout = [BTWorkout workout];
     }
     self.nameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:self.workout.name
         attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor], NSFontAttributeName:[UIFont italicSystemFontOfSize:22]}];

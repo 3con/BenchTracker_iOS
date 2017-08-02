@@ -374,7 +374,7 @@
 #pragma mark - QRScanner delegate
 
 - (void)qrScannerVC:(BTQRScannerViewController *)qrVC didDismissWithScannedString:(NSString *)string {
-    BTWorkout *workout = [BTWorkout createWorkoutWithJSON:string];
+    BTWorkout *workout = [BTWorkout workoutForJSON:string];
     [self presentWorkoutViewControllerWithWorkout:workout];
 }
 

@@ -24,13 +24,17 @@
     if (error) NSLog(@"TypeListManager error: %@",error);
     else if (object.count == 0) {
         NSLog(@"No Type List, loading default");
-        //GET DEFAULT LIST
+        NSString *JSONString = [[NSString alloc] initWithData:[[NSDataAsset alloc] initWithName:@"DefaultExerciseTypeList"].data
+                                                     encoding:NSUTF8StringEncoding];
+        TypeListModel *model = [[TypeListModel alloc] initWithString:JSONString error:&error];
+        if (error) NSLog(@"typeList JSON model error:%@",error);
+        else [self loadTypeListModelToCoreData:model withContext:context];
     }
 }
 
 #pragma mark - private methods
 
-+ (void)loadTypeListModelToCoreData: (TypeListModel *)model withContext:(NSManagedObjectContext *)context {
++ (void)loadTypeListModelToCoreData:(TypeListModel *)model withContext:(NSManagedObjectContext *)context {
     for (ExerciseTypeModel *eT in model.list) {
         BTExerciseType *type = [NSEntityDescription insertNewObjectForEntityForName:@"BTExerciseType" inManagedObjectContext:context];
         type.name = eT.name;

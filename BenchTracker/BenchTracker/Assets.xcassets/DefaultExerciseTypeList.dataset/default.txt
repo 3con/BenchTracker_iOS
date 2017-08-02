@@ -1,0 +1,471 @@
+{
+	"colors": {
+		"Back": "3F51B5",
+		"Biceps": "8E24AA",
+		"Chest": "039BE5",
+		"Triceps": "4CAF50",
+		"Legs": "DAC400",
+		"Shoulders": "EF6C00",
+		"Abs / Core": "F44336",
+		"Cardio": "E91E63",
+		"Olympic": "009688"
+	},
+	"list": [
+		{
+			"name": "Back Extensions",
+			"iterations": ["Normal", "Machine"],
+			"category": "Back",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Deadlift",
+			"iterations": ["Conventional", "Sumo", "Dumbbell", "Romanian", "Trap Bar", "Stiff legged", "Deficit"],
+			"category": "Back",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Shrugs",
+			"iterations": ["Dumbbell", "Barbell", "Cable", "Band"],
+			"category": "Back",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Lat Pulldowns",
+			"iterations": ["Normal", "Close-grip", "Wide-grip", "Behind-neck", "One-arm"],
+			"category": "Back",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Lat Pullovers",
+			"iterations": ["Dumbbell", "Barbell"],
+			"category": "Back",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Rows",
+			"iterations": ["Band", "Cable", "DB Bent", "DB Upright", "BB Bent", "BB Upright", "T Bar", "Pendaly"],
+			"category": "Back",
+			"style": "repsWeight"
+		},
+		{
+			"name": "One-arm Rows",
+			"iterations": ["Dumbbell", "Cable", "Band", "Long Bar"],
+			"category": "Back",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Inverted Rows",
+			"iterations": ["Incline", "Flat"],
+			"category": "Back",
+			"style": "reps"
+		},
+		{
+			"name": "Reverse Flyes",
+			"iterations": ["Bent", "Incline Bench", "Flat Bench", "Machine"],
+			"category": "Back",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Bodyweight Pull-ups",
+			"iterations": ["Normal", "Wide-grip", "Close-grip", "Neutral-grip", "Towel", "Kipping"],
+			"category": "Back",
+			"style": "reps"
+		},
+		{
+			"name": "Weighted Pull-ups",
+			"iterations": ["Normal", "Wide-grip", "Close-grip", "Neutral-grip", "Towel"],
+			"category": "Back",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Bodyweight Chin-ups",
+			"iterations": ["Normal", "Wide-grip", "Close-grip"],
+			"category": "Back",
+			"style": "reps"
+		},
+		{
+			"name": "Weighted Chin-ups",
+			"iterations": ["Normal", "Wide-grip", "Close-grip"],
+			"category": "Back",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Conventional Curls",
+			"iterations": ["Dumbbell", "Barbell", "Close-grip BB", "Wide-grip BB"],
+			"category": "Biceps",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Hammer Curls",
+			"iterations": [],
+			"category": "Biceps",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Zottoman Curls",
+			"iterations": [],
+			"category": "Biceps",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Reverse Curls",
+			"iterations": [],
+			"category": "Biceps",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Preacher Curls",
+			"iterations": ["Dumbbell", "Barbell"],
+			"category": "Biceps",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Concentration Curls",
+			"iterations": [],
+			"category": "Biceps",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Band Curls",
+			"iterations": [],
+			"category": "Biceps",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Machine Curls",
+			"iterations": [],
+			"category": "Biceps",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Spider Curls",
+			"iterations": ["Barbell", "Dumbbell"],
+			"category": "Biceps",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Barbell Bench Press",
+			"iterations": ["Flat", "Incline", "Decline", "Wide-grip", "Underhand"],
+			"category": "Chest",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Dumbbell Bench Press",
+			"iterations": ["Flat", "Incline", "Decline"],
+			"category": "Chest",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Machine Bench Press",
+			"iterations": ["Flat", "Incline", "Decline"],
+			"category": "Chest",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Landmine Press",
+			"iterations": ["Kneeling", "Standing"],
+			"category": "Chest",
+			"style": "repsWeight"
+		},
+		{
+			"name": "DB Flyes",
+			"iterations": ["Flat", "Incline", "Decline"],
+			"category": "Chest",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Pec Deck",
+			"iterations": [],
+			"category": "Chest",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Cable Crossovers",
+			"iterations": ["Normal", "Upward", "Downward"],
+			"category": "Chest",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Underhand Front Raises",
+			"iterations": ["Dumbbell", "Barbell", "Band"],
+			"category": "Chest",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Chest Dips",
+			"iterations": [],
+			"category": "Chest",
+			"style": "reps"
+		},
+		{
+			"name": "Pushups",
+			"iterations": ["Normal", "Wide-hand"],
+			"category": "Chest",
+			"style": "reps"
+		},
+		{
+			"name": "Close-grip Bench Press",
+			"iterations": [],
+			"category": "Triceps",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Skullcrushers",
+			"iterations": ["Normal", "Reverse-grip"],
+			"category": "Triceps",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Overhead Extensions",
+			"iterations": ["Dumbbell", "Barbell", "One-arm", "Machine", "Band"],
+			"category": "Triceps",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Underhand-grip Rows",
+			"iterations": ["Barbell", "Dumbbell"],
+			"category": "Triceps",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Tricep Pushdowns",
+			"iterations": [],
+			"category": "Triceps",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Tricep Dips",
+			"iterations": [],
+			"category": "Triceps",
+			"style": "reps"
+		},
+		{
+			"name": "Pushups",
+			"iterations": ["Close-grip", "Diamond"],
+			"category": "Triceps",
+			"style": "reps"
+		},
+		{
+			"name": "Squats",
+			"iterations": ["Back", "Front", "Box", "Bulgarian split", "Hack", "Dumbbell"],
+			"category": "Legs",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Machine Squats",
+			"iterations": ["Hack", "Back"],
+			"category": "Legs",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Hip Thrusts",
+			"iterations": [],
+			"category": "Legs",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Lunges",
+			"iterations": ["Dumbbell", "Barbell"],
+			"category": "Legs",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Leg Press",
+			"iterations": ["Horizontal", "Incline"],
+			"category": "Legs",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Leg Curls",
+			"iterations": ["Horizontal", "Incline"],
+			"category": "Legs",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Leg Extensions",
+			"iterations": [],
+			"category": "Legs",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Bodyweight Calf Raises",
+			"iterations": [],
+			"category": "Legs",
+			"style": "reps"
+		},
+		{
+			"name": "Weighted Calf Raises",
+			"iterations": ["Machine", "Barbell", "Dumbbell"],
+			"category": "Legs",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Lateral Raises",
+			"iterations": ["Dumbbell", "Cable", "Band"],
+			"category": "Shoulders",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Front Raises",
+			"iterations": ["Dumbbell", "Cable", "Band", "Barbell"],
+			"category": "Shoulders",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Arnold Press",
+			"iterations": [],
+			"category": "Shoulders",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Face Pulls",
+			"iterations": ["Cable", "Band"],
+			"category": "Shoulders",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Overhead Press",
+			"iterations": ["Barbell", "Dumbbell", "Machine", "Behind-neck"],
+			"category": "Shoulders",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Push Press",
+			"iterations": ["Barbell", "Dumbbell", "Behind-neck"],
+			"category": "Shoulders",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Military Press",
+			"iterations": ["Dumbbell", "Barbell", "Machine", "Behind-neck"],
+			"category": "Shoulders",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Ab Roller",
+			"iterations": [],
+			"category": "Abs / Core",
+			"style": "reps"
+		},
+		{
+			"name": "Bodyweight Situps",
+			"iterations": ["Normal", "Ball"],
+			"category": "Abs / Core",
+			"style": "reps"
+		},
+		{
+			"name": "Weighted Situps",
+			"iterations": ["Normal", "Ball"],
+			"category": "Abs / Core",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Leg Raises",
+			"iterations": ["Hanging", "Lying"],
+			"category": "Abs / Core",
+			"style": "reps"
+		},
+		{
+			"name": "Windshield Wipers",
+			"iterations": ["Hanging", "Lying"],
+			"category": "Abs / Core",
+			"style": "reps"
+		},
+		{
+			"name": "Jacknifes",
+			"iterations": [],
+			"category": "Abs / Core",
+			"style": "time"
+		},
+		{
+			"name": "Bodyweight Crunches",
+			"iterations": ["Normal", "Side", "Decline", "Reverse", "Ball"],
+			"category": "Abs / Core",
+			"style": "reps"
+		},
+		{
+			"name": "Weighted Crunches",
+			"iterations": ["Cable", "Band", "Suitcase"],
+			"category": "Abs / Core",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Bodyweight Planks",
+			"iterations": ["Normal", "Side"],
+			"category": "Abs / Core",
+			"style": "time"
+		},
+		{
+			"name": "Weighted Planks",
+			"iterations": [],
+			"category": "Abs / Core",
+			"style": "timeWeight"
+		},
+		{
+			"name": "Oblique Twists",
+			"iterations": ["Cable", "Machine", "Band"],
+			"category": "Abs / Core",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Weighted Russian Twists",
+			"iterations": [],
+			"category": "Abs / Core",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Cycling",
+			"iterations": ["Machine"],
+			"category": "Cardio",
+			"style": "custom"
+		},
+		{
+			"name": "Running",
+			"iterations": ["Treadmill"],
+			"category": "Cardio",
+			"style": "custom"
+		},
+		{
+			"name": "Elliptical",
+			"iterations": [],
+			"category": "Cardio",
+			"style": "custom"
+		},
+		{
+			"name": "Rowing / Erg",
+			"iterations": [],
+			"category": "Cardio",
+			"style": "custom"
+		},
+		{
+			"name": "Step Machine",
+			"iterations": [],
+			"category": "Cardio",
+			"style": "custom"
+		},
+		{
+			"name": "Clean",
+			"iterations": ["Hang", "Power"],
+			"category": "Olympic",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Jerk",
+			"iterations": ["Split"],
+			"category": "Olympic",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Clean and Jerk",
+			"iterations": [],
+			"category": "Olympic",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Snatch",
+			"iterations": ["Hang", "Power"],
+			"category": "Olympic",
+			"style": "repsWeight"
+		}
+	]
+}
