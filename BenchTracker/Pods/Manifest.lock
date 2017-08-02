@@ -1,4 +1,5 @@
 PODS:
+  - Appirater (2.1.2)
   - AWSCognito (2.5.8):
     - AWSCore (= 2.5.8)
   - AWSCore (2.5.8)
@@ -19,6 +20,7 @@ PODS:
   - ZFDragableModalTransition (0.6)
 
 DEPENDENCIES:
+  - Appirater
   - AWSCognito
   - AWSDynamoDB
   - AWSS3
@@ -33,6 +35,7 @@ DEPENDENCIES:
   - ZFDragableModalTransition
 
 SPEC CHECKSUMS:
+  Appirater: f1c9e53e8b612193e6256144f6a0fd2e31f4340d
   AWSCognito: 8eb74039f4dc5f2d929999c4f531eeb4bd83e6cb
   AWSCore: cf101c44d2cc5da32abc27d5529cddc63c010415
   AWSDynamoDB: 53ead656801e1a40b415fc0bebd85f1dc0dc0ead
@@ -48,6 +51,6 @@ SPEC CHECKSUMS:
   XLForm: d5c391dfc62865927b5bcab0a5a0dbfb3e02b0ec
   ZFDragableModalTransition: 0d294eaaba6edfcb9839595de765f9ca06a4b524
 
-PODFILE CHECKSUM: 363cc685332d75fbb66543bda9a3ef316f5fbee1
+PODFILE CHECKSUM: ff9565c18b287bedc526097a0a30b00a476d0470
 
 COCOAPODS: 1.2.1

@@ -12,7 +12,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    self.contentView.backgroundColor = [UIColor BTLightGrayColor];
+    self.contentView.backgroundColor = [UIColor BTSecondaryColor];
 }
 
 @end

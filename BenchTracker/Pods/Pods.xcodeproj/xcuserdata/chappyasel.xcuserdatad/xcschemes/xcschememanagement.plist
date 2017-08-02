@@ -6,83 +6,93 @@
 	<dict>
 		<key>AWSCognito.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>1</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>AWSCore.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>2</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>AWSDynamoDB.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>3</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>AWSS3.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>4</integer>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Appirater-Appirater.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Appirater.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>FSCalendar.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>5</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>HMSegmentedControl.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>6</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>JSONModel.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>7</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>MJExtension.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>8</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>MMQRCodeScanner.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>9</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>PNChart.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>10</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-BenchTracker.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>11</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-BenchTrackerTests.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>12</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>SWTableViewCell.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>13</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>UICountingLabel.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>14</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>XLForm.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>15</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>ZFDragableModalTransition.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>16</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
@@ -92,7 +102,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1D3CF0E6E02B67807D0A4705A18AC210</key>
+		<key>179163B151C8EF83CDCBD2835D3F33D6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1E2F6447F1F821367D59193FE96C04F4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3254E865A12C840FC5F2DE73EA7F92D3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -127,7 +147,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A41AF1DC582CDEA3A23E9BD9927E5753</key>
+		<key>A8C8D601E92B0B40F48C791C48F237AE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -137,12 +157,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C83B0F8778708382BFD09745CBCD1CBA</key>
+		<key>C7E27398B04EB3E1EDDF1AABEAB23112</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C982B5B8EE0B7C3EA664D8147C987D81</key>
+		<key>C83B0F8778708382BFD09745CBCD1CBA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -162,7 +182,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F0B7FBC8137C40397B6BCDE80D5E5F3B</key>
+		<key>FF36D1792E3EAC3532FA920EC96C4C5B</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -29,7 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navView.backgroundColor = [UIColor BTPrimaryColor];
-    self.view.backgroundColor = [UIColor BTLightGrayColor];
+    self.view.backgroundColor = [UIColor BTSecondaryColor];
     self.mainScrollViews = [NSMutableSet set];
     for (UITableView *tableView in @[self.sideTableView, self.mainTableView]) {
         tableView.delegate = self;
@@ -44,7 +44,7 @@
 - (void)loadTopScrollView {
     for (int i = 0; i < SIZE_WIDTH-1; i++) {
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(80*i, 0, 80, 40)];
-        label.backgroundColor = [UIColor BTLightGrayColor];
+        label.backgroundColor = [UIColor BTSecondaryColor];
         label.textColor = [UIColor whiteColor];
         label.textAlignment = NSTextAlignmentCenter;
         label.font = [UIFont systemFontOfSize:17 weight:UIFontWeightBold];

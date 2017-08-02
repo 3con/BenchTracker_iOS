@@ -18,6 +18,7 @@
 #import "QRDisplayViewController.h"
 #import "BTSettings+CoreDataClass.h"
 #import "BT1RMCalculator.h"
+#import "Appirater.h"
 
 @interface WorkoutViewController ()
 
@@ -77,7 +78,10 @@
     self.deleteWorkoutButton.layer.cornerRadius = 12.5;
     self.deleteWorkoutButton.clipsToBounds = YES;
     self.workoutManager = [BTWorkoutManager sharedInstance];
-    if (!self.workout) self.workout = [self.workoutManager createWorkout];
+    if (!self.workout) {
+        [Appirater userDidSignificantEvent:YES];
+        self.workout = [self.workoutManager createWorkout];
+    }
     self.nameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:self.workout.name
         attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor], NSFontAttributeName:[UIFont italicSystemFontOfSize:22]}];
     self.tempSupersets = [NSKeyedUnarchiver unarchiveObjectWithData:self.workout.supersets];

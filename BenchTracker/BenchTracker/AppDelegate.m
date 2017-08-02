@@ -12,6 +12,7 @@
 #import "BenchTrackerKeys.h"
 #import "BTTypeListManager.h"
 #import "BTUserManager.h"
+#import "Appirater.h"
 
 @interface AppDelegate ()
             
@@ -32,6 +33,18 @@
     //CHECK FOR TYPE LIST UPDATES
     [[BTTypeListManager sharedInstance] checkForExistingTypeList];
     [[BTUserManager sharedInstance] updateUserFromAWS];
+    //APPIRATER
+    [Appirater setAppId:@"1266077653"];
+    [Appirater setDaysUntilPrompt:0];
+    [Appirater setUsesUntilPrompt:5];
+    [Appirater setSignificantEventsUntilPrompt:5];
+    [Appirater setTimeBeforeReminding:3];
+    [Appirater setCustomAlertTitle:@"Rate Bench Tracker"];
+    [Appirater setCustomAlertMessage:@"If you are enjoying using Bench Tracker, would you mind taking a moment to rate it? It truly means the world to us. Your support is what keeps us going!"];
+    [Appirater setCustomAlertRateButtonTitle:@"Rate Bench Tracker"];
+    [Appirater setDebug:NO];
+    
+    [Appirater appLaunched:YES];
     return YES;
 }
 

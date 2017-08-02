@@ -19,7 +19,7 @@
     [self.scrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     for (int i = 0; i < length; i++) {
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(80*i, 5, 80, 30)];
-        label.textColor = [UIColor BTBlackColor];
+        label.textColor = [UIColor BTGrayColor];
         label.textAlignment = NSTextAlignmentCenter;
         label.font = [UIFont systemFontOfSize:17 weight:UIFontWeightSemibold];
         label.text = [NSString stringWithFormat:@"%d",[BT1RMCalculator equivilentForReps:i+2 weight:weight]];

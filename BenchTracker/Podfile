@@ -17,6 +17,7 @@ target 'BenchTracker' do
   pod 'MMQRCodeScanner'
   pod 'PNChart'
   pod 'XLForm'
+  pod 'Appirater'
 
   # Pods for BenchTracker
 
