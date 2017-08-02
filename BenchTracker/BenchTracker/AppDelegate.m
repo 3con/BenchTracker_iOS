@@ -36,7 +36,7 @@
     //APPIRATER
     [Appirater setAppId:@"1266077653"];
     [Appirater setDaysUntilPrompt:0];
-    [Appirater setUsesUntilPrompt:5];
+    [Appirater setUsesUntilPrompt:0];
     [Appirater setSignificantEventsUntilPrompt:5];
     [Appirater setTimeBeforeReminding:3];
     [Appirater setCustomAlertTitle:@"Rate Bench Tracker"];

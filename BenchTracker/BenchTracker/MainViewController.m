@@ -248,7 +248,8 @@
         self.rightBarButton.backgroundColor = [UIColor clearColor];
         self.rightBarButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
         self.rightBarButton.titleLabel.font = [UIFont systemFontOfSize:17 weight:UIFontWeightMedium];
-        [self.rightBarButton setTitle:@"Settings" forState:UIControlStateNormal];
+        [self.rightBarButton setTitle:@"" forState:UIControlStateNormal];
+        [self.rightBarButton setImage:[UIImage imageNamed:@"Settings"] forState:UIControlStateNormal];
         self.calendarView.userInteractionEnabled = NO;
         self.weekdayContainerView.userInteractionEnabled = NO;
         [UIView animateWithDuration:.2 animations:^{
@@ -270,6 +271,7 @@
         self.rightBarButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
         self.rightBarButton.titleLabel.font = [UIFont systemFontOfSize:13 weight:UIFontWeightMedium];
         [self.rightBarButton setTitle:@"New Workout" forState:UIControlStateNormal];
+        [self.rightBarButton setImage:nil forState:UIControlStateNormal];
         self.listTableView.userInteractionEnabled = NO;
         self.calendarView.userInteractionEnabled = NO;
         self.blankWorkoutButton.userInteractionEnabled = NO;
@@ -291,6 +293,7 @@
         self.rightBarButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
         self.rightBarButton.titleLabel.font = [UIFont systemFontOfSize:13 weight:UIFontWeightMedium];
         [self.rightBarButton setTitle:@"New Workout" forState:UIControlStateNormal];
+        [self.rightBarButton setImage:nil forState:UIControlStateNormal];
         self.listTableView.userInteractionEnabled = NO;
         self.weekdayContainerView.userInteractionEnabled = NO;
         self.blankWorkoutButton.userInteractionEnabled = NO;
