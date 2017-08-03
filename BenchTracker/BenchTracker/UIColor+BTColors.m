@@ -38,12 +38,16 @@
     return [UIColor colorWithRed:97/255.0 green:97/255.0 blue:97/255.0 alpha:1];
 }
 
-+ (UIColor *)BTLightGrayColor {             //rgb(158,158,158)  //gray 500
++ (UIColor *)BTLightGrayColor {         //rgb(158,158,158)  //gray 500
     return [UIColor colorWithRed:158/255.0 green:158/255.0 blue:158/255.0 alpha:1];
 }
 
 + (UIColor *)BTRedColor {               //rgb(229,57,53)    //red 600
     return [UIColor colorWithRed:229/255.0 green:57/255.0 blue:53/255.0 alpha:1];
+}
+
++ (UIColor *)BTTutorialColor {      //rgb(50, 89, 255)  //icon top color
+    return [UIColor colorWithRed:0/255.0 green:63/255.0 blue:207/255.0 alpha:1];
 }
 
 @end

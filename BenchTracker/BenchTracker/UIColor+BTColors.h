@@ -28,4 +28,6 @@
 
 + (UIColor *)BTRedColor;
 
++ (UIColor *)BTTutorialColor;
+
 @end

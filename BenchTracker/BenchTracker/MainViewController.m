@@ -98,8 +98,10 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    if ([BTTutorialManager needsOnboarding])
-        [self presentViewController:[BTTutorialManager onboardingVC] animated:YES completion:nil];
+    if ([BTTutorialManager needsOnboarding]) {
+        BTTutorialManager *manager = [[BTTutorialManager alloc] init];
+        [self presentViewController:[manager onboardingViewControllerforSize:self.view.frame.size] animated:YES completion:nil];
+    }
     if (self.settings.activeWorkout)
         [self presentWorkoutViewControllerWithWorkout:self.settings.activeWorkout];
 }

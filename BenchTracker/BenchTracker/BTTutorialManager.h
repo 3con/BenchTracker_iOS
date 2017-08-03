@@ -13,6 +13,6 @@
 
 + (BOOL)needsOnboarding;
 
-+ (OnboardingViewController *)onboardingVC;
+- (OnboardingViewController *)onboardingViewControllerforSize:(CGSize)size;
 
 @end
