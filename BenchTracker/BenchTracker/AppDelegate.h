@@ -17,6 +17,10 @@
 @property (strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
+- (void)loadNewStoreWithURL:(NSURL *)url;
+
+- (NSURL *)defualtStoreURL;
+
 - (void)saveContext;
 
 - (NSURL *)applicationDocumentsDirectory;

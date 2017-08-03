@@ -1,5 +1,5 @@
 //
-//  BTJSONWorkout.h
+//  BTWorkoutModel.h
 //  BenchTracker
 //
 //  Created by Chappy Asel on 7/5/17.
@@ -8,20 +8,20 @@
 
 #import <Foundation/Foundation.h>
 
-@class BTJSONExercise;
+@class BTExerciseModel;
 
-@interface BTJSONWorkout : NSObject
+@interface BTWorkoutModel : NSObject
 
 @property (nonatomic)                   NSString* uuid;
 @property (nonatomic)                   NSString* name;
 @property (nonatomic)                   NSString* date;
 @property (nonatomic)                   NSNumber* duration;
 @property (nonatomic) NSMutableArray<NSString *>* supersets; //[ "1 2 3", "5 6", ... ]
-@property (nonatomic) NSMutableArray<BTJSONExercise *>* exercises;
+@property (nonatomic) NSMutableArray<BTExerciseModel *>* exercises;
 
 @end
 
-@interface BTJSONExercise : NSObject
+@interface BTExerciseModel : NSObject
 
 @property (nonatomic) NSString *name;
 @property (nonatomic) NSString *iteration;

@@ -129,7 +129,7 @@
 - (void)determineFirstDay {
     if (self.user) {
         NSDate *firstWorkout = [self dateOfFirstWorkout];
-        self.firstDay = ([firstWorkout compare:self.user.dateCreated] == 1) ? self.user.dateCreated : firstWorkout;
+        self.firstDay = (!firstWorkout || [firstWorkout compare:self.user.dateCreated] == 1) ? self.user.dateCreated : firstWorkout;
     }
 }
 
@@ -378,6 +378,12 @@
     [self presentWorkoutViewControllerWithWorkout:workout];
 }
 
+#pragma mark - urlAttachment
+
+- (void)handleOpenURL:(NSURL *)url {
+    [(AppDelegate *)[[UIApplication sharedApplication] delegate] loadNewStoreWithURL:url];
+}
+
 #pragma mark - view handling
 
 - (void)presentAnalyticsViewController {
@@ -472,11 +478,6 @@
 }
 
 #pragma mark - settingsVC delegate
-
-- (void)settingsViewControllerDidRequestUserLogout:(SettingsViewController *)settingsVC {
-    self.user = nil;
-    [(AppDelegate *)[[UIApplication sharedApplication] delegate] resetCoreData];
-}
 
 - (void)settingsViewWillDismiss:(SettingsViewController *)settingsVC {
     [self.weekdayView reloadData];

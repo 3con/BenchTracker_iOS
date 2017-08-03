@@ -7,11 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		50404F541F327EDE0070B1A9 /* BTDataTransferModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50404F531F327EDE0070B1A9 /* BTDataTransferModel.m */; };
+		50404F5B1F3280430070B1A9 /* BTUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50404F5A1F3280430070B1A9 /* BTUserModel.m */; };
+		50404F5F1F32816A0070B1A9 /* BTSettingsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50404F5E1F32816A0070B1A9 /* BTSettingsModel.m */; };
 		5055E6811F3188D80070031D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5055E6801F3188D80070031D /* Assets.xcassets */; };
 		50636F2A1F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50636F281F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.m */; };
 		50636F2B1F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50636F291F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.xib */; };
 		50636F2F1F2B9E0D00FB65B4 /* EEDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50636F2E1F2B9E0D00FB65B4 /* EEDetailViewController.m */; };
 		50636F331F2C37B000FB65B4 /* BTExerciseTypeStyleTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 50636F321F2C37B000FB65B4 /* BTExerciseTypeStyleTransformer.m */; };
+		507FC4CF1F3243FA00A88A35 /* BTDataTransferManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 507FC4CE1F3243FA00A88A35 /* BTDataTransferManager.m */; };
 		508568BB1F30E4090046A76F /* EquivalencyChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 508568BA1F30E4090046A76F /* EquivalencyChartViewController.m */; };
 		508568C61F31044B0046A76F /* ECTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 508568C41F31044B0046A76F /* ECTableViewCell.m */; };
 		508568C71F31044B0046A76F /* ECTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 508568C51F31044B0046A76F /* ECTableViewCell.xib */; };
@@ -28,8 +32,8 @@
 		F917BB501F0D24E500614AB1 /* BTPDFGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = F917BB4F1F0D24E500614AB1 /* BTPDFGenerator.m */; };
 		F917BB541F0D2AB200614AB1 /* BTWorkoutPDF.m in Sources */ = {isa = PBXBuildFile; fileRef = F917BB531F0D2AB200614AB1 /* BTWorkoutPDF.m */; };
 		F917BB571F0D2AC400614AB1 /* BTWorkoutPDF.xib in Resources */ = {isa = PBXBuildFile; fileRef = F917BB561F0D2AC400614AB1 /* BTWorkoutPDF.xib */; };
-		F917BB5A1F0DA6AB00614AB1 /* BTJSONWorkout.m in Sources */ = {isa = PBXBuildFile; fileRef = F917BB591F0DA6AB00614AB1 /* BTJSONWorkout.m */; };
-		F917BB5D1F0DCA6A00614AB1 /* BTJSONWorkoutTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = F917BB5C1F0DCA6A00614AB1 /* BTJSONWorkoutTemplate.m */; };
+		F917BB5A1F0DA6AB00614AB1 /* BTWorkoutModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F917BB591F0DA6AB00614AB1 /* BTWorkoutModel.m */; };
+		F917BB5D1F0DCA6A00614AB1 /* BTTemplateWorkoutModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F917BB5C1F0DCA6A00614AB1 /* BTTemplateWorkoutModel.m */; };
 		F917BB601F0DD40200614AB1 /* QRDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F917BB5F1F0DD40200614AB1 /* QRDisplayViewController.m */; };
 		F917BB641F0DEA7C00614AB1 /* BTQRScannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F917BB631F0DEA7C00614AB1 /* BTQRScannerViewController.m */; };
 		F917BB671F0DEAE000614AB1 /* BTQRScannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F917BB661F0DEAE000614AB1 /* BTQRScannerViewController.xib */; };
@@ -51,7 +55,7 @@
 		F94C89411F15B68D006C6BDD /* ADMuscleSplitTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F94C893F1F15B68D006C6BDD /* ADMuscleSplitTableViewCell.xib */; };
 		F94C89451F15D5B6006C6BDD /* BT1RMCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = F94C89441F15D5B6006C6BDD /* BT1RMCalculator.m */; };
 		F95F5CF61F08B54500A567FA /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F95F5CF51F08B54500A567FA /* SettingsViewController.m */; };
-		F95F932F1F02FC5000A19C4D /* TypeListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F95F932E1F02FC5000A19C4D /* TypeListModel.m */; };
+		F95F932F1F02FC5000A19C4D /* BTTypeListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F95F932E1F02FC5000A19C4D /* BTTypeListModel.m */; };
 		F95F933B1F034DA500A19C4D /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F95F933A1F034DA500A19C4D /* MainViewController.m */; };
 		F95F93441F03738B00A19C4D /* WorkoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F95F93431F03738B00A19C4D /* WorkoutViewController.m */; };
 		F96207711F05DCF200DE2330 /* ExerciseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F962076F1F05DCF200DE2330 /* ExerciseTableViewCell.m */; };
@@ -64,7 +68,6 @@
 		F97B1CA31F09759000B3EEC7 /* WeekdayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97B1CA11F09759000B3EEC7 /* WeekdayTableViewCell.xib */; };
 		F97B1CA71F097D8A00B3EEC7 /* WeekdayView.m in Sources */ = {isa = PBXBuildFile; fileRef = F97B1CA61F097D8A00B3EEC7 /* WeekdayView.m */; };
 		F97B1CAA1F097DA600B3EEC7 /* WeekdayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97B1CA91F097DA600B3EEC7 /* WeekdayView.xib */; };
-		F97B1CAD1F09F67300B3EEC7 /* ExerciseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F97B1CAC1F09F67300B3EEC7 /* ExerciseModel.m */; };
 		F981D5891F022D9A00E7B456 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F981D5871F022D9A00E7B456 /* LaunchScreen.xib */; };
 		F9A549401F13064400743897 /* BTAnalyticsBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A5493F1F13064400743897 /* BTAnalyticsBarChart.m */; };
 		F9A549431F13065000743897 /* BTAnalyticsLineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A549421F13065000743897 /* BTAnalyticsLineChart.m */; };
@@ -120,6 +123,12 @@
 		2C3B197020A386DB147CEDEE /* Pods-BenchTrackerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BenchTrackerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BenchTrackerTests/Pods-BenchTrackerTests.release.xcconfig"; sourceTree = "<group>"; };
 		2C83D3A0EA46ECDF1788C990 /* Pods_BenchTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BenchTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		40B18DFBDA158AF111B21958 /* Pods_BenchTrackerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BenchTrackerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		50404F521F327EDE0070B1A9 /* BTDataTransferModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTDataTransferModel.h; sourceTree = "<group>"; };
+		50404F531F327EDE0070B1A9 /* BTDataTransferModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTDataTransferModel.m; sourceTree = "<group>"; };
+		50404F591F3280430070B1A9 /* BTUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BTUserModel.h; path = BenchTracker/BTUserModel.h; sourceTree = "<group>"; };
+		50404F5A1F3280430070B1A9 /* BTUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BTUserModel.m; path = BenchTracker/BTUserModel.m; sourceTree = "<group>"; };
+		50404F5D1F32816A0070B1A9 /* BTSettingsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BTSettingsModel.h; path = BenchTracker/BTSettingsModel.h; sourceTree = "<group>"; };
+		50404F5E1F32816A0070B1A9 /* BTSettingsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BTSettingsModel.m; path = BenchTracker/BTSettingsModel.m; sourceTree = "<group>"; };
 		5055E6801F3188D80070031D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		50636F271F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EEExerciseTypeTableViewCell.h; sourceTree = "<group>"; };
 		50636F281F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EEExerciseTypeTableViewCell.m; sourceTree = "<group>"; };
@@ -128,6 +137,8 @@
 		50636F2E1F2B9E0D00FB65B4 /* EEDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EEDetailViewController.m; sourceTree = "<group>"; };
 		50636F311F2C37B000FB65B4 /* BTExerciseTypeStyleTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTExerciseTypeStyleTransformer.h; sourceTree = "<group>"; };
 		50636F321F2C37B000FB65B4 /* BTExerciseTypeStyleTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTExerciseTypeStyleTransformer.m; sourceTree = "<group>"; };
+		507FC4CD1F3243FA00A88A35 /* BTDataTransferManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTDataTransferManager.h; sourceTree = "<group>"; };
+		507FC4CE1F3243FA00A88A35 /* BTDataTransferManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTDataTransferManager.m; sourceTree = "<group>"; };
 		508568B91F30E4090046A76F /* EquivalencyChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EquivalencyChartViewController.h; sourceTree = "<group>"; };
 		508568BA1F30E4090046A76F /* EquivalencyChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EquivalencyChartViewController.m; sourceTree = "<group>"; };
 		508568C31F31044B0046A76F /* ECTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECTableViewCell.h; sourceTree = "<group>"; };
@@ -155,10 +166,10 @@
 		F917BB521F0D2AB200614AB1 /* BTWorkoutPDF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTWorkoutPDF.h; sourceTree = "<group>"; };
 		F917BB531F0D2AB200614AB1 /* BTWorkoutPDF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTWorkoutPDF.m; sourceTree = "<group>"; };
 		F917BB561F0D2AC400614AB1 /* BTWorkoutPDF.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BTWorkoutPDF.xib; sourceTree = "<group>"; };
-		F917BB581F0DA6AB00614AB1 /* BTJSONWorkout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BTJSONWorkout.h; path = BenchTracker/BTJSONWorkout.h; sourceTree = "<group>"; };
-		F917BB591F0DA6AB00614AB1 /* BTJSONWorkout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BTJSONWorkout.m; path = BenchTracker/BTJSONWorkout.m; sourceTree = "<group>"; };
-		F917BB5B1F0DCA6A00614AB1 /* BTJSONWorkoutTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BTJSONWorkoutTemplate.h; path = BenchTracker/BTJSONWorkoutTemplate.h; sourceTree = "<group>"; };
-		F917BB5C1F0DCA6A00614AB1 /* BTJSONWorkoutTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BTJSONWorkoutTemplate.m; path = BenchTracker/BTJSONWorkoutTemplate.m; sourceTree = "<group>"; };
+		F917BB581F0DA6AB00614AB1 /* BTWorkoutModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BTWorkoutModel.h; path = BenchTracker/BTWorkoutModel.h; sourceTree = "<group>"; };
+		F917BB591F0DA6AB00614AB1 /* BTWorkoutModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BTWorkoutModel.m; path = BenchTracker/BTWorkoutModel.m; sourceTree = "<group>"; };
+		F917BB5B1F0DCA6A00614AB1 /* BTTemplateWorkoutModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BTTemplateWorkoutModel.h; path = BenchTracker/BTTemplateWorkoutModel.h; sourceTree = "<group>"; };
+		F917BB5C1F0DCA6A00614AB1 /* BTTemplateWorkoutModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BTTemplateWorkoutModel.m; path = BenchTracker/BTTemplateWorkoutModel.m; sourceTree = "<group>"; };
 		F917BB5E1F0DD40200614AB1 /* QRDisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRDisplayViewController.h; sourceTree = "<group>"; };
 		F917BB5F1F0DD40200614AB1 /* QRDisplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRDisplayViewController.m; sourceTree = "<group>"; };
 		F917BB621F0DEA7C00614AB1 /* BTQRScannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTQRScannerViewController.h; sourceTree = "<group>"; };
@@ -194,8 +205,8 @@
 		F94C89441F15D5B6006C6BDD /* BT1RMCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BT1RMCalculator.m; sourceTree = "<group>"; };
 		F95F5CF41F08B54500A567FA /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		F95F5CF51F08B54500A567FA /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
-		F95F932D1F02FC5000A19C4D /* TypeListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeListModel.h; sourceTree = "<group>"; };
-		F95F932E1F02FC5000A19C4D /* TypeListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TypeListModel.m; sourceTree = "<group>"; };
+		F95F932D1F02FC5000A19C4D /* BTTypeListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTypeListModel.h; sourceTree = "<group>"; };
+		F95F932E1F02FC5000A19C4D /* BTTypeListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTypeListModel.m; sourceTree = "<group>"; };
 		F95F93391F034DA500A19C4D /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		F95F933A1F034DA500A19C4D /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		F95F93421F03738B00A19C4D /* WorkoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkoutViewController.h; sourceTree = "<group>"; };
@@ -216,8 +227,6 @@
 		F97B1CA51F097D8A00B3EEC7 /* WeekdayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeekdayView.h; sourceTree = "<group>"; };
 		F97B1CA61F097D8A00B3EEC7 /* WeekdayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeekdayView.m; sourceTree = "<group>"; };
 		F97B1CA91F097DA600B3EEC7 /* WeekdayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeekdayView.xib; sourceTree = "<group>"; };
-		F97B1CAB1F09F67300B3EEC7 /* ExerciseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExerciseModel.h; sourceTree = "<group>"; };
-		F97B1CAC1F09F67300B3EEC7 /* ExerciseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseModel.m; sourceTree = "<group>"; };
 		F981D5881F022D9A00E7B456 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		F9A5493E1F13064400743897 /* BTAnalyticsBarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTAnalyticsBarChart.h; sourceTree = "<group>"; };
 		F9A5493F1F13064400743897 /* BTAnalyticsBarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTAnalyticsBarChart.m; sourceTree = "<group>"; };
@@ -318,15 +327,42 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		5055E67F1F317C760070031D /* JSON model */ = {
+		50404F551F327EE20070B1A9 /* DataTransferModel */ = {
 			isa = PBXGroup;
 			children = (
-				F917BB581F0DA6AB00614AB1 /* BTJSONWorkout.h */,
-				F917BB591F0DA6AB00614AB1 /* BTJSONWorkout.m */,
-				F917BB5B1F0DCA6A00614AB1 /* BTJSONWorkoutTemplate.h */,
-				F917BB5C1F0DCA6A00614AB1 /* BTJSONWorkoutTemplate.m */,
+				50404F521F327EDE0070B1A9 /* BTDataTransferModel.h */,
+				50404F531F327EDE0070B1A9 /* BTDataTransferModel.m */,
 			);
-			name = "JSON model";
+			name = DataTransferModel;
+			sourceTree = "<group>";
+		};
+		50404F5C1F32804A0070B1A9 /* UserModel */ = {
+			isa = PBXGroup;
+			children = (
+				50404F591F3280430070B1A9 /* BTUserModel.h */,
+				50404F5A1F3280430070B1A9 /* BTUserModel.m */,
+			);
+			name = UserModel;
+			sourceTree = "<group>";
+		};
+		50404F601F32816E0070B1A9 /* SettingsModel */ = {
+			isa = PBXGroup;
+			children = (
+				50404F5D1F32816A0070B1A9 /* BTSettingsModel.h */,
+				50404F5E1F32816A0070B1A9 /* BTSettingsModel.m */,
+			);
+			name = SettingsModel;
+			sourceTree = "<group>";
+		};
+		5055E67F1F317C760070031D /* WorkoutModel */ = {
+			isa = PBXGroup;
+			children = (
+				F917BB581F0DA6AB00614AB1 /* BTWorkoutModel.h */,
+				F917BB591F0DA6AB00614AB1 /* BTWorkoutModel.m */,
+				F917BB5B1F0DCA6A00614AB1 /* BTTemplateWorkoutModel.h */,
+				F917BB5C1F0DCA6A00614AB1 /* BTTemplateWorkoutModel.m */,
+			);
+			name = WorkoutModel;
 			sourceTree = "<group>";
 		};
 		50636F2C1F2B9C0200FB65B4 /* Exercise type cell */ = {
@@ -356,6 +392,24 @@
 				50636F321F2C37B000FB65B4 /* BTExerciseTypeStyleTransformer.m */,
 			);
 			name = "Style transformer";
+			sourceTree = "<group>";
+		};
+		507FC4D01F32440000A88A35 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				507FC4D11F32441500A88A35 /* Data Transfer */,
+			);
+			name = Managers;
+			sourceTree = "<group>";
+		};
+		507FC4D11F32441500A88A35 /* Data Transfer */ = {
+			isa = PBXGroup;
+			children = (
+				507FC4CD1F3243FA00A88A35 /* BTDataTransferManager.h */,
+				507FC4CE1F3243FA00A88A35 /* BTDataTransferManager.m */,
+				50404F551F327EE20070B1A9 /* DataTransferModel */,
+			);
+			name = "Data Transfer";
 			sourceTree = "<group>";
 		};
 		508568BC1F30E4190046A76F /* Equivalency Chart VC */ = {
@@ -646,8 +700,8 @@
 		F95F93301F02FC5600A19C4D /* TypeListModel */ = {
 			isa = PBXGroup;
 			children = (
-				F95F932D1F02FC5000A19C4D /* TypeListModel.h */,
-				F95F932E1F02FC5000A19C4D /* TypeListModel.m */,
+				F95F932D1F02FC5000A19C4D /* BTTypeListModel.h */,
+				F95F932E1F02FC5000A19C4D /* BTTypeListModel.m */,
 			);
 			name = TypeListModel;
 			path = BenchTracker;
@@ -710,6 +764,7 @@
 				F9640BD41F080E590053C9C0 /* BTSettings+CoreDataClass.m */,
 				F9640BD51F080E590053C9C0 /* BTSettings+CoreDataProperties.h */,
 				F9640BD61F080E590053C9C0 /* BTSettings+CoreDataProperties.m */,
+				50404F601F32816E0070B1A9 /* SettingsModel */,
 			);
 			name = BTSettings;
 			sourceTree = "<group>";
@@ -743,16 +798,6 @@
 				F97B1CA41F09759700B3EEC7 /* Weekday cell */,
 			);
 			name = "Weekday view";
-			sourceTree = "<group>";
-		};
-		F97B1CAE1F09F68900B3EEC7 /* ExerciseModel */ = {
-			isa = PBXGroup;
-			children = (
-				F97B1CAB1F09F67300B3EEC7 /* ExerciseModel.h */,
-				F97B1CAC1F09F67300B3EEC7 /* ExerciseModel.m */,
-			);
-			name = ExerciseModel;
-			path = BenchTracker;
 			sourceTree = "<group>";
 		};
 		F9A5493A1F13060E00743897 /* Line chart */ = {
@@ -872,8 +917,7 @@
 				F9DA751F1F02EE9600347B0D /* BTWorkout+CoreDataClass.m */,
 				F9DA75201F02EE9600347B0D /* BTWorkout+CoreDataProperties.h */,
 				F9DA75211F02EE9600347B0D /* BTWorkout+CoreDataProperties.m */,
-				5055E67F1F317C760070031D /* JSON model */,
-				F97B1CAE1F09F68900B3EEC7 /* ExerciseModel */,
+				5055E67F1F317C760070031D /* WorkoutModel */,
 			);
 			name = BTWorkout;
 			sourceTree = "<group>";
@@ -908,6 +952,7 @@
 				F9DA75131F02EE9600347B0D /* BTUser+CoreDataClass.m */,
 				F9DA75141F02EE9600347B0D /* BTUser+CoreDataProperties.h */,
 				F9DA75151F02EE9600347B0D /* BTUser+CoreDataProperties.m */,
+				50404F5C1F32804A0070B1A9 /* UserModel */,
 			);
 			name = BTUser;
 			sourceTree = "<group>";
@@ -929,6 +974,7 @@
 			isa = PBXGroup;
 			children = (
 				F9DA752E1F02F08200347B0D /* CoreData Models */,
+				507FC4D01F32440000A88A35 /* Managers */,
 				F94C89471F15D5C5006C6BDD /* Utility */,
 			);
 			name = Classes;
@@ -1256,6 +1302,7 @@
 			files = (
 				F9A549461F13065500743897 /* BTAnalyticsPieChart.m in Sources */,
 				F9FD19F51F147F7600AB3FEE /* ADExercisesDetailViewController.m in Sources */,
+				50404F5B1F3280430070B1A9 /* BTUserModel.m in Sources */,
 				F90712AA19415FB1008694E5 /* AppDelegate.m in Sources */,
 				F9418FBC1F04CEE80083C3DC /* SetCollectionViewCell.m in Sources */,
 				F9DA75281F02EE9600347B0D /* BTWorkout+CoreDataClass.m in Sources */,
@@ -1284,17 +1331,18 @@
 				F9AF067E1F07535C003A2200 /* WorkoutTableViewCell.m in Sources */,
 				F96207711F05DCF200DE2330 /* ExerciseTableViewCell.m in Sources */,
 				F9F522F51F195B7200061AF0 /* BTButtonFormCell.m in Sources */,
-				F97B1CAD1F09F67300B3EEC7 /* ExerciseModel.m in Sources */,
 				F9418F9E1F0433980083C3DC /* AddExerciseViewController.m in Sources */,
+				50404F541F327EDE0070B1A9 /* BTDataTransferModel.m in Sources */,
 				F9DA75291F02EE9600347B0D /* BTWorkout+CoreDataProperties.m in Sources */,
 				508568BB1F30E4090046A76F /* EquivalencyChartViewController.m in Sources */,
 				F95F93441F03738B00A19C4D /* WorkoutViewController.m in Sources */,
 				F9B27CE51F117852008FCC7F /* AnalyticsCollectionViewCell.m in Sources */,
 				F9418FA31F048B1E0083C3DC /* AddExerciseTableViewCell.m in Sources */,
 				F9A549431F13065000743897 /* BTAnalyticsLineChart.m in Sources */,
-				F917BB5A1F0DA6AB00614AB1 /* BTJSONWorkout.m in Sources */,
+				F917BB5A1F0DA6AB00614AB1 /* BTWorkoutModel.m in Sources */,
 				508568C61F31044B0046A76F /* ECTableViewCell.m in Sources */,
 				F97B1CA71F097D8A00B3EEC7 /* WeekdayView.m in Sources */,
+				507FC4CF1F3243FA00A88A35 /* BTDataTransferManager.m in Sources */,
 				50636F2F1F2B9E0D00FB65B4 /* EEDetailViewController.m in Sources */,
 				F9DA75111F02DC1700347B0D /* BTDataModel.xcdatamodeld in Sources */,
 				F927D14F1F0C9BD70004CF3A /* IterationSelectionViewController.m in Sources */,
@@ -1313,10 +1361,11 @@
 				F9DA75231F02EE9600347B0D /* BTUser+CoreDataProperties.m in Sources */,
 				F9640BD91F080E590053C9C0 /* BTSettings+CoreDataProperties.m in Sources */,
 				F9A549401F13064400743897 /* BTAnalyticsBarChart.m in Sources */,
-				F95F932F1F02FC5000A19C4D /* TypeListModel.m in Sources */,
+				F95F932F1F02FC5000A19C4D /* BTTypeListModel.m in Sources */,
 				F95F5CF61F08B54500A567FA /* SettingsViewController.m in Sources */,
-				F917BB5D1F0DCA6A00614AB1 /* BTJSONWorkoutTemplate.m in Sources */,
+				F917BB5D1F0DCA6A00614AB1 /* BTTemplateWorkoutModel.m in Sources */,
 				F9B27CE11F1170F5008FCC7F /* StickCollectionViewFlowLayout.m in Sources */,
+				50404F5F1F32816A0070B1A9 /* BTSettingsModel.m in Sources */,
 				F9FA47261F0B39D700A4AF98 /* WorkoutSelectionViewController.m in Sources */,
 				F9DA75261F02EE9600347B0D /* BTExerciseType+CoreDataClass.m in Sources */,
 				F9C2406E1F17D94900A268F3 /* ADEDExerciseTableViewCell.m in Sources */,
@@ -1449,7 +1498,7 @@
 			baseConfigurationReference = 1746DDC55C14CBB644675063 /* Pods-BenchTracker.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = Q82S7VERUD;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "${SRCROOT}/BenchTracker/BenchTrackerPrefixHeader.pch";
@@ -1467,7 +1516,7 @@
 			baseConfigurationReference = 791833EF2E04B86CA95AD6B3 /* Pods-BenchTracker.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = Q82S7VERUD;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "${SRCROOT}/BenchTracker/BenchTrackerPrefixHeader.pch";

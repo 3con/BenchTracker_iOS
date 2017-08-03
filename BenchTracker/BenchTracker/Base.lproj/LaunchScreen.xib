@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchImage" translatesAutoresizingMaskIntoConstraints="NO" id="HLR-H7-Clm">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="HLR-H7-Clm">
                     <rect key="frame" x="40" y="201" width="334" height="334"/>
                     <constraints>
                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="400" id="Vfc-B5-tOX"/>
@@ -34,6 +34,6 @@
         </view>
     </objects>
     <resources>
-        <image name="LaunchImage" width="666" height="666"/>
+        <image name="Logo" width="666" height="666"/>
     </resources>
 </document>

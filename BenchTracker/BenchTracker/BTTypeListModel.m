@@ -1,17 +1,17 @@
 //
-//  TypeListModel.m
+//  BTTypeListModel.m
 //  BenchTracker
 //
 //  Created by Chappy Asel on 6/27/17.
 //  Copyright © 2017 CD. All rights reserved.
 //
 
-#import "TypeListModel.h"
+#import "BTTypeListModel.h"
 
-@implementation ExerciseTypeModel
+@implementation BTExerciseTypeModel
 
 @end
 
-@implementation TypeListModel
+@implementation BTTypeListModel
 
 @end

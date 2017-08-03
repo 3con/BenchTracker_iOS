@@ -7,16 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
 #import "XLForm.h"
 
 @class SettingsViewController;
 
 @protocol SettingsViewControllerDelegate <NSObject>
-- (void)settingsViewControllerDidRequestUserLogout:(SettingsViewController *)settingsVC;
 - (void)settingsViewWillDismiss:(SettingsViewController *)settingsVC;
 @end
 
-@interface SettingsViewController : XLFormViewController <XLFormDescriptorDelegate>
+@interface SettingsViewController : XLFormViewController <XLFormDescriptorDelegate, MFMailComposeViewControllerDelegate>
 
 @property (nonatomic) id<SettingsViewControllerDelegate> delegate;
 

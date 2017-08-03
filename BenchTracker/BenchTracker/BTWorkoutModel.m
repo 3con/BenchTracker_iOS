@@ -1,17 +1,17 @@
 //
-//  BTJSONWorkout.m
+//  BTWorkoutModel.m
 //  BenchTracker
 //
 //  Created by Chappy Asel on 7/5/17.
 //  Copyright © 2017 CD. All rights reserved.
 //
 
-#import "BTJSONWorkout.h"
+#import "BTWorkoutModel.h"
 
-@implementation BTJSONWorkout
+@implementation BTWorkoutModel
 
 @end
 
-@implementation BTJSONExercise
+@implementation BTExerciseModel
 
 @end

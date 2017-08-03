@@ -8,7 +8,7 @@
 
 #import "BTExerciseType+CoreDataClass.h"
 #import "AppDelegate.h"
-#import "TypeListModel.h"
+#import "BTTypeListModel.h"
 #import "BTSettings+CoreDataClass.h"
 
 @implementation BTExerciseType
@@ -26,16 +26,38 @@
         NSLog(@"No Type List, loading default");
         NSString *JSONString = [[NSString alloc] initWithData:[[NSDataAsset alloc] initWithName:@"DefaultExerciseTypeList"].data
                                                      encoding:NSUTF8StringEncoding];
-        TypeListModel *model = [[TypeListModel alloc] initWithString:JSONString error:&error];
+        BTTypeListModel *model = [[BTTypeListModel alloc] initWithString:JSONString error:&error];
         if (error) NSLog(@"typeList JSON model error:%@",error);
-        else [self loadTypeListModelToCoreData:model withContext:context];
+        else [self loadTypeListModel:model];
     }
 }
 
-#pragma mark - private methods
++ (BTTypeListModel *)typeListModel {
+    NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    BTTypeListModel *model = [[BTTypeListModel alloc] init];
+    NSFetchRequest *request = [BTExerciseType fetchRequest];
+    request.fetchLimit = UINT32_MAX;
+    NSArray *arr = [context executeFetchRequest:request error:nil];
+    model.list = (NSMutableArray <BTExerciseTypeModel> *)[NSMutableArray array];
+    for (BTExerciseType *eT in arr) {
+        BTExerciseTypeModel *type = [[BTExerciseTypeModel alloc] init];
+        type.name = eT.name;
+        type.iterations = [NSKeyedUnarchiver unarchiveObjectWithData:eT.iterations];
+        type.category = eT.category;
+        type.style = eT.style;
+        [model.list addObject:type];
+    }
+    BTSettings *settings = [BTSettings sharedInstance];
+    model.colors = [NSMutableDictionary dictionary];
+    NSDictionary *exerciseTypeColors = [NSKeyedUnarchiver unarchiveObjectWithData:settings.exerciseTypeColors];
+    for (NSString *key in exerciseTypeColors.allKeys)
+        model.colors[key] = [BTExerciseType hexForColor:exerciseTypeColors[key]];
+    return model;
+}
 
-+ (void)loadTypeListModelToCoreData:(TypeListModel *)model withContext:(NSManagedObjectContext *)context {
-    for (ExerciseTypeModel *eT in model.list) {
++ (void)loadTypeListModel:(BTTypeListModel *)model {
+    NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    for (BTExerciseTypeModel *eT in model.list) {
         BTExerciseType *type = [NSEntityDescription insertNewObjectForEntityForName:@"BTExerciseType" inManagedObjectContext:context];
         type.name = eT.name;
         type.iterations = [NSKeyedArchiver archivedDataWithRootObject:eT.iterations];
@@ -51,6 +73,8 @@
     [context save:nil];
 }
 
+#pragma mark - private methods
+
 + (UIColor *)colorForHex:(NSString *)hex {
     unsigned rgbValue = 0;
     NSScanner *scanner = [NSScanner scannerWithString:hex];
@@ -60,7 +84,7 @@
 
 + (NSString *)hexForColor:(UIColor *)color {
     const CGFloat *components = CGColorGetComponents(color.CGColor);
-    return [NSString stringWithFormat:@"#%02lX%02lX%02lX",
+    return [NSString stringWithFormat:@"%02lX%02lX%02lX",
             lroundf(components[0] * 255),
             lroundf(components[1] * 255),
             lroundf(components[2] * 255)];

@@ -9,31 +9,48 @@
 #import "BTWorkout+CoreDataClass.h"
 #import "BTExercise+CoreDataClass.h"
 #import "AppDelegate.h"
-#import "ExerciseModel.h"
 #import "MJExtension.h"
-#import "BTJSONWorkout.h"
-#import "BTJSONWorkoutTemplate.h"
+#import "BTWorkoutModel.h"
+#import "BTTemplateWorkoutModel.h"
 #import "BT1RMCalculator.h"
 
 #import "BTUser+CoreDataClass.h"
 
 @implementation BTWorkout
 
++ (BTWorkout *)workout {
+    NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    BTWorkout *workout = [NSEntityDescription insertNewObjectForEntityForName:@"BTWorkout" inManagedObjectContext:context];
+    workout.uuid = [[NSUUID UUID] UUIDString];
+    int h = (int)[[[NSCalendar currentCalendar] components:(NSCalendarUnitHour) fromDate:[NSDate date]] hour];
+    NSString *timeStr = (h > 22 || h < 4 ) ? @"Dusk" : (h < 11) ? @"Morning" : (h < 13) ? @"Mid Day" : (h < 19) ? @"Afternoon" : @"Evening";
+    workout.name = [NSString stringWithFormat:@"%@ Workout",timeStr];
+    workout.date = [NSDate date];
+    workout.duration = 0;
+    workout.volume = 0;
+    workout.numExercises = 0;
+    workout.numSets = 0;
+    workout.summary = @"0";
+    workout.supersets = [NSKeyedArchiver archivedDataWithRootObject:[NSMutableArray array]];
+    workout.exercises = [[NSOrderedSet alloc] init];
+    return workout;
+}
+
 + (NSString *)jsonForWorkout:(BTWorkout *)workout {
-    [BTJSONWorkout mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
+    [BTWorkoutModel mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
         return @{@"uuid" : @"u",
                  @"name" : @"n",
                  @"date" : @"d",
                  @"duration" : @"t",
                  @"supersets" : @"z",
                  @"exercises" : @"e", }; }];
-    [BTJSONExercise mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
+    [BTExerciseModel mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
         return @{@"name" : @"n",
                  @"iteration" : @"i",
                  @"category" : @"c",
                  @"style" : @"s",
                  @"sets" : @"x" }; }];
-    BTJSONWorkout *workoutModel = [[BTJSONWorkout alloc] init];
+    BTWorkoutModel *workoutModel = [[BTWorkoutModel alloc] init];
     workoutModel.uuid = workout.uuid;
     workoutModel.name = workout.name;
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -42,7 +59,7 @@
     workoutModel.duration = [NSNumber numberWithInteger:workout.duration];
     workoutModel.exercises = [[NSMutableArray alloc] init];
     for (BTExercise *exercise in workout.exercises) {
-        BTJSONExercise *exerciseModel = [[BTJSONExercise alloc] init];
+        BTExerciseModel *exerciseModel = [[BTExerciseModel alloc] init];
         exerciseModel.name = exercise.name;
         exerciseModel.iteration = exercise.iteration;
         exerciseModel.category = exercise.category;
@@ -64,20 +81,20 @@
 }
 
 + (NSString *)jsonForTemplateWorkout:(BTWorkout *)workout {
-    [BTJSONWorkoutTemplate mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
+    [BTTemplateWorkoutModel mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
         return @{@"name" : @"n",
                  @"supersets" : @"z",
                  @"exercises" : @"e", }; }];
-    [BTJSONExerciseTemplate mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
+    [BTTemplateExerciseModel mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
         return @{@"name" : @"n",
                  @"iteration" : @"i",
                  @"category" : @"c",
                  @"style" : @"s" }; }];
-    BTJSONWorkoutTemplate *workoutModel = [[BTJSONWorkoutTemplate alloc] init];
+    BTTemplateWorkoutModel *workoutModel = [[BTTemplateWorkoutModel alloc] init];
     workoutModel.name = workout.name;
     workoutModel.exercises = [[NSMutableArray alloc] init];
     for (BTExercise *exercise in workout.exercises) {
-        BTJSONExerciseTemplate *exerciseModel = [[BTJSONExerciseTemplate alloc] init];
+        BTTemplateExerciseModel *exerciseModel = [[BTTemplateExerciseModel alloc] init];
         exerciseModel.name = exercise.name;
         exerciseModel.iteration = exercise.iteration;
         exerciseModel.category = exercise.category;
@@ -97,23 +114,23 @@
     return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 }
 
-+ (BTWorkout *)createWorkoutWithJSON:(NSString *)jsonString {
++ (BTWorkout *)workoutForJSON:(NSString *)jsonString {
     NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
-    [BTJSONWorkout mj_setupObjectClassInArray:^NSDictionary *{return @{@"exercises" : @"BTJSONExercise"};}];
-    [BTJSONWorkout mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
+    [BTWorkoutModel mj_setupObjectClassInArray:^NSDictionary *{return @{@"exercises" : @"BTExerciseModel"};}];
+    [BTWorkoutModel mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
         return @{@"uuid" : @"u",
                  @"name" : @"n",
                  @"date" : @"d",
                  @"duration" : @"t",
                  @"supersets" : @"z",
                  @"exercises" : @"e", }; }];
-    [BTJSONExercise mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
+    [BTExerciseModel mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
         return @{@"name" : @"n",
                  @"iteration" : @"i",
                  @"category" : @"c",
                  @"style" : @"s",
                  @"sets" : @"x" }; }];
-    BTJSONWorkout *workoutModel = [BTJSONWorkout mj_objectWithKeyValues:jsonString];
+    BTWorkoutModel *workoutModel = [BTWorkoutModel mj_objectWithKeyValues:jsonString];
     BTWorkout *workout = [NSEntityDescription insertNewObjectForEntityForName:@"BTWorkout" inManagedObjectContext:context];
     workout.uuid = (workoutModel.uuid) ? workoutModel.uuid : [[NSUUID UUID] UUIDString];
     workout.name = workoutModel.name;
@@ -134,7 +151,7 @@
     workout.volume = 0;
     workout.numExercises = workoutModel.exercises.count;
     workout.numSets = 0;
-    for (BTJSONExercise *exerciseModel in workoutModel.exercises) {
+    for (BTExerciseModel *exerciseModel in workoutModel.exercises) {
         BTExercise *exercise = [NSEntityDescription insertNewObjectForEntityForName:@"BTExercise" inManagedObjectContext:context];
         exercise.name = exerciseModel.name;
         exercise.iteration = exerciseModel.iteration;
@@ -167,26 +184,6 @@
     [context save:nil];
     return workout;
 }
-
-+ (BTWorkout *)createWorkout {
-    NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
-    BTWorkout *workout = [NSEntityDescription insertNewObjectForEntityForName:@"BTWorkout" inManagedObjectContext:context];
-    workout.uuid = [[NSUUID UUID] UUIDString];
-    int h = (int)[[[NSCalendar currentCalendar] components:(NSCalendarUnitHour) fromDate:[NSDate date]] hour];
-    NSString *timeStr = (h > 22 || h < 4 ) ? @"Dusk" : (h < 11) ? @"Morning" : (h < 13) ? @"Mid Day" : (h < 19) ? @"Afternoon" : @"Evening";
-    workout.name = [NSString stringWithFormat:@"%@ Workout",timeStr];
-    workout.date = [NSDate date];
-    workout.duration = 0;
-    workout.volume = 0;
-    workout.numExercises = 0;
-    workout.numSets = 0;
-    workout.summary = @"0";
-    workout.supersets = [NSKeyedArchiver archivedDataWithRootObject:[NSMutableArray array]];
-    workout.exercises = [[NSOrderedSet alloc] init];
-    return workout;
-}
-
-#pragma mark - client helpers
 
 + (NSArray <BTWorkout *> *)workoutsBetweenBeginDate:(NSDate *)d1 andEndDate:(NSDate *)d2 {
     NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];

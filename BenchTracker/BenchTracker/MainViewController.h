@@ -20,4 +20,6 @@
 
 @property (nonatomic) NSManagedObjectContext *context;
 
+- (void)handleOpenURL:(NSURL *)url;
+
 @end

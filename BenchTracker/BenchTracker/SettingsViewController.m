@@ -11,6 +11,7 @@
 #import "ZFModalTransitionAnimator.h"
 #import "EditExercisesViewController.h"
 #import "BTSettings+CoreDataClass.h"
+#import "BTDataTransferManager.h"
 #import "AppDelegate.h"
 
 @interface SettingsViewController ()
@@ -72,7 +73,20 @@
     row.value = [NSNumber numberWithBool:self.settings.disableSleep];
     [section addFormRow:row];
     
-    // Section 5: Share, Rate
+    // Section 5: Import, Export data
+    section = [XLFormSectionDescriptor formSection];
+    section.footerTitle = @"Import or export all of your Bench Tracker data using email attachments. This includes all of your workouts and custom exercises.";
+    [form addFormSection:section];
+    //Import
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"import" rowType:XLFormRowDescriptorTypeButton title:@"Import data"];
+    [row.cellConfig setObject:@(NSTextAlignmentNatural) forKey:@"textLabel.textAlignment"];
+    [section addFormRow:row];
+    //Export
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"export" rowType:XLFormRowDescriptorTypeButton title:@"Export all data"];
+    [row.cellConfig setObject:@(NSTextAlignmentNatural) forKey:@"textLabel.textAlignment"];
+    [section addFormRow:row];
+    
+    // Section 6: Share, Rate
     section = [XLFormSectionDescriptor formSection];
     [form addFormSection:section];
     //Share
@@ -84,7 +98,7 @@
     [row.cellConfig setObject:@(NSTextAlignmentNatural) forKey:@"textLabel.textAlignment"];
     [section addFormRow:row];
     
-    // Section 6: Reset data
+    // Section 7: Reset data
     section = [XLFormSectionDescriptor formSection];
     [form addFormSection:section];
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"reset" rowType:XLFormRowDescriptorTypeBTButton title:@"Reset Data"];
@@ -99,7 +113,7 @@
     self.form = form;
 }
 
-- (IBAction)doneButtonPressed:(UIButton *)sender {
+- (void)saveSettings {
     NSMutableDictionary *result = [NSMutableDictionary dictionary];
     for (XLFormSectionDescriptor *section in self.form.formSections) {
         for (XLFormRowDescriptor *row in section.formRows) {
@@ -111,6 +125,10 @@
     self.settings.startWeekOnMonday = ![result[@"startWeekOnSunday"] boolValue];
     self.settings.disableSleep = [result[@"disableSleep"] boolValue];
     [self.context save:nil];
+}
+
+- (IBAction)doneButtonPressed:(UIButton *)sender {
+    [self saveSettings];
     [self.delegate settingsViewWillDismiss:self];
     [self dismissViewControllerAnimated:YES completion:^{
         
@@ -143,6 +161,28 @@
 
 - (void)didSelectFormRow:(XLFormRowDescriptor *)formRow {
     if ([formRow.tag isEqualToString:@"editExercises"]) [self presentEditExercisesViewController];
+    else if ([formRow.tag isEqualToString:@"import"]) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Import Data"
+                                                                       message:@"To import your Bench Tracker data, please open an email with the compatible '.btd' file. Then, tap on the file to open it in the Bench Tracker App."
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okButton = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+        [alert addAction:okButton];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    else if ([formRow.tag isEqualToString:@"export"]) {
+        [self saveSettings];
+        NSString *dataPath = [BTDataTransferManager pathForJSONDataExport];
+        NSData *BTData = [[NSFileManager defaultManager] contentsAtPath:dataPath];
+        if (BTData != nil) {
+            MFMailComposeViewController *email = [[MFMailComposeViewController alloc] init];
+            [email setSubject:@"Bench Tracker Data"];
+            [email addAttachmentData:BTData mimeType:@"application/benchtracker" fileName:@"Bench Tracker Data"];
+            [email setToRecipients:[NSArray array]];
+            [email setMessageBody:@"Here's my Bench Tracker data. Once you have the Bench Tracker app, tap on the file to open it." isHTML:NO];
+            [email setMailComposeDelegate:self];
+            [self presentViewController:email animated:YES completion:nil];
+        }
+    }
     else if ([formRow.tag isEqualToString:@"share"]) {
         NSArray* dataToShare = @[@"Go download Bench Tracker on the iOS App Store! https://itunes.apple.com/app/id1266077653"];
         UIActivityViewController* activityViewController = [[UIActivityViewController alloc] initWithActivityItems:dataToShare
@@ -154,7 +194,7 @@
     else if ([formRow.tag isEqualToString:@"reset"]) {
         //WARN USER DATA WILL BE DELETED, SUGGEST DOWNLOADING DATA
         UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Reset Data"
-                                                                        message:@"Are you sure you want to reset your accout? You will lose all your hard work! We suggest saving your workouts by printing them out before reseting your data. This action cannot be undone."
+                                                                        message:@"Are you sure you want to reset your accout? You will lose all your hard work! We suggest saving your data beforehand by exporting your data or printing out your workouts. This action cannot be undone."
                                                                  preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction* deleteButton = [UIAlertAction actionWithTitle:@"Reset" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
             dispatch_async(dispatch_get_main_queue(), ^{ [self resetDataButtonPressed:nil]; });
@@ -165,6 +205,12 @@
         [self presentViewController:alert animated:YES completion:nil];
     }
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
+}
+
+#pragma mark - mailVC delegate
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
+    [controller dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - view handling

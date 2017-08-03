@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "BTExerciseType+CoreDataClass.h"
 #import "Appirater.h"
+#import "BTDataTransferManager.h"
 
 @interface AppDelegate ()
             
@@ -20,6 +21,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [UIApplication sharedApplication].idleTimerDisabled = NO;
+    //ATTACHMENT DATA HANDLING
+    [self loadNewStoreWithURL:[launchOptions valueForKey:UIApplicationLaunchOptionsURLKey]];
     //TYPE LIST HANDLING
     [BTExerciseType checkForExistingTypeList];
     //APPIRATER
@@ -37,8 +40,24 @@
     return YES;
 }
 
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+    [self loadNewStoreWithURL:url];
+    return YES;
+}
+
 - (void)applicationWillTerminate:(UIApplication *)application {
     [self saveContext];
+}
+
+#pragma mark - public methods
+
+- (void)loadNewStoreWithURL:(NSURL *)url {
+    if (url && url.isFileURL)
+        [BTDataTransferManager loadJSONDataWithURL:url];
+}
+            
+- (NSURL *)defualtStoreURL {
+    return [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"BenchTracker.sqlite"];
 }
 
 #pragma mark - Core Data stack
@@ -54,9 +73,7 @@
 
 // The managed object model for the application. It is a fatal error for the application not to be able to find and load its model.
 - (NSManagedObjectModel *)managedObjectModel {
-    if (_managedObjectModel != nil) {
-        return _managedObjectModel;
-    }
+    if (_managedObjectModel != nil) return _managedObjectModel;
     NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"BTDataModel" withExtension:@"momd"];
     _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
     return _managedObjectModel;
@@ -65,11 +82,9 @@
 // The persistent store coordinator for the application. This implementation creates and returns a coordinator, having added the store for the application to it.
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
     if (_persistentStoreCoordinator) return _persistentStoreCoordinator;
-    
     // Create the coordinator and store
-    
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"BenchTracker.sqlite"];
+    NSURL *storeURL = [self defualtStoreURL];
     NSError *error = nil;
     NSString *failureReason = @"There was an error creating or loading the application's saved data.";
     NSDictionary *options = @{ NSMigratePersistentStoresAutomaticallyOption : @YES, NSInferMappingModelAutomaticallyOption : @YES };
@@ -85,17 +100,14 @@
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
-    
     return _persistentStoreCoordinator;
 }
 
 // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.)
 - (NSManagedObjectContext *)managedObjectContext {
     if (_managedObjectContext) return _managedObjectContext;
-    
     NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
     if (!coordinator) return nil;
-    
     _managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
     [_managedObjectContext setPersistentStoreCoordinator:coordinator];
     return _managedObjectContext;
@@ -117,12 +129,7 @@
 }
 
 - (void)resetCoreData {
-    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"BenchTracker.sqlite"];
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    [fileManager removeItemAtURL:storeURL error:NULL];
-    NSError *error;
-    if([fileManager fileExistsAtPath:[NSString stringWithContentsOfURL:storeURL encoding:NSASCIIStringEncoding error:&error]])
-        [fileManager removeItemAtURL:storeURL error:nil];
+    [self.persistentStoreCoordinator destroyPersistentStoreAtURL:[self defualtStoreURL] withType:NSSQLiteStoreType options:nil error:nil];
     self.managedObjectContext = nil;
     self.persistentStoreCoordinator = nil;
 }

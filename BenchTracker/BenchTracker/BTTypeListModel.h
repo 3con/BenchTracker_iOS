@@ -1,5 +1,5 @@
 //
-//  TypeListModel.h
+//  BTTypeListModel.h
 //  BenchTracker
 //
 //  Created by Chappy Asel on 6/27/17.
@@ -8,9 +8,9 @@
 
 #import <JSONModel/JSONModel.h>
 
-@protocol ExerciseTypeModel @end
+@protocol BTExerciseTypeModel @end
 
-@interface ExerciseTypeModel : JSONModel
+@interface BTExerciseTypeModel : JSONModel
 
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSArray <NSString *> *iterations;
@@ -19,9 +19,9 @@
 
 @end
 
-@interface TypeListModel : JSONModel
+@interface BTTypeListModel : JSONModel
 
-@property (nonatomic, strong) NSArray <ExerciseTypeModel> *list;
+@property (nonatomic, strong) NSMutableArray <BTExerciseTypeModel> *list;
 @property (nonatomic, strong) NSMutableDictionary *colors;
 
 @end
