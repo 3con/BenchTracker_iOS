@@ -20,6 +20,15 @@
     return sharedInstance;
 }
 
+- (void)reset {
+    self.activeWorkout = nil;
+    self.hiddenExerciseTypeSections = [NSKeyedArchiver archivedDataWithRootObject:[NSMutableArray array]];
+    self.exerciseTypeColors = nil;
+    self.startWeekOnMonday = YES;
+    self.disableSleep = YES;
+    self.weightInLbs = ![[[NSLocale currentLocale] objectForKey:NSLocaleUsesMetricSystem] boolValue];
+}
+
 - (NSString *)weightSuffix {
     return (self.weightInLbs) ? @"lbs" : @"kg";
 }

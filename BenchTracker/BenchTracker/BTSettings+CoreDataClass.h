@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (BTSettings *) sharedInstance;
 
+- (void)reset;
+
 - (NSString *)weightSuffix;
 
 @end

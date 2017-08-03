@@ -30,9 +30,10 @@
     [super viewDidLoad];
     self.navView.backgroundColor = [UIColor BTPrimaryColor];
     self.settings = [BTSettings sharedInstance];
+    self.tableView.contentInset = UIEdgeInsetsMake(72, 0, 0, 0);
+    self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(72, 0, 0, 0);
     [self loadForm];
     [self.view sendSubviewToBack:self.tableView];
-    self.tableView.contentInset = UIEdgeInsetsMake(72, 0, 0, 0);
 }
 
 - (void)loadForm {

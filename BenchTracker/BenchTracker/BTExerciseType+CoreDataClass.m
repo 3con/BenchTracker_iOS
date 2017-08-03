@@ -33,13 +33,9 @@
 }
 
 + (BTTypeListModel *)typeListModel {
-    NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
     BTTypeListModel *model = [[BTTypeListModel alloc] init];
-    NSFetchRequest *request = [BTExerciseType fetchRequest];
-    request.fetchLimit = UINT32_MAX;
-    NSArray *arr = [context executeFetchRequest:request error:nil];
     model.list = (NSMutableArray <BTExerciseTypeModel> *)[NSMutableArray array];
-    for (BTExerciseType *eT in arr) {
+    for (BTExerciseType *eT in [BTExerciseType allExerciseTypes]) {
         BTExerciseTypeModel *type = [[BTExerciseTypeModel alloc] init];
         type.name = eT.name;
         type.iterations = [NSKeyedUnarchiver unarchiveObjectWithData:eT.iterations];
@@ -53,6 +49,13 @@
     for (NSString *key in exerciseTypeColors.allKeys)
         model.colors[key] = [BTExerciseType hexForColor:exerciseTypeColors[key]];
     return model;
+}
+
++ (void)resetTypeList {
+    NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    for (BTExerciseType *type in [BTExerciseType allExerciseTypes])
+        [context deleteObject:type];
+    [context save:nil];
 }
 
 + (void)loadTypeListModel:(BTTypeListModel *)model {
@@ -74,6 +77,14 @@
 }
 
 #pragma mark - private methods
+
++ (NSArray <BTExerciseType *> *)allExerciseTypes {
+    NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    NSFetchRequest *request = [BTExerciseType fetchRequest];
+    request.fetchLimit = 0;
+    request.fetchBatchSize = 0;
+    return [context executeFetchRequest:request error:nil];
+}
 
 + (UIColor *)colorForHex:(NSString *)hex {
     unsigned rgbValue = 0;

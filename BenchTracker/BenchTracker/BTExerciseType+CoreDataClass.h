@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void)checkForExistingTypeList;
 
++ (void)resetTypeList;
+
 + (BTTypeListModel *)typeListModel;
 
 + (void)loadTypeListModel:(BTTypeListModel *)model;

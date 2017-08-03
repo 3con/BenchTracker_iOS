@@ -99,6 +99,7 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     if (self.workout) self.startDate = [NSDate date];
     self.settings.activeWorkout = self.workout;
     [self.context save:nil];

@@ -185,6 +185,15 @@
     return workout;
 }
 
++ (void)resetWorkouts {
+    NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    NSFetchRequest *request = [BTWorkout fetchRequest];
+    request.fetchLimit = UINT32_MAX;
+    for (BTWorkout *workout in [context executeFetchRequest:request error:nil])
+        [context deleteObject:workout];
+    [context save:nil];
+}
+
 + (NSArray <BTWorkout *> *)workoutsBetweenBeginDate:(NSDate *)d1 andEndDate:(NSDate *)d2 {
     NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"BTWorkout"];

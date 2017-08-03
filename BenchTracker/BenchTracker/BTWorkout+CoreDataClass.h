@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (BTWorkout *)workoutForJSON: (NSString *)jsonString;
 
++ (void)resetWorkouts;
+
 + (NSArray <BTWorkout *> *)workoutsBetweenBeginDate:(NSDate *)d1 andEndDate:(NSDate *)d2;
 
 @end

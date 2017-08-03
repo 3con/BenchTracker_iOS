@@ -37,7 +37,8 @@
     transferModel.typeList = [BTExerciseType typeListModel];
     //SERIALIZE WORKOUTS
     NSFetchRequest *request = [BTWorkout fetchRequest];
-    request.fetchLimit = UINT32_MAX;
+    request.fetchLimit = 0;
+    request.fetchBatchSize = 0;
     NSArray *arr = [context executeFetchRequest:request error:nil];
     transferModel.workouts = [NSMutableArray array];
     for (BTWorkout *workout in arr) [transferModel.workouts addObject:[BTWorkout jsonForWorkout:workout]];
@@ -60,12 +61,15 @@
     [BTUser sharedInstance].dateCreated = transferModel.user.dateCreated;
     //PARSE SETTINGS
     BTSettings *settings = [BTSettings sharedInstance];
+    [settings reset];
     settings.startWeekOnMonday = transferModel.settings.startWeekOnMonday;
     settings.weightInLbs = transferModel.settings.weightInLbs;
     settings.disableSleep = transferModel.settings.disableSleep;
     //PARSE TYPELIST
+    [BTExerciseType resetTypeList];
     [BTExerciseType loadTypeListModel:transferModel.typeList];
     //PARSE WORKOUTS
+    [BTWorkout resetWorkouts];
     for (NSString *workoutString in transferModel.workouts)
         [BTWorkout workoutForJSON:workoutString];
     return true;

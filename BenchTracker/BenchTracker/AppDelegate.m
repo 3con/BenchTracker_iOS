@@ -21,8 +21,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [UIApplication sharedApplication].idleTimerDisabled = NO;
-    //ATTACHMENT DATA HANDLING
-    [self loadNewStoreWithURL:[launchOptions valueForKey:UIApplicationLaunchOptionsURLKey]];
     //TYPE LIST HANDLING
     [BTExerciseType checkForExistingTypeList];
     //APPIRATER
@@ -41,7 +39,22 @@
 }
 
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
-    [self loadNewStoreWithURL:url];
+    UIAlertController *alertController;
+    if ([self loadNewStoreWithURL:url]) //Successfully loaded file
+        alertController = [UIAlertController alertControllerWithTitle:@"Import Successful!"
+                                                              message:@"Your settings, workouts, and custom exercises have all been successfully imported. Congratulations and happy tracking!"
+                                                       preferredStyle:UIAlertControllerStyleAlert];
+    else                                //Failed to load file
+        alertController = [UIAlertController alertControllerWithTitle:@"Import Failed"
+                                                              message:@"Unfortunately, we could not import your data. Please make sure the version of Bench Tracker on this app is the same as the one you used to export and that no data was lost between the transfer. We apoligize for this inconvenience."
+                                                       preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+    [alertController addAction:ok];
+    UIWindow *alertWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    alertWindow.rootViewController = [[UIViewController alloc] init];
+    alertWindow.windowLevel = UIWindowLevelAlert + 1;
+    [alertWindow makeKeyAndVisible];
+    [alertWindow.rootViewController presentViewController:alertController animated:YES completion:nil];
     return YES;
 }
 
@@ -51,9 +64,10 @@
 
 #pragma mark - public methods
 
-- (void)loadNewStoreWithURL:(NSURL *)url {
+- (BOOL)loadNewStoreWithURL:(NSURL *)url {
     if (url && url.isFileURL)
-        [BTDataTransferManager loadJSONDataWithURL:url];
+        return [BTDataTransferManager loadJSONDataWithURL:url];
+    return NO;
 }
             
 - (NSURL *)defualtStoreURL {
