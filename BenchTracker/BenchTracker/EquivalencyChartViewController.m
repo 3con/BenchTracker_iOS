@@ -11,7 +11,7 @@
 #import "ECSideTableViewCell.h"
 
 #define SIZE_WIDTH  25
-#define SIZE_HEIGHT 112 //10-600
+#define SIZE_HEIGHT 118 //10-600
 
 @interface EquivalencyChartViewController ()
 @property (weak, nonatomic) IBOutlet UIView *navView;
@@ -41,17 +41,23 @@
     [self loadTopScrollView];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.mainTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:7 inSection:0]
+                              atScrollPosition:UITableViewScrollPositionTop animated:NO];
+}
+
 - (void)loadTopScrollView {
     for (int i = 0; i < SIZE_WIDTH-1; i++) {
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(80*i, 0, 80, 40)];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(60*i, 0, 60, 40)];
         label.backgroundColor = [UIColor BTSecondaryColor];
         label.textColor = [UIColor whiteColor];
         label.textAlignment = NSTextAlignmentCenter;
         label.font = [UIFont systemFontOfSize:17 weight:UIFontWeightBold];
-        label.text = [NSString stringWithFormat:@"%d reps",i+2];
+        label.text = [NSString stringWithFormat:@"%d",i+2];
         [self.topScrollView addSubview:label];
     }
-    self.topScrollView.contentSize = CGSizeMake(80*SIZE_WIDTH-1, 40);
+    self.topScrollView.contentSize = CGSizeMake(60*SIZE_WIDTH-1, 40);
     self.topScrollView.delegate = self;
     [self.mainScrollViews addObject:self.topScrollView];
 }
@@ -73,11 +79,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (tableView == self.sideTableView) {
         ECSideTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-        cell.titleLabel.text = [NSString stringWithFormat:@"%ld %@",45+indexPath.row*5,self.settings.weightSuffix];
+        cell.titleLabel.text = [NSString stringWithFormat:@"%ld %@",10+indexPath.row*5,self.settings.weightSuffix];
         return cell;
     }
     ECTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    [cell loadWithWeight:indexPath.row*5+45 length:SIZE_WIDTH-1];
+    [cell loadWithWeight:indexPath.row*5+10 length:SIZE_WIDTH-1];
     cell.scrollView.contentOffset = self.mainScrollViews.allObjects.firstObject.contentOffset;
     cell.scrollView.delegate = self;
     [self.mainScrollViews addObject:cell.scrollView];

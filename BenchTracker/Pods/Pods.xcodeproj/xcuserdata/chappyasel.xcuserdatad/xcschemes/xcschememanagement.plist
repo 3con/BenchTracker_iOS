@@ -39,6 +39,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Onboard.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>PNChart.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -82,17 +87,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>1077FE36E38F196BBF852C94B392EDA7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>244B58DBF02C13E7BBFB42075EAA25B9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3A4C270D16607FC1233E97174F4685DD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>4820ABD5CCD86B622EFA0EF07928BA59</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>4CC77EFB5BA7C06F7BDDBB6EBE0A562E</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>57CA3B38E6C7DABF8FD56D4DFB325A9D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -103,6 +113,11 @@
 			<true/>
 		</dict>
 		<key>7891E2B724C54EF58FB1692B34F1455C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8F5682E0AC126B1910FC04BA8A16F382</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -137,12 +152,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F4BFA99347042EDE2B046BB955926D40</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F4D48E782A824E9A6901A6341D6A8CEF</key>
+		<key>F7FF59E7A1E0B61E6DD3401174C06966</key>
 		<dict>
 			<key>primary</key>
 			<true/>

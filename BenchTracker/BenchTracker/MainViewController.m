@@ -13,6 +13,7 @@
 #import "WorkoutTableViewCell.h"
 #import "WeekdayTableViewCell.h"
 #import "HMSegmentedControl.h"
+#import "BTTutorialManager.h"
 
 @interface MainViewController ()
 
@@ -97,6 +98,8 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    if ([BTTutorialManager needsOnboarding])
+        [self presentViewController:[BTTutorialManager onboardingVC] animated:YES completion:nil];
     if (self.settings.activeWorkout)
         [self presentWorkoutViewControllerWithWorkout:self.settings.activeWorkout];
 }

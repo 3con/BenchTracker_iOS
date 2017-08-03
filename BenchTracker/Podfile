@@ -15,6 +15,7 @@ target 'BenchTracker' do
   pod 'PNChart'
   pod 'XLForm'
   pod 'Appirater'
+  pod 'Onboard'
 
   # Pods for BenchTracker
 
