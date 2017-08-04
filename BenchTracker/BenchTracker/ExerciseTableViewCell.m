@@ -50,6 +50,11 @@
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"Cell"];
 }
 
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    self.maxCells = (int)(self.frame.size.width-115) / 70;
+}
+
 - (NSArray *)leftButtons {
     NSMutableArray *rightUtilityButtons = [NSMutableArray new];
     [rightUtilityButtons sw_addUtilityButtonWithColor:[UIColor BTRedColor] title:@"Delete"];
@@ -69,7 +74,6 @@
     if (exercise.iteration) self.nameLabel.text = [NSString stringWithFormat:@"%@ %@",exercise.iteration,exercise.name];
     else                    self.nameLabel.text = exercise.name;
     self.categoryLabel.text = exercise.category;
-    self.maxCells = (int)self.collectionView.frame.size.width / 70;
     [self.collectionView reloadData];
     if (self.color) {
         self.colorView1.backgroundColor = self.color;

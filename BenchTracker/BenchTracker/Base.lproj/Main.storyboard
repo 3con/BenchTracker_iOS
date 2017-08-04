@@ -280,10 +280,10 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W1F-YY-ujm">
                                         <rect key="frame" x="304" y="23.333333333333329" width="100" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="085-dC-aab"/>
+                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="100" id="085-dC-aab"/>
                                             <constraint firstAttribute="height" constant="40" id="bjF-Km-SiJ"/>
                                         </constraints>
-                                        <inset key="imageEdgeInsets" minX="78" minY="4" maxX="0.0" maxY="4"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="4" maxX="0.0" maxY="4"/>
                                         <state key="normal" image="Settings">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -320,6 +320,7 @@
                                     <constraint firstItem="xOh-gd-Bbp" firstAttribute="leading" secondItem="oFE-yj-bhY" secondAttribute="leading" constant="10" id="CJz-xA-z6a"/>
                                     <constraint firstItem="W1F-YY-ujm" firstAttribute="centerY" secondItem="Nca-iP-Olh" secondAttribute="centerY" id="I0F-IJ-tvM"/>
                                     <constraint firstAttribute="trailing" secondItem="W1F-YY-ujm" secondAttribute="trailing" constant="10" id="Jc2-GC-HPn"/>
+                                    <constraint firstItem="W1F-YY-ujm" firstAttribute="leading" secondItem="Nca-iP-Olh" secondAttribute="trailing" priority="800" constant="5" id="KPT-JQ-wh4"/>
                                     <constraint firstItem="2Oe-gD-jXD" firstAttribute="centerX" secondItem="oFE-yj-bhY" secondAttribute="centerX" id="ODq-XY-LJG"/>
                                     <constraint firstItem="Nca-iP-Olh" firstAttribute="centerX" secondItem="oFE-yj-bhY" secondAttribute="centerX" id="ZiQ-th-WSJ"/>
                                     <constraint firstItem="2Oe-gD-jXD" firstAttribute="leading" secondItem="oFE-yj-bhY" secondAttribute="leading" priority="750" constant="20" id="bBo-Df-DJ8"/>

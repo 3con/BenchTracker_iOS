@@ -180,21 +180,9 @@
     for (BTExercise *exercise in self.workout.exercises) {
         if (dict[exercise.category]) dict[exercise.category] = [NSNumber numberWithInt:dict[exercise.category].intValue + 1];
         else                         dict[exercise.category] = [NSNumber numberWithInt:1];
-        exercise.oneRM = 0;
-        for (NSString *set in [NSKeyedUnarchiver unarchiveObjectWithData:exercise.sets]) {
-            NSArray <NSString *> *split = [set componentsSeparatedByString:@" "];
-            if ([exercise.style isEqualToString:STYLE_REPSWEIGHT]) {
-                self.workout.volume += split[0].floatValue*split[1].floatValue;
-                exercise.oneRM = MAX(exercise.oneRM, [BT1RMCalculator equivilentForReps:split[0].intValue weight:split[1].floatValue]);
-            }
-            else if ([exercise.style isEqualToString:STYLE_REPS])
-                exercise.oneRM = MAX(exercise.oneRM, split[0].intValue);
-            else if ([exercise.style isEqualToString:STYLE_TIME])
-                exercise.oneRM = MAX(exercise.oneRM, split[1].intValue);
-            else if ([exercise.style isEqualToString:STYLE_TIMEWEIGHT])
-                exercise.oneRM = MAX(exercise.oneRM, split[2].floatValue);
-            self.workout.numSets ++;
-        }
+        [exercise calculateOneRM];
+        self.workout.numSets += exercise.numberOfSets;
+        self.workout.volume += exercise.volume;
     }
     self.workout.summary = @"0";
     if (self.workout.exercises.count > 0) {

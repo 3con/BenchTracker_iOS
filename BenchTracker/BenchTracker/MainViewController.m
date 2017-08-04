@@ -214,7 +214,8 @@
 - (void)setUpSegmentedControl {
     self.segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"List", @"Week", @"Month"]];
     self.segmentedControl.frame = CGRectMake(0, 0, self.segmentedControlContainerView.frame.size.width,
-                                             self.segmentedControlContainerView.frame.size.height);
+                                                   self.segmentedControlContainerView.frame.size.height);
+    self.segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     self.segmentedControl.layer.cornerRadius = 8;
     self.segmentedControl.clipsToBounds = YES;
     self.segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleBox;
@@ -263,7 +264,8 @@
         self.rightBarButton.backgroundColor = self.blankWorkoutButton.backgroundColor;
         self.rightBarButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
         self.rightBarButton.titleLabel.font = [UIFont systemFontOfSize:13 weight:UIFontWeightMedium];
-        [self.rightBarButton setTitle:@"New Workout" forState:UIControlStateNormal];
+        NSString *text = (self.view.frame.size.width > 400) ? @"New Workout" : @"New";
+        [self.rightBarButton setTitle:text forState:UIControlStateNormal];
         [self.rightBarButton setImage:nil forState:UIControlStateNormal];
         self.listTableView.userInteractionEnabled = NO;
         self.calendarView.userInteractionEnabled = NO;
@@ -285,7 +287,8 @@
         self.rightBarButton.backgroundColor = self.blankWorkoutButton.backgroundColor;
         self.rightBarButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
         self.rightBarButton.titleLabel.font = [UIFont systemFontOfSize:13 weight:UIFontWeightMedium];
-        [self.rightBarButton setTitle:@"New Workout" forState:UIControlStateNormal];
+        NSString *text = (self.view.frame.size.width > 400) ? @"New Workout" : @"New";
+        [self.rightBarButton setTitle:text forState:UIControlStateNormal];
         [self.rightBarButton setImage:nil forState:UIControlStateNormal];
         self.listTableView.userInteractionEnabled = NO;
         self.weekdayContainerView.userInteractionEnabled = NO;

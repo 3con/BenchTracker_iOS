@@ -111,7 +111,7 @@
         self.graphNoDataLabel.text = @"No Graph Available";
     }
     BTAnalyticsLineChart *lineChart = [[BTAnalyticsLineChart alloc]
-                                       initWithFrame:CGRectMake(5, 10, self.graphContainerView.frame.size.width+10, 198)];
+        initWithFrame:CGRectMake(5, 10, (MIN(550,self.view.frame.size.width-40))+10, 198)];
     lineChart.yAxisSpaceTop = 2;
     self.graphView = lineChart;
     [self.graphContainerView addSubview:self.graphView];
@@ -141,7 +141,8 @@
     self.podiumContainerView.backgroundColor = [UIColor clearColor];
     self.podiumView = [[NSBundle mainBundle] loadNibNamed:@"ADPodiumView" owner:self options:nil].firstObject;
     self.podiumView.frame = CGRectMake(0, 0, self.podiumContainerView.frame.size.width,
-                                       self.podiumContainerView.frame.size.height);
+                                             self.podiumContainerView.frame.size.height);
+    self.podiumView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.podiumContainerView addSubview:self.podiumView];
     self.podiumView.color = [self.color colorWithAlphaComponent:.8];
     self.podiumTitleLabel.textColor = self.color;
@@ -222,7 +223,8 @@
 - (void)loadSegmentedControl {
     self.segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"Recent", @"Top"]];
     self.segmentedControl.frame = CGRectMake(0, 0, self.segmentedControllerContainerView.frame.size.width,
-                                             self.segmentedControllerContainerView.frame.size.height);
+                                                   self.segmentedControllerContainerView.frame.size.height);
+    self.segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.segmentedControl.layer.cornerRadius = 12;
     self.segmentedControl.clipsToBounds = YES;
     self.segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleBox;

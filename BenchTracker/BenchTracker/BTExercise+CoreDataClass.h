@@ -21,6 +21,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BTExercise : NSManagedObject
 
+@property (nonatomic) NSInteger numberOfSets;
+
+@property (nonatomic) CGFloat volume;
+
+- (void)calculateOneRM;
+
 @end
 
 NS_ASSUME_NONNULL_END

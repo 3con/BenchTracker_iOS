@@ -37,6 +37,11 @@
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"Cell"];
 }
 
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    self.maxCells = (int)(self.frame.size.width-20) / 70;
+}
+
 - (void)loadExercise:(BTExercise *)exercise withWeightSuffix:(NSString *)suffix {
     self.contentView.backgroundColor = self.color;
     NSString *s;
@@ -53,7 +58,6 @@
          self.titleLabel.text = [NSString stringWithFormat:@"%@ %@",exercise.iteration,exercise.name];
     else self.titleLabel.text = exercise.name;
     self.tempSets = [NSKeyedUnarchiver unarchiveObjectWithData:exercise.sets];
-    self.maxCells = (int)self.collectionView.frame.size.width / 70;
     [self.collectionView reloadData];
 }
 

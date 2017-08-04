@@ -128,6 +128,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [UIColor BTPrimaryColor];
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.frame.size.width, cell.frame.size.height)];
+        label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         label.textColor = [UIColor whiteColor];
         label.textAlignment = NSTextAlignmentCenter;
         label.font = [UIFont systemFontOfSize:17 weight:UIFontWeightMedium];
@@ -141,6 +142,7 @@
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BCell"];
         cell.backgroundColor = [UIColor whiteColor];
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.frame.size.width, 120)];
+        label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         label.textColor = [UIColor BTLightGrayColor];
         label.textAlignment = NSTextAlignmentCenter;
         label.font = [UIFont systemFontOfSize:24 weight:UIFontWeightBold];

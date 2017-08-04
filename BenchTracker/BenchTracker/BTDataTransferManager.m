@@ -138,16 +138,10 @@
         exercise.iteration = exerciseModel.iteration;
         exercise.category = exerciseModel.category;
         exercise.style = exerciseModel.style;
-        workout.numSets += (exerciseModel.sets) ? exerciseModel.sets.count : 0;
         exercise.sets = [NSKeyedArchiver archivedDataWithRootObject:(exerciseModel.sets) ? exerciseModel.sets : [NSMutableArray array]];
-        exercise.oneRM = 0;
-        if ([exerciseModel.style isEqualToString:STYLE_REPSWEIGHT]) {
-            for (NSString *set in exerciseModel.sets) {
-                NSArray <NSString *> *split = [set componentsSeparatedByString:@" "];
-                workout.volume += split[0].floatValue*split[1].floatValue;
-                exercise.oneRM = MAX(exercise.oneRM, [BT1RMCalculator equivilentForReps:split[0].intValue weight:split[1].floatValue]);
-            }
-        }
+        [exercise calculateOneRM];
+        workout.numSets += exercise.numberOfSets;
+        workout.volume += exercise.volume;
         exercise.workout = workout;
         [workout addExercisesObject:exercise];
     }
