@@ -36,7 +36,7 @@
     [super viewWillAppear:animated];
     self.user = [BTUser sharedInstance];
     [self loadWeekLogic];
-    self.titleString = @"Muscle Split";
+    self.titleString = @"Weekly Summary";
 }
 
 - (void)loadWeekLogic {

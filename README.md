@@ -8,7 +8,13 @@ Whenever a user opens up their app, the AWS user with the matching ```username``
 #### QR code generation and scanning
 To make sharing workouts between users more effortless, a system of QR code generation has been implimented. Furthermore, this implimentation has the advantage of offline usability as it is not server-dependent. With the help of the MJExtension library, advanced techniques are used to dramatically downsize workout data objects to a more managable size (for example: a sample workout was shortened from 2600+ characters to 960 without any data loss). These raw JSON strings are then translated in QR codes and can be either displayed on the device itself or printed out. Any user is then welcome to scan the code and instantly either load the same workout with dates, durations, sets and more preserved or use it as a template for their own workout (no sets etc.).
 
+#### User data import / export
+Data import / export is used both as a form of unit testing and as a practical way for users to migrate from device to device. To accomplish this task, JSONModel equivilents to every Core Data class was written along with a ```BTDataTransferManager``` class. This class exports data by serializing user settings, custom exercises, and workouts into a JSON object and attaching it to an email. By defining a custom '.btd' file type, whenever another device opens the attachment it will automattically link to the Bench Tracker app. Importing involves taking the JSON string, turning it into a JSONModel object, and parsing through the object to reform the Core Data objects. Each JSON attachment comes with a ```version``` tag and the app will reject any newer version in case I decide to change the JSON format.
+
 ## Installation
+#### Test Data
+If you would like to test the app using a pre-defined set of 20 workouts, you can use the ```BTTestData.btd``` file included in this repo.
+
 #### AWS Servers
 This app's backend uses Amazon Web Services to store user data, workouts, and custom exercise types. The DynamoDB pool and S3 bucket are authenticated using a [Cognito](https://aws.amazon.com/cognito/) unauth identity.
 
@@ -47,6 +53,8 @@ In order to get the app to fully function correctly, the file 'BenchTrackerKeys.
 * [MMQRCodeScanner](https://github.com/dexianyinjiu/MMQRCodeScanner) - QR code generation and scanning
 * [StickyCollectionView](https://github.com/matbeich/StickyCollectionView) - Analytics view card animation
 * [PNChart](https://github.com/kevinzhow/PNChart) - Analytics view graphs
+* [AppIRater](https://github.com/arashpayan/appirater) - App store review reminder
+* [Onboard](https://github.com/mamaral/Onboard) - Tutorial splashscreen
 * [Core Data](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/CoreData/index.html) - on-device data storage
 * [Core Graphics / Text](https://developer.apple.com/library/content/documentation/StringsTextFonts/Conceptual/CoreText_Programming/Overview/Overview.html) - workout PDF generation
 
@@ -67,10 +75,12 @@ In order to get the app to fully function correctly, the file 'BenchTrackerKeys.
 
 #### Workout in progress
 <img src="./Screenshots/image9.png" alt="Drawing" width="300 px"/>
-<img src="./Screenshots/image10.png" alt="Drawing" width="300 px"/>
 
 #### Rep tracking
+<img src="./Screenshots/image10.png" alt="Drawing" width="300 px"/>
 <img src="./Screenshots/image11.png" alt="Drawing" width="300 px"/>
+
+#### Built-in equivalency chart
 <img src="./Screenshots/image12.png" alt="Drawing" width="300 px"/>
 
 #### Analytics card views
@@ -86,10 +96,16 @@ In order to get the app to fully function correctly, the file 'BenchTrackerKeys.
 <img src="./Screenshots/image20.png" alt="Drawing" width="300 px"/>
 <img src="./Screenshots/image21.png" alt="Drawing" width="300 px"/>
 <img src="./Screenshots/image22.png" alt="Drawing" width="300 px"/>
-
-#### Export workout to PDF
 <img src="./Screenshots/image23.png" alt="Drawing" width="300 px"/>
 
-#### QR code generation and scanning
+#### Settings & custom exercises
 <img src="./Screenshots/image24.png" alt="Drawing" width="300 px"/>
 <img src="./Screenshots/image25.png" alt="Drawing" width="300 px"/>
+<img src="./Screenshots/image26.png" alt="Drawing" width="300 px"/>
+
+#### Export workout to PDF
+<img src="./Screenshots/image27.png" alt="Drawing" width="300 px"/>
+
+#### QR code generation and scanning
+<img src="./Screenshots/image28.png" alt="Drawing" width="300 px"/>
+<img src="./Screenshots/image29.png" alt="Drawing" width="300 px"/>
