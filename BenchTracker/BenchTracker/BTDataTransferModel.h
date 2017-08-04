@@ -10,6 +10,7 @@
 #import "BTUserModel.h"
 #import "BTSettingsModel.h"
 #import "BTTypeListModel.h"
+#import "BTWorkoutModel.h"
 
 @interface BTDataTransferModel : JSONModel
 
@@ -17,6 +18,6 @@
 @property (nonatomic) BTUserModel *user;
 @property (nonatomic) BTSettingsModel *settings;
 @property (nonatomic) BTTypeListModel *typeList;
-@property (nonatomic) NSMutableArray <NSString *> *workouts; //Converted using MJExtension, not JSONModel
+@property (nonatomic) NSMutableArray <BTWorkoutModel *> <BTWorkoutModel> *workouts;
 
 @end

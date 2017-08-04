@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		50060FDA1F33A83B00F6DC00 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50060FD91F33A83B00F6DC00 /* Assets.xcassets */; };
+		50060FDD1F33BB8E00F6DC00 /* BTWorkoutModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50060FDC1F33BB8E00F6DC00 /* BTWorkoutModel.m */; };
 		50404F541F327EDE0070B1A9 /* BTDataTransferModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50404F531F327EDE0070B1A9 /* BTDataTransferModel.m */; };
 		50404F5B1F3280430070B1A9 /* BTUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50404F5A1F3280430070B1A9 /* BTUserModel.m */; };
 		50404F5F1F32816A0070B1A9 /* BTSettingsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50404F5E1F32816A0070B1A9 /* BTSettingsModel.m */; };
@@ -33,8 +34,8 @@
 		F917BB501F0D24E500614AB1 /* BTPDFGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = F917BB4F1F0D24E500614AB1 /* BTPDFGenerator.m */; };
 		F917BB541F0D2AB200614AB1 /* BTWorkoutPDF.m in Sources */ = {isa = PBXBuildFile; fileRef = F917BB531F0D2AB200614AB1 /* BTWorkoutPDF.m */; };
 		F917BB571F0D2AC400614AB1 /* BTWorkoutPDF.xib in Resources */ = {isa = PBXBuildFile; fileRef = F917BB561F0D2AC400614AB1 /* BTWorkoutPDF.xib */; };
-		F917BB5A1F0DA6AB00614AB1 /* BTWorkoutModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F917BB591F0DA6AB00614AB1 /* BTWorkoutModel.m */; };
-		F917BB5D1F0DCA6A00614AB1 /* BTTemplateWorkoutModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F917BB5C1F0DCA6A00614AB1 /* BTTemplateWorkoutModel.m */; };
+		F917BB5A1F0DA6AB00614AB1 /* BTWorkoutQRModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F917BB591F0DA6AB00614AB1 /* BTWorkoutQRModel.m */; };
+		F917BB5D1F0DCA6A00614AB1 /* BTTemplateWorkoutQRModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F917BB5C1F0DCA6A00614AB1 /* BTTemplateWorkoutQRModel.m */; };
 		F917BB601F0DD40200614AB1 /* QRDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F917BB5F1F0DD40200614AB1 /* QRDisplayViewController.m */; };
 		F917BB641F0DEA7C00614AB1 /* BTQRScannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F917BB631F0DEA7C00614AB1 /* BTQRScannerViewController.m */; };
 		F917BB671F0DEAE000614AB1 /* BTQRScannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F917BB661F0DEAE000614AB1 /* BTQRScannerViewController.xib */; };
@@ -125,6 +126,8 @@
 		2C83D3A0EA46ECDF1788C990 /* Pods_BenchTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BenchTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		40B18DFBDA158AF111B21958 /* Pods_BenchTrackerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BenchTrackerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		50060FD91F33A83B00F6DC00 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		50060FDB1F33BB8E00F6DC00 /* BTWorkoutModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BTWorkoutModel.h; path = BenchTracker/BTWorkoutModel.h; sourceTree = "<group>"; };
+		50060FDC1F33BB8E00F6DC00 /* BTWorkoutModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BTWorkoutModel.m; path = BenchTracker/BTWorkoutModel.m; sourceTree = "<group>"; };
 		50404F521F327EDE0070B1A9 /* BTDataTransferModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTDataTransferModel.h; sourceTree = "<group>"; };
 		50404F531F327EDE0070B1A9 /* BTDataTransferModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTDataTransferModel.m; sourceTree = "<group>"; };
 		50404F591F3280430070B1A9 /* BTUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BTUserModel.h; path = BenchTracker/BTUserModel.h; sourceTree = "<group>"; };
@@ -169,10 +172,10 @@
 		F917BB521F0D2AB200614AB1 /* BTWorkoutPDF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTWorkoutPDF.h; sourceTree = "<group>"; };
 		F917BB531F0D2AB200614AB1 /* BTWorkoutPDF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTWorkoutPDF.m; sourceTree = "<group>"; };
 		F917BB561F0D2AC400614AB1 /* BTWorkoutPDF.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BTWorkoutPDF.xib; sourceTree = "<group>"; };
-		F917BB581F0DA6AB00614AB1 /* BTWorkoutModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BTWorkoutModel.h; path = BenchTracker/BTWorkoutModel.h; sourceTree = "<group>"; };
-		F917BB591F0DA6AB00614AB1 /* BTWorkoutModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BTWorkoutModel.m; path = BenchTracker/BTWorkoutModel.m; sourceTree = "<group>"; };
-		F917BB5B1F0DCA6A00614AB1 /* BTTemplateWorkoutModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BTTemplateWorkoutModel.h; path = BenchTracker/BTTemplateWorkoutModel.h; sourceTree = "<group>"; };
-		F917BB5C1F0DCA6A00614AB1 /* BTTemplateWorkoutModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BTTemplateWorkoutModel.m; path = BenchTracker/BTTemplateWorkoutModel.m; sourceTree = "<group>"; };
+		F917BB581F0DA6AB00614AB1 /* BTWorkoutQRModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BTWorkoutQRModel.h; path = BenchTracker/BTWorkoutQRModel.h; sourceTree = "<group>"; };
+		F917BB591F0DA6AB00614AB1 /* BTWorkoutQRModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BTWorkoutQRModel.m; path = BenchTracker/BTWorkoutQRModel.m; sourceTree = "<group>"; };
+		F917BB5B1F0DCA6A00614AB1 /* BTTemplateWorkoutQRModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BTTemplateWorkoutQRModel.h; path = BenchTracker/BTTemplateWorkoutQRModel.h; sourceTree = "<group>"; };
+		F917BB5C1F0DCA6A00614AB1 /* BTTemplateWorkoutQRModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BTTemplateWorkoutQRModel.m; path = BenchTracker/BTTemplateWorkoutQRModel.m; sourceTree = "<group>"; };
 		F917BB5E1F0DD40200614AB1 /* QRDisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRDisplayViewController.h; sourceTree = "<group>"; };
 		F917BB5F1F0DD40200614AB1 /* QRDisplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRDisplayViewController.m; sourceTree = "<group>"; };
 		F917BB621F0DEA7C00614AB1 /* BTQRScannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTQRScannerViewController.h; sourceTree = "<group>"; };
@@ -330,6 +333,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		50060FDE1F33BB9200F6DC00 /* WorkoutModel */ = {
+			isa = PBXGroup;
+			children = (
+				50060FDB1F33BB8E00F6DC00 /* BTWorkoutModel.h */,
+				50060FDC1F33BB8E00F6DC00 /* BTWorkoutModel.m */,
+			);
+			name = WorkoutModel;
+			sourceTree = "<group>";
+		};
 		50404F551F327EE20070B1A9 /* DataTransferModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -366,15 +378,15 @@
 			name = Tutorial;
 			sourceTree = "<group>";
 		};
-		5055E67F1F317C760070031D /* WorkoutModel */ = {
+		5055E67F1F317C760070031D /* WorkoutQRModel */ = {
 			isa = PBXGroup;
 			children = (
-				F917BB581F0DA6AB00614AB1 /* BTWorkoutModel.h */,
-				F917BB591F0DA6AB00614AB1 /* BTWorkoutModel.m */,
-				F917BB5B1F0DCA6A00614AB1 /* BTTemplateWorkoutModel.h */,
-				F917BB5C1F0DCA6A00614AB1 /* BTTemplateWorkoutModel.m */,
+				F917BB581F0DA6AB00614AB1 /* BTWorkoutQRModel.h */,
+				F917BB591F0DA6AB00614AB1 /* BTWorkoutQRModel.m */,
+				F917BB5B1F0DCA6A00614AB1 /* BTTemplateWorkoutQRModel.h */,
+				F917BB5C1F0DCA6A00614AB1 /* BTTemplateWorkoutQRModel.m */,
 			);
-			name = WorkoutModel;
+			name = WorkoutQRModel;
 			sourceTree = "<group>";
 		};
 		50636F2C1F2B9C0200FB65B4 /* Exercise type cell */ = {
@@ -930,7 +942,8 @@
 				F9DA751F1F02EE9600347B0D /* BTWorkout+CoreDataClass.m */,
 				F9DA75201F02EE9600347B0D /* BTWorkout+CoreDataProperties.h */,
 				F9DA75211F02EE9600347B0D /* BTWorkout+CoreDataProperties.m */,
-				5055E67F1F317C760070031D /* WorkoutModel */,
+				50060FDE1F33BB9200F6DC00 /* WorkoutModel */,
+				5055E67F1F317C760070031D /* WorkoutQRModel */,
 			);
 			name = BTWorkout;
 			sourceTree = "<group>";
@@ -1352,10 +1365,11 @@
 				F9B27CE51F117852008FCC7F /* AnalyticsCollectionViewCell.m in Sources */,
 				F9418FA31F048B1E0083C3DC /* AddExerciseTableViewCell.m in Sources */,
 				F9A549431F13065000743897 /* BTAnalyticsLineChart.m in Sources */,
-				F917BB5A1F0DA6AB00614AB1 /* BTWorkoutModel.m in Sources */,
+				F917BB5A1F0DA6AB00614AB1 /* BTWorkoutQRModel.m in Sources */,
 				508568C61F31044B0046A76F /* ECTableViewCell.m in Sources */,
 				F97B1CA71F097D8A00B3EEC7 /* WeekdayView.m in Sources */,
 				507FC4CF1F3243FA00A88A35 /* BTDataTransferManager.m in Sources */,
+				50060FDD1F33BB8E00F6DC00 /* BTWorkoutModel.m in Sources */,
 				50636F2F1F2B9E0D00FB65B4 /* EEDetailViewController.m in Sources */,
 				F9DA75111F02DC1700347B0D /* BTDataModel.xcdatamodeld in Sources */,
 				F927D14F1F0C9BD70004CF3A /* IterationSelectionViewController.m in Sources */,
@@ -1377,7 +1391,7 @@
 				F9A549401F13064400743897 /* BTAnalyticsBarChart.m in Sources */,
 				F95F932F1F02FC5000A19C4D /* BTTypeListModel.m in Sources */,
 				F95F5CF61F08B54500A567FA /* SettingsViewController.m in Sources */,
-				F917BB5D1F0DCA6A00614AB1 /* BTTemplateWorkoutModel.m in Sources */,
+				F917BB5D1F0DCA6A00614AB1 /* BTTemplateWorkoutQRModel.m in Sources */,
 				F9B27CE11F1170F5008FCC7F /* StickCollectionViewFlowLayout.m in Sources */,
 				50404F5F1F32816A0070B1A9 /* BTSettingsModel.m in Sources */,
 				F9FA47261F0B39D700A4AF98 /* WorkoutSelectionViewController.m in Sources */,

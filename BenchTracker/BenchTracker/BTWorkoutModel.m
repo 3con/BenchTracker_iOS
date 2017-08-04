@@ -2,7 +2,7 @@
 //  BTWorkoutModel.m
 //  BenchTracker
 //
-//  Created by Chappy Asel on 7/5/17.
+//  Created by Chappy Asel on 8/3/17.
 //  Copyright © 2017 CD. All rights reserved.
 //
 
@@ -15,3 +15,4 @@
 @implementation BTExerciseModel
 
 @end
+

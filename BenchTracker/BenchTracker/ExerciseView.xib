@@ -19,7 +19,7 @@
                     <rect key="frame" x="20" y="0.0" width="374" height="260"/>
                     <subviews>
                         <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Clc-bO-6ma">
-                            <rect key="frame" x="62" y="41" width="304" height="130"/>
+                            <rect key="frame" x="62" y="41" width="250" height="130"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="250" id="BNG-d4-mQd"/>
@@ -45,11 +45,11 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter a custom set" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ktd-ZZ-KsZ">
-                            <rect key="frame" x="62" y="110" width="250" height="21"/>
+                            <rect key="frame" x="62" y="110" width="250" height="30"/>
                             <color key="backgroundColor" red="0.11678832309999999" green="0.1157350471" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="21" id="W62-Dh-wl2"/>
+                                <constraint firstAttribute="height" constant="30" id="W62-Dh-wl2"/>
                                 <constraint firstAttribute="width" constant="250" id="a9j-AH-wnT"/>
                             </constraints>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

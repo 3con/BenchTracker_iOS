@@ -10,8 +10,8 @@
 #import "BTExercise+CoreDataClass.h"
 #import "AppDelegate.h"
 #import "MJExtension.h"
-#import "BTWorkoutModel.h"
-#import "BTTemplateWorkoutModel.h"
+#import "BTWorkoutQRModel.h"
+#import "BTTemplateWorkoutQRModel.h"
 #import "BT1RMCalculator.h"
 
 #import "BTUser+CoreDataClass.h"
@@ -37,20 +37,20 @@
 }
 
 + (NSString *)jsonForWorkout:(BTWorkout *)workout {
-    [BTWorkoutModel mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
+    [BTWorkoutQRModel mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
         return @{@"uuid" : @"u",
                  @"name" : @"n",
                  @"date" : @"d",
                  @"duration" : @"t",
                  @"supersets" : @"z",
                  @"exercises" : @"e", }; }];
-    [BTExerciseModel mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
+    [BTExerciseQRModel mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
         return @{@"name" : @"n",
                  @"iteration" : @"i",
                  @"category" : @"c",
                  @"style" : @"s",
                  @"sets" : @"x" }; }];
-    BTWorkoutModel *workoutModel = [[BTWorkoutModel alloc] init];
+    BTWorkoutQRModel *workoutModel = [[BTWorkoutQRModel alloc] init];
     workoutModel.uuid = workout.uuid;
     workoutModel.name = workout.name;
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -59,7 +59,7 @@
     workoutModel.duration = [NSNumber numberWithInteger:workout.duration];
     workoutModel.exercises = [[NSMutableArray alloc] init];
     for (BTExercise *exercise in workout.exercises) {
-        BTExerciseModel *exerciseModel = [[BTExerciseModel alloc] init];
+        BTExerciseQRModel *exerciseModel = [[BTExerciseQRModel alloc] init];
         exerciseModel.name = exercise.name;
         exerciseModel.iteration = exercise.iteration;
         exerciseModel.category = exercise.category;
@@ -81,20 +81,20 @@
 }
 
 + (NSString *)jsonForTemplateWorkout:(BTWorkout *)workout {
-    [BTTemplateWorkoutModel mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
+    [BTTemplateWorkoutQRModel mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
         return @{@"name" : @"n",
                  @"supersets" : @"z",
                  @"exercises" : @"e", }; }];
-    [BTTemplateExerciseModel mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
+    [BTTemplateExerciseQRModel mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
         return @{@"name" : @"n",
                  @"iteration" : @"i",
                  @"category" : @"c",
                  @"style" : @"s" }; }];
-    BTTemplateWorkoutModel *workoutModel = [[BTTemplateWorkoutModel alloc] init];
+    BTTemplateWorkoutQRModel *workoutModel = [[BTTemplateWorkoutQRModel alloc] init];
     workoutModel.name = workout.name;
     workoutModel.exercises = [[NSMutableArray alloc] init];
     for (BTExercise *exercise in workout.exercises) {
-        BTTemplateExerciseModel *exerciseModel = [[BTTemplateExerciseModel alloc] init];
+        BTTemplateExerciseQRModel *exerciseModel = [[BTTemplateExerciseQRModel alloc] init];
         exerciseModel.name = exercise.name;
         exerciseModel.iteration = exercise.iteration;
         exerciseModel.category = exercise.category;
@@ -116,21 +116,21 @@
 
 + (BTWorkout *)workoutForJSON:(NSString *)jsonString {
     NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
-    [BTWorkoutModel mj_setupObjectClassInArray:^NSDictionary *{return @{@"exercises" : @"BTExerciseModel"};}];
-    [BTWorkoutModel mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
+    [BTWorkoutQRModel mj_setupObjectClassInArray:^NSDictionary *{return @{@"exercises" : @"BTExerciseQRModel"};}];
+    [BTWorkoutQRModel mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
         return @{@"uuid" : @"u",
                  @"name" : @"n",
                  @"date" : @"d",
                  @"duration" : @"t",
                  @"supersets" : @"z",
                  @"exercises" : @"e", }; }];
-    [BTExerciseModel mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
+    [BTExerciseQRModel mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
         return @{@"name" : @"n",
                  @"iteration" : @"i",
                  @"category" : @"c",
                  @"style" : @"s",
                  @"sets" : @"x" }; }];
-    BTWorkoutModel *workoutModel = [BTWorkoutModel mj_objectWithKeyValues:jsonString];
+    BTWorkoutQRModel *workoutModel = [BTWorkoutQRModel mj_objectWithKeyValues:jsonString];
     BTWorkout *workout = [NSEntityDescription insertNewObjectForEntityForName:@"BTWorkout" inManagedObjectContext:context];
     workout.uuid = (workoutModel.uuid) ? workoutModel.uuid : [[NSUUID UUID] UUIDString];
     workout.name = workoutModel.name;
@@ -151,7 +151,7 @@
     workout.volume = 0;
     workout.numExercises = workoutModel.exercises.count;
     workout.numSets = 0;
-    for (BTExerciseModel *exerciseModel in workoutModel.exercises) {
+    for (BTExerciseQRModel *exerciseModel in workoutModel.exercises) {
         BTExercise *exercise = [NSEntityDescription insertNewObjectForEntityForName:@"BTExercise" inManagedObjectContext:context];
         exercise.name = exerciseModel.name;
         exercise.iteration = exerciseModel.iteration;

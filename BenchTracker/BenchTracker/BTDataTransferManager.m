@@ -11,8 +11,10 @@
 #import "BTDataTransferModel.h"
 #import "BTUser+CoreDataClass.h"
 #import "BTWorkout+CoreDataClass.h"
+#import "BTExercise+CoreDataClass.h"
 #import "BTSettings+CoreDataClass.h"
 #import "BTExerciseType+CoreDataClass.h"
+#import "BT1RMCalculator.h"
 
 #define DATA_TRANSFER_VERSION 1
 
@@ -39,17 +41,20 @@
     NSFetchRequest *request = [BTWorkout fetchRequest];
     request.fetchLimit = 0;
     request.fetchBatchSize = 0;
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO]];
     NSArray *arr = [context executeFetchRequest:request error:nil];
-    transferModel.workouts = [NSMutableArray array];
-    for (BTWorkout *workout in arr) [transferModel.workouts addObject:[BTWorkout jsonForWorkout:workout]];
+    transferModel.workouts = (NSMutableArray <BTWorkoutModel *> <BTWorkoutModel> *)[NSMutableArray array];
+    for (BTWorkout *workout in arr)
+        [transferModel.workouts addObject:[BTDataTransferManager modelForWorkout:workout]];
     //SAVE TO FILE
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *path = [NSString stringWithFormat:@"%@/BenchTrackerData.btd", paths.firstObject];
-    [[transferModel toJSONString] writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];
+    [[transferModel toJSONData] writeToFile:path atomically:YES];
     return path;
 }
 
 + (BOOL)loadJSONDataWithURL:(NSURL *)url {
+    NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
     NSError *error;
     NSString *JSONString = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&error];
     if (error) { NSLog(@"Data Transfer error: %@",error); return NO; }
@@ -70,9 +75,94 @@
     [BTExerciseType loadTypeListModel:transferModel.typeList];
     //PARSE WORKOUTS
     [BTWorkout resetWorkouts];
-    for (NSString *workoutString in transferModel.workouts)
-        [BTWorkout workoutForJSON:workoutString];
+    for (BTWorkoutModel *workoutModel in transferModel.workouts)
+        [BTDataTransferManager workoutForModel:workoutModel];
+    [context save:nil];
     return true;
+}
+
+#pragma mark - private helper methods
+
++ (BTWorkoutModel *)modelForWorkout:(BTWorkout *)workout {
+    BTWorkoutModel *workoutModel = [[BTWorkoutModel alloc] init];
+    workoutModel.uuid = workout.uuid;
+    workoutModel.name = workout.name;
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+    workoutModel.date = [dateFormatter stringFromDate:workout.date];
+    workoutModel.duration = [NSNumber numberWithInteger:workout.duration];
+    workoutModel.exercises = [[NSMutableArray alloc] init];
+    for (BTExercise *exercise in workout.exercises) {
+        BTExerciseModel *exerciseModel = [[BTExerciseModel alloc] init];
+        exerciseModel.name = exercise.name;
+        exerciseModel.iteration = exercise.iteration;
+        exerciseModel.category = exercise.category;
+        exerciseModel.style = exercise.style;
+        exerciseModel.sets = [NSKeyedUnarchiver unarchiveObjectWithData:exercise.sets];
+        [workoutModel.exercises addObject:exerciseModel];
+    }
+    workoutModel.supersets = [[NSMutableArray alloc] init];
+    for (NSMutableArray <NSNumber *> *superset in [NSKeyedUnarchiver unarchiveObjectWithData:workout.supersets]) {
+        NSString *s = @"";
+        for (NSNumber *num in superset) s = [NSString stringWithFormat:@"%@ %d", s, num.intValue];
+        [workoutModel.supersets addObject:[s substringFromIndex:1]];
+    }
+    return workoutModel;
+}
+
++ (BTWorkout *)workoutForModel:(BTWorkoutModel *)workoutModel {
+    NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    BTWorkout *workout = [NSEntityDescription insertNewObjectForEntityForName:@"BTWorkout" inManagedObjectContext:context];
+    workout.uuid = (workoutModel.uuid) ? workoutModel.uuid : [[NSUUID UUID] UUIDString];
+    workout.name = workoutModel.name;
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+    workout.date = (workoutModel.date) ? [dateFormatter dateFromString: workoutModel.date] : [NSDate date];
+    workout.duration = (workoutModel.duration) ? workoutModel.duration.integerValue : 0;
+    workout.summary = @"0";
+    NSMutableArray <NSMutableArray <NSNumber *> *> *tempSupersets = [NSMutableArray array];
+    for (NSString *string in workoutModel.supersets) {
+        NSMutableArray *numArr = [NSMutableArray array];
+        for (NSString *s in [string componentsSeparatedByString:@" "])
+            [numArr addObject:[NSNumber numberWithInt:s.intValue]];
+        [tempSupersets addObject:numArr];
+    }
+    workout.supersets = [NSKeyedArchiver archivedDataWithRootObject:tempSupersets];
+    workout.exercises = [[NSOrderedSet alloc] init];
+    workout.volume = 0;
+    workout.numExercises = workoutModel.exercises.count;
+    workout.numSets = 0;
+    for (BTExerciseModel *exerciseModel in workoutModel.exercises) {
+        BTExercise *exercise = [NSEntityDescription insertNewObjectForEntityForName:@"BTExercise" inManagedObjectContext:context];
+        exercise.name = exerciseModel.name;
+        exercise.iteration = exerciseModel.iteration;
+        exercise.category = exerciseModel.category;
+        exercise.style = exerciseModel.style;
+        workout.numSets += (exerciseModel.sets) ? exerciseModel.sets.count : 0;
+        exercise.sets = [NSKeyedArchiver archivedDataWithRootObject:(exerciseModel.sets) ? exerciseModel.sets : [NSMutableArray array]];
+        exercise.oneRM = 0;
+        if ([exerciseModel.style isEqualToString:STYLE_REPSWEIGHT]) {
+            for (NSString *set in exerciseModel.sets) {
+                NSArray <NSString *> *split = [set componentsSeparatedByString:@" "];
+                workout.volume += split[0].floatValue*split[1].floatValue;
+                exercise.oneRM = MAX(exercise.oneRM, [BT1RMCalculator equivilentForReps:split[0].intValue weight:split[1].floatValue]);
+            }
+        }
+        exercise.workout = workout;
+        [workout addExercisesObject:exercise];
+    }
+    NSMutableDictionary <NSString *, NSNumber *> *dict = [[NSMutableDictionary alloc] init];
+    for (BTExercise *exercise in workout.exercises) {
+        if (dict[exercise.category]) dict[exercise.category] = [NSNumber numberWithInt:dict[exercise.category].intValue + 1];
+        else                         dict[exercise.category] = [NSNumber numberWithInt:1];
+    }
+    workout.summary = @"0";
+    if (workout.exercises.count > 0) {
+        for (NSString *key in dict.allKeys)
+            workout.summary = [NSString stringWithFormat:@"%@#%@ %@",workout.summary, dict[key], key];
+        workout.summary = [workout.summary substringFromIndex:2];
+    }
+    return workout;
 }
 
 @end

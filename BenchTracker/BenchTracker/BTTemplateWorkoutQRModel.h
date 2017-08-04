@@ -1,5 +1,5 @@
 //
-//  BTTemplateWorkoutModel.h
+//  BTTemplateQRWorkoutModel.h
 //  BenchTracker
 //
 //  Created by Chappy Asel on 7/5/17.
@@ -8,17 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
-@class BTTemplateExerciseModel;
+@class BTTemplateExerciseQRModel;
 
-@interface BTTemplateWorkoutModel : NSObject
+@interface BTTemplateWorkoutQRModel : NSObject
 
 @property (nonatomic)                   NSString* name;
 @property (nonatomic) NSMutableArray<NSString *>* supersets; //[ "1 2 3", "5 6", ... ]
-@property (nonatomic) NSMutableArray<BTTemplateExerciseModel *>* exercises;
+@property (nonatomic) NSMutableArray<BTTemplateExerciseQRModel *>* exercises;
 
 @end
 
-@interface BTTemplateExerciseModel : NSObject
+@interface BTTemplateExerciseQRModel : NSObject
 
 @property (nonatomic) NSString *name;
 @property (nonatomic) NSString *iteration;
