@@ -96,11 +96,6 @@
     } else {
         [self getYValueMax:yAxisValues];
     }
-
-    if (_yLabelSum==4) {
-        _yLabelSum = yAxisValues.count;
-        (_yLabelSum % 2 == 0) ? _yLabelSum : _yLabelSum++;
-    }
 }
 
 #pragma mark - Private Method

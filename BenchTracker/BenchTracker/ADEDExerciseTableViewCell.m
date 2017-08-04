@@ -42,8 +42,13 @@
     self.maxCells = (int)(self.frame.size.width-20) / 70;
 }
 
+- (void)setColor:(UIColor *)color {
+    _color = color;
+    self.contentView.backgroundColor = [UIColor clearColor];
+    self.backgroundColor = [UIColor clearColor];
+}
+
 - (void)loadExercise:(BTExercise *)exercise withWeightSuffix:(NSString *)suffix {
-    self.contentView.backgroundColor = self.color;
     NSString *s;
     if ([exercise.style isEqualToString:STYLE_REPSWEIGHT])      s = [NSString stringWithFormat:@"1RM: %lld %@",exercise.oneRM, suffix];
     else if ([exercise.style isEqualToString:STYLE_REPS])       s = [NSString stringWithFormat:@"Max: %lld reps",exercise.oneRM];

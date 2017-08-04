@@ -26,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UIView *navView;
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (nonatomic) CGSize itemSize;
 
 @end
 
@@ -40,14 +41,40 @@
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     self.collectionView.showsVerticalScrollIndicator = NO;
-    self.collectionView.contentInset = UIEdgeInsetsMake(20, 0, 80, 0);
     StickCollectionViewFlowLayout *flowLayout = [[StickCollectionViewFlowLayout alloc] init];
     flowLayout.firstItemTransform = .1;
-    flowLayout.minimumInteritemSpacing = 50.0;
+    flowLayout.minimumInteritemSpacing = 20.0;
     flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
     [self.collectionView setCollectionViewLayout:flowLayout];
     [self.collectionView registerNib:[UINib nibWithNibName:@"AnalyticsCollectionViewCell" bundle:[NSBundle mainBundle]]
                          forCellWithReuseIdentifier:@"Cell"];
+    [self determineCollectionViewFormattingWithSize:self.view.frame.size];
+}
+
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+    [self determineCollectionViewFormattingWithSize:size];
+}
+
+- (void)determineCollectionViewFormattingWithSize:(CGSize)size {
+    float insets = 0;
+    if (size.width < 700) {       //(1 card) iPhone
+        self.itemSize = CGSizeMake(MIN(400, size.width-40), MIN(570, size.height-172));
+        insets = 0;
+    }
+    else if (size.width < 980) {  //(2 cards) iPads portrait: (768x1024, 834x1112)
+        self.itemSize = CGSizeMake(MIN(400, (size.width-60)/2), 550);
+        insets = (size.width-(self.itemSize.width*2))/3;
+    }
+    else if (size.width < 1300) { //(3 cards) iPads landscape: (1024x768, 1024x1366, 1112x834)
+        self.itemSize = CGSizeMake(MIN(400, (size.width-80)/3), 550);
+        insets = (size.width-(self.itemSize.width*3))/4;
+    }
+    else {                        //(4 cards) iPad 12.9 landscape: (1366x1024)
+        self.itemSize = CGSizeMake(MIN(400, (size.width-100)/4), 500);
+        insets = (size.width-(self.itemSize.width*4))/5;
+    }
+    self.collectionView.contentInset = UIEdgeInsetsMake(20, insets, 80, insets);
+    [self.collectionView reloadData];
 }
 
 - (IBAction)doneButtonPressed:(UIButton *)sender {
@@ -64,7 +91,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     AnalyticsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
-    cell.originSize = CGSizeMake(self.view.frame.size.width-40, self.view.frame.size.height-172);
+    cell.originSize = self.itemSize;
     cell.graphHeight = (indexPath.row == 2) ? 0 : 210;
     cell.backgroundColor = [self colorFromHexString:
         @[@"00BCD4",
@@ -96,7 +123,7 @@
         cell.subtitleLabel.text = [NSString stringWithFormat:@"Week of %@",[self.recentWorkoutsManager formattedFirstDayOfWeek]];
         NSDictionary *data = [self.recentWorkoutsManager workoutExerciseTypesThisWeek];
         BTAnalyticsPieChart *pieChart = [[BTAnalyticsPieChart alloc]
-                                         initWithFrame:CGRectMake((collectionView.frame.size.width-250)/2.0, 20, 170, 170) items:[BTAnalyticsPieChart pieDataForDictionary:data]];
+                                         initWithFrame:CGRectMake((cell.originSize.width-210)/2.0, 20, 170, 170) items:[BTAnalyticsPieChart pieDataForDictionary:data]];
         cell.graphView = pieChart;
         NSArray <NSString *> *data2 = [self.recentWorkoutsManager otherDataThisWeek];
         NSArray <NSString *> *strArr = @[@"Workouts", @"Exercises", @"Sets", @"Lifted"];
@@ -110,7 +137,7 @@
     }
     else if (indexPath.row == 1) { //fav exercises
         NSDictionary *data = [self.recentWorkoutsManager workoutExercises];
-        BTAnalyticsBarChart *barChart = [[BTAnalyticsBarChart alloc] initWithFrame:CGRectMake(5, 10, collectionView.frame.size.width-70, 198)];
+        BTAnalyticsBarChart *barChart = [[BTAnalyticsBarChart alloc] initWithFrame:CGRectMake(5, 10, cell.originSize.width-30, 198)];
         [barChart setBarData:data];
         cell.graphView = barChart;
         for (int i = 0; i < barChart.yValues.count; i++) {
@@ -128,7 +155,7 @@
     else if (indexPath.row > 2) { //line charts
         NSArray *data;
         NSString *suffix;
-        BTAnalyticsLineChart *lineChart = [[BTAnalyticsLineChart alloc] initWithFrame:CGRectMake(5, 10, collectionView.frame.size.width-60, 198)];
+        BTAnalyticsLineChart *lineChart = [[BTAnalyticsLineChart alloc] initWithFrame:CGRectMake(5, 10, cell.originSize.width-20, 198)];
         NSArray *xAxisData = [self.recentWorkoutsManager workoutShortDates];
         [lineChart setXAxisData:[[xAxisData reverseObjectEnumerator] allObjects]];
         if (indexPath.row == 3) {
@@ -177,7 +204,7 @@
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(self.view.bounds.size.width-40, self.collectionView.bounds.size.height-100);
+    return self.itemSize;
 }
 
 #pragma mark - helper methods

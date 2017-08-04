@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -71,7 +70,7 @@
                                 <rect key="frame" x="20" y="20" width="374" height="60"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="550" id="YuF-Rn-OLK"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="500" id="YuF-Rn-OLK"/>
                                     <constraint firstAttribute="height" constant="60" id="fhY-Mm-JjY"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
@@ -169,7 +168,7 @@
                             <constraint firstAttribute="trailing" secondItem="Ky7-Sb-Osi" secondAttribute="trailing" id="rwc-ol-XSu"/>
                             <constraint firstItem="6fo-tw-SHq" firstAttribute="width" secondItem="F97-uh-Mja" secondAttribute="width" id="t1u-Pd-j1w"/>
                             <constraint firstItem="6fo-tw-SHq" firstAttribute="top" secondItem="F97-uh-Mja" secondAttribute="bottom" constant="20" id="xIo-0W-tZh"/>
-                            <constraint firstItem="Uev-Xz-xWd" firstAttribute="leading" secondItem="bJg-9g-0is" secondAttribute="leading" constant="20" id="yDR-bt-lOA"/>
+                            <constraint firstItem="Uev-Xz-xWd" firstAttribute="leading" secondItem="bJg-9g-0is" secondAttribute="leading" priority="800" constant="20" id="yDR-bt-lOA"/>
                             <constraint firstItem="K3Z-c4-hu8" firstAttribute="top" secondItem="6fo-tw-SHq" secondAttribute="bottom" constant="20" id="yhm-JZ-QK1"/>
                         </constraints>
                     </scrollView>

@@ -61,6 +61,7 @@
     _graphHeight = graphHeight;
     self.graphHeightConstraint.constant = graphHeight;
     self.tableView.frame = CGRectMake(0, 0, self.originSize.width-40, self.originSize.height-graphHeight-186);
+    self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 }
 
 - (void)setDisplayStrings:(NSArray<NSAttributedString *> *)displayStrings {

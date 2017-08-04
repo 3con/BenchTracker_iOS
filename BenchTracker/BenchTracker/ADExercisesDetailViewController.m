@@ -111,7 +111,7 @@
         self.graphNoDataLabel.text = @"No Graph Available";
     }
     BTAnalyticsLineChart *lineChart = [[BTAnalyticsLineChart alloc]
-        initWithFrame:CGRectMake(5, 10, (MIN(550,self.view.frame.size.width-40))+10, 198)];
+        initWithFrame:CGRectMake(5, 10, (MIN(500,self.view.frame.size.width-40))+10, 198)];
     lineChart.yAxisSpaceTop = 2;
     self.graphView = lineChart;
     [self.graphContainerView addSubview:self.graphView];

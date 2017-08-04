@@ -104,6 +104,7 @@
         if (self.color) cell.backgroundColor = self.color;
         else cell.backgroundColor = [UIColor BTPrimaryColor];
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.frame.size.width, cell.frame.size.height)];
+        label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         label.textColor = [UIColor whiteColor];
         label.textAlignment = NSTextAlignmentCenter;
         label.font = [UIFont systemFontOfSize:17 weight:UIFontWeightMedium];

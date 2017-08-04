@@ -49,6 +49,8 @@
         //PNChartLabel *label = [[PNChartLabel alloc] initWithFrame:CGRectMake(0, 0, 42, kXLabelHeight)];
         //labelXPosition = (index *  _xLabelWidth + _chartMarginLeft + _xLabelWidth / 2.0);
         //label.center = CGPointMake(labelXPosition, self.frame.size.height - kXLabelHeight - _chartMarginTop + 20 + _labelMarginTop);
+        //ProcessYMaxValue:
+        //remove: if (_yLabelSum==4) { _yLabelSum = yAxisValues.count; (_yLabelSum % 2 == 0) ? _yLabelSum : _yLabelSum++; }
     }
 }
 

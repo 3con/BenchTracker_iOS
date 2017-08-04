@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -51,7 +50,7 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Afternoon Workout" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hXL-RF-imJ">
-                    <rect key="frame" x="75" y="10" width="165" height="25"/>
+                    <rect key="frame" x="75" y="32.5" width="165" height="25"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="25" id="7xL-sL-P9j"/>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="165" id="zg2-ot-VUm"/>
@@ -71,13 +70,13 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="hXL-RF-imJ" firstAttribute="centerY" secondItem="R3D-3W-qA6" secondAttribute="centerY" id="5cT-Mj-JAH"/>
                 <constraint firstItem="Yzz-q3-UIA" firstAttribute="leading" secondItem="R3D-3W-qA6" secondAttribute="leading" id="6yv-Cp-Dtt"/>
                 <constraint firstItem="hXL-RF-imJ" firstAttribute="leading" secondItem="Yzz-q3-UIA" secondAttribute="trailing" constant="10" id="AyR-zd-rnt"/>
                 <constraint firstItem="Yzz-q3-UIA" firstAttribute="centerY" secondItem="R3D-3W-qA6" secondAttribute="centerY" id="Bvl-Fo-hjs"/>
                 <constraint firstAttribute="trailing" secondItem="TyM-qj-3DK" secondAttribute="trailing" constant="10" id="N7a-Tf-4CW"/>
                 <constraint firstItem="Yzz-q3-UIA" firstAttribute="height" secondItem="R3D-3W-qA6" secondAttribute="height" id="Pat-io-88M"/>
                 <constraint firstItem="TyM-qj-3DK" firstAttribute="centerY" secondItem="R3D-3W-qA6" secondAttribute="centerY" id="jAb-fy-YlB"/>
-                <constraint firstItem="hXL-RF-imJ" firstAttribute="top" secondItem="R3D-3W-qA6" secondAttribute="top" constant="10" id="k3f-Ko-rSQ"/>
                 <constraint firstItem="TyM-qj-3DK" firstAttribute="leading" secondItem="hXL-RF-imJ" secondAttribute="trailing" priority="750" constant="10" id="sbf-lJ-fy8"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>

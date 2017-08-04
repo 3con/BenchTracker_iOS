@@ -277,7 +277,7 @@
 		},
 		{
 			"name": "Leg Curls",
-			"iterations": ["Horizontal", "Incline"],
+			"iterations": ["Sitting", "Lying"],
 			"category": "Legs",
 			"style": "repsWeight"
 		},
