@@ -106,7 +106,7 @@
     }
     else label = cell.subviews[1];
     if (self.tempSets.count > self.maxCells && indexPath.row == self.maxCells-1) {
-        label.text = [NSString stringWithFormat:@"+%ld more",self.tempSets.count-self.maxCells];
+        label.text = [NSString stringWithFormat:@"+%d more",(int)self.tempSets.count-(int)self.maxCells];
         label.font = [UIFont systemFontOfSize:8 weight:UIFontWeightHeavy];
     }
     else {

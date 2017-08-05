@@ -41,7 +41,7 @@
     formatter.dateFormat = @"E";
     self.weekdayTitleLabel.text = [formatter stringFromDate:date];
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay fromDate:date];
-    self.weekdaySubtitleLabel.text = [NSString stringWithFormat:@"%ld", components.day];
+    self.weekdaySubtitleLabel.text = [NSString stringWithFormat:@"%ld", (long)components.day];
 }
 
 - (void)loadWithWorkouts:(NSArray <BTWorkout *> *)workouts {
@@ -51,7 +51,7 @@
     }
     else {
         if (workouts.count == 1) self.nameLabel.text = workouts[0].name;
-        else self.nameLabel.text = [NSString stringWithFormat:@"%ld workouts",workouts.count];
+        else self.nameLabel.text = [NSString stringWithFormat:@"%ld workouts",(unsigned long)workouts.count];
         [self loadStackedViewWithWorkouts:workouts];
     }
 }

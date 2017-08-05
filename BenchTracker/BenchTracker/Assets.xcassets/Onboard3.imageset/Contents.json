@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Line copy.png",
+      "filename" : "Analytical.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Line copy-1.png",
+      "filename" : "Analytical-1.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Line copy-2.png",
+      "filename" : "Analytical-2.png",
       "scale" : "3x"
     }
   ],

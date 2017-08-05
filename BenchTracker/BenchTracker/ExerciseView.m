@@ -284,7 +284,7 @@
     }
     else { //time
         NSInteger num = (row < 30) ? row+1 : (row-29)*5+30;
-        label.text = [NSString stringWithFormat:@"%ld %@", num, (num == 1) ? @"sec" : @"secs"];
+        label.text = [NSString stringWithFormat:@"%ld %@", (long)num, (num == 1) ? @"sec" : @"secs"];
         label.tag = num;
     }
     return label;
@@ -295,7 +295,7 @@
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     if (component == 1) {//right
         NSInteger weight = [pickerView viewForRow:row forComponent:component].tag;
-        self.rightTextField.text = (weight != 11) ? [NSString stringWithFormat:@"%ld",weight] : @"12.5";
+        self.rightTextField.text = (weight != 11) ? [NSString stringWithFormat:@"%ld",(long)weight] : @"12.5";
     }
     else if (pickerView.numberOfComponents == 2) //left
         self.leftTextField.text = [NSString stringWithFormat:@"%ld",[pickerView viewForRow:row forComponent:component].tag];

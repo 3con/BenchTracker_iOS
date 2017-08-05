@@ -16,6 +16,8 @@
     return [[NSKeyedUnarchiver unarchiveObjectWithData:self.sets] count];
 }
 
+- (void)setNumberOfSets:(NSInteger)numberOfSets {}
+
 - (CGFloat)volume {
     if ([self.style isEqualToString:STYLE_REPSWEIGHT]) {
         CGFloat volume = 0;
@@ -27,6 +29,8 @@
     }
     return 0;
 }
+
+- (void)setVolume:(CGFloat)volume {}
 
 - (void)calculateOneRM {
     self.oneRM = 0;

@@ -56,7 +56,7 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
     workoutModel.date = [dateFormatter stringFromDate:workout.date];
-    workoutModel.duration = [NSNumber numberWithInteger:workout.duration];
+    workoutModel.duration = [NSNumber numberWithInteger:(int)workout.duration];
     workoutModel.exercises = [[NSMutableArray alloc] init];
     for (BTExercise *exercise in workout.exercises) {
         BTExerciseQRModel *exerciseModel = [[BTExerciseQRModel alloc] init];

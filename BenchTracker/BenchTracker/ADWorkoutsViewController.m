@@ -37,6 +37,8 @@
 
 @implementation ADWorkoutsViewController
 
+@synthesize settings;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.settings = [BTSettings sharedInstance];
@@ -195,10 +197,10 @@
     BTWorkout *workout = self.fetchedResultsController.fetchedObjects[index];
     NSString *suffix = (self.queryType == QUERY_TYPE_VOLUME) ? [NSString stringWithFormat:@"k %@", self.settings.weightSuffix] :
                        (self.queryType == QUERY_TYPE_DURATION) ? @" min" : @"";
-    long value = (self.queryType == QUERY_TYPE_VOLUME) ? workout.volume/1000 :
-                 (self.queryType == QUERY_TYPE_DURATION) ? workout.duration/60 :
-                 (self.queryType == QUERY_TYPE_NUMEXERCISES) ? workout.numExercises : workout.numSets;
-    return @[workout.date, [NSString stringWithFormat:@"%ld%@",value,suffix]];
+    long long value = (self.queryType == QUERY_TYPE_VOLUME) ? workout.volume/1000 :
+                      (self.queryType == QUERY_TYPE_DURATION) ? workout.duration/60 :
+                      (self.queryType == QUERY_TYPE_NUMEXERCISES) ? workout.numExercises : workout.numSets;
+    return @[workout.date, [NSString stringWithFormat:@"%lld%@",value,suffix]];
 }
 
 - (NSAttributedString *)attributedStringForDate:(NSDate *)date value:(NSString *)value {

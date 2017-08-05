@@ -59,7 +59,7 @@
         numSets += workout.numSets;
         volume += workout.volume;
     }
-    self.subtitileLabel1.text = [NSString stringWithFormat:@"%ld workouts",workouts.count];
+    self.subtitileLabel1.text = [NSString stringWithFormat:@"%ld workouts",(unsigned long)workouts.count];
     self.subtitileLabel2.text = [NSString stringWithFormat:@"%ld exercises",numExercises];
     self.subtitileLabel3.text = [NSString stringWithFormat:@"%ld sets",numSets];
     self.subtitileLabel4.text = [NSString stringWithFormat:@"%ldk %@",volume/1000,suffix];

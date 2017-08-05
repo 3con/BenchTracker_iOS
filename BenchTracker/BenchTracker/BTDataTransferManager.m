@@ -90,8 +90,8 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
     workoutModel.date = [dateFormatter stringFromDate:workout.date];
-    workoutModel.duration = [NSNumber numberWithInteger:workout.duration];
-    workoutModel.exercises = [[NSMutableArray alloc] init];
+    workoutModel.duration = [NSNumber numberWithInteger:(int)workout.duration];
+    workoutModel.exercises = (NSMutableArray <BTExerciseModel *><BTExerciseModel> *)[NSMutableArray array];
     for (BTExercise *exercise in workout.exercises) {
         BTExerciseModel *exerciseModel = [[BTExerciseModel alloc] init];
         exerciseModel.name = exercise.name;

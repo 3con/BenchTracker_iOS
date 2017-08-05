@@ -1526,7 +1526,6 @@
 			baseConfigurationReference = 1746DDC55C14CBB644675063 /* Pods-BenchTracker.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = Q82S7VERUD;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "${SRCROOT}/BenchTracker/BenchTrackerPrefixHeader.pch";
@@ -1544,7 +1543,6 @@
 			baseConfigurationReference = 791833EF2E04B86CA95AD6B3 /* Pods-BenchTracker.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = Q82S7VERUD;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "${SRCROOT}/BenchTracker/BenchTrackerPrefixHeader.pch";

@@ -289,9 +289,9 @@
         }
     }
     [self.addExerciseButton setTitle:(numSelected == 1) ? @"Add\nExercise" :
-                                [NSString stringWithFormat:@"Add\n%ld Exercises",numSelected]
+                                [NSString stringWithFormat:@"Add\n%ld Exercises",(long)numSelected]
                                     forState:UIControlStateNormal];
-    [self.supersetButton setTitle:[NSString stringWithFormat:@"Superset\n%ld Exercises",numSelected]
+    [self.supersetButton setTitle:[NSString stringWithFormat:@"Superset\n%ld Exercises",(long)numSelected]
                                     forState:UIControlStateNormal];
     self.supersetButton.alpha = (numSelected != 1);
     self.supersetButton.userInteractionEnabled = (numSelected != 1);
@@ -308,9 +308,9 @@
     }
     else {
         [self.addExerciseButton setTitle:(numSelected == 1) ? @"Add\nExercise" :
-                                    [NSString stringWithFormat:@"Add\n%ld Exercises",numSelected]
+                                    [NSString stringWithFormat:@"Add\n%ld Exercises",(long)numSelected]
                                         forState:UIControlStateNormal];
-        [self.supersetButton setTitle:[NSString stringWithFormat:@"Superset\n%ld Exercises",numSelected]
+        [self.supersetButton setTitle:[NSString stringWithFormat:@"Superset\n%ld Exercises",(long)numSelected]
                                         forState:UIControlStateNormal];
         self.supersetButton.alpha = (numSelected != 1);
         self.supersetButton.userInteractionEnabled = (numSelected != 1);

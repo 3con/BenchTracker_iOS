@@ -28,7 +28,7 @@
 - (void)loadWithName:(NSString *)name num:(NSInteger)num color:(UIColor *)color {
     self.titleLabel.text = name;
     self.badgeLabel.alpha = MIN(1, num);
-    self.badgeLabel.text = (num>10) ? @"10+" : [NSString stringWithFormat:@"%ld",num];
+    self.badgeLabel.text = (num>10) ? @"10+" : [NSString stringWithFormat:@"%ld",(long)num];
     self.badgeLabel.backgroundColor = color;
 }
 

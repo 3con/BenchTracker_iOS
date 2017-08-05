@@ -15,8 +15,8 @@
 @implementation BTTutorialManager
 
 + (BOOL)needsOnboarding {
-    //[[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"OnboardProgress"]; //Always enables Onboarding
-    return [[NSUserDefaults standardUserDefaults] integerForKey:@"OnboardProgress"] < 5;
+    //[[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"OnboardFinished"]; //Always enables Onboarding
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"OnboardFinished"] != YES;
 }
 
 - (OnboardingViewController *)onboardingViewControllerforSize:(CGSize)size { //Welcome, Intuitive, Powerful, Analytical, Get Started
@@ -45,40 +45,42 @@
                                                                                              image:[UIImage imageNamed:@"Onboard1"]
                                                                                         buttonText:@"Get Started"
         action:^{
-            [[NSUserDefaults standardUserDefaults] setInteger:5 forKey:@"OnboardProgress"];
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"OnboardFinished"];
             [[NSUserDefaults standardUserDefaults] synchronize];
             __weak OnboardingViewController *weakOnboardingVC = self.onboardingVC;
             [weakOnboardingVC dismissViewControllerAnimated:YES completion:^{
             }];
         }];
     self.onboardingVC = [OnboardingViewController onboardWithBackgroundImage:nil
-                                                contents:@[firstPage, secondPage, thirdPage, fourthPage, fifthPage]];
-    float iconSize = MIN(300, size.width*.6);
+                                                                    contents:@[firstPage, secondPage, thirdPage, fourthPage, fifthPage]];
+    float height = MIN(900, size.height*.8);
+    CGSize screenshotSize = CGSizeMake(height*(1242.0/2419), height);
     for (OnboardingContentViewController *viewController in self.onboardingVC.viewControllers) {
+        viewController.view.backgroundColor = [UIColor whiteColor];
         viewController.titleLabel.font = [UIFont systemFontOfSize:28 weight:UIFontWeightBold];
         viewController.bodyLabel.font = [UIFont systemFontOfSize:17 weight:UIFontWeightSemibold];
         viewController.actionButton.titleLabel.font = [UIFont systemFontOfSize:21 weight:UIFontWeightSemibold];
         viewController.titleLabel.textColor = [UIColor BTTutorialColor];
         viewController.bodyLabel.textColor = [UIColor BTTutorialColor];
         [viewController.actionButton setTitleColor:[UIColor BTTutorialColor] forState:UIControlStateNormal];
-        viewController.iconHeight = iconSize;
-        viewController.iconWidth = iconSize;
         viewController.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
-        viewController.view.backgroundColor = [UIColor whiteColor];
-        viewController.topPadding = size.height*.35;
-        viewController.underIconPadding = -(iconSize+120);
+        viewController.iconHeight = screenshotSize.height;
+        viewController.iconWidth = screenshotSize.width;
+        viewController.topPadding = size.height-screenshotSize.height;
+        viewController.underIconPadding = -(screenshotSize.height+80);
         viewController.underTitlePadding = 10;
         viewController.bottomPadding = 20;
     }
     self.onboardingVC.shouldFadeTransitions = YES;
     self.onboardingVC.fadeSkipButtonOnLastPage = YES;
     self.onboardingVC.fadePageControlOnLastPage = YES;
+    self.onboardingVC.pageControl.backgroundColor = [UIColor colorWithWhite:1 alpha:.9];
     self.onboardingVC.pageControl.pageIndicatorTintColor = [[UIColor BTTutorialColor] colorWithAlphaComponent:.6];
     self.onboardingVC.pageControl.currentPageIndicatorTintColor = [UIColor BTTutorialColor];
     self.onboardingVC.allowSkipping = YES;
     __weak OnboardingViewController *weakOnboardingVC = self.onboardingVC;
     self.onboardingVC.skipHandler = ^{
-        [[NSUserDefaults standardUserDefaults] setInteger:5 forKey:@"OnboardProgress"];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"OnboardFinished"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         [weakOnboardingVC dismissViewControllerAnimated:YES completion:^{
             
