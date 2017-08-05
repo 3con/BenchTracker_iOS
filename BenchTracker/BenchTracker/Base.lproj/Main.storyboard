@@ -417,6 +417,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <tableView contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nkC-SS-85L">
+                                <rect key="frame" x="0.0" y="125" width="414" height="611"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="500" id="wuj-uW-SQn"/>
+                                </constraints>
+                            </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D7n-as-euy">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="125"/>
                                 <subviews>
@@ -502,13 +509,6 @@
                                     <constraint firstAttribute="height" constant="125" id="xPw-qt-odL"/>
                                 </constraints>
                             </view>
-                            <tableView contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nkC-SS-85L">
-                                <rect key="frame" x="0.0" y="125" width="414" height="611"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="500" id="wuj-uW-SQn"/>
-                                </constraints>
-                            </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HGU-c2-dRq">
                                 <rect key="frame" x="117" y="646" width="180" height="50"/>
                                 <color key="backgroundColor" red="0.98532205819999996" green="0.75445228819999999" blue="0.176194042" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

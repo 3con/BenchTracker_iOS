@@ -43,6 +43,7 @@
 @property (nonatomic) NSMutableArray <NSIndexPath *> *selectedIndexPaths;
 
 @property (nonatomic) BOOL paused;
+@property (nonatomic) NSDate *potentialStartDate;
 @property (nonatomic) NSDate *startDate;
 
 @end
@@ -100,7 +101,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    if (self.workout) self.startDate = [NSDate date];
+    self.potentialStartDate = [NSDate date];
     self.settings.activeWorkout = self.workout;
     [self.context save:nil];
 }
@@ -120,6 +121,7 @@
 
 - (void)handleWillTerminate:(id)sender {
     self.settings.activeWorkout = nil;
+    [self updateWorkout];
     [self.context save:nil];
 }
 
@@ -169,7 +171,7 @@
 - (void)updateWorkout {
     if (self.startDate) {
         NSTimeInterval timeInterval = [self.startDate timeIntervalSinceNow];
-        self.workout.duration += -timeInterval+1;
+        self.workout.duration += MIN(1200, -timeInterval+1); //cap of 20 mins to prevent outrageous workout times
         self.startDate = [NSDate date];
     }
     if (self.nameTextField.text.length > 0) self.workout.name = self.nameTextField.text;
@@ -262,6 +264,10 @@
 #pragma mark - tableView delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.potentialStartDate) {
+        self.startDate = self.potentialStartDate;
+        self.potentialStartDate = nil;
+    }
     if (!self.startDate) self.startDate = [NSDate date];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     self.selectedIndexPaths = [[NSMutableArray alloc] init];
