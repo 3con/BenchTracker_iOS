@@ -54,10 +54,7 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.allowsSelection = NO;
-    self.tableView.showsVerticalScrollIndicator = NO;
-    self.tableView.scrollEnabled = NO;
-    self.tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);
+    self.tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, CGFLOAT_MAX);
     self.iteration = nil;
 }
 
@@ -68,23 +65,25 @@
     if (![[self fetchedResultsController] performFetch:&error]) {
         NSLog(@"AD exercise detail fetch error: %@, %@", error, [error userInfo]);
     }
-    self.tableView.separatorColor = self.color;
     self.tableViewHeightConstraint.constant = MAX(self.view.frame.size.height-624-72,
                                                   self.fetchedResultsController.fetchedObjects.count*CELL_HEIGHT);
-    for (UIView *view in @[self.iterationButton, self.podiumContainerView, self.graphContainerView, self.tableView]) {
-        view.layer.cornerRadius = 12;
-        view.clipsToBounds = YES;
-        view.backgroundColor = [self.color colorWithAlphaComponent:.8];
+    if (!self.podiumView) {
+        for (UIView *view in @[self.iterationButton, self.podiumContainerView, self.graphContainerView, self.tableView]) {
+            view.layer.cornerRadius = 12;
+            view.clipsToBounds = YES;
+            view.backgroundColor = [self.color colorWithAlphaComponent:.8];
+        }
+        [self loadPodiumView];
+        [self loadSegmentedControl];
+        [self loadGraphView];
+        [self loadIterationButton];
     }
-    [self loadPodiumView];
-    [self loadSegmentedControl];
-    [self loadGraphView];
-    [self loadIterationButton];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self.podiumView animateIn];
+    if (!self.podiumView.hasAnimatedIn)
+        [self.podiumView animateIn];
 }
 
 - (IBAction)iterationButtonPressed:(UIButton *)sender {
@@ -309,7 +308,8 @@
 #pragma mark - tableView delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    //BTWorkout *workout = [_fetchedResultsController objectAtIndexPath:indexPath];
+    BTExercise *exercise = [_fetchedResultsController objectAtIndexPath:indexPath];
+    [self presentWorkoutViewControllerWithWorkout:exercise.workout];
 }
 
 #pragma mrk - iterationVC delegate
@@ -356,6 +356,30 @@
     [self presentViewController:isVC animated:YES completion:nil];
 }
 
+- (void)presentWorkoutViewControllerWithWorkout:(BTWorkout *)workout {
+    WorkoutViewController *workoutVC = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]]
+                                        instantiateViewControllerWithIdentifier:@"w"];
+    workoutVC.delegate = self;
+    workoutVC.context = self.context;
+    workoutVC.workout = workout;
+    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:workoutVC];
+    self.animator.bounces = NO;
+    self.animator.dragable = NO;
+    self.animator.behindViewAlpha = 0.6;
+    self.animator.behindViewScale = 1.0;
+    self.animator.transitionDuration = 0.35;
+    self.animator.direction = ZFModalTransitonDirectionRight;
+    workoutVC.transitioningDelegate = self.animator;
+    workoutVC.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self presentViewController:workoutVC animated:YES completion:nil];
+}
+
+#pragma mark - workoutVC delegate
+
+- (void)workoutViewController:(WorkoutViewController *)workoutVC willDismissWithResultWorkout:(BTWorkout *)workout {
+
+}
+
 #pragma mark - fetchedResultsController delegate
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
@@ -392,6 +416,12 @@
         case NSFetchedResultsChangeUpdate: break;
         case NSFetchedResultsChangeMove: break;
     }
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+    [self.tableView endUpdates];
+    self.tableViewHeightConstraint.constant = MAX(self.view.frame.size.height-624-72,
+                                                  self.fetchedResultsController.fetchedObjects.count*CELL_HEIGHT);
 }
 
 @end

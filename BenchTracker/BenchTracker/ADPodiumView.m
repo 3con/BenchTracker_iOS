@@ -35,6 +35,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    self.hasAnimatedIn = NO;
     for (UIView *v in @[self.podiumView1, self.podiumView2, self.podiumView3]) {
         v.layer.cornerRadius = 8;
         v.clipsToBounds = YES;
@@ -75,6 +76,7 @@
 }
 
 - (void)animateIn {
+    self.hasAnimatedIn = YES;
     [self alpa:0 forPodium:3];
     [self alpa:0 forPodium:2];
     [self alpa:0 forPodium:1];

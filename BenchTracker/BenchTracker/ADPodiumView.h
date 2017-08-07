@@ -16,6 +16,8 @@
 @property (nonatomic) NSArray <NSString *> *values;
 @property (nonatomic) NSArray <NSString *> *subValues;
 
+@property (nonatomic) BOOL hasAnimatedIn;
+
 - (void)animateIn;
 
 @end

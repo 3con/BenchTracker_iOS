@@ -7,6 +7,7 @@
 //
 
 #import "ADWorkoutsViewController.h"
+#import "ZFModalTransitionAnimator.h"
 #import "ADPodiumView.h"
 #import "HMSegmentedControl.h"
 #import "BTWorkout+CoreDataClass.h"
@@ -18,6 +19,8 @@
 #define QUERY_TYPE_NUMSETS      3
 
 @interface ADWorkoutsViewController ()
+
+@property (nonatomic) ZFModalTransitionAnimator *animator;
 
 @property (weak, nonatomic) IBOutlet UIView *podiumContainerView;
 @property (weak, nonatomic) IBOutlet UILabel *podiumTitleLabel;
@@ -44,12 +47,9 @@
     self.settings = [BTSettings sharedInstance];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.allowsSelection = NO;
-    self.tableView.showsVerticalScrollIndicator = NO;
-    self.tableView.separatorColor = [UIColor clearColor];
+    self.tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, CGFLOAT_MAX);
     self.tableView.layer.cornerRadius = 12;
     self.tableView.clipsToBounds = YES;
-    self.tableView.scrollEnabled = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -75,7 +75,8 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self.podiumView animateIn];
+    if (!self.podiumView.hasAnimatedIn)
+        [self.podiumView animateIn];
 }
 
 - (void)loadPodiumView {
@@ -180,6 +181,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
         cell.textLabel.textColor = [UIColor whiteColor];
         cell.backgroundColor = [UIColor clearColor];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     [self configureWorkoutCell:cell atIndexPath:indexPath];
     return cell;
@@ -188,7 +190,34 @@
 #pragma mark - tableView delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    //BTWorkout *workout = [_fetchedResultsController objectAtIndexPath:indexPath];
+    BTWorkout *workout = [_fetchedResultsController objectAtIndexPath:indexPath];
+    [self presentWorkoutViewControllerWithWorkout:workout];
+}
+
+#pragma mark - view handling
+
+- (void)presentWorkoutViewControllerWithWorkout:(BTWorkout *)workout {
+    WorkoutViewController *workoutVC = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]]
+                                        instantiateViewControllerWithIdentifier:@"w"];
+    workoutVC.delegate = self;
+    workoutVC.context = self.context;
+    workoutVC.workout = workout;
+    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:workoutVC];
+    self.animator.bounces = NO;
+    self.animator.dragable = NO;
+    self.animator.behindViewAlpha = 0.6;
+    self.animator.behindViewScale = 1.0;
+    self.animator.transitionDuration = 0.35;
+    self.animator.direction = ZFModalTransitonDirectionRight;
+    workoutVC.transitioningDelegate = self.animator;
+    workoutVC.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self presentViewController:workoutVC animated:YES completion:nil];
+}
+
+#pragma mark - workoutVC delegate
+
+- (void)workoutViewController:(WorkoutViewController *)workoutVC willDismissWithResultWorkout:(BTWorkout *)workout {
+    
 }
 
 #pragma mark - helper methods

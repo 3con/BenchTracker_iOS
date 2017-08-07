@@ -7,8 +7,9 @@
 //
 
 #import "AnalyticsDetailViewController.h"
+#import "WorkoutViewController.h"
 #import <CoreData/CoreData.h>
 
-@interface ADWorkoutsViewController : AnalyticsDetailViewController <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate>
+@interface ADWorkoutsViewController : AnalyticsDetailViewController <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, WorkoutViewControllerDelegate>
 
 @end

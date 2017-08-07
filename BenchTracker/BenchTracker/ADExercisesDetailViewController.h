@@ -8,8 +8,9 @@
 
 #import "AnalyticsDetailViewController.h"
 #import "IterationSelectionViewController.h"
+#import "WorkoutViewController.h"
 #import <CoreData/CoreData.h>
 
-@interface ADExercisesDetailViewController : AnalyticsDetailViewController <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, IterationSelectionViewControllerDelegate>
+@interface ADExercisesDetailViewController : AnalyticsDetailViewController <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, IterationSelectionViewControllerDelegate, WorkoutViewControllerDelegate>
 
 @end

@@ -474,7 +474,6 @@
 #pragma mark - workoutVC delegate
 
 - (void)workoutViewController:(WorkoutViewController *)workoutVC willDismissWithResultWorkout:(BTWorkout *)workout {
-    [self.context save:nil];
     [self.calendarView reloadData];
     [self.weekdayView reloadData];
 }
