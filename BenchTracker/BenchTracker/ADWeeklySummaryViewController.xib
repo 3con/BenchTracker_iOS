@@ -10,7 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ADMuscleSplitViewController"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <viewController id="Vp2-a9-kuw" customClass="ADMuscleSplitViewController">
+        <viewController id="Vp2-a9-kuw" customClass="ADWeeklySummaryViewController">
             <layoutGuides>
                 <viewControllerLayoutGuide type="top" id="E3c-kc-Lhr"/>
                 <viewControllerLayoutGuide type="bottom" id="XX2-gg-2VK"/>

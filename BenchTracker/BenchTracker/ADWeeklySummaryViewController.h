@@ -1,5 +1,5 @@
 //
-//  ADMuscleSplitViewController.h
+//  ADWeeklySummaryViewController.h
 //  BenchTracker
 //
 //  Created by Chappy Asel on 7/10/17.
@@ -8,6 +8,6 @@
 
 #import "AnalyticsDetailViewController.h"
 
-@interface ADMuscleSplitViewController : AnalyticsDetailViewController <UITableViewDelegate, UITableViewDataSource>
+@interface ADWeeklySummaryViewController : AnalyticsDetailViewController <UITableViewDelegate, UITableViewDataSource>
 
 @end

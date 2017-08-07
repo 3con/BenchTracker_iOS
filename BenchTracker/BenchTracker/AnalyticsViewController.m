@@ -219,7 +219,7 @@
 
 - (void)presentAnalyticsDetailViewControllerWithIndex:(NSInteger)index cell:(AnalyticsCollectionViewCell *)cell {
     AnalyticsDetailViewController *adVC;
-    if (index == 0)     adVC = [[NSBundle mainBundle] loadNibNamed:@"ADMuscleSplitViewController" owner:self options:nil].firstObject;
+    if (index == 0)     adVC = [[NSBundle mainBundle] loadNibNamed:@"ADWeeklySummaryViewController" owner:self options:nil].firstObject;
     else if (index < 3) adVC = [[NSBundle mainBundle] loadNibNamed:@"ADExercisesViewController" owner:self options:nil].firstObject;
     else                adVC = [[NSBundle mainBundle] loadNibNamed:@"ADWorkoutsViewController" owner:self options:nil].firstObject;
     adVC.context = self.context;

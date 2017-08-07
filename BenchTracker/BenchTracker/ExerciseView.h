@@ -13,6 +13,7 @@
 @class ExerciseView;
 
 @protocol ExerciseViewDelegate <NSObject>
+- (void)exerciseViewDidAddSet:(ExerciseView *)exerciseView;
 - (void)exerciseViewRequestedShowTable:(ExerciseView *)exerciseView;
 @end
 

@@ -23,6 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.scrollView.delegate = self;
+    self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 90, 0);
 }
 
 - (void)viewDidLayoutSubviews {
@@ -30,6 +31,7 @@
     self.contentView.alpha = 0.0;
     self.backgroundView.alpha = 0.0;
     self.doneButton.alpha = 0.0;
+    self.doneButton.layer.cornerRadius = 12;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -49,23 +51,23 @@
 
 #pragma mark - scrollView delegate
 
-- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity
-              targetContentOffset:(inout CGPoint *)targetContentOffset {
-    bool neglegable = fabs(velocity.y) < 0.2;
-    float offset = fabs(scrollView.contentOffset.y);
-    bool offsetPositive = scrollView.contentOffset.y >= 0;
-    bool velocityPositive = velocity.y >= 0;
-    if (neglegable && offset < 60.0) { } //no dismiss
-    else if (!neglegable && (offsetPositive != velocityPositive)) { } //no dismiss
-    else { //dismiss
-        [self animateOut];
-        [UIView animateWithDuration:.75 delay:.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-            if (scrollView.contentOffset.y >= 0)
-                scrollView.center = CGPointMake(scrollView.center.x, scrollView.center.y-scrollView.frame.size.height);
-            else scrollView.center = CGPointMake(scrollView.center.x, scrollView.center.y+scrollView.frame.size.height);
-        } completion:^(BOOL finished) {}];
-    }
-}
+//- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity
+//              targetContentOffset:(inout CGPoint *)targetContentOffset {
+//    bool neglegable = fabs(velocity.y) < 0.2;
+//    float offset = fabs(scrollView.contentOffset.y);
+//    bool offsetPositive = scrollView.contentOffset.y >= 0;
+//    bool velocityPositive = velocity.y >= 0;
+//    if (neglegable && offset < 60.0) { } //no dismiss
+//    else if (!neglegable && (offsetPositive != velocityPositive)) { } //no dismiss
+//    else { //dismiss
+//        [self animateOut];
+//        [UIView animateWithDuration:.75 delay:.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+//            if (scrollView.contentOffset.y >= 0)
+//                scrollView.center = CGPointMake(scrollView.center.x, scrollView.center.y-scrollView.frame.size.height);
+//            else scrollView.center = CGPointMake(scrollView.center.x, scrollView.center.y+scrollView.frame.size.height);
+//        } completion:^(BOOL finished) {}];
+//    }
+//}
 
 #pragma mark - animation
 
@@ -75,7 +77,7 @@
     self.contentView.alpha = 0.5;
     self.contentView.center = self.point;
     [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-        self.contentView.center = self.view.center;
+        self.contentView.center = CGPointMake(self.view.center.x, self.view.center.y-35);
         self.contentView.transform = CGAffineTransformIdentity;
         self.contentView.alpha = 0.994; //prevents shadow
         self.backgroundView.alpha = 1.0;
@@ -91,6 +93,7 @@
         self.contentView.alpha = 0.0;
         self.doneButton.alpha = 0.0;
     } completion:^(BOOL finished) {
+        [self.delegate QRDisplayViewControllerWillDismiss:self];
         [self dismissViewControllerAnimated:NO completion:nil];
     }];
 }

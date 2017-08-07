@@ -101,6 +101,10 @@
 
 #pragma mark - exerciseView delegate
 
+- (void)exerciseViewDidAddSet:(ExerciseView *)exerciseView {
+    [self.delegate exerciseViewDidAddSet:exerciseView withResultExercise:[exerciseView getExercise]];
+}
+
 - (void)exerciseViewRequestedShowTable:(ExerciseView *)exerciseView {
     [self presentEquivalencyChartViewController];
 }

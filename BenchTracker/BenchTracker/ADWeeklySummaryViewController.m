@@ -1,17 +1,17 @@
 //
-//  ADMuscleSplitViewController.m
+//  ADWeeklySummaryViewController.m
 //  BenchTracker
 //
 //  Created by Chappy Asel on 7/10/17.
 //  Copyright © 2017 CD. All rights reserved.
 //
 
-#import "ADMuscleSplitViewController.h"
+#import "ADWeeklySummaryViewController.h"
 #import "ADMuscleSplitTableViewCell.h"
 #import "BTUser+CoreDataClass.h"
 #import "BTWorkout+CoreDataClass.h"
 
-@interface ADMuscleSplitViewController ()
+@interface ADWeeklySummaryViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -22,7 +22,7 @@
 
 @end
 
-@implementation ADMuscleSplitViewController
+@implementation ADWeeklySummaryViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

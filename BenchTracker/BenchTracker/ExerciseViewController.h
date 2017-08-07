@@ -15,9 +15,10 @@
 
 @protocol ExerciseViewControllerDelegate <NSObject>
 @required
-- (void) exerciseViewController:(ExerciseViewController *)exerciseVC didRequestSaveWithEditedExercises:(NSArray <BTExercise *> *)exercises
-                                                                                      deletedExercises:(NSArray <BTExercise *> *)deleted
-                                                                                              animated:(BOOL)animated;
+- (void)exerciseViewController:(ExerciseViewController *)exerciseVC didRequestSaveWithEditedExercises:(NSArray <BTExercise *> *)exercises
+                                                                                     deletedExercises:(NSArray <BTExercise *> *)deleted
+                                                                                             animated:(BOOL)animated;
+- (void)exerciseViewDidAddSet:(ExerciseView *)exerciseView withResultExercise:(BTExercise *)exercise;
 @end
 
 @interface ExerciseViewController : UIViewController <UIScrollViewDelegate, ExerciseViewDelegate>

@@ -14,9 +14,7 @@
 #import "PassTouchesView.h"
 #import "BTPDFGenerator.h"
 #import "MMQRCodeMakerUtil.h"
-#import "QRDisplayViewController.h"
 #import "BTSettings+CoreDataClass.h"
-#import "BT1RMCalculator.h"
 #import "Appirater.h"
 
 @interface WorkoutViewController ()
@@ -80,6 +78,7 @@
         [Appirater userDidSignificantEvent:YES];
         self.workout = [BTWorkout workout];
     }
+    self.potentialStartDate = [NSDate date];
     self.nameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:self.workout.name
         attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor], NSFontAttributeName:[UIFont italicSystemFontOfSize:22]}];
     self.tempSupersets = [NSKeyedUnarchiver unarchiveObjectWithData:self.workout.supersets];
@@ -101,7 +100,6 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    self.potentialStartDate = [NSDate date];
     self.settings.activeWorkout = self.workout;
     [self.context save:nil];
 }
@@ -117,27 +115,21 @@
 
 - (void)handleEnteredBackground:(id)sender {
     [self updateWorkout];
+    self.potentialStartDate = [NSDate date];
+    self.startDate = nil;
 }
 
 - (void)handleWillTerminate:(id)sender {
     self.settings.activeWorkout = nil;
     [self updateWorkout];
-    [self.context save:nil];
 }
 
 - (IBAction)pdfButtonPressed:(id)sender {
     [self updateWorkout];
     self.startDate = nil;
     NSString *path = [BTPDFGenerator generatePDFWithWorkouts:@[self.workout]];
-    /*
-    UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    NSURL *targetURL = [NSURL fileURLWithPath:path];
-    NSURLRequest *request = [NSURLRequest requestWithURL:targetURL];
-    [webView loadRequest:request];
-    [self.view addSubview:webView];
-     */
     UIPrintInteractionController *printController = [UIPrintInteractionController sharedPrintController];
-    //printController.delegate = self;
+    printController.delegate = self;
     UIPrintInfo *printInfo = [UIPrintInfo printInfo];
     printInfo.outputType = UIPrintInfoOutputGeneral;
     printInfo.jobName = self.workout.name;
@@ -145,17 +137,17 @@
     printController.printInfo = printInfo;
     printController.printingItem = [NSData dataWithContentsOfURL:[NSURL fileURLWithPath:path]];
     [printController presentAnimated:YES completionHandler:^(UIPrintInteractionController *printInteractionController, BOOL completed, NSError *error){
-        if (!completed && error) NSLog(@"FAILED! due to error in domain %@ with error code %lu", error.domain, (long)error.code);
+        if (!completed && error) NSLog(@"PDF print failed due to error in domain %@, error code %lu", error.domain, (long)error.code);
     }];
 }
 
 - (IBAction)qrButtonPressed:(UIButton *)sender {
     [self updateWorkout];
+    self.startDate = nil;
     [self presentQRDisplayViewControllerWithPoint:sender.center];
 }
 
 - (IBAction)addExerciseButtonPressed:(UIButton *)sender {
-    if (!self.startDate) self.startDate = [NSDate date];
     [self presentAddExerciseViewController];
 }   
 
@@ -169,11 +161,7 @@
 }
 
 - (void)updateWorkout {
-    if (self.startDate) {
-        NSTimeInterval timeInterval = [self.startDate timeIntervalSinceNow];
-        self.workout.duration += MIN(1200, -timeInterval+1); //cap of 20 mins to prevent outrageous workout times
-        self.startDate = [NSDate date];
-    }
+    [self updateWorkoutInterval];
     if (self.nameTextField.text.length > 0) self.workout.name = self.nameTextField.text;
     NSMutableDictionary <NSString *, NSNumber *> *dict = [[NSMutableDictionary alloc] init];
     self.workout.volume = 0;
@@ -193,6 +181,15 @@
         self.workout.summary = [self.workout.summary substringFromIndex:2];
     }
     self.workout.supersets = [NSKeyedArchiver archivedDataWithRootObject:self.tempSupersets];
+    [self.context save:nil];
+}
+
+- (void)updateWorkoutInterval {
+    if (self.startDate) {
+        NSTimeInterval timeInterval = [self.startDate timeIntervalSinceNow];
+        self.workout.duration += MIN(2400, -timeInterval+1); //cap of 40 mins to prevent outrageous workout times
+        self.startDate = [NSDate date];
+    }
     [self.context save:nil];
 }
 
@@ -264,11 +261,6 @@
 #pragma mark - tableView delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.potentialStartDate) {
-        self.startDate = self.potentialStartDate;
-        self.potentialStartDate = nil;
-    }
-    if (!self.startDate) self.startDate = [NSDate date];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     self.selectedIndexPaths = [[NSMutableArray alloc] init];
     self.selectedExercises = [[NSMutableArray alloc] init];
@@ -454,18 +446,18 @@
 #pragma mark - gesture handling
 
 - (IBAction)pauseGestureActivated:(UITapGestureRecognizer *)sender {
-    if (self.paused) {
+    self.paused = !self.paused;
+    if (!self.paused) {
         self.pauseView.alpha = 0;
         self.pauseView.userInteractionEnabled = NO;
-        self.startDate = [NSDate date];
+        self.potentialStartDate = [NSDate date];
     }
     else {
         self.pauseView.alpha = 1;
         self.pauseView.userInteractionEnabled = YES;
-        [self updateWorkout];
+        [self updateWorkoutInterval];
         self.startDate = nil;
     }
-    self.paused = !self.paused;
 }
 
 #pragma mark - SWTableViewCell delegate
@@ -545,6 +537,11 @@
     [self updateWorkout];
 }
 
+- (void)exerciseViewDidAddSet:(ExerciseView *)exerciseView withResultExercise:(BTExercise *)exercise {
+    self.startDate = self.potentialStartDate;
+    self.potentialStartDate = nil;
+}
+
 - (NSArray <NSIndexPath *> *)resultIndexPathsFromDeleteExercisesActionWithExercises:(NSArray <BTExercise *> *)deleted {
     NSMutableArray <NSIndexPath *> *deletedIndexPaths = [[NSMutableArray alloc] init];
     for (BTExercise *exercise in deleted) {
@@ -577,6 +574,18 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [self.nameTextField resignFirstResponder];
     return YES;
+}
+
+#pragma mark - printInteractionVC delegate
+
+- (void)printInteractionControllerWillDismissPrinterOptions:(UIPrintInteractionController *)printInteractionController {
+    self.potentialStartDate = [NSDate date];
+}
+
+#pragma mark - qrDisplayVC delegate
+
+- (void)QRDisplayViewControllerWillDismiss:(QRDisplayViewController *)qrDisplayVC {
+    self.potentialStartDate = [NSDate date];
 }
 
 #pragma mark - view handling

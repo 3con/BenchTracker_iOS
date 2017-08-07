@@ -8,7 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@class QRDisplayViewController;
+
+@protocol QRDisplayViewControllerDelegate <NSObject>
+- (void)QRDisplayViewControllerWillDismiss:(QRDisplayViewController *)qrDisplayVC;
+@end
+
 @interface QRDisplayViewController : UIViewController <UIScrollViewDelegate>
+
+@property (nonatomic) id<QRDisplayViewControllerDelegate> delegate;
 
 @property (nonatomic) CGPoint point;
 

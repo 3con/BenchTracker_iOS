@@ -382,6 +382,7 @@
                 [self.tempSets addObject:result];
                 [self.collectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:0]]];
             } completion:nil];
+            [self.delegate exerciseViewDidAddSet:self];
         }
         else {
             UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
