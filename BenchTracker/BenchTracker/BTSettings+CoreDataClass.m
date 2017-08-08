@@ -22,6 +22,7 @@
 
 - (void)reset {
     self.activeWorkout = nil;
+    self.activeWorkoutStartDate = nil;
     self.hiddenExerciseTypeSections = [NSKeyedArchiver archivedDataWithRootObject:[NSMutableArray array]];
     self.exerciseTypeColors = nil;
     self.startWeekOnMonday = YES;
@@ -45,6 +46,7 @@
         NSLog(@"BTSettings coreData error or creation: %@",error);
         BTSettings *settings = [NSEntityDescription insertNewObjectForEntityForName:@"BTSettings" inManagedObjectContext:context];
         settings.activeWorkout = nil;
+        settings.activeWorkoutStartDate = nil;
         settings.hiddenExerciseTypeSections = [NSKeyedArchiver archivedDataWithRootObject:[NSMutableArray array]];
         settings.exerciseTypeColors = nil;
         settings.startWeekOnMonday = YES;

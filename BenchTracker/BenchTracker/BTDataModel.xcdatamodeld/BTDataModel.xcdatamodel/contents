@@ -9,6 +9,13 @@
         <attribute name="style" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="workout" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BTWorkout" inverseName="exercises" inverseEntity="BTWorkout" syncable="YES"/>
     </entity>
+    <entity name="BTExerciseTemplate" representedClassName="BTExerciseTemplate" syncable="YES">
+        <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="iteration" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="style" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="workout" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BTWorkoutTemplate" inverseName="exercises" inverseEntity="BTWorkoutTemplate" syncable="YES"/>
+    </entity>
     <entity name="BTExerciseType" representedClassName="BTExerciseType" syncable="YES">
         <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="iterations" optional="YES" attributeType="Binary" syncable="YES"/>
@@ -16,6 +23,7 @@
         <attribute name="style" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="BTSettings" representedClassName="BTSettings" syncable="YES">
+        <attribute name="activeWorkoutStartDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="disableSleep" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="exerciseTypeColors" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="hiddenExerciseTypeSections" optional="YES" attributeType="Binary" syncable="YES"/>
@@ -38,11 +46,20 @@
         <attribute name="volume" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="exercises" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="BTExercise" inverseName="workout" inverseEntity="BTExercise" syncable="YES"/>
     </entity>
+    <entity name="BTWorkoutTemplate" representedClassName="BTWorkoutTemplate" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="summary" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="supersets" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="exercises" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="BTExerciseTemplate" inverseName="workout" inverseEntity="BTExerciseTemplate" syncable="YES"/>
+    </entity>
     <elements>
-        <element name="BTExercise" positionX="-137" positionY="-108" width="128" height="150"/>
-        <element name="BTExerciseType" positionX="-137" positionY="-249" width="128" height="103"/>
-        <element name="BTSettings" positionX="-315" positionY="-117" width="128" height="135"/>
-        <element name="BTWorkout" positionX="-306" positionY="-105" width="128" height="195"/>
-        <element name="BTUser" positionX="-225" positionY="-135" width="128" height="60"/>
+        <element name="BTExercise" positionX="-164" positionY="-42" width="128" height="150"/>
+        <element name="BTExerciseType" positionX="-549" positionY="-256" width="128" height="103"/>
+        <element name="BTSettings" positionX="-551" positionY="-42" width="128" height="148"/>
+        <element name="BTUser" positionX="-549" positionY="-123" width="128" height="60"/>
+        <element name="BTWorkout" positionX="-353" positionY="-87" width="128" height="195"/>
+        <element name="BTWorkoutTemplate" positionX="-353" positionY="-228" width="128" height="118"/>
+        <element name="BTExerciseTemplate" positionX="-164" positionY="-228" width="128" height="118"/>
     </elements>
 </model>

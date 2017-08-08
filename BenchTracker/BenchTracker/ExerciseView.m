@@ -273,13 +273,13 @@
     }
     if (component == 1) { //weight
         NSInteger num = (row < 12) ? row : (row-11)*5+10;
-        label.text = [NSString stringWithFormat:@"%ld %@", num, (num == 0) ? @"(bodyweight)" : self.settings.weightSuffix];
+        label.text = [NSString stringWithFormat:@"%ld %@", (long)num, (num == 0) ? @"(bodyweight)" : self.settings.weightSuffix];
         label.tag = num;
         if (row == 11) label.text = [NSString stringWithFormat:@"12.5 %@", self.settings.weightSuffix];
     }
     else if ([self styleIs:STYLE_REPSWEIGHT] || [self styleIs:STYLE_REPS]) { //reps
         NSInteger num = (row < 50) ? row+1 : (row-49)*5+50;
-        label.text = [NSString stringWithFormat:@"%ld %@", num, (num == 1) ? @"rep" : @"reps"];
+        label.text = [NSString stringWithFormat:@"%ld %@", (long)num, (num == 1) ? @"rep" : @"reps"];
         label.tag = num;
     }
     else { //time
@@ -298,9 +298,9 @@
         self.rightTextField.text = (weight != 11) ? [NSString stringWithFormat:@"%ld",(long)weight] : @"12.5";
     }
     else if (pickerView.numberOfComponents == 2) //left
-        self.leftTextField.text = [NSString stringWithFormat:@"%ld",[pickerView viewForRow:row forComponent:component].tag];
+        self.leftTextField.text = [NSString stringWithFormat:@"%ld",(long)[pickerView viewForRow:row forComponent:component].tag];
     else //center
-        self.centerTextField.text = [NSString stringWithFormat:@"%ld",[pickerView viewForRow:row forComponent:component].tag];
+        self.centerTextField.text = [NSString stringWithFormat:@"%ld",(long)[pickerView viewForRow:row forComponent:component].tag];
 }
 
 #pragma mark - collectionView dataSource

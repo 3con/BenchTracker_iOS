@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSFetchRequest<BTSettings *> *)fetchRequest;
 
 @property (nullable, nonatomic, retain) BTWorkout *activeWorkout;
+@property (nullable, nonatomic, copy)   NSDate *activeWorkoutStartDate;
 @property (nullable, nonatomic, retain) NSData *hiddenExerciseTypeSections;
 @property (nullable, nonatomic, retain) NSData *exerciseTypeColors;
 

@@ -15,6 +15,7 @@
 }
 
 @dynamic activeWorkout;
+@dynamic activeWorkoutStartDate;
 @dynamic hiddenExerciseTypeSections;
 @dynamic exerciseTypeColors;
 

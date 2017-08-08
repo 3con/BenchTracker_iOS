@@ -79,7 +79,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (tableView == self.sideTableView) {
         ECSideTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-        cell.titleLabel.text = [NSString stringWithFormat:@"%ld %@",10+indexPath.row*5,self.settings.weightSuffix];
+        cell.titleLabel.text = [NSString stringWithFormat:@"%d %@",10+(int)indexPath.row*5,self.settings.weightSuffix];
         return cell;
     }
     ECTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];

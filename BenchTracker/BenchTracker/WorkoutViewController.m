@@ -43,6 +43,7 @@
 @property (nonatomic) BOOL paused;
 @property (nonatomic) NSDate *potentialStartDate;
 @property (nonatomic) NSDate *startDate;
+@property (nonatomic) NSDate *lastUpdateDate;
 
 @end
 
@@ -114,13 +115,15 @@
 }
 
 - (void)handleEnteredBackground:(id)sender {
-    [self updateWorkout];
     self.potentialStartDate = [NSDate date];
+    self.settings.activeWorkoutStartDate = self.startDate;
+    [self updateWorkout];
     self.startDate = nil;
 }
 
 - (void)handleWillTerminate:(id)sender {
     self.settings.activeWorkout = nil;
+    self.settings.activeWorkoutStartDate = nil;
     [self updateWorkout];
 }
 
@@ -153,6 +156,7 @@
 
 - (IBAction)finishWorkoutButtonPressed:(UIButton *)sender {
     self.settings.activeWorkout = nil;
+    self.settings.activeWorkoutStartDate = nil;
     [self updateWorkout];
     [self.delegate workoutViewController:self willDismissWithResultWorkout:self.workout];
     [self dismissViewControllerAnimated:YES completion:^{
@@ -185,12 +189,15 @@
 }
 
 - (void)updateWorkoutInterval {
-    if (self.startDate) {
-        NSTimeInterval timeInterval = [self.startDate timeIntervalSinceNow];
-        self.workout.duration += MIN(2400, -timeInterval+1); //cap of 40 mins to prevent outrageous workout times
+    if (self.startDate || self.settings.activeWorkoutStartDate) {
+        NSDate *referenceDate = (self.startDate) ? self.startDate : self.settings.activeWorkoutStartDate;
+        if ([referenceDate timeIntervalSinceDate:self.lastUpdateDate] > 0) return;
+        NSTimeInterval timeInterval = [referenceDate timeIntervalSinceDate:self.lastUpdateDate];
+        self.workout.duration += MIN(1800, -timeInterval+1); //cap of 30 mins to prevent outrageous workout times
         self.startDate = [NSDate date];
+        self.settings.activeWorkoutStartDate = nil;
+        [self.context save:nil];
     }
-    [self.context save:nil];
 }
 
 - (IBAction)deleteWorkoutButtonPressed:(UIButton *)sender {
@@ -210,6 +217,7 @@
 
 - (void)deleteWorkout {
     self.settings.activeWorkout = nil;
+    self.settings.activeWorkoutStartDate = nil;
     [self.context deleteObject:self.workout];
     [self.context save:nil];
     [self.delegate workoutViewController:self willDismissWithResultWorkout:nil];
@@ -538,7 +546,9 @@
 }
 
 - (void)exerciseViewDidAddSet:(ExerciseView *)exerciseView withResultExercise:(BTExercise *)exercise {
-    self.startDate = self.potentialStartDate;
+    self.lastUpdateDate = [NSDate date];
+    if (!self.startDate && self.potentialStartDate)
+        self.startDate = self.potentialStartDate;
     self.potentialStartDate = nil;
 }
 
