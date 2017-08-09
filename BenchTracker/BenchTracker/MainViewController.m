@@ -32,6 +32,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *blankWorkoutButton;
 @property (weak, nonatomic) IBOutlet UIButton *scanWorkoutButton;
+@property (weak, nonatomic) IBOutlet UIButton *templateButton;
 
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 
@@ -53,6 +54,7 @@
     self.navView.backgroundColor = [UIColor BTPrimaryColor];
     self.blankWorkoutButton.backgroundColor = [UIColor BTButtonPrimaryColor];
     self.scanWorkoutButton.backgroundColor = [UIColor BTButtonSecondaryColor];
+    self.templateButton.backgroundColor = [UIColor BTButtonSecondaryColor];
     self.context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
     self.user = [BTUser sharedInstance];
     NSError *error;
@@ -67,11 +69,10 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    for (UIButton *button in @[self.scanWorkoutButton, self.blankWorkoutButton, self.rightBarButton]) {
+    for (UIButton *button in @[self.scanWorkoutButton, self.blankWorkoutButton, self.rightBarButton, self.templateButton]) {
         button.layer.cornerRadius = 12;
         button.clipsToBounds = YES;
     }
-    self.scanWorkoutButton.imageEdgeInsets = UIEdgeInsetsMake(15, 15, 15, 15);
     self.settings = [BTSettings sharedInstance];
 }
 
@@ -127,6 +128,10 @@
 
 - (IBAction)scanWorkoutButtonPressed:(UIButton *)sender {
     [self presentQRScannerViewController];
+}
+
+- (IBAction)templateButtonPressed:(UIButton *)sender {
+    [self presentTemplateSelectionViewController];
 }
 
 #pragma mark - calendarView
@@ -455,6 +460,22 @@
     [self presentViewController:qrVC animated:YES completion:nil];
 }
 
+- (void)presentTemplateSelectionViewController {
+    TemplateSelectionViewController *tsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ts"];
+    tsVC.delegate = self;
+    tsVC.context = self.context;
+    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:tsVC];
+    self.animator.bounces = NO;
+    self.animator.dragable = NO;
+    self.animator.behindViewAlpha = 0.8;
+    self.animator.behindViewScale = 0.92;
+    self.animator.transitionDuration = 0.5;
+    self.animator.direction = ZFModalTransitonDirectionBottom;
+    tsVC.transitioningDelegate = self.animator;
+    tsVC.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self presentViewController:tsVC animated:YES completion:nil];
+}
+
 - (void)presentSettingsViewController {
     SettingsViewController *settingsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"s"];
     settingsVC.delegate = self;
@@ -489,6 +510,12 @@
 #pragma mark - workoutSelectionVC delegate
 
 - (void)workoutSelectionVC:(WorkoutSelectionViewController *)wsVC didDismissWithSelectedWorkout:(BTWorkout *)workout {
+    [self presentWorkoutViewControllerWithWorkout:workout];
+}
+
+#pragma mark - templateSelectionVC delegate
+
+- (void)templateSelectionViewController:(TemplateSelectionViewController *)tsVC didDismissWithSelectedWorkout:(BTWorkout *)workout {
     [self presentWorkoutViewControllerWithWorkout:workout];
 }
 

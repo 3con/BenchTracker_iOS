@@ -351,6 +351,7 @@
                                     <constraint firstAttribute="height" constant="50" id="If8-vH-25t"/>
                                     <constraint firstAttribute="width" constant="50" id="iCF-v2-gTv"/>
                                 </constraints>
+                                <inset key="imageEdgeInsets" minX="14" minY="14" maxX="14" maxY="14"/>
                                 <state key="normal" image="QrCode">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -358,11 +359,27 @@
                                     <action selector="scanWorkoutButtonPressed:" destination="BUy-cN-Z34" eventType="touchUpInside" id="h1c-NA-Ocw"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jO5-Az-ZYq">
+                                <rect key="frame" x="57" y="646.66666666666663" width="50" height="50"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="gxb-o2-0Ea"/>
+                                    <constraint firstAttribute="height" constant="50" id="wdB-AM-U9r"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="14" minY="14" maxX="14" maxY="14"/>
+                                <state key="normal" image="Template">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="templateButtonPressed:" destination="BUy-cN-Z34" eventType="touchUpInside" id="oql-d2-bS0"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="PGW-Zz-iVP" firstAttribute="centerY" secondItem="IiY-s6-C0p" secondAttribute="centerY" id="0Da-vK-h65"/>
                             <constraint firstItem="Kjz-wY-iG2" firstAttribute="width" secondItem="aTT-hA-cJA" secondAttribute="width" id="0QB-Ew-Enc"/>
+                            <constraint firstItem="7wv-bp-GGA" firstAttribute="leading" secondItem="jO5-Az-ZYq" secondAttribute="trailing" constant="10" id="0iO-Av-oab"/>
                             <constraint firstItem="PGW-Zz-iVP" firstAttribute="width" secondItem="IiY-s6-C0p" secondAttribute="width" id="38H-GS-ei8"/>
                             <constraint firstItem="uiM-xA-gS4" firstAttribute="centerY" secondItem="7wv-bp-GGA" secondAttribute="centerY" id="3Pe-oX-BbG"/>
                             <constraint firstItem="PGW-Zz-iVP" firstAttribute="centerX" secondItem="IiY-s6-C0p" secondAttribute="centerX" id="52h-aO-Aea"/>
@@ -381,10 +398,16 @@
                             <constraint firstItem="PGW-Zz-iVP" firstAttribute="height" secondItem="IiY-s6-C0p" secondAttribute="height" id="alM-rz-bfh"/>
                             <constraint firstItem="IiY-s6-C0p" firstAttribute="top" secondItem="oFE-yj-bhY" secondAttribute="bottom" id="cyF-xX-ymq"/>
                             <constraint firstItem="IiY-s6-C0p" firstAttribute="width" secondItem="aTT-hA-cJA" secondAttribute="width" id="ekI-e7-XVp"/>
+                            <constraint firstItem="jO5-Az-ZYq" firstAttribute="centerY" secondItem="7wv-bp-GGA" secondAttribute="centerY" id="fYk-QS-KBP"/>
                             <constraint firstItem="oFE-yj-bhY" firstAttribute="centerX" secondItem="aTT-hA-cJA" secondAttribute="centerX" id="nMS-Pe-R3l"/>
                             <constraint firstItem="Kjz-wY-iG2" firstAttribute="centerX" secondItem="aTT-hA-cJA" secondAttribute="centerX" id="qab-Lm-IdL"/>
                             <constraint firstItem="Kjz-wY-iG2" firstAttribute="top" secondItem="oFE-yj-bhY" secondAttribute="bottom" id="t3U-Xw-tXU"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="jO5-Az-ZYq"/>
+                            </mask>
+                        </variation>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
@@ -398,6 +421,7 @@
                         <outlet property="scanWorkoutButton" destination="uiM-xA-gS4" id="8K3-S2-ACH"/>
                         <outlet property="segmentedControl" destination="2Oe-gD-jXD" id="SHV-tO-87F"/>
                         <outlet property="segmentedControlContainerView" destination="2Oe-gD-jXD" id="bPy-Tq-Zt0"/>
+                        <outlet property="templateButton" destination="jO5-Az-ZYq" id="WFJ-z5-STg"/>
                         <outlet property="weekdayContainerView" destination="Kjz-wY-iG2" id="AoP-ls-kXd"/>
                     </connections>
                 </viewController>
@@ -952,6 +976,80 @@
             </objects>
             <point key="canvasLocation" x="951" y="-1471"/>
         </scene>
+        <!--Template Selection View Controller-->
+        <scene sceneID="Ia4-Da-zOP">
+            <objects>
+                <viewController storyboardIdentifier="ts" id="Iq4-RD-Ypj" customClass="TemplateSelectionViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Xkq-ri-95Q"/>
+                        <viewControllerLayoutGuide type="bottom" id="VHy-tz-vYC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rrr-FZ-2DC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vJc-7E-cZc">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="72"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="asc-tP-7G5">
+                                        <rect key="frame" x="10" y="28" width="100" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="9XE-0v-kai"/>
+                                            <constraint firstAttribute="height" constant="30" id="BQZ-2J-Hpb"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                        <state key="normal" title="Cancel">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="cancelButtonPressed:" destination="Iq4-RD-Ypj" eventType="touchUpInside" id="o75-PD-yfO"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a Template" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d3f-g2-oSl">
+                                        <rect key="frame" x="112.33333333333331" y="28" width="190" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="190" id="RiI-L7-eKt"/>
+                                            <constraint firstAttribute="height" constant="30" id="ZaQ-nL-uTZ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.078297413890000001" green="0.077457226810000002" blue="0.32783538099999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="d3f-g2-oSl" firstAttribute="top" secondItem="vJc-7E-cZc" secondAttribute="top" constant="28" id="6xA-cR-OUD"/>
+                                    <constraint firstAttribute="height" constant="72" id="9QB-6c-cuT"/>
+                                    <constraint firstItem="asc-tP-7G5" firstAttribute="centerY" secondItem="d3f-g2-oSl" secondAttribute="centerY" id="Clh-Hc-Pvo"/>
+                                    <constraint firstItem="asc-tP-7G5" firstAttribute="leading" secondItem="vJc-7E-cZc" secondAttribute="leading" constant="10" id="FNp-Yr-h4S"/>
+                                    <constraint firstItem="d3f-g2-oSl" firstAttribute="centerX" secondItem="vJc-7E-cZc" secondAttribute="centerX" id="hwD-i8-ndG"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CHa-DT-5jj">
+                                <rect key="frame" x="0.0" y="72" width="414" height="664"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="CHa-DT-5jj" firstAttribute="centerX" secondItem="rrr-FZ-2DC" secondAttribute="centerX" id="0DR-mP-IQD"/>
+                            <constraint firstItem="vJc-7E-cZc" firstAttribute="top" secondItem="Xkq-ri-95Q" secondAttribute="bottom" constant="-20" id="39g-F4-jJD"/>
+                            <constraint firstItem="CHa-DT-5jj" firstAttribute="width" secondItem="rrr-FZ-2DC" secondAttribute="width" id="8Nx-3I-QgE"/>
+                            <constraint firstItem="vJc-7E-cZc" firstAttribute="width" secondItem="rrr-FZ-2DC" secondAttribute="width" id="Dfz-gj-6U3"/>
+                            <constraint firstItem="vJc-7E-cZc" firstAttribute="centerX" secondItem="rrr-FZ-2DC" secondAttribute="centerX" id="vXu-kf-XfA"/>
+                            <constraint firstItem="VHy-tz-vYC" firstAttribute="top" secondItem="CHa-DT-5jj" secondAttribute="bottom" id="va7-0n-1E2"/>
+                            <constraint firstItem="CHa-DT-5jj" firstAttribute="top" secondItem="vJc-7E-cZc" secondAttribute="bottom" id="zKh-Z8-8hC"/>
+                        </constraints>
+                    </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <connections>
+                        <outlet property="tableView" destination="CHa-DT-5jj" id="VK7-qi-tEx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zc9-WU-3eL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-378.26086956521743" y="-816.03260869565224"/>
+        </scene>
         <!--Add Exercise View Controller-->
         <scene sceneID="HhT-q4-mIV">
             <objects>
@@ -1493,7 +1591,8 @@
         <image name="Analyics" width="42" height="42"/>
         <image name="NewWorkoutArrow" width="170" height="170"/>
         <image name="Print" width="21" height="21"/>
-        <image name="QrCode" width="42" height="42"/>
+        <image name="QrCode" width="85" height="85"/>
         <image name="Settings" width="22" height="22"/>
+        <image name="Template" width="85" height="85"/>
     </resources>
 </document>

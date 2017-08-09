@@ -48,6 +48,7 @@
     </entity>
     <entity name="BTWorkoutTemplate" representedClassName="BTWorkoutTemplate" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="source" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="summary" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="supersets" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
@@ -55,11 +56,11 @@
     </entity>
     <elements>
         <element name="BTExercise" positionX="-164" positionY="-42" width="128" height="150"/>
+        <element name="BTExerciseTemplate" positionX="-164" positionY="-228" width="128" height="118"/>
         <element name="BTExerciseType" positionX="-549" positionY="-256" width="128" height="103"/>
         <element name="BTSettings" positionX="-551" positionY="-42" width="128" height="148"/>
         <element name="BTUser" positionX="-549" positionY="-123" width="128" height="60"/>
         <element name="BTWorkout" positionX="-353" positionY="-87" width="128" height="195"/>
-        <element name="BTWorkoutTemplate" positionX="-353" positionY="-228" width="128" height="118"/>
-        <element name="BTExerciseTemplate" positionX="-164" positionY="-228" width="128" height="118"/>
+        <element name="BTWorkoutTemplate" positionX="-353" positionY="-228" width="128" height="133"/>
     </elements>
 </model>

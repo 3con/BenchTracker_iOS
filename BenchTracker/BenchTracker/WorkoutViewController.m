@@ -116,9 +116,14 @@
 
 - (void)handleEnteredBackground:(id)sender {
     self.potentialStartDate = [NSDate date];
-    self.settings.activeWorkoutStartDate = self.startDate;
     [self updateWorkout];
-    self.startDate = nil;
+    self.settings.activeWorkoutStartDate = self.startDate;
+    [self performSelector:@selector(delayedAWSDSave) withObject:nil afterDelay:.2];
+}
+
+- (void)delayedAWSDSave {
+    self.settings.activeWorkoutStartDate = self.startDate;
+    [self.context save:nil];
 }
 
 - (void)handleWillTerminate:(id)sender {
@@ -191,10 +196,10 @@
 - (void)updateWorkoutInterval {
     if (self.startDate || self.settings.activeWorkoutStartDate) {
         NSDate *referenceDate = (self.startDate) ? self.startDate : self.settings.activeWorkoutStartDate;
-        if ([referenceDate timeIntervalSinceDate:self.lastUpdateDate] > 0) return;
         NSTimeInterval timeInterval = [referenceDate timeIntervalSinceDate:self.lastUpdateDate];
-        self.workout.duration += MIN(1800, -timeInterval+1); //cap of 30 mins to prevent outrageous workout times
-        self.startDate = [NSDate date];
+        if (timeInterval > 0) return;
+        self.workout.duration += MIN(1800, -timeInterval+.5); //cap of 30 mins to prevent outrageous workout times
+        self.startDate = self.lastUpdateDate;
         self.settings.activeWorkoutStartDate = nil;
         [self.context save:nil];
     }
@@ -547,8 +552,12 @@
 
 - (void)exerciseViewDidAddSet:(ExerciseView *)exerciseView withResultExercise:(BTExercise *)exercise {
     self.lastUpdateDate = [NSDate date];
-    if (!self.startDate && self.potentialStartDate)
-        self.startDate = self.potentialStartDate;
+    if (!self.startDate) {
+        if (self.settings.activeWorkoutStartDate)
+            self.startDate = self.settings.activeWorkoutStartDate;
+        else if (self.potentialStartDate)
+            self.startDate = self.potentialStartDate;
+    }
     self.potentialStartDate = nil;
 }
 

@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSFetchRequest<BTWorkoutTemplate *> *)fetchRequest;
 
+@property (nullable, nonatomic, copy) NSString *source;
 @property (nullable, nonatomic, copy) NSString *name;
 @property (nullable, nonatomic, retain) NSData *supersets;
 @property (nullable, nonatomic, copy) NSString *uuid;

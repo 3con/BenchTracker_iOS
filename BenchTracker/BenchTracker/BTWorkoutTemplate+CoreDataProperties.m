@@ -14,6 +14,7 @@
 	return [[NSFetchRequest alloc] initWithEntityName:@"BTWorkoutTemplate"];
 }
 
+@dynamic source;
 @dynamic name;
 @dynamic supersets;
 @dynamic uuid;

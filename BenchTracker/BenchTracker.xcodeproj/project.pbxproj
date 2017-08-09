@@ -29,6 +29,7 @@
 		5093AE741F394B14006CA6F0 /* BTExerciseTemplate+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 5093AE721F394B14006CA6F0 /* BTExerciseTemplate+CoreDataProperties.m */; };
 		50971E741F2E4AB700B10D70 /* AETableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50971E731F2E4AB700B10D70 /* AETableHeaderView.m */; };
 		50971E761F2E4AC400B10D70 /* AETableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50971E751F2E4AC400B10D70 /* AETableHeaderView.xib */; };
+		50CF69D61F3A685C00DDE8A6 /* TemplateSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CF69D51F3A685C00DDE8A6 /* TemplateSelectionViewController.m */; };
 		6FF44576CFF404C6C4707802 /* Pods_BenchTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C83D3A0EA46ECDF1788C990 /* Pods_BenchTracker.framework */; };
 		F77B8D13565A4E6664DC71A8 /* Pods_BenchTrackerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40B18DFBDA158AF111B21958 /* Pods_BenchTrackerTests.framework */; };
 		F90712A719415FB1008694E5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F90712A619415FB1008694E5 /* main.m */; };
@@ -168,6 +169,8 @@
 		50971E721F2E4AB700B10D70 /* AETableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AETableHeaderView.h; sourceTree = "<group>"; };
 		50971E731F2E4AB700B10D70 /* AETableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AETableHeaderView.m; sourceTree = "<group>"; };
 		50971E751F2E4AC400B10D70 /* AETableHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AETableHeaderView.xib; sourceTree = "<group>"; };
+		50CF69D41F3A685C00DDE8A6 /* TemplateSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemplateSelectionViewController.h; sourceTree = "<group>"; };
+		50CF69D51F3A685C00DDE8A6 /* TemplateSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TemplateSelectionViewController.m; sourceTree = "<group>"; };
 		791833EF2E04B86CA95AD6B3 /* Pods-BenchTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BenchTracker.release.xcconfig"; path = "Pods/Target Support Files/Pods-BenchTracker/Pods-BenchTracker.release.xcconfig"; sourceTree = "<group>"; };
 		EABA566C7706F85FACB19B97 /* Pods-BenchTrackerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BenchTrackerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BenchTrackerTests/Pods-BenchTrackerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F90712A119415FB0008694E5 /* BenchTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BenchTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -514,6 +517,15 @@
 			name = "Table header view";
 			sourceTree = "<group>";
 		};
+		50CF69D71F3A686600DDE8A6 /* Template selection */ = {
+			isa = PBXGroup;
+			children = (
+				50CF69D41F3A685C00DDE8A6 /* TemplateSelectionViewController.h */,
+				50CF69D51F3A685C00DDE8A6 /* TemplateSelectionViewController.m */,
+			);
+			name = "Template selection";
+			sourceTree = "<group>";
+		};
 		B57455EDB36A13EE7AEA1ED6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -786,6 +798,7 @@
 			children = (
 				F95F93391F034DA500A19C4D /* MainViewController.h */,
 				F95F933A1F034DA500A19C4D /* MainViewController.m */,
+				50CF69D71F3A686600DDE8A6 /* Template selection */,
 				F917BB651F0DEA9700614AB1 /* QR scanner */,
 				F9FA47271F0B39DF00A4AF98 /* Workout selection */,
 				F97B1CA81F097D9100B3EEC7 /* Weekday view */,
@@ -1387,6 +1400,7 @@
 				F9FD19E31F141FF300AB3FEE /* ADWorkoutsViewController.m in Sources */,
 				F917BB501F0D24E500614AB1 /* BTPDFGenerator.m in Sources */,
 				F917BB601F0DD40200614AB1 /* QRDisplayViewController.m in Sources */,
+				50CF69D61F3A685C00DDE8A6 /* TemplateSelectionViewController.m in Sources */,
 				F9F522FA1F19BC0C00061AF0 /* EditExercisesViewController.m in Sources */,
 				F9DA75251F02EE9600347B0D /* BTExercise+CoreDataProperties.m in Sources */,
 				F9640BD81F080E590053C9C0 /* BTSettings+CoreDataClass.m in Sources */,
