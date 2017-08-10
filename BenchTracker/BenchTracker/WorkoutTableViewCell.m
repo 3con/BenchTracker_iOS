@@ -33,19 +33,14 @@
     self.stackedView.clipsToBounds = YES;
 }
 
-- (NSArray *)leftButtons {
-    NSMutableArray *rightUtilityButtons = [NSMutableArray new];
-    [rightUtilityButtons sw_addUtilityButtonWithColor:[UIColor BTRedColor] title:@"Delete"];
-    return rightUtilityButtons;
-}
-
 - (void)layoutIfNeeded {
     [super layoutIfNeeded];
     [self.stackedView reloadData];
 }
 
 - (void)loadWorkout:(BTWorkout *)workout {
-    self.leftUtilityButtons = [self leftButtons];
+    self.leftButtons = @[[MGSwipeButton buttonWithTitle:@"Delete" icon:nil backgroundColor:[UIColor BTRedColor]]];
+    self.leftSwipeSettings.transition = MGSwipeTransitionClipCenter;
     self.workout = workout;
     self.nameLabel.text = workout.name;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];

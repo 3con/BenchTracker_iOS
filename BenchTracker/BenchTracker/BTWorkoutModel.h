@@ -15,12 +15,12 @@
 
 @interface BTWorkoutModel : JSONModel
 
-@property (nonatomic)                   NSString* uuid;
-@property (nonatomic)                   NSString* name;
-@property (nonatomic)                   NSString* date;
-@property (nonatomic)                   NSNumber* duration;
-@property (nonatomic) NSMutableArray<NSString *>* supersets; //[ "1 2 3", "5 6", ... ]
-@property (nonatomic) NSMutableArray<BTExerciseModel *> <BTExerciseModel> * exercises;
+@property (nonatomic) NSString *uuid;
+@property (nonatomic) NSString *name;
+@property (nonatomic) NSString *date;
+@property (nonatomic) NSNumber *duration;
+@property (nonatomic) NSMutableArray<NSString *> *supersets; //[ "1 2 3", "5 6", ... ]
+@property (nonatomic) NSMutableArray<BTExerciseModel *> <BTExerciseModel> *exercises;
 
 @end
 

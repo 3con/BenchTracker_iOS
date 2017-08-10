@@ -475,7 +475,8 @@
 
 #pragma mark - SWTableViewCell delegate
 
-- (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerLeftUtilityButtonWithIndex:(NSInteger)index {
+- (BOOL)swipeTableCell:(MGSwipeTableCell *)cell tappedButtonAtIndex:(NSInteger)index
+             direction:(MGSwipeDirection)direction fromExpansion:(BOOL)fromExpansion {
     NSIndexPath *path = [self.tableView indexPathForCell:cell];
     self.selectedIndexPaths = [NSMutableArray array];
     for (NSMutableArray *superset in self.tempSupersets) {
@@ -484,13 +485,14 @@
                 for (NSNumber *num in superset)
                     if (num.integerValue != path.row)
                         [self.selectedIndexPaths addObject:[NSIndexPath indexPathForRow:num.integerValue inSection:0]];
-    }   }   }
+            }   }   }
     [self.tableView beginUpdates];
     [self.tableView deleteRowsAtIndexPaths:[self resultIndexPathsFromDeleteExercisesActionWithExercises:@[((ExerciseTableViewCell *)cell).exercise]]
                           withRowAnimation:UITableViewRowAnimationFade];
     [self.tableView reloadRowsAtIndexPaths:self.selectedIndexPaths withRowAnimation:UITableViewRowAnimationFade];
     [self.tableView endUpdates];
     [self updateWorkout];
+    return YES;
 }
 
 #pragma mark - addVC delegate

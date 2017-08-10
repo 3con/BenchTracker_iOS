@@ -11,7 +11,7 @@
 #import "AddExerciseViewController.h"
 #import "ExerciseViewController.h"
 #import "QRDisplayViewController.h"
-#import "SWTableViewCell.h"
+#import "MGSwipeTableCell.h"
 
 @class WorkoutViewController;
 
@@ -20,7 +20,7 @@
 - (void) workoutViewController:(WorkoutViewController *)workoutVC willDismissWithResultWorkout:(BTWorkout *)workout;
 @end
 
-@interface WorkoutViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UIAlertViewDelegate, AddExerciseViewControllerDelegate, ExerciseViewControllerDelegate, SWTableViewCellDelegate, UIGestureRecognizerDelegate, UIPrintInteractionControllerDelegate, QRDisplayViewControllerDelegate>
+@interface WorkoutViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UIAlertViewDelegate, AddExerciseViewControllerDelegate, ExerciseViewControllerDelegate, MGSwipeTableCellDelegate, UIGestureRecognizerDelegate, UIPrintInteractionControllerDelegate, QRDisplayViewControllerDelegate>
 
 @property id<WorkoutViewControllerDelegate> delegate;
 

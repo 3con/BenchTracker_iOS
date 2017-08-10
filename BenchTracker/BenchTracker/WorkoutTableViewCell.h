@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "BTStackedBarView.h"
-#import "SWTableViewCell.h"
+#import "MGSwipeTableCell.h"
 
 @class BTWorkout;
 
-@interface WorkoutTableViewCell : SWTableViewCell <BTStackedBarViewDataSource>
+@interface WorkoutTableViewCell : MGSwipeTableCell <BTStackedBarViewDataSource>
 
 @property (nonatomic) NSDictionary *exerciseTypeColors;
 

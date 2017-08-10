@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SWTableViewCell.h"
+#import "MGSwipeTableCell.h"
 
 #define SUPERSET_NONE  @"none"
 #define SUPERSET_ABOVE @"above"
@@ -16,7 +16,7 @@
 
 @class BTExercise;
 
-@interface ExerciseTableViewCell : SWTableViewCell <UICollectionViewDelegate, UICollectionViewDataSource>
+@interface ExerciseTableViewCell : MGSwipeTableCell <UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (nonatomic) BTExercise *exercise;
 

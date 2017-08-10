@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SWTableViewCell.h"
+#import "MGSwipeTableCell.h"
 
-@interface EEExerciseTypeTableViewCell : SWTableViewCell
+@interface EEExerciseTypeTableViewCell : MGSwipeTableCell
 
 - (void)loadWithName:(NSString *)name;
 

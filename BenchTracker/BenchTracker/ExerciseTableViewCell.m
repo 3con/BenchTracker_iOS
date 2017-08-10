@@ -55,14 +55,9 @@
     self.maxCells = (int)(self.frame.size.width-115) / 70;
 }
 
-- (NSArray *)leftButtons {
-    NSMutableArray *rightUtilityButtons = [NSMutableArray new];
-    [rightUtilityButtons sw_addUtilityButtonWithColor:[UIColor BTRedColor] title:@"Delete"];
-    return rightUtilityButtons;
-}
-
 - (void)loadExercise:(BTExercise *)exercise {
-    self.leftUtilityButtons = [self leftButtons];
+    self.leftButtons = @[[MGSwipeButton buttonWithTitle:@"Delete" icon:nil backgroundColor:[UIColor BTRedColor]]];
+    self.leftSwipeSettings.transition = MGSwipeTransitionClipCenter;
     if ([self.supersetMode isEqualToString:SUPERSET_NONE]) {
         self.aboveSupersetView.alpha = 0;
         self.belowSupersetView.alpha = 0;

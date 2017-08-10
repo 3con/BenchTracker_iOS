@@ -29,6 +29,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>MGSwipeTableCell.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>MJExtension.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -59,11 +64,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>SWTableViewCell.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>UICountingLabel.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -87,17 +87,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1077FE36E38F196BBF852C94B392EDA7</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>244B58DBF02C13E7BBFB42075EAA25B9</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>3A4C270D16607FC1233E97174F4685DD</key>
+		<key>1CD80321715FDB12A3A31B7BCB09EA28</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -127,6 +117,16 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>B3CF0D23F87A7AE165B192189FCC64BE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B6E796936619244802F51DD78B3AB426</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>C5A2DB7A84B7B78E359870D2E1B24AA7</key>
 		<dict>
 			<key>primary</key>
@@ -152,7 +152,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F7FF59E7A1E0B61E6DD3401174C06966</key>
+		<key>F4A9E18592445AE1CB818F128CBBE317</key>
 		<dict>
 			<key>primary</key>
 			<true/>

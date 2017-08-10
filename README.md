@@ -48,7 +48,7 @@ In order to get the app to fully function correctly, the file 'BenchTrackerKeys.
 * [ZFDragableModalTransition](https://github.com/zoonooz/ZFDragableModalTransition) - popup views
 * [HMSegmentedControl](https://github.com/HeshamMegid/HMSegmentedControl) - custom segmented control
 * [FSCalendar](https://github.com/WenchaoD/FSCalendar) - calendar view
-* [SWTableViewCell](https://github.com/CEWendel/SWTableViewCell) - swipe-to-delete workout cells
+* [MGSwipeTableCell](https://github.com/MortimerGoro/MGSwipeTableCell) - swipe-for-actions table cells
 * [MJExtension](https://github.com/CoderMJLee/MJExtension) - workout JSON serialization for QR codes
 * [MMQRCodeScanner](https://github.com/dexianyinjiu/MMQRCodeScanner) - QR code generation and scanning
 * [StickyCollectionView](https://github.com/matbeich/StickyCollectionView) - Analytics view card animation

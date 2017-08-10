@@ -172,10 +172,12 @@
 
 #pragma mark - SWTableViewCell delegate
 
-- (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerLeftUtilityButtonWithIndex:(NSInteger)index {
+- (BOOL)swipeTableCell:(MGSwipeTableCell *)cell tappedButtonAtIndex:(NSInteger)index
+             direction:(MGSwipeDirection)direction fromExpansion:(BOOL)fromExpansion {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     [self.context deleteObject:[self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row-1 inSection:0]]];
     [self.context save:nil];
+    return YES;
 }
 
 #pragma mark - scrollView delegate

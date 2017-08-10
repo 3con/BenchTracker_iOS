@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 #import "EEDetailViewController.h"
-#import "SWTableViewCell.h"
+#import "MGSwipeTableCell.h"
 
-@interface EditExercisesViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, UISearchBarDelegate, EEDetailViewControllerDelegate, SWTableViewCellDelegate>
+@interface EditExercisesViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, UISearchBarDelegate, EEDetailViewControllerDelegate, MGSwipeTableCellDelegate>
 
 @property (nonatomic) NSManagedObjectContext *context;
 

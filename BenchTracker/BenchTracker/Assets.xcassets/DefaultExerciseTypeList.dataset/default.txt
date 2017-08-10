@@ -42,8 +42,20 @@
 			"style": "repsWeight"
 		},
 		{
-			"name": "Rows",
-			"iterations": ["Band", "Cable", "DB Bent", "DB Upright", "BB Bent", "BB Upright", "T Bar", "Pendaly"],
+			"name": "Upright Rows",
+			"iterations": ["Barbell", "Dumbbell", "Cable", "Band"],
+			"category": "Back",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Bent Rows",
+			"iterations": ["Barbell", "Dumbbell", "T-Bar", "Pendlay", "Cable", "Band"],
+			"category": "Back",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Seated Rows",
+			"iterations": ["Cable", "Band", "Machine"],
 			"category": "Back",
 			"style": "repsWeight"
 		},
@@ -402,8 +414,8 @@
 			"style": "timeWeight"
 		},
 		{
-			"name": "Oblique Twists",
-			"iterations": ["Cable", "Machine", "Band"],
+			"name": "Woodchoppers",
+			"iterations": ["Downwards Cable", "Horizontal Cable", "Upwards Cable", "Downwards Band", "Horizontal Band", "Upwards Band"],
 			"category": "Abs / Core",
 			"style": "repsWeight"
 		},

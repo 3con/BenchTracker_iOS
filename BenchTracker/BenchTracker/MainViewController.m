@@ -370,12 +370,14 @@
     [cell layoutIfNeeded];
 }
 
-#pragma mark - SWTableViewCell delegate
+#pragma mark - MGSwipeTableCell delegate
 
-- (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerLeftUtilityButtonWithIndex:(NSInteger)index {
+- (BOOL)swipeTableCell:(MGSwipeTableCell *)cell tappedButtonAtIndex:(NSInteger)index
+             direction:(MGSwipeDirection)direction fromExpansion:(BOOL)fromExpansion {
     NSIndexPath *indexPath = [self.listTableView indexPathForCell:cell];
     [self.context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
     [self.context save:nil];
+    return YES;
 }
 
 #pragma mark - weekdayView delegate

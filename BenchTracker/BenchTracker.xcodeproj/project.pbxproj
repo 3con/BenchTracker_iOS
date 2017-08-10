@@ -18,6 +18,8 @@
 		50636F2F1F2B9E0D00FB65B4 /* EEDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50636F2E1F2B9E0D00FB65B4 /* EEDetailViewController.m */; };
 		50636F331F2C37B000FB65B4 /* BTExerciseTypeStyleTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 50636F321F2C37B000FB65B4 /* BTExerciseTypeStyleTransformer.m */; };
 		507FC4CF1F3243FA00A88A35 /* BTDataTransferManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 507FC4CE1F3243FA00A88A35 /* BTDataTransferManager.m */; };
+		5084CF1D1F3BCCC40083FA19 /* BTWorkoutTemplateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5084CF1C1F3BCCC40083FA19 /* BTWorkoutTemplateModel.m */; };
+		5084CF211F3BD66F0083FA19 /* BTTemplateListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5084CF201F3BD66F0083FA19 /* BTTemplateListModel.m */; };
 		508568BB1F30E4090046A76F /* EquivalencyChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 508568BA1F30E4090046A76F /* EquivalencyChartViewController.m */; };
 		508568C61F31044B0046A76F /* ECTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 508568C41F31044B0046A76F /* ECTableViewCell.m */; };
 		508568C71F31044B0046A76F /* ECTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 508568C51F31044B0046A76F /* ECTableViewCell.xib */; };
@@ -150,6 +152,10 @@
 		50636F321F2C37B000FB65B4 /* BTExerciseTypeStyleTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTExerciseTypeStyleTransformer.m; sourceTree = "<group>"; };
 		507FC4CD1F3243FA00A88A35 /* BTDataTransferManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTDataTransferManager.h; sourceTree = "<group>"; };
 		507FC4CE1F3243FA00A88A35 /* BTDataTransferManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTDataTransferManager.m; sourceTree = "<group>"; };
+		5084CF1B1F3BCCC40083FA19 /* BTWorkoutTemplateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTWorkoutTemplateModel.h; sourceTree = "<group>"; };
+		5084CF1C1F3BCCC40083FA19 /* BTWorkoutTemplateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTWorkoutTemplateModel.m; sourceTree = "<group>"; };
+		5084CF1F1F3BD66F0083FA19 /* BTTemplateListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTemplateListModel.h; sourceTree = "<group>"; };
+		5084CF201F3BD66F0083FA19 /* BTTemplateListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTemplateListModel.m; sourceTree = "<group>"; };
 		508568B91F30E4090046A76F /* EquivalencyChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EquivalencyChartViewController.h; sourceTree = "<group>"; };
 		508568BA1F30E4090046A76F /* EquivalencyChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EquivalencyChartViewController.m; sourceTree = "<group>"; };
 		508568C31F31044B0046A76F /* ECTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECTableViewCell.h; sourceTree = "<group>"; };
@@ -393,7 +399,7 @@
 			name = Tutorial;
 			sourceTree = "<group>";
 		};
-		5055E67F1F317C760070031D /* WorkoutQRModel */ = {
+		5055E67F1F317C760070031D /* WorkoutQRModels */ = {
 			isa = PBXGroup;
 			children = (
 				F917BB581F0DA6AB00614AB1 /* BTWorkoutQRModel.h */,
@@ -401,7 +407,7 @@
 				F917BB5B1F0DCA6A00614AB1 /* BTTemplateWorkoutQRModel.h */,
 				F917BB5C1F0DCA6A00614AB1 /* BTTemplateWorkoutQRModel.m */,
 			);
-			name = WorkoutQRModel;
+			name = WorkoutQRModels;
 			sourceTree = "<group>";
 		};
 		50636F2C1F2B9C0200FB65B4 /* Exercise type cell */ = {
@@ -450,6 +456,24 @@
 				50404F551F327EE20070B1A9 /* DataTransferModel */,
 			);
 			name = "Data Transfer";
+			sourceTree = "<group>";
+		};
+		5084CF1E1F3BCCC90083FA19 /* WorkoutTemplateModel */ = {
+			isa = PBXGroup;
+			children = (
+				5084CF1B1F3BCCC40083FA19 /* BTWorkoutTemplateModel.h */,
+				5084CF1C1F3BCCC40083FA19 /* BTWorkoutTemplateModel.m */,
+			);
+			name = WorkoutTemplateModel;
+			sourceTree = "<group>";
+		};
+		5084CF221F3BD6730083FA19 /* TemplateListModel */ = {
+			isa = PBXGroup;
+			children = (
+				5084CF1F1F3BD66F0083FA19 /* BTTemplateListModel.h */,
+				5084CF201F3BD66F0083FA19 /* BTTemplateListModel.m */,
+			);
+			name = TemplateListModel;
 			sourceTree = "<group>";
 		};
 		508568BC1F30E4190046A76F /* Equivalency Chart VC */ = {
@@ -502,6 +526,8 @@
 				5093AE6A1F394AD1006CA6F0 /* BTWorkoutTemplate+CoreDataClass.m */,
 				5093AE6B1F394AD1006CA6F0 /* BTWorkoutTemplate+CoreDataProperties.h */,
 				5093AE6C1F394AD1006CA6F0 /* BTWorkoutTemplate+CoreDataProperties.m */,
+				5084CF221F3BD6730083FA19 /* TemplateListModel */,
+				5084CF1E1F3BCCC90083FA19 /* WorkoutTemplateModel */,
 			);
 			name = BTWorkoutTemplate;
 			path = BenchTracker;
@@ -992,7 +1018,7 @@
 				F9DA75201F02EE9600347B0D /* BTWorkout+CoreDataProperties.h */,
 				F9DA75211F02EE9600347B0D /* BTWorkout+CoreDataProperties.m */,
 				50060FDE1F33BB9200F6DC00 /* WorkoutModel */,
-				5055E67F1F317C760070031D /* WorkoutQRModel */,
+				5055E67F1F317C760070031D /* WorkoutQRModels */,
 			);
 			name = BTWorkout;
 			sourceTree = "<group>";
@@ -1404,6 +1430,7 @@
 				F9F522FA1F19BC0C00061AF0 /* EditExercisesViewController.m in Sources */,
 				F9DA75251F02EE9600347B0D /* BTExercise+CoreDataProperties.m in Sources */,
 				F9640BD81F080E590053C9C0 /* BTSettings+CoreDataClass.m in Sources */,
+				5084CF211F3BD66F0083FA19 /* BTTemplateListModel.m in Sources */,
 				50636F2A1F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.m in Sources */,
 				F94C89401F15B68D006C6BDD /* ADMuscleSplitTableViewCell.m in Sources */,
 				F9FD19EF1F14748800AB3FEE /* ADExercisesViewController.m in Sources */,
@@ -1452,6 +1479,7 @@
 				50404F5F1F32816A0070B1A9 /* BTSettingsModel.m in Sources */,
 				F9FA47261F0B39D700A4AF98 /* WorkoutSelectionViewController.m in Sources */,
 				F9DA75261F02EE9600347B0D /* BTExerciseType+CoreDataClass.m in Sources */,
+				5084CF1D1F3BCCC40083FA19 /* BTWorkoutTemplateModel.m in Sources */,
 				F9C2406E1F17D94900A268F3 /* ADEDExerciseTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

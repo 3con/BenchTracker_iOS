@@ -21,15 +21,10 @@
     self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 }
 
-- (NSArray *)leftButtons {
-    NSMutableArray *rightUtilityButtons = [NSMutableArray new];
-    [rightUtilityButtons sw_addUtilityButtonWithColor:[UIColor BTRedColor] title:@"Delete"];
-    return rightUtilityButtons;
-}
-
 - (void)loadWithName:(NSString *)name {
     self.titleLabel.text = name;
-    self.leftUtilityButtons = [self leftButtons];
+    self.leftButtons = @[[MGSwipeButton buttonWithTitle:@"Delete" icon:nil backgroundColor:[UIColor BTRedColor]]];
+    self.leftSwipeSettings.transition = MGSwipeTransitionClipCenter;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
