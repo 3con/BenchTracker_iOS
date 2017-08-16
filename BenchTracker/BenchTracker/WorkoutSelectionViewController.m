@@ -174,9 +174,20 @@
 
 - (BOOL)swipeTableCell:(MGSwipeTableCell *)cell tappedButtonAtIndex:(NSInteger)index
              direction:(MGSwipeDirection)direction fromExpansion:(BOOL)fromExpansion {
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    [self.context deleteObject:[self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row-1 inSection:0]]];
-    [self.context save:nil];
+    UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Delete Workout"
+                                                                    message:@"Are you sure you want to delete this workout? You will lose all you hard work! This action cannot be undone."
+                                                             preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction* deleteButton = [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+            [self.context deleteObject:[self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row-1 inSection:0]]];
+            [self.context save:nil];
+        });
+    }];
+    UIAlertAction* cancelButton = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+    [alert addAction:cancelButton];
+    [alert addAction:deleteButton];
+    [self presentViewController:alert animated:YES completion:nil];
     return YES;
 }
 

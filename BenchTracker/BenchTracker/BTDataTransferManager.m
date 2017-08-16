@@ -11,12 +11,13 @@
 #import "BTDataTransferModel.h"
 #import "BTUser+CoreDataClass.h"
 #import "BTWorkout+CoreDataClass.h"
+#import "BTWorkoutTemplate+CoreDataClass.h"
 #import "BTExercise+CoreDataClass.h"
 #import "BTSettings+CoreDataClass.h"
 #import "BTExerciseType+CoreDataClass.h"
 #import "BT1RMCalculator.h"
 
-#define DATA_TRANSFER_VERSION 1
+#define DATA_TRANSFER_VERSION 2
 
 @implementation BTDataTransferManager
 
@@ -37,6 +38,8 @@
     transferModel.settings = settingsModel;
     //SERIALIZE TYPELIST
     transferModel.typeList = [BTExerciseType typeListModel];
+    //SERIALIZE TEMPLATELIST
+    transferModel.templateList = [BTWorkoutTemplate templateListModel];
     //SERIALIZE WORKOUTS
     NSFetchRequest *request = [BTWorkout fetchRequest];
     request.fetchLimit = 0;
@@ -73,6 +76,9 @@
     //PARSE TYPELIST
     [BTExerciseType resetTypeList];
     [BTExerciseType loadTypeListModel:transferModel.typeList];
+    //PARSE TEMPLATELIST
+    [BTWorkoutTemplate resetTemplateList];
+    [BTWorkoutTemplate loadTemplateListModel:transferModel.templateList];
     //PARSE WORKOUTS
     [BTWorkout resetWorkouts];
     for (BTWorkoutModel *workoutModel in transferModel.workouts)

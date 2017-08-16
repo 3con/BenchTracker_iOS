@@ -74,6 +74,15 @@
     }
 }
 
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    for (ExerciseView *view in self.exerciseViews) {
+        CGRect frame = view.frame;
+        frame.size.height = 260;
+        view.frame = frame;
+    }
+}
+
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }

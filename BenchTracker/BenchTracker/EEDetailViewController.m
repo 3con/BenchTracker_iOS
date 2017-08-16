@@ -78,7 +78,7 @@
     section.multivaluedAddButton.title = @"Add a variation";
     row = [XLFormRowDescriptor formRowDescriptorWithTag:nil rowType:XLFormRowDescriptorTypeText title:nil];
     [row.cellConfig setObject:[UIColor BTBlackColor] forKey:@"textLabel.textColor"];
-    [row.cellConfig setObject:@"Varitaion name" forKey:@"textField.placeholder"];
+    [row.cellConfig setObject:@"Variation name" forKey:@"textField.placeholder"];
     section.multivaluedRowTemplate = row;
     if (self.type) {
         for (NSString *varitaion in [NSKeyedUnarchiver unarchiveObjectWithData:self.type.iterations]) {

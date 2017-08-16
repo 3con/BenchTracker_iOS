@@ -25,6 +25,9 @@
     self.titleLabel.text = name;
     self.leftButtons = @[[MGSwipeButton buttonWithTitle:@"Delete" icon:nil backgroundColor:[UIColor BTRedColor]]];
     self.leftSwipeSettings.transition = MGSwipeTransitionClipCenter;
+    self.leftExpansion.buttonIndex = 0;
+    self.leftExpansion.fillOnTrigger = NO;
+    self.leftExpansion.threshold = 2.0;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -39,8 +39,18 @@
 }
 
 - (void)loadWorkout:(BTWorkout *)workout {
-    self.leftButtons = @[[MGSwipeButton buttonWithTitle:@"Delete" icon:nil backgroundColor:[UIColor BTRedColor]]];
+    self.leftButtons = @[[MGSwipeButton buttonWithTitle:@"Delete" icon:nil
+                                        backgroundColor:[UIColor BTRedColor]]];
     self.leftSwipeSettings.transition = MGSwipeTransitionClipCenter;
+    self.leftExpansion.buttonIndex = 0;
+    self.leftExpansion.fillOnTrigger = NO;
+    self.leftExpansion.threshold = 2.0;
+//    self.rightButtons = @[[MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"Template"]
+  //                                       backgroundColor:[UIColor BTButtonSecondaryColor]]];
+    self.rightSwipeSettings.transition = MGSwipeTransitionClipCenter;
+    self.rightExpansion.buttonIndex = 0;
+    self.rightExpansion.fillOnTrigger = NO;
+    self.rightExpansion.threshold = 2.0;
     self.workout = workout;
     self.nameLabel.text = workout.name;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];

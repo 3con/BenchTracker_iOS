@@ -11,6 +11,8 @@
 
 @interface TemplateSelectionViewController ()
 
+@property (weak, nonatomic) IBOutlet UIView *navView;
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
@@ -19,6 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navView.backgroundColor = [UIColor BTPrimaryColor];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
 }

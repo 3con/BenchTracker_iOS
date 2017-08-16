@@ -8,6 +8,7 @@
 
 #import "BTWorkoutTemplate+CoreDataClass.h"
 
+@class BTExerciseTemplate;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -18,7 +19,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSString *source;
 @property (nullable, nonatomic, copy) NSString *name;
 @property (nullable, nonatomic, retain) NSData *supersets;
-@property (nullable, nonatomic, copy) NSString *uuid;
 @property (nullable, nonatomic, copy) NSString *summary;
 @property (nullable, nonatomic, retain) NSOrderedSet<BTExerciseTemplate *> *exercises;
 

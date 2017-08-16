@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "BTExerciseType+CoreDataClass.h"
+#import "BTWorkoutTemplate+CoreDataClass.h"
 #import "Appirater.h"
 #import "BTDataTransferManager.h"
 
@@ -23,6 +24,8 @@
     [UIApplication sharedApplication].idleTimerDisabled = NO;
     //TYPE LIST HANDLING
     [BTExerciseType checkForExistingTypeList];
+    //TEMPLATE LIST HANDLING
+    [BTWorkoutTemplate checkForExistingTemplateList];
     //APPIRATER
     [Appirater setAppId:@"1266077653"];
     [Appirater setDaysUntilPrompt:0];

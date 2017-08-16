@@ -1,4 +1,36 @@
 # BenchTracker_iOS
+
+## [View on the iOS App Store](https://itunes.apple.com/us/app/bench-tracker-workout-weight-lifting-log/id1266077653)
+Bench Tracker is the only app designed by workout enthusiasts; for workout enthusiasts. We love working out just as much as you do, so we wrote the perfect app to track and analyze your workouts so you can maximize those gains!
+
+COMPLETELY AD-FREE / PREMIUM-FREE:
+* The only workout app with absolutely no ads and no premium mode
+
+TRACK YOUR WORKOUTS:
+* The only workout app with a colorful, useful workout overview display
+* View your workouts in one of three ways: List, Weekly, or Calendar
+* Export and import your data to switch between devices with ease
+
+ADVANCED WORKOUT FEATURES:
+* The only workout app with a weightlifting equivalency chart
+* The only workout app with camera-based workout sharing
+* Easily superset up to 5 exercises and add sets all at once
+* Two methods for inputting sets for maximum ease of use
+* Easily print out any workout via AirPrint
+
+ANALYZE EVERY ASPECT:
+* Analyze workout volume, duration, and muscle splits for every workout
+* View your progress on each exercise: graphed out and organized
+* Seamlessly determine your one-rep max for any exercise
+* Find your favorite exercises and browse new ones
+* View weekly summaries prepared each week highlighting your advancements
+
+CUSTOMIZE YOUR EXERCISES:
+* Create, name, and categorize any exercise
+* Choose from one of 5 different ways to track your exercise
+* Add variations to view your progress for each type
+* Settings to disable screen sleep, change weight unit, and more
+
 ## Intro
 This app uses Core Data to record, analyze, and display a user's workouts through cataloging date, duration, exercises, sets, rep details, and more. In addition, the local Core Data stores are regularly compared with their counterparts stored on [Amazon Web Services](https://aws.amazon.com) servers so they can be synced across devices and eventually cross-platform. By using a simple username system, a user can easily log into their account on any iOS device and keep track of their workouts. Additionaly, users can export their workouts to PDF form and print them so they can be saved phyically in addition to electronically. QR codes included in the PDF can be used to re-digitize the workout at any time or create an empty replica.
 

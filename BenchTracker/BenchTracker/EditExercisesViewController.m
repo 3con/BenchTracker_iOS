@@ -207,9 +207,20 @@
 
 - (BOOL)swipeTableCell:(MGSwipeTableCell *)cell tappedButtonAtIndex:(NSInteger)index
              direction:(MGSwipeDirection)direction fromExpansion:(BOOL)fromExpansion {
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    [self.context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
-    [self.context save:nil];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Delete Exercise"
+                                                                   message:@"Are you sure you want to delete this exercise? You will no longer be able to see your progress for this exercise. This action can be undone but it is not easy."
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *deleteButton = [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+            [self.context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+            [self.context save:nil];
+        });
+    }];
+    UIAlertAction *cancelButton = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+    [alert addAction:cancelButton];
+    [alert addAction:deleteButton];
+    [self presentViewController:alert animated:YES completion:nil];
     return YES;
 }
 
