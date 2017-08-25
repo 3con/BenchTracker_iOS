@@ -9,8 +9,6 @@
 #import "ExerciseView.h"
 #import "BTExercise+CoreDataClass.h"
 #import "BTSettings+CoreDataClass.h"
-#import "SetCollectionViewCell.h"
-#import "SetFlowLayout.h"
 
 #define PICKER_REPS      70  //1-50 by 1, 55-150 by 5
 #define PICKER_WEIGHT    130 //0-10 by 1, 12.5, 15-600 by 5
@@ -36,11 +34,9 @@
 @property (weak, nonatomic) IBOutlet UITextField *centerTextField;
 @property (weak, nonatomic) IBOutlet UITextField *rightTextField;
 
-@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet SetCollectionView *collectionView;
 
 @property BTExercise *exercise;
-
-@property (nonatomic) NSMutableArray <NSString *> *tempSets;
 
 @end
 
@@ -68,6 +64,10 @@
                                                object:nil];
 }
 
+- (void)reloadData {
+    self.collectionView.sets = [NSKeyedUnarchiver unarchiveObjectWithData:self.exercise.sets];
+}
+
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
@@ -90,42 +90,32 @@
     self.pickerView.delegate = self;
     self.pickerView.showsSelectionIndicator = NO;
     [self loadTextFields];
-    self.collectionView.dataSource = self;
-    self.collectionView.delegate = self;
-    self.collectionView.showsHorizontalScrollIndicator = NO;
-    SetFlowLayout *flowLayout = [[SetFlowLayout alloc] init];
-    flowLayout.itemSize = CGSizeMake(70, 45);
-    flowLayout.minimumInteritemSpacing = 10.0;
-    flowLayout.sectionInset = UIEdgeInsetsMake(7, 10, 8, 10);
-    flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    [self.collectionView setCollectionViewLayout:flowLayout];
-    [self.collectionView registerNib:[UINib nibWithNibName:@"SetCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"Cell"];
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"ACell"];
     self.exercise = exercise;
     if (exercise.iteration) self.nameLabel.text = [NSString stringWithFormat:@"%@ %@", exercise.iteration, exercise.name];
     else                    self.nameLabel.text = exercise.name;
     self.categoryLabel.text = exercise.category;
-    self.tempSets = [NSKeyedUnarchiver unarchiveObjectWithData:exercise.sets];
+    self.collectionView.setDataSource = self;
+    [self reloadData];
+    self.collectionView.settings = self.settings;
     if ([self styleIs:STYLE_CUSTOM]) {
         [self showTextField];
-        self.textField.text = (self.tempSets.count) ? [self.tempSets.lastObject substringFromIndex:2] : @"";
+        self.textField.text = (self.collectionView.sets.count) ? [self.collectionView.sets.lastObject substringFromIndex:2] : @"";
     }
     else {
         [self showPickerView];
         [self selectAppropriatePickerViewRows];
     }
-    [self.collectionView reloadData];
 }
 
 - (BTExercise *)getExercise {
-    self.exercise.sets = [NSKeyedArchiver archivedDataWithRootObject:self.tempSets];
+    self.exercise.sets = [NSKeyedArchiver archivedDataWithRootObject:self.collectionView.sets];
     return self.exercise;
 }
 
 #pragma mark - private methods
 
 - (void)selectAppropriatePickerViewRows {
-    NSArray <NSString *> *set = [self.tempSets.lastObject componentsSeparatedByString:@" "];
+    NSArray <NSString *> *set = [self.collectionView.sets.lastObject componentsSeparatedByString:@" "];
     if ([self styleIs:STYLE_REPSWEIGHT]) {
         self.centerTextField.alpha = 0;
         self.centerTextField.userInteractionEnabled = NO;
@@ -303,120 +293,45 @@
         self.centerTextField.text = [NSString stringWithFormat:@"%ld",(long)[pickerView viewForRow:row forComponent:component].tag];
 }
 
-#pragma mark - collectionView dataSource
+#pragma mark - setCollectionView dataSource
 
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 1;
-}
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.tempSets.count+1;
-}
-
-- (CGSize)sizeForItemWithColumnIndex:(NSUInteger)columnIndex {
-    return CGSizeMake(70, 45);
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 0) { //first cell: add set
-        UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ACell" forIndexPath:indexPath];
-        cell.backgroundColor = [UIColor BTSecondaryColor];
-        cell.layer.cornerRadius = 12;
-        cell.clipsToBounds = YES;
-        if (cell.subviews.count == 1) {
-            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, -2, 70, 45)];
-            label.backgroundColor = [UIColor clearColor];
-            label.textColor = [self lighterColorForColor:[UIColor BTSecondaryColor]];
-            label.text = @"+";
-            label.textAlignment = NSTextAlignmentCenter;
-            label.font = [UIFont systemFontOfSize:34 weight:UIFontWeightHeavy];
-            [cell addSubview:label];
-        }
-        return cell;
-    }
-    SetCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
-    [cell loadSetWithString:self.tempSets[self.tempSets.count-(indexPath.row-1)-1] weightSuffix:self.settings.weightSuffix];
-    return cell;
-}
-
-#pragma mark - collectionView delegate
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+- (NSString *)setToAddForSetCollectionView:(SetCollectionView *)collectionView {
     [self resignFirstResponderAllTextFields];
-    if (indexPath.row == 0) { //add set
-        if (self.tempSets.count < 12) {
-            [self.collectionView performBatchUpdates:^{
-                float val1 = (self.leftTextField.text.length) ? self.leftTextField.text.floatValue : -1;
-                float val2 = (self.centerTextField.text.length) ? self.centerTextField.text.floatValue : -1;
-                float val3 = (self.rightTextField.text.length) ? self.rightTextField.text.floatValue : -1;
-                if (self.leftTextField.text.length) [self selectRowClosestTo:self.leftTextField.text.floatValue inComponent:0];
-                if (self.centerTextField.text.length) [self selectRowClosestTo:self.centerTextField.text.floatValue inComponent:0];
-                if (self.rightTextField.text.length) [self selectRowClosestTo:self.rightTextField.text.floatValue inComponent:1];
-                NSString *result;
-                if ([self styleIs:STYLE_REPSWEIGHT]) {
-                    int reps = (val1 >= 0) ? val1 :
-                                        (int)[self.pickerView viewForRow:[self.pickerView selectedRowInComponent:0] forComponent:0].tag;
-                    float weight = (val3 >= 0) ? val3 :
-                                          (float)[self.pickerView viewForRow:[self.pickerView selectedRowInComponent:1] forComponent:1].tag;
-                    if (weight == 11)   result = [NSString stringWithFormat:@"%d 12.5",reps];
-                    else                result = [NSString stringWithFormat:@"%d %.1f",reps,weight];
-                }
-                else if ([self styleIs:STYLE_REPS]) {
-                    int reps = (val2 >= 0) ? val2 :
-                                             (int)[self.pickerView viewForRow:[self.pickerView selectedRowInComponent:0] forComponent:0].tag;
-                    result = [NSString stringWithFormat:@"%d",reps];
-                }
-                else if ([self styleIs:STYLE_TIME]) {
-                    int time = (val2 >= 0) ? val2 :
-                                        (int)[self.pickerView viewForRow:[self.pickerView selectedRowInComponent:0] forComponent:0].tag;
-                    result = [NSString stringWithFormat:@"s %d",time];
-                }
-                else if ([self styleIs:STYLE_TIMEWEIGHT]) {
-                    int time = (val1 >= 0) ? val1 :
-                                        (int)[self.pickerView viewForRow:[self.pickerView selectedRowInComponent:0] forComponent:0].tag;
-                    float weight = (val3 >= 0) ? val3 :
-                                          (float)[self.pickerView viewForRow:[self.pickerView selectedRowInComponent:1] forComponent:1].tag;
-                    result = [NSString stringWithFormat:@"s %d %.1f",time,weight];
-                }
-                else result = [NSString stringWithFormat:@"~ %@",self.textField.text];
-                [self.tempSets addObject:result];
-                [self.collectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:0]]];
-            } completion:nil];
-            [self.delegate exerciseViewDidAddSet:self];
-        }
-        else {
-            UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-            UILabel *label = cell.subviews[1];
-            [UIView animateWithDuration:.2 animations:^{
-                label.alpha = 0;
-            } completion:^(BOOL finished) {
-                label.text = @"x";
-                [UIView animateWithDuration:.2 animations:^{
-                    label.alpha = 1;
-                } completion:^(BOOL finished) {
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW,1*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                        [UIView animateWithDuration:.2 animations:^{
-                            label.alpha = 0;
-                        } completion:^(BOOL finished) {
-                            label.text = @"+";
-                            [UIView animateWithDuration:.2 animations:^{
-                                label.alpha = 1;
-                            } completion:nil];
-                        }];
-                    });
-                }];
-            }];
-        }
+    [self.delegate exerciseViewDidAddSet:self];
+    float val1 = (self.leftTextField.text.length) ? self.leftTextField.text.floatValue : -1;
+    float val2 = (self.centerTextField.text.length) ? self.centerTextField.text.floatValue : -1;
+    float val3 = (self.rightTextField.text.length) ? self.rightTextField.text.floatValue : -1;
+    if (self.leftTextField.text.length) [self selectRowClosestTo:self.leftTextField.text.floatValue inComponent:0];
+    if (self.centerTextField.text.length) [self selectRowClosestTo:self.centerTextField.text.floatValue inComponent:0];
+    if (self.rightTextField.text.length) [self selectRowClosestTo:self.rightTextField.text.floatValue inComponent:1];
+    NSString *result;
+    if ([self styleIs:STYLE_REPSWEIGHT]) {
+        int reps = (val1 >= 0) ? val1 :
+        (int)[self.pickerView viewForRow:[self.pickerView selectedRowInComponent:0] forComponent:0].tag;
+        float weight = (val3 >= 0) ? val3 :
+        (float)[self.pickerView viewForRow:[self.pickerView selectedRowInComponent:1] forComponent:1].tag;
+        if (weight == 11)   result = [NSString stringWithFormat:@"%d 12.5",reps];
+        else                result = [NSString stringWithFormat:@"%d %.1f",reps,weight];
     }
-    else { //delete set
-        [(SetCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:indexPath] performDeleteAnimationWithDuration:.4];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW,.2*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-            [self.collectionView performBatchUpdates:^{
-                [self.tempSets removeObjectAtIndex:self.tempSets.count-(indexPath.row-1)-1];
-                [self.collectionView deleteItemsAtIndexPaths:@[indexPath]];
-            } completion:nil];
-        });
+    else if ([self styleIs:STYLE_REPS]) {
+        int reps = (val2 >= 0) ? val2 :
+        (int)[self.pickerView viewForRow:[self.pickerView selectedRowInComponent:0] forComponent:0].tag;
+        result = [NSString stringWithFormat:@"%d",reps];
     }
+    else if ([self styleIs:STYLE_TIME]) {
+        int time = (val2 >= 0) ? val2 :
+        (int)[self.pickerView viewForRow:[self.pickerView selectedRowInComponent:0] forComponent:0].tag;
+        result = [NSString stringWithFormat:@"s %d",time];
+    }
+    else if ([self styleIs:STYLE_TIMEWEIGHT]) {
+        int time = (val1 >= 0) ? val1 :
+        (int)[self.pickerView viewForRow:[self.pickerView selectedRowInComponent:0] forComponent:0].tag;
+        float weight = (val3 >= 0) ? val3 :
+        (float)[self.pickerView viewForRow:[self.pickerView selectedRowInComponent:1] forComponent:1].tag;
+        result = [NSString stringWithFormat:@"s %d %.1f",time,weight];
+    }
+    else result = [NSString stringWithFormat:@"~ %@",self.textField.text];
+    return result;
 }
 
 #pragma mark - textField delegate
@@ -467,22 +382,6 @@
 
 - (void)keyboardWillHide:(NSNotification *)n {
 
-}
-
-#pragma mark - color methods
-
-- (UIColor *)lighterColorForColor:(UIColor *)color {
-    CGFloat h, s, b, a;
-    if ([color getHue:&h saturation:&s brightness:&b alpha:&a])
-        return [UIColor colorWithHue:h saturation:s brightness:MIN(b*2.5, 1.0) alpha:a];
-    return nil;
-}
-
-- (UIColor *)darkerColorForColor:(UIColor *)color {
-    CGFloat h, s, b, a;
-    if ([color getHue:&h saturation:&s brightness:&b alpha:&a])
-        return [UIColor colorWithHue:h saturation:s brightness:b*0.8 alpha:a];
-    return nil;
 }
 
 /*

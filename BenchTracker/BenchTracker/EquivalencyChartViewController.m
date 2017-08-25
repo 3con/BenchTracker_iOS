@@ -9,12 +9,17 @@
 #import "EquivalencyChartViewController.h"
 #import "ECTableViewCell.h"
 #import "ECSideTableViewCell.h"
+#import "AppDelegate.h"
 
 #define SIZE_WIDTH  25
 #define SIZE_HEIGHT 118 //10-600
 
 @interface EquivalencyChartViewController ()
 @property (weak, nonatomic) IBOutlet UIView *navView;
+
+@property (nonatomic) NSManagedObjectContext *context;
+
+@property (weak, nonatomic) IBOutlet SetCollectionView *collectionView;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *topScrollView;
 @property (weak, nonatomic) IBOutlet UITableView *sideTableView;
@@ -28,8 +33,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navView.backgroundColor = [UIColor BTPrimaryColor];
-    self.view.backgroundColor = [UIColor BTSecondaryColor];
+    self.navView.backgroundColor = [UIColor BTSecondaryColor];
+    self.view.backgroundColor = [UIColor BTPrimaryColor];
+    self.context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    self.collectionView.setDataSource = self;
+    self.collectionView.sets = [NSKeyedUnarchiver unarchiveObjectWithData:self.exercise.sets];
+    self.collectionView.settings = self.settings;
     self.mainScrollViews = [NSMutableSet set];
     for (UITableView *tableView in @[self.sideTableView, self.mainTableView]) {
         tableView.delegate = self;
@@ -50,7 +59,7 @@
 - (void)loadTopScrollView {
     for (int i = 0; i < SIZE_WIDTH-1; i++) {
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(60*i, 0, 60, 40)];
-        label.backgroundColor = [UIColor BTSecondaryColor];
+        label.backgroundColor = [UIColor BTPrimaryColor];
         label.textColor = [UIColor whiteColor];
         label.textAlignment = NSTextAlignmentCenter;
         label.font = [UIFont systemFontOfSize:17 weight:UIFontWeightBold];
@@ -63,6 +72,8 @@
 }
 
 - (IBAction)doneButtonPressed:(UIButton *)sender {
+    self.exercise.sets = [NSKeyedArchiver archivedDataWithRootObject:self.collectionView.sets];
+    [self.context save:nil];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -91,6 +102,12 @@
 }
 
 #pragma mark - tableView delegate
+
+#pragma mark - setCollectionView dataSource
+
+- (NSString *)setToAddForSetCollectionView:(SetCollectionView *)collectionView {
+    return @"10 40";
+}
 
 #pragma mark - scrollView delegate
 

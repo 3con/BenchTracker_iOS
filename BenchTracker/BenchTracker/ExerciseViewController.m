@@ -72,6 +72,7 @@
                                                              multiplier:1.0
                                                                constant:MAX(self.view.frame.size.height+1, h+101)]]; //Keyboard: 226px
     }
+    else for (ExerciseView *view in self.exerciseViews) [view reloadData];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -115,7 +116,7 @@
 }
 
 - (void)exerciseViewRequestedShowTable:(ExerciseView *)exerciseView {
-    [self presentEquivalencyChartViewController];
+    [self presentEquivalencyChartViewControllerWithExercise:[exerciseView getExercise]];
 }
 
 #pragma mark - scrollView delegate
@@ -130,9 +131,10 @@
 
 #pragma mark - view handling
 
-- (void)presentEquivalencyChartViewController {
+- (void)presentEquivalencyChartViewControllerWithExercise:(BTExercise *)exercise {
     EquivalencyChartViewController *ecVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ec"];
     ecVC.settings = self.settings;
+    ecVC.exercise = exercise;
     self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:ecVC];
     self.animator.dragable = NO;
     self.animator.bounces = YES;

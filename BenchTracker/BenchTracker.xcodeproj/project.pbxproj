@@ -12,6 +12,7 @@
 		50404F541F327EDE0070B1A9 /* BTDataTransferModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50404F531F327EDE0070B1A9 /* BTDataTransferModel.m */; };
 		50404F5B1F3280430070B1A9 /* BTUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50404F5A1F3280430070B1A9 /* BTUserModel.m */; };
 		50404F5F1F32816A0070B1A9 /* BTSettingsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50404F5E1F32816A0070B1A9 /* BTSettingsModel.m */; };
+		50530C261F50BC4100472426 /* SetCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50530C251F50BC4100472426 /* SetCollectionView.m */; };
 		5054D8D31F3391C3000EBC21 /* BTTutorialManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5054D8D21F3391C3000EBC21 /* BTTutorialManager.m */; };
 		50636F2A1F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50636F281F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.m */; };
 		50636F2B1F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50636F291F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.xib */; };
@@ -141,6 +142,8 @@
 		50404F5A1F3280430070B1A9 /* BTUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BTUserModel.m; path = BenchTracker/BTUserModel.m; sourceTree = "<group>"; };
 		50404F5D1F32816A0070B1A9 /* BTSettingsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BTSettingsModel.h; path = BenchTracker/BTSettingsModel.h; sourceTree = "<group>"; };
 		50404F5E1F32816A0070B1A9 /* BTSettingsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BTSettingsModel.m; path = BenchTracker/BTSettingsModel.m; sourceTree = "<group>"; };
+		50530C241F50BC4100472426 /* SetCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetCollectionView.h; sourceTree = "<group>"; };
+		50530C251F50BC4100472426 /* SetCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetCollectionView.m; sourceTree = "<group>"; };
 		5054D8D11F3391C3000EBC21 /* BTTutorialManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTutorialManager.h; sourceTree = "<group>"; };
 		5054D8D21F3391C3000EBC21 /* BTTutorialManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTutorialManager.m; sourceTree = "<group>"; };
 		50636F271F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EEExerciseTypeTableViewCell.h; sourceTree = "<group>"; };
@@ -388,6 +391,17 @@
 				50404F5E1F32816A0070B1A9 /* BTSettingsModel.m */,
 			);
 			name = SettingsModel;
+			sourceTree = "<group>";
+		};
+		50530C271F50BC4400472426 /* Set Collection View */ = {
+			isa = PBXGroup;
+			children = (
+				50530C241F50BC4100472426 /* SetCollectionView.h */,
+				50530C251F50BC4100472426 /* SetCollectionView.m */,
+				F9418FB91F04CC4A0083C3DC /* Set CVC */,
+				F9418FB31F04C8430083C3DC /* Set Flow Layout */,
+			);
+			name = "Set Collection View";
 			sourceTree = "<group>";
 		};
 		5054D8D41F3391D3000EBC21 /* Tutorial */ = {
@@ -723,8 +737,7 @@
 				F9418FAA1F04A94E0083C3DC /* ExerciseView.h */,
 				F9418FAB1F04A94E0083C3DC /* ExerciseView.m */,
 				F9418FAE1F04A96C0083C3DC /* ExerciseView.xib */,
-				F9418FB91F04CC4A0083C3DC /* Set CVC */,
-				F9418FB31F04C8430083C3DC /* Set Flow Layout */,
+				50530C271F50BC4400472426 /* Set Collection View */,
 			);
 			name = "Exercise View";
 			sourceTree = "<group>";
@@ -1451,6 +1464,7 @@
 				508568C61F31044B0046A76F /* ECTableViewCell.m in Sources */,
 				F97B1CA71F097D8A00B3EEC7 /* WeekdayView.m in Sources */,
 				507FC4CF1F3243FA00A88A35 /* BTDataTransferManager.m in Sources */,
+				50530C261F50BC4100472426 /* SetCollectionView.m in Sources */,
 				50060FDD1F33BB8E00F6DC00 /* BTWorkoutModel.m in Sources */,
 				50636F2F1F2B9E0D00FB65B4 /* EEDetailViewController.m in Sources */,
 				F9DA75111F02DC1700347B0D /* BTDataModel.xcdatamodeld in Sources */,

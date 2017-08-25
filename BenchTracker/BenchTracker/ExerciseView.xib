@@ -102,7 +102,7 @@
                                 <action selector="deleteButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="RXM-pk-eDW"/>
                             </connections>
                         </button>
-                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="XQY-rd-tm3">
+                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="XQY-rd-tm3" customClass="SetCollectionView">
                             <rect key="frame" x="0.0" y="200" width="374" height="60"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>

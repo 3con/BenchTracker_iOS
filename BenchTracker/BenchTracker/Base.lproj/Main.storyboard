@@ -744,24 +744,24 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nee-iG-Tog">
-                                <rect key="frame" x="80" y="132" width="334" height="604"/>
+                                <rect key="frame" x="80" y="187" width="334" height="549"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="64F-fh-kgJ">
-                                <rect key="frame" x="0.0" y="132" width="80" height="604"/>
+                                <rect key="frame" x="0.0" y="187" width="80" height="549"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="9zf-oI-UL6"/>
                                 </constraints>
                             </tableView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dKO-Ae-Pa9">
-                                <rect key="frame" x="80" y="92" width="334" height="40"/>
+                                <rect key="frame" x="80" y="147" width="334" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="YWS-QR-A6h"/>
                                 </constraints>
                             </scrollView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reps" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SBO-3h-zIB">
-                                <rect key="frame" x="207.66666666666669" y="77" width="80.000000000000057" height="20"/>
+                                <rect key="frame" x="207.66666666666669" y="132" width="80.000000000000057" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="Etl-sQ-3sU"/>
                                     <constraint firstAttribute="height" constant="20" id="GZX-nh-FWZ"/>
@@ -770,28 +770,46 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="RB3-s6-rJm" customClass="SetCollectionView">
+                                <rect key="frame" x="0.0" y="72" width="414" height="60"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="jGR-Xm-oms"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="nlL-nj-1kH">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" red="0.62352941176470589" green="0.62352941176470589" blue="0.62352941176470589" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="mh3-Ka-nD8" firstAttribute="centerX" secondItem="QFJ-UP-00n" secondAttribute="centerX" id="18Q-8x-iCJ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="dKO-Ae-Pa9" secondAttribute="trailing" constant="-20" id="6s8-Tw-k3g"/>
+                            <constraint firstItem="SBO-3h-zIB" firstAttribute="top" secondItem="RB3-s6-rJm" secondAttribute="bottom" id="8O5-eO-ctE"/>
                             <constraint firstItem="Cmh-NR-Hu2" firstAttribute="top" secondItem="nee-iG-Tog" secondAttribute="bottom" id="8ja-dE-Qdh"/>
-                            <constraint firstItem="dKO-Ae-Pa9" firstAttribute="top" secondItem="mh3-Ka-nD8" secondAttribute="bottom" constant="20" id="9FR-cS-LMl"/>
+                            <constraint firstItem="RB3-s6-rJm" firstAttribute="top" secondItem="mh3-Ka-nD8" secondAttribute="bottom" id="HwG-a5-DuV"/>
                             <constraint firstItem="dKO-Ae-Pa9" firstAttribute="top" secondItem="SBO-3h-zIB" secondAttribute="bottom" constant="-5" id="OcZ-7W-FEv"/>
                             <constraint firstItem="mh3-Ka-nD8" firstAttribute="width" secondItem="QFJ-UP-00n" secondAttribute="width" id="Sjl-z7-Yd1"/>
                             <constraint firstItem="nee-iG-Tog" firstAttribute="leading" secondItem="64F-fh-kgJ" secondAttribute="trailing" id="Vqz-l9-L3p"/>
                             <constraint firstItem="SBO-3h-zIB" firstAttribute="centerX" secondItem="dKO-Ae-Pa9" secondAttribute="centerX" id="cQ0-69-bIC"/>
                             <constraint firstItem="nee-iG-Tog" firstAttribute="top" secondItem="dKO-Ae-Pa9" secondAttribute="bottom" id="eoA-SH-MSZ"/>
                             <constraint firstItem="Cmh-NR-Hu2" firstAttribute="top" secondItem="64F-fh-kgJ" secondAttribute="bottom" id="fzo-c9-00A"/>
+                            <constraint firstItem="RB3-s6-rJm" firstAttribute="leading" secondItem="QFJ-UP-00n" secondAttribute="leadingMargin" constant="-20" id="ibn-Tk-wZ1"/>
                             <constraint firstItem="64F-fh-kgJ" firstAttribute="leading" secondItem="QFJ-UP-00n" secondAttribute="leadingMargin" constant="-20" id="jMw-mW-Tyw"/>
                             <constraint firstItem="dKO-Ae-Pa9" firstAttribute="leading" secondItem="64F-fh-kgJ" secondAttribute="trailing" id="p9S-nY-6Ss"/>
                             <constraint firstAttribute="trailingMargin" secondItem="nee-iG-Tog" secondAttribute="trailing" constant="-20" id="uqQ-Vt-EQ7"/>
                             <constraint firstItem="mh3-Ka-nD8" firstAttribute="top" secondItem="MwL-T4-fu5" secondAttribute="bottom" constant="-20" id="uzm-gS-yqr"/>
                             <constraint firstItem="64F-fh-kgJ" firstAttribute="top" secondItem="dKO-Ae-Pa9" secondAttribute="bottom" id="xRY-KS-Uqb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="RB3-s6-rJm" secondAttribute="trailing" constant="-20" id="yDr-aN-LiH"/>
                         </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
+                        <outlet property="collectionView" destination="RB3-s6-rJm" id="HVH-36-Pua"/>
                         <outlet property="mainTableView" destination="nee-iG-Tog" id="BEd-FR-g9d"/>
                         <outlet property="navView" destination="mh3-Ka-nD8" id="S4S-8G-HTC"/>
                         <outlet property="sideTableView" destination="64F-fh-kgJ" id="VEM-Ih-d8h"/>

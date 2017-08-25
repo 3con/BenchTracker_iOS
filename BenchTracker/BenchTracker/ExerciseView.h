@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SetCollectionView.h"
 
 @class BTExercise;
 @class BTSettings;
@@ -17,7 +18,7 @@
 - (void)exerciseViewRequestedShowTable:(ExerciseView *)exerciseView;
 @end
 
-@interface ExerciseView : UIView <UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UICollectionViewDelegate, UICollectionViewDataSource>
+@interface ExerciseView : UIView <UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, SetCollectionViewDataSource>
 
 @property (nonatomic) id<ExerciseViewDelegate> delegate;
 
@@ -27,6 +28,8 @@
 @property (nonatomic) UIColor *color;
 
 - (void)loadExercise:(BTExercise *)exercise;
+
+- (void)reloadData;
 
 - (BTExercise *)getExercise;
 

@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BTExercise+CoreDataClass.h"
 #import "BTSettings+CoreDataClass.h"
+#import "SetCollectionView.h"
 
-@interface EquivalencyChartViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate>
+@interface EquivalencyChartViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, SetCollectionViewDataSource>
 
 @property (nonatomic) BTSettings *settings;
+
+@property (nonatomic) BTExercise *exercise;
 
 @end
