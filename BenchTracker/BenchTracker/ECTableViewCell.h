@@ -10,6 +10,8 @@
 
 @interface ECTableViewCell : UITableViewCell
 
+@property (nonatomic) NSInteger selectedSection;
+
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 - (void)loadWithWeight:(NSInteger)weight length:(NSInteger)length;

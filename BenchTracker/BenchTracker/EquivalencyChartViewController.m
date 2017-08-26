@@ -12,7 +12,7 @@
 #import "AppDelegate.h"
 
 #define SIZE_WIDTH  25
-#define SIZE_HEIGHT 118 //10-600
+#define SIZE_HEIGHT 119 //10-600
 
 @interface EquivalencyChartViewController ()
 @property (weak, nonatomic) IBOutlet UIView *navView;
@@ -26,6 +26,8 @@
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
 
 @property (nonatomic) NSMutableSet <UIScrollView *> *mainScrollViews;
+
+@property (nonatomic) NSIndexPath *selectedIndexPath;
 
 @end
 
@@ -52,21 +54,26 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.mainTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:7 inSection:0]
-                              atScrollPosition:UITableViewScrollPositionTop animated:NO];
+    NSArray <NSString *> *arr = (self.collectionView.sets.lastObject) ?
+        [self.collectionView.sets.lastObject componentsSeparatedByString:@" "] : nil;
+    self.selectedIndexPath = (arr) ? [NSIndexPath indexPathForRow:MIN(118, MAX(0, (arr[1].floatValue-7.5)/5.0))
+                                                        inSection:MIN(24, MAX(0, arr[0].intValue-2))] : nil;
+    [self.mainTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.selectedIndexPath.row inSection:0]
+                              atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
+    [self scrollHorizontallyToOffset:CGPointMake(50.0*(self.selectedIndexPath.section+.5)-(self.view.frame.size.width-70)/2.0, 0)];
 }
 
 - (void)loadTopScrollView {
     for (int i = 0; i < SIZE_WIDTH-1; i++) {
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(60*i, 0, 60, 40)];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(50*i, 0, 50, 35)];
         label.backgroundColor = [UIColor BTPrimaryColor];
         label.textColor = [UIColor whiteColor];
         label.textAlignment = NSTextAlignmentCenter;
-        label.font = [UIFont systemFontOfSize:17 weight:UIFontWeightBold];
+        label.font = [UIFont systemFontOfSize:15 weight:UIFontWeightBold];
         label.text = [NSString stringWithFormat:@"%d",i+2];
         [self.topScrollView addSubview:label];
     }
-    self.topScrollView.contentSize = CGSizeMake(60*SIZE_WIDTH-1, 40);
+    self.topScrollView.contentSize = CGSizeMake(50*SIZE_WIDTH-1, 35);
     self.topScrollView.delegate = self;
     [self.mainScrollViews addObject:self.topScrollView];
 }
@@ -84,7 +91,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 40;
+    return 35;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -94,6 +101,8 @@
         return cell;
     }
     ECTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    cell.selectedSection = (self.selectedIndexPath && indexPath.row == self.selectedIndexPath.row) ?
+        self.selectedIndexPath.section : -1;
     [cell loadWithWeight:indexPath.row*5+10 length:SIZE_WIDTH-1];
     cell.scrollView.contentOffset = self.mainScrollViews.allObjects.firstObject.contentOffset;
     cell.scrollView.delegate = self;
@@ -106,7 +115,21 @@
 #pragma mark - setCollectionView dataSource
 
 - (NSString *)setToAddForSetCollectionView:(SetCollectionView *)collectionView {
-    return @"10 40";
+    return (self.selectedIndexPath) ?
+        [NSString stringWithFormat:@"%ld %ld",self.selectedIndexPath.section+2, self.selectedIndexPath.row*5+10] : nil;
+}
+
+#pragma mark - tapGesture delegate
+
+- (IBAction)tapGesture:(UITapGestureRecognizer *)sender {
+    CGPoint location = [sender locationInView:self.mainTableView];
+    NSInteger oldRow = self.selectedIndexPath.row;
+    self.selectedIndexPath = [NSIndexPath indexPathForRow:location.y/35.0 inSection:(self.topScrollView.contentOffset.x+location.x)/50.0];
+    [self.mainTableView beginUpdates];
+    [self.mainTableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:oldRow inSection:0],
+                                                 [NSIndexPath indexPathForRow:self.selectedIndexPath.row inSection:0]]
+                              withRowAnimation:UITableViewRowAnimationFade];
+    [self.mainTableView endUpdates];
 }
 
 #pragma mark - scrollView delegate
@@ -116,10 +139,12 @@
         self.mainTableView.contentOffset = scrollView.contentOffset;
         self.sideTableView.contentOffset = scrollView.contentOffset;
     }
-    else {
-        for (UIScrollView *sV in self.mainScrollViews)
-            sV.contentOffset = scrollView.contentOffset;
-    }
+    else [self scrollHorizontallyToOffset:scrollView.contentOffset];
+}
+
+- (void)scrollHorizontallyToOffset:(CGPoint)offset {
+    for (UIScrollView *sV in self.mainScrollViews)
+        sV.contentOffset = offset;
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {

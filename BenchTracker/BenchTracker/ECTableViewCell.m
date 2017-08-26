@@ -18,14 +18,23 @@
 - (void)loadWithWeight:(NSInteger)weight length:(NSInteger)length {
     [self.scrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     for (int i = 0; i < length; i++) {
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(60*i, 5, 60, 30)];
-        label.textColor = [UIColor BTGrayColor];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(50*i+2.5, 2.5, 45, 30)];
+        label.layer.cornerRadius = 10.0;
+        label.clipsToBounds = YES;
+        if (i == self.selectedSection) {
+            label.textColor = [UIColor whiteColor];
+            label.backgroundColor = [UIColor BTGrayColor];
+        }
+        else {
+            label.textColor = [UIColor BTGrayColor];
+            label.backgroundColor = [UIColor whiteColor];
+        }
         label.textAlignment = NSTextAlignmentCenter;
-        label.font = [UIFont systemFontOfSize:17 weight:UIFontWeightSemibold];
+        label.font = [UIFont systemFontOfSize:15 weight:UIFontWeightSemibold];
         label.text = [NSString stringWithFormat:@"%d",[BT1RMCalculator equivilentForReps:i+2 weight:weight]];
         [self.scrollView addSubview:label];
     }
-    self.scrollView.contentSize = CGSizeMake(60*length, 39);
+    self.scrollView.contentSize = CGSizeMake(50*length, 34);
 }
 
 @end

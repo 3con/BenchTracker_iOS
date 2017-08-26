@@ -83,33 +83,14 @@
         if (self.sets.count < 12) {
             [self performBatchUpdates:^{
                 NSString *result = [self.setDataSource setToAddForSetCollectionView:self];
-                [self.sets addObject:result];
-                [self insertItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:0]]];
+                if (result) {
+                    [self.sets addObject:result];
+                    [self insertItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:0]]];
+                }
+                else [self animateCancelAdd];
             } completion:nil];
         }
-        else {
-            UICollectionViewCell *cell = [self cellForItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-            UILabel *label = cell.subviews[1];
-            [UIView animateWithDuration:.2 animations:^{
-                label.alpha = 0;
-            } completion:^(BOOL finished) {
-                label.text = @"x";
-                [UIView animateWithDuration:.2 animations:^{
-                    label.alpha = 1;
-                } completion:^(BOOL finished) {
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW,1*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                        [UIView animateWithDuration:.2 animations:^{
-                            label.alpha = 0;
-                        } completion:^(BOOL finished) {
-                            label.text = @"+";
-                            [UIView animateWithDuration:.2 animations:^{
-                                label.alpha = 1;
-                            } completion:nil];
-                        }];
-                    });
-                }];
-            }];
-        }
+        else [self animateCancelAdd];
     }
     else { //delete set
         [(SetCollectionViewCell *)[self cellForItemAtIndexPath:indexPath] performDeleteAnimationWithDuration:.4];
@@ -120,6 +101,30 @@
             } completion:nil];
         });
     }
+}
+
+- (void)animateCancelAdd {
+    UICollectionViewCell *cell = [self cellForItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    UILabel *label = cell.subviews[1];
+    [UIView animateWithDuration:.2 animations:^{
+        label.alpha = 0;
+    } completion:^(BOOL finished) {
+        label.text = @"x";
+        [UIView animateWithDuration:.2 animations:^{
+            label.alpha = 1;
+        } completion:^(BOOL finished) {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW,1*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                [UIView animateWithDuration:.2 animations:^{
+                    label.alpha = 0;
+                } completion:^(BOOL finished) {
+                    label.text = @"+";
+                    [UIView animateWithDuration:.2 animations:^{
+                        label.alpha = 1;
+                    } completion:nil];
+                }];
+            });
+        }];
+    }];
 }
 
 #pragma mark - color methods
