@@ -12,7 +12,6 @@
 #import "ZFModalTransitionAnimator.h"
 #import "ExerciseTableViewCell.h"
 #import "PassTouchesView.h"
-#import "BTPDFGenerator.h"
 #import "MMQRCodeMakerUtil.h"
 #import "BTSettings+CoreDataClass.h"
 #import "Appirater.h"
@@ -132,21 +131,10 @@
     [self updateWorkout];
 }
 
-- (IBAction)pdfButtonPressed:(id)sender {
+- (IBAction)settingsButtonPressed:(UIButton *)sender {
     [self updateWorkout];
     self.startDate = nil;
-    NSString *path = [BTPDFGenerator generatePDFWithWorkouts:@[self.workout]];
-    UIPrintInteractionController *printController = [UIPrintInteractionController sharedPrintController];
-    printController.delegate = self;
-    UIPrintInfo *printInfo = [UIPrintInfo printInfo];
-    printInfo.outputType = UIPrintInfoOutputGeneral;
-    printInfo.jobName = self.workout.name;
-    printInfo.duplex = UIPrintInfoDuplexLongEdge;
-    printController.printInfo = printInfo;
-    printController.printingItem = [NSData dataWithContentsOfURL:[NSURL fileURLWithPath:path]];
-    [printController presentAnimated:YES completionHandler:^(UIPrintInteractionController *printInteractionController, BOOL completed, NSError *error){
-        if (!completed && error) NSLog(@"PDF print failed due to error in domain %@, error code %lu", error.domain, (long)error.code);
-    }];
+    [self presentSettingsViewControllerWithPoint:sender.center];
 }
 
 - (IBAction)qrButtonPressed:(UIButton *)sender {
@@ -597,9 +585,9 @@
     return YES;
 }
 
-#pragma mark - printInteractionVC delegate
+#pragma mark - settingsVC delegate
 
-- (void)printInteractionControllerWillDismissPrinterOptions:(UIPrintInteractionController *)printInteractionController {
+- (void)WorkoutSettingsViewControllerWillDismiss:(WorkoutSettingsViewController *)wsVC {
     self.potentialStartDate = [NSDate date];
 }
 
@@ -643,6 +631,24 @@
     eVC.transitioningDelegate = self.animator;
     eVC.modalPresentationStyle = UIModalPresentationCustom;
     [self presentViewController:eVC animated:YES completion:nil];
+}
+
+- (void)presentSettingsViewControllerWithPoint:(CGPoint)point {
+    WorkoutSettingsViewController *wseVC = [self.storyboard instantiateViewControllerWithIdentifier:@"wse"];
+    wseVC.delegate = self;
+    wseVC.point = point;
+    wseVC.settings = self.settings;
+    wseVC.workout = self.workout;
+    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:wseVC];
+    self.animator.bounces = NO;
+    self.animator.dragable = NO;
+    self.animator.behindViewAlpha = 1;
+    self.animator.behindViewScale = 1;
+    self.animator.transitionDuration = 0;
+    self.animator.direction = ZFModalTransitonDirectionBottom;
+    wseVC.transitioningDelegate = self.animator;
+    wseVC.modalPresentationStyle = UIModalPresentationCustom;
+    [self presentViewController:wseVC animated:YES completion:nil];
 }
 
 - (void)presentQRDisplayViewControllerWithPoint:(CGPoint)point {

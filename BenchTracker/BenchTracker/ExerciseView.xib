@@ -102,6 +102,18 @@
                                 <action selector="deleteButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="RXM-pk-eDW"/>
                             </connections>
                         </button>
+                        <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zI3-zF-Abc">
+                            <rect key="frame" x="342" y="8" width="24" height="24"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="24" id="h4H-dY-39I"/>
+                                <constraint firstAttribute="width" secondItem="zI3-zF-Abc" secondAttribute="height" id="uB6-r6-dgk"/>
+                            </constraints>
+                            <inset key="imageEdgeInsets" minX="3" minY="3" maxX="3" maxY="3"/>
+                            <state key="normal" image="Table"/>
+                            <connections>
+                                <action selector="tableShowButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="ucN-1U-Y4e"/>
+                            </connections>
+                        </button>
                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="XQY-rd-tm3" customClass="SetCollectionView">
                             <rect key="frame" x="0.0" y="200" width="374" height="60"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -115,18 +127,6 @@
                                 <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </collectionViewFlowLayout>
                         </collectionView>
-                        <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zI3-zF-Abc">
-                            <rect key="frame" x="342" y="8" width="24" height="24"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="24" id="h4H-dY-39I"/>
-                                <constraint firstAttribute="width" secondItem="zI3-zF-Abc" secondAttribute="height" id="uB6-r6-dgk"/>
-                            </constraints>
-                            <inset key="imageEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
-                            <state key="normal" image="Table"/>
-                            <connections>
-                                <action selector="tableShowButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="ucN-1U-Y4e"/>
-                            </connections>
-                        </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eY4-rH-vPU">
                             <rect key="frame" x="0.0" y="0.0" width="374" height="260"/>
                             <subviews>
@@ -229,6 +229,6 @@
         </view>
     </objects>
     <resources>
-        <image name="Table" width="64" height="64"/>
+        <image name="Table" width="256" height="256"/>
     </resources>
 </document>

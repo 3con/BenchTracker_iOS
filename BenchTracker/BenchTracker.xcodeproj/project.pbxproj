@@ -13,6 +13,7 @@
 		50404F5B1F3280430070B1A9 /* BTUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50404F5A1F3280430070B1A9 /* BTUserModel.m */; };
 		50404F5F1F32816A0070B1A9 /* BTSettingsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50404F5E1F32816A0070B1A9 /* BTSettingsModel.m */; };
 		50530C261F50BC4100472426 /* SetCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50530C251F50BC4100472426 /* SetCollectionView.m */; };
+		50530C2A1F511BC600472426 /* WorkoutSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50530C291F511BC600472426 /* WorkoutSettingsViewController.m */; };
 		5054D8D31F3391C3000EBC21 /* BTTutorialManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5054D8D21F3391C3000EBC21 /* BTTutorialManager.m */; };
 		50636F2A1F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50636F281F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.m */; };
 		50636F2B1F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50636F291F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.xib */; };
@@ -144,6 +145,8 @@
 		50404F5E1F32816A0070B1A9 /* BTSettingsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BTSettingsModel.m; path = BenchTracker/BTSettingsModel.m; sourceTree = "<group>"; };
 		50530C241F50BC4100472426 /* SetCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetCollectionView.h; sourceTree = "<group>"; };
 		50530C251F50BC4100472426 /* SetCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetCollectionView.m; sourceTree = "<group>"; };
+		50530C281F511BC600472426 /* WorkoutSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkoutSettingsViewController.h; sourceTree = "<group>"; };
+		50530C291F511BC600472426 /* WorkoutSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkoutSettingsViewController.m; sourceTree = "<group>"; };
 		5054D8D11F3391C3000EBC21 /* BTTutorialManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTutorialManager.h; sourceTree = "<group>"; };
 		5054D8D21F3391C3000EBC21 /* BTTutorialManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTutorialManager.m; sourceTree = "<group>"; };
 		50636F271F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EEExerciseTypeTableViewCell.h; sourceTree = "<group>"; };
@@ -402,6 +405,15 @@
 				F9418FB31F04C8430083C3DC /* Set Flow Layout */,
 			);
 			name = "Set Collection View";
+			sourceTree = "<group>";
+		};
+		50530C2B1F511BCA00472426 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				50530C281F511BC600472426 /* WorkoutSettingsViewController.h */,
+				50530C291F511BC600472426 /* WorkoutSettingsViewController.m */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 		5054D8D41F3391D3000EBC21 /* Tutorial */ = {
@@ -824,10 +836,11 @@
 			children = (
 				F95F93421F03738B00A19C4D /* WorkoutViewController.h */,
 				F95F93431F03738B00A19C4D /* WorkoutViewController.m */,
-				F9F522F11F193E4400061AF0 /* Pass touches view */,
+				50530C2B1F511BCA00472426 /* Settings */,
 				F917BB611F0DD40500614AB1 /* QR display */,
 				F917BB511F0D24EB00614AB1 /* PDF generator */,
 				F96207731F05DCF800DE2330 /* Exercise cell */,
+				F9F522F11F193E4400061AF0 /* Pass touches view */,
 			);
 			name = Workout;
 			sourceTree = "<group>";
@@ -1485,6 +1498,7 @@
 				5093AE6E1F394AD1006CA6F0 /* BTWorkoutTemplate+CoreDataProperties.m in Sources */,
 				F9DA75231F02EE9600347B0D /* BTUser+CoreDataProperties.m in Sources */,
 				F9640BD91F080E590053C9C0 /* BTSettings+CoreDataProperties.m in Sources */,
+				50530C2A1F511BC600472426 /* WorkoutSettingsViewController.m in Sources */,
 				F9A549401F13064400743897 /* BTAnalyticsBarChart.m in Sources */,
 				F95F932F1F02FC5000A19C4D /* BTTypeListModel.m in Sources */,
 				F95F5CF61F08B54500A567FA /* SettingsViewController.m in Sources */,
