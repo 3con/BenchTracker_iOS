@@ -9,6 +9,7 @@
 #import "TemplateSelectionViewController.h"
 #import "BTWorkoutTemplate+CoreDataClass.h"
 #import "WorkoutTemplateTableViewCell.h"
+#import "BTSettings+CoreDataClass.h"
 
 @interface TemplateSelectionViewController ()
 
@@ -53,11 +54,14 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 128;
+    return [WorkoutTemplateTableViewCell heightForWorkoutTemplate:[self.fetchedResultsController objectAtIndexPath:indexPath]];
 }
 
 - (void)configureTemplateCell:(WorkoutTemplateTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    if (self.settings.exerciseTypeColors)
+        cell.exerciseTypeColors = [NSKeyedUnarchiver unarchiveObjectWithData:self.settings.exerciseTypeColors];
     cell.delegate = self;
+    [cell loadWorkoutTemplate:[self.fetchedResultsController objectAtIndexPath:indexPath]];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -69,7 +73,10 @@
 #pragma mark - tableView delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    BTWorkout *workout = [BTWorkoutTemplate workoutForWorkoutTemplate:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+    [self dismissViewControllerAnimated:YES completion:^{
+        [self.delegate templateSelectionViewController:self didDismissWithSelectedWorkout:workout];
+    }];
 }
 
 #pragma mark - MGSwipeTableCell delegate

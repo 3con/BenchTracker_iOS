@@ -11,6 +11,7 @@
 #import "MGSwipeTableCell.h"
 
 @class BTWorkout;
+@class BTSettings;
 @class TemplateSelectionViewController;
 
 @protocol TemplateSelectionViewControllerDelegate <NSObject>
@@ -22,5 +23,7 @@
 @property (nonatomic) id<TemplateSelectionViewControllerDelegate> delegate;
 
 @property (nonatomic) NSManagedObjectContext *context;
+
+@property (nonatomic) BTSettings *settings;
 
 @end

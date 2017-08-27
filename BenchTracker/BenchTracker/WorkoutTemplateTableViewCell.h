@@ -10,6 +10,14 @@
 #import "MGSwipeTableCell.h"
 #import "BTStackedBarView.h"
 
+@class BTWorkoutTemplate;
+
 @interface WorkoutTemplateTableViewCell : MGSwipeTableCell <BTStackedBarViewDataSource>
+
+@property (nonatomic) NSDictionary *exerciseTypeColors;
+
+- (void)loadWorkoutTemplate:(BTWorkoutTemplate *)workoutTemplate;
+
++ (CGFloat)heightForWorkoutTemplate:(BTWorkoutTemplate *)workoutTemplate;
 
 @end

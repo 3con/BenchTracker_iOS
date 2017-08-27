@@ -87,8 +87,7 @@
     tW.summary = workout.summary;
     tW.exercises = [NSOrderedSet orderedSet];
     for (BTExercise *exercise in workout.exercises) {
-        BTExerciseTemplate *eT = [NSEntityDescription insertNewObjectForEntityForName:@"BTExerciseTemplate"
-                                                               inManagedObjectContext:context];
+        BTExerciseTemplate *eT = [NSEntityDescription insertNewObjectForEntityForName:@"BTExerciseTemplate" inManagedObjectContext:context];
         eT.name = exercise.name;
         eT.iteration = exercise.iteration;
         eT.category = exercise.category;
@@ -106,6 +105,23 @@
     BTWorkoutTemplate *template = [context executeFetchRequest:request error:nil].firstObject;
     if (template) [context deleteObject:template];
     [context save:nil];
+}
+
++ (BTWorkout *)workoutForWorkoutTemplate:(BTWorkoutTemplate *)workoutTemplate {
+    NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    BTWorkout *workout = [BTWorkout workout];
+    workout.name = workoutTemplate.name;
+    workout.summary = workoutTemplate.summary;
+    workout.supersets = workoutTemplate.supersets;
+    for (BTExerciseTemplate *eT in workoutTemplate.exercises) {
+        BTExercise *exercise = [NSEntityDescription insertNewObjectForEntityForName:@"BTExercise" inManagedObjectContext:context];
+        exercise.name = eT.name;
+        exercise.iteration = eT.iteration;
+        exercise.category = eT.category;
+        exercise.style = eT.style;
+        [workout addExercisesObject:exercise];
+    }
+    return workout;
 }
 
 #pragma mark - private helper methods

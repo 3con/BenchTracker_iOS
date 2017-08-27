@@ -351,11 +351,10 @@
 }
 
 - (void)configureWorkoutCell:(WorkoutTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    BTWorkout *workout = [_fetchedResultsController objectAtIndexPath:indexPath];
     if (self.settings.exerciseTypeColors)
         cell.exerciseTypeColors = [NSKeyedUnarchiver unarchiveObjectWithData:self.settings.exerciseTypeColors];
     cell.delegate = self;
-    [cell loadWorkout:workout];
+    [cell loadWorkout:[_fetchedResultsController objectAtIndexPath:indexPath]];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -488,6 +487,7 @@
     TemplateSelectionViewController *tsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ts"];
     tsVC.delegate = self;
     tsVC.context = self.context;
+    tsVC.settings = self.settings;
     self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:tsVC];
     self.animator.bounces = NO;
     self.animator.dragable = NO;

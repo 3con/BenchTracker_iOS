@@ -33,6 +33,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void)removeWorkoutFromTemplateList:(BTWorkout *)workout;
 
++ (BTWorkout *)workoutForWorkoutTemplate:(BTWorkoutTemplate *)workoutTemplate;
+
 @end
 
 NS_ASSUME_NONNULL_END
