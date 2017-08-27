@@ -69,12 +69,21 @@
     [self loadWorkoutTemplateArray:model.defaultWorkouts source:TEMPLATE_SOURCE_DEFAULT];
 }
 
++ (BOOL)templateExistsForWorkout:(BTWorkout *)workout {
+    NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    NSFetchRequest *request = [BTWorkoutTemplate fetchRequest];
+    request.fetchLimit = 1;
+    request.predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"uuid == \"%@\"",workout.uuid]];
+    return [context executeFetchRequest:request error:nil].count > 0;
+}
+
 + (void)saveWorkoutToTemplateList:(BTWorkout *)workout {
     NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
     BTWorkoutTemplate *tW = [NSEntityDescription insertNewObjectForEntityForName:@"BTWorkoutTemplate" inManagedObjectContext:context];
     tW.source = TEMPLATE_SOURCE_USER;
     tW.name = workout.name;
-    tW.supersets = [NSKeyedUnarchiver unarchiveObjectWithData:workout.supersets];
+    tW.uuid = workout.uuid;
+    tW.supersets = workout.supersets;
     tW.summary = workout.summary;
     tW.exercises = [NSOrderedSet orderedSet];
     for (BTExercise *exercise in workout.exercises) {
@@ -86,6 +95,16 @@
         eT.style = exercise.style;
         [tW addExercisesObject:eT];
     }
+    [context save:nil];
+}
+
++ (void)removeWorkoutFromTemplateList:(BTWorkout *)workout {
+    NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    NSFetchRequest *request = [BTWorkoutTemplate fetchRequest];
+    request.fetchLimit = 1;
+    request.predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"uuid == \"%@\"",workout.uuid]];
+    BTWorkoutTemplate *template = [context executeFetchRequest:request error:nil].firstObject;
+    if (template) [context deleteObject:template];
     [context save:nil];
 }
 

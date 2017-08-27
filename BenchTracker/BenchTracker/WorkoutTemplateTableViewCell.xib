@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="WorkoutTemplateTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="128"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="127.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ezm-Dy-Arj" customClass="BTStackedBarView">
+                        <rect key="frame" x="204" y="11" width="199" height="40"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="250" id="9j7-Ic-Nrm"/>
+                            <constraint firstAttribute="height" constant="40" id="jse-ZL-ymw"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Afternoon Workout" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eM0-QI-3To">
+                        <rect key="frame" x="11" y="18" width="185" height="27"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="27" id="ECn-cv-C7l"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="185" id="nc3-9q-tXA"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lcN-kF-ETh">
+                        <rect key="frame" x="16" y="57" width="183" height="62.5"/>
+                        <string key="text">Just testing having a lot of text Just testing having a lot of text Just testing having a lot of text Just testing having a lot of text Just testing having a lot of text</string>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.55282360406091369" green="0.55282360406091369" blue="0.55282360406091369" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q6K-i7-6pD">
+                        <rect key="frame" x="215" y="57" width="183" height="62.5"/>
+                        <string key="text">Just testing having a lot of text Just testing having a lot of text Just testing having a lot of text Just testing having a lot of text Just testing having a lot of text</string>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.55282360406091369" green="0.55282360406091369" blue="0.55282360406091369" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="eM0-QI-3To" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="3" id="5kN-jt-fAy"/>
+                    <constraint firstItem="ezm-Dy-Arj" firstAttribute="leading" secondItem="eM0-QI-3To" secondAttribute="trailing" constant="8" id="BCa-Ws-sd6"/>
+                    <constraint firstItem="eM0-QI-3To" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="10" id="Dpm-27-Yqc"/>
+                    <constraint firstItem="lcN-kF-ETh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="H4v-Wh-Nta"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="lcN-kF-ETh" secondAttribute="bottom" id="IR1-ea-6HA"/>
+                    <constraint firstItem="eM0-QI-3To" firstAttribute="centerY" secondItem="ezm-Dy-Arj" secondAttribute="centerY" id="QtW-y5-qbL"/>
+                    <constraint firstItem="lcN-kF-ETh" firstAttribute="height" secondItem="Q6K-i7-6pD" secondAttribute="height" id="YTY-AJ-uOZ"/>
+                    <constraint firstItem="Q6K-i7-6pD" firstAttribute="leading" secondItem="lcN-kF-ETh" secondAttribute="trailing" constant="16" id="dlR-Es-9Io"/>
+                    <constraint firstItem="lcN-kF-ETh" firstAttribute="width" secondItem="Q6K-i7-6pD" secondAttribute="width" id="kO3-v8-f5m"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="ezm-Dy-Arj" secondAttribute="trailing" constant="3" id="obl-D2-nTM"/>
+                    <constraint firstItem="lcN-kF-ETh" firstAttribute="top" secondItem="eM0-QI-3To" secondAttribute="bottom" constant="12" id="ufA-AM-s7H"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Q6K-i7-6pD" secondAttribute="trailing" constant="8" id="w1W-DZ-DPz"/>
+                    <constraint firstItem="Q6K-i7-6pD" firstAttribute="centerY" secondItem="lcN-kF-ETh" secondAttribute="centerY" id="zzf-kG-m73"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="detailLabel1" destination="lcN-kF-ETh" id="QC1-uP-cO6"/>
+                <outlet property="detailLabel2" destination="Q6K-i7-6pD" id="LQ2-es-SC9"/>
+                <outlet property="nameLabel" destination="eM0-QI-3To" id="inQ-0p-QZN"/>
+                <outlet property="stackedBarView" destination="ezm-Dy-Arj" id="kPj-SW-r9F"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

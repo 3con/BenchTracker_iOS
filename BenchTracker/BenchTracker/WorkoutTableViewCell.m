@@ -39,14 +39,17 @@
 }
 
 - (void)loadWorkout:(BTWorkout *)workout {
-    self.leftButtons = @[[MGSwipeButton buttonWithTitle:@"Delete" icon:nil
-                                        backgroundColor:[UIColor BTRedColor]]];
+    MGSwipeButton *delButton = [MGSwipeButton buttonWithTitle:@"Delete" icon:nil backgroundColor:[UIColor BTRedColor]];
+    delButton.buttonWidth = 80;
+    self.leftButtons = @[delButton];
     self.leftSwipeSettings.transition = MGSwipeTransitionClipCenter;
     self.leftExpansion.buttonIndex = 0;
     self.leftExpansion.fillOnTrigger = NO;
     self.leftExpansion.threshold = 2.0;
-//    self.rightButtons = @[[MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"Template"]
-  //                                       backgroundColor:[UIColor BTButtonSecondaryColor]]];
+    MGSwipeButton *temButton = [MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"TemplateAdd"]
+                                           backgroundColor:[UIColor BTButtonSecondaryColor]];
+    temButton.buttonWidth = 80;
+    self.rightButtons = @[temButton];
     self.rightSwipeSettings.transition = MGSwipeTransitionClipCenter;
     self.rightExpansion.buttonIndex = 0;
     self.rightExpansion.fillOnTrigger = NO;
@@ -88,12 +91,6 @@
 
 - (UIColor *)stackedBarView:(BTStackedBarView *)barView colorForBarAtIndex:(NSInteger)index {
     return self.exerciseTypeColors[self.tempSummary[index][0]];
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 @end

@@ -637,6 +637,7 @@
     WorkoutSettingsViewController *wseVC = [self.storyboard instantiateViewControllerWithIdentifier:@"wse"];
     wseVC.delegate = self;
     wseVC.point = point;
+    wseVC.context = self.context;
     wseVC.settings = self.settings;
     wseVC.workout = self.workout;
     self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:wseVC];

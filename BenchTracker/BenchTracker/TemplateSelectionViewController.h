@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
+#import "MGSwipeTableCell.h"
 
 @class BTWorkout;
 @class TemplateSelectionViewController;
@@ -15,7 +17,7 @@
 - (void)templateSelectionViewController:(TemplateSelectionViewController *)tsVC didDismissWithSelectedWorkout:(BTWorkout *)workout;
 @end
 
-@interface TemplateSelectionViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface TemplateSelectionViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, MGSwipeTableCellDelegate>
 
 @property (nonatomic) id<TemplateSelectionViewControllerDelegate> delegate;
 

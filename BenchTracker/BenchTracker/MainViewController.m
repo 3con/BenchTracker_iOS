@@ -258,11 +258,13 @@
             self.calendarView.alpha = 0;
             self.blankWorkoutButton.alpha = 1;
             self.scanWorkoutButton.alpha = 1;
+            self.templateButton.alpha = 1;
             self.rightBarButton.alpha = 1;
         } completion:^(BOOL finished) {
             self.listTableView.userInteractionEnabled = YES;
             self.blankWorkoutButton.userInteractionEnabled = YES;
             self.scanWorkoutButton.userInteractionEnabled = YES;
+            self.templateButton.userInteractionEnabled = YES;
         }];
     }
     else if (index == 1) {
@@ -277,12 +279,14 @@
         self.calendarView.userInteractionEnabled = NO;
         self.blankWorkoutButton.userInteractionEnabled = NO;
         self.scanWorkoutButton.userInteractionEnabled = NO;
+        self.templateButton.userInteractionEnabled = NO;
         [UIView animateWithDuration:.2 animations:^{
             self.listTableView.alpha = 0;
             self.weekdayContainerView.alpha = 1;
             self.calendarView.alpha = 0;
             self.blankWorkoutButton.alpha = 0;
             self.scanWorkoutButton.alpha = 0;
+            self.templateButton.alpha = 0;
             self.rightBarButton.alpha = 1;
         } completion:^(BOOL finished) {
             self.weekdayContainerView.userInteractionEnabled = YES;
@@ -300,12 +304,14 @@
         self.weekdayContainerView.userInteractionEnabled = NO;
         self.blankWorkoutButton.userInteractionEnabled = NO;
         self.scanWorkoutButton.userInteractionEnabled = NO;
+        self.templateButton.userInteractionEnabled = NO;
         [UIView animateWithDuration:.2 animations:^{
             self.listTableView.alpha = 0;
             self.weekdayContainerView.alpha = 0;
             self.calendarView.alpha = 1;
             self.blankWorkoutButton.alpha = 0;
             self.scanWorkoutButton.alpha = 0;
+            self.templateButton.alpha = 0;
             self.rightBarButton.alpha = 1;
         } completion:^(BOOL finished) {
             self.calendarView.userInteractionEnabled = YES;

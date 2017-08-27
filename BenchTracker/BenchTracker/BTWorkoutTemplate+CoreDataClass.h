@@ -27,7 +27,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void)loadTemplateListModel:(BTTemplateListModel *)model;
 
++ (BOOL)templateExistsForWorkout:(BTWorkout *)workout;
+
 + (void)saveWorkoutToTemplateList:(BTWorkout *)workout;
+
++ (void)removeWorkoutFromTemplateList:(BTWorkout *)workout;
 
 @end
 

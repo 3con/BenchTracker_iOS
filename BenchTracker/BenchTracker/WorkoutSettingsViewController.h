@@ -20,6 +20,7 @@
 
 @property (nonatomic) id<WorkoutSettingsViewControllerDelegate> delegate;
 
+@property (nonatomic) NSManagedObjectContext *context;
 @property (nonatomic) BTSettings *settings;
 
 @property (nonatomic) BTWorkout *workout;

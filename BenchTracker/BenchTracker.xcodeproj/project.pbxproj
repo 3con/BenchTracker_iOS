@@ -14,6 +14,8 @@
 		50404F5F1F32816A0070B1A9 /* BTSettingsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50404F5E1F32816A0070B1A9 /* BTSettingsModel.m */; };
 		50530C261F50BC4100472426 /* SetCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50530C251F50BC4100472426 /* SetCollectionView.m */; };
 		50530C2A1F511BC600472426 /* WorkoutSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50530C291F511BC600472426 /* WorkoutSettingsViewController.m */; };
+		50530C2F1F52412200472426 /* WorkoutTemplateTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50530C2D1F52412200472426 /* WorkoutTemplateTableViewCell.m */; };
+		50530C301F52412200472426 /* WorkoutTemplateTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50530C2E1F52412200472426 /* WorkoutTemplateTableViewCell.xib */; };
 		5054D8D31F3391C3000EBC21 /* BTTutorialManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5054D8D21F3391C3000EBC21 /* BTTutorialManager.m */; };
 		50636F2A1F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50636F281F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.m */; };
 		50636F2B1F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50636F291F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.xib */; };
@@ -147,6 +149,9 @@
 		50530C251F50BC4100472426 /* SetCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetCollectionView.m; sourceTree = "<group>"; };
 		50530C281F511BC600472426 /* WorkoutSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkoutSettingsViewController.h; sourceTree = "<group>"; };
 		50530C291F511BC600472426 /* WorkoutSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkoutSettingsViewController.m; sourceTree = "<group>"; };
+		50530C2C1F52412200472426 /* WorkoutTemplateTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkoutTemplateTableViewCell.h; sourceTree = "<group>"; };
+		50530C2D1F52412200472426 /* WorkoutTemplateTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkoutTemplateTableViewCell.m; sourceTree = "<group>"; };
+		50530C2E1F52412200472426 /* WorkoutTemplateTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WorkoutTemplateTableViewCell.xib; sourceTree = "<group>"; };
 		5054D8D11F3391C3000EBC21 /* BTTutorialManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTutorialManager.h; sourceTree = "<group>"; };
 		5054D8D21F3391C3000EBC21 /* BTTutorialManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTutorialManager.m; sourceTree = "<group>"; };
 		50636F271F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EEExerciseTypeTableViewCell.h; sourceTree = "<group>"; };
@@ -416,6 +421,16 @@
 			name = Settings;
 			sourceTree = "<group>";
 		};
+		50530C311F52412600472426 /* Template TVC */ = {
+			isa = PBXGroup;
+			children = (
+				50530C2C1F52412200472426 /* WorkoutTemplateTableViewCell.h */,
+				50530C2D1F52412200472426 /* WorkoutTemplateTableViewCell.m */,
+				50530C2E1F52412200472426 /* WorkoutTemplateTableViewCell.xib */,
+			);
+			name = "Template TVC";
+			sourceTree = "<group>";
+		};
 		5054D8D41F3391D3000EBC21 /* Tutorial */ = {
 			isa = PBXGroup;
 			children = (
@@ -574,6 +589,7 @@
 			children = (
 				50CF69D41F3A685C00DDE8A6 /* TemplateSelectionViewController.h */,
 				50CF69D51F3A685C00DDE8A6 /* TemplateSelectionViewController.m */,
+				50530C311F52412600472426 /* Template TVC */,
 			);
 			name = "Template selection";
 			sourceTree = "<group>";
@@ -1314,6 +1330,7 @@
 				F96207721F05DCF200DE2330 /* ExerciseTableViewCell.xib in Resources */,
 				F917BB571F0D2AC400614AB1 /* BTWorkoutPDF.xib in Resources */,
 				F94C893B1F154498006C6BDD /* ADPodiumView.xib in Resources */,
+				50530C301F52412200472426 /* WorkoutTemplateTableViewCell.xib in Resources */,
 				F94C89411F15B68D006C6BDD /* ADMuscleSplitTableViewCell.xib in Resources */,
 				F9418FBE1F04CEF80083C3DC /* SetCollectionViewCell.xib in Resources */,
 				F9FD19E41F141FF300AB3FEE /* ADWorkoutsViewController.xib in Resources */,
@@ -1437,6 +1454,7 @@
 				F9DA75281F02EE9600347B0D /* BTWorkout+CoreDataClass.m in Sources */,
 				F9DA75271F02EE9600347B0D /* BTExerciseType+CoreDataProperties.m in Sources */,
 				F9A5494E1F13075600743897 /* AnalyticsViewController.m in Sources */,
+				50530C2F1F52412200472426 /* WorkoutTemplateTableViewCell.m in Sources */,
 				5093AE741F394B14006CA6F0 /* BTExerciseTemplate+CoreDataProperties.m in Sources */,
 				F9A549511F134A3100743897 /* AnalyticsDetailViewController.m in Sources */,
 				508568CC1F310DDD0046A76F /* ECSideTableViewCell.m in Sources */,
