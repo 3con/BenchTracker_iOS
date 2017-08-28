@@ -25,7 +25,7 @@
     if (error) NSLog(@"TemplateListManager error: %@",error);
     else if (object.count == 0) {
         NSLog(@"No Template List, loading default");
-        NSString *JSONString = [[NSString alloc] initWithData:[[NSDataAsset alloc] initWithName:@"DefaultWorkoutTemplateList"].data
+        NSString *JSONString = [[NSString alloc] initWithData:[[NSDataAsset alloc] initWithName:@"DefaultTemplateList"].data
                                                      encoding:NSUTF8StringEncoding];
         BTTemplateListModel *model = [[BTTemplateListModel alloc] initWithString:JSONString error:&error];
         if (error) NSLog(@"templateList JSON model error:%@",error);
@@ -40,6 +40,7 @@
     for (BTWorkoutTemplate *wT in [BTWorkoutTemplate allWorkoutTemplates]) {
         BTWorkoutTemplateModel *workout = [[BTWorkoutTemplateModel alloc] init];
         workout.name = wT.name;
+        workout.uuid = wT.uuid;
         workout.supersets = [NSKeyedUnarchiver unarchiveObjectWithData:wT.supersets];
         workout.summary = wT.summary;
         workout.exercises = (NSMutableArray <BTExerciseTemplateModel *><BTExerciseTemplateModel> *)[[NSMutableArray alloc] init];
@@ -141,6 +142,7 @@
                                                                     inManagedObjectContext:context];
         workout.source = source;
         workout.name = wT.name;
+        workout.uuid = wT.uuid;
         workout.supersets = [NSKeyedArchiver archivedDataWithRootObject:wT.supersets];
         workout.summary = wT.summary;
         workout.exercises = [NSOrderedSet orderedSet];

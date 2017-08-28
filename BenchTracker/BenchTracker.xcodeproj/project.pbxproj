@@ -29,6 +29,7 @@
 		508568C71F31044B0046A76F /* ECTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 508568C51F31044B0046A76F /* ECTableViewCell.xib */; };
 		508568CC1F310DDD0046A76F /* ECSideTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 508568CA1F310DDD0046A76F /* ECSideTableViewCell.m */; };
 		508568CD1F310DDD0046A76F /* ECSideTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 508568CB1F310DDD0046A76F /* ECSideTableViewCell.xib */; };
+		5093651C1F53D8DA005619CA /* EmptyTemplateTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5093651B1F53D8DA005619CA /* EmptyTemplateTableViewCell.xib */; };
 		5093AE6D1F394AD1006CA6F0 /* BTWorkoutTemplate+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 5093AE6A1F394AD1006CA6F0 /* BTWorkoutTemplate+CoreDataClass.m */; };
 		5093AE6E1F394AD1006CA6F0 /* BTWorkoutTemplate+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 5093AE6C1F394AD1006CA6F0 /* BTWorkoutTemplate+CoreDataProperties.m */; };
 		5093AE731F394B14006CA6F0 /* BTExerciseTemplate+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 5093AE701F394B14006CA6F0 /* BTExerciseTemplate+CoreDataClass.m */; };
@@ -175,6 +176,7 @@
 		508568C91F310DDD0046A76F /* ECSideTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECSideTableViewCell.h; sourceTree = "<group>"; };
 		508568CA1F310DDD0046A76F /* ECSideTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECSideTableViewCell.m; sourceTree = "<group>"; };
 		508568CB1F310DDD0046A76F /* ECSideTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ECSideTableViewCell.xib; sourceTree = "<group>"; };
+		5093651B1F53D8DA005619CA /* EmptyTemplateTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyTemplateTableViewCell.xib; sourceTree = "<group>"; };
 		5093AE691F394AD1006CA6F0 /* BTWorkoutTemplate+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BTWorkoutTemplate+CoreDataClass.h"; sourceTree = "<group>"; };
 		5093AE6A1F394AD1006CA6F0 /* BTWorkoutTemplate+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BTWorkoutTemplate+CoreDataClass.m"; sourceTree = "<group>"; };
 		5093AE6B1F394AD1006CA6F0 /* BTWorkoutTemplate+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BTWorkoutTemplate+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -427,6 +429,7 @@
 				50530C2C1F52412200472426 /* WorkoutTemplateTableViewCell.h */,
 				50530C2D1F52412200472426 /* WorkoutTemplateTableViewCell.m */,
 				50530C2E1F52412200472426 /* WorkoutTemplateTableViewCell.xib */,
+				5093651B1F53D8DA005619CA /* EmptyTemplateTableViewCell.xib */,
 			);
 			name = "Template TVC";
 			sourceTree = "<group>";
@@ -1332,6 +1335,7 @@
 				F94C893B1F154498006C6BDD /* ADPodiumView.xib in Resources */,
 				50530C301F52412200472426 /* WorkoutTemplateTableViewCell.xib in Resources */,
 				F94C89411F15B68D006C6BDD /* ADMuscleSplitTableViewCell.xib in Resources */,
+				5093651C1F53D8DA005619CA /* EmptyTemplateTableViewCell.xib in Resources */,
 				F9418FBE1F04CEF80083C3DC /* SetCollectionViewCell.xib in Resources */,
 				F9FD19E41F141FF300AB3FEE /* ADWorkoutsViewController.xib in Resources */,
 				50060FDA1F33A83B00F6DC00 /* Assets.xcassets in Resources */,

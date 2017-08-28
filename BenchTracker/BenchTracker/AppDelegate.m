@@ -25,6 +25,7 @@
     //TYPE LIST HANDLING
     [BTExerciseType checkForExistingTypeList];
     //TEMPLATE LIST HANDLING
+    [BTWorkoutTemplate resetTemplateList];
     [BTWorkoutTemplate checkForExistingTemplateList];
     //APPIRATER
     [Appirater setAppId:@"1266077653"];

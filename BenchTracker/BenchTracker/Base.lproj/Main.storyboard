@@ -367,7 +367,7 @@
                                     <constraint firstAttribute="height" constant="50" id="wdB-AM-U9r"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="14" minY="14" maxX="14" maxY="14"/>
-                                <state key="normal" image="TemplateAdd">
+                                <state key="normal" image="Template">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -1011,46 +1011,30 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vJc-7E-cZc">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="72"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="asc-tP-7G5">
-                                        <rect key="frame" x="10" y="28" width="100" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="9XE-0v-kai"/>
-                                            <constraint firstAttribute="height" constant="30" id="BQZ-2J-Hpb"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                                        <state key="normal" title="Cancel">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="cancelButtonPressed:" destination="Iq4-RD-Ypj" eventType="touchUpInside" id="o75-PD-yfO"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a Template" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d3f-g2-oSl">
-                                        <rect key="frame" x="112.33333333333331" y="28" width="190" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="190" id="RiI-L7-eKt"/>
-                                            <constraint firstAttribute="height" constant="30" id="ZaQ-nL-uTZ"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="20"/>
                                 <color key="backgroundColor" red="0.078297413890000001" green="0.077457226810000002" blue="0.32783538099999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="d3f-g2-oSl" firstAttribute="top" secondItem="vJc-7E-cZc" secondAttribute="top" constant="28" id="6xA-cR-OUD"/>
-                                    <constraint firstAttribute="height" constant="72" id="9QB-6c-cuT"/>
-                                    <constraint firstItem="asc-tP-7G5" firstAttribute="centerY" secondItem="d3f-g2-oSl" secondAttribute="centerY" id="Clh-Hc-Pvo"/>
-                                    <constraint firstItem="asc-tP-7G5" firstAttribute="leading" secondItem="vJc-7E-cZc" secondAttribute="leading" constant="10" id="FNp-Yr-h4S"/>
-                                    <constraint firstItem="d3f-g2-oSl" firstAttribute="centerX" secondItem="vJc-7E-cZc" secondAttribute="centerX" id="hwD-i8-ndG"/>
+                                    <constraint firstAttribute="height" constant="20" id="9QB-6c-cuT"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CHa-DT-5jj">
-                                <rect key="frame" x="0.0" y="72" width="414" height="664"/>
+                                <rect key="frame" x="0.0" y="20" width="414" height="716"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="asc-tP-7G5">
+                                <rect key="frame" x="10" y="28" width="100" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="9XE-0v-kai"/>
+                                    <constraint firstAttribute="height" constant="30" id="BQZ-2J-Hpb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelButtonPressed:" destination="Iq4-RD-Ypj" eventType="touchUpInside" id="o75-PD-yfO"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1058,6 +1042,8 @@
                             <constraint firstItem="vJc-7E-cZc" firstAttribute="top" secondItem="Xkq-ri-95Q" secondAttribute="bottom" constant="-20" id="39g-F4-jJD"/>
                             <constraint firstItem="CHa-DT-5jj" firstAttribute="width" secondItem="rrr-FZ-2DC" secondAttribute="width" id="8Nx-3I-QgE"/>
                             <constraint firstItem="vJc-7E-cZc" firstAttribute="width" secondItem="rrr-FZ-2DC" secondAttribute="width" id="Dfz-gj-6U3"/>
+                            <constraint firstItem="asc-tP-7G5" firstAttribute="top" secondItem="Xkq-ri-95Q" secondAttribute="bottom" constant="8" id="FHV-gI-8eH"/>
+                            <constraint firstItem="asc-tP-7G5" firstAttribute="leading" secondItem="rrr-FZ-2DC" secondAttribute="leadingMargin" constant="-10" id="bzd-C8-qLq"/>
                             <constraint firstItem="vJc-7E-cZc" firstAttribute="centerX" secondItem="rrr-FZ-2DC" secondAttribute="centerX" id="vXu-kf-XfA"/>
                             <constraint firstItem="VHy-tz-vYC" firstAttribute="top" secondItem="CHa-DT-5jj" secondAttribute="bottom" id="va7-0n-1E2"/>
                             <constraint firstItem="CHa-DT-5jj" firstAttribute="top" secondItem="vJc-7E-cZc" secondAttribute="bottom" id="zKh-Z8-8hC"/>
@@ -1765,6 +1751,7 @@
         <image name="Print" width="21" height="21"/>
         <image name="QrCode" width="85" height="85"/>
         <image name="Settings" width="22" height="22"/>
+        <image name="Template" width="85" height="85"/>
         <image name="TemplateAdd" width="21" height="21"/>
     </resources>
 </document>

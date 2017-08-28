@@ -18,4 +18,6 @@
 
 - (void)loadWorkout:(BTWorkout *)workout;
 
+- (void)checkTemplateStatus;
+
 @end

@@ -1,4 +1,197 @@
 {
-	"userWorkouts": [],
-	"defaultWorkouts": []
+	"userWorkouts":[  
+         
+      ],
+    "defaultWorkouts":[  
+        {  
+            "exercises":[  
+               {  
+                  "iteration":"Dumbbell",
+                  "style":"repsWeight",
+                  "name":"Conventional Curls",
+                  "category":"Biceps"
+               },
+               {  
+                  "style":"repsWeight",
+                  "name":"Close-grip Bench Press",
+                  "category":"Triceps"
+               },
+               {  
+                  "style":"repsWeight",
+                  "name":"Preacher Curls",
+                  "category":"Biceps"
+               },
+               {  
+                  "style":"repsWeight",
+                  "name":"Overhead Extensions",
+                  "category":"Triceps"
+               },
+               {  
+                  "style":"repsWeight",
+                  "name":"Concentration Curls",
+                  "category":"Biceps"
+               },
+               {  
+                  "style":"repsWeight",
+                  "name":"Tricep Pushdowns",
+                  "category":"Triceps"
+               }
+            ],
+            "summary":"3 Triceps#3 Biceps",
+            "name":"Arm Workout 💪",
+            "supersets":[  
+
+            ]
+         },
+         {  
+            "exercises":[  
+               {  
+                  "style":"repsWeight",
+                  "name":"Barbell Bench Press",
+                  "category":"Chest"
+               },
+               {  
+                  "style":"repsWeight",
+                  "name":"Overhead Press",
+                  "category":"Shoulders"
+               },
+               {  
+                  "style":"repsWeight",
+                  "name":"Skullcrushers",
+                  "category":"Triceps"
+               },
+               {  
+                  "style":"repsWeight",
+                  "name":"DB Flyes",
+                  "category":"Chest"
+               },
+               {  
+                  "style":"repsWeight",
+                  "name":"Overhead Extensions",
+                  "category":"Triceps"
+               },
+               {  
+                  "style":"repsWeight",
+                  "name":"Lateral Raises",
+                  "category":"Shoulders"
+               }
+            ],
+            "summary":"2 Chest#2 Triceps#2 Shoulders",
+            "name":"Push Day 🙌",
+            "supersets":[  
+
+            ]
+         },
+         {  
+            "exercises":[  
+               {  
+                  "style":"repsWeight",
+                  "name":"Squats",
+                  "category":"Legs"
+               },
+               {  
+                  "style":"repsWeight",
+                  "name":"Weighted Calf Raises",
+                  "category":"Legs"
+               },
+               {  
+                  "style":"repsWeight",
+                  "name":"Hip Thrusts",
+                  "category":"Legs"
+               },
+               {  
+                  "style":"repsWeight",
+                  "name":"Lunges",
+                  "category":"Legs"
+               },
+               {  
+                  "style":"repsWeight",
+                  "name":"Leg Press",
+                  "category":"Legs"
+               }
+            ],
+            "summary":"5 Legs",
+            "name":"Leg Day 🏋",
+            "supersets":[  
+
+            ]
+         },
+         {  
+            "exercises":[  
+               {  
+                  "style":"repsWeight",
+                  "name":"Lat Pulldowns",
+                  "category":"Back"
+               },
+               {  
+                  "style":"repsWeight",
+                  "name":"Conventional Curls",
+                  "category":"Biceps"
+               },
+               {  
+                  "style":"repsWeight",
+                  "name":"Shrugs",
+                  "category":"Back"
+               },
+               {  
+                  "style":"repsWeight",
+                  "name":"Seated Rows",
+                  "category":"Back"
+               },
+               {  
+                  "style":"repsWeight",
+                  "name":"Preacher Curls",
+                  "category":"Biceps"
+               },
+               {  
+                  "style":"reps",
+                  "name":"Bodyweight Pull-ups",
+                  "category":"Back"
+               }
+            ],
+            "summary":"4 Back#2 Biceps",
+            "name":"Pull Day 😁",
+            "supersets":[  
+
+            ]
+         },
+         {  
+            "exercises":[  
+               {  
+                  "style":"reps",
+                  "name":"Bodyweight Crunches",
+                  "category":"Abs \/ Core"
+               },
+               {  
+                  "style":"time",
+                  "name":"Bodyweight Planks",
+                  "category":"Abs \/ Core"
+               },
+               {  
+                  "style":"repsWeight",
+                  "name":"Weighted Russian Twists",
+                  "category":"Abs \/ Core"
+               },
+               {  
+                  "style":"reps",
+                  "name":"Leg Raises",
+                  "category":"Abs \/ Core"
+               },
+               {  
+                  "style":"repsWeight",
+                  "name":"Woodchoppers",
+                  "category":"Abs \/ Core"
+               }
+            ],
+            "summary":"5 Abs \/ Core",
+            "name":"Shredded Abs 😜",
+            "supersets":[  
+               [  
+                  0,
+                  1,
+                  2
+               ]
+            ]
+         }
+      ]
 }

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="UITableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="180"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe left on a workout to add it to your templates!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2hr-QM-UdG">
+                    <rect key="frame" x="117" y="95" width="180" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="180" id="DWQ-7s-4HK"/>
+                        <constraint firstAttribute="height" constant="35" id="xff-1j-t5M"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" red="0.61960784313725492" green="0.61960784313725492" blue="0.61960784313725492" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TemplateAddDark" translatesAutoresizingMaskIntoConstraints="NO" id="VdW-Jd-8DU">
+                    <rect key="frame" x="187" y="50" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="VdW-Jd-8DU" secondAttribute="height" multiplier="1:1" id="7zF-Si-Ioz"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="2hr-QM-UdG" secondAttribute="bottom" constant="50" id="QPX-i5-5pf"/>
+                <constraint firstItem="VdW-Jd-8DU" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Xuh-YJ-FlC"/>
+                <constraint firstItem="VdW-Jd-8DU" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="50" id="bao-9O-IuI"/>
+                <constraint firstItem="VdW-Jd-8DU" firstAttribute="centerX" secondItem="2hr-QM-UdG" secondAttribute="centerX" id="dzq-ZI-gTh"/>
+                <constraint firstItem="2hr-QM-UdG" firstAttribute="top" secondItem="VdW-Jd-8DU" secondAttribute="bottom" constant="5" id="z24-JS-N8r"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="TemplateAddDark" width="128" height="128"/>
+    </resources>
+</document>

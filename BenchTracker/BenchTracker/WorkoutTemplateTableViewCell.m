@@ -52,17 +52,18 @@
     self.nameLabel.text = workoutTemplate.name;
     self.stackedBarView.dataSource = self;
     [self loadStackedView];
-    NSString *leftStr = @"";
-    NSString *rightStr = @"";
+    NSMutableAttributedString *leftStr = [[NSMutableAttributedString alloc] init];
+    NSMutableAttributedString *rightStr = [[NSMutableAttributedString alloc] init];
     for (int i = 0; i < workoutTemplate.exercises.count; i++) {
         BTExerciseTemplate *exercise = workoutTemplate.exercises[i];
-        NSString *name = (exercise.iteration && exercise.iteration.length > 0) ?
-            [NSString stringWithFormat:@"%@ %@",exercise.iteration, exercise.name] : exercise.name;
-        if (i % 2 == 0) leftStr = [NSString stringWithFormat:@"%@\n%@", leftStr, name];
-        else            rightStr = [NSString stringWithFormat:@"%@\n%@", rightStr, name];
+        UIColor *color = self.exerciseTypeColors[exercise.category];
+        NSMutableAttributedString *tStr = (i <= (workoutTemplate.exercises.count+1)/2-1) ? leftStr : rightStr;
+        [tStr appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n● "
+                                                                     attributes:@{NSForegroundColorAttributeName: color}]];
+        [tStr appendAttributedString:[[NSAttributedString alloc] initWithString:exercise.name]];
     }
-    self.detailLabel1.text = (leftStr.length > 2) ? [leftStr substringFromIndex:1] : @"";
-    self.detailLabel2.text = (rightStr.length > 2) ? [rightStr substringFromIndex:1] : @"";
+    self.detailLabel1.attributedText = (leftStr.length > 2) ? [leftStr attributedSubstringFromRange:NSMakeRange(1, leftStr.length-1)] : nil;
+    self.detailLabel2.attributedText = (rightStr.length > 2) ? [rightStr attributedSubstringFromRange:NSMakeRange(1, rightStr.length-1)] : nil;
 }
 
 - (void)loadStackedView {
@@ -80,7 +81,7 @@
 
 + (CGFloat)heightForWorkoutTemplate:(BTWorkoutTemplate *)workoutTemplate {
     NSInteger numRows = (workoutTemplate.exercises.count+1)/2;
-    return 65+numRows*15.8;
+    return 71+numRows*15.8;
 }
 
 #pragma mark - stackedView datasource

@@ -8,6 +8,7 @@
 
 #import "WorkoutTableViewCell.h"
 #import "BTWorkout+CoreDataClass.h"
+#import "BTWorkoutTemplate+CoreDataClass.h"
 
 @interface WorkoutTableViewCell()
 
@@ -73,6 +74,25 @@
     }
     self.stackedView.dataSource = self;
     [self.stackedView reloadData];
+}
+
+- (void)checkTemplateStatus {
+    [self refreshButtons:YES];
+    MGSwipeButton *delButton = [MGSwipeButton buttonWithTitle:@"Delete" icon:nil backgroundColor:[UIColor BTRedColor]];
+    delButton.buttonWidth = 80;
+    self.leftButtons = @[delButton];
+    if (![BTWorkoutTemplate templateExistsForWorkout:self.workout]) {
+        MGSwipeButton *temButton = [MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"TemplateAdd"]
+                                                  backgroundColor:[UIColor BTButtonSecondaryColor]];
+        temButton.buttonWidth = 80;
+        self.rightButtons = @[temButton];
+    }
+    else {
+        MGSwipeButton *temButton = [MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"TemplateDelete"]
+                                                  backgroundColor:[UIColor BTRedColor]];
+        temButton.buttonWidth = 80;
+        self.rightButtons = @[temButton];
+    }
 }
 
 #pragma mark - stackedView datasource

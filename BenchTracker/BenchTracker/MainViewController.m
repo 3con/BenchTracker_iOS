@@ -378,6 +378,11 @@
 
 #pragma mark - MGSwipeTableCell delegate
 
+- (BOOL)swipeTableCell:(MGSwipeTableCell *)cell canSwipe:(MGSwipeDirection)direction fromPoint:(CGPoint)point {
+    [(WorkoutTableViewCell *)cell checkTemplateStatus];
+    return YES;
+}
+
 - (BOOL)swipeTableCell:(MGSwipeTableCell *)cell tappedButtonAtIndex:(NSInteger)index
              direction:(MGSwipeDirection)direction fromExpansion:(BOOL)fromExpansion {
     NSIndexPath *indexPath = [self.listTableView indexPathForCell:cell];
@@ -397,7 +402,11 @@
         [alert addAction:deleteButton];
         [self presentViewController:alert animated:YES completion:nil];
     }
-    else [BTWorkoutTemplate saveWorkoutToTemplateList:workout];
+    else {
+        if ([BTWorkoutTemplate templateExistsForWorkout:workout])
+             [BTWorkoutTemplate removeWorkoutFromTemplateList:workout];
+        else [BTWorkoutTemplate saveWorkoutToTemplateList:workout];
+    }
     return YES;
 }
 

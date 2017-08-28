@@ -16,6 +16,7 @@
 @interface BTWorkoutTemplateModel : JSONModel
 
 @property (nonatomic) NSString *name;
+@property (nonatomic) NSString <Optional> *uuid;
 @property (nonatomic) NSString *summary;
 @property (nonatomic) NSMutableArray<NSString *> *supersets; //[ "1 2 3", "5 6", ... ]
 @property (nonatomic) NSMutableArray<BTExerciseTemplateModel *> <BTExerciseTemplateModel> *exercises;
