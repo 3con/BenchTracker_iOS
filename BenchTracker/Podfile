@@ -16,6 +16,7 @@ target 'BenchTracker' do
   pod 'XLForm'
   pod 'Appirater'
   pod 'Onboard'
+  pod 'Toast'
 
   # Pods for BenchTracker
 

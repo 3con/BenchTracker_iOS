@@ -9,6 +9,7 @@ PODS:
   - Onboard (2.3.1)
   - PNChart (0.8.9):
     - UICountingLabel (~> 1.2.0)
+  - Toast (3.1.0)
   - UICountingLabel (1.2.0)
   - XLForm (3.3.0)
   - ZFDragableModalTransition (0.6)
@@ -23,6 +24,7 @@ DEPENDENCIES:
   - MMQRCodeScanner
   - Onboard
   - PNChart
+  - Toast
   - XLForm
   - ZFDragableModalTransition
 
@@ -36,10 +38,11 @@ SPEC CHECKSUMS:
   MMQRCodeScanner: aa923a6297cfb47b214aac4a7c5e78495d7fc8c0
   Onboard: b6871f25ac753175b2ab9a362fb2feb26a81a311
   PNChart: 84774d225c2126ded6c93d4dbe6ae98c3a73c2d2
+  Toast: 14a93686d6c8bfe2727afd342414e35660a8a1f3
   UICountingLabel: 1db4e7d023e1762171eb226d6dff47a7a84f27aa
   XLForm: d5c391dfc62865927b5bcab0a5a0dbfb3e02b0ec
   ZFDragableModalTransition: 0d294eaaba6edfcb9839595de765f9ca06a4b524
 
-PODFILE CHECKSUM: 932881f0af35252b42b593ee3981bac0831b0f55
+PODFILE CHECKSUM: 4e821cd9ba00c8acb4b64686370f0f8606270be7
 
 COCOAPODS: 1.2.1

@@ -64,6 +64,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Toast.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>UICountingLabel.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -87,7 +92,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>196E7667F4731BDE61C44ED049EA9AE8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>1CD80321715FDB12A3A31B7BCB09EA28</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>33AC396F22B535DC555A42F9B3201DB3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -107,22 +122,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>895D4CDB9089077CA2FB3DE4C85DD7C4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>8F5682E0AC126B1910FC04BA8A16F382</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>A8C8D601E92B0B40F48C791C48F237AE</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>B3CF0D23F87A7AE165B192189FCC64BE</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>B6E796936619244802F51DD78B3AB426</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -152,7 +162,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F4A9E18592445AE1CB818F128CBBE317</key>
+		<key>F4D456F3E271672DBB1220C39FBAD5A7</key>
 		<dict>
 			<key>primary</key>
 			<true/>

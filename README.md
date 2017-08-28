@@ -86,6 +86,7 @@ In order to get the app to fully function correctly, the file 'BenchTrackerKeys.
 * [StickyCollectionView](https://github.com/matbeich/StickyCollectionView) - Analytics view card animation
 * [PNChart](https://github.com/kevinzhow/PNChart) - Analytics view graphs
 * [AppIRater](https://github.com/arashpayan/appirater) - App store review reminder
+* [Toast](https://github.com/scalessec/Toast) - Workout template add toast popup
 * [Onboard](https://github.com/mamaral/Onboard) - Tutorial splashscreen
 * [Core Data](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/CoreData/index.html) - on-device data storage
 * [Core Graphics / Text](https://developer.apple.com/library/content/documentation/StringsTextFonts/Conceptual/CoreText_Programming/Overview/Overview.html) - workout PDF generation
@@ -94,50 +95,50 @@ In order to get the app to fully function correctly, the file 'BenchTrackerKeys.
 #### User login
 <img src="./Screenshots/image1.png" alt="Drawing" width="300 px"/>
 
-#### Main view
+#### Main view & templates
 <img src="./Screenshots/image2.png" alt="Drawing" width="300 px"/>
 <img src="./Screenshots/image3.png" alt="Drawing" width="300 px"/>
 <img src="./Screenshots/image4.png" alt="Drawing" width="300 px"/>
 <img src="./Screenshots/image5.png" alt="Drawing" width="300 px"/>
-
-#### Exercise selection
 <img src="./Screenshots/image6.png" alt="Drawing" width="300 px"/>
+
+#### Workout in progress
 <img src="./Screenshots/image7.png" alt="Drawing" width="300 px"/>
 <img src="./Screenshots/image8.png" alt="Drawing" width="300 px"/>
 
-#### Workout in progress
+#### Exercise selection
 <img src="./Screenshots/image9.png" alt="Drawing" width="300 px"/>
-
-#### Rep tracking
 <img src="./Screenshots/image10.png" alt="Drawing" width="300 px"/>
 <img src="./Screenshots/image11.png" alt="Drawing" width="300 px"/>
 
-#### Built-in equivalency chart
+#### Rep tracking
 <img src="./Screenshots/image12.png" alt="Drawing" width="300 px"/>
-
-#### Analytics card views
 <img src="./Screenshots/image13.png" alt="Drawing" width="300 px"/>
 <img src="./Screenshots/image14.png" alt="Drawing" width="300 px"/>
+
+#### Analytics card views
 <img src="./Screenshots/image15.png" alt="Drawing" width="300 px"/>
 <img src="./Screenshots/image16.png" alt="Drawing" width="300 px"/>
 <img src="./Screenshots/image17.png" alt="Drawing" width="300 px"/>
 <img src="./Screenshots/image18.png" alt="Drawing" width="300 px"/>
 <img src="./Screenshots/image19.png" alt="Drawing" width="300 px"/>
-
-#### Analytics detail views
 <img src="./Screenshots/image20.png" alt="Drawing" width="300 px"/>
 <img src="./Screenshots/image21.png" alt="Drawing" width="300 px"/>
+
+#### Analytics detail views
 <img src="./Screenshots/image22.png" alt="Drawing" width="300 px"/>
 <img src="./Screenshots/image23.png" alt="Drawing" width="300 px"/>
-
-#### Settings & custom exercises
 <img src="./Screenshots/image24.png" alt="Drawing" width="300 px"/>
 <img src="./Screenshots/image25.png" alt="Drawing" width="300 px"/>
+
+#### Settings & custom exercises
 <img src="./Screenshots/image26.png" alt="Drawing" width="300 px"/>
+<img src="./Screenshots/image27.png" alt="Drawing" width="300 px"/>
+<img src="./Screenshots/image28.png" alt="Drawing" width="300 px"/>
 
 #### Export workout to PDF
-<img src="./Screenshots/image27.png" alt="Drawing" width="300 px"/>
+<img src="./Screenshots/image29.png" alt="Drawing" width="300 px"/>
 
 #### QR code generation and scanning
-<img src="./Screenshots/image28.png" alt="Drawing" width="300 px"/>
-<img src="./Screenshots/image29.png" alt="Drawing" width="300 px"/>
+<img src="./Screenshots/image30.png" alt="Drawing" width="300 px"/>
+<img src="./Screenshots/image31.png" alt="Drawing" width="300 px"/>

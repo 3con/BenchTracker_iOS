@@ -25,7 +25,6 @@
     //TYPE LIST HANDLING
     [BTExerciseType checkForExistingTypeList];
     //TEMPLATE LIST HANDLING
-    [BTWorkoutTemplate resetTemplateList];
     [BTWorkoutTemplate checkForExistingTemplateList];
     //APPIRATER
     [Appirater setAppId:@"1266077653"];
@@ -46,11 +45,11 @@
     UIAlertController *alertController;
     if ([self loadNewStoreWithURL:url]) //Successfully loaded file
         alertController = [UIAlertController alertControllerWithTitle:@"Import Successful!"
-                                                              message:@"Your settings, workouts, and custom exercises have all been successfully imported. Congratulations and happy tracking!"
+                                                              message:@"Your settings, workouts, and custom exercises have all been successfully imported. Happy tracking!"
                                                        preferredStyle:UIAlertControllerStyleAlert];
     else                                //Failed to load file
         alertController = [UIAlertController alertControllerWithTitle:@"Import Failed"
-                                                              message:@"Unfortunately, we could not import your data. Please make sure the version of Bench Tracker on this app is the same as the one you used to export and that no data was lost between the transfer. We apoligize for this inconvenience."
+                                                              message:@"Unfortunately, we could not import your data. Please make sure the version of Bench Tracker on this app is the same as the one you used to export and that no data was lost between the transfer. We apoligize for the inconvenience."
                                                        preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
     [alertController addAction:ok];
