@@ -15,6 +15,7 @@
 
 @protocol ExerciseViewDelegate <NSObject>
 - (void)exerciseViewDidAddSet:(ExerciseView *)exerciseView;
+- (void)exerciseViewRequestedEditIteration:(ExerciseView *)exerciseView withPoint:(CGPoint)point;
 - (void)exerciseViewRequestedShowTable:(ExerciseView *)exerciseView;
 @end
 
@@ -28,6 +29,8 @@
 @property (nonatomic) UIColor *color;
 
 - (void)loadExercise:(BTExercise *)exercise;
+
+- (void)setIteration:(NSString *)iteration;
 
 - (void)reloadData;
 

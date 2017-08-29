@@ -8,6 +8,7 @@
 
 #import "ExerciseView.h"
 #import "BTExercise+CoreDataClass.h"
+#import "BTExerciseType+CoreDataClass.h"
 #import "BTSettings+CoreDataClass.h"
 
 #define PICKER_REPS      70  //1-50 by 1, 55-150 by 5
@@ -26,6 +27,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *categoryLabel;
+@property (weak, nonatomic) IBOutlet UIButton *editButton;
 
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 
@@ -50,6 +52,9 @@
     self.centerTextField.backgroundColor = [UIColor BTSecondaryColor];
     self.rightTextField.backgroundColor = [UIColor BTSecondaryColor];
     self.deleteButton.backgroundColor = [UIColor BTRedColor];
+    self.tableShowButton.backgroundColor = [UIColor BTTertiaryColor];
+    self.tableShowButton.layer.cornerRadius = 8;
+    self.tableShowButton.clipsToBounds = YES;
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillShow:)
                                                  name:UIKeyboardWillShowNotification
@@ -68,16 +73,29 @@
     self.collectionView.sets = [NSKeyedUnarchiver unarchiveObjectWithData:self.exercise.sets];
 }
 
+- (IBAction)editButtonPressed:(UIButton *)sender {
+    [self.delegate exerciseViewRequestedEditIteration:self withPoint:sender.center];
+}
+
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - public methods
 
+- (void)updateTitleLabel {
+    if (self.exercise.iteration) self.nameLabel.text = [NSString stringWithFormat:@"%@ %@", self.exercise.iteration, self.exercise.name];
+    else                         self.nameLabel.text = self.exercise.name;
+}
+
 - (void)loadExercise:(BTExercise *)exercise {
     if (![exercise.style isEqualToString:STYLE_REPSWEIGHT]) {
         self.tableShowButton.alpha = 0;
         self.tableShowButton.userInteractionEnabled = NO;
+    }
+    if ([[NSKeyedUnarchiver unarchiveObjectWithData:[BTExerciseType typeForExercise:exercise].iterations] count] == 0) {
+        self.editButton.alpha = 0;
+        self.editButton.userInteractionEnabled = NO;
     }
     self.isDeleted = NO;
     self.deletedView.alpha = 0;
@@ -91,8 +109,7 @@
     self.pickerView.showsSelectionIndicator = NO;
     [self loadTextFields];
     self.exercise = exercise;
-    if (exercise.iteration) self.nameLabel.text = [NSString stringWithFormat:@"%@ %@", exercise.iteration, exercise.name];
-    else                    self.nameLabel.text = exercise.name;
+    [self updateTitleLabel];
     self.categoryLabel.text = exercise.category;
     self.collectionView.setDataSource = self;
     [self reloadData];
@@ -105,6 +122,11 @@
         [self showPickerView];
         [self selectAppropriatePickerViewRows];
     }
+}
+
+- (void)setIteration:(NSString *)iteration {
+    self.exercise.iteration = iteration;
+    [self updateTitleLabel];
 }
 
 - (BTExercise *)getExercise {

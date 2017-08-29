@@ -144,7 +144,7 @@
     [self presentTemplateSelectionViewController];
 }
 
-#pragma mark - calendarView
+#pragma mark - FSCalendar
 
 - (void)determineFirstDay {
     if (self.user) {
@@ -170,7 +170,10 @@
     self.calendarView.scrollDirection = FSCalendarScrollDirectionVertical;
     self.calendarView.calendarWeekdayView.backgroundColor = [UIColor BTPrimaryColor];
     self.calendarView.calendarHeaderView.backgroundColor = [UIColor BTPrimaryColor];
+    [self.calendarView registerClass:[BTCalendarCell class] forCellReuseIdentifier:@"cell"];
 }
+
+#pragma mark - FSCalendar dataSource
 
 - (NSDate *)minimumDateForCalendar:(FSCalendar *)calendar {
     return [NSDate dateWithTimeInterval:-75*86400 sinceDate:self.firstDay];
@@ -180,42 +183,44 @@
     return [NSDate dateWithTimeInterval:75*86400 sinceDate:[NSDate date]];
 }
 
+- (void)configureCell:(BTCalendarCell *)cell forDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)position {
+    
+}
+
+- (FSCalendarCell *)calendar:(FSCalendar *)calendar cellForDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition {
+    BTCalendarCell *cell = [calendar dequeueReusableCellWithIdentifier:@"cell" forDate:date atMonthPosition:monthPosition];
+    return cell;
+}
+
+- (void)calendar:(FSCalendar *)calendar willDisplayCell:(FSCalendarCell *)cell forDate:(NSDate *)date atMonthPosition: (FSCalendarMonthPosition)monthPosition {
+    [self configureCell:(BTCalendarCell *)cell forDate:date atMonthPosition:monthPosition];
+}
+
 - (UIColor *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance fillDefaultColorForDate:(NSDate *)date {
     if ([BTWorkout workoutsBetweenBeginDate:date andEndDate:[date dateByAddingTimeInterval:86400]].count > 0)
-        return [UIColor BTTertiaryColor];
+        return [UIColor BTLightGrayColor];
     return [UIColor whiteColor];
 }
 
-- (UIColor *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance fillSelectionColorForDate:(NSDate *)date {
-    return [UIColor BTPrimaryColor];
+- (NSArray<UIColor *> *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance eventDefaultColorsForDate:(NSDate *)date {
+    return @[[UIColor BTLightGrayColor]];
 }
 
 - (UIColor *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance titleDefaultColorForDate:(NSDate *)date {
     if ([date compare:self.calendarView.maximumDate] == NSOrderedDescending ||
         [date compare:self.calendarView.minimumDate] == NSOrderedAscending) return [UIColor whiteColor];
     else if ([date compare:[NSDate date]] == NSOrderedDescending ||
-             [date compare:[self.firstDay dateByAddingTimeInterval:-86400]] == NSOrderedAscending) return [UIColor lightGrayColor];
+             [date compare:[self.firstDay dateByAddingTimeInterval:-86400]] == NSOrderedAscending) return [UIColor BTLightGrayColor];
     else if ([BTWorkout workoutsBetweenBeginDate:date andEndDate:[date dateByAddingTimeInterval:86400]].count > 0)
         return [UIColor whiteColor];
-    return [UIColor BTPrimaryColor];
-}
-
-- (UIColor *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance titleSelectionColorForDate:(NSDate *)date {
-    return [UIColor whiteColor];
-}
-
-- (NSArray<UIColor *> *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance eventDefaultColorsForDate:(NSDate *)date {
-    return @[[UIColor BTPrimaryColor]];
-}
-
-- (NSArray<UIColor *> *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance eventSelectionColorsForDate:(nonnull NSDate *)date {
-    return @[[UIColor BTSecondaryColor]];
+    return [UIColor BTLightGrayColor];
 }
 
 - (NSInteger)calendar:(FSCalendar *)calendar numberOfEventsForDate:(NSDate *)date {
-    if ([[NSCalendar currentCalendar] isDate:date inSameDayAsDate:[NSDate date]]) return 1;
-    return 0;
+    return ([[NSCalendar currentCalendar] isDate:date inSameDayAsDate:[NSDate date]]);
 }
+
+#pragma mark - FSCalendar delegate
 
 - (BOOL)calendar:(FSCalendar *)calendar shouldSelectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition {
     CGRect frame = [calendar frameForDate:date];

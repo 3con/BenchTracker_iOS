@@ -13,9 +13,9 @@
 #import "BTQRScannerViewController.h"
 #import "AnalyticsViewController.h"
 #import "WeekdayView.h"
-#import "FSCalendar.h"
 #import "MGSwipeTableCell.h"
 #import "TemplateSelectionViewController.h"
+#import "BTCalendarCell.h"
 
 @interface MainViewController : UIViewController <WorkoutViewControllerDelegate, AnalyticsViewControllerDelegate, WorkoutSelectionViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance, MGSwipeTableCellDelegate, WeekdayViewDelegate, BTQRScannerViewControllerDelegate, SettingsViewControllerDelegate, TemplateSelectionViewControllerDelegate>
 

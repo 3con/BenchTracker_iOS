@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ExerciseView.h"
+#import "IterationSelectionViewController.h"
 
 @class ExerciseViewController;
 @class BTExercise;
@@ -21,7 +22,7 @@
 - (void)exerciseViewDidAddSet:(ExerciseView *)exerciseView withResultExercise:(BTExercise *)exercise;
 @end
 
-@interface ExerciseViewController : UIViewController <UIScrollViewDelegate, ExerciseViewDelegate>
+@interface ExerciseViewController : UIViewController <UIScrollViewDelegate, ExerciseViewDelegate, IterationSelectionViewControllerDelegate>
 
 @property id<ExerciseViewControllerDelegate> delegate;
 

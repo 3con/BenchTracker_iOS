@@ -7,6 +7,7 @@
 //
 
 #import "BTExerciseType+CoreDataClass.h"
+#import "BTExercise+CoreDataClass.h"
 #import "AppDelegate.h"
 #import "BTTypeListModel.h"
 #import "BTSettings+CoreDataClass.h"
@@ -74,6 +75,15 @@
     }
     settings.exerciseTypeColors = [NSKeyedArchiver archivedDataWithRootObject:model.colors];
     [context save:nil];
+}
+
++ (BTExerciseType *)typeForExercise:(BTExercise *)exercise {
+    NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    NSFetchRequest *request = [BTExerciseType fetchRequest];
+    request.predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"name == \"%@\"",exercise.name]];
+    request.fetchLimit = 1;
+    NSArray *arr = [context executeFetchRequest:request error:nil];
+    return (arr && arr.count > 0) ? arr.firstObject : nil;
 }
 
 #pragma mark - private methods

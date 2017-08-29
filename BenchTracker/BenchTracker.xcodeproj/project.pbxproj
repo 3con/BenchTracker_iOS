@@ -16,6 +16,7 @@
 		50530C2A1F511BC600472426 /* WorkoutSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50530C291F511BC600472426 /* WorkoutSettingsViewController.m */; };
 		50530C2F1F52412200472426 /* WorkoutTemplateTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50530C2D1F52412200472426 /* WorkoutTemplateTableViewCell.m */; };
 		50530C301F52412200472426 /* WorkoutTemplateTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50530C2E1F52412200472426 /* WorkoutTemplateTableViewCell.xib */; };
+		5054845F1F54B67500658BD2 /* BTCalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5054845E1F54B67500658BD2 /* BTCalendarCell.m */; };
 		5054D8D31F3391C3000EBC21 /* BTTutorialManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5054D8D21F3391C3000EBC21 /* BTTutorialManager.m */; };
 		50636F2A1F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50636F281F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.m */; };
 		50636F2B1F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50636F291F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.xib */; };
@@ -153,6 +154,8 @@
 		50530C2C1F52412200472426 /* WorkoutTemplateTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkoutTemplateTableViewCell.h; sourceTree = "<group>"; };
 		50530C2D1F52412200472426 /* WorkoutTemplateTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkoutTemplateTableViewCell.m; sourceTree = "<group>"; };
 		50530C2E1F52412200472426 /* WorkoutTemplateTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WorkoutTemplateTableViewCell.xib; sourceTree = "<group>"; };
+		5054845D1F54B67500658BD2 /* BTCalendarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTCalendarCell.h; sourceTree = "<group>"; };
+		5054845E1F54B67500658BD2 /* BTCalendarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTCalendarCell.m; sourceTree = "<group>"; };
 		5054D8D11F3391C3000EBC21 /* BTTutorialManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTutorialManager.h; sourceTree = "<group>"; };
 		5054D8D21F3391C3000EBC21 /* BTTutorialManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTutorialManager.m; sourceTree = "<group>"; };
 		50636F271F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EEExerciseTypeTableViewCell.h; sourceTree = "<group>"; };
@@ -869,6 +872,8 @@
 			children = (
 				F95F93391F034DA500A19C4D /* MainViewController.h */,
 				F95F933A1F034DA500A19C4D /* MainViewController.m */,
+				5054845D1F54B67500658BD2 /* BTCalendarCell.h */,
+				5054845E1F54B67500658BD2 /* BTCalendarCell.m */,
 				50CF69D71F3A686600DDE8A6 /* Template selection */,
 				F917BB651F0DEA9700614AB1 /* QR scanner */,
 				F9FA47271F0B39DF00A4AF98 /* Workout selection */,
@@ -1517,6 +1522,7 @@
 				F9AF06831F07596F003A2200 /* BTStackedBarView.m in Sources */,
 				5054D8D31F3391C3000EBC21 /* BTTutorialManager.m in Sources */,
 				F9DA75241F02EE9600347B0D /* BTExercise+CoreDataClass.m in Sources */,
+				5054845F1F54B67500658BD2 /* BTCalendarCell.m in Sources */,
 				5093AE6E1F394AD1006CA6F0 /* BTWorkoutTemplate+CoreDataProperties.m in Sources */,
 				F9DA75231F02EE9600347B0D /* BTUser+CoreDataProperties.m in Sources */,
 				F9640BD91F080E590053C9C0 /* BTSettings+CoreDataProperties.m in Sources */,

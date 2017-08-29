@@ -140,6 +140,7 @@
     }
     if (_fetchedResultsController.sections[0].numberOfObjects == 0) {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BCell"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [UIColor whiteColor];
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.frame.size.width, 120)];
         label.autoresizingMask = UIViewAutoresizingFlexibleWidth;

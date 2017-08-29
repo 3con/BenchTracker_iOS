@@ -16,6 +16,7 @@
 
 @dynamic source;
 @dynamic name;
+@dynamic uuid;
 @dynamic supersets;
 @dynamic summary;
 @dynamic exercises;

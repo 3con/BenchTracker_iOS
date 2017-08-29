@@ -8,6 +8,7 @@
 
 #import "ExerciseViewController.h"
 #import "BTExercise+CoreDataClass.h"
+#import "BTExerciseType+CoreDataClass.h"
 #import "BTSettings+CoreDataClass.h"
 #import "EquivalencyChartViewController.h"
 #import "ZFModalTransitionAnimator.h"
@@ -19,7 +20,11 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *doneButton;
 
+@property (nonatomic) NSDictionary *exerciseTypeColors;
+
 @property (nonatomic) NSMutableArray<ExerciseView *> *exerciseViews;
+
+@property (nonatomic) NSInteger activeExerciseViewIndex;
 
 @property (nonatomic) ZFModalTransitionAnimator *animator;
 
@@ -48,14 +53,13 @@
         self.doneButton.clipsToBounds = YES;
         self.exerciseViews = [[NSMutableArray alloc] init];
         int h = 185;
-        NSDictionary *exerciseTypeColors;
-        if (self.settings) exerciseTypeColors = [NSKeyedUnarchiver unarchiveObjectWithData:self.settings.exerciseTypeColors];
+        if (self.settings) self.exerciseTypeColors = [NSKeyedUnarchiver unarchiveObjectWithData:self.settings.exerciseTypeColors];
         for (BTExercise *exercise in self.exercises) {
             ExerciseView *view = [[NSBundle mainBundle] loadNibNamed:@"ExerciseView" owner:self options:nil].firstObject;
             view.frame = CGRectMake(0, 0, self.contentView.frame.size.width, 260);
             view.delegate = self;
             view.settings = self.settings;
-            view.color = exerciseTypeColors[exercise.category];
+            view.color = self.exerciseTypeColors[exercise.category];
             [view loadExercise:exercise];
             [self.exerciseViews addObject:view];
             [self.contentView addSubview:view];
@@ -115,8 +119,25 @@
     [self.delegate exerciseViewDidAddSet:exerciseView withResultExercise:[exerciseView getExercise]];
 }
 
+- (void)exerciseViewRequestedEditIteration:(ExerciseView *)exerciseView withPoint:(CGPoint)point {
+    self.activeExerciseViewIndex = [self.exerciseViews indexOfObject:exerciseView];
+    CGPoint nP = CGPointMake(point.x+[exerciseView.superview convertPoint:exerciseView.frame.origin toView:nil].x,
+                             point.y+[exerciseView.superview convertPoint:exerciseView.frame.origin toView:nil].y);
+    [self presentIterationSelectionViewControllerWithExercise:[exerciseView getExercise] point:nP];
+}
+
 - (void)exerciseViewRequestedShowTable:(ExerciseView *)exerciseView {
     [self presentEquivalencyChartViewControllerWithExercise:[exerciseView getExercise]];
+}
+
+#pragma mark - iterationSelectionVC delegate
+
+- (void)iterationSelectionVC:(IterationSelectionViewController *)iterationVC willDismissWithSelectedIteration:(NSString *)iteration {
+    [self.exerciseViews[self.activeExerciseViewIndex] setIteration:iteration];
+}
+
+- (void)iterationSelectionVCDidDismiss:(IterationSelectionViewController *)iterationVC {
+    
 }
 
 #pragma mark - scrollView delegate
@@ -130,6 +151,24 @@
 }
 
 #pragma mark - view handling
+
+- (void)presentIterationSelectionViewControllerWithExercise:(BTExercise *)exercise point:(CGPoint)point {
+    IterationSelectionViewController *isVC = [self.storyboard instantiateViewControllerWithIdentifier:@"is"];
+    isVC.delegate = self;
+    isVC.exerciseType = [BTExerciseType typeForExercise:exercise];
+    isVC.originPoint = point;
+    isVC.color = self.exerciseTypeColors[exercise.category];
+    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:isVC];
+    self.animator.dragable = NO;
+    self.animator.bounces = YES;
+    self.animator.behindViewAlpha = 1.0;
+    self.animator.behindViewScale = 1.0;
+    self.animator.transitionDuration = 0.0;
+    self.animator.direction = ZFModalTransitonDirectionBottom;
+    isVC.transitioningDelegate = self.animator;
+    isVC.modalPresentationStyle = UIModalPresentationCustom;
+    [self presentViewController:isVC animated:YES completion:nil];
+}
 
 - (void)presentEquivalencyChartViewControllerWithExercise:(BTExercise *)exercise {
     EquivalencyChartViewController *ecVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ec"];

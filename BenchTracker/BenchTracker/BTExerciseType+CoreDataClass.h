@@ -12,6 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class BTTypeListModel;
+@class BTExercise;
 
 @interface BTExerciseType : NSManagedObject
 
@@ -22,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (BTTypeListModel *)typeListModel;
 
 + (void)loadTypeListModel:(BTTypeListModel *)model;
+
++ (BTExerciseType *)typeForExercise:(BTExercise *)exercise;
 
 @end
 
