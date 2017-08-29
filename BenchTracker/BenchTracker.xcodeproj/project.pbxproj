@@ -437,6 +437,15 @@
 			name = "Template TVC";
 			sourceTree = "<group>";
 		};
+		505484601F55177700658BD2 /* Calendar cell */ = {
+			isa = PBXGroup;
+			children = (
+				5054845D1F54B67500658BD2 /* BTCalendarCell.h */,
+				5054845E1F54B67500658BD2 /* BTCalendarCell.m */,
+			);
+			name = "Calendar cell";
+			sourceTree = "<group>";
+		};
 		5054D8D41F3391D3000EBC21 /* Tutorial */ = {
 			isa = PBXGroup;
 			children = (
@@ -872,12 +881,11 @@
 			children = (
 				F95F93391F034DA500A19C4D /* MainViewController.h */,
 				F95F933A1F034DA500A19C4D /* MainViewController.m */,
-				5054845D1F54B67500658BD2 /* BTCalendarCell.h */,
-				5054845E1F54B67500658BD2 /* BTCalendarCell.m */,
 				50CF69D71F3A686600DDE8A6 /* Template selection */,
 				F917BB651F0DEA9700614AB1 /* QR scanner */,
 				F9FA47271F0B39DF00A4AF98 /* Workout selection */,
 				F97B1CA81F097D9100B3EEC7 /* Weekday view */,
+				505484601F55177700658BD2 /* Calendar cell */,
 				F9AF06801F075360003A2200 /* Workout cell */,
 			);
 			name = Main;

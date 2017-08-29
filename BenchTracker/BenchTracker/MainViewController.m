@@ -43,6 +43,7 @@
 @property (nonatomic) ZFModalTransitionAnimator *animator;
 @property (nonatomic) BTWorkoutManager *workoutManager;
 @property (nonatomic) BTSettings *settings;
+@property (nonatomic) NSMutableDictionary *exerciseTypeColors;
 @property (nonatomic) BTUser *user;
 
 @property (nonatomic) NSDate *firstDay;
@@ -84,6 +85,7 @@
         button.clipsToBounds = YES;
     }
     self.settings = [BTSettings sharedInstance];
+    self.exerciseTypeColors = [NSKeyedUnarchiver unarchiveObjectWithData:self.settings.exerciseTypeColors];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -184,7 +186,8 @@
 }
 
 - (void)configureCell:(BTCalendarCell *)cell forDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)position {
-    
+    cell.exerciseTypeColors = self.exerciseTypeColors;
+    [cell loadWithWorkouts:[BTWorkout workoutsBetweenBeginDate:date andEndDate:[date dateByAddingTimeInterval:86400]]];
 }
 
 - (FSCalendarCell *)calendar:(FSCalendar *)calendar cellForDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition {
@@ -197,23 +200,15 @@
 }
 
 - (UIColor *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance fillDefaultColorForDate:(NSDate *)date {
-    if ([BTWorkout workoutsBetweenBeginDate:date andEndDate:[date dateByAddingTimeInterval:86400]].count > 0)
-        return [UIColor BTLightGrayColor];
-    return [UIColor whiteColor];
+    return [UIColor clearColor];
 }
 
 - (NSArray<UIColor *> *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance eventDefaultColorsForDate:(NSDate *)date {
     return @[[UIColor BTLightGrayColor]];
 }
 
-- (UIColor *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance titleDefaultColorForDate:(NSDate *)date {
-    if ([date compare:self.calendarView.maximumDate] == NSOrderedDescending ||
-        [date compare:self.calendarView.minimumDate] == NSOrderedAscending) return [UIColor whiteColor];
-    else if ([date compare:[NSDate date]] == NSOrderedDescending ||
-             [date compare:[self.firstDay dateByAddingTimeInterval:-86400]] == NSOrderedAscending) return [UIColor BTLightGrayColor];
-    else if ([BTWorkout workoutsBetweenBeginDate:date andEndDate:[date dateByAddingTimeInterval:86400]].count > 0)
-        return [UIColor whiteColor];
-    return [UIColor BTLightGrayColor];
+- (CGPoint)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance eventOffsetForDate:(NSDate *)date {
+    return CGPointMake(0, 8);
 }
 
 - (NSInteger)calendar:(FSCalendar *)calendar numberOfEventsForDate:(NSDate *)date {

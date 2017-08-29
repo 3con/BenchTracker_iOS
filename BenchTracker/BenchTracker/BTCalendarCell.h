@@ -7,7 +7,14 @@
 //
 
 #import <FSCalendar/FSCalendar.h>
+#import "BTStackedBarView.h"
 
-@interface BTCalendarCell : FSCalendarCell
+@class BTWorkout;
+
+@interface BTCalendarCell : FSCalendarCell <BTStackedBarViewDataSource>
+
+@property (nonatomic) NSMutableDictionary *exerciseTypeColors;
+
+- (void)loadWithWorkouts:(NSArray <BTWorkout *> *)workouts;
 
 @end
