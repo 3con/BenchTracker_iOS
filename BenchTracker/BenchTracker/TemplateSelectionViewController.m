@@ -38,6 +38,7 @@
     frame.origin.y = -frame.size.height;
     UIView *coverView = [[UIView alloc] initWithFrame:frame];
     coverView.backgroundColor = [UIColor BTPrimaryColor];
+    coverView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [self.tableView addSubview:coverView];
 }
 
@@ -58,6 +59,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 52)];
     view.backgroundColor = [UIColor BTPrimaryColor];
+    view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 52)];
     label.text = (section == 0) ? @"Your Templates" : @"Default Templates";
     label.textAlignment = NSTextAlignmentCenter;
@@ -88,8 +90,11 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.fetchedResultsController.sections.count == 1 && indexPath.section == 0) //no user templates
-        return [tableView dequeueReusableCellWithIdentifier:@"ACell"];
+    if (self.fetchedResultsController.sections.count == 1 && indexPath.section == 0) { //no user templates
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ACell"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+    }
     WorkoutTemplateTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     [self configureTemplateCell:cell atIndexPath:indexPath];
     return cell;
@@ -98,6 +103,7 @@
 #pragma mark - tableView delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.fetchedResultsController.sections.count == 1 && indexPath.section == 0) return;
     BTWorkout *workout = [BTWorkoutTemplate workoutForWorkoutTemplate:[self modifiedObjectAtIndex:indexPath]];
     [self dismissViewControllerAnimated:YES completion:^{
         [self.delegate templateSelectionViewController:self didDismissWithSelectedWorkout:workout];

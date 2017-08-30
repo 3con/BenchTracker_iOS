@@ -25,22 +25,27 @@
                                                                                              image:[UIImage imageNamed:@"Onboard1"]
                                                                                         buttonText:nil
                                                                                             action:nil];
-    OnboardingContentViewController *secondPage = [OnboardingContentViewController contentWithTitle:@"Simple"
-                                                                                              body:@"Designed to be intuitive"
-                                                                                             image:[UIImage imageNamed:@"Onboard2"]
-                                                                                        buttonText:nil
-                                                                                            action:nil];
+    OnboardingContentViewController *secondPage = [OnboardingContentViewController contentWithTitle:@"Powerful"
+                                                                                               body:@"Unlock your full workout potential"
+                                                                                              image:[UIImage imageNamed:@"Onboard2"]
+                                                                                         buttonText:nil
+                                                                                             action:nil];
     OnboardingContentViewController *thirdPage = [OnboardingContentViewController contentWithTitle:@"Analytical"
                                                                                               body:@"Explore your workouts like never before"
                                                                                              image:[UIImage imageNamed:@"Onboard3"]
                                                                                         buttonText:nil
                                                                                             action:nil];
-    OnboardingContentViewController *fourthPage = [OnboardingContentViewController contentWithTitle:@"Powerful"
-                                                                                              body:@"Unlock your full workout potential"
-                                                                                             image:[UIImage imageNamed:@"Onboard4"]
-                                                                                        buttonText:nil
-                                                                                            action:nil];
-    OnboardingContentViewController *fifthPage = [OnboardingContentViewController contentWithTitle:@"You're all set!"
+    OnboardingContentViewController *fourthPage = [OnboardingContentViewController contentWithTitle:@"Simple"
+                                                                                               body:@"Designed to be intuitive"
+                                                                                              image:[UIImage imageNamed:@"Onboard4"]
+                                                                                         buttonText:nil
+                                                                                             action:nil];
+    OnboardingContentViewController *fifthPage = [OnboardingContentViewController contentWithTitle:@"Helpful"
+                                                                                               body:@"Focus on your workout, not your tracking"
+                                                                                              image:[UIImage imageNamed:@"Onboard5"]
+                                                                                         buttonText:nil
+                                                                                             action:nil];
+    OnboardingContentViewController *sixthPage = [OnboardingContentViewController contentWithTitle:@"You're all set!"
                                                                                               body:@"Happy tracking!"
                                                                                              image:[UIImage imageNamed:@"Onboard1"]
                                                                                         buttonText:@"Get Started"
@@ -52,7 +57,7 @@
             }];
         }];
     self.onboardingVC = [OnboardingViewController onboardWithBackgroundImage:nil
-                                                                    contents:@[firstPage, secondPage, thirdPage, fourthPage, fifthPage]];
+                                                                    contents:@[firstPage, secondPage, thirdPage, fourthPage, fifthPage, sixthPage]];
     float height = MIN(900, size.height*.8);
     CGSize screenshotSize = CGSizeMake(height*(1242.0/2419), height);
     for (OnboardingContentViewController *viewController in self.onboardingVC.viewControllers) {
@@ -60,9 +65,9 @@
         viewController.titleLabel.font = [UIFont systemFontOfSize:28 weight:UIFontWeightBold];
         viewController.bodyLabel.font = [UIFont systemFontOfSize:17 weight:UIFontWeightSemibold];
         viewController.actionButton.titleLabel.font = [UIFont systemFontOfSize:21 weight:UIFontWeightSemibold];
-        viewController.titleLabel.textColor = [UIColor BTTutorialColor];
-        viewController.bodyLabel.textColor = [UIColor BTTutorialColor];
-        [viewController.actionButton setTitleColor:[UIColor BTTutorialColor] forState:UIControlStateNormal];
+        viewController.titleLabel.textColor = [UIColor BTGrayColor];
+        viewController.bodyLabel.textColor = [UIColor BTGrayColor];
+        [viewController.actionButton setTitleColor:[UIColor BTGrayColor] forState:UIControlStateNormal];
         viewController.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
         viewController.iconHeight = screenshotSize.height;
         viewController.iconWidth = screenshotSize.width;
@@ -75,8 +80,8 @@
     self.onboardingVC.fadeSkipButtonOnLastPage = YES;
     self.onboardingVC.fadePageControlOnLastPage = YES;
     self.onboardingVC.pageControl.backgroundColor = [UIColor colorWithWhite:1 alpha:.9];
-    self.onboardingVC.pageControl.pageIndicatorTintColor = [[UIColor BTTutorialColor] colorWithAlphaComponent:.6];
-    self.onboardingVC.pageControl.currentPageIndicatorTintColor = [UIColor BTTutorialColor];
+    self.onboardingVC.pageControl.pageIndicatorTintColor = [[UIColor BTLightGrayColor] colorWithAlphaComponent:.6];
+    self.onboardingVC.pageControl.currentPageIndicatorTintColor = [UIColor BTLightGrayColor];
     self.onboardingVC.allowSkipping = YES;
     __weak OnboardingViewController *weakOnboardingVC = self.onboardingVC;
     self.onboardingVC.skipHandler = ^{
@@ -87,7 +92,7 @@
         }];
     };
     self.onboardingVC.skipButton.titleLabel.font = [UIFont systemFontOfSize:17 weight:UIFontWeightMedium];
-    [self.onboardingVC.skipButton setTitleColor:[UIColor BTTutorialColor] forState:UIControlStateNormal];
+    [self.onboardingVC.skipButton setTitleColor:[UIColor BTLightGrayColor] forState:UIControlStateNormal];
     return self.onboardingVC;
 }
 

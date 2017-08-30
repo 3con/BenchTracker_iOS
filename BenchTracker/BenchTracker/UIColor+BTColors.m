@@ -46,8 +46,4 @@
     return [UIColor colorWithRed:229/255.0 green:57/255.0 blue:53/255.0 alpha:1];
 }
 
-+ (UIColor *)BTTutorialColor {      //rgb(50, 89, 255)  //icon top color
-    return [UIColor colorWithRed:0/255.0 green:63/255.0 blue:207/255.0 alpha:1];
-}
-
 @end

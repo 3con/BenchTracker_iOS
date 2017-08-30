@@ -176,12 +176,22 @@
         NSData *BTData = [[NSFileManager defaultManager] contentsAtPath:dataPath];
         if (BTData != nil) {
             MFMailComposeViewController *email = [[MFMailComposeViewController alloc] init];
-            [email setSubject:@"Bench Tracker Data"];
-            [email addAttachmentData:BTData mimeType:@"application/benchtracker" fileName:@"Bench Tracker Data"];
-            [email setToRecipients:[NSArray array]];
-            [email setMessageBody:@"Here's my Bench Tracker data. Once you have the Bench Tracker app, tap on the file to open it." isHTML:NO];
-            [email setMailComposeDelegate:self];
-            [self presentViewController:email animated:YES completion:nil];
+            if (!email) {
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Cannot Export Data"
+                                                                               message:@"Unfortunatly, we can not export your data at this time. This may be becuase you have not set up system email or iMessage. We are sorry for the inconvenience."
+                                                                        preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *okButton = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+                [alert addAction:okButton];
+                [self presentViewController:alert animated:YES completion:nil];
+            }
+            else {
+                [email setSubject:@"Bench Tracker Data"];
+                [email addAttachmentData:BTData mimeType:@"application/benchtracker" fileName:@"Bench Tracker Data"];
+                [email setToRecipients:[NSArray array]];
+                [email setMessageBody:@"Here's my Bench Tracker data. Once you have the Bench Tracker app, tap on the file to open it." isHTML:NO];
+                [email setMailComposeDelegate:self];
+                [self presentViewController:email animated:YES completion:nil];
+            }
         }
     }
     else if ([formRow.tag isEqualToString:@"share"]) {
