@@ -111,7 +111,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) return 45;
     if (_fetchedResultsController.sections[0].numberOfObjects == 0) return 120;
-    return 60;
+    return [WorkoutTableViewCell heightForWorkoutCell];
 }
 
 - (void)configureWorkoutCell:(WorkoutTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {

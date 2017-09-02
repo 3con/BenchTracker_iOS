@@ -18,6 +18,8 @@
 
 - (void)loadWorkout:(BTWorkout *)workout;
 
++ (CGFloat)heightForWorkoutCell;
+
 - (void)checkTemplateStatus;
 
 @end

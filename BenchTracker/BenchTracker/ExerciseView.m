@@ -89,14 +89,11 @@
 }
 
 - (void)loadExercise:(BTExercise *)exercise {
-    if (![exercise.style isEqualToString:STYLE_REPSWEIGHT]) {
-        self.tableShowButton.alpha = 0;
-        self.tableShowButton.userInteractionEnabled = NO;
-    }
-    if ([[NSKeyedUnarchiver unarchiveObjectWithData:[BTExerciseType typeForExercise:exercise].iterations] count] == 0) {
-        self.editButton.alpha = 0;
-        self.editButton.userInteractionEnabled = NO;
-    }
+    BTExercise *lastInstance = [exercise lastInstance];
+    if (lastInstance) NSLog(@"%@",[NSKeyedUnarchiver unarchiveObjectWithData:lastInstance.sets]);
+    self.tableShowButton.hidden = (![exercise.style isEqualToString:STYLE_REPSWEIGHT]);
+    self.editButton.hidden = ([[NSKeyedUnarchiver unarchiveObjectWithData:[BTExerciseType typeForExercise:exercise].iterations] count] == 0);
+    self.tableShowButton.hidden = !self.settings.showEquivalencyChart;
     self.isDeleted = NO;
     self.deletedView.alpha = 0;
     self.deletedView.userInteractionEnabled = NO;

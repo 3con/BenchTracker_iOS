@@ -76,6 +76,10 @@
     [self.stackedView reloadData];
 }
 
++ (CGFloat)heightForWorkoutCell {
+    return 60.0;
+}
+
 - (void)checkTemplateStatus {
     [self refreshButtons:YES];
     MGSwipeButton *delButton = [MGSwipeButton buttonWithTitle:@"Delete" icon:nil backgroundColor:[UIColor BTRedColor]];

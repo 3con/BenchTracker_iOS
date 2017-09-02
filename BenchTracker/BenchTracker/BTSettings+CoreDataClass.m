@@ -23,10 +23,14 @@
 - (void)reset {
     self.activeWorkout = nil;
     self.activeWorkoutStartDate = nil;
+    self.activeWorkoutLastUpdate = nil;
     self.hiddenExerciseTypeSections = [NSKeyedArchiver archivedDataWithRootObject:[NSMutableArray array]];
     self.exerciseTypeColors = nil;
     self.startWeekOnMonday = YES;
     self.disableSleep = YES;
+    self.showWorkoutDetails = NO;
+    self.showEquivalencyChart = YES;
+    self.showLastWorkout = YES;
     self.weightInLbs = ![[[NSLocale currentLocale] objectForKey:NSLocaleUsesMetricSystem] boolValue];
 }
 
@@ -45,13 +49,7 @@
     if (error || object.count == 0) {
         NSLog(@"BTSettings coreData error or creation: %@",error);
         BTSettings *settings = [NSEntityDescription insertNewObjectForEntityForName:@"BTSettings" inManagedObjectContext:context];
-        settings.activeWorkout = nil;
-        settings.activeWorkoutStartDate = nil;
-        settings.hiddenExerciseTypeSections = [NSKeyedArchiver archivedDataWithRootObject:[NSMutableArray array]];
-        settings.exerciseTypeColors = nil;
-        settings.startWeekOnMonday = YES;
-        settings.disableSleep = YES;
-        settings.weightInLbs = ![[[NSLocale currentLocale] objectForKey:NSLocaleUsesMetricSystem] boolValue];
+        [settings reset];
         [context save:nil];
         return settings;
     }

@@ -17,7 +17,7 @@
 #import "BTExerciseType+CoreDataClass.h"
 #import "BT1RMCalculator.h"
 
-#define DATA_TRANSFER_VERSION 2
+#define DATA_TRANSFER_VERSION 3
 
 @implementation BTDataTransferManager
 
@@ -35,6 +35,9 @@
     settingsModel.startWeekOnMonday = settings.startWeekOnMonday;
     settingsModel.disableSleep = settings.disableSleep;
     settingsModel.weightInLbs = settings.weightInLbs;
+    settingsModel.showWorkoutDetails = settings.showLastWorkout;
+    settingsModel.showEquivalencyChart = settings.showEquivalencyChart;
+    settingsModel.showLastWorkout = settings.showLastWorkout;
     transferModel.settings = settingsModel;
     //SERIALIZE TYPELIST
     transferModel.typeList = [BTExerciseType typeListModel];

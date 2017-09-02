@@ -74,6 +74,18 @@
     row.value = [NSNumber numberWithBool:self.settings.disableSleep];
     [section addFormRow:row];
     
+    // Section 5: Disable screen sleep
+    section = [XLFormSectionDescriptor formSection];
+    section.title = @"SHOW IN EXERCISE VIEW";
+    section.footerTitle = @"Previous workout sets: displays the sets from the last instance in which you performed the particular exercise.\nEquivalency chart: displays a chart with equivalent one-rep-maxes for appropriate exercises.";
+    [form addFormSection:section];
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"showLastWorkout" rowType:XLFormRowDescriptorTypeBooleanSwitch title:@"Previous workout sets"];
+    row.value = [NSNumber numberWithBool:self.settings.showLastWorkout];
+    [section addFormRow:row];
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"showEquivChart" rowType:XLFormRowDescriptorTypeBooleanSwitch title:@"Equivalency chart"];
+    row.value = [NSNumber numberWithBool:self.settings.showEquivalencyChart];
+    [section addFormRow:row];
+    
     // Section 5: Import, Export data
     section = [XLFormSectionDescriptor formSection];
     section.footerTitle = @"Import or export all of your Bench Tracker data using email attachments. This includes all of your workouts and custom exercises.";
@@ -125,6 +137,8 @@
     self.settings.weightInLbs = ![result[@"weightInKg"] boolValue];
     self.settings.startWeekOnMonday = ![result[@"startWeekOnSunday"] boolValue];
     self.settings.disableSleep = [result[@"disableSleep"] boolValue];
+    self.settings.showLastWorkout = [result[@"showLastWorkout"] boolValue];
+    self.settings.showEquivalencyChart = [result[@"showEquivChart"] boolValue];
     [self.context save:nil];
 }
 

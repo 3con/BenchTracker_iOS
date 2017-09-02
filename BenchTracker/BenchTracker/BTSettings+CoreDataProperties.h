@@ -19,12 +19,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nullable, nonatomic, retain) BTWorkout *activeWorkout;
 @property (nullable, nonatomic, copy)   NSDate *activeWorkoutStartDate;
+@property (nullable, nonatomic, copy)   NSDate *activeWorkoutLastUpdate;
+
 @property (nullable, nonatomic, retain) NSData *hiddenExerciseTypeSections;
 @property (nullable, nonatomic, retain) NSData *exerciseTypeColors;
 
 @property (nonatomic) BOOL startWeekOnMonday;
 @property (nonatomic) BOOL disableSleep;
 @property (nonatomic) BOOL weightInLbs;
+
+@property (nonatomic) BOOL showWorkoutDetails;
+@property (nonatomic) BOOL showEquivalencyChart;
+@property (nonatomic) BOOL showLastWorkout;
 
 @end
 

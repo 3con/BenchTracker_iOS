@@ -9,6 +9,7 @@
 #import "BTExercise+CoreDataClass.h"
 #import "BTWorkout+CoreDataClass.h"
 #import "BT1RMCalculator.h"
+#import "AppDelegate.h"
 
 @implementation BTExercise
 
@@ -45,6 +46,20 @@
         else if ([self.style isEqualToString:STYLE_TIMEWEIGHT])
             self.oneRM = MAX(self.oneRM, split[2].floatValue);
     }
+}
+
+- (BTExercise *)lastInstance {
+    NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"BTExercise"];
+    NSMutableArray *pArr = @[[NSPredicate predicateWithFormat:[NSString stringWithFormat:@"name == \"%@\"", self.name]],
+                             [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"category == \"%@\"", self.category]],
+                             [NSPredicate predicateWithFormat:@"workout != %@", self.workout]].mutableCopy;
+    if (self.iteration) [pArr addObject:[NSPredicate predicateWithFormat:[NSString stringWithFormat:@"iteration == \"%@\"", self.iteration]]];
+    fetchRequest.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:pArr];
+    fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"workout.date" ascending:NO]];
+    fetchRequest.fetchLimit = 1;
+    NSArray <BTExercise *> *results = [context executeFetchRequest:fetchRequest error:nil];
+    return (results && results.count > 0) ? results.firstObject : nil;
 }
 
 @end

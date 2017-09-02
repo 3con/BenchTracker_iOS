@@ -15,9 +15,9 @@
 #define STYLE_TIME       @"time"
 #define STYLE_CUSTOM     @"custom"
 
-@class BTWorkout;
-
 NS_ASSUME_NONNULL_BEGIN
+
+@class BTWorkout;
 
 @interface BTExercise : NSManagedObject
 
@@ -26,6 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) CGFloat volume;
 
 - (void)calculateOneRM;
+
+- (BTExercise *)lastInstance; //last instance (excluding this one)
 
 @end
 

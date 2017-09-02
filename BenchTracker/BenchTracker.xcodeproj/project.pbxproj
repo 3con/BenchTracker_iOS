@@ -193,6 +193,7 @@
 		50971E751F2E4AC400B10D70 /* AETableHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AETableHeaderView.xib; sourceTree = "<group>"; };
 		50CF69D41F3A685C00DDE8A6 /* TemplateSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemplateSelectionViewController.h; sourceTree = "<group>"; };
 		50CF69D51F3A685C00DDE8A6 /* TemplateSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TemplateSelectionViewController.m; sourceTree = "<group>"; };
+		50FB89931F5A48A3002EA7A4 /* BTDataModel2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BTDataModel2.xcdatamodel; sourceTree = "<group>"; };
 		791833EF2E04B86CA95AD6B3 /* Pods-BenchTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BenchTracker.release.xcconfig"; path = "Pods/Target Support Files/Pods-BenchTracker/Pods-BenchTracker.release.xcconfig"; sourceTree = "<group>"; };
 		EABA566C7706F85FACB19B97 /* Pods-BenchTrackerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BenchTrackerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BenchTrackerTests/Pods-BenchTrackerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F90712A119415FB0008694E5 /* BenchTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BenchTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1781,9 +1782,10 @@
 		F9DA750F1F02DC1700347B0D /* BTDataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				50FB89931F5A48A3002EA7A4 /* BTDataModel2.xcdatamodel */,
 				F9DA75101F02DC1700347B0D /* BTDataModel.xcdatamodel */,
 			);
-			currentVersion = F9DA75101F02DC1700347B0D /* BTDataModel.xcdatamodel */;
+			currentVersion = 50FB89931F5A48A3002EA7A4 /* BTDataModel2.xcdatamodel */;
 			path = BTDataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

@@ -16,11 +16,17 @@
 
 @dynamic activeWorkout;
 @dynamic activeWorkoutStartDate;
+@dynamic activeWorkoutLastUpdate;
+
 @dynamic hiddenExerciseTypeSections;
 @dynamic exerciseTypeColors;
 
 @dynamic startWeekOnMonday;
 @dynamic disableSleep;
 @dynamic weightInLbs;
+
+@dynamic showWorkoutDetails;
+@dynamic showEquivalencyChart;
+@dynamic showLastWorkout;
 
 @end

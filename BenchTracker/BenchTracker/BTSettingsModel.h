@@ -14,4 +14,8 @@
 @property (nonatomic) BOOL disableSleep;
 @property (nonatomic) BOOL weightInLbs;
 
+@property (nonatomic) BOOL showWorkoutDetails;
+@property (nonatomic) BOOL showEquivalencyChart;
+@property (nonatomic) BOOL showLastWorkout;
+
 @end
