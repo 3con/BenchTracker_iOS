@@ -17,6 +17,7 @@
 #import "BTAnalyticsLineChart.h"
 #import "HMSegmentedControl.h"
 #import "BT1RMCalculator.h"
+#import "AppDelegate.h"
 
 #define CELL_HEIGHT 55
 
@@ -44,7 +45,6 @@
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 
 @property (nonatomic) BTExerciseType *exerciseType;
-@property (nonatomic) NSString *iteration;
 
 @end
 
@@ -60,6 +60,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    if (!self.context) self.context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
     [self loadExerciseType];
     NSError *error;
     if (![[self fetchedResultsController] performFetch:&error]) {

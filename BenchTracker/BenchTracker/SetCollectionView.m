@@ -26,7 +26,7 @@
     SetFlowLayout *flowLayout = [[SetFlowLayout alloc] init];
     flowLayout.itemSize = CGSizeMake(70, 45);
     flowLayout.minimumInteritemSpacing = 10.0;
-    flowLayout.sectionInset = UIEdgeInsetsMake(7, 10, 8, 10);
+    flowLayout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
     flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     [self setCollectionViewLayout:flowLayout];
     [self registerNib:[UINib nibWithNibName:@"SetCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"Cell"];

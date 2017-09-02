@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UIView *undoDeleteButton;
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 
+@property (weak, nonatomic) IBOutlet UIButton *previousExerciseButton;
 @property (weak, nonatomic) IBOutlet UIButton *tableShowButton;
 
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -52,9 +53,11 @@
     self.centerTextField.backgroundColor = [UIColor BTSecondaryColor];
     self.rightTextField.backgroundColor = [UIColor BTSecondaryColor];
     self.deleteButton.backgroundColor = [UIColor BTRedColor];
-    self.tableShowButton.backgroundColor = [UIColor BTTertiaryColor];
-    self.tableShowButton.layer.cornerRadius = 8;
-    self.tableShowButton.clipsToBounds = YES;
+    for (UIButton *button in @[self.tableShowButton, self.previousExerciseButton]) {
+        button.backgroundColor = [UIColor BTSecondaryColor];
+        button.layer.cornerRadius = 8;
+        button.clipsToBounds = YES;
+    }
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillShow:)
                                                  name:UIKeyboardWillShowNotification
@@ -89,11 +92,9 @@
 }
 
 - (void)loadExercise:(BTExercise *)exercise {
-    BTExercise *lastInstance = [exercise lastInstance];
-    if (lastInstance) NSLog(@"%@",[NSKeyedUnarchiver unarchiveObjectWithData:lastInstance.sets]);
-    self.tableShowButton.hidden = (![exercise.style isEqualToString:STYLE_REPSWEIGHT]);
+    self.previousExerciseButton.hidden = ![exercise lastInstance] || !self.settings.showLastWorkout;
+    self.tableShowButton.hidden = ![exercise.style isEqualToString:STYLE_REPSWEIGHT] || !self.settings.showEquivalencyChart;
     self.editButton.hidden = ([[NSKeyedUnarchiver unarchiveObjectWithData:[BTExerciseType typeForExercise:exercise].iterations] count] == 0);
-    self.tableShowButton.hidden = !self.settings.showEquivalencyChart;
     self.isDeleted = NO;
     self.deletedView.alpha = 0;
     self.deletedView.userInteractionEnabled = NO;
@@ -217,6 +218,10 @@
     [UIView animateWithDuration:.3 animations:^{
        self.deletedView.alpha = 1;
     }];
+}
+
+- (IBAction)previousExerciseButtonPressed:(UIButton *)sender {
+    [self.delegate exerciseViewRequestedShowExerciseDetails:self];
 }
 
 - (IBAction)tableShowButtonPressed:(UIButton *)sender {

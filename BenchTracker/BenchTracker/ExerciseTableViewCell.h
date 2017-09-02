@@ -16,7 +16,7 @@
 
 @class BTExercise;
 
-@interface ExerciseTableViewCell : MGSwipeTableCell <UICollectionViewDelegate, UICollectionViewDataSource>
+@interface ExerciseTableViewCell : MGSwipeTableCell
 
 @property (nonatomic) BTExercise *exercise;
 

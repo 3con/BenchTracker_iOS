@@ -13,4 +13,6 @@
 
 @interface ADExercisesDetailViewController : AnalyticsDetailViewController <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, IterationSelectionViewControllerDelegate, WorkoutViewControllerDelegate>
 
+@property (nonatomic) NSString *iteration;
+
 @end

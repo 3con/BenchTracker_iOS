@@ -18,6 +18,7 @@
 		50530C301F52412200472426 /* WorkoutTemplateTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50530C2E1F52412200472426 /* WorkoutTemplateTableViewCell.xib */; };
 		5054845F1F54B67500658BD2 /* BTCalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5054845E1F54B67500658BD2 /* BTCalendarCell.m */; };
 		5054D8D31F3391C3000EBC21 /* BTTutorialManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5054D8D21F3391C3000EBC21 /* BTTutorialManager.m */; };
+		505CFDA31F5B5795001469F8 /* SetSummaryCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 505CFDA21F5B5795001469F8 /* SetSummaryCollectionView.m */; };
 		50636F2A1F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50636F281F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.m */; };
 		50636F2B1F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50636F291F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.xib */; };
 		50636F2F1F2B9E0D00FB65B4 /* EEDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50636F2E1F2B9E0D00FB65B4 /* EEDetailViewController.m */; };
@@ -158,6 +159,8 @@
 		5054845E1F54B67500658BD2 /* BTCalendarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTCalendarCell.m; sourceTree = "<group>"; };
 		5054D8D11F3391C3000EBC21 /* BTTutorialManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTutorialManager.h; sourceTree = "<group>"; };
 		5054D8D21F3391C3000EBC21 /* BTTutorialManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTutorialManager.m; sourceTree = "<group>"; };
+		505CFDA11F5B5795001469F8 /* SetSummaryCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetSummaryCollectionView.h; sourceTree = "<group>"; };
+		505CFDA21F5B5795001469F8 /* SetSummaryCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetSummaryCollectionView.m; sourceTree = "<group>"; };
 		50636F271F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EEExerciseTypeTableViewCell.h; sourceTree = "<group>"; };
 		50636F281F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EEExerciseTypeTableViewCell.m; sourceTree = "<group>"; };
 		50636F291F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EEExerciseTypeTableViewCell.xib; sourceTree = "<group>"; };
@@ -465,6 +468,15 @@
 				F917BB5C1F0DCA6A00614AB1 /* BTTemplateWorkoutQRModel.m */,
 			);
 			name = WorkoutQRModels;
+			sourceTree = "<group>";
+		};
+		505CFDA41F5B5799001469F8 /* Set Sumamry CV */ = {
+			isa = PBXGroup;
+			children = (
+				505CFDA11F5B5795001469F8 /* SetSummaryCollectionView.h */,
+				505CFDA21F5B5795001469F8 /* SetSummaryCollectionView.m */,
+			);
+			name = "Set Sumamry CV";
 			sourceTree = "<group>";
 		};
 		50636F2C1F2B9C0200FB65B4 /* Exercise type cell */ = {
@@ -912,6 +924,7 @@
 				F962076E1F05DCF200DE2330 /* ExerciseTableViewCell.h */,
 				F962076F1F05DCF200DE2330 /* ExerciseTableViewCell.m */,
 				F96207701F05DCF200DE2330 /* ExerciseTableViewCell.xib */,
+				505CFDA41F5B5799001469F8 /* Set Sumamry CV */,
 			);
 			name = "Exercise cell";
 			sourceTree = "<group>";
@@ -1479,6 +1492,7 @@
 				F95F933B1F034DA500A19C4D /* MainViewController.m in Sources */,
 				F9418FAC1F04A94E0083C3DC /* ExerciseView.m in Sources */,
 				F917BB541F0D2AB200614AB1 /* BTWorkoutPDF.m in Sources */,
+				505CFDA31F5B5795001469F8 /* SetSummaryCollectionView.m in Sources */,
 				F9DA75221F02EE9600347B0D /* BTUser+CoreDataClass.m in Sources */,
 				50971E741F2E4AB700B10D70 /* AETableHeaderView.m in Sources */,
 				5093AE6D1F394AD1006CA6F0 /* BTWorkoutTemplate+CoreDataClass.m in Sources */,

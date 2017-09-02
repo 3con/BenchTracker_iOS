@@ -12,6 +12,7 @@
 #import "BTSettings+CoreDataClass.h"
 #import "EquivalencyChartViewController.h"
 #import "ZFModalTransitionAnimator.h"
+#import "ADExercisesDetailViewController.h"
 
 @interface ExerciseViewController ()
 
@@ -126,6 +127,10 @@
     [self presentIterationSelectionViewControllerWithExercise:[exerciseView getExercise] point:nP];
 }
 
+- (void)exerciseViewRequestedShowExerciseDetails:(ExerciseView *)exerciseView {
+    [self presentExerciseDetailViewControllerWithExerice:[exerciseView getExercise]];
+}
+
 - (void)exerciseViewRequestedShowTable:(ExerciseView *)exerciseView {
     [self presentEquivalencyChartViewControllerWithExercise:[exerciseView getExercise]];
 }
@@ -168,6 +173,25 @@
     isVC.transitioningDelegate = self.animator;
     isVC.modalPresentationStyle = UIModalPresentationCustom;
     [self presentViewController:isVC animated:YES completion:nil];
+}
+
+- (void)presentExerciseDetailViewControllerWithExerice:(BTExercise *)exercise {
+    ADExercisesDetailViewController *adedVC = [[NSBundle mainBundle] loadNibNamed:@"ADExercisesDetailViewController"
+                                                                            owner:self options:nil].firstObject;
+    adedVC.settings = self.settings;
+    adedVC.color = [UIColor BTButtonSecondaryColor];
+    adedVC.titleString = exercise.name;
+    adedVC.iteration = exercise.iteration;
+    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:adedVC];
+    self.animator.bounces = NO;
+    self.animator.dragable = NO;
+    self.animator.behindViewAlpha = 0.8;
+    self.animator.behindViewScale = 0.92;
+    self.animator.transitionDuration = 0.5;
+    self.animator.direction = ZFModalTransitonDirectionBottom;
+    adedVC.transitioningDelegate = self.animator;
+    adedVC.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self presentViewController:adedVC animated:YES completion:nil];
 }
 
 - (void)presentEquivalencyChartViewControllerWithExercise:(BTExercise *)exercise {

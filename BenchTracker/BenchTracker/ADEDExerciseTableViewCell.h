@@ -10,7 +10,7 @@
 
 @class BTExercise;
 
-@interface ADEDExerciseTableViewCell : UITableViewCell <UICollectionViewDelegate, UICollectionViewDataSource>
+@interface ADEDExerciseTableViewCell : UITableViewCell
 
 @property (nonatomic) UIColor *color;
 
