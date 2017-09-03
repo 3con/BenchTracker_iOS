@@ -27,6 +27,7 @@
 @property (weak, nonatomic) IBOutlet UIView *segmentedControlContainerView;
 
 @property (weak, nonatomic) IBOutlet UITableView *listTableView;
+@property (weak, nonatomic) IBOutlet UIView *gradientView;
 @property (weak, nonatomic) IBOutlet UIView *noWorkoutsView;
 @property (weak, nonatomic) IBOutlet UIView *weekdayContainerView;
 @property (weak, nonatomic) IBOutlet WeekdayView *weekdayView;
@@ -80,10 +81,14 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    for (UIButton *button in @[self.scanWorkoutButton, self.blankWorkoutButton, self.rightBarButton, self.templateButton]) {
+    for (UIButton *button in @[self.scanWorkoutButton, self.blankWorkoutButton, self.templateButton]) {
         button.layer.cornerRadius = 12;
         button.clipsToBounds = YES;
+        button.layer.borderWidth = 0;
+        button.layer.borderColor = [UIColor whiteColor].CGColor;
     }
+    self.rightBarButton.layer.cornerRadius = 12;
+    self.rightBarButton.clipsToBounds = YES;
     self.settings = [BTSettings sharedInstance];
     self.exerciseTypeColors = [NSKeyedUnarchiver unarchiveObjectWithData:self.settings.exerciseTypeColors];
 }
@@ -100,6 +105,7 @@
         self.weekdayView.frame = CGRectMake(0, 0, self.weekdayContainerView.frame.size.width, self.weekdayContainerView.frame.size.height);
         [self.weekdayContainerView addSubview:self.weekdayView];
         [self loadUser];
+        [self loadTableViewGradient];
         [self.weekdayView scrollToDate:[NSDate date]];
         [self setUpCalendarView];
         [self.segmentedControlContainerView setNeedsLayout];
@@ -107,6 +113,18 @@
         [self setUpSegmentedControl];
         [self setSelectedViewIndex:0];
     }
+}
+
+- (void)loadTableViewGradient {
+    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+    gradientLayer.frame = self.gradientView.bounds;
+    gradientLayer.startPoint = CGPointMake(0.5,0.0);
+    gradientLayer.endPoint = CGPointMake(0.5,1.0);
+    gradientLayer.locations = @[@(0.1), @(0.6), @(1.0)];
+    gradientLayer.colors = @[(id)[UIColor colorWithWhite:1.0 alpha:0.0].CGColor,
+                             (id)[UIColor colorWithWhite:1.0 alpha:0.7].CGColor,
+                             (id)[UIColor colorWithWhite:1.0 alpha:1.0].CGColor];
+    [self.gradientView.layer insertSublayer:gradientLayer atIndex:0];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

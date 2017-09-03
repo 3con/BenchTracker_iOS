@@ -42,7 +42,7 @@
     else                                                        s = @"Max: N/A";
     self.badgeLabel.text = s;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"MMM d ''yy";
+    formatter.dateFormat = @"MMMMM d ''yy:";
     self.dateLabel.text = [formatter stringFromDate:exercise.workout.date];
     if (exercise.iteration && ![exercise.iteration isEqualToString:@"(null)"])
          self.titleLabel.text = [NSString stringWithFormat:@"%@ %@",exercise.iteration,exercise.name];

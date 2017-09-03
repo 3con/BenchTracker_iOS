@@ -125,9 +125,8 @@
 - (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl {
     [self updateFetchRequest:self.fetchedResultsController.fetchRequest];
     NSError *error;
-    if (![[self fetchedResultsController] performFetch:&error]) {
+    if (![[self fetchedResultsController] performFetch:&error])
         NSLog(@"Main fetch error: %@, %@", error, [error userInfo]);
-    }
     [self.tableView reloadData];
 }
 
@@ -135,13 +134,12 @@
 
 - (NSFetchedResultsController *)fetchedResultsController {
     if (_fetchedResultsController != nil) return _fetchedResultsController;
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    [fetchRequest setEntity:[NSEntityDescription entityForName:@"BTWorkout" inManagedObjectContext:self.context]];
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"BTWorkout"];
     [self updateFetchRequest:fetchRequest];
-    [fetchRequest setFetchBatchSize:20];
-    NSFetchedResultsController *theFetchedResultsController = [[NSFetchedResultsController alloc]
-                                                               initWithFetchRequest:fetchRequest managedObjectContext:self.context
-                                                               sectionNameKeyPath:nil cacheName:nil];
+    fetchRequest.fetchLimit = 10;
+    fetchRequest.fetchBatchSize = 10;
+    NSFetchedResultsController *theFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
+                                                               managedObjectContext:self.context sectionNameKeyPath:nil cacheName:nil];
     self.fetchedResultsController = theFetchedResultsController;
     _fetchedResultsController.delegate = self;
     return _fetchedResultsController;
@@ -150,20 +148,20 @@
 - (void)updateFetchRequest:(NSFetchRequest *)request {
     if (self.segmentedControl.selectedSegmentIndex == 0) {
         if (self.queryType == QUERY_TYPE_VOLUME)
-             [request setSortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"volume" ascending:NO]]];
+             request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"volume" ascending:NO]];
         else if (self.queryType == QUERY_TYPE_DURATION)
-             [request setSortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"duration" ascending:NO]]];
+             request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"duration" ascending:NO]];
         else if (self.queryType == QUERY_TYPE_NUMEXERCISES)
-             [request setSortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"numExercises" ascending:NO]]];
-        else [request setSortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"numSets" ascending:NO]]];
+             request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"numExercises" ascending:NO]];
+        else request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"numSets" ascending:NO]];
     }
-    else     [request setSortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO]]];
+    else     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO]];
 }
 
 #pragma mark - tableView dataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[[_fetchedResultsController sections] objectAtIndex:section] numberOfObjects];
+    return _fetchedResultsController.sections[section].numberOfObjects;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

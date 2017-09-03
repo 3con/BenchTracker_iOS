@@ -174,7 +174,17 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IiY-s6-C0p">
                                 <rect key="frame" x="0.0" y="110" width="414" height="626"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="414" id="lu3-hx-p4i"/>
+                                </constraints>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fU5-Pk-Cd1">
+                                <rect key="frame" x="0.0" y="616" width="414" height="120"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="JFF-80-R3b"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PGW-Zz-iVP">
                                 <rect key="frame" x="0.0" y="110" width="414" height="626"/>
                                 <subviews>
@@ -379,11 +389,13 @@
                             <constraint firstItem="7wv-bp-GGA" firstAttribute="leading" secondItem="jO5-Az-ZYq" secondAttribute="trailing" constant="10" id="0iO-Av-oab"/>
                             <constraint firstItem="PGW-Zz-iVP" firstAttribute="width" secondItem="IiY-s6-C0p" secondAttribute="width" id="38H-GS-ei8"/>
                             <constraint firstItem="uiM-xA-gS4" firstAttribute="centerY" secondItem="7wv-bp-GGA" secondAttribute="centerY" id="3Pe-oX-BbG"/>
+                            <constraint firstItem="8dM-gR-6yE" firstAttribute="top" secondItem="fU5-Pk-Cd1" secondAttribute="bottom" id="4rf-vR-hMv"/>
                             <constraint firstItem="PGW-Zz-iVP" firstAttribute="centerX" secondItem="IiY-s6-C0p" secondAttribute="centerX" id="52h-aO-Aea"/>
                             <constraint firstItem="7wv-bp-GGA" firstAttribute="centerX" secondItem="aTT-hA-cJA" secondAttribute="centerX" id="ACL-KX-vos"/>
                             <constraint firstItem="IiY-s6-C0p" firstAttribute="centerX" secondItem="aTT-hA-cJA" secondAttribute="centerX" id="AlO-V1-AaN"/>
                             <constraint firstItem="oFE-yj-bhY" firstAttribute="width" secondItem="aTT-hA-cJA" secondAttribute="width" id="Dfr-hh-XIQ"/>
                             <constraint firstItem="8dM-gR-6yE" firstAttribute="top" secondItem="7wv-bp-GGA" secondAttribute="bottom" constant="40" id="EzQ-YT-YbZ"/>
+                            <constraint firstItem="fU5-Pk-Cd1" firstAttribute="centerX" secondItem="IiY-s6-C0p" secondAttribute="centerX" id="FDO-FY-q2y"/>
                             <constraint firstItem="8dM-gR-6yE" firstAttribute="top" secondItem="IiY-s6-C0p" secondAttribute="bottom" id="KGd-9R-YVe"/>
                             <constraint firstItem="hx4-hj-moB" firstAttribute="width" secondItem="aTT-hA-cJA" secondAttribute="width" id="KOJ-o4-YbM"/>
                             <constraint firstItem="uiM-xA-gS4" firstAttribute="leading" secondItem="7wv-bp-GGA" secondAttribute="trailing" constant="10" id="Ouj-q9-J9j"/>
@@ -395,6 +407,7 @@
                             <constraint firstItem="PGW-Zz-iVP" firstAttribute="height" secondItem="IiY-s6-C0p" secondAttribute="height" id="alM-rz-bfh"/>
                             <constraint firstItem="IiY-s6-C0p" firstAttribute="top" secondItem="oFE-yj-bhY" secondAttribute="bottom" id="cyF-xX-ymq"/>
                             <constraint firstItem="IiY-s6-C0p" firstAttribute="width" secondItem="aTT-hA-cJA" secondAttribute="width" id="ekI-e7-XVp"/>
+                            <constraint firstItem="fU5-Pk-Cd1" firstAttribute="width" secondItem="IiY-s6-C0p" secondAttribute="width" id="fJf-t0-dso"/>
                             <constraint firstItem="jO5-Az-ZYq" firstAttribute="centerY" secondItem="7wv-bp-GGA" secondAttribute="centerY" id="fYk-QS-KBP"/>
                             <constraint firstItem="oFE-yj-bhY" firstAttribute="centerX" secondItem="aTT-hA-cJA" secondAttribute="centerX" id="nMS-Pe-R3l"/>
                             <constraint firstItem="Kjz-wY-iG2" firstAttribute="centerX" secondItem="aTT-hA-cJA" secondAttribute="centerX" id="qab-Lm-IdL"/>
@@ -405,6 +418,7 @@
                     <connections>
                         <outlet property="blankWorkoutButton" destination="7wv-bp-GGA" id="Tk4-St-xQd"/>
                         <outlet property="calendarView" destination="hx4-hj-moB" id="xN0-eT-g7h"/>
+                        <outlet property="gradientView" destination="fU5-Pk-Cd1" id="zJD-6d-BT6"/>
                         <outlet property="leftBarButton" destination="xOh-gd-Bbp" id="r4q-Jq-nTl"/>
                         <outlet property="listTableView" destination="IiY-s6-C0p" id="D8b-nc-pda"/>
                         <outlet property="navView" destination="oFE-yj-bhY" id="0sA-dQ-XtJ"/>

@@ -102,14 +102,6 @@
 }
 
 - (void)loadGraphView {
-    if ([self.exerciseType.style isEqualToString:STYLE_REPSWEIGHT])      self.graphTitleLabel.text = @"Recent 1RM Equivilents";
-    else if ([self.exerciseType.style isEqualToString:STYLE_REPS])       self.graphTitleLabel.text = @"Recent Max Reps";
-    else if ([self.exerciseType.style isEqualToString:STYLE_TIMEWEIGHT]) self.graphTitleLabel.text = @"Recent Max Loads";
-    else if ([self.exerciseType.style isEqualToString:STYLE_TIME])       self.graphTitleLabel.text = @"Recent Max Durations";
-    else {
-        self.graphTitleLabel.text = @"";
-        self.graphNoDataLabel.text = @"No Graph Available";
-    }
     BTAnalyticsLineChart *lineChart = [[BTAnalyticsLineChart alloc]
         initWithFrame:CGRectMake(5, 10, (MIN(500,self.view.frame.size.width-40))+10, 198)];
     lineChart.yAxisSpaceTop = 2;
@@ -120,9 +112,17 @@
 
 - (void)updateGraphView {
     if ([self.exerciseType.style isEqualToString:STYLE_CUSTOM]) {
+        self.graphTitleLabel.text = @"";
+        self.graphNoDataLabel.text = @"No Graph Available";
         self.graphView.alpha = 0;
         return;
     }
+    NSString *s = (self.segmentedControl.selectedSegmentIndex == 0) ? @"Recent" : @"Top";
+    if ([self.exerciseType.style isEqualToString:STYLE_REPSWEIGHT])      s = [s stringByAppendingString:@" 1RM Equivalents"];
+    else if ([self.exerciseType.style isEqualToString:STYLE_REPS])       s = [s stringByAppendingString:@" Max Reps"];
+    else if ([self.exerciseType.style isEqualToString:STYLE_TIMEWEIGHT]) s = [s stringByAppendingString:@" Max Loads"];
+    else if ([self.exerciseType.style isEqualToString:STYLE_TIME])       s = [s stringByAppendingString:@" Max Durations"];
+    self.graphTitleLabel.text = s;
     NSMutableArray *xAxisArr = [NSMutableArray array];
     NSMutableArray *yAxisArr = [NSMutableArray array];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -248,16 +248,17 @@
         NSLog(@"Main fetch error: %@, %@", error, [error userInfo]);
     }
     [self.tableView reloadData];
+    [self updateGraphView];
 }
 
 #pragma mark - fetchedResultsController
 
 - (NSFetchedResultsController *)fetchedResultsController {
     if (_fetchedResultsController != nil) return _fetchedResultsController;
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    [fetchRequest setEntity:[NSEntityDescription entityForName:@"BTExercise" inManagedObjectContext:self.context]];
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"BTExercise"];
     [self updateFetchRequest:fetchRequest];
-    [fetchRequest setFetchBatchSize:20];
+    fetchRequest.fetchLimit = 8;
+    fetchRequest.fetchBatchSize = 8;
     NSFetchedResultsController *theFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
                                                                 managedObjectContext:self.context sectionNameKeyPath:nil cacheName:nil];
     self.fetchedResultsController = theFetchedResultsController;
@@ -267,18 +268,17 @@
 
 - (void)updateFetchRequest:(NSFetchRequest *)request {
     if (self.segmentedControl.selectedSegmentIndex == 0)
-         [request setSortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"workout.date" ascending:NO]]];
+         request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"workout.date" ascending:NO]];
     else if (self.segmentedControl.selectedSegmentIndex == 1)
-         [request setSortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"oneRM" ascending:NO]]];
-    else [request setSortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"oneRM" ascending:NO]]];
+         request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"oneRM" ascending:NO]];
+    else request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"oneRM" ascending:NO]];
     [request setPredicate:[self predicateForExerciseTypeAndIteration]];
 }
 
 - (NSPredicate *)predicateForExerciseTypeAndIteration {
     NSPredicate *p1 = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"name == '%@'",self.titleString]];
-    NSPredicate *p2;
-    if (self.iteration.length > 0) p2 = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"iteration == '%@'",self.iteration]];
-    return (p2) ? [NSCompoundPredicate andPredicateWithSubpredicates:@[p1, p2]] : p1;
+    NSPredicate *p2 = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"iteration == '%@'",self.iteration]];
+    return (self.iteration.length > 0) ? [NSCompoundPredicate andPredicateWithSubpredicates:@[p1, p2]] : p1;
 }
 
 #pragma mark - tableView dataSource

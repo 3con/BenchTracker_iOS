@@ -77,9 +77,9 @@
     // Section 5: Disable screen sleep
     section = [XLFormSectionDescriptor formSection];
     section.title = @"SHOW IN EXERCISE VIEW";
-    section.footerTitle = @"Previous workout sets: displays the sets from the last instance in which you performed the particular exercise.\nEquivalency chart: displays a chart with equivalent one-rep-maxes for appropriate exercises.";
+    section.footerTitle = @"Exercise analytics: displays analytics relating to the exercise you are performing.\nEquivalency chart: displays a chart with equivalent one-rep-maxes for appropriate exercises.";
     [form addFormSection:section];
-    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"showLastWorkout" rowType:XLFormRowDescriptorTypeBooleanSwitch title:@"Previous workout sets"];
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"showLastWorkout" rowType:XLFormRowDescriptorTypeBooleanSwitch title:@"Exercise analytics"];
     row.value = [NSNumber numberWithBool:self.settings.showLastWorkout];
     [section addFormRow:row];
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"showEquivChart" rowType:XLFormRowDescriptorTypeBooleanSwitch title:@"Equivalency chart"];

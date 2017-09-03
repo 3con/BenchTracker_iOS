@@ -30,8 +30,8 @@
     return [UIColor colorWithRed:3/255.0 green:155/255.0 blue:229/255.0 alpha:1];
 }
 
-+ (UIColor *)BTBlackColor {             //rgb(33,33,33)     //gray 900
-    return [UIColor colorWithRed:33/255.0 green:33/255.0 blue:33/255.0 alpha:1];
++ (UIColor *)BTBlackColor {             //rgb(40,40,40)     //gray 900
+    return [UIColor colorWithRed:40/255.0 green:40/255.0 blue:40/255.0 alpha:1];
 }
 
 + (UIColor *)BTGrayColor {              //rgb(97,97,97)     //gray 700

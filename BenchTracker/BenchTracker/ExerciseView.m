@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 
 @property (weak, nonatomic) IBOutlet UIButton *previousExerciseButton;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *previousExerciseButtonCenterConstraint;
 @property (weak, nonatomic) IBOutlet UIButton *tableShowButton;
 
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -92,7 +93,11 @@
 }
 
 - (void)loadExercise:(BTExercise *)exercise {
-    self.previousExerciseButton.hidden = ![exercise lastInstance] || !self.settings.showLastWorkout;
+    self.previousExerciseButton.hidden = ![exercise lastInstance] ||
+                                         !self.settings.showLastWorkout ||
+                                         [exercise.style isEqualToString:STYLE_CUSTOM];
+    self.previousExerciseButtonCenterConstraint.active = [exercise.style isEqualToString:STYLE_REPS] ||
+                                                         [exercise.style isEqualToString:STYLE_TIME];
     self.tableShowButton.hidden = ![exercise.style isEqualToString:STYLE_REPSWEIGHT] || !self.settings.showEquivalencyChart;
     self.editButton.hidden = ([[NSKeyedUnarchiver unarchiveObjectWithData:[BTExerciseType typeForExercise:exercise].iterations] count] == 0);
     self.isDeleted = NO;
