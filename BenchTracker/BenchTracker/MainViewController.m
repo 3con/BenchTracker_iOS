@@ -175,7 +175,7 @@
 
 - (NSDate *)dateOfFirstWorkout {
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"BTWorkout"];
-    request.fetchBatchSize = 11;
+    request.fetchBatchSize = 1;
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES]];
     NSError *error;
     NSArray <BTWorkout *> *arr = [self.context executeFetchRequest:request error:&error];
@@ -187,9 +187,12 @@
     self.calendarView.firstWeekday = (self.settings.startWeekOnMonday) ? 2 : 1;
     self.calendarView.delegate = self;
     self.calendarView.dataSource = self;
+    self.calendarView.headerHeight = 40;
     self.calendarView.scrollDirection = FSCalendarScrollDirectionVertical;
     self.calendarView.calendarWeekdayView.backgroundColor = [UIColor BTPrimaryColor];
     self.calendarView.calendarHeaderView.backgroundColor = [UIColor BTPrimaryColor];
+    self.calendarView.appearance.headerTitleFont = [UIFont systemFontOfSize:18 weight:UIFontWeightSemibold];
+    self.calendarView.appearance.weekdayFont = [UIFont systemFontOfSize:15 weight:UIFontWeightSemibold];
     [self.calendarView registerClass:[BTCalendarCell class] forCellReuseIdentifier:@"cell"];
 }
 

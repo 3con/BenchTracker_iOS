@@ -63,7 +63,7 @@
 
 - (NSDate *)dateOfFirstWorkout {
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"BTWorkout"];
-    request.fetchBatchSize = 11;
+    request.fetchBatchSize = 1;
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES]];
     NSError *error;
     NSArray <BTWorkout *> *arr = [self.context executeFetchRequest:request error:&error];
@@ -144,7 +144,7 @@
         for (UILabel *l in self.titleViews) {
             l.textColor = [UIColor whiteColor];
             l.textAlignment = NSTextAlignmentCenter;
-            l.font = [UIFont systemFontOfSize:19 weight:UIFontWeightRegular];
+            l.font = [UIFont systemFontOfSize:18 weight:UIFontWeightSemibold];
             [self.titleView addSubview:l];
         }
     }
