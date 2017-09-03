@@ -74,7 +74,15 @@
     row.value = [NSNumber numberWithBool:self.settings.disableSleep];
     [section addFormRow:row];
     
-    // Section 5: Disable screen sleep
+    // Section 5: Workout details
+    section = [XLFormSectionDescriptor formSection];
+    section.footerTitle = @"Displays statistics below each workout in your home screen.";
+    [form addFormSection:section];
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"workoutDetails" rowType:XLFormRowDescriptorTypeBooleanSwitch title:@"Show workout details"];
+    row.value = [NSNumber numberWithBool:self.settings.showWorkoutDetails];
+    [section addFormRow:row];
+    
+    // Section 6: Show in exercise view
     section = [XLFormSectionDescriptor formSection];
     section.title = @"SHOW IN EXERCISE VIEW";
     section.footerTitle = @"Exercise analytics: displays analytics relating to the exercise you are performing.\nEquivalency chart: displays a chart with equivalent one-rep-maxes for appropriate exercises.";
@@ -86,7 +94,7 @@
     row.value = [NSNumber numberWithBool:self.settings.showEquivalencyChart];
     [section addFormRow:row];
     
-    // Section 5: Import, Export data
+    // Section 7: Import, Export data
     section = [XLFormSectionDescriptor formSection];
     section.footerTitle = @"Import or export all of your Bench Tracker data using email attachments. This includes all of your workouts and custom exercises.";
     [form addFormSection:section];
@@ -99,7 +107,7 @@
     [row.cellConfig setObject:@(NSTextAlignmentNatural) forKey:@"textLabel.textAlignment"];
     [section addFormRow:row];
     
-    // Section 6: Share, Rate
+    // Section 8: Share, Rate
     section = [XLFormSectionDescriptor formSection];
     [form addFormSection:section];
     //Share
@@ -111,7 +119,7 @@
     [row.cellConfig setObject:@(NSTextAlignmentNatural) forKey:@"textLabel.textAlignment"];
     [section addFormRow:row];
     
-    // Section 7: Reset data
+    // Section 9: Reset data
     section = [XLFormSectionDescriptor formSection];
     [form addFormSection:section];
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"reset" rowType:XLFormRowDescriptorTypeBTButton title:@"Reset Data"];
@@ -137,6 +145,7 @@
     self.settings.weightInLbs = ![result[@"weightInKg"] boolValue];
     self.settings.startWeekOnMonday = ![result[@"startWeekOnSunday"] boolValue];
     self.settings.disableSleep = [result[@"disableSleep"] boolValue];
+    self.settings.showWorkoutDetails = [result[@"workoutDetails"] boolValue];
     self.settings.showLastWorkout = [result[@"showLastWorkout"] boolValue];
     self.settings.showEquivalencyChart = [result[@"showEquivChart"] boolValue];
     [self.context save:nil];

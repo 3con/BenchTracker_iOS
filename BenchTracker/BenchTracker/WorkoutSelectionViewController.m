@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIView *containingView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic) CGFloat cellHeight;
 
 @property (nonatomic) NSLayoutConstraint *tableHeightConstraint;
 
@@ -40,6 +41,7 @@
         NSLog(@"Main fetch error: %@, %@", error, [error userInfo]);
     }
     [self.view addConstraint:self.tableHeightConstraint];
+    self.cellHeight = 0;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.scrollEnabled = NO;
@@ -111,7 +113,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) return 45;
     if (_fetchedResultsController.sections[0].numberOfObjects == 0) return 120;
-    return [WorkoutTableViewCell heightForWorkoutCell];
+    return self.cellHeight;
 }
 
 - (void)configureWorkoutCell:(WorkoutTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
@@ -302,8 +304,13 @@
                                                                constant:0];
     }
     _tableHeightConstraint.constant = (self.fetchedResultsController.sections[0].numberOfObjects == 0) ?
-        45+120 : 45+60*self.fetchedResultsController.sections[0].numberOfObjects;
+        45+120 : 45+self.cellHeight*self.fetchedResultsController.sections[0].numberOfObjects;
     return _tableHeightConstraint;
+}
+
+- (CGFloat)cellHeight {
+    if (_cellHeight == 0) _cellHeight = [WorkoutTableViewCell heightForWorkoutCell];
+    return _cellHeight;
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {

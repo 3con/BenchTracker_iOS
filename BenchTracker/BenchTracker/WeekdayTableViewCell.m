@@ -58,7 +58,7 @@
 
 - (void)setToday:(BOOL)today {
     _today = today;
-    self.weekdayContainerView.backgroundColor = (today) ? [UIColor BTSecondaryColor] : [UIColor BTPrimaryColor];
+    self.weekdayContainerView.backgroundColor = (today) ? [UIColor BTTertiaryColor] : [UIColor BTPrimaryColor];
 }
 
 - (void)loadStackedViewWithWorkouts:(NSArray <BTWorkout *> *)workouts {

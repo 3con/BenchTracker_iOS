@@ -18,8 +18,8 @@
     return [UIColor colorWithRed:22/255.0 green:58/255.0 blue:171/255.0 alpha:1];
 }
 
-+ (UIColor *)BTTertiaryColor {          //rgb(63,81,181)    //indigo 500 (r-30, g-20)
-    return [UIColor colorWithRed:33/255.0 green:61/255.0 blue:181/255.0 alpha:1];
++ (UIColor *)BTTertiaryColor {          //rgb(55,80,200)    //indigo 500 (r-30, g-20)
+    return [UIColor colorWithRed:55/255.0 green:80/255.0 blue:200/255.0 alpha:1];
 }
 
 + (UIColor *)BTButtonPrimaryColor {     //rgb(251,192,45)   //yellow 700

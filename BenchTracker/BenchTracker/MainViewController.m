@@ -27,6 +27,7 @@
 @property (weak, nonatomic) IBOutlet UIView *segmentedControlContainerView;
 
 @property (weak, nonatomic) IBOutlet UITableView *listTableView;
+@property (nonatomic) CGFloat cellHeight;
 @property (weak, nonatomic) IBOutlet UIView *gradientView;
 @property (weak, nonatomic) IBOutlet UIView *noWorkoutsView;
 @property (weak, nonatomic) IBOutlet UIView *weekdayContainerView;
@@ -257,7 +258,8 @@
     self.segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleBox;
     self.segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationNone;
     self.segmentedControl.backgroundColor = [UIColor BTSecondaryColor];
-    self.segmentedControl.selectionIndicatorBoxColor = [UIColor whiteColor];
+    self.segmentedControl.selectionIndicatorBoxOpacity = 1.0;
+    self.segmentedControl.selectionIndicatorBoxColor = [UIColor BTTertiaryColor];
     self.segmentedControl.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
                                                  [UIColor whiteColor], NSForegroundColorAttributeName,
                                                  [UIFont systemFontOfSize:15 weight:UIFontWeightMedium], NSFontAttributeName, nil];
@@ -377,7 +379,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [WorkoutTableViewCell heightForWorkoutCell];
+    return self.cellHeight;
 }
 
 - (void)configureWorkoutCell:(WorkoutTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
@@ -575,6 +577,8 @@
 #pragma mark - settingsVC delegate
 
 - (void)settingsViewWillDismiss:(SettingsViewController *)settingsVC {
+    self.cellHeight = 0;
+    [self.listTableView reloadData];
     [self.weekdayView reloadData];
     self.calendarView.firstWeekday = (self.settings.startWeekOnMonday) ? 2 : 1;
     [self.calendarView reloadData];
@@ -634,6 +638,11 @@
     [self.listTableView endUpdates];
     [self.weekdayView reloadData];
     [self.calendarView reloadData];
+}
+
+- (CGFloat)cellHeight {
+    if (_cellHeight == 0) _cellHeight = [WorkoutTableViewCell heightForWorkoutCell];
+    return _cellHeight;
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {

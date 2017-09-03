@@ -9,6 +9,8 @@
 #import "WorkoutTableViewCell.h"
 #import "BTWorkout+CoreDataClass.h"
 #import "BTWorkoutTemplate+CoreDataClass.h"
+#import "BTSettings+CoreDataClass.h"
+#import "WorkoutDetailsView.h"
 
 @interface WorkoutTableViewCell()
 
@@ -16,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 
 @property (weak, nonatomic) IBOutlet BTStackedBarView *stackedView;
+
+@property (nonatomic) WorkoutDetailsView *workoutDetailsView;
 
 @property (nonatomic) BTWorkout *workout;
 
@@ -61,6 +65,19 @@
     [formatter setDateFormat:@"EEEE, MMMM d"];
     self.dateLabel.text = [formatter stringFromDate:workout.date];
     [self loadStackedView];
+    if ([BTSettings sharedInstance].showWorkoutDetails) {
+        if (!self.workoutDetailsView) {
+            self.workoutDetailsView = [[NSBundle mainBundle] loadNibNamed:@"WorkoutDetailsView" owner:self options:nil].firstObject;
+            self.workoutDetailsView.frame = CGRectMake(0, 55, self.frame.size.width, 20);
+            self.workoutDetailsView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+            [self.contentView addSubview:self.workoutDetailsView];
+        }
+        [self.workoutDetailsView loadWithWorkout:workout];
+    }
+    else if (self.workoutDetailsView) {
+        [self.workoutDetailsView removeFromSuperview];
+        self.workoutDetailsView = nil;
+    }
 }
 
 - (void)loadStackedView {
@@ -77,7 +94,7 @@
 }
 
 + (CGFloat)heightForWorkoutCell {
-    return 60.0;
+    return [BTSettings sharedInstance].showWorkoutDetails ? 80 : 60;
 }
 
 - (void)checkTemplateStatus {
