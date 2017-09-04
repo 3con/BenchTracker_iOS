@@ -59,6 +59,10 @@
         button.layer.cornerRadius = 8;
         button.clipsToBounds = YES;
     }
+    [self.tableShowButton setImage:[self translucentImageFromImage:[UIImage imageNamed:@"Table"] withAlpha:.8]
+                          forState:UIControlStateNormal];
+    [self.previousExerciseButton setImage:[self translucentImageFromImage:[UIImage imageNamed:@"Chart"] withAlpha:.8]
+                                 forState:UIControlStateNormal];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillShow:)
                                                  name:UIKeyboardWillShowNotification
@@ -396,6 +400,16 @@
     for (UITextField *tF in @[self.textField, self.leftTextField, self.centerTextField, self.rightTextField])
         if (tF.isFirstResponder) return YES;
     return NO;
+}
+
+- (UIImage *)translucentImageFromImage:(UIImage *)image withAlpha:(CGFloat)alpha {
+    CGRect rect = CGRectZero;
+    rect.size = image.size;
+    UIGraphicsBeginImageContext(image.size);
+    [image drawInRect:rect blendMode:kCGBlendModeScreen alpha:alpha];
+    UIImage * translucentImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return translucentImage;
 }
 
 #pragma mark - keyboard handling

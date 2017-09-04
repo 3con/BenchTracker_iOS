@@ -146,7 +146,7 @@
                                 <constraint firstAttribute="width" constant="30" id="wQ6-tC-Wwz"/>
                             </constraints>
                             <inset key="imageEdgeInsets" minX="7" minY="7" maxX="7" maxY="7"/>
-                            <state key="normal" image="Analyics"/>
+                            <state key="normal" image="Chart"/>
                             <connections>
                                 <action selector="previousExerciseButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="afi-0T-YBY"/>
                             </connections>
@@ -263,8 +263,8 @@
         </view>
     </objects>
     <resources>
-        <image name="Analyics" width="64" height="64"/>
+        <image name="Chart" width="128" height="128"/>
         <image name="Edit" width="32" height="32"/>
-        <image name="Table" width="256" height="256"/>
+        <image name="Table" width="32" height="32"/>
     </resources>
 </document>

@@ -305,7 +305,7 @@
                                             <constraint firstAttribute="width" constant="100" id="qgJ-jS-dIe"/>
                                         </constraints>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="4" maxX="78" maxY="4"/>
-                                        <state key="normal" image="Analyics">
+                                        <state key="normal" image="Chart">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -1765,8 +1765,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Analyics" width="85" height="85"/>
         <image name="Cancel" width="85" height="85"/>
+        <image name="Chart" width="85" height="85"/>
         <image name="More" width="85" height="85"/>
         <image name="NewWorkoutArrow" width="170" height="170"/>
         <image name="Print" width="21" height="21"/>
