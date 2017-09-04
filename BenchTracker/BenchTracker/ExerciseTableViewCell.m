@@ -41,7 +41,9 @@
 }
 
 - (void)loadExercise:(BTExercise *)exercise {
-    self.leftButtons = @[[MGSwipeButton buttonWithTitle:@"Delete" icon:nil backgroundColor:[UIColor BTRedColor]]];
+    MGSwipeButton *delButton = [MGSwipeButton buttonWithTitle:@"Delete" icon:nil backgroundColor:[UIColor BTRedColor]];
+    delButton.buttonWidth = 80;
+    self.leftButtons = @[delButton];
     self.leftSwipeSettings.transition = MGSwipeTransitionClipCenter;
     if ([self.supersetMode isEqualToString:SUPERSET_NONE]) {
         self.aboveSupersetView.alpha = 0;

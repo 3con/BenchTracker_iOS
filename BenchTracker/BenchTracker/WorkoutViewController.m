@@ -12,7 +12,6 @@
 #import "ZFModalTransitionAnimator.h"
 #import "ExerciseTableViewCell.h"
 #import "PassTouchesView.h"
-#import "MMQRCodeMakerUtil.h"
 #import "BTSettings+CoreDataClass.h"
 #import "Appirater.h"
 
@@ -128,11 +127,6 @@
 - (IBAction)settingsButtonPressed:(UIButton *)sender {
     [self updateWorkout];
     [self presentSettingsViewControllerWithPoint:sender.center];
-}
-
-- (IBAction)qrButtonPressed:(UIButton *)sender {
-    [self updateWorkout];
-    [self presentQRDisplayViewControllerWithPoint:sender.center];
 }
 
 - (IBAction)addExerciseButtonPressed:(UIButton *)sender {
@@ -576,12 +570,6 @@
     
 }
 
-#pragma mark - qrDisplayVC delegate
-
-- (void)QRDisplayViewControllerWillDismiss:(QRDisplayViewController *)qrDisplayVC {
-    
-}
-
 #pragma mark - view handling
 
 - (void)presentAddExerciseViewController {
@@ -635,25 +623,6 @@
     wseVC.transitioningDelegate = self.animator;
     wseVC.modalPresentationStyle = UIModalPresentationCustom;
     [self presentViewController:wseVC animated:YES completion:nil];
-}
-
-- (void)presentQRDisplayViewControllerWithPoint:(CGPoint)point {
-    NSString *jsonString = [BTWorkout jsonForWorkout:self.workout];
-    NSString *jsonString2 = [BTWorkout jsonForTemplateWorkout:self.workout];
-    QRDisplayViewController *qVC = [self.storyboard instantiateViewControllerWithIdentifier:@"qd"];
-    qVC.image1 = [MMQRCodeMakerUtil qrImageWithContent:jsonString logoImage:nil qrColor:nil qrWidth:440];
-    qVC.image2 = [MMQRCodeMakerUtil qrImageWithContent:jsonString2 logoImage:nil qrColor:nil qrWidth:440];
-    qVC.point = point;
-    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:qVC];
-    self.animator.bounces = NO;
-    self.animator.dragable = NO;
-    self.animator.behindViewAlpha = 1;
-    self.animator.behindViewScale = 1;
-    self.animator.transitionDuration = 0;
-    self.animator.direction = ZFModalTransitonDirectionBottom;
-    qVC.transitioningDelegate = self.animator;
-    qVC.modalPresentationStyle = UIModalPresentationCustom;
-    [self presentViewController:qVC animated:YES completion:nil];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {

@@ -77,6 +77,7 @@
     self.listTableView.dataSource = self;
     self.listTableView.delegate = self;
     self.listTableView.contentInset = UIEdgeInsetsMake(0, 0, 95, 0);
+    self.listTableView.separatorInset = UIEdgeInsetsMake(0, 25, 0, 25);
     [self.listTableView registerNib:[UINib nibWithNibName:@"WorkoutTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"Cell"];
 }
 
@@ -121,10 +122,12 @@
     gradientLayer.frame = self.gradientView.bounds;
     gradientLayer.startPoint = CGPointMake(0.5,0.0);
     gradientLayer.endPoint = CGPointMake(0.5,1.0);
-    gradientLayer.locations = @[@(0.1), @(0.6), @(1.0)];
-    gradientLayer.colors = @[(id)[UIColor colorWithWhite:1.0 alpha:0.0].CGColor,
-                             (id)[UIColor colorWithWhite:1.0 alpha:0.7].CGColor,
-                             (id)[UIColor colorWithWhite:1.0 alpha:1.0].CGColor];
+    gradientLayer.locations = @[@(0.05),
+                                @(0.70),
+                                @(1.00)];
+    gradientLayer.colors =    @[(id)[UIColor colorWithWhite:1.0 alpha:0.0].CGColor,
+                                (id)[UIColor colorWithWhite:1.0 alpha:0.5].CGColor,
+                                (id)[UIColor colorWithWhite:1.0 alpha:1.0].CGColor];
     [self.gradientView.layer insertSublayer:gradientLayer atIndex:0];
 }
 

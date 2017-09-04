@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "QRDisplayViewController.h"
 
 @class BTWorkout;
 @class BTSettings;
@@ -16,7 +17,7 @@
 - (void)WorkoutSettingsViewControllerWillDismiss:(WorkoutSettingsViewController *)wsVC;
 @end
 
-@interface WorkoutSettingsViewController : UIViewController <UIScrollViewDelegate, UIPrintInteractionControllerDelegate>
+@interface WorkoutSettingsViewController : UIViewController <UIScrollViewDelegate, UIPrintInteractionControllerDelegate, QRDisplayViewControllerDelegate>
 
 @property (nonatomic) id<WorkoutSettingsViewControllerDelegate> delegate;
 

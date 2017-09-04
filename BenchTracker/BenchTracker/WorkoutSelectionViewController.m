@@ -45,6 +45,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.scrollEnabled = NO;
+    self.tableView.separatorInset = UIEdgeInsetsMake(0, 25, 0, 25);
     self.tableView.tableFooterView = [UIView new];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"ACell"];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"BCell"];

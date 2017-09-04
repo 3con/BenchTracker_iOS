@@ -41,7 +41,7 @@
 }
 
 - (void)loadWorkoutTemplate:(BTWorkoutTemplate *)workoutTemplate {
-    MGSwipeButton *delButton = [MGSwipeButton buttonWithTitle:@"Delete" icon:nil backgroundColor:[UIColor BTRedColor]];
+    MGSwipeButton *delButton = [MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"Trash"] backgroundColor:[UIColor BTRedColor]];
     delButton.buttonWidth = 80;
     self.leftButtons = @[delButton];
     self.leftSwipeSettings.transition = MGSwipeTransitionClipCenter;

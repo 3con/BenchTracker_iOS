@@ -7,10 +7,12 @@
 //
 
 #import "WorkoutSettingsViewController.h"
+#import "ZFModalTransitionAnimator.h"
 #import "BTWorkout+CoreDataClass.h"
 #import "BTSettings+CoreDataClass.h"
 #import "BTPDFGenerator.h"
 #import "BTWorkoutTemplate+CoreDataClass.h"
+#import "MMQRCodeMakerUtil.h"
 
 @interface WorkoutSettingsViewController ()
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -19,10 +21,13 @@
 
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 
+@property (weak, nonatomic) IBOutlet UIButton *qrButton;
 @property (weak, nonatomic) IBOutlet UIButton *printButton;
 @property (weak, nonatomic) IBOutlet UIButton *templateButton;
 @property (weak, nonatomic) IBOutlet UIButton *durationButton;
 @property (weak, nonatomic) IBOutlet UILabel *detailLabel;
+
+@property (nonatomic) ZFModalTransitionAnimator *animator;
 
 @end
 
@@ -33,10 +38,11 @@
     self.scrollView.delegate = self;
     self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 90, 0);
     self.contentView.backgroundColor = [UIColor BTPrimaryColor];
-    for (UIButton *button in @[self.printButton, self.templateButton, self.durationButton]) {
+    for (UIButton *button in @[self.qrButton, self.printButton, self.templateButton, self.durationButton]) {
         button.layer.cornerRadius = 12;
         button.clipsToBounds = YES;
         button.backgroundColor = [UIColor BTSecondaryColor];
+        button.imageView.contentMode = UIViewContentModeScaleAspectFit;
     }
     self.contentView.layer.cornerRadius = 12;
     self.contentView.clipsToBounds = YES;
@@ -77,11 +83,15 @@
     [self animateIn];
 }
 
-- (IBAction)doneButtonPressed:(id)sender {
+- (IBAction)doneButtonPressed:(UIButton *)sender {
     [self animateOut];
 }
 
-- (IBAction)printButtonPressed:(id)sender {
+- (IBAction)qrButtonPressed:(UIButton *)sender {
+    [self presentQRDisplayViewControllerWithPoint:[self.view convertPoint:sender.center fromView:self.contentView]];
+}
+
+- (IBAction)printButtonPressed:(UIButton *)sender {
     NSString *path = [BTPDFGenerator generatePDFWithWorkouts:@[self.workout]];
     UIPrintInteractionController *printController = [UIPrintInteractionController sharedPrintController];
     printController.delegate = self;
@@ -96,7 +106,7 @@
     }];
 }
 
-- (IBAction)templateButtonPressed:(id)sender {
+- (IBAction)templateButtonPressed:(UIButton *)sender {
     if ([BTWorkoutTemplate templateExistsForWorkout:self.workout])
          [BTWorkoutTemplate removeWorkoutFromTemplateList:self.workout];
     else [BTWorkoutTemplate saveWorkoutToTemplateList:self.workout];
@@ -121,7 +131,7 @@
     }];
 }
 
-- (IBAction)durationButtonPressed:(id)sender {
+- (IBAction)durationButtonPressed:(UIButton *)sender {
     UIAlertController * alertController = [UIAlertController alertControllerWithTitle: @"Manual Duration"
                                                                               message: @"Please enter your workout duration in minutes. Be aware that if you continue adding sets workout duration will still increment."
                                                                        preferredStyle:UIAlertControllerStyleAlert];
@@ -145,6 +155,33 @@
 
 - (void)printInteractionControllerWillDismissPrinterOptions:(UIPrintInteractionController *)printInteractionController {
     
+}
+
+#pragma mark - qrView delegate
+
+- (void)QRDisplayViewControllerWillDismiss:(QRDisplayViewController *)qrDisplayVC {
+    
+}
+
+#pragma mark - view handling
+
+- (void)presentQRDisplayViewControllerWithPoint:(CGPoint)point {
+    NSString *jsonString = [BTWorkout jsonForWorkout:self.workout];
+    NSString *jsonString2 = [BTWorkout jsonForTemplateWorkout:self.workout];
+    QRDisplayViewController *qVC = [self.storyboard instantiateViewControllerWithIdentifier:@"qd"];
+    qVC.image1 = [MMQRCodeMakerUtil qrImageWithContent:jsonString logoImage:nil qrColor:nil qrWidth:440];
+    qVC.image2 = [MMQRCodeMakerUtil qrImageWithContent:jsonString2 logoImage:nil qrColor:nil qrWidth:440];
+    qVC.point = point;
+    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:qVC];
+    self.animator.bounces = NO;
+    self.animator.dragable = NO;
+    self.animator.behindViewAlpha = 1;
+    self.animator.behindViewScale = 1;
+    self.animator.transitionDuration = 0;
+    self.animator.direction = ZFModalTransitonDirectionBottom;
+    qVC.transitioningDelegate = self.animator;
+    qVC.modalPresentationStyle = UIModalPresentationCustom;
+    [self presentViewController:qVC animated:YES completion:nil];
 }
 
 #pragma mark - scrollView delegate
