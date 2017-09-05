@@ -11,6 +11,14 @@
 
 @implementation BTUser
 
+- (void)setImage:(UIImage *)image {
+    self.imageData = UIImagePNGRepresentation(image);
+}
+
+- (UIImage *)image {
+    return [UIImage imageWithData:self.imageData];
+}
+
 + (BTUser *)sharedInstance {
     static BTUser *sharedInstance = nil;
     static dispatch_once_t onceToken;

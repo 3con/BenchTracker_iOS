@@ -15,4 +15,9 @@
 }
 
 @dynamic dateCreated;
+@dynamic name;
+@dynamic imageData;
+@dynamic xp;
+@dynamic achievementListVersion;
+
 @end

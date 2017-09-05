@@ -40,6 +40,10 @@
 		5093AE741F394B14006CA6F0 /* BTExerciseTemplate+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 5093AE721F394B14006CA6F0 /* BTExerciseTemplate+CoreDataProperties.m */; };
 		50971E741F2E4AB700B10D70 /* AETableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50971E731F2E4AB700B10D70 /* AETableHeaderView.m */; };
 		50971E761F2E4AC400B10D70 /* AETableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50971E751F2E4AC400B10D70 /* AETableHeaderView.xib */; };
+		5099F1BA1F5F637A000A6DE4 /* BTAchievement+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 5099F1B71F5F637A000A6DE4 /* BTAchievement+CoreDataClass.m */; };
+		5099F1BB1F5F637A000A6DE4 /* BTAchievement+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 5099F1B91F5F637A000A6DE4 /* BTAchievement+CoreDataProperties.m */; };
+		5099F1BF1F5F6746000A6DE4 /* AchievementListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5099F1BE1F5F6746000A6DE4 /* AchievementListModel.m */; };
+		5099F1C31F5F6774000A6DE4 /* AchievementListVersionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5099F1C21F5F6774000A6DE4 /* AchievementListVersionModel.m */; };
 		50CF69D61F3A685C00DDE8A6 /* TemplateSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CF69D51F3A685C00DDE8A6 /* TemplateSelectionViewController.m */; };
 		6FF44576CFF404C6C4707802 /* Pods_BenchTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C83D3A0EA46ECDF1788C990 /* Pods_BenchTracker.framework */; };
 		F77B8D13565A4E6664DC71A8 /* Pods_BenchTrackerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40B18DFBDA158AF111B21958 /* Pods_BenchTrackerTests.framework */; };
@@ -199,6 +203,16 @@
 		50971E721F2E4AB700B10D70 /* AETableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AETableHeaderView.h; sourceTree = "<group>"; };
 		50971E731F2E4AB700B10D70 /* AETableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AETableHeaderView.m; sourceTree = "<group>"; };
 		50971E751F2E4AC400B10D70 /* AETableHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AETableHeaderView.xib; sourceTree = "<group>"; };
+		5099F1B51F5F5F2B000A6DE4 /* BTDataModel3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BTDataModel3.xcdatamodel; sourceTree = "<group>"; };
+		5099F1B61F5F637A000A6DE4 /* BTAchievement+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "BTAchievement+CoreDataClass.h"; path = "BenchTracker/BTAchievement+CoreDataClass.h"; sourceTree = "<group>"; };
+		5099F1B71F5F637A000A6DE4 /* BTAchievement+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "BTAchievement+CoreDataClass.m"; path = "BenchTracker/BTAchievement+CoreDataClass.m"; sourceTree = "<group>"; };
+		5099F1B81F5F637A000A6DE4 /* BTAchievement+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "BTAchievement+CoreDataProperties.h"; path = "BenchTracker/BTAchievement+CoreDataProperties.h"; sourceTree = "<group>"; };
+		5099F1B91F5F637A000A6DE4 /* BTAchievement+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "BTAchievement+CoreDataProperties.m"; path = "BenchTracker/BTAchievement+CoreDataProperties.m"; sourceTree = "<group>"; };
+		5099F1BD1F5F6746000A6DE4 /* AchievementListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AchievementListModel.h; path = BenchTracker/AchievementListModel.h; sourceTree = "<group>"; };
+		5099F1BE1F5F6746000A6DE4 /* AchievementListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AchievementListModel.m; path = BenchTracker/AchievementListModel.m; sourceTree = "<group>"; };
+		5099F1C11F5F6774000A6DE4 /* AchievementListVersionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AchievementListVersionModel.h; path = BenchTracker/AchievementListVersionModel.h; sourceTree = "<group>"; };
+		5099F1C21F5F6774000A6DE4 /* AchievementListVersionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AchievementListVersionModel.m; path = BenchTracker/AchievementListVersionModel.m; sourceTree = "<group>"; };
+		5099F1C51F5F6803000A6DE4 /* BTDataModel4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BTDataModel4.xcdatamodel; sourceTree = "<group>"; };
 		50CF69D41F3A685C00DDE8A6 /* TemplateSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemplateSelectionViewController.h; sourceTree = "<group>"; };
 		50CF69D51F3A685C00DDE8A6 /* TemplateSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TemplateSelectionViewController.m; sourceTree = "<group>"; };
 		50FB89931F5A48A3002EA7A4 /* BTDataModel2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BTDataModel2.xcdatamodel; sourceTree = "<group>"; };
@@ -625,6 +639,37 @@
 				50971E751F2E4AC400B10D70 /* AETableHeaderView.xib */,
 			);
 			name = "Table header view";
+			sourceTree = "<group>";
+		};
+		5099F1BC1F5F6385000A6DE4 /* BTAchievement */ = {
+			isa = PBXGroup;
+			children = (
+				5099F1B61F5F637A000A6DE4 /* BTAchievement+CoreDataClass.h */,
+				5099F1B71F5F637A000A6DE4 /* BTAchievement+CoreDataClass.m */,
+				5099F1B81F5F637A000A6DE4 /* BTAchievement+CoreDataProperties.h */,
+				5099F1B91F5F637A000A6DE4 /* BTAchievement+CoreDataProperties.m */,
+				5099F1C01F5F6749000A6DE4 /* AchievementListModel */,
+			);
+			name = BTAchievement;
+			sourceTree = "<group>";
+		};
+		5099F1C01F5F6749000A6DE4 /* AchievementListModel */ = {
+			isa = PBXGroup;
+			children = (
+				5099F1C41F5F677F000A6DE4 /* ALVersionModel */,
+				5099F1BD1F5F6746000A6DE4 /* AchievementListModel.h */,
+				5099F1BE1F5F6746000A6DE4 /* AchievementListModel.m */,
+			);
+			name = AchievementListModel;
+			sourceTree = "<group>";
+		};
+		5099F1C41F5F677F000A6DE4 /* ALVersionModel */ = {
+			isa = PBXGroup;
+			children = (
+				5099F1C11F5F6774000A6DE4 /* AchievementListVersionModel.h */,
+				5099F1C21F5F6774000A6DE4 /* AchievementListVersionModel.m */,
+			);
+			name = ALVersionModel;
 			sourceTree = "<group>";
 		};
 		50CF69D71F3A686600DDE8A6 /* Template selection */ = {
@@ -1156,6 +1201,7 @@
 				F9DA752B1F02F00C00347B0D /* BTExerciseType */,
 				5093AE761F394B2A006CA6F0 /* BTWorkoutTemplate */,
 				5093AE751F394B22006CA6F0 /* BTExerciseTemplate */,
+				5099F1BC1F5F6385000A6DE4 /* BTAchievement */,
 			);
 			name = "CoreData Models";
 			path = ..;
@@ -1499,6 +1545,7 @@
 				50404F5B1F3280430070B1A9 /* BTUserModel.m in Sources */,
 				F90712AA19415FB1008694E5 /* AppDelegate.m in Sources */,
 				F9418FBC1F04CEE80083C3DC /* SetCollectionViewCell.m in Sources */,
+				5099F1BA1F5F637A000A6DE4 /* BTAchievement+CoreDataClass.m in Sources */,
 				F9DA75281F02EE9600347B0D /* BTWorkout+CoreDataClass.m in Sources */,
 				F9DA75271F02EE9600347B0D /* BTExerciseType+CoreDataProperties.m in Sources */,
 				F9A5494E1F13075600743897 /* AnalyticsViewController.m in Sources */,
@@ -1547,11 +1594,13 @@
 				50530C261F50BC4100472426 /* SetCollectionView.m in Sources */,
 				50060FDD1F33BB8E00F6DC00 /* BTWorkoutModel.m in Sources */,
 				50636F2F1F2B9E0D00FB65B4 /* EEDetailViewController.m in Sources */,
+				5099F1BF1F5F6746000A6DE4 /* AchievementListModel.m in Sources */,
 				F9DA75111F02DC1700347B0D /* BTDataModel.xcdatamodeld in Sources */,
 				F927D14F1F0C9BD70004CF3A /* IterationSelectionViewController.m in Sources */,
 				F94C89451F15D5B6006C6BDD /* BT1RMCalculator.m in Sources */,
 				F917BB641F0DEA7C00614AB1 /* BTQRScannerViewController.m in Sources */,
 				F9C240731F17F9B300A268F3 /* UIColor+BTColors.m in Sources */,
+				5099F1C31F5F6774000A6DE4 /* AchievementListVersionModel.m in Sources */,
 				F90712A719415FB1008694E5 /* main.m in Sources */,
 				F97773E11F1726A2009AEDE3 /* ADExerciseTypeTableViewCell.m in Sources */,
 				F9418FB21F04C83F0083C3DC /* SetFlowLayout.m in Sources */,
@@ -1564,6 +1613,7 @@
 				F9DA75241F02EE9600347B0D /* BTExercise+CoreDataClass.m in Sources */,
 				5054845F1F54B67500658BD2 /* BTCalendarCell.m in Sources */,
 				5093AE6E1F394AD1006CA6F0 /* BTWorkoutTemplate+CoreDataProperties.m in Sources */,
+				5099F1BB1F5F637A000A6DE4 /* BTAchievement+CoreDataProperties.m in Sources */,
 				F9DA75231F02EE9600347B0D /* BTUser+CoreDataProperties.m in Sources */,
 				50519B021F5C8D9500C109E1 /* WorkoutDetailsView.m in Sources */,
 				F9640BD91F080E590053C9C0 /* BTSettings+CoreDataProperties.m in Sources */,
@@ -1814,10 +1864,12 @@
 		F9DA750F1F02DC1700347B0D /* BTDataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				5099F1C51F5F6803000A6DE4 /* BTDataModel4.xcdatamodel */,
+				5099F1B51F5F5F2B000A6DE4 /* BTDataModel3.xcdatamodel */,
 				50FB89931F5A48A3002EA7A4 /* BTDataModel2.xcdatamodel */,
 				F9DA75101F02DC1700347B0D /* BTDataModel.xcdatamodel */,
 			);
-			currentVersion = 50FB89931F5A48A3002EA7A4 /* BTDataModel2.xcdatamodel */;
+			currentVersion = 5099F1C51F5F6803000A6DE4 /* BTDataModel4.xcdatamodel */;
 			path = BTDataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

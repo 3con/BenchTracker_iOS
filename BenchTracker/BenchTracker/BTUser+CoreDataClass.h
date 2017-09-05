@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BTUser : NSManagedObject
 
+@property (nonatomic) UIImage *image;
+
 + (BTUser *) sharedInstance;
 
 @end
