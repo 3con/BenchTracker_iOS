@@ -138,6 +138,7 @@
 
 - (BTExercise *)getExercise {
     self.exercise.sets = [NSKeyedArchiver archivedDataWithRootObject:self.collectionView.sets];
+    [self.exercise calculateOneRM];
     return self.exercise;
 }
 
