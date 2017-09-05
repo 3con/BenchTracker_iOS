@@ -172,7 +172,7 @@
     if (self.settings.activeWorkoutStartDate) {
         NSTimeInterval timeInterval = [self.settings.activeWorkoutStartDate timeIntervalSinceDate:self.settings.activeWorkoutLastUpdate];
         if (timeInterval > 0) return;
-        if (self.workout.duration < 1) self.workout.date = [NSDate date];
+        //if (self.workout.duration < 1) self.workout.date = [NSDate date];
         self.workout.duration += MIN(1800, -timeInterval+.5); //cap of 30 mins to prevent outrageous workout times
         self.settings.activeWorkoutStartDate = self.settings.activeWorkoutLastUpdate;
         [self.context save:nil];

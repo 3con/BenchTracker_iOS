@@ -108,7 +108,7 @@
         label.textColor = [UIColor whiteColor];
         label.textAlignment = NSTextAlignmentCenter;
         label.font = [UIFont systemFontOfSize:17 weight:UIFontWeightMedium];
-        label.text = [NSString stringWithFormat:@"Select A Variation"];
+        label.text = [NSString stringWithFormat:@"Select a Variation"];
         label.backgroundColor = [UIColor clearColor];
         [cell addSubview:label];
         return cell;

@@ -15,7 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *topLabel;
 @property (weak, nonatomic) IBOutlet UILabel *bottomLabel;
 
-@property (weak, nonatomic) IBOutlet UILabel *cornerLabel;
+@property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 
 @end
 
@@ -24,11 +24,11 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.containerView.backgroundColor = [UIColor BTSecondaryColor];
-    self.cornerLabel.backgroundColor = [UIColor BTRedColor];
+    self.deleteButton.backgroundColor = [UIColor BTRedColor];
     self.containerView.layer.cornerRadius = 12;
     self.containerView.clipsToBounds = YES;
-    self.cornerLabel.layer.cornerRadius = 7.5;
-    self.cornerLabel.clipsToBounds = YES;
+    self.deleteButton.layer.cornerRadius = 7.5;
+    self.deleteButton.clipsToBounds = YES;
 }
 
 - (void)loadSetWithString:(NSString *)set weightSuffix:(NSString *)suffix {
@@ -63,7 +63,7 @@
 
 - (void)performDeleteAnimationWithDuration: (float)duration {
     [UIView animateWithDuration:duration animations:^{
-        self.containerView.frame = CGRectMake(self.cornerLabel.center.x-2.5, self.cornerLabel.center.y-2.5, 5, 5);
+        self.containerView.frame = CGRectMake(self.deleteButton.center.x-2.5, self.deleteButton.center.y-2.5, 5, 5);
     }];
 }
 

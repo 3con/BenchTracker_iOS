@@ -484,15 +484,15 @@
                                             <action selector="finishWorkoutButtonPressed:" destination="H2S-2B-J58" eventType="touchUpInside" id="LX2-VR-15D"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pj3-Pj-9H7">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pj3-Pj-9H7">
                                         <rect key="frame" x="12" y="30" width="25" height="25"/>
                                         <color key="backgroundColor" red="0.80025946579999996" green="0.14866781030000001" blue="0.14117555979999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="3B6-Wz-o2a"/>
                                             <constraint firstAttribute="width" constant="25" id="9wr-3w-Ocj"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="Courier-Bold" family="Courier" pointSize="25"/>
-                                        <state key="normal" title="-">
+                                        <inset key="imageEdgeInsets" minX="6" minY="6" maxX="6" maxY="6"/>
+                                        <state key="normal" image="Delete">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -609,7 +609,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uqy-4o-t39" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer numberOfTapsRequired="2" numberOfTouchesRequired="2" id="c89-0U-hnt">
+                <tapGestureRecognizer enabled="NO" numberOfTapsRequired="2" numberOfTouchesRequired="2" id="c89-0U-hnt">
                     <connections>
                         <action selector="pauseGestureActivated:" destination="H2S-2B-J58" id="uSF-8k-0po"/>
                     </connections>
@@ -1358,10 +1358,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y1U-pM-LQM">
-                                        <rect key="frame" x="57" y="123.33333333333334" width="300" height="420"/>
+                                        <rect key="frame" x="57" y="158" width="300" height="350"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hFm-bK-f7D">
-                                                <rect key="frame" x="25.666666666666686" y="90.000000000000014" width="250" height="49.999999999999986"/>
+                                                <rect key="frame" x="25.666666666666686" y="90" width="250" height="50"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="250" id="UAT-JA-qiZ"/>
@@ -1378,7 +1378,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rbz-z4-07Z">
-                                                <rect key="frame" x="25" y="20.000000000000014" width="250" height="50"/>
+                                                <rect key="frame" x="25" y="20" width="250" height="50"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="250" id="K9A-rE-yii"/>
@@ -1411,27 +1411,16 @@
                                                     <action selector="templateButtonPressed:" destination="siM-ZI-Tvc" eventType="touchUpInside" id="Bvb-gd-shM"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eu6-ZU-KBQ">
-                                                <rect key="frame" x="20" y="300" width="260" height="100.00000000000006"/>
+                                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eu6-ZU-KBQ">
+                                                <rect key="frame" x="20" y="230" width="260" height="100"/>
+                                                <gestureRecognizers/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
-                                            </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xMx-8g-8xA">
-                                                <rect key="frame" x="25" y="230" width="250" height="50"/>
-                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="GTm-IP-iSK"/>
-                                                    <constraint firstAttribute="width" constant="250" id="kjb-i4-tTA"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                                <state key="normal" title="Manual duration: 35 min">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
                                                 <connections>
-                                                    <action selector="durationButtonPressed:" destination="siM-ZI-Tvc" eventType="touchUpInside" id="3eC-ER-8VF"/>
+                                                    <outletCollection property="gestureRecognizers" destination="Jay-eU-gAP" appends="YES" id="riC-YI-daM"/>
                                                 </connections>
-                                            </button>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -1439,14 +1428,12 @@
                                             <constraint firstItem="Rbz-z4-07Z" firstAttribute="centerX" secondItem="y1U-pM-LQM" secondAttribute="centerX" id="GVa-em-AZD"/>
                                             <constraint firstAttribute="width" constant="300" id="GgI-MI-V02"/>
                                             <constraint firstItem="Rbz-z4-07Z" firstAttribute="top" secondItem="y1U-pM-LQM" secondAttribute="top" constant="20" id="hgh-SD-pf9"/>
-                                            <constraint firstItem="eu6-ZU-KBQ" firstAttribute="top" secondItem="xMx-8g-8xA" secondAttribute="bottom" constant="20" id="kMg-8b-uEb"/>
-                                            <constraint firstItem="xMx-8g-8xA" firstAttribute="centerX" secondItem="y1U-pM-LQM" secondAttribute="centerX" id="mea-3L-o1h"/>
                                             <constraint firstItem="Sb1-Yc-tCa" firstAttribute="top" secondItem="hFm-bK-f7D" secondAttribute="bottom" constant="20" id="mmq-WU-9ed"/>
                                             <constraint firstItem="hFm-bK-f7D" firstAttribute="centerX" secondItem="y1U-pM-LQM" secondAttribute="centerX" id="nXb-sU-Zct"/>
+                                            <constraint firstItem="eu6-ZU-KBQ" firstAttribute="top" secondItem="Sb1-Yc-tCa" secondAttribute="bottom" constant="20" id="od1-Gm-339"/>
                                             <constraint firstItem="Sb1-Yc-tCa" firstAttribute="centerX" secondItem="y1U-pM-LQM" secondAttribute="centerX" id="qBv-ds-tMw"/>
                                             <constraint firstItem="hFm-bK-f7D" firstAttribute="top" secondItem="Rbz-z4-07Z" secondAttribute="bottom" constant="20" id="sSo-GD-KJf"/>
-                                            <constraint firstAttribute="height" constant="420" id="sVa-Yf-RyD"/>
-                                            <constraint firstItem="xMx-8g-8xA" firstAttribute="top" secondItem="Sb1-Yc-tCa" secondAttribute="bottom" constant="20" id="xMW-Bd-uX1"/>
+                                            <constraint firstAttribute="height" constant="350" id="sVa-Yf-RyD"/>
                                             <constraint firstAttribute="trailing" secondItem="eu6-ZU-KBQ" secondAttribute="trailing" constant="20" id="zc9-Ge-8a8"/>
                                             <constraint firstItem="eu6-ZU-KBQ" firstAttribute="leading" secondItem="y1U-pM-LQM" secondAttribute="leading" constant="20" id="zd1-kj-e2e"/>
                                         </constraints>
@@ -1496,7 +1483,6 @@
                         <outlet property="contentView" destination="y1U-pM-LQM" id="QWb-bL-StD"/>
                         <outlet property="detailLabel" destination="eu6-ZU-KBQ" id="P0v-37-74U"/>
                         <outlet property="doneButton" destination="l94-og-H8E" id="NKq-AS-T3q"/>
-                        <outlet property="durationButton" destination="xMx-8g-8xA" id="mUk-nj-XPo"/>
                         <outlet property="printButton" destination="hFm-bK-f7D" id="gxZ-sB-1Zr"/>
                         <outlet property="qrButton" destination="Rbz-z4-07Z" id="Okd-6J-w9G"/>
                         <outlet property="scrollView" destination="UA2-W2-0AX" id="Dog-7C-3iI"/>
@@ -1504,6 +1490,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="01z-g2-O8b" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer numberOfTapsRequired="3" id="Jay-eU-gAP">
+                    <connections>
+                        <action selector="detailLabelTapped:" destination="siM-ZI-Tvc" id="yv6-2I-uC0"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="286.95652173913044" y="488.31521739130437"/>
         </scene>
@@ -1767,6 +1758,7 @@
     <resources>
         <image name="Cancel" width="85" height="85"/>
         <image name="Chart" width="85" height="85"/>
+        <image name="Delete" width="85" height="85"/>
         <image name="More" width="85" height="85"/>
         <image name="NewWorkoutArrow" width="170" height="170"/>
         <image name="Print" width="21" height="21"/>

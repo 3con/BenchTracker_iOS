@@ -87,15 +87,15 @@
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="decimalPad" keyboardAppearance="alert" returnKeyType="done"/>
                         </textField>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iAw-gC-BWl">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iAw-gC-BWl">
                             <rect key="frame" x="8" y="8" width="24" height="24"/>
                             <color key="backgroundColor" red="0.80025946579999996" green="0.14866781030000001" blue="0.14117555979999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="24" id="3iO-M4-bFW"/>
                                 <constraint firstAttribute="width" secondItem="iAw-gC-BWl" secondAttribute="height" multiplier="1:1" id="wYR-T2-Hud"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="Courier-Bold" family="Courier" pointSize="16"/>
-                            <state key="normal" title="-">
+                            <inset key="imageEdgeInsets" minX="6" minY="6" maxX="6" maxY="6"/>
+                            <state key="normal" image="Delete">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -264,7 +264,8 @@
     </objects>
     <resources>
         <image name="Chart" width="128" height="128"/>
+        <image name="Delete" width="128" height="128"/>
         <image name="Edit" width="32" height="32"/>
-        <image name="Table" width="32" height="32"/>
+        <image name="Table" width="128" height="128"/>
     </resources>
 </document>

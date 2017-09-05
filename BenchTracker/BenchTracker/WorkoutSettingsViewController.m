@@ -24,7 +24,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *qrButton;
 @property (weak, nonatomic) IBOutlet UIButton *printButton;
 @property (weak, nonatomic) IBOutlet UIButton *templateButton;
-@property (weak, nonatomic) IBOutlet UIButton *durationButton;
 @property (weak, nonatomic) IBOutlet UILabel *detailLabel;
 
 @property (nonatomic) ZFModalTransitionAnimator *animator;
@@ -38,7 +37,7 @@
     self.scrollView.delegate = self;
     self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 90, 0);
     self.contentView.backgroundColor = [UIColor BTPrimaryColor];
-    for (UIButton *button in @[self.qrButton, self.printButton, self.templateButton, self.durationButton]) {
+    for (UIButton *button in @[self.qrButton, self.printButton, self.templateButton]) {
         button.layer.cornerRadius = 12;
         button.clipsToBounds = YES;
         button.backgroundColor = [UIColor BTSecondaryColor];
@@ -59,7 +58,6 @@
 }
 
 - (void)updateInfo {
-    [self.durationButton setTitle:[NSString stringWithFormat:@"Manual Duration: %lld min",self.workout.duration/60] forState:UIControlStateNormal];
     NSString *name = (self.workout.name.length < 20) ?
     self.workout.name : [NSString stringWithFormat:@"%@...",[self.workout.name substringToIndex:17]];
     NSDateFormatter *yFormatter = [[NSDateFormatter alloc] init];
@@ -129,6 +127,10 @@
             self.templateButton.alpha = 1;
         }];
     }];
+}
+
+- (IBAction)detailLabelTapped:(UITapGestureRecognizer *)sender {
+    [self durationButtonPressed:nil];
 }
 
 - (IBAction)durationButtonPressed:(UIButton *)sender {
