@@ -109,6 +109,14 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+- (void)workoutWillEnd {
+    self.settings.activeWorkout = nil;
+    self.settings.activeWorkoutStartDate = nil;
+    self.settings.activeWorkoutLastUpdate = nil;
+    [BTUser addWorkoutToTotals:self.workout];
+    [self updateWorkout];
+}
+
 - (void)handleEnteredBackground:(id)sender {
     [self updateWorkout];
     [self performSelector:@selector(delayedAWSDSave) withObject:nil afterDelay:.2];
@@ -119,11 +127,7 @@
 }
 
 - (void)handleWillTerminate:(id)sender {
-    self.settings.activeWorkout = nil;
-    self.settings.activeWorkoutStartDate = nil;
-    self.settings.activeWorkoutLastUpdate = nil;
-    [BTUser addWorkoutToTotals:self.workout];
-    [self updateWorkout];
+    [self workoutWillEnd];
 }
 
 - (IBAction)settingsButtonPressed:(UIButton *)sender {
@@ -136,11 +140,7 @@
 }   
 
 - (IBAction)finishWorkoutButtonPressed:(UIButton *)sender {
-    self.settings.activeWorkout = nil;
-    self.settings.activeWorkoutStartDate = nil;
-    self.settings.activeWorkoutLastUpdate = nil;
-    [BTUser addWorkoutToTotals:self.workout];
-    [self updateWorkout];
+    [self workoutWillEnd];
     [self.delegate workoutViewController:self willDismissWithResultWorkout:self.workout];
     [self dismissViewControllerAnimated:YES completion:^{
         

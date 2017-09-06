@@ -152,7 +152,7 @@
 
 - (IBAction)rightBarButtonPressed:(UIButton *)sender {
     if(self.segmentedControl.selectedSegmentIndex == 0)
-         [self presentSettingsViewController];
+         [self presentUserViewController];
     else [self workoutButtonPressed:sender];
 }
 
@@ -284,7 +284,7 @@
         self.rightBarButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
         self.rightBarButton.titleLabel.font = [UIFont systemFontOfSize:17 weight:UIFontWeightMedium];
         [self.rightBarButton setTitle:@"" forState:UIControlStateNormal];
-        [self.rightBarButton setImage:[UIImage imageNamed:@"Settings"] forState:UIControlStateNormal];
+        [self.rightBarButton setImage:[UIImage imageNamed:@"User"] forState:UIControlStateNormal];
         self.calendarView.userInteractionEnabled = NO;
         self.weekdayContainerView.userInteractionEnabled = NO;
         [UIView animateWithDuration:.2 animations:^{
@@ -478,10 +478,10 @@
     self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:analyiticsVC];
     self.animator.bounces = NO;
     self.animator.dragable = NO;
-    self.animator.behindViewAlpha = 0.8;
-    self.animator.behindViewScale = 0.92;
-    self.animator.transitionDuration = 0.5;
-    self.animator.direction = ZFModalTransitonDirectionBottom;
+    self.animator.behindViewAlpha = 0.6;
+    self.animator.behindViewScale = 1.0;
+    self.animator.transitionDuration = 0.35;
+    self.animator.direction = ZFModalTransitonDirectionLeft;
     analyiticsVC.transitioningDelegate = self.animator;
     analyiticsVC.modalPresentationStyle = UIModalPresentationFullScreen;
     [self presentViewController:analyiticsVC animated:YES completion:nil];
@@ -555,20 +555,20 @@
     [self presentViewController:tsVC animated:YES completion:nil];
 }
 
-- (void)presentSettingsViewController {
-    SettingsViewController *settingsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"s"];
-    settingsVC.delegate = self;
-    settingsVC.context = self.context;
-    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:settingsVC];
+- (void)presentUserViewController {
+    UserViewController *userVC = [self.storyboard instantiateViewControllerWithIdentifier:@"us"];
+    userVC.delegate = self;
+    userVC.context = self.context;
+    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:userVC];
     self.animator.bounces = NO;
     self.animator.dragable = NO;
-    self.animator.behindViewAlpha = 0.8;
-    self.animator.behindViewScale = 0.92;
-    self.animator.transitionDuration = 0.5;
-    self.animator.direction = ZFModalTransitonDirectionBottom;
-    settingsVC.transitioningDelegate = self.animator;
-    settingsVC.modalPresentationStyle = UIModalPresentationFullScreen;
-    [self presentViewController:settingsVC animated:YES completion:nil];
+    self.animator.behindViewAlpha = 0.6;
+    self.animator.behindViewScale = 1.0;
+    self.animator.transitionDuration = 0.35;
+    self.animator.direction = ZFModalTransitonDirectionRight;
+    userVC.transitioningDelegate = self.animator;
+    userVC.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self presentViewController:userVC animated:YES completion:nil];
 }
 
 #pragma mark - workoutVC delegate

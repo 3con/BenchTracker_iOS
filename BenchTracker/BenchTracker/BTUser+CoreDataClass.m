@@ -56,9 +56,10 @@
     if (numWorkouts < user.totalWorkouts) {
         NSLog(@"Purging (long workouts)");
         NSLog(@"BTUser totals error: this probably shouldn't happen!");
-        for (BTWorkout *workout in [BTWorkout allWorkoutsWithFactoredIntoTotalsFilter:NO])
+        for (BTWorkout *workout in [BTWorkout allWorkoutsWithFactoredIntoTotalsFilter:NO]) {
+            workout.factoredIntoTotals = NO;
             [BTUser addWorkoutToTotals:workout];
-        [self checkForTotalsPurge];
+        }
     }
     else if (numWorkouts > user.totalWorkouts) {
         NSLog(@"Purging (short workouts)");

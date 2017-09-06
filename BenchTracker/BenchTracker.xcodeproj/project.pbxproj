@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		50060FDA1F33A83B00F6DC00 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50060FD91F33A83B00F6DC00 /* Assets.xcassets */; };
 		50060FDD1F33BB8E00F6DC00 /* BTWorkoutModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50060FDC1F33BB8E00F6DC00 /* BTWorkoutModel.m */; };
+		503961101F604E4900CBC9EB /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5039610F1F604E4900CBC9EB /* UserViewController.m */; };
 		50404F541F327EDE0070B1A9 /* BTDataTransferModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50404F531F327EDE0070B1A9 /* BTDataTransferModel.m */; };
 		50404F5B1F3280430070B1A9 /* BTUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50404F5A1F3280430070B1A9 /* BTUserModel.m */; };
 		50404F5F1F32816A0070B1A9 /* BTSettingsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50404F5E1F32816A0070B1A9 /* BTSettingsModel.m */; };
@@ -149,6 +150,8 @@
 		50060FDB1F33BB8E00F6DC00 /* BTWorkoutModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BTWorkoutModel.h; path = BenchTracker/BTWorkoutModel.h; sourceTree = "<group>"; };
 		50060FDC1F33BB8E00F6DC00 /* BTWorkoutModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BTWorkoutModel.m; path = BenchTracker/BTWorkoutModel.m; sourceTree = "<group>"; };
 		502C95251F5FC58400883850 /* BTDataModel6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BTDataModel6.xcdatamodel; sourceTree = "<group>"; };
+		5039610E1F604E4900CBC9EB /* UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserViewController.h; sourceTree = "<group>"; };
+		5039610F1F604E4900CBC9EB /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserViewController.m; sourceTree = "<group>"; };
 		50404F521F327EDE0070B1A9 /* BTDataTransferModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTDataTransferModel.h; sourceTree = "<group>"; };
 		50404F531F327EDE0070B1A9 /* BTDataTransferModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTDataTransferModel.m; sourceTree = "<group>"; };
 		50404F591F3280430070B1A9 /* BTUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BTUserModel.h; path = BenchTracker/BTUserModel.h; sourceTree = "<group>"; };
@@ -402,6 +405,16 @@
 				50060FDC1F33BB8E00F6DC00 /* BTWorkoutModel.m */,
 			);
 			name = WorkoutModel;
+			sourceTree = "<group>";
+		};
+		503961111F604E5B00CBC9EB /* User */ = {
+			isa = PBXGroup;
+			children = (
+				5039610E1F604E4900CBC9EB /* UserViewController.h */,
+				5039610F1F604E4900CBC9EB /* UserViewController.m */,
+				F95F5CF71F08B55700A567FA /* Settings */,
+			);
+			name = User;
 			sourceTree = "<group>";
 		};
 		50404F551F327EE20070B1A9 /* DataTransferModel */ = {
@@ -969,7 +982,7 @@
 		F95F93481F0373AA00A19C4D /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				F95F5CF71F08B55700A567FA /* Settings */,
+				503961111F604E5B00CBC9EB /* User */,
 				F9F442151F0EA971008D4956 /* Analytics */,
 				F95F93471F0373A400A19C4D /* Main */,
 				F95F93461F03739E00A19C4D /* Workout */,
@@ -1630,6 +1643,7 @@
 				F9DA75261F02EE9600347B0D /* BTExerciseType+CoreDataClass.m in Sources */,
 				5084CF1D1F3BCCC40083FA19 /* BTWorkoutTemplateModel.m in Sources */,
 				F9C2406E1F17D94900A268F3 /* ADEDExerciseTableViewCell.m in Sources */,
+				503961101F604E4900CBC9EB /* UserViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
