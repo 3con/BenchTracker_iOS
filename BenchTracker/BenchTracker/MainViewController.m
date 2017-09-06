@@ -428,6 +428,7 @@
                                                                  preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction* deleteButton = [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
             dispatch_async(dispatch_get_main_queue(), ^{
+                [BTUser removeWorkoutFromTotals:workout];
                 [self.context deleteObject:workout];
                 [self.context save:nil];
             });

@@ -21,5 +21,6 @@
 @property (nonatomic) BTTypeListModel *typeList;
 @property (nonatomic) BTTemplateListModel *templateList;
 @property (nonatomic) NSMutableArray <BTWorkoutModel *> <BTWorkoutModel> *workouts;
+@property (nonatomic) NSArray <NSString *> *achievements;
 
 @end

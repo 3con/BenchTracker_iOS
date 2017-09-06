@@ -27,6 +27,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSArray <BTWorkout *> *)workoutsBetweenBeginDate:(NSDate *)d1 andEndDate:(NSDate *)d2;
 
++ (NSInteger)numberOfWorkouts;
+
++ (NSArray <BTWorkout *> *)allWorkoutsWithFactoredIntoTotalsFilter:(BOOL)factoredIntoTotalsFilter;
+
 @end
 
 NS_ASSUME_NONNULL_END

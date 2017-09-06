@@ -148,6 +148,7 @@
 		50060FD91F33A83B00F6DC00 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		50060FDB1F33BB8E00F6DC00 /* BTWorkoutModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BTWorkoutModel.h; path = BenchTracker/BTWorkoutModel.h; sourceTree = "<group>"; };
 		50060FDC1F33BB8E00F6DC00 /* BTWorkoutModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BTWorkoutModel.m; path = BenchTracker/BTWorkoutModel.m; sourceTree = "<group>"; };
+		502C95251F5FC58400883850 /* BTDataModel6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BTDataModel6.xcdatamodel; sourceTree = "<group>"; };
 		50404F521F327EDE0070B1A9 /* BTDataTransferModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTDataTransferModel.h; sourceTree = "<group>"; };
 		50404F531F327EDE0070B1A9 /* BTDataTransferModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTDataTransferModel.m; sourceTree = "<group>"; };
 		50404F591F3280430070B1A9 /* BTUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BTUserModel.h; path = BenchTracker/BTUserModel.h; sourceTree = "<group>"; };
@@ -213,6 +214,7 @@
 		5099F1C11F5F6774000A6DE4 /* AchievementListVersionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AchievementListVersionModel.h; path = BenchTracker/AchievementListVersionModel.h; sourceTree = "<group>"; };
 		5099F1C21F5F6774000A6DE4 /* AchievementListVersionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AchievementListVersionModel.m; path = BenchTracker/AchievementListVersionModel.m; sourceTree = "<group>"; };
 		5099F1C51F5F6803000A6DE4 /* BTDataModel4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BTDataModel4.xcdatamodel; sourceTree = "<group>"; };
+		5099F1C61F5F9C9C000A6DE4 /* BTDataModel5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BTDataModel5.xcdatamodel; sourceTree = "<group>"; };
 		50CF69D41F3A685C00DDE8A6 /* TemplateSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemplateSelectionViewController.h; sourceTree = "<group>"; };
 		50CF69D51F3A685C00DDE8A6 /* TemplateSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TemplateSelectionViewController.m; sourceTree = "<group>"; };
 		50FB89931F5A48A3002EA7A4 /* BTDataModel2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BTDataModel2.xcdatamodel; sourceTree = "<group>"; };
@@ -1864,12 +1866,14 @@
 		F9DA750F1F02DC1700347B0D /* BTDataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				502C95251F5FC58400883850 /* BTDataModel6.xcdatamodel */,
+				5099F1C61F5F9C9C000A6DE4 /* BTDataModel5.xcdatamodel */,
 				5099F1C51F5F6803000A6DE4 /* BTDataModel4.xcdatamodel */,
 				5099F1B51F5F5F2B000A6DE4 /* BTDataModel3.xcdatamodel */,
 				50FB89931F5A48A3002EA7A4 /* BTDataModel2.xcdatamodel */,
 				F9DA75101F02DC1700347B0D /* BTDataModel.xcdatamodel */,
 			);
-			currentVersion = 5099F1C51F5F6803000A6DE4 /* BTDataModel4.xcdatamodel */;
+			currentVersion = 502C95251F5FC58400883850 /* BTDataModel6.xcdatamodel */;
 			path = BTDataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

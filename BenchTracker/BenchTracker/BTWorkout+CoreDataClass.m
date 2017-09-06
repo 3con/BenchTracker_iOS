@@ -31,6 +31,7 @@
     workout.numExercises = 0;
     workout.numSets = 0;
     workout.summary = @"0";
+    workout.factoredIntoTotals = NO;
     workout.supersets = [NSKeyedArchiver archivedDataWithRootObject:[NSMutableArray array]];
     workout.exercises = [[NSOrderedSet alloc] init];
     return workout;
@@ -138,6 +139,7 @@
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
     workout.date = (workoutModel.date) ? [dateFormatter dateFromString: workoutModel.date] : [NSDate date];
     workout.duration = (workoutModel.duration) ? workoutModel.duration.integerValue : 0;
+    workout.factoredIntoTotals = NO;
     workout.summary = @"0";
     NSMutableArray <NSMutableArray <NSNumber *> *> *tempSupersets = [NSMutableArray array];
     for (NSString *string in workoutModel.supersets) {
@@ -198,6 +200,23 @@
     [predicates addObject:subPredTo];
     [fetchRequest setPredicate:[NSCompoundPredicate andPredicateWithSubpredicates:predicates]];
     return (NSArray <BTWorkout *> *)[context executeFetchRequest:fetchRequest error:nil];
+}
+
++ (NSInteger)numberOfWorkouts {
+    NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"BTWorkout"];
+    fetchRequest.fetchLimit = 0;
+    fetchRequest.fetchBatchSize = 0;
+    return [context executeFetchRequest:fetchRequest error:nil].count;
+}
+
++ (NSArray <BTWorkout *> *)allWorkoutsWithFactoredIntoTotalsFilter:(BOOL)factoredIntoTotalsFilter {
+    NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"BTWorkout"];
+    fetchRequest.fetchLimit = 0;
+    fetchRequest.fetchBatchSize = 0;
+    if (factoredIntoTotalsFilter) fetchRequest.predicate = [NSPredicate predicateWithFormat:@"factoredIntoTotals == NO"];
+    return [context executeFetchRequest:fetchRequest error:nil];
 }
 
 @end

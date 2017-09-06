@@ -8,6 +8,10 @@
 
 #import "AchievementListModel.h"
 
+@implementation AchievementModel
+
+@end
+
 @implementation AchievementListModel
 
 @end

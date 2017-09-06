@@ -9,6 +9,8 @@
 #import "WorkoutSelectionViewController.h"
 #import "WorkoutTableViewCell.h"
 #import "BTSettings+CoreDataClass.h"
+#import "BTWorkout+CoreDataClass.h"
+#import "BTUser+CoreDataClass.h"
 
 @interface WorkoutSelectionViewController ()
 
@@ -184,7 +186,9 @@
     UIAlertAction* deleteButton = [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
         dispatch_async(dispatch_get_main_queue(), ^{
             NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-            [self.context deleteObject:[self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row-1 inSection:0]]];
+            BTWorkout *workout = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row-1 inSection:0]];
+            [BTUser removeWorkoutFromTotals:workout];
+            [self.context deleteObject:workout];
             [self.context save:nil];
         });
     }];

@@ -17,7 +17,15 @@
 @dynamic dateCreated;
 @dynamic name;
 @dynamic imageData;
+@dynamic weight;
+
 @dynamic xp;
 @dynamic achievementListVersion;
+
+@dynamic currentStreak;
+@dynamic longestStreak;
+@dynamic totalDuration;
+@dynamic totalVolume;
+@dynamic totalWorkouts;
 
 @end

@@ -8,7 +8,9 @@
 
 #import "AppDelegate.h"
 #import "BTExerciseType+CoreDataClass.h"
+#import "BTUser+CoreDataClass.h"
 #import "BTWorkoutTemplate+CoreDataClass.h"
+#import "BTAchievement+CoreDataClass.h"
 #import "Appirater.h"
 #import "BTDataTransferManager.h"
 
@@ -26,6 +28,9 @@
     [BTExerciseType checkForExistingTypeList];
     //TEMPLATE LIST HANDLING
     [BTWorkoutTemplate checkForExistingTemplateList];
+    //ACHIEVEMENT LIST HANDLING
+    [BTAchievement checkAchievementList];
+    [BTUser checkForTotalsPurge];
     //APPIRATER
     [Appirater setAppId:@"1266077653"];
     [Appirater setDaysUntilPrompt:0];

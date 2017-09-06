@@ -17,6 +17,7 @@
 @dynamic uuid;
 @dynamic summary;
 @dynamic date;
+@dynamic factoredIntoTotals;
 @dynamic duration;
 @dynamic volume;
 @dynamic numExercises;

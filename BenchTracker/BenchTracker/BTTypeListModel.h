@@ -12,16 +12,16 @@
 
 @interface BTExerciseTypeModel : JSONModel
 
-@property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSArray <NSString *> *iterations;
-@property (nonatomic, strong) NSString *category;
-@property (nonatomic, strong) NSString *style;
+@property (nonatomic) NSString *name;
+@property (nonatomic) NSArray <NSString *> *iterations;
+@property (nonatomic) NSString *category;
+@property (nonatomic) NSString *style;
 
 @end
 
 @interface BTTypeListModel : JSONModel
 
-@property (nonatomic, strong) NSMutableArray <BTExerciseTypeModel> *list;
-@property (nonatomic, strong) NSMutableDictionary *colors;
+@property (nonatomic) NSMutableArray <BTExerciseTypeModel> *list;
+@property (nonatomic) NSMutableDictionary *colors;
 
 @end

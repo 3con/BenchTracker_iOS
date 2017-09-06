@@ -7,6 +7,7 @@
 //
 
 #import "BTUser+CoreDataClass.h"
+#import "BTWorkout+CoreDataClass.h"
 #import "AppDelegate.h"
 
 @implementation BTUser
@@ -28,6 +29,45 @@
     return sharedInstance;
 }
 
++ (void)removeWorkoutFromTotals:(BTWorkout *)workout {
+    if (workout.factoredIntoTotals) {
+        workout.factoredIntoTotals = NO;
+        BTUser *user = [BTUser sharedInstance];
+        user.totalDuration -= workout.duration;
+        user.totalVolume -= workout.volume;
+        user.totalWorkouts -= 1;
+    }
+}
+
++ (void)addWorkoutToTotals:(BTWorkout *)workout {
+    if (!workout.factoredIntoTotals) {
+        workout.factoredIntoTotals = YES;
+        BTUser *user = [BTUser sharedInstance];
+        user.totalDuration += workout.duration;
+        user.totalVolume += workout.volume;
+        user.totalWorkouts += 1;
+    }
+    else NSLog(@"BTUser totals error: this probably shouldn't happen!");
+}
+
++ (void)checkForTotalsPurge {
+    BTUser *user = [BTUser sharedInstance];
+    NSInteger numWorkouts = [BTWorkout numberOfWorkouts];
+    if (numWorkouts < user.totalWorkouts) {
+        NSLog(@"Purging (long workouts)");
+        NSLog(@"BTUser totals error: this probably shouldn't happen!");
+        for (BTWorkout *workout in [BTWorkout allWorkoutsWithFactoredIntoTotalsFilter:NO])
+            [BTUser addWorkoutToTotals:workout];
+        [self checkForTotalsPurge];
+    }
+    else if (numWorkouts > user.totalWorkouts) {
+        NSLog(@"Purging (short workouts)");
+        for (BTWorkout *workout in [BTWorkout allWorkoutsWithFactoredIntoTotalsFilter:YES])
+            [BTUser addWorkoutToTotals:workout];
+        [self checkForTotalsPurge];
+    }
+}
+
 #pragma mark - private methods
 
 + (BTUser *)fetchUser {
@@ -40,6 +80,16 @@
         NSLog(@"BTUser coreData error or creation: %@",error);
         BTUser *user = [NSEntityDescription insertNewObjectForEntityForName:@"BTUser" inManagedObjectContext:context];
         user.dateCreated = [NSDate date];
+        user.name = nil;
+        user.imageData = nil;
+        user.weight = 0;
+        user.achievementListVersion = 0;
+        user.xp = 0;
+        user.currentStreak = 0;
+        user.longestStreak = 0;
+        user.totalDuration = 0;
+        user.totalVolume = 0;
+        user.totalWorkouts = 0;
         [context save:nil];
         return user;
     }

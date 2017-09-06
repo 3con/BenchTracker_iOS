@@ -29,4 +29,7 @@
 @dynamic showEquivalencyChart;
 @dynamic showLastWorkout;
 
+@dynamic bodyweightIsVolume;
+@dynamic bodyweightMultiplier;
+
 @end

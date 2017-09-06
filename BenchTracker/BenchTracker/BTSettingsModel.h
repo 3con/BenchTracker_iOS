@@ -18,4 +18,7 @@
 @property (nonatomic) BOOL showEquivalencyChart;
 @property (nonatomic) BOOL showLastWorkout;
 
+@property (nonatomic) BOOL bodyweightIsVolume;
+@property (nonatomic) NSNumber *bodyweightMultiplier;
+
 @end

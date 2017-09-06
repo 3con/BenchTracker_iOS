@@ -74,6 +74,7 @@
         [Appirater userDidSignificantEvent:YES];
         self.workout = [BTWorkout workout];
     }
+    [BTUser removeWorkoutFromTotals:self.workout];
     self.nameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:self.workout.name
         attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor], NSFontAttributeName:[UIFont italicSystemFontOfSize:22]}];
     self.tempSupersets = [NSKeyedUnarchiver unarchiveObjectWithData:self.workout.supersets];
@@ -121,6 +122,7 @@
     self.settings.activeWorkout = nil;
     self.settings.activeWorkoutStartDate = nil;
     self.settings.activeWorkoutLastUpdate = nil;
+    [BTUser addWorkoutToTotals:self.workout];
     [self updateWorkout];
 }
 
@@ -137,6 +139,7 @@
     self.settings.activeWorkout = nil;
     self.settings.activeWorkoutStartDate = nil;
     self.settings.activeWorkoutLastUpdate = nil;
+    [BTUser addWorkoutToTotals:self.workout];
     [self updateWorkout];
     [self.delegate workoutViewController:self willDismissWithResultWorkout:self.workout];
     [self dismissViewControllerAnimated:YES completion:^{
@@ -198,6 +201,7 @@
     self.settings.activeWorkout = nil;
     self.settings.activeWorkoutStartDate = nil;
     self.settings.activeWorkoutLastUpdate = nil;
+    [BTUser removeWorkoutFromTotals:self.workout];
     [self.context deleteObject:self.workout];
     [self.context save:nil];
     [self.delegate workoutViewController:self willDismissWithResultWorkout:nil];

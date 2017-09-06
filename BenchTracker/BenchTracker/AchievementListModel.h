@@ -8,6 +8,21 @@
 
 #import <JSONModel/JSONModel.h>
 
+@protocol AchievementModel @end
+
+@interface AchievementModel : JSONModel
+
+@property (nonatomic) NSString *name;
+@property (nonatomic) NSString *details;
+@property (nonatomic) NSString *key;
+@property (nonatomic) NSNumber *xp;
+@property (nonatomic) BOOL hidden;
+@property (nonatomic) NSString <Optional> *color;
+
+@end
+
 @interface AchievementListModel : JSONModel
+
+@property (nonatomic) NSMutableArray <AchievementModel> *achievements;
 
 @end

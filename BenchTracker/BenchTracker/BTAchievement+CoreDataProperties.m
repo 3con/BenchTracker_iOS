@@ -19,7 +19,7 @@
 @dynamic key;
 @dynamic xp;
 @dynamic completed;
-@dynamic imageData;
+@dynamic hidden;
 @dynamic colorData;
 
 @end

@@ -11,5 +11,17 @@
 @interface BTUserModel : JSONModel
 
 @property (nonatomic) NSDate *dateCreated;
+@property (nonatomic) NSString *name;
+@property (nonatomic) NSData *imageData;
+@property (nonatomic) NSNumber *weight;
+
+@property (nonatomic) NSNumber *achievementListVersion;
+@property (nonatomic) NSNumber *xp;
+
+@property (nonatomic) NSNumber *totalDuration;
+@property (nonatomic) NSNumber *totalVolume;
+@property (nonatomic) NSNumber *totalWorkouts;
+@property (nonatomic) NSNumber *currentStreak;
+@property (nonatomic) NSNumber *longestStreak;
 
 @end

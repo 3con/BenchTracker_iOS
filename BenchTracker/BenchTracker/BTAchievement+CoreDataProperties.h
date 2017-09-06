@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSString *key;
 @property (nonatomic) int32_t xp;
 @property (nonatomic) BOOL completed;
-@property (nullable, nonatomic, retain) NSData *imageData;
+@property (nonatomic) BOOL hidden;
 @property (nullable, nonatomic, retain) NSData *colorData;
 
 @end

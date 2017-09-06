@@ -1,0 +1,12 @@
+{
+	"version": "1",
+	"achievements": [
+		{
+			"key": "firstWorkout",
+			"name": "Training Wheels",
+			"details": "Complete your first workout!",
+			"xp": 5,
+			"hidden": false
+		}
+	]
+}

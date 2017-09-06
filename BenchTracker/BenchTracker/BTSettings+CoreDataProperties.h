@@ -32,6 +32,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) BOOL showEquivalencyChart;
 @property (nonatomic) BOOL showLastWorkout;
 
+@property (nonatomic) BOOL bodyweightIsVolume;
+@property (nonatomic) CGFloat bodyweightMultiplier;
+
 @end
 
 NS_ASSUME_NONNULL_END

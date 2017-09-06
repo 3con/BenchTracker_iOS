@@ -16,8 +16,9 @@
 #import "BTSettings+CoreDataClass.h"
 #import "BTExerciseType+CoreDataClass.h"
 #import "BT1RMCalculator.h"
+#import "BTAchievement+CoreDataClass.h"
 
-#define DATA_TRANSFER_VERSION 3
+#define DATA_TRANSFER_VERSION 4
 
 @implementation BTDataTransferManager
 
@@ -27,7 +28,18 @@
     transferModel.version = DATA_TRANSFER_VERSION;
     //SERIALIZE USER
     BTUserModel *userModel = [[BTUserModel alloc] init];
-    userModel.dateCreated = [BTUser sharedInstance].dateCreated;
+    BTUser *user = [BTUser sharedInstance];
+    userModel.dateCreated = user.dateCreated;
+    userModel.name = user.name;
+    userModel.achievementListVersion = [NSNumber numberWithInt:user.achievementListVersion];
+    userModel.xp = [NSNumber numberWithInt:user.xp];
+    userModel.imageData = user.imageData;
+    userModel.weight = [NSNumber numberWithInt:user.weight];
+    userModel.totalDuration = [NSNumber numberWithInteger:user.totalDuration];
+    userModel.totalVolume = [NSNumber numberWithInteger:user.totalVolume];
+    userModel.totalWorkouts = [NSNumber numberWithInteger:user.totalWorkouts];
+    userModel.currentStreak = [NSNumber numberWithInteger:user.currentStreak];
+    userModel.longestStreak = [NSNumber numberWithInteger:user.longestStreak];
     transferModel.user = userModel;
     //SERIALIZE SETTINGS
     BTSettingsModel *settingsModel = [[BTSettingsModel alloc] init];
@@ -38,6 +50,8 @@
     settingsModel.showWorkoutDetails = settings.showLastWorkout;
     settingsModel.showEquivalencyChart = settings.showEquivalencyChart;
     settingsModel.showLastWorkout = settings.showLastWorkout;
+    settingsModel.bodyweightIsVolume = settings.bodyweightIsVolume;
+    settingsModel.bodyweightMultiplier = [NSNumber numberWithFloat:settings.bodyweightMultiplier];
     transferModel.settings = settingsModel;
     //SERIALIZE TYPELIST
     transferModel.typeList = [BTExerciseType typeListModel];
@@ -50,8 +64,9 @@
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO]];
     NSArray *arr = [context executeFetchRequest:request error:nil];
     transferModel.workouts = (NSMutableArray <BTWorkoutModel *> <BTWorkoutModel> *)[NSMutableArray array];
-    for (BTWorkout *workout in arr)
-        [transferModel.workouts addObject:[BTDataTransferManager modelForWorkout:workout]];
+    for (BTWorkout *workout in arr) [transferModel.workouts addObject:[BTDataTransferManager modelForWorkout:workout]];
+    //SERIALIZE ACHIEVEMENTS
+    transferModel.achievements = [BTAchievement completedAchievementKeys];
     //SAVE TO FILE
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *path = [NSString stringWithFormat:@"%@/BenchTrackerData.btd", paths.firstObject];
@@ -69,13 +84,29 @@
     //CHECK VERSION
     if (transferModel.version != DATA_TRANSFER_VERSION) return NO;
     //PARSE USER
-    [BTUser sharedInstance].dateCreated = transferModel.user.dateCreated;
+    BTUser *user = [BTUser sharedInstance];
+    user.dateCreated = transferModel.user.dateCreated;
+    user.name = transferModel.user.name;
+    user.imageData = transferModel.user.imageData;
+    user.achievementListVersion = transferModel.user.achievementListVersion.intValue;
+    user.weight = transferModel.user.weight.intValue;
+    user.xp = transferModel.user.xp.intValue;
+    user.totalDuration = transferModel.user.totalDuration.integerValue;
+    user.totalVolume = transferModel.user.totalVolume.integerValue;
+    user.totalWorkouts = transferModel.user.totalWorkouts.integerValue;
+    user.currentStreak = transferModel.user.currentStreak.integerValue;
+    user.longestStreak = transferModel.user.longestStreak.integerValue;
     //PARSE SETTINGS
     BTSettings *settings = [BTSettings sharedInstance];
     [settings reset];
     settings.startWeekOnMonday = transferModel.settings.startWeekOnMonday;
     settings.weightInLbs = transferModel.settings.weightInLbs;
     settings.disableSleep = transferModel.settings.disableSleep;
+    settings.showWorkoutDetails = transferModel.settings.showLastWorkout;
+    settings.showEquivalencyChart = transferModel.settings.showEquivalencyChart;
+    settings.showLastWorkout = transferModel.settings.showLastWorkout;
+    settings.bodyweightIsVolume = transferModel.settings.bodyweightIsVolume;
+    settings.bodyweightMultiplier = transferModel.settings.bodyweightMultiplier.floatValue;
     //PARSE TYPELIST
     [BTExerciseType resetTypeList];
     [BTExerciseType loadTypeListModel:transferModel.typeList];
@@ -86,6 +117,8 @@
     [BTWorkout resetWorkouts];
     for (BTWorkoutModel *workoutModel in transferModel.workouts)
         [BTDataTransferManager workoutForModel:workoutModel];
+    //PARSE ACHIEVEMENTS
+    for (NSString *key in transferModel.achievements) [BTAchievement markAchievementComplete:key animated:NO];
     [context save:nil];
     return true;
 }
@@ -124,6 +157,7 @@
     BTWorkout *workout = [NSEntityDescription insertNewObjectForEntityForName:@"BTWorkout" inManagedObjectContext:context];
     workout.uuid = (workoutModel.uuid) ? workoutModel.uuid : [[NSUUID UUID] UUIDString];
     workout.name = workoutModel.name;
+    workout.factoredIntoTotals = YES;
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
     workout.date = (workoutModel.date) ? [dateFormatter dateFromString: workoutModel.date] : [NSDate date];

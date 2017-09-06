@@ -17,7 +17,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic) UIImage *image;
 
-+ (BTUser *) sharedInstance;
++ (BTUser *)sharedInstance;
+
++ (void)removeWorkoutFromTotals:(BTWorkout *)workout;
+
++ (void)addWorkoutToTotals:(BTWorkout *)workout;
+
++ (void)checkForTotalsPurge;
 
 @end
 

@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BTAchievement : NSManagedObject
 
-@property (nonatomic) UIImage *image;
+@property (nonatomic, readonly) UIImage *image;
 @property (nonatomic) UIColor *color;
 
 //achievement list handling
@@ -29,11 +29,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void)loadAchievementListModel:(AchievementListModel *)model;
 
-+ (NSArray <NSString *> *)completedAchievements;
++ (NSArray <NSString *> *)completedAchievementKeys;
 
 //individual achievements
 
-+ (void)markAchievementComplete:(NSString *)key; //also in charge of displaying toast
++ (void)markAchievementComplete:(NSString *)key animated:(BOOL)animated; //also in charge of displaying toast
 
 @end
 

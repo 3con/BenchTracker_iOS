@@ -32,6 +32,8 @@
     self.showEquivalencyChart = YES;
     self.showLastWorkout = YES;
     self.weightInLbs = ![[[NSLocale currentLocale] objectForKey:NSLocaleUsesMetricSystem] boolValue];
+    self.bodyweightIsVolume = NO;
+    self.bodyweightMultiplier = 1.0;
 }
 
 - (NSString *)weightSuffix {
