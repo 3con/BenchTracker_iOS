@@ -30,10 +30,6 @@
     self.tableView.dataSource = self;
     self.tableView.separatorColor = [UIColor clearColor];
     self.tableView.contentInset = UIEdgeInsetsMake(10, 0, 10, 0);
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
     self.user = [BTUser sharedInstance];
     [self loadWeekLogic];
     self.titleString = @"Weekly Summary";

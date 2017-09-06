@@ -40,13 +40,15 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.titleString = @"Choose an Exercise";
-    NSError *error;
-    if (![[self fetchedResultsController] performFetch:&error]) {
-        NSLog(@"Main fetch error: %@, %@", error, [error userInfo]);
+    if (!self.searchBar) { //first load
+        self.titleString = @"Choose an Exercise";
+        NSError *error;
+        if (![[self fetchedResultsController] performFetch:&error]) {
+            NSLog(@"Main fetch error: %@, %@", error, [error userInfo]);
+        }
+        self.exerciseTypeColors = [NSKeyedUnarchiver unarchiveObjectWithData:self.settings.exerciseTypeColors];
+        [self loadSearchBar];
     }
-    self.exerciseTypeColors = [NSKeyedUnarchiver unarchiveObjectWithData:self.settings.exerciseTypeColors];
-    [self loadSearchBar];
 }
 
 - (void)loadSearchBar {
@@ -189,7 +191,7 @@
     adedVC.titleString = type.name;
     self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:adedVC];
     self.animator.bounces = NO;
-    self.animator.dragable = NO;
+    self.animator.dragable = YES;
     self.animator.behindViewAlpha = 0.6;
     self.animator.behindViewScale = 1.0;
     self.animator.transitionDuration = 0.35;

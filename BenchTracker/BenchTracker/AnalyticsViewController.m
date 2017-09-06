@@ -93,14 +93,7 @@
     AnalyticsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
     cell.originSize = self.itemSize;
     cell.graphHeight = (indexPath.row == 2) ? 0 : 210;
-    cell.backgroundColor = [self colorFromHexString:
-        @[@"00BCD4",
-          @"2ECC71",
-          @"2196F3",
-          @"673AB7",
-          @"EC407A",
-          @"F44336",
-          @"FF9800"][indexPath.row]];
+    cell.backgroundColor = [UIColor BTVibrantColors][indexPath.row];
     cell.titleLabel.text =
         @[@"Weekly Summary",
           @"Favorite Exercises",
@@ -228,7 +221,7 @@
     adVC.titleString = cell.titleLabel.text;
     self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:adVC];
     self.animator.bounces = NO;
-    self.animator.dragable = NO;
+    self.animator.dragable = YES;
     self.animator.behindViewAlpha = 0.6;
     self.animator.behindViewScale = 1.0;
     self.animator.transitionDuration = 0.35;

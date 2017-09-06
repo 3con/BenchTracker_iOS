@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="UserStatView">
+            <rect key="frame" x="0.0" y="0.0" width="170" height="90"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qbT-zS-ieH">
+                    <rect key="frame" x="0.0" y="10" width="170" height="70"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="# Workouts" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="thB-uq-sIa">
+                            <rect key="frame" x="10" y="5" width="150" height="25"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="25" id="nEb-Jo-BS7"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="650k lbs" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rMG-By-NgD">
+                            <rect key="frame" x="10" y="25" width="150" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="nl2-g6-9Ln"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="28"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="thB-uq-sIa" firstAttribute="centerX" secondItem="qbT-zS-ieH" secondAttribute="centerX" id="0Lv-wu-M3E"/>
+                        <constraint firstItem="rMG-By-NgD" firstAttribute="leading" secondItem="qbT-zS-ieH" secondAttribute="leading" constant="10" id="4bK-QP-nNd"/>
+                        <constraint firstItem="rMG-By-NgD" firstAttribute="centerX" secondItem="qbT-zS-ieH" secondAttribute="centerX" id="9h8-yd-qty"/>
+                        <constraint firstItem="thB-uq-sIa" firstAttribute="leading" secondItem="qbT-zS-ieH" secondAttribute="leading" constant="10" id="JTe-fI-Hdb"/>
+                        <constraint firstItem="rMG-By-NgD" firstAttribute="top" secondItem="thB-uq-sIa" secondAttribute="bottom" constant="-5" id="Vmz-Pi-fqU"/>
+                        <constraint firstAttribute="height" constant="70" id="cuP-06-AMj"/>
+                        <constraint firstItem="thB-uq-sIa" firstAttribute="top" secondItem="qbT-zS-ieH" secondAttribute="top" constant="5" id="soD-Ob-FMi"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="qbT-zS-ieH" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="0QE-dd-xEm"/>
+                <constraint firstItem="qbT-zS-ieH" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="fpo-JU-hAc"/>
+                <constraint firstItem="qbT-zS-ieH" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="yOW-7n-yX6"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="statLabel" destination="rMG-By-NgD" id="INk-YN-chf"/>
+                <outlet property="titleLabel" destination="thB-uq-sIa" id="h4N-tl-AP7"/>
+            </connections>
+        </view>
+    </objects>
+</document>

@@ -477,7 +477,7 @@
     analyiticsVC.context = self.context;
     self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:analyiticsVC];
     self.animator.bounces = NO;
-    self.animator.dragable = NO;
+    self.animator.dragable = YES;
     self.animator.behindViewAlpha = 0.6;
     self.animator.behindViewScale = 1.0;
     self.animator.transitionDuration = 0.35;
@@ -561,7 +561,7 @@
     userVC.context = self.context;
     self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:userVC];
     self.animator.bounces = NO;
-    self.animator.dragable = NO;
+    self.animator.dragable = YES;
     self.animator.behindViewAlpha = 0.6;
     self.animator.behindViewScale = 1.0;
     self.animator.transitionDuration = 0.35;

@@ -60,15 +60,15 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    if (!self.context) self.context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
-    [self loadExerciseType];
-    NSError *error;
-    if (![[self fetchedResultsController] performFetch:&error]) {
-        NSLog(@"AD exercise detail fetch error: %@, %@", error, [error userInfo]);
-    }
-    self.tableViewHeightConstraint.constant = MAX(self.view.frame.size.height-624-72,
-                                                  self.fetchedResultsController.fetchedObjects.count*CELL_HEIGHT);
-    if (!self.podiumView) {
+    if (!self.podiumView) { //first load
+        if (!self.context) self.context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+        [self loadExerciseType];
+        NSError *error;
+        if (![[self fetchedResultsController] performFetch:&error]) {
+            NSLog(@"AD exercise detail fetch error: %@, %@", error, [error userInfo]);
+        }
+        self.tableViewHeightConstraint.constant = MAX(self.view.frame.size.height-624-72,
+                                                      self.fetchedResultsController.fetchedObjects.count*CELL_HEIGHT);
         for (UIView *view in @[self.iterationButton, self.podiumContainerView, self.graphContainerView, self.tableView]) {
             view.layer.cornerRadius = 12;
             view.clipsToBounds = YES;

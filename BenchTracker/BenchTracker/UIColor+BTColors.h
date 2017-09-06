@@ -10,15 +10,23 @@
 
 @interface UIColor (BTColor)
 
+//BASE COLORS
+
 + (UIColor *)BTPrimaryColor;
 
 + (UIColor *)BTSecondaryColor;
 
 + (UIColor *)BTTertiaryColor;
 
+//BUTTON COLORS
+
 + (UIColor *)BTButtonPrimaryColor;
 
 + (UIColor *)BTButtonSecondaryColor;
+
++ (UIColor *)BTRedColor;
+
+//B+W COLORS
 
 + (UIColor *)BTBlackColor;
 
@@ -26,6 +34,8 @@
 
 + (UIColor *)BTLightGrayColor;
 
-+ (UIColor *)BTRedColor;
+//VIBRANT COLORS
+
++ (NSArray <UIColor *> *)BTVibrantColors;
 
 @end

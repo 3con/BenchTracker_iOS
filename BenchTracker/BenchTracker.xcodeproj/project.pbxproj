@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		50060FDA1F33A83B00F6DC00 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50060FD91F33A83B00F6DC00 /* Assets.xcassets */; };
 		50060FDD1F33BB8E00F6DC00 /* BTWorkoutModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50060FDC1F33BB8E00F6DC00 /* BTWorkoutModel.m */; };
+		5037F6531F609936001939EA /* UserStatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5037F6521F609936001939EA /* UserStatView.m */; };
+		5037F6551F60993F001939EA /* UserStatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5037F6541F60993F001939EA /* UserStatView.xib */; };
 		503961101F604E4900CBC9EB /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5039610F1F604E4900CBC9EB /* UserViewController.m */; };
 		50404F541F327EDE0070B1A9 /* BTDataTransferModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50404F531F327EDE0070B1A9 /* BTDataTransferModel.m */; };
 		50404F5B1F3280430070B1A9 /* BTUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50404F5A1F3280430070B1A9 /* BTUserModel.m */; };
@@ -150,6 +152,9 @@
 		50060FDB1F33BB8E00F6DC00 /* BTWorkoutModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BTWorkoutModel.h; path = BenchTracker/BTWorkoutModel.h; sourceTree = "<group>"; };
 		50060FDC1F33BB8E00F6DC00 /* BTWorkoutModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BTWorkoutModel.m; path = BenchTracker/BTWorkoutModel.m; sourceTree = "<group>"; };
 		502C95251F5FC58400883850 /* BTDataModel6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BTDataModel6.xcdatamodel; sourceTree = "<group>"; };
+		5037F6511F609936001939EA /* UserStatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserStatView.h; sourceTree = "<group>"; };
+		5037F6521F609936001939EA /* UserStatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserStatView.m; sourceTree = "<group>"; };
+		5037F6541F60993F001939EA /* UserStatView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserStatView.xib; sourceTree = "<group>"; };
 		5039610E1F604E4900CBC9EB /* UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserViewController.h; sourceTree = "<group>"; };
 		5039610F1F604E4900CBC9EB /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserViewController.m; sourceTree = "<group>"; };
 		50404F521F327EDE0070B1A9 /* BTDataTransferModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTDataTransferModel.h; sourceTree = "<group>"; };
@@ -407,11 +412,22 @@
 			name = WorkoutModel;
 			sourceTree = "<group>";
 		};
+		5037F6561F60A29F001939EA /* Stat view */ = {
+			isa = PBXGroup;
+			children = (
+				5037F6511F609936001939EA /* UserStatView.h */,
+				5037F6521F609936001939EA /* UserStatView.m */,
+				5037F6541F60993F001939EA /* UserStatView.xib */,
+			);
+			name = "Stat view";
+			sourceTree = "<group>";
+		};
 		503961111F604E5B00CBC9EB /* User */ = {
 			isa = PBXGroup;
 			children = (
 				5039610E1F604E4900CBC9EB /* UserViewController.h */,
 				5039610F1F604E4900CBC9EB /* UserViewController.m */,
+				5037F6561F60A29F001939EA /* Stat view */,
 				F95F5CF71F08B55700A567FA /* Settings */,
 			);
 			name = User;
@@ -1445,6 +1461,7 @@
 				F9FD19E41F141FF300AB3FEE /* ADWorkoutsViewController.xib in Resources */,
 				50060FDA1F33A83B00F6DC00 /* Assets.xcassets in Resources */,
 				F9AF067F1F07535C003A2200 /* WorkoutTableViewCell.xib in Resources */,
+				5037F6551F60993F001939EA /* UserStatView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1612,6 +1629,7 @@
 				5099F1BF1F5F6746000A6DE4 /* AchievementListModel.m in Sources */,
 				F9DA75111F02DC1700347B0D /* BTDataModel.xcdatamodeld in Sources */,
 				F927D14F1F0C9BD70004CF3A /* IterationSelectionViewController.m in Sources */,
+				5037F6531F609936001939EA /* UserStatView.m in Sources */,
 				F94C89451F15D5B6006C6BDD /* BT1RMCalculator.m in Sources */,
 				F917BB641F0DEA7C00614AB1 /* BTQRScannerViewController.m in Sources */,
 				F9C240731F17F9B300A268F3 /* UIColor+BTColors.m in Sources */,
