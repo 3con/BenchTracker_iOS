@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5004CDAE1F60F424000BF6F0 /* AchievementViewButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5004CDAD1F60F424000BF6F0 /* AchievementViewButton.m */; };
+		5004CDB11F60F436000BF6F0 /* AchievementViewButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5004CDB01F60F436000BF6F0 /* AchievementViewButton.xib */; };
 		50060FDA1F33A83B00F6DC00 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50060FD91F33A83B00F6DC00 /* Assets.xcassets */; };
 		50060FDD1F33BB8E00F6DC00 /* BTWorkoutModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50060FDC1F33BB8E00F6DC00 /* BTWorkoutModel.m */; };
 		5037F6531F609936001939EA /* UserStatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5037F6521F609936001939EA /* UserStatView.m */; };
@@ -148,6 +150,9 @@
 		2C3B197020A386DB147CEDEE /* Pods-BenchTrackerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BenchTrackerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BenchTrackerTests/Pods-BenchTrackerTests.release.xcconfig"; sourceTree = "<group>"; };
 		2C83D3A0EA46ECDF1788C990 /* Pods_BenchTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BenchTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		40B18DFBDA158AF111B21958 /* Pods_BenchTrackerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BenchTrackerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5004CDAC1F60F424000BF6F0 /* AchievementViewButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AchievementViewButton.h; sourceTree = "<group>"; };
+		5004CDAD1F60F424000BF6F0 /* AchievementViewButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AchievementViewButton.m; sourceTree = "<group>"; };
+		5004CDB01F60F436000BF6F0 /* AchievementViewButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AchievementViewButton.xib; sourceTree = "<group>"; };
 		50060FD91F33A83B00F6DC00 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		50060FDB1F33BB8E00F6DC00 /* BTWorkoutModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BTWorkoutModel.h; path = BenchTracker/BTWorkoutModel.h; sourceTree = "<group>"; };
 		50060FDC1F33BB8E00F6DC00 /* BTWorkoutModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BTWorkoutModel.m; path = BenchTracker/BTWorkoutModel.m; sourceTree = "<group>"; };
@@ -403,6 +408,16 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		5004CDAF1F60F428000BF6F0 /* AV Button */ = {
+			isa = PBXGroup;
+			children = (
+				5004CDAC1F60F424000BF6F0 /* AchievementViewButton.h */,
+				5004CDAD1F60F424000BF6F0 /* AchievementViewButton.m */,
+				5004CDB01F60F436000BF6F0 /* AchievementViewButton.xib */,
+			);
+			name = "AV Button";
+			sourceTree = "<group>";
+		};
 		50060FDE1F33BB9200F6DC00 /* WorkoutModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -427,6 +442,7 @@
 			children = (
 				5039610E1F604E4900CBC9EB /* UserViewController.h */,
 				5039610F1F604E4900CBC9EB /* UserViewController.m */,
+				5004CDAF1F60F428000BF6F0 /* AV Button */,
 				5037F6561F60A29F001939EA /* Stat view */,
 				F95F5CF71F08B55700A567FA /* Settings */,
 			);
@@ -1441,6 +1457,7 @@
 				50971E761F2E4AC400B10D70 /* AETableHeaderView.xib in Resources */,
 				50636F2B1F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.xib in Resources */,
 				F97B1CAA1F097DA600B3EEC7 /* WeekdayView.xib in Resources */,
+				5004CDB11F60F436000BF6F0 /* AchievementViewButton.xib in Resources */,
 				508568C71F31044B0046A76F /* ECTableViewCell.xib in Resources */,
 				F9FD19F01F14748800AB3FEE /* ADExercisesViewController.xib in Resources */,
 				F9B27CE61F117852008FCC7F /* AnalyticsCollectionViewCell.xib in Resources */,
@@ -1591,6 +1608,7 @@
 				505CFDA31F5B5795001469F8 /* SetSummaryCollectionView.m in Sources */,
 				F9DA75221F02EE9600347B0D /* BTUser+CoreDataClass.m in Sources */,
 				50971E741F2E4AB700B10D70 /* AETableHeaderView.m in Sources */,
+				5004CDAE1F60F424000BF6F0 /* AchievementViewButton.m in Sources */,
 				5093AE6D1F394AD1006CA6F0 /* BTWorkoutTemplate+CoreDataClass.m in Sources */,
 				F9A5494C1F13067B00743897 /* BTRecentWorkoutsManager.m in Sources */,
 				F9B7D7D71F06303700376201 /* passTouchesView.m in Sources */,

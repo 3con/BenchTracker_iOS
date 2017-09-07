@@ -11,6 +11,8 @@
 #import "UserStatView.h"
 #import "BTUser+CoreDataClass.h"
 #import "BTSettings+CoreDataClass.h"
+#import "BTWorkout+CoreDataClass.h"
+#import "AchievementViewButton.h"
 
 @interface UserViewController ()
 
@@ -18,10 +20,14 @@
 
 @property (nonatomic) ZFModalTransitionAnimator *animator;
 
+@property (weak, nonatomic) IBOutlet UIView *achievementButtonContainerView;
+
 @property (strong, nonatomic) IBOutletCollection(UIView) NSArray <UIView *> *statContainerViews;
 
 @property (nonatomic) BTSettings *settings;
 @property (nonatomic) BTUser *user;
+
+@property (nonatomic) BOOL isShowingFirstStats;
 
 @end
 
@@ -32,39 +38,70 @@
     self.settings = [BTSettings sharedInstance];
     self.user = [BTUser sharedInstance];
     self.navView.backgroundColor = [UIColor BTPrimaryColor];
+    self.isShowingFirstStats = YES;
+    [self refreshStats];
+    [self loadAchievementButton];
+}
+
+- (void)refreshStats {
     for (int i = 0; i < self.statContainerViews.count; i++) {
-        UserStatView *statView = [[NSBundle mainBundle] loadNibNamed:@"UserStatView" owner:self options:nil].firstObject;
-        statView.frame = self.statContainerViews[i].bounds;
-        statView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        statView.backgroundColor = [UIColor BTVibrantColors][i];
+        UserStatView *statView;
+        if (self.statContainerViews[i].subviews.count == 0) {
+            statView = [[NSBundle mainBundle] loadNibNamed:@"UserStatView" owner:self options:nil].firstObject;
+            statView.frame = self.statContainerViews[i].bounds;
+            statView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+            statView.backgroundColor = [UIColor BTVibrantColors][i+1];
+        }
+        else statView = self.statContainerViews[i].subviews.firstObject;
         switch (i) {
             case 0:
-                statView.titleLabel.text = @"Member for";
-                statView.statLabel.text = [NSString stringWithFormat:@"%.0f days", [[NSDate date] timeIntervalSinceDate:self.user.dateCreated]/86400];
+                statView.titleLabel.text = (self.isShowingFirstStats) ? @"Tracking for" : @"Workout %";
+                statView.statLabel.text = (self.isShowingFirstStats) ?
+                    [NSString stringWithFormat:@"%.0f days", [[NSDate date] timeIntervalSinceDate:self.user.dateCreated]/86400+1] :
+                    [NSString stringWithFormat:@"%.0f%%", ((float)self.user.totalWorkouts)/
+                                                          ([[NSDate date] timeIntervalSinceDate:self.user.dateCreated]/86400+1)*100];
                 break;
             case 1:
-                statView.titleLabel.text = @"Total Duration";
-                statView.statLabel.text = [NSString stringWithFormat:@"%.1f hrs", self.user.totalDuration/3600.0];
+                statView.titleLabel.text = (self.isShowingFirstStats) ? @"Total Duration" : @"Volume / Hour";
+                statView.statLabel.text = (self.isShowingFirstStats) ?
+                    [NSString stringWithFormat:@"%.1f hrs", self.user.totalDuration/3600.0] :
+                    [NSString stringWithFormat:@"%.1fk %@", self.user.totalVolume/1000.0/self.user.totalDuration*3600, self.settings.weightSuffix];
                 break;
             case 2:
-                statView.titleLabel.text = @"# Workouts";
-                statView.statLabel.text = [NSString stringWithFormat:@"%lld", self.user.totalWorkouts];
+                statView.titleLabel.text = (self.isShowingFirstStats) ? @"# of Workouts" : @"Average Duration";
+                statView.statLabel.text = (self.isShowingFirstStats) ?
+                    [NSString stringWithFormat:@"%lld", self.user.totalWorkouts] :
+                    [NSString stringWithFormat:@"%.1f min", self.user.totalDuration/60.0/self.user.totalWorkouts];
                 break;
             case 3:
-                statView.titleLabel.text = @"Total Volume";
-                statView.statLabel.text = [NSString stringWithFormat:@"%lldk %@",self.user.totalVolume/1000, self.settings.weightSuffix];
+                statView.titleLabel.text = (self.isShowingFirstStats) ? @"Total Volume" : @"Average Volume";
+                statView.statLabel.text = (self.isShowingFirstStats) ?
+                    [NSString stringWithFormat:@"%lldk %@", self.user.totalVolume/1000, self.settings.weightSuffix] :
+                    [NSString stringWithFormat:@"%.1fk %@", self.user.totalVolume/1000.0/self.user.totalWorkouts, self.settings.weightSuffix];
                 break;
             case 4:
-                statView.titleLabel.text = @"Current Streak";
-                statView.statLabel.text = [NSString stringWithFormat:@"%lld days", self.user.currentStreak];
+                statView.titleLabel.text = (self.isShowingFirstStats) ? @"Current Streak" : @"Longest Duration";
+                statView.statLabel.text = (self.isShowingFirstStats) ?
+                    [NSString stringWithFormat:@"%lld days", self.user.currentStreak] :
+                    [NSString stringWithFormat:@"%ld min", [self maxWorkoutDuration]/60];
                 break;
             default:
-                statView.titleLabel.text = @"Longest Streak";
-                statView.statLabel.text = [NSString stringWithFormat:@"%lld days", self.user.longestStreak];
+                statView.titleLabel.text = (self.isShowingFirstStats) ? @"Longest Streak" : @"Highest Volume";
+                statView.statLabel.text = (self.isShowingFirstStats) ?
+                    [NSString stringWithFormat:@"%lld days", self.user.longestStreak] :
+                    [NSString stringWithFormat:@"%ldk %@",[self maxWorkoutVolume]/1000, self.settings.weightSuffix];
                 break;
         }
         [self.statContainerViews[i] addSubview:statView];
     }
+}
+
+- (void)loadAchievementButton {
+    AchievementViewButton *button = [[NSBundle mainBundle] loadNibNamed:@"AchievementViewButton" owner:self options:nil].firstObject;
+    button.frame = self.achievementButtonContainerView.bounds;
+    button.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [button addTarget:self action:@selector(achievementViewButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self.achievementButtonContainerView addSubview:button];
 }
 
 - (IBAction)doneButtonPressed:(UIButton *)sender {
@@ -73,6 +110,15 @@
 
 - (IBAction)settingsButtonPressed:(UIButton *)sender {
     [self presentSettingsViewController];
+}
+
+- (void)achievementViewButtonPressed:(id)sender {
+    NSLog(@"A");
+}
+
+- (IBAction)switchStatsButtonPressed:(UIButton *)sender {
+    self.isShowingFirstStats = !self.isShowingFirstStats;
+    [self refreshStats];
 }
 
 - (void)presentSettingsViewController {
@@ -95,6 +141,24 @@
 
 - (void)settingsViewWillDismiss:(SettingsViewController *)settingsVC {
     [self.delegate userViewControllerSettingsDidUpdate:self];
+}
+
+#pragma mark - helper methods
+
+- (NSInteger)maxWorkoutDuration {
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"BTWorkout"];
+    fetchRequest.fetchLimit = 1;
+    fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"duration" ascending:NO]];
+    NSArray <BTWorkout *> *arr = [self.context executeFetchRequest:fetchRequest error:nil];
+    return (arr && arr.count > 0) ? arr.firstObject.duration : 0;
+}
+
+- (NSInteger)maxWorkoutVolume {
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"BTWorkout"];
+    fetchRequest.fetchLimit = 1;
+    fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"volume" ascending:NO]];
+    NSArray <BTWorkout *> *arr = [self.context executeFetchRequest:fetchRequest error:nil];
+    return (arr && arr.count > 0) ? arr.firstObject.volume : 0;
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
