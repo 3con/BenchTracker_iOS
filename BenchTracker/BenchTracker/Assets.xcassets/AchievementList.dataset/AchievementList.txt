@@ -1,12 +1,474 @@
 {
 	"version": "1",
-	"achievements": [
-		{
-			"key": "firstWorkout",
-			"name": "Training Wheels",
-			"details": "Complete your first workout!",
-			"xp": 5,
-			"hidden": false
-		}
-	]
+	"achievements": [  
+   {  
+      "hidden":"false",
+      "key":"firstWorkout",
+      "name":"Training Wheels",
+      "xp":5,
+      "details":"Complete your first workout"
+   },
+   {  
+      "hidden":"true",
+      "key":"speed0",
+      "name":"Slow And Steady",
+      "xp":5,
+      "details":"Perform 10 or fewer sets in a 30+ minute workout"
+   },
+   {  
+      "hidden":"false",
+      "key":"speed1",
+      "name":"Speed Demon I",
+      "xp":10,
+      "details":"Perform 25+ sets in a <60 minute workout"
+   },
+   {  
+      "hidden":"false",
+      "key":"speed2",
+      "name":"Speed Demon II",
+      "xp":20,
+      "details":"Perform 30+ sets in a <60  minute workout"
+   },
+   {  
+      "hidden":"true",
+      "key":"speed9",
+      "name":"Speed Demon ∞",
+      "xp":30,
+      "details":"Perform 40+ sets in a <60 minute workout"
+   },
+   {  
+      "hidden":"false",
+      "key":"iron1",
+      "name":"Ironman I",
+      "xp":10,
+      "details":"Complete a 60+ minute workout"
+   },
+   {  
+      "hidden":"true",
+      "key":"iron15",
+      "name":"Ironman 😏",
+      "xp":10,
+      "details":"Complete a workout in exactly 69 minutes"
+   },
+   {  
+      "hidden":"false",
+      "key":"iron2",
+      "name":"Ironman II",
+      "xp":20,
+      "details":"Complete a 80+ minute workout"
+   },
+   {  
+      "hidden":"false",
+      "key":"iron3",
+      "name":"Ironman III",
+      "xp":30,
+      "details":"Complete a 100+ minute workout"
+   },
+   {  
+      "hidden":"true",
+      "key":"iron9",
+      "name":"Ironman ∞",
+      "xp":50,
+      "details":"Complete a 150+ minute workout"
+   },
+   {  
+      "hidden":"true",
+      "key":"light0",
+      "name":"Bodyweight",
+      "xp":5,
+      "details":"Perform 20+ bodyweight-only sets in one workout"
+   },
+   {  
+      "hidden":"true",
+      "key":"light1",
+      "name":"Lightweight",
+      "xp":5,
+      "details":"Lift less than 5k lbs / 2.5k kg in a 20+ set workout"
+   },
+   {  
+      "hidden":"false",
+      "key":"heavy1",
+      "name":"Heavyweight I",
+      "xp":5,
+      "details":"Lift more than 10k lbs / 5k kg in a workout"
+   },
+   {  
+      "hidden":"false",
+      "key":"heavy2",
+      "name":"Heavyweight II",
+      "xp":10,
+      "details":"Lift more than 20k lbs / 10k kg in a workout"
+   },
+   {  
+      "hidden":"false",
+      "key":"heavy3",
+      "name":"Heavyweight III",
+      "xp":20,
+      "details":"Lift more than 30k lbs / 15k kg in a workout"
+   },
+   {  
+      "hidden":"false",
+      "key":"heavy4",
+      "name":"Heavyweight IV",
+      "xp":30,
+      "details":"Lift more than 40k lbs / 20k kg in a workout"
+   },
+   {  
+      "hidden":"true",
+      "key":"heavy5",
+      "name":"Heavyweight ∞",
+      "xp":50,
+      "details":"Lift more than 60k lbs / 30k kg in a workout"
+   },
+   {  
+      "hidden":"false",
+      "key":"sets1",
+      "name":"Sets On Sets I",
+      "xp":5,
+      "details":"Perform 15 or more sets in a workout"
+   },
+   {  
+      "hidden":"false",
+      "key":"sets2",
+      "name":"Sets On Sets II",
+      "xp":10,
+      "details":"Perform 25 or more sets in a workout"
+   },
+   {  
+      "hidden":"false",
+      "key":"sets3",
+      "name":"Sets On Sets III",
+      "xp":20,
+      "details":"Perform 35 or more sets in a workout"
+   },
+   {  
+      "hidden":"true",
+      "key":"sets9",
+      "name":"Sets On Sets ∞",
+      "xp":50,
+      "details":"Perform 50 or more sets in a workout"
+   },
+   {  
+      "hidden":"false",
+      "key":"strong1",
+      "name":"Strongman I",
+      "xp":10,
+      "details":"Lift more than 100 lbs / 50kg in any exercise"
+   },
+   {  
+      "hidden":"false",
+      "key":"strong2",
+      "name":"Strongman II",
+      "xp":20,
+      "details":"Lift more than 200 lbs / 100kg in any exercise"
+   },
+   {  
+      "hidden":"false",
+      "key":"strong3",
+      "name":"Strongman III",
+      "xp":30,
+      "details":"Lift more than 300 lbs / 150kg in any exercise"
+   },
+   {  
+      "hidden":"true",
+      "key":"strong9",
+      "name":"Strongman ∞",
+      "xp":50,
+      "details":"Lift more than 500 lbs / 250k kg in any exercise"
+   },
+   {  
+      "hidden":"false",
+      "key":"super1",
+      "name":"Supersetter I",
+      "xp":5,
+      "details":"Superset 2 exercises in a workout"
+   },
+   {  
+      "hidden":"false",
+      "key":"super2",
+      "name":"Supersetter II",
+      "xp":10,
+      "details":"Superset 3 exercises in a workout"
+   },
+   {  
+      "hidden":"true",
+      "key":"super9",
+      "name":"Supersetter ∞",
+      "xp":20,
+      "details":"Superset 5 exercises in a workout"
+   },
+   {  
+      "hidden":"true",
+      "key":"time0",
+      "name":"4:20 Work It!",
+      "xp":10,
+      "details":"Start a workout at exacly 4:20pm"
+   },
+   {  
+      "hidden":"false",
+      "key":"time1",
+      "name":"Early Bird",
+      "xp":10,
+      "details":"Work out between 5 and 7am"
+   },
+   {  
+      "hidden":"false",
+      "key":"time2",
+      "name":"Night Shift",
+      "xp":20,
+      "details":"Work out between 1 and 5am"
+   },
+   {  
+      "hidden":"true",
+      "key":"types1",
+      "name":"Weak Point",
+      "xp":5,
+      "details":"Complete a workout targeting only 1 muscle group"
+   },
+   {  
+      "hidden":"true",
+      "key":"types2",
+      "name":"Diversification",
+      "xp":5,
+      "details":"Complete a workout targeting at least 4 muscle groups"
+   },
+   {  
+      "hidden":"true",
+      "key":"types3",
+      "name":"Maxed Out",
+      "xp":10,
+      "details":"Perform 10 or more sets of one exercise in one wokrout"
+   },
+   {  
+      "hidden":"false",
+      "key":"marathon1",
+      "name":"Marathonist I",
+      "xp":10,
+      "details":"Work out for 5 hours total"
+   },
+   {  
+      "hidden":"false",
+      "key":"marathon2",
+      "name":"Marathonist II",
+      "xp":20,
+      "details":"Work out for 10 hours total"
+   },
+   {  
+      "hidden":"false",
+      "key":"marathon3",
+      "name":"Marathonist III",
+      "xp":30,
+      "details":"Work out for 50 hours total"
+   },
+   {  
+      "hidden":"false",
+      "key":"marathon4",
+      "name":"Marathonist IV",
+      "xp":50,
+      "details":"Work out for 100 hours total"
+   },
+   {  
+      "hidden":"false",
+      "key":"marathon5",
+      "name":"Marathonist V",
+      "xp":100,
+      "details":"Work out for 500 hours"
+   },
+   {  
+      "hidden":"false",
+      "key":"gains1",
+      "name":"Massive Gains I",
+      "xp":10,
+      "details":"Lift 50k lbs / 25k kg"
+   },
+   {  
+      "hidden":"false",
+      "key":"gains2",
+      "name":"Massive Gains II",
+      "xp":20,
+      "details":"Lift 100k lbs / 50k kg"
+   },
+   {  
+      "hidden":"false",
+      "key":"gains3",
+      "name":"Massive Gains III",
+      "xp":30,
+      "details":"Lift 500k lbs / 250k kg"
+   },
+   {  
+      "hidden":"false",
+      "key":"gains4",
+      "name":"Massive Gains IV",
+      "xp":50,
+      "details":"Lift 1 million lbs / 500k kg"
+   },
+   {  
+      "hidden":"false",
+      "key":"gains5",
+      "name":"Massive Gains V",
+      "xp":100,
+      "details":"Lift 10 million lbs / 5 million kg"
+   },
+   {  
+      "hidden":"false",
+      "key":"streak1",
+      "name":"Gains Novice",
+      "xp":10,
+      "details":"Work out 3 days straight"
+   },
+   {  
+      "hidden":"false",
+      "key":"streak2",
+      "name":"Gains Lord",
+      "xp":20,
+      "details":"Work out 7 days straight"
+   },
+   {  
+      "hidden":"false",
+      "key":"streak3",
+      "name":"Gains God",
+      "xp":30,
+      "details":"Work out 14 days straight"
+   },
+   {  
+      "hidden":"false",
+      "key":"streak4",
+      "name":"Is This Even Healthy?",
+      "xp":50,
+      "details":"Work out 30 days straight"
+   },
+   {  
+      "hidden":"false",
+      "key":"dedication1",
+      "name":"Dedication I",
+      "xp":5,
+      "details":"Complete 3 workouts"
+   },
+   {  
+      "hidden":"false",
+      "key":"dedication2",
+      "name":"Dedication II",
+      "xp":10,
+      "details":"Complete 10 workouts"
+   },
+   {  
+      "hidden":"false",
+      "key":"dedication3",
+      "name":"Dedication III",
+      "xp":20,
+      "details":"Complete 25 workouts"
+   },
+   {  
+      "hidden":"false",
+      "key":"dedication4",
+      "name":"Dedication IV",
+      "xp":30,
+      "details":"Complete 50 workouts"
+   },
+   {  
+      "hidden":"true",
+      "key":"dedication15",
+      "name":"Dedication 😏",
+      "xp":20,
+      "details":"Complete 69 workouts"
+   },
+   {  
+      "hidden":"false",
+      "key":"power1",
+      "name":"Powerlifter I",
+      "xp":5,
+      "details":"Complete all powerlifting exercises (bench + squat + deadlift)"
+   },
+   {  
+      "hidden":"false",
+      "key":"power2",
+      "name":"Powerlifter II",
+      "xp":10,
+      "details":"Powerlift (bench + squat + deadlift) over 600 lbs / 400 kg"
+   },
+   {  
+      "hidden":"false",
+      "key":"power3",
+      "name":"Powerlifter III",
+      "xp":20,
+      "details":"Powerlift (bench + squat + deadlift) over 800 lbs / 500 kg"
+   },
+   {  
+      "hidden":"false",
+      "key":"power4",
+      "name":"Powerlifter IV",
+      "xp":30,
+      "details":"Powerlift (bench + squat + deadlift) over 1000 lbs / 500 kg"
+   },
+   {  
+      "hidden":"false",
+      "key":"power5",
+      "name":"Powerlifter V",
+      "xp":50,
+      "details":"Powerlift (bench + squat + deadlift) over 1200 lbs / 500 kg"
+   },
+   {  
+      "hidden":"true",
+      "key":"power9",
+      "name":"Powerlifter ∞",
+      "xp":100,
+      "details":"Powerlift (bench + squat + deadlift) over 1500 lbs / 750 kg"
+   },
+   {  
+      "hidden":"true",
+      "key":"everyCategory",
+      "name":"Renaissance Man",
+      "xp":20,
+      "details":"Perform at least one exercise from every muscle group"
+   },
+   {  
+      "hidden":"false",
+      "key":"create1",
+      "name":"My Own Exercise!",
+      "xp":5,
+      "details":"Create your own exercise"
+   },
+   {  
+      "hidden":"false",
+      "key":"create2",
+      "name":"Tinkerer",
+      "xp":5,
+      "details":"Add a variation to an exercise"
+   },
+   {  
+      "hidden":"false",
+      "key":"share",
+      "name":"Extrovert",
+      "xp":10,
+      "details":"Share Bench Tracker"
+   },
+   {  
+      "hidden":"false",
+      "key":"analyze",
+      "name":"Analyzer",
+      "xp":5,
+      "details":"Analyze an exercise"
+   },
+   {  
+      "hidden":"false",
+      "key":"template",
+      "name":"Inspire Me",
+      "xp":5,
+      "details":"Use a template workout"
+   },
+   {  
+      "hidden":"false",
+      "key":"print",
+      "name":"Paper is Forever",
+      "xp":5,
+      "details":"Print a workout"
+   },
+   {  
+      "hidden":"false",
+      "key":"scan",
+      "name":"Better With Friends",
+      "xp":5,
+      "details":"Scan a workout"
+   }
+]
 }

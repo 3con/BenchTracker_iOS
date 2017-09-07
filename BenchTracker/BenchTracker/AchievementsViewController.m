@@ -7,6 +7,7 @@
 //
 
 #import "AchievementsViewController.h"
+#import "AchievementCollectionViewCell.h"
 
 @interface AchievementsViewController ()
 
@@ -24,16 +25,35 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navView.backgroundColor = [UIColor BTPrimaryColor];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
+    self.collectionView.showsHorizontalScrollIndicator = NO;
+    [self loadFlowLayout];
+    [self.collectionView registerNib:[UINib nibWithNibName:@"AchievementCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"Cell"];
     if (!_fetchedResultsController) { //first load
         NSError *error;
         if (![[self fetchedResultsController] performFetch:&error]) {
-            NSLog(@"Main fetch error: %@, %@", error, [error userInfo]);
+            NSLog(@"Achievements fetch error: %@, %@", error, [error userInfo]);
         }
     }
+}
+
+- (void)loadFlowLayout {
+    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    int horizCount = 4;
+    if (self.view.frame.size.width < 400) horizCount = 2;
+    else if (self.view.frame.size.width < 600) horizCount = 3;
+    flowLayout.itemSize = CGSizeMake((self.view.frame.size.width-(horizCount+1)*20)/horizCount, 120);
+    flowLayout.minimumInteritemSpacing = 20.0;
+    flowLayout.minimumLineSpacing = 20.0;
+    flowLayout.sectionInset = UIEdgeInsetsMake(20, 20, 20, 20);
+    flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
+    [self.collectionView setCollectionViewLayout:flowLayout];
+}
+
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+    [self loadFlowLayout];
+    [self.collectionView reloadData];
 }
 
 - (IBAction)backButtonPressed:(UIButton *)sender {
@@ -42,13 +62,35 @@
 
 #pragma mark - collectionView dataSource
 
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return 1;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.fetchedResultsController.sections[section].objects.count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    AchievementCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
+    [cell loadWithAchievement:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+    return cell;
+}
+
 #pragma mark - collectionView delegate
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"%@",indexPath);
+}
+
+#pragma mark - fetchedResultsController
 
 - (NSFetchedResultsController *)fetchedResultsController {
     if (_fetchedResultsController != nil) return _fetchedResultsController;
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"BTAchievement"];
     fetchRequest.fetchLimit = 0;
     fetchRequest.fetchBatchSize = 10;
+    fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"hidden" ascending:YES],
+                                     [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]];
     NSFetchedResultsController *theFetchedResultsController = [[NSFetchedResultsController alloc]
         initWithFetchRequest:fetchRequest managedObjectContext:self.context sectionNameKeyPath:nil cacheName:nil];
     self.fetchedResultsController = theFetchedResultsController;
@@ -109,6 +151,10 @@
             [self.blockOperation start];
         } completion:nil];
     }
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 @end

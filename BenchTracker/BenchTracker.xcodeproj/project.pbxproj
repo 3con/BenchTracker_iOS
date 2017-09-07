@@ -31,6 +31,8 @@
 		50636F2B1F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50636F291F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.xib */; };
 		50636F2F1F2B9E0D00FB65B4 /* EEDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50636F2E1F2B9E0D00FB65B4 /* EEDetailViewController.m */; };
 		50636F331F2C37B000FB65B4 /* BTExerciseTypeStyleTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 50636F321F2C37B000FB65B4 /* BTExerciseTypeStyleTransformer.m */; };
+		5066F9B51F61E75D00159130 /* AchievementCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5066F9B31F61E75D00159130 /* AchievementCollectionViewCell.m */; };
+		5066F9B61F61E75D00159130 /* AchievementCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5066F9B41F61E75D00159130 /* AchievementCollectionViewCell.xib */; };
 		507FC4CF1F3243FA00A88A35 /* BTDataTransferManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 507FC4CE1F3243FA00A88A35 /* BTDataTransferManager.m */; };
 		5084CF1D1F3BCCC40083FA19 /* BTWorkoutTemplateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5084CF1C1F3BCCC40083FA19 /* BTWorkoutTemplateModel.m */; };
 		5084CF211F3BD66F0083FA19 /* BTTemplateListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5084CF201F3BD66F0083FA19 /* BTTemplateListModel.m */; };
@@ -194,6 +196,9 @@
 		50636F2E1F2B9E0D00FB65B4 /* EEDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EEDetailViewController.m; sourceTree = "<group>"; };
 		50636F311F2C37B000FB65B4 /* BTExerciseTypeStyleTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTExerciseTypeStyleTransformer.h; sourceTree = "<group>"; };
 		50636F321F2C37B000FB65B4 /* BTExerciseTypeStyleTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTExerciseTypeStyleTransformer.m; sourceTree = "<group>"; };
+		5066F9B21F61E75D00159130 /* AchievementCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AchievementCollectionViewCell.h; sourceTree = "<group>"; };
+		5066F9B31F61E75D00159130 /* AchievementCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AchievementCollectionViewCell.m; sourceTree = "<group>"; };
+		5066F9B41F61E75D00159130 /* AchievementCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AchievementCollectionViewCell.xib; sourceTree = "<group>"; };
 		507FC4CD1F3243FA00A88A35 /* BTDataTransferManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTDataTransferManager.h; sourceTree = "<group>"; };
 		507FC4CE1F3243FA00A88A35 /* BTDataTransferManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTDataTransferManager.m; sourceTree = "<group>"; };
 		5084CF1B1F3BCCC40083FA19 /* BTWorkoutTemplateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTWorkoutTemplateModel.h; sourceTree = "<group>"; };
@@ -426,6 +431,7 @@
 			children = (
 				5004CDB21F61A0AB000BF6F0 /* AchievementsViewController.h */,
 				5004CDB31F61A0AB000BF6F0 /* AchievementsViewController.m */,
+				5066F9B71F61E76000159130 /* Achivement CVC */,
 			);
 			name = Achievements;
 			sourceTree = "<group>";
@@ -595,6 +601,16 @@
 				50636F321F2C37B000FB65B4 /* BTExerciseTypeStyleTransformer.m */,
 			);
 			name = "Style transformer";
+			sourceTree = "<group>";
+		};
+		5066F9B71F61E76000159130 /* Achivement CVC */ = {
+			isa = PBXGroup;
+			children = (
+				5066F9B21F61E75D00159130 /* AchievementCollectionViewCell.h */,
+				5066F9B31F61E75D00159130 /* AchievementCollectionViewCell.m */,
+				5066F9B41F61E75D00159130 /* AchievementCollectionViewCell.xib */,
+			);
+			name = "Achivement CVC";
 			sourceTree = "<group>";
 		};
 		507FC4D01F32440000A88A35 /* Managers */ = {
@@ -1467,6 +1483,7 @@
 				F97B1CA31F09759000B3EEC7 /* WeekdayTableViewCell.xib in Resources */,
 				F981D5891F022D9A00E7B456 /* LaunchScreen.xib in Resources */,
 				F927D1551F0C9DDB0004CF3A /* IterationTableViewCell.xib in Resources */,
+				5066F9B61F61E75D00159130 /* AchievementCollectionViewCell.xib in Resources */,
 				50971E761F2E4AC400B10D70 /* AETableHeaderView.xib in Resources */,
 				50636F2B1F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.xib in Resources */,
 				F97B1CAA1F097DA600B3EEC7 /* WeekdayView.xib in Resources */,
@@ -1626,6 +1643,7 @@
 				F9A5494C1F13067B00743897 /* BTRecentWorkoutsManager.m in Sources */,
 				F9B7D7D71F06303700376201 /* passTouchesView.m in Sources */,
 				F9FD19E91F14746E00AB3FEE /* ADWeeklySummaryViewController.m in Sources */,
+				5066F9B51F61E75D00159130 /* AchievementCollectionViewCell.m in Sources */,
 				F9FD19E31F141FF300AB3FEE /* ADWorkoutsViewController.m in Sources */,
 				F917BB501F0D24E500614AB1 /* BTPDFGenerator.m in Sources */,
 				F917BB601F0DD40200614AB1 /* QRDisplayViewController.m in Sources */,
