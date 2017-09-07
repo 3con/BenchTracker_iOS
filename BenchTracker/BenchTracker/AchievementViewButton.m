@@ -20,4 +20,8 @@
     return self;
 }
 
+- (void)setHighlighted:(BOOL)highlighted {
+    //self.alpha = (highlighted) ? 0.6 : 1.0;
+}
+
 @end

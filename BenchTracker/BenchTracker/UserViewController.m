@@ -13,6 +13,7 @@
 #import "BTSettings+CoreDataClass.h"
 #import "BTWorkout+CoreDataClass.h"
 #import "AchievementViewButton.h"
+#import "AchievementsViewController.h"
 
 @interface UserViewController ()
 
@@ -113,12 +114,28 @@
 }
 
 - (void)achievementViewButtonPressed:(id)sender {
-    NSLog(@"A");
+    [self presentAchievementsViewController];
 }
 
 - (IBAction)switchStatsButtonPressed:(UIButton *)sender {
     self.isShowingFirstStats = !self.isShowingFirstStats;
     [self refreshStats];
+}
+
+- (void)presentAchievementsViewController {
+    AchievementsViewController *aVC = [self.storyboard instantiateViewControllerWithIdentifier:@"av"];
+    aVC.settings = self.settings;
+    aVC.context = self.context;
+    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:aVC];
+    self.animator.bounces = NO;
+    self.animator.dragable = YES;
+    self.animator.behindViewAlpha = 0.6;
+    self.animator.behindViewScale = 1.0;
+    self.animator.transitionDuration = 0.35;
+    self.animator.direction = ZFModalTransitonDirectionRight;
+    aVC.transitioningDelegate = self.animator;
+    aVC.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self presentViewController:aVC animated:YES completion:nil];
 }
 
 - (void)presentSettingsViewController {
