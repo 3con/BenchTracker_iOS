@@ -15,7 +15,6 @@
 @implementation BTAchievement
 
 - (UIImage *)image {
-    return [UIImage imageNamed:@"firstWorkout"];
     return [UIImage imageNamed:self.key];
 }
 

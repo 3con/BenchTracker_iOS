@@ -115,7 +115,7 @@
    },
    {  
       "hidden":"true",
-      "key":"heavy5",
+      "key":"heavy9",
       "name":"Heavyweight ∞",
       "xp":50,
       "details":"Lift more than 60k lbs / 30k kg in a workout"

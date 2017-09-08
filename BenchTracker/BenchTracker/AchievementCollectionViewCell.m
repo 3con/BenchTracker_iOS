@@ -24,8 +24,10 @@
 }
 
 - (void)loadWithAchievement:(BTAchievement *)achievement {
+    NSLog(@"%@",achievement.key);
     self.backgroundColor = (achievement.color) ? achievement.color : [UIColor BTVibrantColors][0];
     self.imageView.image = achievement.image;
+    NSLog(@"%@",self.imageView.image);
     if (achievement.hidden) {
         self.alpha = .4;
         self.nameLabel.text = @"???";
