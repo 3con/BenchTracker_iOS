@@ -18,6 +18,7 @@
 		50404F541F327EDE0070B1A9 /* BTDataTransferModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50404F531F327EDE0070B1A9 /* BTDataTransferModel.m */; };
 		50404F5B1F3280430070B1A9 /* BTUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50404F5A1F3280430070B1A9 /* BTUserModel.m */; };
 		50404F5F1F32816A0070B1A9 /* BTSettingsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50404F5E1F32816A0070B1A9 /* BTSettingsModel.m */; };
+		504C269B1F62F2B8008CA41B /* AchievementDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 504C269A1F62F2B8008CA41B /* AchievementDetailViewController.m */; };
 		50519B021F5C8D9500C109E1 /* WorkoutDetailsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50519B011F5C8D9500C109E1 /* WorkoutDetailsView.m */; };
 		50519B051F5C8DAC00C109E1 /* WorkoutDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50519B041F5C8DAC00C109E1 /* WorkoutDetailsView.xib */; };
 		50530C261F50BC4100472426 /* SetCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50530C251F50BC4100472426 /* SetCollectionView.m */; };
@@ -173,6 +174,8 @@
 		50404F5A1F3280430070B1A9 /* BTUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BTUserModel.m; path = BenchTracker/BTUserModel.m; sourceTree = "<group>"; };
 		50404F5D1F32816A0070B1A9 /* BTSettingsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BTSettingsModel.h; path = BenchTracker/BTSettingsModel.h; sourceTree = "<group>"; };
 		50404F5E1F32816A0070B1A9 /* BTSettingsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BTSettingsModel.m; path = BenchTracker/BTSettingsModel.m; sourceTree = "<group>"; };
+		504C26991F62F2B8008CA41B /* AchievementDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AchievementDetailViewController.h; sourceTree = "<group>"; };
+		504C269A1F62F2B8008CA41B /* AchievementDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AchievementDetailViewController.m; sourceTree = "<group>"; };
 		50519B001F5C8D9500C109E1 /* WorkoutDetailsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkoutDetailsView.h; sourceTree = "<group>"; };
 		50519B011F5C8D9500C109E1 /* WorkoutDetailsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkoutDetailsView.m; sourceTree = "<group>"; };
 		50519B041F5C8DAC00C109E1 /* WorkoutDetailsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WorkoutDetailsView.xib; sourceTree = "<group>"; };
@@ -431,6 +434,7 @@
 			children = (
 				5004CDB21F61A0AB000BF6F0 /* AchievementsViewController.h */,
 				5004CDB31F61A0AB000BF6F0 /* AchievementsViewController.m */,
+				504C269C1F62F2C1008CA41B /* A Detail */,
 				5066F9B71F61E76000159130 /* Achivement CVC */,
 			);
 			name = Achievements;
@@ -493,6 +497,15 @@
 				50404F5E1F32816A0070B1A9 /* BTSettingsModel.m */,
 			);
 			name = SettingsModel;
+			sourceTree = "<group>";
+		};
+		504C269C1F62F2C1008CA41B /* A Detail */ = {
+			isa = PBXGroup;
+			children = (
+				504C26991F62F2B8008CA41B /* AchievementDetailViewController.h */,
+				504C269A1F62F2B8008CA41B /* AchievementDetailViewController.m */,
+			);
+			name = "A Detail";
 			sourceTree = "<group>";
 		};
 		50519B031F5C8D9A00C109E1 /* Workout Details */ = {
@@ -1680,6 +1693,7 @@
 				F927D14F1F0C9BD70004CF3A /* IterationSelectionViewController.m in Sources */,
 				5037F6531F609936001939EA /* UserStatView.m in Sources */,
 				F94C89451F15D5B6006C6BDD /* BT1RMCalculator.m in Sources */,
+				504C269B1F62F2B8008CA41B /* AchievementDetailViewController.m in Sources */,
 				F917BB641F0DEA7C00614AB1 /* BTQRScannerViewController.m in Sources */,
 				F9C240731F17F9B300A268F3 /* UIColor+BTColors.m in Sources */,
 				5099F1C31F5F6774000A6DE4 /* AchievementListVersionModel.m in Sources */,

@@ -8,6 +8,9 @@
 
 #import "AchievementsViewController.h"
 #import "AchievementCollectionViewCell.h"
+#import "ZFModalTransitionAnimator.h"
+#import "AchievementDetailViewController.h"
+#import "BTAchievement+CoreDataClass.h"
 
 @interface AchievementsViewController ()
 
@@ -17,6 +20,8 @@
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic) BOOL shouldReloadCollectionView;
 @property (nonatomic) NSBlockOperation *blockOperation;
+
+@property (nonatomic) ZFModalTransitionAnimator *animator;
 
 @end
 
@@ -79,7 +84,10 @@
 #pragma mark - collectionView delegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%@",indexPath);
+    BTAchievement *a = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+    CGPoint p = [collectionView convertPoint:cell.center toView:self.view];
+    [self presentAchievementDetailViewControllerWithAchievement:a originPoint:p];
 }
 
 #pragma mark - fetchedResultsController
@@ -96,6 +104,25 @@
     self.fetchedResultsController = theFetchedResultsController;
     _fetchedResultsController.delegate = self;
     return _fetchedResultsController;
+}
+
+#pragma mark - view handling
+
+- (void)presentAchievementDetailViewControllerWithAchievement:(BTAchievement *)achievement originPoint:(CGPoint)point {
+    AchievementDetailViewController *adVC = [self.storyboard instantiateViewControllerWithIdentifier:@"acd"];
+    adVC.achievement = achievement;
+    adVC.color = achievement.color;
+    adVC.originPoint = point;
+    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:adVC];
+    self.animator.bounces = NO;
+    self.animator.dragable = YES;
+    self.animator.behindViewAlpha = 1.0;
+    self.animator.behindViewScale = 1.0;
+    self.animator.transitionDuration = 0.0;
+    self.animator.direction = ZFModalTransitonDirectionRight;
+    adVC.transitioningDelegate = self.animator;
+    adVC.modalPresentationStyle = UIModalPresentationCustom;
+    [self presentViewController:adVC animated:YES completion:nil];
 }
 
 #pragma mark - fetchedResultsController delegate

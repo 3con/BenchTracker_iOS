@@ -11,6 +11,7 @@
 
 @class NSObject;
 @class AchievementListModel;
+@class BTWorkout;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -18,6 +19,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, readonly) UIImage *image;
 @property (nonatomic) UIColor *color;
+
+//achievement checking
+
++ (void)updateAchievementsWithWorkout:(BTWorkout *)workout;
+
++ (void)markAchievementComplete:(NSString *)key animated:(BOOL)animated; //also in charge of displaying toast
 
 //achievement list handling
 
@@ -30,10 +37,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)loadAchievementListModel:(AchievementListModel *)model;
 
 + (NSArray <NSString *> *)completedAchievementKeys;
-
-//individual achievements
-
-+ (void)markAchievementComplete:(NSString *)key animated:(BOOL)animated; //also in charge of displaying toast
 
 @end
 

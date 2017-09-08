@@ -237,7 +237,7 @@
       "key":"types3",
       "name":"Maxed Out",
       "xp":10,
-      "details":"Perform 10 or more sets of one exercise in one wokrout"
+      "details":"Perform 10 or more sets of one exercise in one workout"
    },
    {  
       "hidden":"false",

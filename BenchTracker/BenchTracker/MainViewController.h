@@ -21,4 +21,6 @@
 
 @property (nonatomic) NSManagedObjectContext *context;
 
+- (void)presentUserViewController;
+
 @end

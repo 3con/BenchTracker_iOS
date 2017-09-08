@@ -9,6 +9,7 @@
 #import "WorkoutViewController.h"
 #import "BTExercise+CoreDataClass.h"
 #import "BTExerciseType+CoreDataClass.h"
+#import "BTAchievement+CoreDataClass.h"
 #import "ZFModalTransitionAnimator.h"
 #import "ExerciseTableViewCell.h"
 #import "PassTouchesView.h"
@@ -114,6 +115,7 @@
     self.settings.activeWorkoutStartDate = nil;
     self.settings.activeWorkoutLastUpdate = nil;
     [BTUser addWorkoutToTotals:self.workout];
+    [BTAchievement updateAchievementsWithWorkout:self.workout];
     [self updateWorkout];
 }
 
