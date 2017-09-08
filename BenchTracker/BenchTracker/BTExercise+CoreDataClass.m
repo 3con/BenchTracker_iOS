@@ -62,4 +62,14 @@
     return (results && results.count > 0) ? results.firstObject : nil;
 }
 
++ (NSInteger)oneRMForExerciseName:(NSString *)name {
+    NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"BTExercise"];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"name == '%@'",name]];
+    fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"oneRM" ascending:NO]];
+    fetchRequest.fetchLimit = 1;
+    NSArray <BTExercise *> *results = [context executeFetchRequest:fetchRequest error:nil];
+    return (results && results.count > 0) ? results.firstObject.oneRM : 0;
+}
+
 @end

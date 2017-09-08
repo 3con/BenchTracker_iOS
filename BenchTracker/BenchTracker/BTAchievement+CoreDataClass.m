@@ -7,6 +7,8 @@
 //
 
 #import "BTAchievement+CoreDataClass.h"
+#import "BTSettings+CoreDataClass.h"
+#import "BTExercise+CoreDataClass.h"
 #import "AchievementListVersionModel.h"
 #import "AchievementListModel.h"
 #import "BTUser+CoreDataClass.h"
@@ -101,14 +103,113 @@
 //achievement checking
 
 + (void)updateAchievementsWithWorkout:(BTWorkout *)workout {
-    [self markAchievementComplete:ACHIEVEMENT_SCAN animated:YES];
-    [self markAchievementComplete:ACHIEVEMENT_IRON1 animated:YES];
-    [self markAchievementComplete:ACHIEVEMENT_FIRSTWORKOUT animated:YES];
+    NSLog(@"Start");
+    CGFloat weightX = [BTSettings sharedInstance].weightInLbs ? 1 : .5;
+    if (workout.duration >= 60*10 && workout.numSets > 6)
+        [BTAchievement markAchievementComplete:ACHIEVEMENT_FIRSTWORKOUT animated:YES];
+    if (workout.duration >= 60*30 && workout.numSets <= 10)
+        [BTAchievement markAchievementComplete:ACHIEVEMENT_SPEED0 animated:YES];
+    if (workout.duration < 60*60) {
+        if (workout.numSets >= 25) [BTAchievement markAchievementComplete:ACHIEVEMENT_SPEED1 animated:YES];
+        if (workout.numSets >= 30) [BTAchievement markAchievementComplete:ACHIEVEMENT_SPEED2 animated:YES];
+        if (workout.numSets >= 40) [BTAchievement markAchievementComplete:ACHIEVEMENT_SPEED9 animated:YES];
+    }
+    else {
+        [BTAchievement markAchievementComplete:ACHIEVEMENT_IRON1 animated:YES];
+        if (workout.duration >= 60*69 && workout.duration < 60*70)
+            [BTAchievement markAchievementComplete:ACHIEVEMENT_IRON15 animated:YES];
+        if (workout.duration >= 60*80)
+            [BTAchievement markAchievementComplete:ACHIEVEMENT_IRON2 animated:YES];
+        if (workout.duration >= 60*100)
+            [BTAchievement markAchievementComplete:ACHIEVEMENT_IRON3 animated:YES];
+        if (workout.duration >= 60*150)
+            [BTAchievement markAchievementComplete:ACHIEVEMENT_IRON9 animated:YES];
+    }
+    if (workout.numSets >= 20) {
+        if (workout.volume == 0)
+            [BTAchievement markAchievementComplete:ACHIEVEMENT_LIGHT0 animated:YES];
+        if (workout.volume < 5000*weightX)
+            [BTAchievement markAchievementComplete:ACHIEVEMENT_LIGHT1 animated:YES];
+    }
+    if (workout.volume > 10000*weightX)
+        [BTAchievement markAchievementComplete:ACHIEVEMENT_HEAVY1 animated:YES];
+    if (workout.volume > 20000*weightX)
+        [BTAchievement markAchievementComplete:ACHIEVEMENT_HEAVY2 animated:YES];
+    if (workout.volume > 30000*weightX)
+        [BTAchievement markAchievementComplete:ACHIEVEMENT_HEAVY3 animated:YES];
+    if (workout.volume > 40000*weightX)
+        [BTAchievement markAchievementComplete:ACHIEVEMENT_HEAVY4 animated:YES];
+    if (workout.volume > 60000*weightX)
+        [BTAchievement markAchievementComplete:ACHIEVEMENT_HEAVY9 animated:YES];
+    if (workout.numSets >= 15)
+        [BTAchievement markAchievementComplete:ACHIEVEMENT_SETS1 animated:YES];
+    if (workout.numSets >= 25)
+        [BTAchievement markAchievementComplete:ACHIEVEMENT_SETS2 animated:YES];
+    if (workout.numSets >= 35)
+        [BTAchievement markAchievementComplete:ACHIEVEMENT_SETS3 animated:YES];
+    if (workout.numSets >= 50)
+        [BTAchievement markAchievementComplete:ACHIEVEMENT_SETS9 animated:YES];
+    NSArray *supersets = [NSKeyedUnarchiver unarchiveObjectWithData:workout.supersets];
+    if (supersets.count > 0)
+        [BTAchievement markAchievementComplete:ACHIEVEMENT_SUPER1 animated:YES];
+    if (![workout.summary containsString:@"#"] && workout.numSets > 6)
+        [BTAchievement markAchievementComplete:ACHIEVEMENT_TYPES1 animated:YES];
+    BTUser *user = [BTUser sharedInstance];
+    if (user.totalDuration >= 5*60*60)
+        [BTAchievement markAchievementComplete:ACHIEVEMENT_MARATHON1 animated:YES];
+    if (user.totalDuration >= 10*60*60)
+        [BTAchievement markAchievementComplete:ACHIEVEMENT_MARATHON2 animated:YES];
+    if (user.totalDuration >= 50*60*60)
+        [BTAchievement markAchievementComplete:ACHIEVEMENT_MARATHON3 animated:YES];
+    if (user.totalDuration >= 100*60*60)
+        [BTAchievement markAchievementComplete:ACHIEVEMENT_MARATHON4 animated:YES];
+    if (user.totalDuration >= 500*60*60)
+        [BTAchievement markAchievementComplete:ACHIEVEMENT_MARATHON5 animated:YES];
+    if (user.totalDuration >= 50000*weightX)
+        [BTAchievement markAchievementComplete:ACHIEVEMENT_GAINS1 animated:YES];
+    if (user.totalDuration >= 100000*weightX)
+        [BTAchievement markAchievementComplete:ACHIEVEMENT_GAINS2 animated:YES];
+    if (user.totalDuration >= 500000*weightX)
+        [BTAchievement markAchievementComplete:ACHIEVEMENT_GAINS3 animated:YES];
+    if (user.totalDuration >= 1000000*weightX)
+        [BTAchievement markAchievementComplete:ACHIEVEMENT_GAINS4 animated:YES];
+    if (user.totalDuration >= 10000000*weightX)
+        [BTAchievement markAchievementComplete:ACHIEVEMENT_GAINS5 animated:YES];
+    if (user.currentStreak >= 3)
+        [BTAchievement markAchievementComplete:ACHIEVEMENT_STREAK1 animated:YES];
+    if (user.currentStreak >= 7)
+        [BTAchievement markAchievementComplete:ACHIEVEMENT_STREAK2 animated:YES];
+    if (user.currentStreak >= 14)
+        [BTAchievement markAchievementComplete:ACHIEVEMENT_STREAK3 animated:YES];
+    if (user.currentStreak >= 30)
+        [BTAchievement markAchievementComplete:ACHIEVEMENT_STREAK4 animated:YES];
+    if (user.totalWorkouts >= 3)
+        [BTAchievement markAchievementComplete:ACHIEVEMENT_DEDICATION1 animated:YES];
+    if (user.totalWorkouts >= 10)
+        [BTAchievement markAchievementComplete:ACHIEVEMENT_DEDICATION2 animated:YES];
+    if (user.totalWorkouts >= 25)
+        [BTAchievement markAchievementComplete:ACHIEVEMENT_DEDICATION3 animated:YES];
+    if (user.totalWorkouts >= 50)
+        [BTAchievement markAchievementComplete:ACHIEVEMENT_DEDICATION4 animated:YES];
+    if (user.totalWorkouts >= 69)
+        [BTAchievement markAchievementComplete:ACHIEVEMENT_DEDICATION15 animated:YES];
+    NSInteger benchMax = [BTExercise oneRMForExerciseName:@"Barbell Bench Press"];
+    NSInteger deadliftMax = [BTExercise oneRMForExerciseName:@"Deadlift"];
+    NSInteger squatMax = [BTExercise oneRMForExerciseName:@"Squats"];
+    if (benchMax > 0 && deadliftMax > 0 && squatMax > 0) {
+        [BTAchievement markAchievementComplete:ACHIEVEMENT_POWER1 animated:YES];
+        NSInteger total = benchMax + deadliftMax + squatMax;
+        if (total > 600) [BTAchievement markAchievementComplete:ACHIEVEMENT_POWER2 animated:YES];
+        if (total > 800) [BTAchievement markAchievementComplete:ACHIEVEMENT_POWER3 animated:YES];
+        if (total > 1000) [BTAchievement markAchievementComplete:ACHIEVEMENT_POWER4 animated:YES];
+        if (total > 1200) [BTAchievement markAchievementComplete:ACHIEVEMENT_POWER5 animated:YES];
+        if (total > 1500) [BTAchievement markAchievementComplete:ACHIEVEMENT_POWER9 animated:YES];
+    }
+    NSLog(@"End");
 }
 
 + (void)markAchievementComplete:(NSString *)key animated:(BOOL)animated { //also in charge of displaying toast
     BTAchievement *achievement = [BTAchievement achievementWithKey:key];
-    achievement.completed = NO;
     if (achievement && !achievement.completed) {
         [BTUser sharedInstance].xp += achievement.xp;
         achievement.completed = YES;
@@ -119,15 +220,16 @@
             style.cornerRadius = 12;
             style.verticalPadding = 20;
             style.horizontalPadding = 20;
-            style.titleFont = [UIFont systemFontOfSize:15 weight:UIFontWeightMedium];
-            style.messageFont = [UIFont systemFontOfSize:21 weight:UIFontWeightSemibold];
+            style.titleFont = [UIFont systemFontOfSize:19 weight:UIFontWeightSemibold];
+            style.messageFont = [UIFont systemFontOfSize:15 weight:UIFontWeightMedium];
             style.titleAlignment = NSTextAlignmentCenter;
             style.messageAlignment = NSTextAlignmentCenter;
             style.maxWidthPercentage = 90;
             style.imageSize = CGSizeMake(80, 80);
             style.fadeDuration = .25;
-            [viewController.view makeToast:achievement.name duration:2.0 position:CSToastPositionTop
-                title:@"Achivement Unlocked:" image:achievement.image style:style completion:^(BOOL didTap) {
+            NSString *str = [NSString stringWithFormat:@"ACHIEVEMENT UNLOCKED!\n+%d xp (Level %ld)", achievement.xp, [BTUser sharedInstance].level];
+            [viewController.view makeToast:str duration:2.0 position:CSToastPositionTop title:achievement.name
+                                     image:achievement.image style:style completion:^(BOOL didTap) {
                     if (didTap && [viewController isKindOfClass:[MainViewController class]])
                         [(MainViewController *)viewController presentUserViewController];
             }];

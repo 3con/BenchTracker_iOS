@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic) UIImage *image;
 
+@property (nonatomic, readonly) NSInteger level;
+
 + (BTUser *)sharedInstance;
 
 + (void)removeWorkoutFromTotals:(BTWorkout *)workout;

@@ -434,7 +434,7 @@
 			children = (
 				5004CDB21F61A0AB000BF6F0 /* AchievementsViewController.h */,
 				5004CDB31F61A0AB000BF6F0 /* AchievementsViewController.m */,
-				504C269C1F62F2C1008CA41B /* A Detail */,
+				504C269C1F62F2C1008CA41B /* ADetailView */,
 				5066F9B71F61E76000159130 /* Achivement CVC */,
 			);
 			name = Achievements;
@@ -499,13 +499,13 @@
 			name = SettingsModel;
 			sourceTree = "<group>";
 		};
-		504C269C1F62F2C1008CA41B /* A Detail */ = {
+		504C269C1F62F2C1008CA41B /* ADetailView */ = {
 			isa = PBXGroup;
 			children = (
 				504C26991F62F2B8008CA41B /* AchievementDetailViewController.h */,
 				504C269A1F62F2B8008CA41B /* AchievementDetailViewController.m */,
 			);
-			name = "A Detail";
+			name = ADetailView;
 			sourceTree = "<group>";
 		};
 		50519B031F5C8D9A00C109E1 /* Workout Details */ = {

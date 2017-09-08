@@ -97,7 +97,9 @@
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"BTAchievement"];
     fetchRequest.fetchLimit = 0;
     fetchRequest.fetchBatchSize = 10;
-    fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"hidden" ascending:YES],
+    fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"completed" ascending:NO],
+                                     [NSSortDescriptor sortDescriptorWithKey:@"hidden" ascending:YES],
+                                     [NSSortDescriptor sortDescriptorWithKey:@"xp" ascending:YES],
                                      [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]];
     NSFetchedResultsController *theFetchedResultsController = [[NSFetchedResultsController alloc]
         initWithFetchRequest:fetchRequest managedObjectContext:self.context sectionNameKeyPath:nil cacheName:nil];

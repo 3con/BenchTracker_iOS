@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIView *containingView;
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UIImageView *badgeView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *subnameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *detailsLabel;
@@ -28,10 +29,19 @@
     self.scrollView.delegate = self;
     self.containingView.layer.cornerRadius = 12;
     self.containingView.clipsToBounds = YES;
-    self.containingView.backgroundColor = (self.color) ? self.color : [UIColor BTVibrantColors][0];
-    self.nameLabel.text = self.achievement.name;
-    self.subnameLabel.text = [NSString stringWithFormat:@"%d xp",self.achievement.xp];
-    self.detailsLabel.text = self.achievement.details;
+    if (self.achievement.completed) self.containingView.backgroundColor = [UIColor BTVibrantColors][1];
+    else self.containingView.backgroundColor = (self.color) ? self.color : [UIColor BTVibrantColors][0];
+    self.badgeView.alpha = self.achievement.completed;
+    if (!self.achievement.hidden || self.achievement.completed) {
+        self.nameLabel.text = self.achievement.name;
+        self.subnameLabel.text = [NSString stringWithFormat:@"%d xp",self.achievement.xp];
+        self.detailsLabel.text = self.achievement.details;
+    }
+    else { //hidden
+        self.nameLabel.text = @"???";
+        self.subnameLabel.text = @"";
+        self.detailsLabel.text = @"";
+    }
     self.imageView.image = self.achievement.image;
 }
 

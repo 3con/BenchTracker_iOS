@@ -39,6 +39,13 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Badge" translatesAutoresizingMaskIntoConstraints="NO" id="1T6-ss-Tnl">
+                        <rect key="frame" x="6" y="6" width="18" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="1T6-ss-Tnl" secondAttribute="height" id="37i-K5-gAJ"/>
+                            <constraint firstAttribute="width" constant="18" id="Ys1-X9-jfN"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
             </view>
             <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -46,7 +53,9 @@
                 <constraint firstItem="Eak-wk-br9" firstAttribute="top" secondItem="K0R-fY-ryT" secondAttribute="bottom" constant="3" id="Elx-ns-r8q"/>
                 <constraint firstItem="K0R-fY-ryT" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="GtW-b8-ZjD"/>
                 <constraint firstItem="Eak-wk-br9" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="SZj-hc-Vt9"/>
+                <constraint firstItem="1T6-ss-Tnl" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="6" id="Sv5-bW-nrS"/>
                 <constraint firstItem="ZcS-fJ-PAi" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="Y6n-GQ-Jcf"/>
+                <constraint firstItem="1T6-ss-Tnl" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="6" id="fWz-ZK-RHS"/>
                 <constraint firstItem="K0R-fY-ryT" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="gfQ-ND-DKK"/>
                 <constraint firstItem="ZcS-fJ-PAi" firstAttribute="top" secondItem="Eak-wk-br9" secondAttribute="bottom" constant="4" id="nfG-Jb-rIZ"/>
                 <constraint firstAttribute="bottom" secondItem="Eak-wk-br9" secondAttribute="bottom" constant="40" id="pEU-fU-9w9"/>
@@ -54,6 +63,7 @@
             </constraints>
             <size key="customSize" width="143" height="100"/>
             <connections>
+                <outlet property="badgeView" destination="1T6-ss-Tnl" id="Lva-LK-NgM"/>
                 <outlet property="detailLabel" destination="K0R-fY-ryT" id="obd-hZ-AI3"/>
                 <outlet property="imageView" destination="Eak-wk-br9" id="u90-vA-tNL"/>
                 <outlet property="nameLabel" destination="ZcS-fJ-PAi" id="Hz2-a4-TKw"/>
@@ -62,6 +72,7 @@
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="Badge" width="128" height="128"/>
         <image name="User" width="128" height="128"/>
     </resources>
 </document>

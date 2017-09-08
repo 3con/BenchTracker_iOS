@@ -2057,6 +2057,13 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Badge" translatesAutoresizingMaskIntoConstraints="NO" id="pJw-VJ-3oG">
+                                                <rect key="frame" x="8" y="147" width="25" height="25"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="25" id="BSF-e7-1q2"/>
+                                                    <constraint firstAttribute="width" secondItem="pJw-VJ-3oG" secondAttribute="height" id="s6M-WN-Fxg"/>
+                                                </constraints>
+                                            </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100 xp" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ykn-8F-eAy">
                                                 <rect key="frame" x="37.666666666666664" y="140" width="80" height="20"/>
                                                 <constraints>
@@ -2073,12 +2080,14 @@
                                         <constraints>
                                             <constraint firstItem="TnQ-eF-ADg" firstAttribute="width" secondItem="dRW-Rq-FZW" secondAttribute="width" id="1Fr-6x-Ogp"/>
                                             <constraint firstItem="dRW-Rq-FZW" firstAttribute="top" secondItem="GZv-Do-i4W" secondAttribute="top" constant="25" id="1xX-cr-v2B"/>
+                                            <constraint firstAttribute="bottom" secondItem="pJw-VJ-3oG" secondAttribute="bottom" constant="8" id="5p2-ce-HE4"/>
                                             <constraint firstItem="fN9-GK-Gqa" firstAttribute="top" secondItem="GZv-Do-i4W" secondAttribute="top" constant="20" id="9SI-yr-p8B"/>
                                             <constraint firstItem="TnQ-eF-ADg" firstAttribute="top" secondItem="dRW-Rq-FZW" secondAttribute="bottom" constant="10" id="D8s-Ks-wtm"/>
                                             <constraint firstItem="Ykn-8F-eAy" firstAttribute="top" secondItem="fN9-GK-Gqa" secondAttribute="bottom" constant="5" id="HTe-M4-7el"/>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="420" id="MIZ-or-ehU"/>
                                             <constraint firstItem="Ykn-8F-eAy" firstAttribute="centerX" secondItem="fN9-GK-Gqa" secondAttribute="centerX" id="MSa-U4-siE"/>
                                             <constraint firstAttribute="bottom" secondItem="Ykn-8F-eAy" secondAttribute="bottom" constant="20" id="O1j-1V-Vek"/>
+                                            <constraint firstItem="pJw-VJ-3oG" firstAttribute="leading" secondItem="GZv-Do-i4W" secondAttribute="leading" constant="8" id="PaT-bY-hME"/>
                                             <constraint firstItem="TnQ-eF-ADg" firstAttribute="centerX" secondItem="dRW-Rq-FZW" secondAttribute="centerX" id="Tth-cP-caw"/>
                                             <constraint firstAttribute="trailing" secondItem="dRW-Rq-FZW" secondAttribute="trailing" constant="20" id="ZC1-Td-enN"/>
                                             <constraint firstAttribute="height" constant="180" id="c4a-WX-hWV"/>
@@ -2117,6 +2126,7 @@
                     </view>
                     <connections>
                         <outlet property="backgroundView" destination="4b5-Lj-FET" id="Khe-kW-fto"/>
+                        <outlet property="badgeView" destination="pJw-VJ-3oG" id="Spm-WH-nrD"/>
                         <outlet property="containingView" destination="GZv-Do-i4W" id="ncd-me-fG9"/>
                         <outlet property="detailsLabel" destination="TnQ-eF-ADg" id="nac-EH-5tK"/>
                         <outlet property="imageView" destination="fN9-GK-Gqa" id="UTo-8g-SWJ"/>
@@ -2146,6 +2156,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Badge" width="85" height="85"/>
         <image name="Cancel" width="85" height="85"/>
         <image name="Chart" width="85" height="85"/>
         <image name="Delete" width="85" height="85"/>

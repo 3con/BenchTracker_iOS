@@ -20,6 +20,10 @@
     return [UIImage imageWithData:self.imageData];
 }
 
+- (NSInteger)level { //=X/(10+X/200)+1
+    return self.xp/(10+self.xp/200)+1;
+}
+
 + (BTUser *)sharedInstance {
     static BTUser *sharedInstance = nil;
     static dispatch_once_t onceToken;

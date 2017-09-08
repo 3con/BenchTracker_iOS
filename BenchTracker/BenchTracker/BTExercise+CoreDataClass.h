@@ -29,6 +29,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (BTExercise *)lastInstance; //last instance (excluding this one)
 
++ (NSInteger)oneRMForExerciseName:(NSString *)name;
+
 @end
 
 NS_ASSUME_NONNULL_END
