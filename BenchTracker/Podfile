@@ -17,6 +17,7 @@ target 'BenchTracker' do
   pod 'Appirater'
   pod 'Onboard'
   pod 'Toast'
+  pod 'WZLBadge'
 
   # Pods for BenchTracker
 

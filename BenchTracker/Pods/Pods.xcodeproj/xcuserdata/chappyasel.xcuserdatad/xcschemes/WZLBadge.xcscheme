@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '5783421F6C10294FE5BB1D4366781DA6'
-               BlueprintName = 'Toast'
+               BlueprintIdentifier = '84C2CFF1DCF39FC1C6EB2D4C4FEF4282'
+               BlueprintName = 'WZLBadge'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'Toast.framework'>
+               BuildableName = 'WZLBadge.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

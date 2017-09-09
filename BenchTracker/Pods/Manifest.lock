@@ -11,6 +11,7 @@ PODS:
     - UICountingLabel (~> 1.2.0)
   - Toast (3.1.0)
   - UICountingLabel (1.2.0)
+  - WZLBadge (1.2.6)
   - XLForm (3.3.0)
   - ZFDragableModalTransition (0.6)
 
@@ -25,6 +26,7 @@ DEPENDENCIES:
   - Onboard
   - PNChart
   - Toast
+  - WZLBadge
   - XLForm
   - ZFDragableModalTransition
 
@@ -40,9 +42,10 @@ SPEC CHECKSUMS:
   PNChart: 84774d225c2126ded6c93d4dbe6ae98c3a73c2d2
   Toast: 14a93686d6c8bfe2727afd342414e35660a8a1f3
   UICountingLabel: 1db4e7d023e1762171eb226d6dff47a7a84f27aa
+  WZLBadge: 9ec779dcfd94c825518b395e8315fccaabff1bfa
   XLForm: d5c391dfc62865927b5bcab0a5a0dbfb3e02b0ec
   ZFDragableModalTransition: 0d294eaaba6edfcb9839595de765f9ca06a4b524
 
-PODFILE CHECKSUM: 4e821cd9ba00c8acb4b64686370f0f8606270be7
+PODFILE CHECKSUM: 7382cde77561cfc7c072ebafb59502a026074fc2
 
 COCOAPODS: 1.2.1

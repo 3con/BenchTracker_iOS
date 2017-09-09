@@ -74,6 +74,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>WZLBadge.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>XLForm.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -92,22 +97,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>196E7667F4731BDE61C44ED049EA9AE8</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>1CD80321715FDB12A3A31B7BCB09EA28</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>33AC396F22B535DC555A42F9B3201DB3</key>
+		<key>20A3444356D386CDB67192C5EBDE7E3C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2CE6CD253F252C4E1E3C0B78AE01DCBF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>4820ABD5CCD86B622EFA0EF07928BA59</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5783421F6C10294FE5BB1D4366781DA6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -122,7 +132,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>895D4CDB9089077CA2FB3DE4C85DD7C4</key>
+		<key>84C2CFF1DCF39FC1C6EB2D4C4FEF4282</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -133,6 +143,11 @@
 			<true/>
 		</dict>
 		<key>A8C8D601E92B0B40F48C791C48F237AE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B03648FB9E4C244416D650F0F6E9B757</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -158,11 +173,6 @@
 			<true/>
 		</dict>
 		<key>DC3688684BF42A20A8998F31DDA51A49</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F4D456F3E271672DBB1220C39FBAD5A7</key>
 		<dict>
 			<key>primary</key>
 			<true/>

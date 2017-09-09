@@ -14,6 +14,8 @@
 #import "BTWorkout+CoreDataClass.h"
 #import "AchievementViewButton.h"
 #import "AchievementsViewController.h"
+#import "BTAchievement+CoreDataClass.h"
+#import "WZLBadgeImport.h"
 
 @interface UserViewController ()
 
@@ -41,6 +43,9 @@
     self.navView.backgroundColor = [UIColor BTPrimaryColor];
     self.isShowingFirstStats = YES;
     [self refreshStats];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
     [self loadAchievementButton];
 }
 
@@ -103,6 +108,15 @@
     button.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [button addTarget:self action:@selector(achievementViewButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.achievementButtonContainerView addSubview:button];
+    NSInteger num = [BTAchievement numberOfUnreadAchievements];
+    if (num) {
+        [self.achievementButtonContainerView showBadgeWithStyle:WBadgeStyleNumber value:num animationType:WBadgeAnimTypeNone];
+        self.achievementButtonContainerView.badgeFrame = CGRectMake(0, 0, 32, 32);
+        self.achievementButtonContainerView.badge.layer.cornerRadius = 16;
+        self.achievementButtonContainerView.badgeCenterOffset = CGPointMake(-6, 6);
+        self.achievementButtonContainerView.badgeFont = [UIFont systemFontOfSize:15 weight:UIFontWeightSemibold];
+    }
+    else [self.achievementButtonContainerView clearBadge];
 }
 
 - (IBAction)doneButtonPressed:(UIButton *)sender {
@@ -115,6 +129,7 @@
 
 - (void)achievementViewButtonPressed:(id)sender {
     [self presentAchievementsViewController];
+    [BTAchievement resetUnreadAcheivements];
 }
 
 - (IBAction)switchStatsButtonPressed:(UIButton *)sender {

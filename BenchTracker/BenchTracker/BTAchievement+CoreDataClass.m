@@ -244,6 +244,7 @@
 }
 
 + (void)resetAchievementList {
+    [BTAchievement resetUnreadAcheivements];
     [BTUser sharedInstance].xp = 0;
     NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
     for (BTAchievement *achievement in [BTAchievement allAchievements])
