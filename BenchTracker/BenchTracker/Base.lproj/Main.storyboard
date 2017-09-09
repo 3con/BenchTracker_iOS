@@ -1168,16 +1168,6 @@
                                             <action selector="doneButtonPressed:" destination="9gN-qJ-SOe" eventType="touchUpInside" id="PYB-dn-7bW"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Test User Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6cv-1A-ffo">
-                                        <rect key="frame" x="67" y="135" width="280" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="280" id="6tg-eA-eyH"/>
-                                            <constraint firstAttribute="height" constant="30" id="hnE-fw-hIK"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="52j-al-0Ob">
                                         <rect key="frame" x="304" y="28" width="100" height="30"/>
                                         <constraints>
@@ -1190,24 +1180,21 @@
                                             <action selector="settingsButtonPressed:" destination="9gN-qJ-SOe" eventType="touchUpInside" id="pvh-BL-XVC"/>
                                         </connections>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultUser" translatesAutoresizingMaskIntoConstraints="NO" id="t4I-bh-vOK">
-                                        <rect key="frame" x="160" y="30" width="95" height="95"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="t4I-bh-vOK" secondAttribute="height" id="XUV-dh-75b"/>
-                                        </constraints>
-                                    </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iae-cz-LaF">
+                                        <rect key="frame" x="50" y="30" width="314" height="140"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.078297413890000001" green="0.077457226810000002" blue="0.32783538099999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="t4I-bh-vOK" firstAttribute="top" secondItem="pku-gP-QSv" secondAttribute="top" constant="30" id="749-Z8-9hi"/>
+                                    <constraint firstItem="Iae-cz-LaF" firstAttribute="leading" secondItem="pku-gP-QSv" secondAttribute="leading" constant="50" id="874-Cj-7SD"/>
                                     <constraint firstItem="52j-al-0Ob" firstAttribute="trailing" secondItem="pku-gP-QSv" secondAttribute="trailing" constant="-10" id="FbR-oL-g0B"/>
                                     <constraint firstItem="Hnn-r0-dtL" firstAttribute="leading" secondItem="pku-gP-QSv" secondAttribute="leading" constant="10" id="L23-13-i4N"/>
                                     <constraint firstItem="52j-al-0Ob" firstAttribute="top" secondItem="pku-gP-QSv" secondAttribute="top" constant="28" id="OID-X7-qWN"/>
-                                    <constraint firstItem="t4I-bh-vOK" firstAttribute="centerX" secondItem="pku-gP-QSv" secondAttribute="centerX" id="SEC-Xl-pKl"/>
-                                    <constraint firstItem="6cv-1A-ffo" firstAttribute="top" secondItem="t4I-bh-vOK" secondAttribute="bottom" constant="10" id="Tzb-lY-duG"/>
+                                    <constraint firstAttribute="trailing" secondItem="Iae-cz-LaF" secondAttribute="trailing" constant="50" id="TdR-Sf-PqE"/>
+                                    <constraint firstItem="Iae-cz-LaF" firstAttribute="top" secondItem="pku-gP-QSv" secondAttribute="top" constant="30" id="XLt-EC-Bwj"/>
                                     <constraint firstItem="Hnn-r0-dtL" firstAttribute="top" secondItem="pku-gP-QSv" secondAttribute="top" constant="28" id="bfW-Wb-QQz"/>
-                                    <constraint firstAttribute="bottom" secondItem="6cv-1A-ffo" secondAttribute="bottom" constant="15" id="gID-us-deY"/>
-                                    <constraint firstItem="6cv-1A-ffo" firstAttribute="centerX" secondItem="pku-gP-QSv" secondAttribute="centerX" id="qzH-dn-eM0"/>
+                                    <constraint firstAttribute="bottom" secondItem="Iae-cz-LaF" secondAttribute="bottom" constant="10" id="geM-hw-hbw"/>
                                     <constraint firstAttribute="height" constant="180" id="zQU-V3-O6d"/>
                                 </constraints>
                             </view>
@@ -1301,6 +1288,7 @@
                     <connections>
                         <outlet property="achievementButtonContainerView" destination="Kxj-tk-eTO" id="BeD-Oa-QKe"/>
                         <outlet property="navView" destination="pku-gP-QSv" id="YfF-83-MUl"/>
+                        <outlet property="userContainerView" destination="Iae-cz-LaF" id="RCd-5a-zMP"/>
                         <outletCollection property="statContainerViews" destination="kv8-DS-2W3" id="y6G-ej-d50"/>
                         <outletCollection property="statContainerViews" destination="r5h-AZ-bF0" id="WPt-AB-2Tp"/>
                         <outletCollection property="statContainerViews" destination="lK1-a0-1mL" id="HVn-Ia-PZy"/>
@@ -2169,6 +2157,5 @@
         <image name="Template" width="85" height="85"/>
         <image name="TemplateAdd" width="21" height="21"/>
         <image name="User" width="85" height="85"/>
-        <image name="defaultUser" width="341" height="341"/>
     </resources>
 </document>

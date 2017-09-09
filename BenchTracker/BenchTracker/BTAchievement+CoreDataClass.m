@@ -34,7 +34,6 @@
 //achievement checking
 
 + (void)updateAchievementsWithWorkout:(BTWorkout *)workout {
-    NSLog(@"Start");
     CGFloat weightX = [BTSettings sharedInstance].weightInLbs ? 1 : .5;
     if (workout.duration >= 60*10 && workout.numSets > 6)
         [BTAchievement markAchievementComplete:ACHIEVEMENT_FIRSTWORKOUT animated:YES];
@@ -146,6 +145,7 @@
         [BTAchievement markAchievementComplete:ACHIEVEMENT_GAINS4 animated:YES];
     if (user.totalDuration >= 10000000*weightX)
         [BTAchievement markAchievementComplete:ACHIEVEMENT_GAINS5 animated:YES];
+    [BTUser updateStreaks];
     if (user.currentStreak >= 3)
         [BTAchievement markAchievementComplete:ACHIEVEMENT_STREAK1 animated:YES];
     if (user.currentStreak >= 7)
@@ -173,7 +173,6 @@
         if (total > 1200) [BTAchievement markAchievementComplete:ACHIEVEMENT_POWER5 animated:YES];
         if (total > 1500) [BTAchievement markAchievementComplete:ACHIEVEMENT_POWER9 animated:YES];
     }
-    NSLog(@"End");
 }
 
 + (void)markAchievementComplete:(NSString *)key animated:(BOOL)animated { //also in charge of displaying toast
@@ -221,7 +220,7 @@
 //achievement list handling
 
 + (void)checkAchievementList {
-    [BTUser sharedInstance].achievementListVersion = 0; //UNCOMMENT TO FORCE RELOAD ACHIEVEMENTS
+    //[BTUser sharedInstance].achievementListVersion = 0; //UNCOMMENT TO FORCE RELOAD ACHIEVEMENT LIST
     //CHECK VERSION
     BOOL reloadAchievements = NO;
     NSError *error = nil;
@@ -255,7 +254,7 @@
 //data transfer model
 
 + (void)loadAchievementListModel:(AchievementListModel *)model {
-    [BTAchievement resetAchievementList];
+    //[BTAchievement resetAchievementList]; //UNCOMMENT TO FORCE RELOAD ACHIEVEMENT PROGRESS
     NSArray <NSString *> *completedAchievements = [BTAchievement completedAchievementKeys];
     [BTAchievement resetAchievementList];
     NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];

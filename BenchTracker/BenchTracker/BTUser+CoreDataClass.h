@@ -19,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, readonly) NSInteger level;
 
+@property (nonatomic, readonly) CGFloat levelProgress;
+
 + (BTUser *)sharedInstance;
 
 + (void)removeWorkoutFromTotals:(BTWorkout *)workout;
@@ -26,6 +28,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)addWorkoutToTotals:(BTWorkout *)workout;
 
 + (void)checkForTotalsPurge;
+
++ (void)updateStreaks;
 
 @end
 

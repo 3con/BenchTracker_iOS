@@ -21,7 +21,25 @@
 }
 
 - (NSInteger)level { //=X/(10+X/200)+1
-    return self.xp/(10+self.xp/200)+1;
+    return [BTUser levelForXP:self.xp];
+}
+
+- (CGFloat)levelProgress {
+    NSInteger currentLevel = self.level;
+    if (currentLevel == 1) return self.xp/5.0;
+    NSInteger lastLevelXP = 0;
+    int xp = self.xp;
+    while (!lastLevelXP) {
+        if (currentLevel == [BTUser levelForXP:xp]) xp --;
+        else lastLevelXP = xp;
+    }
+    NSInteger nextLevelXP = 0;
+    xp = self.xp;
+    while (!nextLevelXP) {
+        if (currentLevel == [BTUser levelForXP:xp]) xp ++;
+        else nextLevelXP = xp;
+    }
+    return (self.xp-lastLevelXP)/(float)(nextLevelXP-lastLevelXP);
 }
 
 + (BTUser *)sharedInstance {
@@ -73,6 +91,34 @@
     }
 }
 
++ (void)updateStreaks {
+    BTUser *user = [BTUser sharedInstance];
+    NSDateComponents *components = [NSCalendar.currentCalendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay
+                                                                       fromDate:NSDate.date];
+    NSDateComponents *components2 = [NSCalendar.currentCalendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay
+                                                                 fromDate:[NSDate.date dateByAddingTimeInterval:-86400]];
+    NSDate *today = [NSCalendar.currentCalendar dateFromComponents:components];
+    NSDate *yesterday = [NSCalendar.currentCalendar dateFromComponents:components2];
+    NSInteger count = 0;
+    if ([BTWorkout workoutsBetweenBeginDate:today andEndDate:[today dateByAddingTimeInterval:86400]].count > 0) count = 1;
+    if ([BTWorkout workoutsBetweenBeginDate:yesterday andEndDate:[yesterday dateByAddingTimeInterval:86400]].count > 0) count ++;
+    else if (!count) {
+        user.currentStreak = 0;
+        return;
+    }
+    if (count) {
+        while (YES) {
+            NSDateComponents *components = [NSCalendar.currentCalendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay
+                                                                         fromDate:[NSDate.date dateByAddingTimeInterval:-86400*count]];
+            NSDate *nDate = [NSCalendar.currentCalendar dateFromComponents:components];
+            if ([BTWorkout workoutsBetweenBeginDate:nDate andEndDate:[nDate dateByAddingTimeInterval:86400]].count > 0) count ++;
+            else break;
+        }
+    }
+    user.currentStreak = count;
+    user.longestStreak = MAX(user.currentStreak, user.longestStreak);
+}
+
 #pragma mark - private methods
 
 + (BTUser *)fetchUser {
@@ -101,5 +147,8 @@
     return object[0];
 }
 
++ (NSInteger)levelForXP:(NSInteger)xp {
+    return xp/(10+xp/200)+1;
+}
 
 @end

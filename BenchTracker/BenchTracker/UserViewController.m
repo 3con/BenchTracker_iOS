@@ -16,10 +16,12 @@
 #import "AchievementsViewController.h"
 #import "BTAchievement+CoreDataClass.h"
 #import "WZLBadgeImport.h"
+#import "UserView.h"
 
 @interface UserViewController ()
 
 @property (weak, nonatomic) IBOutlet UIView *navView;
+@property (weak, nonatomic) IBOutlet UIView *userContainerView;
 
 @property (nonatomic) ZFModalTransitionAnimator *animator;
 
@@ -46,7 +48,15 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [self loadAchievementButton];
+    if (self.achievementButtonContainerView.subviews.count == 0) { //first load
+        [self loadAchievementButton];
+        [self loadUserView];
+    }
+    [self updateAchievementButton];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [(UserView *)self.userContainerView.subviews.firstObject animateIn];
 }
 
 - (void)refreshStats {
@@ -108,6 +118,9 @@
     button.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [button addTarget:self action:@selector(achievementViewButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.achievementButtonContainerView addSubview:button];
+}
+
+- (void)updateAchievementButton {
     NSInteger num = [BTAchievement numberOfUnreadAchievements];
     if (num) {
         [self.achievementButtonContainerView showBadgeWithStyle:WBadgeStyleNumber value:num animationType:WBadgeAnimTypeNone];
@@ -117,6 +130,14 @@
         self.achievementButtonContainerView.badgeFont = [UIFont systemFontOfSize:15 weight:UIFontWeightSemibold];
     }
     else [self.achievementButtonContainerView clearBadge];
+}
+
+- (void)loadUserView {
+    UserView *userView = [[NSBundle mainBundle] loadNibNamed:@"UserView" owner:self options:nil].firstObject;
+    userView.frame = self.userContainerView.bounds;
+    userView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [userView loadUser:self.user];
+    [self.userContainerView addSubview:userView];
 }
 
 - (IBAction)doneButtonPressed:(UIButton *)sender {

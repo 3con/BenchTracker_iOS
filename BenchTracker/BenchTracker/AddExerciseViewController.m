@@ -251,7 +251,7 @@
     CGPoint p = [gestureRecognizer locationInView:gestureRecognizer.view];
     NSIndexPath *indexPath = [tableView indexPathForRowAtPoint:p];
     AddExerciseTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    if ([[NSKeyedUnarchiver unarchiveObjectWithData:cell.exerciseType.iterations] count] == 0) return NO;
+    if (!cell || [[NSKeyedUnarchiver unarchiveObjectWithData:cell.exerciseType.iterations] count] == 0) return NO;
     return indexPath && p.x > cell.frame.size.width-120 && !cell.cellSelected;
 }
 

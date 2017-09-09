@@ -31,6 +31,7 @@
     //ACHIEVEMENT LIST HANDLING
     [BTAchievement checkAchievementList];
     [BTUser checkForTotalsPurge];
+    [BTUser updateStreaks];
     //APPIRATER
     [Appirater setAppId:@"1266077653"];
     [Appirater setDaysUntilPrompt:0];
