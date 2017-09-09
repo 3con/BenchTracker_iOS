@@ -8,6 +8,7 @@
 
 #import "BTQRScannerViewController.h"
 #import <AVFoundation/AVFoundation.h>
+#import "BTAchievement+CoreDataClass.h"
 
 @interface BTQRScannerViewController ()<AVCaptureMetadataOutputObjectsDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 
@@ -260,6 +261,7 @@
         //[self.delegate qrScannerVC:self didDismissWithScannedString:scanConetent];
         [self.session stopRunning];
         [self dismissViewControllerAnimated:YES completion:^{
+            [BTAchievement markAchievementComplete:ACHIEVEMENT_SCAN animated:YES];
             [self.delegate qrScannerVC:self didDismissWithScannedString:scanConetent];
         }];
     }

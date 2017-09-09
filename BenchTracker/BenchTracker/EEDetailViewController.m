@@ -9,11 +9,15 @@
 #import "EEDetailViewController.h"
 #import "BTButtonFormCell.h"
 #import "BTExerciseTypeStyleTransformer.h"
+#import "BTAchievement+CoreDataClass.h"
 
 @interface EEDetailViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *navLabel;
 @property (weak, nonatomic) IBOutlet UIView *navView;
+
+@property (nonatomic) BOOL awardCreation;
+@property (nonatomic) NSInteger numStartVariations;
 
 @end
 
@@ -21,10 +25,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.awardCreation = NO;
     self.navView.backgroundColor = [UIColor BTPrimaryColor];
     self.tableView.contentInset = UIEdgeInsetsMake(72, 0, 0, 0);
     self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(72, 0, 0, 0);
     [self loadForm];
+    self.numStartVariations = (self.type) ? [[NSKeyedUnarchiver unarchiveObjectWithData:self.type.iterations] count] : 0;
     [self.view sendSubviewToBack:self.tableView];
 }
 
@@ -121,14 +127,22 @@
             }
         }
     }
-    if (!self.type) self.type = [NSEntityDescription insertNewObjectForEntityForName:@"BTExerciseType" inManagedObjectContext:self.context];
+    if (!self.type) {
+        self.awardCreation = YES;
+        self.type = [NSEntityDescription insertNewObjectForEntityForName:@"BTExerciseType" inManagedObjectContext:self.context];
+    }
     self.type.name = ([result[@"name"] length] > 0) ? result[@"name"] : @"Untitled Exercise";
     self.type.category = result[@"category"];
     self.type.style = result[@"style"];
     self.type.iterations = [NSKeyedArchiver archivedDataWithRootObject:result[@"variations"]];
     [self.context save:nil];
     [self.delegate editExerciseDetailViewControllerWillDismiss:self];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:^{
+        if (self.awardCreation)
+            [BTAchievement markAchievementComplete:ACHIEVEMENT_CREATE1 animated:YES];
+        if ([result[@"variations"] count] > self.numStartVariations)
+            [BTAchievement markAchievementComplete:ACHIEVEMENT_CREATE2 animated:YES];
+    }];
 }
 
 - (IBAction)cancelButtonPressed:(UIButton *)sender {

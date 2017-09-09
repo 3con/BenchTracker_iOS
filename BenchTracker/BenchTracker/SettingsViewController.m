@@ -12,6 +12,7 @@
 #import "EditExercisesViewController.h"
 #import "BTSettings+CoreDataClass.h"
 #import "BTDataTransferManager.h"
+#import "BTAchievement+CoreDataClass.h"
 #import "AppDelegate.h"
 
 @interface SettingsViewController ()
@@ -34,6 +35,10 @@
     self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(72, 0, 0, 0);
     [self loadForm];
     [self.view sendSubviewToBack:self.tableView];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [self.delegate settingsViewWillDismiss:self];
 }
 
 - (void)loadForm {
@@ -153,10 +158,7 @@
 
 - (IBAction)doneButtonPressed:(UIButton *)sender {
     [self saveSettings];
-    [self.delegate settingsViewWillDismiss:self];
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)resetDataButtonPressed:(UIButton *)sender {
@@ -218,9 +220,12 @@
         }
     }
     else if ([formRow.tag isEqualToString:@"share"]) {
-        NSArray* dataToShare = @[@"Go download Bench Tracker on the iOS App Store! https://itunes.apple.com/app/id1266077653"];
-        UIActivityViewController* activityViewController = [[UIActivityViewController alloc] initWithActivityItems:dataToShare
+        NSArray *dataToShare = @[@"Go download Bench Tracker on the iOS App Store! https://itunes.apple.com/app/id1266077653"];
+        UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:dataToShare
                                                                                              applicationActivities:nil];
+        [activityViewController setCompletionWithItemsHandler:^(NSString *activityType, BOOL completed, NSArray *returnedItems, NSError *activityError) {
+            if (completed) [BTAchievement markAchievementComplete:ACHIEVEMENT_SHARE animated:YES];
+        }];
         [self presentViewController:activityViewController animated:YES completion:nil];
     }
     else if ([formRow.tag isEqualToString:@"rate"])

@@ -7,6 +7,7 @@
 //
 
 #import "WorkoutSettingsViewController.h"
+#import "BTAchievement+CoreDataClass.h"
 #import "ZFModalTransitionAnimator.h"
 #import "BTWorkout+CoreDataClass.h"
 #import "BTSettings+CoreDataClass.h"
@@ -100,7 +101,8 @@
     printController.printInfo = printInfo;
     printController.printingItem = [NSData dataWithContentsOfURL:[NSURL fileURLWithPath:path]];
     [printController presentAnimated:YES completionHandler:^(UIPrintInteractionController *printInteractionController, BOOL completed, NSError *error){
-        if (!completed && error) NSLog(@"PDF print failed due to error in domain %@, error code %lu", error.domain, (long)error.code);
+        if (!completed && error) NSLog(@"PDF print failed due to error in domain %@, error code %ld", error.domain, (long)error.code);
+        if (completed) [BTAchievement markAchievementComplete:ACHIEVEMENT_PRINT animated:YES];
     }];
 }
 

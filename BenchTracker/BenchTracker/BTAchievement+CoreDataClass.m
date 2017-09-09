@@ -13,76 +13,7 @@
 #import "AchievementListModel.h"
 #import "BTUser+CoreDataClass.h"
 #import "AppDelegate.h"
-#import "UIView+Toast.h"
 #import "MainViewController.h"
-
-#define ACHIEVEMENT_FIRSTWORKOUT @"firstWorkout"
-#define ACHIEVEMENT_SPEED0 @"speed0"
-#define ACHIEVEMENT_SPEED1 @"speed1"
-#define ACHIEVEMENT_SPEED2 @"speed2"
-#define ACHIEVEMENT_SPEED9 @"speed9"
-#define ACHIEVEMENT_IRON1 @"iron1"
-#define ACHIEVEMENT_IRON15 @"iron15"
-#define ACHIEVEMENT_IRON2 @"iron2"
-#define ACHIEVEMENT_IRON3 @"iron3"
-#define ACHIEVEMENT_IRON9 @"iron9"
-#define ACHIEVEMENT_LIGHT0 @"light0"
-#define ACHIEVEMENT_LIGHT1 @"light1"
-#define ACHIEVEMENT_HEAVY1 @"heavy1"
-#define ACHIEVEMENT_HEAVY2 @"heavy2"
-#define ACHIEVEMENT_HEAVY3 @"heavy3"
-#define ACHIEVEMENT_HEAVY4 @"heavy4"
-#define ACHIEVEMENT_HEAVY9 @"heavy9"
-#define ACHIEVEMENT_SETS1 @"sets1"
-#define ACHIEVEMENT_SETS2 @"sets2"
-#define ACHIEVEMENT_SETS3 @"sets3"
-#define ACHIEVEMENT_SETS9 @"sets9"
-#define ACHIEVEMENT_STRONG1 @"strong1"
-#define ACHIEVEMENT_STRONG2 @"strong2"
-#define ACHIEVEMENT_STRONG3 @"strong3"
-#define ACHIEVEMENT_STRONG9 @"strong9"
-#define ACHIEVEMENT_SUPER1 @"super1"
-#define ACHIEVEMENT_SUPER2 @"super2"
-#define ACHIEVEMENT_SUPER9 @"super9"
-#define ACHIEVEMENT_TIME0 @"time0"
-#define ACHIEVEMENT_TIME1 @"time1"
-#define ACHIEVEMENT_TIME2 @"time2"
-#define ACHIEVEMENT_TYPES1 @"types1"
-#define ACHIEVEMENT_TYPES2 @"types2"
-#define ACHIEVEMENT_TYPES3 @"types3"
-#define ACHIEVEMENT_MARATHON1 @"marathon1"
-#define ACHIEVEMENT_MARATHON2 @"marathon2"
-#define ACHIEVEMENT_MARATHON3 @"marathon3"
-#define ACHIEVEMENT_MARATHON4 @"marathon4"
-#define ACHIEVEMENT_MARATHON5 @"marathon5"
-#define ACHIEVEMENT_GAINS1 @"gains1"
-#define ACHIEVEMENT_GAINS2 @"gains2"
-#define ACHIEVEMENT_GAINS3 @"gains3"
-#define ACHIEVEMENT_GAINS4 @"gains4"
-#define ACHIEVEMENT_GAINS5 @"gains5"
-#define ACHIEVEMENT_STREAK1 @"streak1"
-#define ACHIEVEMENT_STREAK2 @"streak2"
-#define ACHIEVEMENT_STREAK3 @"streak3"
-#define ACHIEVEMENT_STREAK4 @"streak4"
-#define ACHIEVEMENT_DEDICATION1 @"dedication1"
-#define ACHIEVEMENT_DEDICATION2 @"dedication2"
-#define ACHIEVEMENT_DEDICATION3 @"dedication3"
-#define ACHIEVEMENT_DEDICATION4 @"dedication4"
-#define ACHIEVEMENT_DEDICATION15 @"dedication15"
-#define ACHIEVEMENT_POWER1 @"power1"
-#define ACHIEVEMENT_POWER2 @"power2"
-#define ACHIEVEMENT_POWER3 @"power3"
-#define ACHIEVEMENT_POWER4 @"power4"
-#define ACHIEVEMENT_POWER5 @"power5"
-#define ACHIEVEMENT_POWER9 @"power9"
-#define ACHIEVEMENT_EVERYCATEGORY @"everyCategory"
-#define ACHIEVEMENT_CREATE1 @"create1"
-#define ACHIEVEMENT_CREATE2 @"create2"
-#define ACHIEVEMENT_SHARE @"share"
-#define ACHIEVEMENT_ANALYZE @"analyze"
-#define ACHIEVEMENT_TEMPLATE @"template"
-#define ACHIEVEMENT_PRINT @"print"
-#define ACHIEVEMENT_SCAN @"scan"
 
 @implementation BTAchievement
 
@@ -150,10 +81,50 @@
     if (workout.numSets >= 50)
         [BTAchievement markAchievementComplete:ACHIEVEMENT_SETS9 animated:YES];
     NSArray *supersets = [NSKeyedUnarchiver unarchiveObjectWithData:workout.supersets];
-    if (supersets.count > 0)
+    if (supersets.count > 0 && workout.numSets > 6)
         [BTAchievement markAchievementComplete:ACHIEVEMENT_SUPER1 animated:YES];
-    if (![workout.summary containsString:@"#"] && workout.numSets > 6)
+    if (workout.numSets > 8) {
+        for (NSArray *superset in supersets) {
+            if (superset.count >= 3)
+                [BTAchievement markAchievementComplete:ACHIEVEMENT_SUPER2 animated:YES];
+            if (superset.count >= 5)
+                [BTAchievement markAchievementComplete:ACHIEVEMENT_SUPER9 animated:YES];
+        }
+    }
+    if (workout.numSets > 6) {
+        NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitHour | NSCalendarUnitMinute fromDate:workout.date];
+        if (components.hour < 5)
+            [BTAchievement markAchievementComplete:ACHIEVEMENT_TIME2 animated:YES];
+        else if (components.hour == 5 || components.hour == 6)
+            [BTAchievement markAchievementComplete:ACHIEVEMENT_TIME1 animated:YES];
+        else if (components.hour == 16 && components.minute == 20)
+            [BTAchievement markAchievementComplete:ACHIEVEMENT_TIME0 animated:YES];
+    }
+    NSInteger groupCount = [workout.summary componentsSeparatedByString:@"#"].count;
+    if (groupCount == 1 && workout.numSets > 6)
         [BTAchievement markAchievementComplete:ACHIEVEMENT_TYPES1 animated:YES];
+    else if (groupCount >= 4 && workout.numSets > 8)
+        [BTAchievement markAchievementComplete:ACHIEVEMENT_TYPES2 animated:YES];
+    for (BTExercise *exercise in workout.exercises) {
+        if (![exercise.style isEqualToString:STYLE_CUSTOM]) {
+            NSArray *sets = [NSKeyedUnarchiver unarchiveObjectWithData:exercise.sets];
+            if (sets.count >= 10)
+                [BTAchievement markAchievementComplete:ACHIEVEMENT_TYPES3 animated:YES];
+            if ([exercise.style isEqualToString:STYLE_REPSWEIGHT] && exercise.oneRM >= 100) {
+                for (NSString *set in sets) {
+                    CGFloat weight = [set componentsSeparatedByString:@" "][1].floatValue;
+                    if (weight >= 100)
+                        [BTAchievement markAchievementComplete:ACHIEVEMENT_STRONG1 animated:YES];
+                    if (weight >= 200)
+                        [BTAchievement markAchievementComplete:ACHIEVEMENT_STRONG2 animated:YES];
+                    if (weight >= 300)
+                        [BTAchievement markAchievementComplete:ACHIEVEMENT_STRONG3 animated:YES];
+                    if (weight >= 500)
+                        [BTAchievement markAchievementComplete:ACHIEVEMENT_STRONG9 animated:YES];
+                }
+            }
+        }
+    }
     BTUser *user = [BTUser sharedInstance];
     if (user.totalDuration >= 5*60*60)
         [BTAchievement markAchievementComplete:ACHIEVEMENT_MARATHON1 animated:YES];
@@ -193,12 +164,9 @@
         [BTAchievement markAchievementComplete:ACHIEVEMENT_DEDICATION4 animated:YES];
     if (user.totalWorkouts >= 69)
         [BTAchievement markAchievementComplete:ACHIEVEMENT_DEDICATION15 animated:YES];
-    NSInteger benchMax = [BTExercise oneRMForExerciseName:@"Barbell Bench Press"];
-    NSInteger deadliftMax = [BTExercise oneRMForExerciseName:@"Deadlift"];
-    NSInteger squatMax = [BTExercise oneRMForExerciseName:@"Squats"];
-    if (benchMax > 0 && deadliftMax > 0 && squatMax > 0) {
+    NSInteger total = [BTExercise powerliftingTotalWeight];
+    if (total > 0) {
         [BTAchievement markAchievementComplete:ACHIEVEMENT_POWER1 animated:YES];
-        NSInteger total = benchMax + deadliftMax + squatMax;
         if (total > 600) [BTAchievement markAchievementComplete:ACHIEVEMENT_POWER2 animated:YES];
         if (total > 800) [BTAchievement markAchievementComplete:ACHIEVEMENT_POWER3 animated:YES];
         if (total > 1000) [BTAchievement markAchievementComplete:ACHIEVEMENT_POWER4 animated:YES];
@@ -213,8 +181,10 @@
     if (achievement && !achievement.completed) {
         [BTUser sharedInstance].xp += achievement.xp;
         achievement.completed = YES;
+        [[NSUserDefaults standardUserDefaults] setInteger:[BTAchievement numberOfUnreadAchievements]+1 forKey:@"achievementsCount"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
         if (animated) {
-            UIViewController *viewController = [UIApplication sharedApplication].keyWindow.rootViewController;
+            UIViewController *viewController = [BTAchievement topMostController];
             CSToastStyle *style = [[CSToastStyle alloc] initWithDefaultStyle];
             style.backgroundColor = [UIColor BTVibrantColors][0];
             style.cornerRadius = 12;
@@ -228,13 +198,24 @@
             style.imageSize = CGSizeMake(80, 80);
             style.fadeDuration = .25;
             NSString *str = [NSString stringWithFormat:@"ACHIEVEMENT UNLOCKED!\n+%d xp (Level %ld)", achievement.xp, [BTUser sharedInstance].level];
-            [viewController.view makeToast:str duration:2.0 position:CSToastPositionTop title:achievement.name
+            [viewController.view makeToast:str duration:3.0 position:CSToastPositionTop title:achievement.name
                                      image:achievement.image style:style completion:^(BOOL didTap) {
                     if (didTap && [viewController isKindOfClass:[MainViewController class]])
                         [(MainViewController *)viewController presentUserViewController];
             }];
         }
     }
+}
+
+//badge handling
+
++ (NSInteger)numberOfUnreadAchievements {
+    return [[NSUserDefaults standardUserDefaults] integerForKey:@"achievementsCount"];
+}
+
++ (void)resetUnreadAcheivements {
+    [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"achievementsCount"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 //achievement list handling
@@ -273,6 +254,7 @@
 //data transfer model
 
 + (void)loadAchievementListModel:(AchievementListModel *)model {
+    [BTAchievement resetAchievementList];
     NSArray <NSString *> *completedAchievements = [BTAchievement completedAchievementKeys];
     [BTAchievement resetAchievementList];
     NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
@@ -321,6 +303,12 @@
     NSScanner *scanner = [NSScanner scannerWithString:hex];
     [scanner scanHexInt:&rgbValue];
     return [UIColor colorWithRed:((rgbValue & 0xFF0000) >> 16)/255.0 green:((rgbValue & 0xFF00) >> 8)/255.0 blue:(rgbValue & 0xFF)/255.0 alpha:1.0];
+}
+
++ (UIViewController *)topMostController {
+    UIViewController *topController = [UIApplication sharedApplication].keyWindow.rootViewController;
+    while (topController.presentedViewController) topController = topController.presentedViewController;
+    return topController;
 }
 
 @end

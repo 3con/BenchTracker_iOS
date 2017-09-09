@@ -17,8 +17,6 @@
     return [[NSKeyedUnarchiver unarchiveObjectWithData:self.sets] count];
 }
 
-- (void)setNumberOfSets:(NSInteger)numberOfSets {}
-
 - (CGFloat)volume {
     if ([self.style isEqualToString:STYLE_REPSWEIGHT]) {
         CGFloat volume = 0;
@@ -30,8 +28,6 @@
     }
     return 0;
 }
-
-- (void)setVolume:(CGFloat)volume {}
 
 - (void)calculateOneRM {
     self.oneRM = 0;
@@ -46,6 +42,13 @@
         else if ([self.style isEqualToString:STYLE_TIMEWEIGHT])
             self.oneRM = MAX(self.oneRM, split[2].floatValue);
     }
+}
+
++ (NSInteger)powerliftingTotalWeight {
+    NSInteger benchMax = [BTExercise oneRMForExerciseName:@"Barbell Bench Press"];
+    NSInteger deadliftMax = [BTExercise oneRMForExerciseName:@"Deadlift"];
+    NSInteger squatMax = [BTExercise oneRMForExerciseName:@"Squats"];
+    return (benchMax > 0 && deadliftMax > 0 && squatMax > 0) ? benchMax + deadliftMax + squatMax : 0;
 }
 
 - (BTExercise *)lastInstance {

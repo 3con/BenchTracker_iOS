@@ -15,7 +15,7 @@
 #import "HMSegmentedControl.h"
 #import "BTTutorialManager.h"
 #import "BTWorkoutTemplate+CoreDataClass.h"
-#import "UIView+Toast.h"
+#import "BTAchievement+CoreDataClass.h"
 
 @interface MainViewController ()
 
@@ -580,7 +580,7 @@
 
 #pragma mark - settingsVC delegate
 
-- (void)settingsViewWillDismiss:(SettingsViewController *)settingsVC {
+- (void)userViewControllerSettingsDidUpdate:(UserViewController *)userVC {
     self.cellHeight = 0;
     [self.listTableView reloadData];
     [self.weekdayView reloadData];
@@ -598,6 +598,7 @@
 
 - (void)templateSelectionViewController:(TemplateSelectionViewController *)tsVC didDismissWithSelectedWorkout:(BTWorkout *)workout {
     [self presentWorkoutViewControllerWithWorkout:workout];
+    [BTAchievement markAchievementComplete:ACHIEVEMENT_TEMPLATE animated:YES];
 }
 
 #pragma mark - fetchedResultsController delegate

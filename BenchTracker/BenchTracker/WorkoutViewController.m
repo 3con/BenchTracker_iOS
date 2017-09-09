@@ -114,9 +114,8 @@
     self.settings.activeWorkout = nil;
     self.settings.activeWorkoutStartDate = nil;
     self.settings.activeWorkoutLastUpdate = nil;
-    [BTUser addWorkoutToTotals:self.workout];
-    [BTAchievement updateAchievementsWithWorkout:self.workout];
     [self updateWorkout];
+    [BTUser addWorkoutToTotals:self.workout];
 }
 
 - (void)handleEnteredBackground:(id)sender {
@@ -130,6 +129,7 @@
 
 - (void)handleWillTerminate:(id)sender {
     [self workoutWillEnd];
+    [BTAchievement updateAchievementsWithWorkout:self.workout];
 }
 
 - (IBAction)settingsButtonPressed:(UIButton *)sender {
@@ -145,7 +145,7 @@
     [self workoutWillEnd];
     [self.delegate workoutViewController:self willDismissWithResultWorkout:self.workout];
     [self dismissViewControllerAnimated:YES completion:^{
-        
+        [BTAchievement updateAchievementsWithWorkout:self.workout];
     }];
 }
 

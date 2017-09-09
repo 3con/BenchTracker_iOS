@@ -21,15 +21,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BTExercise : NSManagedObject
 
-@property (nonatomic) NSInteger numberOfSets;
+@property (nonatomic, readonly) NSInteger numberOfSets;
 
-@property (nonatomic) CGFloat volume;
+@property (nonatomic, readonly) CGFloat volume;
 
 - (void)calculateOneRM;
 
 - (BTExercise *)lastInstance; //last instance (excluding this one)
 
 + (NSInteger)oneRMForExerciseName:(NSString *)name;
+
++ (NSInteger)powerliftingTotalWeight;
 
 @end
 

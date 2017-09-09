@@ -8,6 +8,7 @@
 
 #import "ADExercisesDetailViewController.h"
 #import "BTExerciseType+CoreDataClass.h"
+#import "BTAchievement+CoreDataClass.h"
 #import "BTSettings+CoreDataClass.h"
 #import "ZFModalTransitionAnimator.h"
 #import "ADEDExerciseTableViewCell.h"
@@ -83,6 +84,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    [BTAchievement markAchievementComplete:ACHIEVEMENT_ANALYZE animated:YES];
     if (!self.podiumView.hasAnimatedIn)
         [self.podiumView animateIn];
 }
