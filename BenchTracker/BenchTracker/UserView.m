@@ -43,7 +43,7 @@
                                                                     relatedBy:NSLayoutRelationEqual
                                                                        toItem:self.progressBackgroundView
                                                                     attribute:NSLayoutAttributeWidth
-                                                                   multiplier:MAX(.05, self.progress)
+                                                                   multiplier:MIN(.95, MAX(.05, self.progress))
                                                                      constant:0];
         [self.progressBackgroundView addConstraint:self.progressWidthConstraint];
         [self layoutIfNeeded];

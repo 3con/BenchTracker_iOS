@@ -16,6 +16,7 @@
 #import "BTTutorialManager.h"
 #import "BTWorkoutTemplate+CoreDataClass.h"
 #import "BTAchievement+CoreDataClass.h"
+#import "WZLBadgeImport.h"
 
 @interface MainViewController ()
 
@@ -90,7 +91,6 @@
         button.layer.borderColor = [UIColor whiteColor].CGColor;
     }
     self.rightBarButton.layer.cornerRadius = 12;
-    self.rightBarButton.clipsToBounds = YES;
     self.settings = [BTSettings sharedInstance];
     self.exerciseTypeColors = [NSKeyedUnarchiver unarchiveObjectWithData:self.settings.exerciseTypeColors];
 }
@@ -139,6 +139,17 @@
     }
     if (self.settings.activeWorkout)
         [self presentWorkoutViewControllerWithWorkout:self.settings.activeWorkout];
+    [self updateUserBadge];
+}
+
+- (void)updateUserBadge {
+    if (self.segmentedControl.selectedSegmentIndex == 0 && [BTAchievement numberOfUnreadAchievements]) {
+        [self.rightBarButton showBadgeWithStyle:WBadgeStyleRedDot value:1 animationType:WBadgeAnimTypeNone];
+        self.rightBarButton.badgeFrame = CGRectMake(0, 0, 12, 12);
+        self.rightBarButton.badge.layer.cornerRadius = 6;
+        self.rightBarButton.badgeCenterOffset = CGPointMake(-6, 8);
+    }
+    else [self.rightBarButton clearBadge];
 }
 
 - (void)loadUser {
@@ -278,6 +289,7 @@
 }
 
 - (void)setSelectedViewIndex:(NSInteger)index {
+    [self updateUserBadge];
     if (index == 0) {
         self.rightBarButton.alpha = 0;
         self.rightBarButton.backgroundColor = [UIColor clearColor];

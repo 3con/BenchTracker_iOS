@@ -35,8 +35,7 @@
 
 + (void)updateAchievementsWithWorkout:(BTWorkout *)workout {
     CGFloat weightX = [BTSettings sharedInstance].weightInLbs ? 1 : .5;
-    if (workout.duration >= 60*10 && workout.numSets > 6)
-        [BTAchievement markAchievementComplete:ACHIEVEMENT_FIRSTWORKOUT animated:YES];
+    [BTAchievement markAchievementComplete:ACHIEVEMENT_FIRSTWORKOUT animated:YES];
     if (workout.duration >= 60*30 && workout.numSets <= 10)
         [BTAchievement markAchievementComplete:ACHIEVEMENT_SPEED0 animated:YES];
     if (workout.duration < 60*60) {
@@ -44,7 +43,7 @@
         if (workout.numSets >= 30) [BTAchievement markAchievementComplete:ACHIEVEMENT_SPEED2 animated:YES];
         if (workout.numSets >= 40) [BTAchievement markAchievementComplete:ACHIEVEMENT_SPEED9 animated:YES];
     }
-    else {
+    else if (workout.numSets > 6) {
         [BTAchievement markAchievementComplete:ACHIEVEMENT_IRON1 animated:YES];
         if (workout.duration >= 60*69 && workout.duration < 60*70)
             [BTAchievement markAchievementComplete:ACHIEVEMENT_IRON15 animated:YES];
@@ -112,13 +111,13 @@
             if ([exercise.style isEqualToString:STYLE_REPSWEIGHT] && exercise.oneRM >= 100) {
                 for (NSString *set in sets) {
                     CGFloat weight = [set componentsSeparatedByString:@" "][1].floatValue;
-                    if (weight >= 100)
+                    if (weight >= 100*weightX)
                         [BTAchievement markAchievementComplete:ACHIEVEMENT_STRONG1 animated:YES];
-                    if (weight >= 200)
+                    if (weight >= 200*weightX)
                         [BTAchievement markAchievementComplete:ACHIEVEMENT_STRONG2 animated:YES];
-                    if (weight >= 300)
+                    if (weight >= 300*weightX)
                         [BTAchievement markAchievementComplete:ACHIEVEMENT_STRONG3 animated:YES];
-                    if (weight >= 500)
+                    if (weight >= 500*weightX)
                         [BTAchievement markAchievementComplete:ACHIEVEMENT_STRONG9 animated:YES];
                 }
             }
@@ -167,11 +166,11 @@
     NSInteger total = [BTExercise powerliftingTotalWeight];
     if (total > 0) {
         [BTAchievement markAchievementComplete:ACHIEVEMENT_POWER1 animated:YES];
-        if (total > 600) [BTAchievement markAchievementComplete:ACHIEVEMENT_POWER2 animated:YES];
-        if (total > 800) [BTAchievement markAchievementComplete:ACHIEVEMENT_POWER3 animated:YES];
-        if (total > 1000) [BTAchievement markAchievementComplete:ACHIEVEMENT_POWER4 animated:YES];
-        if (total > 1200) [BTAchievement markAchievementComplete:ACHIEVEMENT_POWER5 animated:YES];
-        if (total > 1500) [BTAchievement markAchievementComplete:ACHIEVEMENT_POWER9 animated:YES];
+        if (total > 600*weightX) [BTAchievement markAchievementComplete:ACHIEVEMENT_POWER2 animated:YES];
+        if (total > 800*weightX) [BTAchievement markAchievementComplete:ACHIEVEMENT_POWER3 animated:YES];
+        if (total > 1000*weightX) [BTAchievement markAchievementComplete:ACHIEVEMENT_POWER4 animated:YES];
+        if (total > 1200*weightX) [BTAchievement markAchievementComplete:ACHIEVEMENT_POWER5 animated:YES];
+        if (total > 1500*weightX) [BTAchievement markAchievementComplete:ACHIEVEMENT_POWER9 animated:YES];
     }
 }
 

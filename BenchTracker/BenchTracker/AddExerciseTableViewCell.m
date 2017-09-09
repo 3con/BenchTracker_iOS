@@ -13,9 +13,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 
-@property (weak, nonatomic) IBOutlet UILabel *iterationLabel1;
-@property (weak, nonatomic) IBOutlet UILabel *iterationLabel2;
-@property (weak, nonatomic) IBOutlet UILabel *iterationLabel3;
+@property (weak, nonatomic) IBOutlet UILabel *iterationLabel;
 
 @end
 
@@ -25,23 +23,20 @@
     [super awakeFromNib];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.cellSelected = NO;
+    self.iterationLabel.layer.cornerRadius = 8;
+    self.iterationLabel.clipsToBounds = YES;
 }
 
 - (void)loadExerciseType:(BTExerciseType *)exerciseType {
     self.exerciseType = exerciseType;
-    NSArray *iterations = [NSKeyedUnarchiver unarchiveObjectWithData:exerciseType.iterations];
-    self.iterationLabel1.text = (iterations.count > 0) ? iterations[0] : @"";
-    self.iterationLabel2.text = (iterations.count > 1) ? iterations[1] : @"";
-    self.iterationLabel3.text = (iterations.count > 2) ? iterations[2] : @"";
-    if (iterations.count > 3) self.iterationLabel3.text = [self.iterationLabel3.text stringByAppendingString:@" ++"];
+    NSInteger count = [[NSKeyedUnarchiver unarchiveObjectWithData:exerciseType.iterations] count];
+    self.iterationLabel.alpha = count > 0;
+    if (count > 0) self.iterationLabel.text = [NSString stringWithFormat:@"%ld iteration%@",count,(count == 1) ? @"" : @"s"];
 }
 
 - (void)loadIteration:(NSString *)iteration {
     self.iteration = iteration;
     if (self.cellSelected && self.iteration && self.iteration.length > 0) {
-        self.iterationLabel1.alpha = 0;
-        self.iterationLabel2.alpha = 0;
-        self.iterationLabel3.alpha = 0;
         NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ %@", iteration, self.exerciseType.name]];
         [str addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:15 weight:UIFontWeightBold]
                     range:NSMakeRange(0, iteration.length)];
@@ -50,9 +45,6 @@
         self.nameLabel.attributedText = str;
     }
     else {
-        self.iterationLabel1.alpha = 1;
-        self.iterationLabel2.alpha = 1;
-        self.iterationLabel3.alpha = 1;
         self.nameLabel.text = self.exerciseType.name;
         self.nameLabel.font = [UIFont systemFontOfSize:15 weight:UIFontWeightRegular];
     }
@@ -62,17 +54,15 @@
     if (selected) {
         self.backgroundColor = self.color;
         self.nameLabel.textColor = [UIColor whiteColor];
-        self.iterationLabel1.textColor = [UIColor whiteColor];
-        self.iterationLabel2.textColor = [UIColor whiteColor];
-        self.iterationLabel3.textColor = [UIColor whiteColor];
+        self.iterationLabel.backgroundColor = [UIColor whiteColor];
+        self.iterationLabel.textColor = self.color;
         self.cellSelected = YES;
     }
     else {
         self.backgroundColor = [UIColor whiteColor];
         self.nameLabel.textColor = [UIColor BTBlackColor];
-        self.iterationLabel1.textColor = [UIColor BTGrayColor];
-        self.iterationLabel2.textColor = [UIColor BTGrayColor];
-        self.iterationLabel3.textColor = [UIColor BTGrayColor];
+        self.iterationLabel.backgroundColor = [self.color colorWithAlphaComponent:1];
+        self.iterationLabel.textColor = [UIColor whiteColor];
         self.cellSelected = NO;
         self.iteration = nil;
     }
