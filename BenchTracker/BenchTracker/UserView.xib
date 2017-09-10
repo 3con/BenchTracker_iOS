@@ -46,7 +46,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hlz-aN-c4P">
-                    <rect key="frame" x="16" y="92" width="278" height="15"/>
+                    <rect key="frame" x="15" y="92" width="280" height="15"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oMi-sM-iBr">
                             <rect key="frame" x="0.0" y="0.0" width="0.0" height="15"/>
@@ -57,6 +57,7 @@
                     <constraints>
                         <constraint firstItem="oMi-sM-iBr" firstAttribute="leading" secondItem="hlz-aN-c4P" secondAttribute="leading" id="AQR-S2-xJU"/>
                         <constraint firstAttribute="height" constant="15" id="F4Z-n8-uQz"/>
+                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="400" id="LhZ-rA-ENI"/>
                         <constraint firstItem="oMi-sM-iBr" firstAttribute="height" secondItem="hlz-aN-c4P" secondAttribute="height" id="NMQ-Bl-9Wp"/>
                         <constraint firstItem="oMi-sM-iBr" firstAttribute="width" secondItem="hlz-aN-c4P" secondAttribute="width" multiplier="0.0001" id="d6L-b6-JD1"/>
                         <constraint firstItem="oMi-sM-iBr" firstAttribute="centerY" secondItem="hlz-aN-c4P" secondAttribute="centerY" id="icC-s3-fDF"/>
@@ -65,7 +66,7 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="hlz-aN-c4P" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="BXG-x5-5ZQ"/>
+                <constraint firstItem="hlz-aN-c4P" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" priority="750" constant="15" id="BXG-x5-5ZQ"/>
                 <constraint firstItem="eL5-pJ-ohu" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="NLK-nY-S9r"/>
                 <constraint firstItem="2N8-CK-A1f" firstAttribute="top" secondItem="hlz-aN-c4P" secondAttribute="bottom" constant="5" id="SBk-0h-7DT"/>
                 <constraint firstItem="5dz-87-cb7" firstAttribute="top" secondItem="eL5-pJ-ohu" secondAttribute="bottom" constant="6" id="gIH-Ft-7Lx"/>

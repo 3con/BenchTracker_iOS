@@ -42,6 +42,7 @@
     [super viewDidLoad];
     self.settings = [BTSettings sharedInstance];
     self.user = [BTUser sharedInstance];
+    [BTUser updateStreaks];
     self.navView.backgroundColor = [UIColor BTPrimaryColor];
     self.isShowingFirstStats = YES;
     [self refreshStats];
@@ -52,11 +53,11 @@
         [self loadAchievementButton];
         [self loadUserView];
     }
-    [self updateAchievementButton];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [(UserView *)self.userContainerView.subviews.firstObject animateIn];
+    [self updateAchievementButton];
 }
 
 - (void)refreshStats {

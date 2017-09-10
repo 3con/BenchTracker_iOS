@@ -115,6 +115,7 @@
         [self setUpSegmentedControl];
         [self setSelectedViewIndex:0];
     }
+    self.rightBarButton.imageEdgeInsets = UIEdgeInsetsMake(8, self.rightBarButton.frame.size.width-24, 8, 0);
 }
 
 - (void)loadTableViewGradient {

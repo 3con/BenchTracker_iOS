@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) BOOL showLastWorkout;
 
 @property (nonatomic) BOOL bodyweightIsVolume;
-@property (nonatomic) CGFloat bodyweightMultiplier;
+@property (nonatomic) float bodyweightMultiplier;
 
 @end
 

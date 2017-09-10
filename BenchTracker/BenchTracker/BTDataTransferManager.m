@@ -118,6 +118,8 @@
     for (BTWorkoutModel *workoutModel in transferModel.workouts)
         [BTDataTransferManager workoutForModel:workoutModel];
     //PARSE ACHIEVEMENTS
+    [BTAchievement resetAchievementList];
+    [BTAchievement checkAchievementList];
     for (NSString *key in transferModel.achievements) [BTAchievement markAchievementComplete:key animated:NO];
     [context save:nil];
     return true;

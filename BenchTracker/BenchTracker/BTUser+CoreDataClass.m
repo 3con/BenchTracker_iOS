@@ -94,9 +94,9 @@
 + (void)updateStreaks {
     BTUser *user = [BTUser sharedInstance];
     NSDateComponents *components = [NSCalendar.currentCalendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay
-                                                                       fromDate:NSDate.date];
+                                                                 fromDate:NSDate.date];
     NSDateComponents *components2 = [NSCalendar.currentCalendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay
-                                                                 fromDate:[NSDate.date dateByAddingTimeInterval:-86400]];
+                                                                  fromDate:[NSDate.date dateByAddingTimeInterval:-86400]];
     NSDate *today = [NSCalendar.currentCalendar dateFromComponents:components];
     NSDate *yesterday = [NSCalendar.currentCalendar dateFromComponents:components2];
     NSInteger count = 0;
@@ -107,12 +107,14 @@
         return;
     }
     if (count) {
+        int i = 2;
         while (YES) {
             NSDateComponents *components = [NSCalendar.currentCalendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay
-                                                                         fromDate:[NSDate.date dateByAddingTimeInterval:-86400*count]];
+                                                                         fromDate:[NSDate.date dateByAddingTimeInterval:-86400*i]];
             NSDate *nDate = [NSCalendar.currentCalendar dateFromComponents:components];
             if ([BTWorkout workoutsBetweenBeginDate:nDate andEndDate:[nDate dateByAddingTimeInterval:86400]].count > 0) count ++;
             else break;
+            i++;
         }
     }
     user.currentStreak = count;
