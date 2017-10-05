@@ -389,7 +389,7 @@
     self.animator.dragable = NO;
     self.animator.bounces = YES;
     self.animator.behindViewAlpha = 0.8;
-    self.animator.behindViewScale = 0.92;
+    self.animator.behindViewScale = 1.0; //0.92;
     self.animator.transitionDuration = 0.5;
     self.animator.direction = ZFModalTransitonDirectionBottom;
     eeVC.transitioningDelegate = self.animator;

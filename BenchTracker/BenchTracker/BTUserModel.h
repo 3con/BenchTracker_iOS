@@ -12,7 +12,7 @@
 
 @property (nonatomic) NSDate *dateCreated;
 @property (nonatomic) NSString *name;
-@property (nonatomic) NSData *imageData;
+@property (nonatomic) NSString *imageData;
 @property (nonatomic) NSNumber *weight;
 
 @property (nonatomic) NSNumber *achievementListVersion;

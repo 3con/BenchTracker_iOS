@@ -33,7 +33,7 @@
     userModel.name = user.name;
     userModel.achievementListVersion = [NSNumber numberWithInt:user.achievementListVersion];
     userModel.xp = [NSNumber numberWithInt:user.xp];
-    userModel.imageData = user.imageData;
+    userModel.imageData = [[NSString alloc] initWithData:user.imageData encoding:NSUTF8StringEncoding];
     userModel.weight = [NSNumber numberWithInt:user.weight];
     userModel.totalDuration = [NSNumber numberWithInteger:user.totalDuration];
     userModel.totalVolume = [NSNumber numberWithInteger:user.totalVolume];
@@ -87,7 +87,7 @@
     BTUser *user = [BTUser sharedInstance];
     user.dateCreated = transferModel.user.dateCreated;
     user.name = transferModel.user.name;
-    user.imageData = transferModel.user.imageData;
+    user.imageData = [transferModel.user.imageData dataUsingEncoding:NSUTF8StringEncoding];
     user.achievementListVersion = transferModel.user.achievementListVersion.intValue;
     user.weight = transferModel.user.weight.intValue;
     user.xp = transferModel.user.xp.intValue;

@@ -587,7 +587,7 @@
     self.animator.bounces = NO;
     self.animator.dragable = NO;
     self.animator.behindViewAlpha = 0.4;
-    self.animator.behindViewScale = 1;
+    self.animator.behindViewScale = 1.0;
     self.animator.transitionDuration = 0.75;
     self.animator.direction = ZFModalTransitonDirectionBottom;
     addVC.transitioningDelegate = self.animator;
@@ -604,7 +604,7 @@
     self.animator.bounces = NO;
     self.animator.dragable = NO;
     self.animator.behindViewAlpha = 0.4;
-    self.animator.behindViewScale = 1;
+    self.animator.behindViewScale = 1.0;
     self.animator.transitionDuration = 0.75;
     self.animator.direction = ZFModalTransitonDirectionBottom;
     eVC.transitioningDelegate = self.animator;
@@ -622,8 +622,8 @@
     self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:wseVC];
     self.animator.bounces = NO;
     self.animator.dragable = NO;
-    self.animator.behindViewAlpha = 1;
-    self.animator.behindViewScale = 1;
+    self.animator.behindViewAlpha = 1.0;
+    self.animator.behindViewScale = 1.0;
     self.animator.transitionDuration = 0;
     self.animator.direction = ZFModalTransitonDirectionBottom;
     wseVC.transitioningDelegate = self.animator;

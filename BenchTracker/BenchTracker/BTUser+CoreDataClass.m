@@ -73,21 +73,27 @@
 }
 
 + (void)checkForTotalsPurge {
+    [self runPurgeNumber:0];
+}
+
++ (void)runPurgeNumber:(int)num {
     BTUser *user = [BTUser sharedInstance];
     NSInteger numWorkouts = [BTWorkout numberOfWorkouts];
-    if (numWorkouts < user.totalWorkouts) {
-        NSLog(@"Purging (long workouts)");
-        NSLog(@"BTUser totals error: this probably shouldn't happen!");
-        for (BTWorkout *workout in [BTWorkout allWorkoutsWithFactoredIntoTotalsFilter:NO]) {
-            workout.factoredIntoTotals = NO;
-            [BTUser addWorkoutToTotals:workout];
-        }
-    }
-    else if (numWorkouts > user.totalWorkouts) {
-        NSLog(@"Purging (short workouts)");
-        for (BTWorkout *workout in [BTWorkout allWorkoutsWithFactoredIntoTotalsFilter:YES])
-            [BTUser addWorkoutToTotals:workout];
-        [self checkForTotalsPurge];
+    if (user.totalWorkouts == numWorkouts) return;
+    if (user.totalWorkouts > numWorkouts) [BTUser totalPurge];
+    if (num > 5) [BTUser totalPurge];
+    NSLog(@"Running short pruge");
+    for (BTWorkout *workout in [BTWorkout allWorkoutsWithFactoredIntoTotalsFilter:YES])
+        [BTUser addWorkoutToTotals:workout];
+    [self runPurgeNumber:num+1];
+}
+
++ (void)totalPurge {
+    NSLog(@"Running total (long) purge");
+    NSLog(@"BTUser totals error: this probably shouldn't happen!");
+    for (BTWorkout *workout in [BTWorkout allWorkoutsWithFactoredIntoTotalsFilter:NO]) {
+        workout.factoredIntoTotals = NO;
+        [BTUser addWorkoutToTotals:workout];
     }
 }
 

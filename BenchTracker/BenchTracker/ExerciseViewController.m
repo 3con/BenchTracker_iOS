@@ -188,7 +188,7 @@
     self.animator.bounces = NO;
     self.animator.dragable = NO;
     self.animator.behindViewAlpha = 1.0;
-    self.animator.behindViewScale = 0.92;
+    self.animator.behindViewScale = 1.0; //0.92;
     self.animator.transitionDuration = 0.5;
     self.animator.direction = ZFModalTransitonDirectionBottom;
     adedVC.transitioningDelegate = self.animator;
@@ -204,7 +204,7 @@
     self.animator.dragable = NO;
     self.animator.bounces = YES;
     self.animator.behindViewAlpha = 1.0;
-    self.animator.behindViewScale = 0.92;
+    self.animator.behindViewScale = 1.0; //0.92;
     self.animator.transitionDuration = 0.5;
     self.animator.direction = ZFModalTransitonDirectionBottom;
     ecVC.transitioningDelegate = self.animator;

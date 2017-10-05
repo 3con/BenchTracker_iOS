@@ -175,6 +175,7 @@
 }
 
 + (void)markAchievementComplete:(NSString *)key animated:(BOOL)animated { //also in charge of displaying toast
+    NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
     BTAchievement *achievement = [BTAchievement achievementWithKey:key];
     if (achievement && !achievement.completed) {
         [BTUser sharedInstance].xp += achievement.xp;
@@ -201,7 +202,10 @@
                     if (didTap && [viewController isKindOfClass:[MainViewController class]])
                         [(MainViewController *)viewController presentUserViewController];
             }];
+            if ([viewController isKindOfClass:[MainViewController class]])
+                [(MainViewController *)viewController updateBadgeView];
         }
+        [context save:nil];
     }
 }
 
@@ -237,7 +241,10 @@
         NSLog(@"No achievements / update needed, loading list");
         AchievementListModel *model = [[AchievementListModel alloc] initWithString:JSONString error:&error];
         if (error) NSLog(@"typeList JSON model error:%@",error);
-        else [BTAchievement loadAchievementListModel:model];
+        else {
+            [BTAchievement loadAchievementListModel:model];
+            [BTUser sharedInstance].achievementListVersion = (int)vModel.version;
+        }
     }
 }
 

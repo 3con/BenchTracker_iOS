@@ -140,10 +140,10 @@
     }
     if (self.settings.activeWorkout)
         [self presentWorkoutViewControllerWithWorkout:self.settings.activeWorkout];
-    [self updateUserBadge];
+    [self updateBadgeView];
 }
 
-- (void)updateUserBadge {
+- (void)updateBadgeView {
     if (self.segmentedControl.selectedSegmentIndex == 0 && [BTAchievement numberOfUnreadAchievements]) {
         [self.rightBarButton showBadgeWithStyle:WBadgeStyleRedDot value:1 animationType:WBadgeAnimTypeNone];
         self.rightBarButton.badgeFrame = CGRectMake(0, 0, 12, 12);
@@ -290,7 +290,7 @@
 }
 
 - (void)setSelectedViewIndex:(NSInteger)index {
-    [self updateUserBadge];
+    [self updateBadgeView];
     if (index == 0) {
         self.rightBarButton.alpha = 0;
         self.rightBarButton.backgroundColor = [UIColor clearColor];
@@ -509,7 +509,7 @@
     self.animator.bounces = NO;
     self.animator.dragable = NO;
     self.animator.behindViewAlpha = 0.8;
-    self.animator.behindViewScale = 0.92;
+    self.animator.behindViewScale = 1.0; //0.92;
     self.animator.transitionDuration = 0.5;
     self.animator.direction = ZFModalTransitonDirectionBottom;
     workoutVC.transitioningDelegate = self.animator;
@@ -543,7 +543,7 @@
     self.animator.dragable = NO;
     self.animator.bounces = YES;
     self.animator.behindViewAlpha = 0.8;
-    self.animator.behindViewScale = 0.92;
+    self.animator.behindViewScale = 1.0; //0.92;
     self.animator.transitionDuration = 0.5;
     self.animator.direction = ZFModalTransitonDirectionBottom;
     qrVC.transitioningDelegate = self.animator;
@@ -560,7 +560,7 @@
     self.animator.bounces = NO;
     self.animator.dragable = NO;
     self.animator.behindViewAlpha = 0.8;
-    self.animator.behindViewScale = 0.92;
+    self.animator.behindViewScale = 1.0; //0.92;
     self.animator.transitionDuration = 0.5;
     self.animator.direction = ZFModalTransitonDirectionBottom;
     tsVC.transitioningDelegate = self.animator;

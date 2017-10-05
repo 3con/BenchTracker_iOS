@@ -23,4 +23,6 @@
 
 - (void)presentUserViewController;
 
+- (void)updateBadgeView;
+
 @end

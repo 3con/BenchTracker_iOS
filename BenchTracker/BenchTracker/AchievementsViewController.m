@@ -121,7 +121,7 @@
     self.animator.behindViewAlpha = 1.0;
     self.animator.behindViewScale = 1.0;
     self.animator.transitionDuration = 0.0;
-    self.animator.direction = ZFModalTransitonDirectionRight;
+    self.animator.direction = ZFModalTransitonDirectionBottom;
     adVC.transitioningDelegate = self.animator;
     adVC.modalPresentationStyle = UIModalPresentationCustom;
     [self presentViewController:adVC animated:YES completion:nil];

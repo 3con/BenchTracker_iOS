@@ -73,39 +73,43 @@
         switch (i) {
             case 0:
                 statView.titleLabel.text = (self.isShowingFirstStats) ? @"Tracking for" : @"Workout %";
+                NSInteger days = [[NSDate date] timeIntervalSinceDate:self.user.dateCreated]/86400+1;
                 statView.statLabel.text = (self.isShowingFirstStats) ?
-                    [NSString stringWithFormat:@"%.0f days", [[NSDate date] timeIntervalSinceDate:self.user.dateCreated]/86400+1] :
+                    [NSString stringWithFormat:@"%ld day%@", days, (days == 1) ? @"" : @"s"] :
                     [NSString stringWithFormat:@"%.0f%%", ((float)self.user.totalWorkouts)/
                                                           ([[NSDate date] timeIntervalSinceDate:self.user.dateCreated]/86400+1)*100];
                 break;
             case 1:
                 statView.titleLabel.text = (self.isShowingFirstStats) ? @"Total Duration" : @"Volume / Hour";
                 statView.statLabel.text = (self.isShowingFirstStats) ?
-                    [NSString stringWithFormat:@"%.1f hrs", self.user.totalDuration/3600.0] :
-                    [NSString stringWithFormat:@"%.1fk %@", self.user.totalVolume/1000.0/self.user.totalDuration*3600, self.settings.weightSuffix];
+                    [NSString stringWithFormat:@"%.1f hrs", self.user.totalDuration/3600.0] : (self.user.totalDuration) ?
+                    [NSString stringWithFormat:@"%.1fk %@", self.user.totalVolume/1000.0/self.user.totalDuration*3600, self.settings.weightSuffix] :
+                    @"N/A";
                 break;
             case 2:
                 statView.titleLabel.text = (self.isShowingFirstStats) ? @"# of Workouts" : @"Average Duration";
                 statView.statLabel.text = (self.isShowingFirstStats) ?
-                    [NSString stringWithFormat:@"%lld", self.user.totalWorkouts] :
-                    [NSString stringWithFormat:@"%.1f min", self.user.totalDuration/60.0/self.user.totalWorkouts];
+                    [NSString stringWithFormat:@"%lld", self.user.totalWorkouts] : (self.user.totalWorkouts) ?
+                    [NSString stringWithFormat:@"%.1f min", self.user.totalDuration/60.0/self.user.totalWorkouts] :
+                    @"N/A";
                 break;
             case 3:
                 statView.titleLabel.text = (self.isShowingFirstStats) ? @"Total Volume" : @"Average Volume";
                 statView.statLabel.text = (self.isShowingFirstStats) ?
-                    [NSString stringWithFormat:@"%lldk %@", self.user.totalVolume/1000, self.settings.weightSuffix] :
-                    [NSString stringWithFormat:@"%.1fk %@", self.user.totalVolume/1000.0/self.user.totalWorkouts, self.settings.weightSuffix];
+                    [NSString stringWithFormat:@"%lldk %@", self.user.totalVolume/1000, self.settings.weightSuffix] : (self.user.totalWorkouts) ?
+                    [NSString stringWithFormat:@"%.1fk %@", self.user.totalVolume/1000.0/self.user.totalWorkouts, self.settings.weightSuffix] :
+                    @"N/A";
                 break;
             case 4:
                 statView.titleLabel.text = (self.isShowingFirstStats) ? @"Current Streak" : @"Longest Duration";
                 statView.statLabel.text = (self.isShowingFirstStats) ?
-                    [NSString stringWithFormat:@"%lld days", self.user.currentStreak] :
+                    [NSString stringWithFormat:@"%lld day%@", self.user.currentStreak, (self.user.currentStreak == 1) ? @"" : @"s"] :
                     [NSString stringWithFormat:@"%ld min", [self maxWorkoutDuration]/60];
                 break;
             default:
                 statView.titleLabel.text = (self.isShowingFirstStats) ? @"Longest Streak" : @"Highest Volume";
                 statView.statLabel.text = (self.isShowingFirstStats) ?
-                    [NSString stringWithFormat:@"%lld days", self.user.longestStreak] :
+                [NSString stringWithFormat:@"%lld day%@", self.user.longestStreak, (self.user.longestStreak == 1) ? @"" : @"s"] :
                     [NSString stringWithFormat:@"%ldk %@",[self maxWorkoutVolume]/1000, self.settings.weightSuffix];
                 break;
         }
