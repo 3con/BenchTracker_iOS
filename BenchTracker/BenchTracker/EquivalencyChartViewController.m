@@ -38,6 +38,7 @@
     self.navView.backgroundColor = [UIColor BTSecondaryColor];
     self.view.backgroundColor = [UIColor BTPrimaryColor];
     self.context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    self.collectionView.display1RM = YES;
     self.collectionView.setDataSource = self;
     self.collectionView.sets = [NSKeyedUnarchiver unarchiveObjectWithData:self.exercise.sets];
     self.collectionView.settings = self.settings;

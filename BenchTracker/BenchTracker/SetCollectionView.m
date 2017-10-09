@@ -23,6 +23,7 @@
     self.delegate = self;
     self.dataSource = self;
     self.showsHorizontalScrollIndicator = NO;
+    self.display1RM = NO;
     SetFlowLayout *flowLayout = [[SetFlowLayout alloc] init];
     flowLayout.itemSize = CGSizeMake(70, 45);
     flowLayout.minimumInteritemSpacing = 10.0;
@@ -40,6 +41,11 @@
 
 - (NSMutableArray<NSString *> *)sets {
     return _sets;
+}
+
+- (void)setDisplay1RM:(BOOL)display1RM {
+    _display1RM = display1RM;
+    [self reloadData];
 }
 
 #pragma mark - collectionView dataSource
@@ -74,6 +80,7 @@
         return cell;
     }
     SetCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
+    cell.display1RM = self.display1RM;
     [cell loadSetWithString:self.sets[self.sets.count-(indexPath.row-1)-1] weightSuffix:self.settings.weightSuffix];
     return cell;
 }

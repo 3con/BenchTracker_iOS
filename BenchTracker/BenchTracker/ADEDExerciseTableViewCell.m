@@ -13,7 +13,6 @@
 
 @interface ADEDExerciseTableViewCell()
 @property (weak, nonatomic) IBOutlet UILabel *badgeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @property (weak, nonatomic) IBOutlet SetSummaryCollectionView *collectionView;
@@ -42,11 +41,11 @@
     else                                                        s = @"Max: N/A";
     self.badgeLabel.text = s;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"MMMMM d ''yy:";
-    self.dateLabel.text = [formatter stringFromDate:exercise.workout.date];
+    formatter.dateFormat = @"MMM d ''yy:";
     if (exercise.iteration && ![exercise.iteration isEqualToString:@"(null)"])
          self.titleLabel.text = [NSString stringWithFormat:@"%@ %@",exercise.iteration,exercise.name];
     else self.titleLabel.text = exercise.name;
+    self.titleLabel.text = [NSString stringWithFormat:@"%@ %@",[formatter stringFromDate:exercise.workout.date], self.titleLabel.text];
     self.collectionView.backgroundColor = [UIColor whiteColor];
     self.collectionView.textColor = self.color;
     self.collectionView.sets = [NSKeyedUnarchiver unarchiveObjectWithData:exercise.sets];

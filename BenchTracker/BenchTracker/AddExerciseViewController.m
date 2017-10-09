@@ -197,7 +197,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 32;
+    return 35;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -247,6 +247,7 @@
 #pragma mark - tap gesture delegate
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
+    [self.searchBar resignFirstResponder];
     UITableView *tableView = (UITableView *)gestureRecognizer.view;
     CGPoint p = [gestureRecognizer locationInView:gestureRecognizer.view];
     NSIndexPath *indexPath = [tableView indexPathForRowAtPoint:p];

@@ -146,6 +146,8 @@
 
 - (void)selectAppropriatePickerViewRows {
     NSArray <NSString *> *set = [self.collectionView.sets.lastObject componentsSeparatedByString:@" "];
+    NSArray <NSString *> *prevInstanceSets = [NSKeyedUnarchiver unarchiveObjectWithData:[self.exercise lastInstance].sets];
+    if (!set && prevInstanceSets) set = [prevInstanceSets.firstObject componentsSeparatedByString:@" "];
     if ([self styleIs:STYLE_REPSWEIGHT]) {
         self.centerTextField.alpha = 0;
         self.centerTextField.userInteractionEnabled = NO;
@@ -345,7 +347,7 @@
         float weight = (val3 >= 0) ? val3 :
         (float)[self.pickerView viewForRow:[self.pickerView selectedRowInComponent:1] forComponent:1].tag;
         if (weight == 11)   result = [NSString stringWithFormat:@"%d 12.5",reps];
-        else                result = [NSString stringWithFormat:@"%d %.1f",reps,weight];
+        else                result = [NSString stringWithFormat:@"%d %.0f",reps,weight];
     }
     else if ([self styleIs:STYLE_REPS]) {
         int reps = (val2 >= 0) ? val2 :
@@ -362,7 +364,7 @@
         (int)[self.pickerView viewForRow:[self.pickerView selectedRowInComponent:0] forComponent:0].tag;
         float weight = (val3 >= 0) ? val3 :
         (float)[self.pickerView viewForRow:[self.pickerView selectedRowInComponent:1] forComponent:1].tag;
-        result = [NSString stringWithFormat:@"s %d %.1f",time,weight];
+        result = [NSString stringWithFormat:@"s %d %.0f",time,weight];
     }
     else result = [NSString stringWithFormat:@"~ %@",self.textField.text];
     return result;

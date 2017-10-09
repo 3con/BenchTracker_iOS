@@ -130,6 +130,7 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"MMMMM d";
     for (BTExercise *exercise in self.fetchedResultsController.fetchedObjects) {
+        if (xAxisArr.count >= MIN(15, (self.view.frame.size.width-80)/38)) break;
         [xAxisArr addObject:[formatter stringFromDate:exercise.workout.date]];
         [yAxisArr addObject:[NSNumber numberWithFloat:exercise.oneRM]];
     }
@@ -259,8 +260,8 @@
     if (_fetchedResultsController != nil) return _fetchedResultsController;
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"BTExercise"];
     [self updateFetchRequest:fetchRequest];
-    fetchRequest.fetchLimit = 8;
-    fetchRequest.fetchBatchSize = 8;
+    fetchRequest.fetchLimit = 25;
+    fetchRequest.fetchBatchSize = 5;
     NSFetchedResultsController *theFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
                                                                 managedObjectContext:self.context sectionNameKeyPath:nil cacheName:nil];
     self.fetchedResultsController = theFetchedResultsController;

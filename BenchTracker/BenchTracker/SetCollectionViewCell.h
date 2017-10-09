@@ -12,6 +12,8 @@
 
 @property (nonatomic) UIColor *color;
 
+@property (nonatomic) BOOL display1RM;
+
 - (void)loadSetWithString:(NSString *)set weightSuffix:(NSString *)suffix;
 
 - (void)performDeleteAnimationWithDuration: (float)duration;

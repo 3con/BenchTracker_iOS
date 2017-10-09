@@ -8,6 +8,8 @@
 
 #import "WeekdayTableViewCell.h"
 #import "BTWorkout+CoreDataClass.h"
+#import "BTSettings+CoreDataClass.h"
+#import "WorkoutDetailsView.h"
 
 @interface WeekdayTableViewCell ()
 @property (weak, nonatomic) IBOutlet UIView *weekdayContainerView;
@@ -17,6 +19,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 
 @property (weak, nonatomic) IBOutlet BTStackedBarView *stackedView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentCenterConstraint;
+
+@property (weak, nonatomic) IBOutlet UIView *workoutDetailsContainerView;
+@property (nonatomic) WorkoutDetailsView *workoutDetailsView;
 
 @property (nonatomic) NSMutableArray <NSArray *> *tempSummary;
 
@@ -53,6 +59,21 @@
         if (workouts.count == 1) self.nameLabel.text = workouts[0].name;
         else self.nameLabel.text = [NSString stringWithFormat:@"%ld workouts",(unsigned long)workouts.count];
         [self loadStackedViewWithWorkouts:workouts];
+    }
+    if (workouts.count == 1 && [BTSettings sharedInstance].showWorkoutDetails) {
+        if (!self.workoutDetailsView) {
+            self.contentCenterConstraint.constant = -11;
+            self.workoutDetailsView = [[NSBundle mainBundle] loadNibNamed:@"WorkoutDetailsView" owner:self options:nil].firstObject;
+            self.workoutDetailsView.frame = CGRectMake(0, 0, self.frame.size.width, 20);
+            self.workoutDetailsView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+            [self.workoutDetailsContainerView addSubview:self.workoutDetailsView];
+        }
+        [self.workoutDetailsView loadWithWorkout:workouts.firstObject];
+    }
+    else if (self.workoutDetailsView) {
+        [self.workoutDetailsView removeFromSuperview];
+        self.workoutDetailsView = nil;
+        self.contentCenterConstraint.constant = 0;
     }
 }
 

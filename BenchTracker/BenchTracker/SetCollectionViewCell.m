@@ -7,6 +7,7 @@
 //
 
 #import "SetCollectionViewCell.h"
+#import "BT1RMCalculator.h"
 
 @interface SetCollectionViewCell ()
 
@@ -23,6 +24,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    self.display1RM = NO;
     self.containerView.backgroundColor = [UIColor BTSecondaryColor];
     self.deleteButton.backgroundColor = [UIColor BTRedColor];
     self.containerView.layer.cornerRadius = 12;
@@ -34,7 +36,7 @@
 - (void)loadSetWithString:(NSString *)set weightSuffix:(NSString *)suffix {
     if (self.color) self.containerView.backgroundColor = self.color;
     self.containerView.frame = CGRectMake(0, 0, 70, 45);
-    NSArray *strings = [set componentsSeparatedByString:@" "];
+    NSArray <NSString *> *strings = [set componentsSeparatedByString:@" "];
     if ([strings[0] isEqualToString:@"~"]) { //custom
         self.topLabel.text = @"Custom";
         self.bottomLabel.text = [set substringFromIndex:2];
@@ -51,8 +53,15 @@
     }
     else {
         if(strings.count == 2) { //repsWeight
-            self.topLabel.text = [NSString stringWithFormat:@"%@ reps",strings[0]];
-            self.bottomLabel.text = [NSString stringWithFormat:@"%@ %@",strings[1], suffix];
+            if (self.display1RM) {
+                self.topLabel.text = [NSString stringWithFormat:@"%@x%@",strings[0], strings[1]];
+                self.bottomLabel.text = [NSString stringWithFormat:@"%d %@",
+                     [BT1RMCalculator equivilentForReps:strings[0].intValue weight:strings[1].floatValue], suffix];
+            }
+            else {
+                self.topLabel.text = [NSString stringWithFormat:@"%@ reps",strings[0]];
+                self.bottomLabel.text = [NSString stringWithFormat:@"%@ %@",strings[1], suffix];
+            }
         }
         else { //reps
             self.topLabel.text = @"";

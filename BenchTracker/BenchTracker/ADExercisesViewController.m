@@ -19,7 +19,7 @@
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, retain) NSFetchRequest *cachedFetchRequest;
 
-@property (nonatomic) NSDictionary *exerciseTypeColors;
+@property (nonatomic) NSDictionary *exerciseTypeColors ;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic) UISearchBar *searchBar;

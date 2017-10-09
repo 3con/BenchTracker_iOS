@@ -23,4 +23,6 @@
 
 @property (nonatomic) NSMutableArray <NSString *> *sets;
 
+@property (nonatomic) BOOL display1RM;
+
 @end

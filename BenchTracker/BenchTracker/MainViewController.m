@@ -472,7 +472,10 @@
 #pragma mark - weekdayView delegate
 
 - (void)weekdayView:(WeekdayView *)weekdayView userSelectedDate:(NSDate *)date atPoint:(CGPoint)point {
-    [self presentWorkoutSelectionViewControllerWithOriginPoint:point date:date];
+    NSArray <BTWorkout *> *workouts = [BTWorkout workoutsBetweenBeginDate:date andEndDate:[date dateByAddingTimeInterval:60*60*24]];
+    if (!workouts || workouts.count == 0) return;
+    else if (workouts.count > 1) [self presentWorkoutSelectionViewControllerWithOriginPoint:point date:date];
+    else [self presentWorkoutViewControllerWithWorkout:workouts.firstObject];
 }
 
 #pragma mark - QRScanner delegate
