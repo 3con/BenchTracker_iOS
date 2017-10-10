@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,12 +17,12 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Level" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eL5-pJ-ohu">
-                    <rect key="frame" x="115" y="10" width="80" height="20"/>
+                    <rect key="frame" x="115" y="8" width="80" height="20"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="80" id="2sr-id-EIw"/>
                         <constraint firstAttribute="height" constant="20" id="knX-XR-UcT"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -46,7 +47,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hlz-aN-c4P">
-                    <rect key="frame" x="15" y="92" width="280" height="15"/>
+                    <rect key="frame" x="15" y="89" width="280" height="15"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oMi-sM-iBr">
                             <rect key="frame" x="0.0" y="0.0" width="0.0" height="15"/>
@@ -67,9 +68,9 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="hlz-aN-c4P" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" priority="750" constant="15" id="BXG-x5-5ZQ"/>
-                <constraint firstItem="eL5-pJ-ohu" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="NLK-nY-S9r"/>
-                <constraint firstItem="2N8-CK-A1f" firstAttribute="top" secondItem="hlz-aN-c4P" secondAttribute="bottom" constant="5" id="SBk-0h-7DT"/>
-                <constraint firstItem="5dz-87-cb7" firstAttribute="top" secondItem="eL5-pJ-ohu" secondAttribute="bottom" constant="6" id="gIH-Ft-7Lx"/>
+                <constraint firstItem="eL5-pJ-ohu" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="NLK-nY-S9r"/>
+                <constraint firstItem="2N8-CK-A1f" firstAttribute="top" secondItem="hlz-aN-c4P" secondAttribute="bottom" constant="8" id="SBk-0h-7DT"/>
+                <constraint firstItem="5dz-87-cb7" firstAttribute="top" secondItem="eL5-pJ-ohu" secondAttribute="bottom" constant="8" id="gIH-Ft-7Lx"/>
                 <constraint firstItem="hlz-aN-c4P" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ksT-yv-MdZ"/>
                 <constraint firstAttribute="bottom" secondItem="2N8-CK-A1f" secondAttribute="bottom" constant="10" id="pO7-xa-Ibn"/>
                 <constraint firstItem="5dz-87-cb7" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="tWq-ot-MLu"/>

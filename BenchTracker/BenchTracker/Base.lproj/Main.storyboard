@@ -2032,12 +2032,12 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9b7-gd-iDH">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <subviews>
-                                    <view multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4b5-Lj-FET">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G0b-W0-xaq">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <gestureRecognizers/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
-                                            <outletCollection property="gestureRecognizers" destination="hwB-xg-8Lo" appends="YES" id="awl-fK-iLt"/>
+                                            <outletCollection property="gestureRecognizers" destination="hwB-xg-8Lo" appends="YES" id="7hy-8t-B3F"/>
+                                            <outletCollection property="gestureRecognizers" destination="khL-V9-hrQ" appends="YES" id="2o4-dP-SHd"/>
                                         </connections>
                                     </view>
                                     <view opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GZv-Do-i4W">
@@ -2050,13 +2050,13 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Is This Even Healthy?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="19" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dRW-Rq-FZW">
-                                                <rect key="frame" x="155" y="25" width="179" height="50.333333333333314"/>
+                                                <rect key="frame" x="155" y="25" width="179" height="25.333333333333314"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Perform 10 or more sets of one exercise in one wokrout" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="13" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TnQ-eF-ADg">
-                                                <rect key="frame" x="155" y="85.333333333333314" width="179" height="54"/>
+                                                <rect key="frame" x="155" y="60.333333333333314" width="179" height="54"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
@@ -2071,7 +2071,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100 xp" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ykn-8F-eAy">
                                                 <rect key="frame" x="37.666666666666664" y="140" width="80" height="20"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="80" id="OqA-id-Egh"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="OqA-id-Egh"/>
                                                     <constraint firstAttribute="height" constant="20" id="qZL-Hv-Qod"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
@@ -2100,18 +2100,20 @@
                                             <constraint firstItem="dRW-Rq-FZW" firstAttribute="leading" secondItem="fN9-GK-Gqa" secondAttribute="trailing" constant="20" id="rVy-oU-HtY"/>
                                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="TnQ-eF-ADg" secondAttribute="bottom" constant="20" id="uyh-bF-phS"/>
                                         </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="hwB-xg-8Lo" appends="YES" id="wsE-dd-ArB"/>
+                                        </connections>
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="4b5-Lj-FET" firstAttribute="centerX" secondItem="9b7-gd-iDH" secondAttribute="centerX" id="7BP-bS-W8Q"/>
-                                    <constraint firstItem="4b5-Lj-FET" firstAttribute="centerY" secondItem="9b7-gd-iDH" secondAttribute="centerY" id="FNi-SR-6Pc"/>
-                                    <constraint firstItem="GZv-Do-i4W" firstAttribute="height" secondItem="9b7-gd-iDH" secondAttribute="height" multiplier="0.7" priority="999" id="baQ-hn-XNh"/>
-                                    <constraint firstAttribute="trailing" secondItem="4b5-Lj-FET" secondAttribute="trailing" id="bjn-S2-dOB"/>
-                                    <constraint firstItem="4b5-Lj-FET" firstAttribute="top" secondItem="9b7-gd-iDH" secondAttribute="top" id="cJI-Gd-RUr"/>
-                                    <constraint firstItem="4b5-Lj-FET" firstAttribute="leading" secondItem="9b7-gd-iDH" secondAttribute="leading" id="d6f-YD-95d"/>
-                                    <constraint firstAttribute="bottom" secondItem="4b5-Lj-FET" secondAttribute="bottom" id="epL-kj-uX1"/>
-                                    <constraint firstItem="GZv-Do-i4W" firstAttribute="leading" secondItem="9b7-gd-iDH" secondAttribute="leading" priority="800" constant="30" id="hjP-GM-t45"/>
+                                    <constraint firstItem="G0b-W0-xaq" firstAttribute="leading" secondItem="9b7-gd-iDH" secondAttribute="leading" id="3f7-ED-LOS"/>
+                                    <constraint firstItem="G0b-W0-xaq" firstAttribute="top" secondItem="9b7-gd-iDH" secondAttribute="top" id="8ou-7Q-Rz0"/>
+                                    <constraint firstAttribute="trailing" secondItem="G0b-W0-xaq" secondAttribute="trailing" id="8yu-rt-sVk"/>
+                                    <constraint firstItem="G0b-W0-xaq" firstAttribute="width" secondItem="9b7-gd-iDH" secondAttribute="width" id="AVu-Wu-Lr7"/>
+                                    <constraint firstItem="G0b-W0-xaq" firstAttribute="height" secondItem="9b7-gd-iDH" secondAttribute="height" id="NPO-Tw-Brq"/>
+                                    <constraint firstItem="GZv-Do-i4W" firstAttribute="leading" secondItem="9b7-gd-iDH" secondAttribute="leading" priority="800" constant="30" id="iC2-nQ-pPt"/>
                                     <constraint firstItem="GZv-Do-i4W" firstAttribute="centerY" secondItem="9b7-gd-iDH" secondAttribute="centerY" id="psI-Vv-Ueu"/>
+                                    <constraint firstAttribute="bottom" secondItem="G0b-W0-xaq" secondAttribute="bottom" id="qT3-Ng-wOB"/>
                                     <constraint firstItem="GZv-Do-i4W" firstAttribute="centerX" secondItem="9b7-gd-iDH" secondAttribute="centerX" id="saI-Jn-gXq"/>
                                 </constraints>
                             </scrollView>
@@ -2129,7 +2131,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="backgroundView" destination="4b5-Lj-FET" id="Khe-kW-fto"/>
+                        <outlet property="backgroundView" destination="wOR-Cf-jLy" id="eIH-Fw-Cn7"/>
                         <outlet property="badgeView" destination="pJw-VJ-3oG" id="Spm-WH-nrD"/>
                         <outlet property="containingView" destination="GZv-Do-i4W" id="ncd-me-fG9"/>
                         <outlet property="detailsLabel" destination="TnQ-eF-ADg" id="nac-EH-5tK"/>
@@ -2148,6 +2150,7 @@
                 <tapGestureRecognizer id="khL-V9-hrQ">
                     <connections>
                         <action selector="tapGesture2:" destination="iZw-kx-7xj" id="TEc-IY-k6r"/>
+                        <outlet property="delegate" destination="GZv-Do-i4W" id="X9l-m8-SSo"/>
                     </connections>
                 </tapGestureRecognizer>
                 <tapGestureRecognizer id="MU3-vY-Au2">

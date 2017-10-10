@@ -15,4 +15,6 @@
 @property (nonatomic) UIColor *backgroundColor;
 @property (nonatomic) UIColor *textColor;
 
+@property (nonatomic) BOOL enableOverlayLabel;
+
 @end

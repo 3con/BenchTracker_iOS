@@ -514,14 +514,14 @@
 			name = ADetailView;
 			sourceTree = "<group>";
 		};
-		50519B031F5C8D9A00C109E1 /* Workout Details */ = {
+		50519B031F5C8D9A00C109E1 /* Workout details */ = {
 			isa = PBXGroup;
 			children = (
 				50519B001F5C8D9500C109E1 /* WorkoutDetailsView.h */,
 				50519B011F5C8D9500C109E1 /* WorkoutDetailsView.m */,
 				50519B041F5C8DAC00C109E1 /* WorkoutDetailsView.xib */,
 			);
-			name = "Workout Details";
+			name = "Workout details";
 			sourceTree = "<group>";
 		};
 		50530C271F50BC4400472426 /* Set Collection View */ = {
@@ -1191,8 +1191,8 @@
 				F9AF067B1F07535C003A2200 /* WorkoutTableViewCell.h */,
 				F9AF067C1F07535C003A2200 /* WorkoutTableViewCell.m */,
 				F9AF067D1F07535C003A2200 /* WorkoutTableViewCell.xib */,
-				50519B031F5C8D9A00C109E1 /* Workout Details */,
 				F9AF06841F075973003A2200 /* Stacked bar */,
+				50519B031F5C8D9A00C109E1 /* Workout details */,
 			);
 			name = "Workout cell";
 			sourceTree = "<group>";

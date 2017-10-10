@@ -10,6 +10,7 @@
 #import "SetFlowLayout.h"
 
 @interface SetSummaryCollectionView ()
+@property (nonatomic) UILabel *overlayLabel;
 @property (nonatomic) int maxCells;
 @end
 
@@ -21,6 +22,7 @@
     [super awakeFromNib];
     self.delegate = self;
     self.dataSource = self;
+    self.enableOverlayLabel = NO;
     self.userInteractionEnabled = NO;
     self.showsHorizontalScrollIndicator = NO;
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
@@ -30,6 +32,11 @@
     flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     [self setCollectionViewLayout:flowLayout];
     [self registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"Cell"];
+    self.overlayLabel = [[UILabel alloc] initWithFrame:CGRectMake(8, 0, 120, 18)];
+    self.overlayLabel.textColor = [UIColor colorWithWhite:1 alpha:.6];
+    self.overlayLabel.font = [UIFont systemFontOfSize:10 weight:UIFontWeightSemibold];
+    self.overlayLabel.text = @"Tap to add sets";
+    [self addSubview:self.overlayLabel];
 }
 
 - (void)layoutSubviews {
@@ -48,10 +55,17 @@
     return _sets;
 }
 
+- (void)setEnableOverlayLabel:(BOOL)enableOverlayLabel {
+    _enableOverlayLabel = enableOverlayLabel;
+    self.overlayLabel.alpha = enableOverlayLabel && (!self.sets || self.sets.count == 0);
+}
+
 #pragma mark - collectionView dataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return (self.sets) ? MIN(self.sets.count, self.maxCells) : 0;
+    int count = (self.sets) ? MIN(self.sets.count, self.maxCells) : 0;
+    self.overlayLabel.alpha = self.enableOverlayLabel && !count;
+    return count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {

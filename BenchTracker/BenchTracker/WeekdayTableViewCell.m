@@ -64,15 +64,17 @@
         if (!self.workoutDetailsView) {
             self.contentCenterConstraint.constant = -11;
             self.workoutDetailsView = [[NSBundle mainBundle] loadNibNamed:@"WorkoutDetailsView" owner:self options:nil].firstObject;
-            self.workoutDetailsView.frame = CGRectMake(0, 0, self.frame.size.width, 20);
+            self.workoutDetailsView.frame = CGRectMake(0, 0, self.workoutDetailsContainerView.frame.size.width, 20);
             self.workoutDetailsView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
             [self.workoutDetailsContainerView addSubview:self.workoutDetailsView];
         }
         [self.workoutDetailsView loadWithWorkout:workouts.firstObject];
     }
-    else if (self.workoutDetailsView) {
-        [self.workoutDetailsView removeFromSuperview];
-        self.workoutDetailsView = nil;
+    else {
+        if (self.workoutDetailsView) {
+            [self.workoutDetailsView removeFromSuperview];
+            self.workoutDetailsView = nil;
+        }
         self.contentCenterConstraint.constant = 0;
     }
 }

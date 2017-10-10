@@ -117,7 +117,7 @@
     adVC.originPoint = point;
     self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:adVC];
     self.animator.bounces = NO;
-    self.animator.dragable = YES;
+    self.animator.dragable = NO;
     self.animator.behindViewAlpha = 1.0;
     self.animator.behindViewScale = 1.0;
     self.animator.transitionDuration = 0.0;

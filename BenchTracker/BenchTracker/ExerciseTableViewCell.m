@@ -60,6 +60,7 @@
         self.colorView2.backgroundColor = self.color;
         self.colorView3.backgroundColor = self.color;
     }
+    self.collectionView.enableOverlayLabel = YES;
     self.collectionView.backgroundColor = [UIColor whiteColor];
     self.collectionView.textColor = [UIColor BTSecondaryColor];
     self.collectionView.sets = [NSKeyedUnarchiver unarchiveObjectWithData:self.exercise.sets];

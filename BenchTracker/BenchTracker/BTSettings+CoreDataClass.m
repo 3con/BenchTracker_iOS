@@ -28,7 +28,7 @@
     self.exerciseTypeColors = nil;
     self.startWeekOnMonday = YES;
     self.disableSleep = YES;
-    self.showWorkoutDetails = NO;
+    self.showWorkoutDetails = YES;
     self.showEquivalencyChart = YES;
     self.showLastWorkout = YES;
     self.weightInLbs = ![[[NSLocale currentLocale] objectForKey:NSLocaleUsesMetricSystem] boolValue];
