@@ -136,8 +136,8 @@
     if (_fetchedResultsController != nil) return _fetchedResultsController;
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"BTWorkout"];
     [self updateFetchRequest:fetchRequest];
-    fetchRequest.fetchLimit = 10;
-    fetchRequest.fetchBatchSize = 10;
+    fetchRequest.fetchBatchSize = 5;
+    fetchRequest.fetchLimit = 25;
     NSFetchedResultsController *theFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
                                                                managedObjectContext:self.context sectionNameKeyPath:nil cacheName:nil];
     self.fetchedResultsController = theFetchedResultsController;

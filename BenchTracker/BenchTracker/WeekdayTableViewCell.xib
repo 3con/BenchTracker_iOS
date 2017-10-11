@@ -50,7 +50,7 @@
                         <constraint firstItem="aCf-OG-vm4" firstAttribute="centerX" secondItem="Yzz-q3-UIA" secondAttribute="centerX" id="oNr-mY-aTu"/>
                     </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Afternoon Workout" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hXL-RF-imJ">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="500" text="Afternoon Workout" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hXL-RF-imJ">
                     <rect key="frame" x="75" y="21.5" width="165" height="25"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="25" id="7xL-sL-P9j"/>

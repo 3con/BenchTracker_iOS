@@ -35,11 +35,11 @@
     userModel.xp = [NSNumber numberWithInt:user.xp];
     userModel.imageData = [[NSString alloc] initWithData:user.imageData encoding:NSUTF8StringEncoding];
     userModel.weight = [NSNumber numberWithInt:user.weight];
-    userModel.totalDuration = [NSNumber numberWithInteger:user.totalDuration];
-    userModel.totalVolume = [NSNumber numberWithInteger:user.totalVolume];
-    userModel.totalWorkouts = [NSNumber numberWithInteger:user.totalWorkouts];
-    userModel.currentStreak = [NSNumber numberWithInteger:user.currentStreak];
-    userModel.longestStreak = [NSNumber numberWithInteger:user.longestStreak];
+    userModel.totalDuration = [NSNumber numberWithLongLong:user.totalDuration];
+    userModel.totalVolume = [NSNumber numberWithLongLong:user.totalVolume];
+    userModel.totalWorkouts = [NSNumber numberWithLongLong:user.totalWorkouts];
+    userModel.currentStreak = [NSNumber numberWithLongLong:user.currentStreak];
+    userModel.longestStreak = [NSNumber numberWithLongLong:user.longestStreak];
     transferModel.user = userModel;
     //SERIALIZE SETTINGS
     BTSettingsModel *settingsModel = [[BTSettingsModel alloc] init];

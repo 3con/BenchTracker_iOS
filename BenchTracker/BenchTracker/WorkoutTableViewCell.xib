@@ -20,15 +20,15 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NXR-R8-h71" customClass="BTStackedBarView">
-                        <rect key="frame" x="206" y="10" width="198" height="40"/>
+                        <rect key="frame" x="201" y="10" width="205" height="40"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="4mg-TT-89j"/>
                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="280" id="JPq-B2-w9u"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Afternoon Workout" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="La5-Wr-E7U">
-                        <rect key="frame" x="11" y="25" width="185" height="28"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="500" text="Afternoon Workout" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="La5-Wr-E7U">
+                        <rect key="frame" x="6" y="25" width="185" height="28"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="28" id="49c-xk-aXg"/>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="185" id="Co9-j0-ASx"/>
@@ -37,17 +37,17 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Monday, June 30th" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rdh-Kp-cdO">
-                        <rect key="frame" x="26" y="7" width="170" height="20"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" text="Thursday, September 29" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="Rdh-Kp-cdO">
+                        <rect key="frame" x="21" y="7" width="170" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="JIo-D2-Q3C"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Calendar" translatesAutoresizingMaskIntoConstraints="NO" id="tXK-fV-KKf">
-                        <rect key="frame" x="13" y="12" width="10" height="10"/>
+                        <rect key="frame" x="8" y="12" width="10" height="10"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="10" id="jGl-du-0pV"/>
                             <constraint firstAttribute="width" constant="10" id="zQ2-SP-Msc"/>
@@ -56,8 +56,8 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="NXR-R8-h71" firstAttribute="top" secondItem="oBe-7l-kk9" secondAttribute="topMargin" constant="2" id="34b-7F-SUT"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="NXR-R8-h71" secondAttribute="trailing" constant="2" id="9db-Z9-6rG"/>
-                    <constraint firstItem="tXK-fV-KKf" firstAttribute="leading" secondItem="oBe-7l-kk9" secondAttribute="leadingMargin" constant="5" id="EjH-HK-gE8"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="NXR-R8-h71" secondAttribute="trailing" id="9db-Z9-6rG"/>
+                    <constraint firstItem="tXK-fV-KKf" firstAttribute="leading" secondItem="oBe-7l-kk9" secondAttribute="leadingMargin" id="EjH-HK-gE8"/>
                     <constraint firstItem="Rdh-Kp-cdO" firstAttribute="leading" secondItem="tXK-fV-KKf" secondAttribute="trailing" constant="3" id="O8X-ab-qB9"/>
                     <constraint firstItem="Rdh-Kp-cdO" firstAttribute="centerY" secondItem="tXK-fV-KKf" secondAttribute="centerY" id="Ri8-N6-bY3"/>
                     <constraint firstItem="Rdh-Kp-cdO" firstAttribute="trailing" secondItem="La5-Wr-E7U" secondAttribute="trailing" id="SKy-lX-fDG"/>
