@@ -193,7 +193,7 @@
         for (int index = 0; index < xLabels.count; index++) {
             labelText = xLabels[index];
 
-            NSInteger x = (index * _xLabelWidth + _chartMarginLeft);
+            NSInteger x = (index * _xLabelWidth + _chartMarginLeft + _xLabelWidth / 2.0);
             NSInteger y = _chartMarginBottom + _chartCavanHeight;
 
             PNChartLabel *label = [[PNChartLabel alloc] initWithFrame:CGRectMake(x, y, (NSInteger) _xLabelWidth, (NSInteger) _chartMarginBottom)];
@@ -495,7 +495,7 @@
             last_y = y;
         }
 
-        if (self.showSmoothLines && chartData.itemCount >= 3) {
+        if (self.showSmoothLines && chartData.itemCount >= 4) {
             [progressline moveToPoint:[progrssLinePaths[0][@"from"] CGPointValue]];
             for (NSDictionary<NSString *, NSValue *> *item in progrssLinePaths) {
                 CGPoint p1 = [item[@"from"] CGPointValue];
@@ -545,7 +545,7 @@
             CAShapeLayer *chartLine = [CAShapeLayer layer];
             chartLine.lineCap = kCALineCapButt;
             chartLine.lineJoin = kCALineJoinMiter;
-            chartLine.fillColor = [[UIColor clearColor] CGColor];
+            chartLine.fillColor = [[UIColor whiteColor] CGColor];
             chartLine.lineWidth = chartData.lineWidth;
             chartLine.strokeEnd = 0.0;
             [self.layer addSublayer:chartLine];
@@ -755,7 +755,7 @@
 - (void)setupDefaultValues {
     [super setupDefaultValues];
     // Initialization code
-    self.backgroundColor = [UIColor clearColor];
+    self.backgroundColor = [UIColor whiteColor];
     self.clipsToBounds = YES;
     self.chartLineArray = [NSMutableArray new];
     _showLabel = YES;

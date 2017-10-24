@@ -10,14 +10,12 @@
 		009C79BE88C2F4C986644CD3E0B088C2 /* JSONModelClassProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = 1452E73B0989467E98B580F0AD13B32A /* JSONModelClassProperty.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		01862E3DCB91BDA0B2F9BF024438DF78 /* PNChart.h in Headers */ = {isa = PBXBuildFile; fileRef = 159928B5BB5F4A916F972B5DD0F0DE43 /* PNChart.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		01981143CB5A89ED0D6A2FF14036EE17 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 489E8904CF97745B02DE27E0B434CF25 /* UIKit.framework */; };
-		02FABE1669CAAEDA7EF7CAA2831294DE /* fi.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 8B70EAA82EABAAB65BE222050F292558 /* fi.lproj */; };
+		02C3B5C4CB40FFA9F7D5BF21A06E062F /* MGSwipeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 127D97915E5C6C1CBF83006430AD78F3 /* MGSwipeButton.m */; };
 		03CFA8137341B3E445B0530DEAB75DE5 /* NSExpression+XLFormAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 87D2C364FD9D7B57E53F18E7FA0DCFF8 /* NSExpression+XLFormAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0613930CE4BE9AFFC32769EC8383D23E /* cs.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 77D0B0207A7433DAE5DBA668DD4D6182 /* cs.lproj */; };
 		06697BBB6E6D73B5F021E6DACAC5DE45 /* JSONAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 54F4B61206A135474243B4F2F3F801E8 /* JSONAPI.m */; };
 		06724437C19D93B32D7704B0C849BCB6 /* PNPieChart.h in Headers */ = {isa = PBXBuildFile; fileRef = ADBD17C6585FE6DCA1AA86EDF11CE0BE /* PNPieChart.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		068F6DF04EF0371EEC29C6787B63910B /* NSObject+MJProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F6E753E46DF37C57102CFBF12868B6 /* NSObject+MJProperty.m */; };
 		06BD3AE5C01BA2498B2B3037F7A10C0F /* XLFormButtonCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 6C3044D561C56CAC5F3A1362D75665B4 /* XLFormButtonCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		077CC403DA16EE7CB0D9FFE27AEA9F5A /* zh-Hant.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E404BD93B5A1A5B954B0A176BA7163B2 /* zh-Hant.lproj */; };
 		07FC26D6DE6C859085DBAD6486919D7C /* MMScanerLayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C58447DB0B80E7AA89343A5C106E24B0 /* MMScanerLayerView.m */; };
 		08602A78281C52EAF750F49448DB1D05 /* XLFormOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0BEFE7227F863E24451A0C691EECD67 /* XLFormOptionsViewController.m */; };
 		094E6ECE34F0CCB085FAA095D24708F4 /* MJPropertyType.m in Sources */ = {isa = PBXBuildFile; fileRef = 2477D41AFDB25F1CAB4F2509E03FDC2A /* MJPropertyType.m */; };
@@ -27,6 +25,7 @@
 		0B1C5725C7BE03D622114275D6FD6EFA /* JSONModelError.m in Sources */ = {isa = PBXBuildFile; fileRef = C71686151190C76FE3F766067E8D152D /* JSONModelError.m */; };
 		0B67D51C35E79EE135E38084317053DA /* NSObject+MJKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 83282B33613C3AAC097E05CC038A3103 /* NSObject+MJKeyValue.m */; };
 		0C6497EDE565C03C57BFF1D46441D039 /* UIBarButtonItem+WZLBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 92976921DE2AB5D334EE28CD3521ECBF /* UIBarButtonItem+WZLBadge.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		0D5B4AE735F90B2F10B4F9B6D05C01FF /* fa.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 7F4E4BC6B0EC9BD3A1665845A3AAB07A /* fa.lproj */; };
 		0DC0E835D168E963777413E5315E7294 /* Pods-BenchTrackerTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BA08979B3F92C94250EAB8B74435B9A1 /* Pods-BenchTrackerTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0DD46AF65FABE6D2BDE4501F807046A6 /* FSCalendarAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 1972BB13BF7E9E6277DC458C3DEA4BE2 /* FSCalendarAppearance.m */; };
 		0E62ACA3CA147C7F014A71F617A7E736 /* OnboardingViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 0FEB4DC1557241C3C9EE8690127DADD7 /* OnboardingViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -34,38 +33,40 @@
 		0E9A8FBCF70E343103AB476F5BDA9ABE /* PNChart-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AFBD76643C4450560624DDB08A8B2AC /* PNChart-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0F0E03786123500A3FC6E1D8FC25E08D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E13CCB1FFF1F419F92A8A3D3A42A4FE8 /* QuartzCore.framework */; };
 		0F398E26AE00E6F38D5806634A484BFC /* PNRadarChartDataItem.h in Headers */ = {isa = PBXBuildFile; fileRef = B6D532426F824D467FE9AE7EBC400312 /* PNRadarChartDataItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		109255F460CF656303F5C867EF3FE415 /* ms.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 7740600B728E49E538545DFA8FDEC155 /* ms.lproj */; };
 		10EC8F4376F3540818D6C2E6D566006A /* XLFormSelectorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F21C06ECCFF54A2347198224EBC79D5F /* XLFormSelectorCell.m */; };
 		111C8CF5883F0D47F3A1E24CF4367B13 /* XLFormRowDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8243A02D97933164C84CBE45D34B33 /* XLFormRowDescriptor.m */; };
-		112B3AE3695C10E75BD89585295481AB /* MGSwipeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 127D97915E5C6C1CBF83006430AD78F3 /* MGSwipeButton.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		112DCD775337802DC4D3399297126E34 /* UITabBarItem+WZLBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = C45E14B9B8932668BB4B4D25273DA68F /* UITabBarItem+WZLBadge.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		11BC30AF5766EDF91B020F9EA7CD2E42 /* XLFormCheckCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E14C2B97080B4302AE0BC46A7E3D8D4F /* XLFormCheckCell.m */; };
 		11BF0A3C217C5233EF08A6A2623CEA80 /* NSObject+MJClass.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D4687CC3EEA4BD445F639CBAEA878BE /* NSObject+MJClass.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		173E8D21C0A81C2423CA36B65282F170 /* WZLBadge-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 353A84CC8162D58EF38DDADEA784A9D8 /* WZLBadge-dummy.m */; };
 		1788BE867FDF28BD47FE503242AF6739 /* MMScanerLayerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 7DE2C2F36CFC5B61B7BA5D36FB0851B7 /* MMScanerLayerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		181A9C4C01FE49B42A1F01A506873F56 /* MGSwipeTableCell-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 21901A8C220A5752440FE789B8DF5A7B /* MGSwipeTableCell-dummy.m */; };
 		1876E5B10A1D8053BF55A79659A99317 /* XLFormLeftRightSelectorCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60AF8FFFC9572C8172ED7EBA1BB231 /* XLFormLeftRightSelectorCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B4729BADACD79791EA33A99713D6A85 /* XLFormTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6815B2E08D551502CE9A0606C3F974DD /* XLFormTextView.m */; };
 		1BB3B5BC83FC923DA0AA0C49F8280187 /* MMQRCodeMakerUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D46EBD119F26E42FD325EB62AD0E8CF /* MMQRCodeMakerUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1CDA9CF3831C4BE7AC9F922031EDB667 /* MGSwipeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF296EA5DE9AE46386CD668CEEA1EC8 /* MGSwipeTableCell.m */; };
 		1E5A74555F64EC2F73F0ADE607D610C1 /* XLFormRegexValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 28AC28921AE9D28E727ABF9CADCD93CD /* XLFormRegexValidator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1F3AA5B9EBAAD134BF25B0B89FDF108B /* NSString+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = BB473E8C86F329FC25F67688260F6F80 /* NSString+MJExtension.m */; };
 		1FBFD94316326DCB9485F8704696806B /* MJExtensionConst.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EABC478316088B214BEB5DA3DEE1A57 /* MJExtensionConst.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		225B14FCF6AEE2A40690CE74E434FB76 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696799D8749B6EE28929C133234EDB6E /* SystemConfiguration.framework */; };
 		228396459A5DFEE20A11FCBE2322446B /* UICountingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 260ECB6646FDF7E9985F0DAE7FC42E9C /* UICountingLabel.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		22B7DDB8DA73ED6A63EFAE2CB203FEA3 /* de.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 76C16159C75A56BE77E8A150875F012A /* de.lproj */; };
 		2325BB8ED8892303FE9BCF68448EC94C /* HMSegmentedControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 44C857D8878438C36D55341DF7A4FA9B /* HMSegmentedControl.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		23507D26F66CCB366FE0F6C1A0D185D1 /* PNScatterChartDataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A50FE23CED3787744718AB31B16B3786 /* PNScatterChartDataItem.m */; };
 		23A61432726D24A016B974EB821E9E76 /* XLFormInlineRowDescriptorCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 131D3CD477FAB6388314C8C1E2DB0990 /* XLFormInlineRowDescriptorCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		243E3FBB25AD6B55CDF6971E0D22DA4F /* FSCalendarConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A20B346030BAFC61C3FD78884BBAAE /* FSCalendarConstants.m */; };
 		24C5ECBD884823490C4167F40B3F5AEB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E13CCB1FFF1F419F92A8A3D3A42A4FE8 /* QuartzCore.framework */; };
-		25B481D0CEF9F882498CC8C106751AD3 /* Appirater.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D24FAE6AB9126C8A3E9EE8D41620BF /* Appirater.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		26972794C2FBE7DD8758175B07C9C01E /* sk.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 13205105ABAB941B9BA34D73C2ED3503 /* sk.lproj */; };
-		27439D0E7749F8E8E4D9700B532D2EA7 /* fr.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 307175472A3787F4CA80CC0C0B93BE0E /* fr.lproj */; };
+		25B481D0CEF9F882498CC8C106751AD3 /* Appirater.m in Sources */ = {isa = PBXBuildFile; fileRef = 40C3691C26C0641F78369C8DD29F12C8 /* Appirater.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		275CDB94DE5627044CA1E5689E71006A /* PNScatterChartData.m in Sources */ = {isa = PBXBuildFile; fileRef = 140B4646EF20F8E7315C7E95E894244A /* PNScatterChartData.m */; };
+		27713DA898925D0F8D3A3FBCD243D00B /* fi.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 9928DB7CF622575BDF4E18029D332CE2 /* fi.lproj */; };
 		2783A89B7A418C644E008383404B5CA0 /* HMSegmentedControl-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8458C7039CCA7A7A14DA635E8615FA91 /* HMSegmentedControl-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2898EDEAC13CF9515CF3A8EDD8ACBB63 /* ro.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 948A88B562EE6C40A0C557300E44C3DF /* ro.lproj */; };
 		2A670F9A61E0A74AE89985B0AB73EBD8 /* PNPieChartDataItem.h in Headers */ = {isa = PBXBuildFile; fileRef = CD239F40B48BE2CAFB28C351507816EB /* PNPieChartDataItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2AA34E1C626C68C8981F944E0C3EF878 /* XLFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 328FD131E7EFFED6D1EA6740FEEF0C34 /* XLFormViewController.m */; };
 		2ADF132959EC543C0C658E82DED1C61A /* UITabBarItem+WZLBadge.h in Headers */ = {isa = PBXBuildFile; fileRef = 1592FA272604166524E4A9824DA591DF /* UITabBarItem+WZLBadge.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2AFB0AFA2138181E162CD00669D87FE3 /* JSONModelError.h in Headers */ = {isa = PBXBuildFile; fileRef = 36BFA83E1BBC7084AF03FCA7AC43A0B6 /* JSONModelError.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2E04F7FD19DB0B64EA10207786F864EB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CABF3684DCF9EDD8A36388B55242D18B /* Foundation.framework */; };
+		2E06EA179A31CB60BD3DAC6ACD0D8B4E /* vi.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E2B9408618598257FD66BB96CD500355 /* vi.lproj */; };
 		2E284CF758390FF6BECD8C5ADE4EB05A /* XLFormInlineSelectorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F8B8B5BE48113E92419DB045BAFB284 /* XLFormInlineSelectorCell.m */; };
 		306A024E4E277492DE317E975975B2F3 /* NSString+XLFormAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A34EA8446B9B956AF073B31ED8AAF2F /* NSString+XLFormAdditions.m */; };
 		30D3210324DB17502F91862D181A5DAA /* PNBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 9632B5E4056864388A5BC5378AEA256F /* PNBar.m */; };
@@ -73,18 +74,20 @@
 		33CFA59A607BED52CF98BFF25C05A67E /* XLFormSelectorCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 93308D07932A06005C5BF0C4EBD27AD9 /* XLFormSelectorCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		33F866E0F14222965403E3FBC5652F4B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CABF3684DCF9EDD8A36388B55242D18B /* Foundation.framework */; };
 		343F1D67EEB15ABCF39561021830ED7C /* XLFormTextViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 7CB4C041FB21D456FC6ADC05D7E08AB9 /* XLFormTextViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		34863D3F3C70F6332CAED604F135A641 /* es.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6901F3C041230EAD39E85A6C90AFD89D /* es.lproj */; };
+		359060418B6B6CBBF4AEE26AFEDC0875 /* pt-BR.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 047B8BDD5A9B1EFFABD3E4B166BC8BD2 /* pt-BR.lproj */; };
 		3651E8C536C1B76EAD52E63C0937E2BC /* XLFormRightDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 72CAEC1F8DA8FEE22009E1D2188705B4 /* XLFormRightDetailCell.m */; };
+		36791B025A1B6701886A4F76D6E37148 /* id.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 28FEE2443F63628D5262AD82C0A1B993 /* id.lproj */; };
 		36E344E5B627E04368ECC96338E17F26 /* JSONModel-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = EDA715F415135CF4C941A0EA89B05629 /* JSONModel-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3700E39779C6927023774CFDA53B8AD9 /* ZFDragableModalTransition-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 13491B158405286AF8B85287CCCB7460 /* ZFDragableModalTransition-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		375CA764E1443626A0D38657594A969C /* XLFormOptionsObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 628BEB4C3F4277CD99FF808978B1C94D /* XLFormOptionsObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		375E483BD7C0630E14787F377E3C1C3D /* he.lproj in Resources */ = {isa = PBXBuildFile; fileRef = AF949213040C513C3B09A56AEECC97AF /* he.lproj */; };
 		37F6913EE3CD6EB8715086F0C9F6A823 /* JSONValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2001027B13A0356550A705AA20485326 /* JSONValueTransformer.m */; };
 		37FD169854FF4B397051998D611F152A /* JSONModel.h in Headers */ = {isa = PBXBuildFile; fileRef = DBEDAD224BD314972A34C0372371D194 /* JSONModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		383448308BB9C5CB67073E0A8DED4A43 /* NSObject+MJProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = BC9CBBE8AF33D43F4AD199B6C022671B /* NSObject+MJProperty.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3859D836A505E40365B6097CF7D824E0 /* XLFormTextViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A70DE6542A2C0A884DDD0E1E7752E8F /* XLFormTextViewCell.m */; };
 		38AC0110D3C3F9A53F55A08783735148 /* XLFormDatePickerCell.h in Headers */ = {isa = PBXBuildFile; fileRef = D1276CA3B861F94FAB3B813C38B0EF72 /* XLFormDatePickerCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		38B99715207D14F4FBCAB2ED994D9502 /* ja.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 18AC2C50CB96FFD716CE9E35B0FE4EBD /* ja.lproj */; };
 		3951AA0F503376DDF9D6FF81717EC1DB /* PNScatterChart.h in Headers */ = {isa = PBXBuildFile; fileRef = 6C38A5616A4909318F1A53024E1885B6 /* PNScatterChart.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3A17985EB1DB111D7257B12918C4DC1E /* ko.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 7A75948C11F30176C29841EA4F468330 /* ko.lproj */; };
 		3A36F47E23E16C96430875DF6E35776A /* MMScannerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 898B2F5AB662DF9CA51DD2FCA0FFBEFA /* MMScannerController.m */; };
 		3AC15173020E259610CF4815F8745861 /* scan_flashlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3ADDF08AA427EBA8250526207CF7BA /* scan_flashlight@2x.png */; };
 		3AFD533C942D8681B68B17BCD3C995F6 /* PNGenericChart.m in Sources */ = {isa = PBXBuildFile; fileRef = C907FA50875700948E7B6BE6F600B5F7 /* PNGenericChart.m */; };
@@ -93,37 +96,35 @@
 		3E42E1A51027FC2E0D730726A0F7628F /* UIView+XLFormAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 806FC382817881635F3FF5F892D524C4 /* UIView+XLFormAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3F006C5DA2EEA45E157440B08535F16C /* PNScatterChartDataItem.h in Headers */ = {isa = PBXBuildFile; fileRef = B654CBFF869E04C833852FC6B51D1106 /* PNScatterChartDataItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3F10E4FC783D4B3093FA446C31A3EF91 /* WZLBadge-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 29B572DBDE8EDA45AB345D5BEA6B9283 /* WZLBadge-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3FB1E8FB0404827E61447392E2315311 /* pl.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 574B38C71285E729B1A5A834197F0509 /* pl.lproj */; };
 		40A6216FC50B4540584DA1C45F98F9FD /* JSONModelClassProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA42D8B0605495199AC9B22F4D0729E /* JSONModelClassProperty.m */; };
+		4113152F32729488101F2AB09CB37DDE /* ca.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 598314A861B9F59B30762E9659B47E4C /* ca.lproj */; };
 		415EFB6537A3F68F71C09A5B099DCC8A /* PNColor.h in Headers */ = {isa = PBXBuildFile; fileRef = F615BB8C4B531266F1F3094A68F58979 /* PNColor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		43108E20843C6A047C34B89A63CDE9C6 /* PNChart-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FFA37B73A50A90DFE7DD61D46C7F7 /* PNChart-dummy.m */; };
 		44EC5C3A8518407ADEECF684519D7044 /* WZLBadgeImport.h in Headers */ = {isa = PBXBuildFile; fileRef = 755ABB740FD17FAA2A5A58BF38CB5BBE /* WZLBadgeImport.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		44FBBB6C9C0F9F99219F55C118D58E33 /* vi.lproj in Resources */ = {isa = PBXBuildFile; fileRef = C70B9DE2168F986B4C98FEEB32F0650B /* vi.lproj */; };
 		4580169509C61E860DABF75D368158B9 /* XLFormRowNavigationAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 09FD4E80C951451B931E3C317809DDBF /* XLFormRowNavigationAccessoryView.m */; };
 		46A25D83359A3A8F1D563DEAB2B1D4AC /* XLFormDescriptorDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 8A84501709C20B460E6A6E911517861D /* XLFormDescriptorDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		47EB05F507CC96A5A8778049FA04E494 /* PNLineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9FC0CFB7CF29690ED115E92A25AFDC /* PNLineChart.m */; };
 		487D0BC3637D5AEEA43F1DC891A5F1F8 /* XLFormLeftRightSelectorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F7E457D50675D70D4AD40283778066 /* XLFormLeftRightSelectorCell.m */; };
 		48DDDBE666D53EFA2CC8A8FE6C221902 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8EFAD6CB269C76AD70078856711C317 /* AVFoundation.framework */; };
-		4931B820C9FD977F0E19AE7A1B0421F4 /* es.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 54C83C40B70BAEA14822C5F4D708C5DC /* es.lproj */; };
+		494772608F4C99B9DB79187F5B18332B /* ja.lproj in Resources */ = {isa = PBXBuildFile; fileRef = DCBC34E29FAC5A443215832A7221FEA4 /* ja.lproj */; };
 		49DBBCC302C3055F99A1F860042CC4CE /* PNBarChart.h in Headers */ = {isa = PBXBuildFile; fileRef = FBE1CBB4F2EE27D7B9DFED66CD85BF23 /* PNBarChart.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49F1C59A34E52484FD2B6462CE8D7C91 /* FSCalendarDelegationProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = B4D1BAD863506BA02BCA7E319DEF78A0 /* FSCalendarDelegationProxy.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4BB81B6379B6B721CE16D8B81DD784EA /* Appirater-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C85E7947DF9EEAED2955D3F07E6D5975 /* Appirater-dummy.m */; };
+		4BB81B6379B6B721CE16D8B81DD784EA /* Appirater-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C79C6C7FCF3CEC1E5F4F2B3106A59DE /* Appirater-dummy.m */; };
 		4C807CC693F2B2D105C256F9509A09C2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CABF3684DCF9EDD8A36388B55242D18B /* Foundation.framework */; };
 		4D871E78B0F660F6B50FC41EF7462E97 /* PNRadarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 84135D9CA53D4C3F02FF1B050E7C50CB /* PNRadarChart.m */; };
 		4E546FE3E7EC37C7300F189766082A39 /* UICountingLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = F0657542D9876215D28D8443C3F76B84 /* UICountingLabel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4EB17293737C717D12298CFFE6A67514 /* JSONAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = E8F3D3E91658A64624CC2CC95F4C8391 /* JSONAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4FE9A30258F3440ED66B2D6113F6E692 /* nl.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 869966BFC59E1BC909D7C7FE126840BB /* nl.lproj */; };
+		50574E077671E9E93F7E87B0374B7AD4 /* nl.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 794173AE5FA4C63C9AC77CDC9486DA93 /* nl.lproj */; };
 		52BD11DFF483E8DC0B953A3CC3DBA39C /* UIView+WZLBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C6E1F5F6426F451FBBAEF9D4ED12DF4 /* UIView+WZLBadge.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		52C04BC5A16E7D5DA43317B7622E4B5B /* th.lproj in Resources */ = {isa = PBXBuildFile; fileRef = D0699487553DFA2301108093CB663D84 /* th.lproj */; };
 		52CF3BFF22091A19D9609D7574EAA043 /* UIBarButtonItem+WZLBadge.h in Headers */ = {isa = PBXBuildFile; fileRef = 59A4860F2FFEB108C31D5A8E194A112E /* UIBarButtonItem+WZLBadge.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		53098D60D883B74A5C22DDA4F59A95C0 /* CAAnimation+WAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = DDEAA80126B4F105E34B40306DBC52AF /* CAAnimation+WAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5338D619E9D7397A5DB8F8032F87C4F0 /* XLFormDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D63BC0B1FA93416A4B55D47C9231DE /* XLFormDescriptor.m */; };
 		54383FD79CC1B25377969B2906978E7F /* XLFormDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = FE6B246D1B7E487CF4E7886456F274CE /* XLFormDescriptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		55554B26283AE1CC67DCD5B01D9F7710 /* pt-BR.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 315C46CF53A3E0ED22D007898C1814CF /* pt-BR.lproj */; };
 		55F4561E55A6CF264BEDB8FB18B5FA8C /* FSCalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A569C2D86E869FD512751940490C06A /* FSCalendarCell.m */; };
 		56E8D3068B66B2D4B6514CD08DF1862D /* XLFormBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3625589A2F170541F8952C2FF34D53F /* XLFormBaseCell.m */; };
 		57D4F36C483A487950FA1F143AE5DCBC /* FSCalendarDelegationFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = D83E485670D664EFCA4CEDA1C0359DFB /* FSCalendarDelegationFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		57FE38F17C0EDD5CF73B2A084A17586E /* JSONHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = B07DF9FE3E5E0AB92EFD14FA12E3C57E /* JSONHTTPClient.m */; };
-		581D92C30D24113E05FE0AFE09256611 /* ro.lproj in Resources */ = {isa = PBXBuildFile; fileRef = F932924A0EE505EA1CF287211754AF19 /* ro.lproj */; };
 		58388F773008AF671CE67FE1C902E6CB /* JSONKeyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 20B7FCEFD3D5485634F1BF216225F215 /* JSONKeyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		58C2898CC1D11302A9075A7A615052B2 /* XLFormTextFieldCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 3440DC0F304920B16008340021D648C9 /* XLFormTextFieldCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		58EFF22FEFA78894F9F808799F961BD5 /* MJProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = 912FD4DD151E7DFE9764E7AA87EC7331 /* MJProperty.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -133,9 +134,9 @@
 		5BD2A9D0D752792C18F1E7F6CDBEB0FA /* NSString+MJExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 8A3F9B13F8D52FCA92012F3EC8EBB11B /* NSString+MJExtension.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5C62C27E2855390100E9519DE3095DDB /* FSCalendarHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C736D04C04B8AA554DB009313EC71969 /* FSCalendarHeaderView.m */; };
 		5D21009429CE744D1E5BCED96197AB05 /* XLFormSectionDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 987DD0F7A25ACEDC040D5C75B623AD05 /* XLFormSectionDescriptor.m */; };
-		5E2F081EBBAEC5B0661D0609417784EF /* sv.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 8EA912C852A3339B001F367E3FBB484B /* sv.lproj */; };
-		5E347930A65947CC97DF690BEE0FF2C7 /* ko.lproj in Resources */ = {isa = PBXBuildFile; fileRef = C1137C91D3FF46CE2208AB6C7C4D0B62 /* ko.lproj */; };
 		5E89ED15FDB4CE7F92544DDF4589C242 /* MJPropertyType.h in Headers */ = {isa = PBXBuildFile; fileRef = 2AA3689E85754769781542CC0A0299A3 /* MJPropertyType.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5EC4C622CBAA507F1561F5D1BCA05A68 /* da.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 3A5140932B52001F2EE5DA0F0F9C448F /* da.lproj */; };
+		5EE0E4B9DF69BC9A113D8B6E53D6E0D5 /* nb.lproj in Resources */ = {isa = PBXBuildFile; fileRef = A315D7C1F255C373C576372D53C2939D /* nb.lproj */; };
 		62114FE84D3908EBEBD169F37FC574F4 /* XLFormButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE3C6B8AB684E1B1444304252A59DDAB /* XLFormButtonCell.m */; };
 		623F098A31E3A5CF2CAE5B3BD957C42D /* UIView+XLFormAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B31605E2B40A8DDDB70EB136A33B8D8C /* UIView+XLFormAdditions.m */; };
 		625F05F7702CA250DEB66A699766DA9E /* FSCalendar-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A9C2ACD8A8980F6422C91FDD56D045D3 /* FSCalendar-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -145,36 +146,39 @@
 		665EC8615F54D4900AAD953D745A8213 /* ZFModalTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F99D270DBF0D35BD3E05D5F9F93BB50 /* ZFModalTransitionAnimator.m */; };
 		66737F48243D514269C499D65A7B4DBE /* FSCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = C60B49A82D7F85780DDE010619D0B5CA /* FSCalendar.m */; };
 		6689CCD23AFE3D4940E59850D52331E9 /* XLFormImageCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 85A6FD478EDC1F08CB7BDA24B4B321DB /* XLFormImageCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		69F9B8811DD0A69D1AD805A8F50D9562 /* de.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 930FFB1BD3C5C59CACD96B412658FA87 /* de.lproj */; };
-		6CA804342026C8DD0D47F82901AE587D /* MGSwipeTableCell-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 21901A8C220A5752440FE789B8DF5A7B /* MGSwipeTableCell-dummy.m */; };
+		68781A37907F484F60CE73B6160CBCC2 /* he.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 40910151BE42A5CE7540A8F21711B104 /* he.lproj */; };
 		6CDC928EB314FDB06B037230DC8A2F2F /* XLFormSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C33009329A4E751EEE891161D90292FA /* XLFormSwitchCell.m */; };
 		6D791026E20DF9A2B254FD7D11D6DB39 /* PNRadarChartDataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F429E6143778B634AB51AD05D7B0C55 /* PNRadarChartDataItem.m */; };
 		6DA14D61DB56E00FF18F2F75C51454AE /* MJExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CCE39C37B371F9F701644AD5C91BA43 /* MJExtension.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6F5906B58272E07A0850248867562581 /* JSONModelLib.h in Headers */ = {isa = PBXBuildFile; fileRef = 63D9018FC4B820C7719999CAFD05C5F6 /* JSONModelLib.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6F9B37995BAC10EBE42709B754F0BA6A /* XLFormStepCounterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B29E87BFB6512B3157BC68F934D46561 /* XLFormStepCounterCell.m */; };
-		6FA780AAB02A551B955D736DCFE3ADC2 /* pt.lproj in Resources */ = {isa = PBXBuildFile; fileRef = EC50CB0F7FFAB243A063A7D614DF830B /* pt.lproj */; };
 		712FF0C70B4C85F44AFB5CDDC1DD9018 /* FSCalendarDynamicHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 743C8827333FA6C53BE7AF2C5BCE55ED /* FSCalendarDynamicHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		71752079358A46990B21E04D05A78DE7 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D645C79D2D910C900115F23D01547C7 /* CFNetwork.framework */; };
+		7188552FBF40FACE7660265F5D46E35B /* hy.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 11E623FDF599D46692D1E0866D1EA117 /* hy.lproj */; };
 		72884181B2B65B575AFB7151DD84F2A5 /* Toast-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B90E7A20C7E8096CE6A68242C420ADE4 /* Toast-dummy.m */; };
 		731D0A294A013C3D95DAE18BD8BBC7AC /* HMSegmentedControl-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3D0DC29D82E84F41E444CF7DFE548F /* HMSegmentedControl-dummy.m */; };
 		737F51F1B32284249223F10D3AB4C1CD /* XLFormOptionsObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E602CFAA01EA71840BDA0204DD6686B3 /* XLFormOptionsObject.m */; };
 		7410B2A65C0651D85D3B173865D3026B /* NSObject+MJClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 329D84E316F043027F9BC4AA56A2442B /* NSObject+MJClass.m */; };
+		745D1E48DFA432EE5A09843D3199798C /* ar.lproj in Resources */ = {isa = PBXBuildFile; fileRef = A96A17BAF59B1F9890507CC2D3AF80C3 /* ar.lproj */; };
+		7477FB10DF55F0004D1F6F4FD8365A1A /* sk.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 9AE24442215A93907CB5354AE5D61B1D /* sk.lproj */; };
 		75618C4A17613CB4F71143ABE1FEB110 /* UIView+Toast.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B7EB9AFEEC509B78E1E7ACB4B35E9C5 /* UIView+Toast.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7656C4EC91318AE279D2B92E7A164A61 /* it.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 5E36A5E562752E870D2A14A4187A49DD /* it.lproj */; };
 		76701569F9407B69F0CF4581883E723C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CABF3684DCF9EDD8A36388B55242D18B /* Foundation.framework */; };
 		7677256385EF6CE6DA0728F340A8BE50 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CABF3684DCF9EDD8A36388B55242D18B /* Foundation.framework */; };
-		76876328878D461763E9DD5D2B28D0B3 /* ca.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 381894970AA437F912FAFCA4F3BC9F60 /* ca.lproj */; };
+		76EF058AB04EF6707B53D639DDB58E85 /* th.lproj in Resources */ = {isa = PBXBuildFile; fileRef = D208C6B5AD3DFC1869C7B203022E2021 /* th.lproj */; };
 		77011CBE0CDC9CC588BC855E80441A8D /* MMQRCodeScanner-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 78712D6F90D7EAA2A6BFB4FB8BC25371 /* MMQRCodeScanner-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		772785574BC1059C2913576CBFF3AD17 /* JSONKeyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = C8BF4B90A855DC0D4CA8604C37F7D462 /* JSONKeyMapper.m */; };
 		77D99220A57749C2A647E642C58B0846 /* XLFormOptionsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = AF7C9E03A88E0C6193E057935C40C2D6 /* XLFormOptionsViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7857A1BC0DB1C7B62CCD8881806B8AA5 /* MMQRCodeScanner-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F3FB54914326A3FCDB77C41C89263F9 /* MMQRCodeScanner-dummy.m */; };
 		79A1A20C26E7759F31EE5A64D90F8E6F /* PNLineChartData.h in Headers */ = {isa = PBXBuildFile; fileRef = CBA98FD96C13E879AAD27A847914E373 /* PNLineChartData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7C5CB3EBC1CBEC64F80E419FCDDC5D0A /* tr.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 60F28BBEEC903DEE38183D45D0BC5B77 /* tr.lproj */; };
+		7D5211524508F30492C81346C80955D4 /* uk.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 8DF6453843299327CDE2B1989B37B2F0 /* uk.lproj */; };
 		7E1ECC368B28EA4C805D76ABA7F164FE /* XLFormDescriptorCell.h in Headers */ = {isa = PBXBuildFile; fileRef = DAD39EC2CF5D2AC1FEA32625135F92E9 /* XLFormDescriptorCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7E320930D1F4218F307C7FB786F0C514 /* FSCalendarCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = D77E7912818844EFC1904DA48CF35E32 /* FSCalendarCollectionView.m */; };
 		7ED1527632564F7B0ACB8F0AAC76E5AA /* Pods-BenchTracker-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1271BB0EDAD2B25BD374655FC5F471FF /* Pods-BenchTracker-dummy.m */; };
 		7ED1A7710DE1ACABE0E8F59AA4489FB6 /* XLFormStepCounterCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 95FC0337960B99CEF2DDE91E2854A7BC /* XLFormStepCounterCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7F66E5779B29E0BC17D565DAD7CDEC1B /* JSONHTTPClient.h in Headers */ = {isa = PBXBuildFile; fileRef = D2E60787AF132F66FCE58033FCFE8180 /* JSONHTTPClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7FC451F65FAEECE3A7439A7068ECB6EC /* XLFormPickerCell.h in Headers */ = {isa = PBXBuildFile; fileRef = BD104BBC024C3C063735C54BB79962E8 /* XLFormPickerCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		80386505D4677E4E7FBA3E42C0C9BB21 /* ru.lproj in Resources */ = {isa = PBXBuildFile; fileRef = BBFDBAE886235E204337D93524BB0572 /* ru.lproj */; };
 		8060025235D93F30A5F10B412DD0822E /* JSONModel-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C2321B78D50B553035708EB0705A85C7 /* JSONModel-dummy.m */; };
 		8204F724CF326E070250078066F35FC3 /* XLFormValidatorProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = C41EF722A42B3AB7369ABD1A594F6E5E /* XLFormValidatorProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		83347CDB5B7CCCF96EBF42B298ADCE31 /* NSArray+XLFormAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E954C526FE20D2A81157D54E846F832 /* NSArray+XLFormAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -192,18 +196,21 @@
 		8E8E60E0406837DF7038528766C90AEA /* FSCalendarScopeHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = E69F172F5E38EA0855EB7B1590195B16 /* FSCalendarScopeHandle.m */; };
 		8EC1C8F8C76EDF5D019E8EBA01C2ABB3 /* NSObject+MJCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A669AD8459F96E30D79E8550DDB1982 /* NSObject+MJCoding.m */; };
 		8ED82E4BB5088B3BC288B53EFD9B9106 /* PNLineChartData.m in Sources */ = {isa = PBXBuildFile; fileRef = C06C47C9DE7574A8E5BE61409E9CA441 /* PNLineChartData.m */; };
+		8EE0A1D4B05D1939EB11C05F89B253EC /* zh-Hant.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 0C544BAF6B9385EEC34274C17A15DBC0 /* zh-Hant.lproj */; };
 		8F7003744526BA3547F59200EE4F4D16 /* FSCalendarWeekdayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBB5CEC1BD22C429147767CF7BBF2E0 /* FSCalendarWeekdayView.m */; };
 		91693C90642539B4F411E794548A9E2A /* FSCalendarCollectionViewLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 204E6E2886F367652CB154A16C6B528E /* FSCalendarCollectionViewLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		91E1CD4345C8AB7BC04F2EC4DBBA035E /* XLFormRightImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B4CBE09184157BAF16A356F9AC83A3DE /* XLFormRightImageButton.m */; };
 		93DDF78867BC997B37FFB65BC81CFE7C /* XLFormValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F644C8E3B342FBFED8E1011774B4A1F /* XLFormValidator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		95D1B85F077851CA35399679DA08B488 /* el.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 641EC3FC0909B33792CBB5664CA6C6AF /* el.lproj */; };
 		96E021283F050BCADF9A9B668C77B203 /* FSCalendarExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = A748939C3DF81FE56EFDD6413CBA9F2F /* FSCalendarExtensions.m */; };
 		975E65AF5274D9E271902795BBE5AD9B /* UICountingLabel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C44354F1E6B520BF6E8D78854B76DAC2 /* UICountingLabel.framework */; };
 		9859AE647D2F18BABD659604DF818EBD /* NSString+XLFormAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 8310429A880DCD73DF4BC23929A32B4C /* NSString+XLFormAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		98EF54AFF63E0B2AB38143141A14A35B /* hu.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 712842F975EB5165E542B97DE73F9D4F /* hu.lproj */; };
 		98F19C682AC68E9D2E2052F709F42AF9 /* JSONModel+networking.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C7C4E05ED4122C4BB3ACC13E59920B /* JSONModel+networking.m */; };
 		991F609C73269DC78E11180E3C3E1032 /* OnboardingContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB4C990430944E28DD0386649ECF035F /* OnboardingContentViewController.m */; };
 		99B1E0CB0C56FF3C7EC3A499479BACB6 /* XLFormRightImageButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 309FB5660E0ACCFCE9534E722DB7133B /* XLFormRightImageButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		99F3DA9AAD18111EF6F81881F9B16A80 /* pt.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 13EEFBC3EA13F6B68DF6A2203C5FD64E /* pt.lproj */; };
 		9A188B2744B9ADBAE00CA89FF8A04B16 /* PNCircleChart.h in Headers */ = {isa = PBXBuildFile; fileRef = 949BADFE4BACB2CE7060D2B7E278E16C /* PNCircleChart.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9B43454E095D9220E6133218B231C337 /* sv.lproj in Resources */ = {isa = PBXBuildFile; fileRef = FC668637A9F6A97E8C9FAF0A1AA81793 /* sv.lproj */; };
 		9BADCA5679C8A8A66E61ADDDB0632098 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5BE8E0809845B565E80AB587FD47999 /* CoreGraphics.framework */; };
 		9BE4ABE78D6F15E8CC3C14011A5B6EB2 /* XLFormTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = D3D76CB003AA0859325BD2644F2A72C1 /* XLFormTextView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9CF04404C01848D25E78B22A88BFF129 /* FSCalendar.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A72EED58737430A1C548C5EDBFBE245 /* FSCalendar.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -215,16 +222,16 @@
 		A000A7A7023F7FB4CEDD1023EB87BF93 /* FSCalendarCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B720D14AF19B364C6F0E82C1FB23F1 /* FSCalendarCollectionViewLayout.m */; };
 		A06B2ACA4E8D9B92B7B7D4B306D8808D /* Onboard-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 943531C31C21FB3F40F77DA6295B2385 /* Onboard-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A0A1EEB7A1D57F695D14483135A8E9A9 /* UIView+WZLBadge.h in Headers */ = {isa = PBXBuildFile; fileRef = 7CF9F63D02CE636B05E70EDCA401B191 /* UIView+WZLBadge.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A112BD31A75E990E992F96C36D8D4DFC /* pl.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 09AACAD67EF62D8F3AE74D15E94C909F /* pl.lproj */; };
+		A186EB875BBE6BC57EA043F1ABC37FBA /* en.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 67DBE261060584E5EA1E88F6C86DFC4D /* en.lproj */; };
 		A22F3F69ACD560E2593AC06EDCB81D2E /* OnboardingContentViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BB2B91DEBE230C09B12EAB67B31886F /* OnboardingContentViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A35C203A5B0452D45574D5BC95D0E860 /* NSObject+XLFormAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 836991FC7A880C91C3D043B4C3EAD7DF /* NSObject+XLFormAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A3D1147CED9648BEDE2E47B8E8A44924 /* FSCalendar+Deprecated.m in Sources */ = {isa = PBXBuildFile; fileRef = 374751CB8BCE622E7214E5E18F54D849 /* FSCalendar+Deprecated.m */; };
-		A431632242AB6413745307CB80B9D283 /* AppiraterDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = C726C0EB84EF3213F00C8EBF37CB4647 /* AppiraterDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A431632242AB6413745307CB80B9D283 /* AppiraterDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = E2325088F215ADC3202CC10A1170D533 /* AppiraterDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A52E1F41E0F5D70584EA8F966E40ECD1 /* UIView+Geometry.m in Sources */ = {isa = PBXBuildFile; fileRef = D5EC4E629C95F2DF8F020D60EFF183FB /* UIView+Geometry.m */; };
 		A5E5CD8E7DB6824518308DE2779A229F /* Appirater.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F812E5D2005DDA6EE13FC79E6C5B2278 /* Appirater.bundle */; };
 		A61CBA1B7EC469C602F47186539239E0 /* MJPropertyKey.h in Headers */ = {isa = PBXBuildFile; fileRef = 062A0105897BF9D6AF3BC4AD39545786 /* MJPropertyKey.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A7B60C9537C85DEE1205D83290306031 /* zh-Hans.lproj in Resources */ = {isa = PBXBuildFile; fileRef = F3795F46CC2CE67EE2186B07DACA7DE5 /* zh-Hans.lproj */; };
 		A91641CD8D3063D299D443433CCF6183 /* XLFormDateCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 6AED66B05070FC0D397E79DDB996E29A /* XLFormDateCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		AA948CDB548D0A490471DCA0C3E9BAD3 /* ru.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 54E4C789DCB25EE369D62705A6024522 /* ru.lproj */; };
 		AA978FCF3EF1D8D10DDE3BB4C6312A7B /* FSCalendarDelegationProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DBB571DDDE3314416986A691F89826B /* FSCalendarDelegationProxy.m */; };
 		AC13DB6853A10739A36EA709197300A5 /* UIView+Geometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 51F80A2D49650896B2B6DF04F854AF37 /* UIView+Geometry.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AC5DB2A0693B0DCEA163BD6FA4299D99 /* XLFormDatePickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B00800E86E4BD8330E5034F77CAAD94 /* XLFormDatePickerCell.m */; };
@@ -232,13 +239,13 @@
 		ADB66EDB01E996BC6F5BFFD4534B6C21 /* PNLineChartDataItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D4C2FB2BEBA02F8D259F2F5FB2206AD /* PNLineChartDataItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AEC65CEF40556DD926E344299D36A311 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CABF3684DCF9EDD8A36388B55242D18B /* Foundation.framework */; };
 		B0C291CEDD29FFB9F0BC6D8CE5A06621 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 489E8904CF97745B02DE27E0B434CF25 /* UIKit.framework */; };
-		B2009F70FE55DCE47D621C1C1754ADAC /* zh-Hans.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 1D29220A23463DF85EA2B40368BDDD2B /* zh-Hans.lproj */; };
 		B2EA2D45418CE4354E0BE6390EAAB9A7 /* XLFormRowDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFB3597F7FBB80208B19882755A7F8A /* XLFormRowDescriptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B3174CE1F7CEC7E4986A14E9C4EAA5ED /* UICountingLabel-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4E82760A1232FAFEFC96242B34AD57 /* UICountingLabel-dummy.m */; };
+		B41B56539E3114E1508DA5E2D9AC71D7 /* fr.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 098C95EBAF61739B25069F8DB37D5838 /* fr.lproj */; };
 		B7B68FDABB146B87FA3C9E987D2014DE /* NSObject+MJKeyValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 4AB72B01D4C23E8AED0ED8FE567A573F /* NSObject+MJKeyValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B7CB384BF88B421713036A70A9BCAEDD /* HMSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E2D11D35DD5E22D252CD0A1C8871F4 /* HMSegmentedControl.m */; };
 		B851A23F91B70FD38BCB591E78CDD31F /* XLForm.m in Sources */ = {isa = PBXBuildFile; fileRef = F7229E84AADE966CF8F1D85859E5F336 /* XLForm.m */; };
-		BA8FDCCDD75A30332CAFA461DCBB239D /* da.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6D3C4DA21A1E7B21ACDD79C0FB016F87 /* da.lproj */; };
+		BA3043A80213DBA6056C810E542771DD /* it.lproj in Resources */ = {isa = PBXBuildFile; fileRef = BC313D4943EB20C005ECDE6ADE9370A8 /* it.lproj */; };
 		BCA98672348F4BE5B74F67CCEB68B3AE /* PNBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 55A8FEA8500062812091A65B182742F8 /* PNBar.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BDA1ED05CBA5580B30785A431D5B231B /* FSCalendarTransitionCoordinator.h in Headers */ = {isa = PBXBuildFile; fileRef = 190C7F3FD0F6F30B0A63C558B5FB34F7 /* FSCalendarTransitionCoordinator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BDFE401EC4C31F0F52E4AE40FFB83F32 /* XLFormSectionDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E742BFE1357386104D78A29353E16AA /* XLFormSectionDescriptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -249,12 +256,11 @@
 		C22F8BC77D444C5C155DC5AFB20B3301 /* XLFormRowDescriptorViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D721CE2EC11BE888DC022E7065BE0A0 /* XLFormRowDescriptorViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C344EA4B1862D8F0074DAE36CE9F08A2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 489E8904CF97745B02DE27E0B434CF25 /* UIKit.framework */; };
 		C537A2C98FD1DF6D4B6C6C8958000891 /* OnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5ED7E4C02C586AF1A1824CE1831C456 /* OnboardingViewController.m */; };
-		C6605A862DC070D4578D72028349D153 /* nb.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 748DB0A40805781E8B20031323FF2A11 /* nb.lproj */; };
 		C69663957B2EB4C7CF4D8192480AA8B4 /* FSCalendarExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 8A5EA6F2CA6CC591E492D6F8CC8B4DFF /* FSCalendarExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C71B1D1A47D204B19000105026B874B0 /* NSPredicate+XLFormAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 290DFCB2F342C6F48E23B3EE4D5ED4FD /* NSPredicate+XLFormAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C7283E2BF15CD94AB43402F22F019372 /* ar.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 3365C58B577CD082E18A93E211C56F29 /* ar.lproj */; };
 		C9BB9572D929D9F65BD27F9AB29562EB /* MGSwipeTableCell-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F5B54D9DCFA52DBBA3CBF52BADA46362 /* MGSwipeTableCell-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CA847ADF445C8C5454B1999A89D1F137 /* PNChartDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = BF1A7331338817CF607417F2E4FA3299 /* PNChartDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CCA179AC56A1CB32A359E0F3D1EA7D7E /* hu.lproj in Resources */ = {isa = PBXBuildFile; fileRef = F1A0444E3DCB477C9E149FC6166E4081 /* hu.lproj */; };
 		CD4D283A61707C386754BBD31F5BEABB /* MJExtensionConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 947B5B4BDCC4FD0DA20858E897390772 /* MJExtensionConst.m */; };
 		CDB052C277F6148BBAACB2C2C7C6321B /* FSCalendarTransitionCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 09296B2B4358395B862D4DF3AEB68BF7 /* FSCalendarTransitionCoordinator.m */; };
 		CE5B8546032E5FC1FF4AA5B6414EEE1F /* ZFModalTransitionAnimator.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E0EC929DEF5EDCF35FE352085EE634 /* ZFModalTransitionAnimator.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -265,19 +271,14 @@
 		D74B4A27E14BEC2E298A60F74DD76ECB /* Pods-BenchTrackerTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF57FE5C11F109E60F1843A1B95EB01 /* Pods-BenchTrackerTests-dummy.m */; };
 		D82763CE3500184C926444412415F103 /* XLForm.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A9105FC59D99E035CC1BFF150DAB7D47 /* XLForm.bundle */; };
 		D8435FF69A2D310EB75A0CA98A00547D /* scan_flashlight@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 089E2508FC5E8DB973FDCB765AA692BA /* scan_flashlight@3x.png */; };
-		D85A70A42894F6B9EC438E5A9357A8FA /* id.lproj in Resources */ = {isa = PBXBuildFile; fileRef = F56F3E51740E25CB10C3EDEB6456298A /* id.lproj */; };
 		D985F8B2564424FC31EB337D24F67195 /* XLFormRegexValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 179C2E822BCE772E67A29CD04BE5C303 /* XLFormRegexValidator.m */; };
-		DA0EA60B841C69FC75C503617803CDFB /* el.lproj in Resources */ = {isa = PBXBuildFile; fileRef = B70B491086D3D14683E00AA3E551277C /* el.lproj */; };
 		DAAB15D1FF9B62D061DF3A73E8D11050 /* PNRadarChart.h in Headers */ = {isa = PBXBuildFile; fileRef = 49171FD36A764944AE156903EDCF2C99 /* PNRadarChart.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DB2AC2D91241E22F2873864724480D26 /* XLFormTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3800171DFC0980DEC0BCE6431F355560 /* XLFormTextFieldCell.m */; };
-		DB33341B93BFF0A556A6F333BE95CFAD /* MGSwipeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF296EA5DE9AE46386CD668CEEA1EC8 /* MGSwipeTableCell.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		DCB7CC08FC235B33EDC5F8957848B565 /* PNGenericChart.h in Headers */ = {isa = PBXBuildFile; fileRef = C62DF408B9C93E4293156CA498FA6EAB /* PNGenericChart.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DCC5696AACB271CB4F14AEE0EA7C6FAC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CABF3684DCF9EDD8A36388B55242D18B /* Foundation.framework */; };
-		DCEBE3F854647503DF849E5414D0C958 /* en.lproj in Resources */ = {isa = PBXBuildFile; fileRef = D2AE351C2040A06B0A0C1CAA09B152EB /* en.lproj */; };
 		DD73E459F2246491C1244EC7AE21317C /* MMScannerController.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E1E924F5D7793DF0C8FC015D7FE9DB9 /* MMScannerController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DE7C5E6743AD3C694938A84DF71BDEBC /* XLFormRowNavigationAccessoryView.h in Headers */ = {isa = PBXBuildFile; fileRef = 83D57756638124EC550D780EE2D57CA4 /* XLFormRowNavigationAccessoryView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DE7EF8AB05E6F2A4A4BD7B11CA8C51EA /* XLFormInlineSelectorCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 0386DE375E5F694DB8DC0E72645494EA /* XLFormInlineSelectorCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DEC3099C0C9045886B467F863DCAC082 /* uk.lproj in Resources */ = {isa = PBXBuildFile; fileRef = C678FA9F3CC4E5CFF1B4A83CBAF1571B /* uk.lproj */; };
 		DF8F4C447D73F08682A89276EB7924E7 /* PNPieChartDataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 818079A400B1A0AAE573E0FFF4D3532C /* PNPieChartDataItem.m */; };
 		DFA0B0C7EC02135911CACDAFD38BE715 /* JSONValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = D45841D45481CBAB6BB42DE0415F4E18 /* JSONValueTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DFF8CB6CE450CED94E604B450A181155 /* Onboard-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FF345761459AA864701AE580E6C95941 /* Onboard-dummy.m */; };
@@ -286,12 +287,13 @@
 		E39D9A942BCE728467A42C478816966F /* JSONModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 867BF0146D8D72C2026D3BC2CB24811A /* JSONModel.m */; };
 		E3B93CDF418A2678614DDAD9331C0C0D /* FSCalendarCollectionView.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AF610E631C945392506302ED1805A7D /* FSCalendarCollectionView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E3C47E114E924D2F331F9A3F122AEE5C /* JSONModel+networking.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A21243F243050803A320B5F24C83650 /* JSONModel+networking.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E49980ED4FBC1DA1234E360B69A96085 /* cs.lproj in Resources */ = {isa = PBXBuildFile; fileRef = DECBB5A461F85530FFAE003B2433C905 /* cs.lproj */; };
 		E4BF47046BA4675E1DA2F34893947702 /* MGSwipeButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 91E6C5C09DCF7D134D1632F3AC05BC45 /* MGSwipeButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E5FCA2ABBE2C5EF75F004103BC26D472 /* MJFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = B02502CABA8355B91CA3A8D8D902921B /* MJFoundation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E6543B0E8A962B065B29B9E4EE1A904D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E13CCB1FFF1F419F92A8A3D3A42A4FE8 /* QuartzCore.framework */; };
 		E697D14E581CAEE081A1F6B467A014B7 /* MJProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4D9E56AD31E9A7E2B06703A53AC167 /* MJProperty.m */; };
-		E8979B89210E8201F2850FDE0AB1347F /* tr.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 5E49B6D95B4D0A6B24AAAE31D89BF0C2 /* tr.lproj */; };
 		E92DD980024D7A27AD2CAC765B1BD3F9 /* XLFormBaseCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 47C29FA0C3BC65BC24CAABEDBEBB4802 /* XLFormBaseCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA4F839A03DAE1AC0FF4548896F4B1F7 /* ms.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 4E20558D549DC1A82EE9DB3D88906700 /* ms.lproj */; };
 		EAFEE51EFD2F870B4A16EEBBA01C73E1 /* MMQRCodeMakerUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = DE74C82233383E2432A54A582F192F53 /* MMQRCodeMakerUtil.m */; };
 		EB41A6107EF2D5DCB3238F52FA62B05A /* Toast-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A2F9BCB0EBED65FC59C58065903A4FC2 /* Toast-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EC0AD02DABA98A79BE9CFB8CB15CB1F1 /* NSArray+XLFormAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DD565BACC7CA0EF78D3E0D46F8399933 /* NSArray+XLFormAdditions.m */; };
@@ -307,7 +309,7 @@
 		F53BE19B2CB360AC554A04B27DED8519 /* MJFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = C28E275AFF77CD9A7CC3290135DB1941 /* MJFoundation.m */; };
 		F54E2CAED6EAE74D9E1F878E10FA30BD /* FSCalendarDelegationFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 36567DAACA59E6F53AB4FF30CD8F41AF /* FSCalendarDelegationFactory.m */; };
 		F6437A9168D825D17B7E2BF5C1C2E81D /* PNChartLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 65912D4CEC33918847052AA0E3AAA3EB /* PNChartLabel.m */; };
-		F699CA58E3DD13833285F2A8FC610AAE /* Appirater-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 457AC8E3EC4F74F6BBB0C2EDA19FC1DB /* Appirater-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F699CA58E3DD13833285F2A8FC610AAE /* Appirater-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 03C3ECBE22FE1E1586EB84E5B7898830 /* Appirater-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F6A1EC699E916996EF2B7B4C6137DB8D /* FSCalendarHeaderView.h in Headers */ = {isa = PBXBuildFile; fileRef = C7C42DD76A0B2596390B5458677437AA /* FSCalendarHeaderView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F72D1BBEBA4C4055B97B7384EC00C36D /* NSObject+XLFormAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 43CA298FFCC69D53D09654F08606A790 /* NSObject+XLFormAdditions.m */; };
 		F746795DC38AD2DB3D584A110174FED0 /* FSCalendarCalculator.h in Headers */ = {isa = PBXBuildFile; fileRef = E31C76E6D85C0A97D13419C6EF44C640 /* FSCalendarCalculator.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -322,7 +324,7 @@
 		FCC1436792EA4C37502DE74FC2DCDEF4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CABF3684DCF9EDD8A36388B55242D18B /* Foundation.framework */; };
 		FCF2C196283DCD276C0739F0B69B785B /* WZLBadgeProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 7610AB2E9B5AC4FC014758E415D7B01B /* WZLBadgeProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FD051B5A9F3E663081656EB261A724D2 /* FSCalendarAppearance.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A44EC30FCFC0D941D08359992A13452 /* FSCalendarAppearance.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		FDD504C08D0925F7B348E661BED008F7 /* Appirater.h in Headers */ = {isa = PBXBuildFile; fileRef = CF3BCCE5ACD77BCF9CBB83CF339D7CE4 /* Appirater.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FDD504C08D0925F7B348E661BED008F7 /* Appirater.h in Headers */ = {isa = PBXBuildFile; fileRef = 13B0E9E450EA014381859837EEF38350 /* Appirater.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FF884F1ECBE6F4B32FB84E46AD8C28A9 /* PNColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 22891FCED3474387D0375A72FEA0C09E /* PNColor.m */; };
 		FFBEAF63A28F6A7DD881E8256F9503B7 /* FSCalendarCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DA809478318443935167830724020E /* FSCalendarCalculator.m */; };
 /* End PBXBuildFile section */
@@ -445,6 +447,8 @@
 /* Begin PBXFileReference section */
 		035829BE49D94804AF3E4A2A400EFF75 /* FSCalendar.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = FSCalendar.modulemap; sourceTree = "<group>"; };
 		0386DE375E5F694DB8DC0E72645494EA /* XLFormInlineSelectorCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = XLFormInlineSelectorCell.h; path = XLForm/XL/Cell/XLFormInlineSelectorCell.h; sourceTree = "<group>"; };
+		03C3ECBE22FE1E1586EB84E5B7898830 /* Appirater-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Appirater-umbrella.h"; sourceTree = "<group>"; };
+		047B8BDD5A9B1EFFABD3E4B166BC8BD2 /* pt-BR.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = "pt-BR.lproj"; sourceTree = "<group>"; };
 		062A0105897BF9D6AF3BC4AD39545786 /* MJPropertyKey.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJPropertyKey.h; path = MJExtension/MJPropertyKey.h; sourceTree = "<group>"; };
 		06AF2A9232E6C97003E2856BB1B41A08 /* Pods-BenchTrackerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BenchTrackerTests.release.xcconfig"; sourceTree = "<group>"; };
 		0740204B12BF54B3010CAD2AC821A852 /* Pods-BenchTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BenchTracker.release.xcconfig"; sourceTree = "<group>"; };
@@ -454,26 +458,31 @@
 		08B6A68DD35C45B6247058E007F9E3E6 /* Toast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Toast.framework; path = Toast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		08C9D63CD368E0916221D2305AA0620D /* MGSwipeTableCell-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MGSwipeTableCell-prefix.pch"; sourceTree = "<group>"; };
 		09296B2B4358395B862D4DF3AEB68BF7 /* FSCalendarTransitionCoordinator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FSCalendarTransitionCoordinator.m; path = FSCalendar/FSCalendarTransitionCoordinator.m; sourceTree = "<group>"; };
-		09AACAD67EF62D8F3AE74D15E94C909F /* pl.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = pl.lproj; sourceTree = "<group>"; };
+		098C95EBAF61739B25069F8DB37D5838 /* fr.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = fr.lproj; sourceTree = "<group>"; };
 		09FD4E80C951451B931E3C317809DDBF /* XLFormRowNavigationAccessoryView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = XLFormRowNavigationAccessoryView.m; path = XLForm/XL/Helpers/Views/XLFormRowNavigationAccessoryView.m; sourceTree = "<group>"; };
 		0A70DE6542A2C0A884DDD0E1E7752E8F /* XLFormTextViewCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = XLFormTextViewCell.m; path = XLForm/XL/Cell/XLFormTextViewCell.m; sourceTree = "<group>"; };
+		0B080B2CB79CD0B5B2A25F38BB894D2A /* Appirater.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Appirater.xcconfig; sourceTree = "<group>"; };
 		0B169C82D2689617B87648E5679EE363 /* HMSegmentedControl.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = HMSegmentedControl.framework; path = HMSegmentedControl.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B9536BC436209B97A0029054C7B215D /* Toast-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Toast-prefix.pch"; sourceTree = "<group>"; };
 		0BC01401D71C31816D21180585F458B5 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0C544BAF6B9385EEC34274C17A15DBC0 /* zh-Hant.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = "zh-Hant.lproj"; sourceTree = "<group>"; };
 		0CBB5CEC1BD22C429147767CF7BBF2E0 /* FSCalendarWeekdayView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FSCalendarWeekdayView.m; path = FSCalendar/FSCalendarWeekdayView.m; sourceTree = "<group>"; };
 		0D721CE2EC11BE888DC022E7065BE0A0 /* XLFormRowDescriptorViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = XLFormRowDescriptorViewController.h; path = XLForm/XL/Controllers/XLFormRowDescriptorViewController.h; sourceTree = "<group>"; };
 		0E83DD24731AAB232C1CC074B5B1E631 /* XLFormViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = XLFormViewController.h; path = XLForm/XL/Controllers/XLFormViewController.h; sourceTree = "<group>"; };
 		0FEB4DC1557241C3C9EE8690127DADD7 /* OnboardingViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OnboardingViewController.h; path = Source/OnboardingViewController.h; sourceTree = "<group>"; };
+		11E623FDF599D46692D1E0866D1EA117 /* hy.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = hy.lproj; sourceTree = "<group>"; };
 		11EFBD861AA82506FD3D94A1DE627B0F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		121E6E0BB975159C380E14F743907A79 /* Appirater-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Appirater-prefix.pch"; sourceTree = "<group>"; };
 		122F59A5CA7D6E04F52DC1E766E05EDC /* Onboard.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Onboard.xcconfig; sourceTree = "<group>"; };
 		1271BB0EDAD2B25BD374655FC5F471FF /* Pods-BenchTracker-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-BenchTracker-dummy.m"; sourceTree = "<group>"; };
 		127D97915E5C6C1CBF83006430AD78F3 /* MGSwipeButton.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MGSwipeButton.m; path = MGSwipeTableCell/MGSwipeButton.m; sourceTree = "<group>"; };
 		131D3CD477FAB6388314C8C1E2DB0990 /* XLFormInlineRowDescriptorCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = XLFormInlineRowDescriptorCell.h; path = XLForm/XL/Cell/XLFormInlineRowDescriptorCell.h; sourceTree = "<group>"; };
-		13205105ABAB941B9BA34D73C2ED3503 /* sk.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = sk.lproj; sourceTree = "<group>"; };
 		13491B158405286AF8B85287CCCB7460 /* ZFDragableModalTransition-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ZFDragableModalTransition-umbrella.h"; sourceTree = "<group>"; };
 		1378ADA7508932170EF838A0534AB278 /* MGSwipeTableCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MGSwipeTableCell.h; path = MGSwipeTableCell/MGSwipeTableCell.h; sourceTree = "<group>"; };
 		13B03F21C692E1B53E547E5EC254D810 /* XLFormDateCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = XLFormDateCell.m; path = XLForm/XL/Cell/XLFormDateCell.m; sourceTree = "<group>"; };
+		13B0E9E450EA014381859837EEF38350 /* Appirater.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = Appirater.h; sourceTree = "<group>"; };
 		13E519B67F4179A45B35249785C90A9D /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		13EEFBC3EA13F6B68DF6A2203C5FD64E /* pt.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = pt.lproj; sourceTree = "<group>"; };
 		140B4646EF20F8E7315C7E95E894244A /* PNScatterChartData.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PNScatterChartData.m; path = PNChart/PNScatterChartData.m; sourceTree = "<group>"; };
 		1452E73B0989467E98B580F0AD13B32A /* JSONModelClassProperty.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JSONModelClassProperty.h; path = JSONModel/JSONModel/JSONModelClassProperty.h; sourceTree = "<group>"; };
 		14F7E457D50675D70D4AD40283778066 /* XLFormLeftRightSelectorCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = XLFormLeftRightSelectorCell.m; path = XLForm/XL/Cell/XLFormLeftRightSelectorCell.m; sourceTree = "<group>"; };
@@ -483,13 +492,11 @@
 		16E640D529A6440D8B36EE9DB8D03067 /* MJExtension-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MJExtension-prefix.pch"; sourceTree = "<group>"; };
 		171E80A30FA03EBB6931995E15A83CFF /* ZFDragableModalTransition-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ZFDragableModalTransition-dummy.m"; sourceTree = "<group>"; };
 		179C2E822BCE772E67A29CD04BE5C303 /* XLFormRegexValidator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = XLFormRegexValidator.m; path = XLForm/XL/Validation/XLFormRegexValidator.m; sourceTree = "<group>"; };
-		18AC2C50CB96FFD716CE9E35B0FE4EBD /* ja.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = ja.lproj; sourceTree = "<group>"; };
 		18C7C4E05ED4122C4BB3ACC13E59920B /* JSONModel+networking.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "JSONModel+networking.m"; path = "JSONModel/JSONModelNetworking/JSONModel+networking.m"; sourceTree = "<group>"; };
 		190C7F3FD0F6F30B0A63C558B5FB34F7 /* FSCalendarTransitionCoordinator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSCalendarTransitionCoordinator.h; path = FSCalendar/FSCalendarTransitionCoordinator.h; sourceTree = "<group>"; };
 		1972BB13BF7E9E6277DC458C3DEA4BE2 /* FSCalendarAppearance.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FSCalendarAppearance.m; path = FSCalendar/FSCalendarAppearance.m; sourceTree = "<group>"; };
 		1A669AD8459F96E30D79E8550DDB1982 /* NSObject+MJCoding.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+MJCoding.m"; path = "MJExtension/NSObject+MJCoding.m"; sourceTree = "<group>"; };
 		1A825F3047E74F3E8629FD7B7D8A3A30 /* Pods-BenchTrackerTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-BenchTrackerTests-resources.sh"; sourceTree = "<group>"; };
-		1D29220A23463DF85EA2B40368BDDD2B /* zh-Hans.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = "zh-Hans.lproj"; sourceTree = "<group>"; };
 		1D4D189AD6312FA15C4270B594FEAF08 /* Pods-BenchTracker-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-BenchTracker-acknowledgements.markdown"; sourceTree = "<group>"; };
 		1DAB684FCABF607F915932924CE6E2FF /* PNScatterChartData.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PNScatterChartData.h; path = PNChart/PNScatterChartData.h; sourceTree = "<group>"; };
 		1EDD8318C9FB1418D7B6F9B095156686 /* Pods-BenchTrackerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BenchTrackerTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -498,11 +505,13 @@
 		20B7FCEFD3D5485634F1BF216225F215 /* JSONKeyMapper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JSONKeyMapper.h; path = JSONModel/JSONModelTransformations/JSONKeyMapper.h; sourceTree = "<group>"; };
 		20B8A2C7664119CC5A64D9116DC59A7A /* XLForm.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = XLForm.modulemap; sourceTree = "<group>"; };
 		21901A8C220A5752440FE789B8DF5A7B /* MGSwipeTableCell-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MGSwipeTableCell-dummy.m"; sourceTree = "<group>"; };
+		2224C88842428DD638712993A28D498B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22891FCED3474387D0375A72FEA0C09E /* PNColor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PNColor.m; path = PNChart/PNColor.m; sourceTree = "<group>"; };
 		2477D41AFDB25F1CAB4F2509E03FDC2A /* MJPropertyType.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJPropertyType.m; path = MJExtension/MJPropertyType.m; sourceTree = "<group>"; };
 		260ECB6646FDF7E9985F0DAE7FC42E9C /* UICountingLabel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = UICountingLabel.m; sourceTree = "<group>"; };
 		280757E60B8BC30894FC8A5AEC9D585A /* XLFormRightDetailCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = XLFormRightDetailCell.h; path = XLForm/XL/Helpers/Views/XLFormRightDetailCell.h; sourceTree = "<group>"; };
 		28AC28921AE9D28E727ABF9CADCD93CD /* XLFormRegexValidator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = XLFormRegexValidator.h; path = XLForm/XL/Validation/XLFormRegexValidator.h; sourceTree = "<group>"; };
+		28FEE2443F63628D5262AD82C0A1B993 /* id.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = id.lproj; sourceTree = "<group>"; };
 		290DFCB2F342C6F48E23B3EE4D5ED4FD /* NSPredicate+XLFormAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSPredicate+XLFormAdditions.h"; path = "XLForm/XL/Helpers/NSPredicate+XLFormAdditions.h"; sourceTree = "<group>"; };
 		298D072CA62BBD304184BB9D2AE522D6 /* HMSegmentedControl.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = HMSegmentedControl.modulemap; sourceTree = "<group>"; };
 		29B572DBDE8EDA45AB345D5BEA6B9283 /* WZLBadge-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "WZLBadge-umbrella.h"; sourceTree = "<group>"; };
@@ -515,15 +524,11 @@
 		2D4687CC3EEA4BD445F639CBAEA878BE /* NSObject+MJClass.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+MJClass.h"; path = "MJExtension/NSObject+MJClass.h"; sourceTree = "<group>"; };
 		2D8286DA36F802C7E1B460D0863456C7 /* ZFDragableModalTransition-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ZFDragableModalTransition-prefix.pch"; sourceTree = "<group>"; };
 		2E01371303D11222465DCFE1C6EFAF5D /* UICountingLabel-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UICountingLabel-prefix.pch"; sourceTree = "<group>"; };
-		30051CA80E8EAF96A0C218620E141407 /* Appirater.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Appirater.xcconfig; sourceTree = "<group>"; };
-		307175472A3787F4CA80CC0C0B93BE0E /* fr.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = fr.lproj; sourceTree = "<group>"; };
 		309FB5660E0ACCFCE9534E722DB7133B /* XLFormRightImageButton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = XLFormRightImageButton.h; path = XLForm/XL/Helpers/Views/XLFormRightImageButton.h; sourceTree = "<group>"; };
 		313A04DFFD7B604114783CA3C5F5F874 /* Pods-BenchTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BenchTracker.debug.xcconfig"; sourceTree = "<group>"; };
-		315C46CF53A3E0ED22D007898C1814CF /* pt-BR.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = "pt-BR.lproj"; sourceTree = "<group>"; };
 		323830F18174A088DBF9A04CADF06C04 /* HMSegmentedControl-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "HMSegmentedControl-prefix.pch"; sourceTree = "<group>"; };
 		328FD131E7EFFED6D1EA6740FEEF0C34 /* XLFormViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = XLFormViewController.m; path = XLForm/XL/Controllers/XLFormViewController.m; sourceTree = "<group>"; };
 		329D84E316F043027F9BC4AA56A2442B /* NSObject+MJClass.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+MJClass.m"; path = "MJExtension/NSObject+MJClass.m"; sourceTree = "<group>"; };
-		3365C58B577CD082E18A93E211C56F29 /* ar.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = ar.lproj; sourceTree = "<group>"; };
 		3440DC0F304920B16008340021D648C9 /* XLFormTextFieldCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = XLFormTextFieldCell.h; path = XLForm/XL/Cell/XLFormTextFieldCell.h; sourceTree = "<group>"; };
 		353A84CC8162D58EF38DDADEA784A9D8 /* WZLBadge-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "WZLBadge-dummy.m"; sourceTree = "<group>"; };
 		358A5F4C4247EEB2FF34D0A710CE1E51 /* PNChart.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = PNChart.modulemap; sourceTree = "<group>"; };
@@ -536,26 +541,25 @@
 		375A9F8358493CF9EB2041BA6BA90941 /* XLFormSliderCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = XLFormSliderCell.h; path = XLForm/XL/Cell/XLFormSliderCell.h; sourceTree = "<group>"; };
 		37897DE3205553D74D359B541A480EDF /* MJExtension-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MJExtension-umbrella.h"; sourceTree = "<group>"; };
 		3800171DFC0980DEC0BCE6431F355560 /* XLFormTextFieldCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = XLFormTextFieldCell.m; path = XLForm/XL/Cell/XLFormTextFieldCell.m; sourceTree = "<group>"; };
-		381894970AA437F912FAFCA4F3BC9F60 /* ca.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = ca.lproj; sourceTree = "<group>"; };
 		383E7C37A93234E8488AF16126F64EBF /* UICountingLabel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = UICountingLabel.framework; path = UICountingLabel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		385363184750FD32FEED167132CC6155 /* XLFormSwitchCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = XLFormSwitchCell.h; path = XLForm/XL/Cell/XLFormSwitchCell.h; sourceTree = "<group>"; };
 		393C1A5D01F8F293779057C3FA107D95 /* Pods-BenchTracker-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-BenchTracker-acknowledgements.plist"; sourceTree = "<group>"; };
 		3A34EA8446B9B956AF073B31ED8AAF2F /* NSString+XLFormAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSString+XLFormAdditions.m"; path = "XLForm/XL/Helpers/NSString+XLFormAdditions.m"; sourceTree = "<group>"; };
+		3A5140932B52001F2EE5DA0F0F9C448F /* da.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = da.lproj; sourceTree = "<group>"; };
 		3AF610E631C945392506302ED1805A7D /* FSCalendarCollectionView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSCalendarCollectionView.h; path = FSCalendar/FSCalendarCollectionView.h; sourceTree = "<group>"; };
 		3B3D0DC29D82E84F41E444CF7DFE548F /* HMSegmentedControl-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "HMSegmentedControl-dummy.m"; sourceTree = "<group>"; };
 		3C6920303BC1DB84315DED67706A6A09 /* XLForm-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "XLForm-prefix.pch"; sourceTree = "<group>"; };
 		3C6E1F5F6426F451FBBAEF9D4ED12DF4 /* UIView+WZLBadge.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+WZLBadge.m"; path = "WZLBadge/View/UIView+WZLBadge.m"; sourceTree = "<group>"; };
 		3D21552F17A4D8D270EBBABA8EE08865 /* XLFormValidator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = XLFormValidator.m; path = XLForm/XL/Validation/XLFormValidator.m; sourceTree = "<group>"; };
 		3D3ADDF08AA427EBA8250526207CF7BA /* scan_flashlight@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "scan_flashlight@2x.png"; path = "MMQRCodeScanner/Resources/scan_flashlight@2x.png"; sourceTree = "<group>"; };
-		3E57C2B57623CD175BACE35057561D80 /* ResourceBundle-Appirater-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-Appirater-Info.plist"; sourceTree = "<group>"; };
 		3E619EE8CB40A4A0FDBF87FBE92DD661 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3FD50B1DC76226D4E3EAFE5C17D4EFB2 /* Pods-BenchTrackerTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-BenchTrackerTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		40910151BE42A5CE7540A8F21711B104 /* he.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = he.lproj; sourceTree = "<group>"; };
+		40C3691C26C0641F78369C8DD29F12C8 /* Appirater.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = Appirater.m; sourceTree = "<group>"; };
 		41AD3E0385087E15288DB2A43180A6B8 /* JSONModel.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = JSONModel.modulemap; sourceTree = "<group>"; };
 		42A20B346030BAFC61C3FD78884BBAAE /* FSCalendarConstants.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FSCalendarConstants.m; path = FSCalendar/FSCalendarConstants.m; sourceTree = "<group>"; };
-		42ABF0AF0E6B84E9AE1B901525D1275F /* Appirater-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Appirater-prefix.pch"; sourceTree = "<group>"; };
 		43CA298FFCC69D53D09654F08606A790 /* NSObject+XLFormAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+XLFormAdditions.m"; path = "XLForm/XL/Helpers/NSObject+XLFormAdditions.m"; sourceTree = "<group>"; };
 		44C857D8878438C36D55341DF7A4FA9B /* HMSegmentedControl.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = HMSegmentedControl.h; path = HMSegmentedControl/HMSegmentedControl.h; sourceTree = "<group>"; };
-		457AC8E3EC4F74F6BBB0C2EDA19FC1DB /* Appirater-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Appirater-umbrella.h"; sourceTree = "<group>"; };
 		46D12E3A72C4B8672AEE53B0CBDF0DB6 /* JSONModel.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = JSONModel.xcconfig; sourceTree = "<group>"; };
 		47C29FA0C3BC65BC24CAABEDBEBB4802 /* XLFormBaseCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = XLFormBaseCell.h; path = XLForm/XL/Cell/XLFormBaseCell.h; sourceTree = "<group>"; };
 		489E8904CF97745B02DE27E0B434CF25 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -566,40 +570,42 @@
 		4A4E8C2CF6DB2A5A930DF4FE087BE45E /* MJPropertyKey.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJPropertyKey.m; path = MJExtension/MJPropertyKey.m; sourceTree = "<group>"; };
 		4A569C2D86E869FD512751940490C06A /* FSCalendarCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FSCalendarCell.m; path = FSCalendar/FSCalendarCell.m; sourceTree = "<group>"; };
 		4AB72B01D4C23E8AED0ED8FE567A573F /* NSObject+MJKeyValue.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+MJKeyValue.h"; path = "MJExtension/NSObject+MJKeyValue.h"; sourceTree = "<group>"; };
-		4AF8EBA3218F86C4A41F4EEE3DDB012C /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4D432C4E75F72954BDF80EF1720B2BB5 /* XLFormPickerCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = XLFormPickerCell.m; path = XLForm/XL/Cell/XLFormPickerCell.m; sourceTree = "<group>"; };
 		4D46EBD119F26E42FD325EB62AD0E8CF /* MMQRCodeMakerUtil.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MMQRCodeMakerUtil.h; path = MMQRCodeScanner/MMQRCodeMakerUtil.h; sourceTree = "<group>"; };
 		4D645C79D2D910C900115F23D01547C7 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/CFNetwork.framework; sourceTree = DEVELOPER_DIR; };
 		4DC1DBBA85619D1776C126CB9F2C464F /* PNPieChart.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PNPieChart.m; path = PNChart/PNPieChart.m; sourceTree = "<group>"; };
+		4E20558D549DC1A82EE9DB3D88906700 /* ms.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = ms.lproj; sourceTree = "<group>"; };
 		4F644C8E3B342FBFED8E1011774B4A1F /* XLFormValidator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = XLFormValidator.h; path = XLForm/XL/Validation/XLFormValidator.h; sourceTree = "<group>"; };
 		4F8243A02D97933164C84CBE45D34B33 /* XLFormRowDescriptor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = XLFormRowDescriptor.m; path = XLForm/XL/Descriptors/XLFormRowDescriptor.m; sourceTree = "<group>"; };
 		4FEA7F3902A32E15E079B97F32743513 /* XLForm-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "XLForm-umbrella.h"; sourceTree = "<group>"; };
 		51C59CB3E1F2863B6B304F2A319D3B7F /* FSCalendarStickyHeader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FSCalendarStickyHeader.m; path = FSCalendar/FSCalendarStickyHeader.m; sourceTree = "<group>"; };
 		51F80A2D49650896B2B6DF04F854AF37 /* UIView+Geometry.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+Geometry.h"; path = "MMQRCodeScanner/UIView+Geometry.h"; sourceTree = "<group>"; };
-		54C83C40B70BAEA14822C5F4D708C5DC /* es.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = es.lproj; sourceTree = "<group>"; };
-		54E4C789DCB25EE369D62705A6024522 /* ru.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = ru.lproj; sourceTree = "<group>"; };
 		54F4B61206A135474243B4F2F3F801E8 /* JSONAPI.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JSONAPI.m; path = JSONModel/JSONModelNetworking/JSONAPI.m; sourceTree = "<group>"; };
 		55A8FEA8500062812091A65B182742F8 /* PNBar.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PNBar.h; path = PNChart/PNBar.h; sourceTree = "<group>"; };
+		574B38C71285E729B1A5A834197F0509 /* pl.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = pl.lproj; sourceTree = "<group>"; };
+		598314A861B9F59B30762E9659B47E4C /* ca.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = ca.lproj; sourceTree = "<group>"; };
 		59A4860F2FFEB108C31D5A8E194A112E /* UIBarButtonItem+WZLBadge.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIBarButtonItem+WZLBadge.h"; path = "WZLBadge/BarItem/UIBarButtonItem+WZLBadge.h"; sourceTree = "<group>"; };
 		5B0C3B45AED0E8DA95DF3520A2837A4C /* Pods_BenchTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_BenchTracker.framework; path = "Pods-BenchTracker.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C6E4DD881515B200896C23D743206D4 /* CAAnimation+WAnimation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "CAAnimation+WAnimation.m"; path = "WZLBadge/CategorySupport/CAAnimation+WAnimation.m"; sourceTree = "<group>"; };
-		5E36A5E562752E870D2A14A4187A49DD /* it.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = it.lproj; sourceTree = "<group>"; };
-		5E49B6D95B4D0A6B24AAAE31D89BF0C2 /* tr.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = tr.lproj; sourceTree = "<group>"; };
 		5E742BFE1357386104D78A29353E16AA /* XLFormSectionDescriptor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = XLFormSectionDescriptor.h; path = XLForm/XL/Descriptors/XLFormSectionDescriptor.h; sourceTree = "<group>"; };
 		5E954C526FE20D2A81157D54E846F832 /* NSArray+XLFormAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSArray+XLFormAdditions.h"; path = "XLForm/XL/Helpers/NSArray+XLFormAdditions.h"; sourceTree = "<group>"; };
 		5F3FB54914326A3FCDB77C41C89263F9 /* MMQRCodeScanner-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MMQRCodeScanner-dummy.m"; sourceTree = "<group>"; };
 		5F429E6143778B634AB51AD05D7B0C55 /* PNRadarChartDataItem.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PNRadarChartDataItem.m; path = PNChart/PNRadarChartDataItem.m; sourceTree = "<group>"; };
 		5F8B8B5BE48113E92419DB045BAFB284 /* XLFormInlineSelectorCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = XLFormInlineSelectorCell.m; path = XLForm/XL/Cell/XLFormInlineSelectorCell.m; sourceTree = "<group>"; };
+		60F28BBEEC903DEE38183D45D0BC5B77 /* tr.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = tr.lproj; sourceTree = "<group>"; };
 		61300FA266E653DD3E239873C447BFBB /* FSCalendarScopeHandle.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSCalendarScopeHandle.h; path = FSCalendar/FSCalendarScopeHandle.h; sourceTree = "<group>"; };
 		628BEB4C3F4277CD99FF808978B1C94D /* XLFormOptionsObject.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = XLFormOptionsObject.h; path = XLForm/XL/Controllers/XLFormOptionsObject.h; sourceTree = "<group>"; };
 		62C9013E026D2766DDF16B6B7D9138C4 /* Toast.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Toast.xcconfig; sourceTree = "<group>"; };
 		62E0EC929DEF5EDCF35FE352085EE634 /* ZFModalTransitionAnimator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZFModalTransitionAnimator.h; path = Classes/ZFModalTransitionAnimator.h; sourceTree = "<group>"; };
 		63D9018FC4B820C7719999CAFD05C5F6 /* JSONModelLib.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JSONModelLib.h; path = JSONModel/JSONModelLib.h; sourceTree = "<group>"; };
+		641EC3FC0909B33792CBB5664CA6C6AF /* el.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = el.lproj; sourceTree = "<group>"; };
 		65912D4CEC33918847052AA0E3AAA3EB /* PNChartLabel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PNChartLabel.m; path = PNChart/PNChartLabel.m; sourceTree = "<group>"; };
 		65BBCB61C3A45AA66094FAEE1A7D4F8E /* MMQRCodeScanner.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = MMQRCodeScanner.modulemap; sourceTree = "<group>"; };
 		6667C77A91E7B964FEC0D615A961B545 /* Appirater.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Appirater.framework; path = Appirater.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		66B0B0410A2561248DDC48FF46B8AA57 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		67DBE261060584E5EA1E88F6C86DFC4D /* en.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = en.lproj; sourceTree = "<group>"; };
 		6815B2E08D551502CE9A0606C3F974DD /* XLFormTextView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = XLFormTextView.m; path = XLForm/XL/Helpers/Views/XLFormTextView.m; sourceTree = "<group>"; };
+		6901F3C041230EAD39E85A6C90AFD89D /* es.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = es.lproj; sourceTree = "<group>"; };
 		696799D8749B6EE28929C133234EDB6E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		6AED66B05070FC0D397E79DDB996E29A /* XLFormDateCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = XLFormDateCell.h; path = XLForm/XL/Cell/XLFormDateCell.h; sourceTree = "<group>"; };
 		6B00800E86E4BD8330E5034F77CAAD94 /* XLFormDatePickerCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = XLFormDatePickerCell.m; path = XLForm/XL/Cell/XLFormDatePickerCell.m; sourceTree = "<group>"; };
@@ -608,30 +614,30 @@
 		6C3044D561C56CAC5F3A1362D75665B4 /* XLFormButtonCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = XLFormButtonCell.h; path = XLForm/XL/Cell/XLFormButtonCell.h; sourceTree = "<group>"; };
 		6C38A5616A4909318F1A53024E1885B6 /* PNScatterChart.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PNScatterChart.h; path = PNChart/PNScatterChart.h; sourceTree = "<group>"; };
 		6CCE39C37B371F9F701644AD5C91BA43 /* MJExtension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJExtension.h; path = MJExtension/MJExtension.h; sourceTree = "<group>"; };
-		6D3C4DA21A1E7B21ACDD79C0FB016F87 /* da.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = da.lproj; sourceTree = "<group>"; };
 		6D4C2FB2BEBA02F8D259F2F5FB2206AD /* PNLineChartDataItem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PNLineChartDataItem.h; path = PNChart/PNLineChartDataItem.h; sourceTree = "<group>"; };
 		6DA42D8B0605495199AC9B22F4D0729E /* JSONModelClassProperty.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JSONModelClassProperty.m; path = JSONModel/JSONModel/JSONModelClassProperty.m; sourceTree = "<group>"; };
 		6DBB571DDDE3314416986A691F89826B /* FSCalendarDelegationProxy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FSCalendarDelegationProxy.m; path = FSCalendar/FSCalendarDelegationProxy.m; sourceTree = "<group>"; };
 		6E4E5A729A8513A038DED5FAD7F7C5C7 /* UICountingLabel.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = UICountingLabel.modulemap; sourceTree = "<group>"; };
-		712842F975EB5165E542B97DE73F9D4F /* hu.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = hu.lproj; sourceTree = "<group>"; };
 		71C29A6DDFE75CFFF47285D4237991DA /* HMSegmentedControl.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = HMSegmentedControl.xcconfig; sourceTree = "<group>"; };
 		72CAEC1F8DA8FEE22009E1D2188705B4 /* XLFormRightDetailCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = XLFormRightDetailCell.m; path = XLForm/XL/Helpers/Views/XLFormRightDetailCell.m; sourceTree = "<group>"; };
 		73237D28BA0E641B086B51D7CD52D25F /* WZLBadge.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = WZLBadge.xcconfig; sourceTree = "<group>"; };
+		73F123FDE3DE3B6A059CBBF36A73623A /* Appirater.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Appirater.modulemap; sourceTree = "<group>"; };
 		743C8827333FA6C53BE7AF2C5BCE55ED /* FSCalendarDynamicHeader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSCalendarDynamicHeader.h; path = FSCalendar/FSCalendarDynamicHeader.h; sourceTree = "<group>"; };
-		748DB0A40805781E8B20031323FF2A11 /* nb.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = nb.lproj; sourceTree = "<group>"; };
 		755ABB740FD17FAA2A5A58BF38CB5BBE /* WZLBadgeImport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = WZLBadgeImport.h; path = WZLBadge/WZLBadgeImport.h; sourceTree = "<group>"; };
 		7610AB2E9B5AC4FC014758E415D7B01B /* WZLBadgeProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = WZLBadgeProtocol.h; path = WZLBadge/Protocol/WZLBadgeProtocol.h; sourceTree = "<group>"; };
 		76ABD9D05AAC87C607AF7706C68962C0 /* PNLineChart.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PNLineChart.h; path = PNChart/PNLineChart.h; sourceTree = "<group>"; };
-		7740600B728E49E538545DFA8FDEC155 /* ms.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = ms.lproj; sourceTree = "<group>"; };
-		77D0B0207A7433DAE5DBA668DD4D6182 /* cs.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = cs.lproj; sourceTree = "<group>"; };
+		76C16159C75A56BE77E8A150875F012A /* de.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = de.lproj; sourceTree = "<group>"; };
 		77F3DA89AA59417C7DE5E5D623862ABB /* UICountingLabel-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UICountingLabel-umbrella.h"; sourceTree = "<group>"; };
 		78712D6F90D7EAA2A6BFB4FB8BC25371 /* MMQRCodeScanner-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MMQRCodeScanner-umbrella.h"; sourceTree = "<group>"; };
 		789E07BFA66E31E6AFE2C80426311522 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		794173AE5FA4C63C9AC77CDC9486DA93 /* nl.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = nl.lproj; sourceTree = "<group>"; };
 		797A65ADB3198E1239A037F1A8E4E6C1 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7A75948C11F30176C29841EA4F468330 /* ko.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = ko.lproj; sourceTree = "<group>"; };
 		7CB4C041FB21D456FC6ADC05D7E08AB9 /* XLFormTextViewCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = XLFormTextViewCell.h; path = XLForm/XL/Cell/XLFormTextViewCell.h; sourceTree = "<group>"; };
 		7CF9F63D02CE636B05E70EDCA401B191 /* UIView+WZLBadge.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+WZLBadge.h"; path = "WZLBadge/View/UIView+WZLBadge.h"; sourceTree = "<group>"; };
 		7DE2C2F36CFC5B61B7BA5D36FB0851B7 /* MMScanerLayerView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MMScanerLayerView.h; path = MMQRCodeScanner/MMScanerLayerView.h; sourceTree = "<group>"; };
 		7EABC478316088B214BEB5DA3DEE1A57 /* MJExtensionConst.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJExtensionConst.h; path = MJExtension/MJExtensionConst.h; sourceTree = "<group>"; };
+		7F4E4BC6B0EC9BD3A1665845A3AAB07A /* fa.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = fa.lproj; sourceTree = "<group>"; };
 		7F99D270DBF0D35BD3E05D5F9F93BB50 /* ZFModalTransitionAnimator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZFModalTransitionAnimator.m; path = Classes/ZFModalTransitionAnimator.m; sourceTree = "<group>"; };
 		7FA656135B9B6A8002B16F5D9A9D3C04 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		806FC382817881635F3FF5F892D524C4 /* UIView+XLFormAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+XLFormAdditions.h"; path = "XLForm/XL/Helpers/UIView+XLFormAdditions.h"; sourceTree = "<group>"; };
@@ -645,7 +651,6 @@
 		8458C7039CCA7A7A14DA635E8615FA91 /* HMSegmentedControl-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "HMSegmentedControl-umbrella.h"; sourceTree = "<group>"; };
 		85A6FD478EDC1F08CB7BDA24B4B321DB /* XLFormImageCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = XLFormImageCell.h; path = XLForm/XL/Cell/XLFormImageCell.h; sourceTree = "<group>"; };
 		867BF0146D8D72C2026D3BC2CB24811A /* JSONModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JSONModel.m; path = JSONModel/JSONModel/JSONModel.m; sourceTree = "<group>"; };
-		869966BFC59E1BC909D7C7FE126840BB /* nl.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = nl.lproj; sourceTree = "<group>"; };
 		87D2C364FD9D7B57E53F18E7FA0DCFF8 /* NSExpression+XLFormAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSExpression+XLFormAdditions.h"; path = "XLForm/XL/Helpers/NSExpression+XLFormAdditions.h"; sourceTree = "<group>"; };
 		89517B2CFBEE15E7ED3F90862B71425A /* PNBarChart.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PNBarChart.m; path = PNChart/PNBarChart.m; sourceTree = "<group>"; };
 		898B2F5AB662DF9CA51DD2FCA0FFBEFA /* MMScannerController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MMScannerController.m; path = MMQRCodeScanner/MMScannerController.m; sourceTree = "<group>"; };
@@ -653,31 +658,32 @@
 		8A4E82760A1232FAFEFC96242B34AD57 /* UICountingLabel-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UICountingLabel-dummy.m"; sourceTree = "<group>"; };
 		8A5EA6F2CA6CC591E492D6F8CC8B4DFF /* FSCalendarExtensions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSCalendarExtensions.h; path = FSCalendar/FSCalendarExtensions.h; sourceTree = "<group>"; };
 		8A84501709C20B460E6A6E911517861D /* XLFormDescriptorDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = XLFormDescriptorDelegate.h; path = XLForm/XL/Descriptors/XLFormDescriptorDelegate.h; sourceTree = "<group>"; };
-		8B70EAA82EABAAB65BE222050F292558 /* fi.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = fi.lproj; sourceTree = "<group>"; };
 		8BFB3597F7FBB80208B19882755A7F8A /* XLFormRowDescriptor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = XLFormRowDescriptor.h; path = XLForm/XL/Descriptors/XLFormRowDescriptor.h; sourceTree = "<group>"; };
+		8C79C6C7FCF3CEC1E5F4F2B3106A59DE /* Appirater-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Appirater-dummy.m"; sourceTree = "<group>"; };
+		8DF6453843299327CDE2B1989B37B2F0 /* uk.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = uk.lproj; sourceTree = "<group>"; };
 		8E1E924F5D7793DF0C8FC015D7FE9DB9 /* MMScannerController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MMScannerController.h; path = MMQRCodeScanner/MMScannerController.h; sourceTree = "<group>"; };
 		8E45A807720F4F816DDA122CAF1B6F57 /* Pods_BenchTrackerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_BenchTrackerTests.framework; path = "Pods-BenchTrackerTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		8EA912C852A3339B001F367E3FBB484B /* sv.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = sv.lproj; sourceTree = "<group>"; };
 		8F5B0290CC7DD6232A94C3CF0CCDC6D1 /* Onboard-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Onboard-prefix.pch"; sourceTree = "<group>"; };
 		8F852B3C73591A43FA08DCBF9A094C26 /* MJExtension-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MJExtension-dummy.m"; sourceTree = "<group>"; };
 		8FB8E4466D7696DD89122BBE3DB39539 /* Onboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Onboard.framework; path = Onboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		912FD4DD151E7DFE9764E7AA87EC7331 /* MJProperty.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJProperty.h; path = MJExtension/MJProperty.h; sourceTree = "<group>"; };
 		91E6C5C09DCF7D134D1632F3AC05BC45 /* MGSwipeButton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MGSwipeButton.h; path = MGSwipeTableCell/MGSwipeButton.h; sourceTree = "<group>"; };
 		92976921DE2AB5D334EE28CD3521ECBF /* UIBarButtonItem+WZLBadge.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIBarButtonItem+WZLBadge.m"; path = "WZLBadge/BarItem/UIBarButtonItem+WZLBadge.m"; sourceTree = "<group>"; };
-		930FFB1BD3C5C59CACD96B412658FA87 /* de.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = de.lproj; sourceTree = "<group>"; };
 		93308D07932A06005C5BF0C4EBD27AD9 /* XLFormSelectorCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = XLFormSelectorCell.h; path = XLForm/XL/Cell/XLFormSelectorCell.h; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		93EB92E45E654BE09014D98DF539BCE6 /* FSCalendarWeekdayView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSCalendarWeekdayView.h; path = FSCalendar/FSCalendarWeekdayView.h; sourceTree = "<group>"; };
 		943531C31C21FB3F40F77DA6295B2385 /* Onboard-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Onboard-umbrella.h"; sourceTree = "<group>"; };
 		947B5B4BDCC4FD0DA20858E897390772 /* MJExtensionConst.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJExtensionConst.m; path = MJExtension/MJExtensionConst.m; sourceTree = "<group>"; };
+		948A88B562EE6C40A0C557300E44C3DF /* ro.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = ro.lproj; sourceTree = "<group>"; };
 		949BADFE4BACB2CE7060D2B7E278E16C /* PNCircleChart.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PNCircleChart.h; path = PNChart/PNCircleChart.h; sourceTree = "<group>"; };
 		94AB380F7C243E6049E321A4831378E3 /* WZLBadge-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "WZLBadge-prefix.pch"; sourceTree = "<group>"; };
 		95FC0337960B99CEF2DDE91E2854A7BC /* XLFormStepCounterCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = XLFormStepCounterCell.h; path = XLForm/XL/Cell/XLFormStepCounterCell.h; sourceTree = "<group>"; };
 		9632B5E4056864388A5BC5378AEA256F /* PNBar.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PNBar.m; path = PNChart/PNBar.m; sourceTree = "<group>"; };
-		96D24FAE6AB9126C8A3E9EE8D41620BF /* Appirater.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = Appirater.m; sourceTree = "<group>"; };
 		97F84A8B9CD8AEAAA68787B4B95A1229 /* XLForm-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "XLForm-dummy.m"; sourceTree = "<group>"; };
 		987DD0F7A25ACEDC040D5C75B623AD05 /* XLFormSectionDescriptor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = XLFormSectionDescriptor.m; path = XLForm/XL/Descriptors/XLFormSectionDescriptor.m; sourceTree = "<group>"; };
+		9928DB7CF622575BDF4E18029D332CE2 /* fi.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = fi.lproj; sourceTree = "<group>"; };
 		9A6B46228242267A2E08178B1AD322AB /* XLForm.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = XLForm.xcconfig; sourceTree = "<group>"; };
+		9AE24442215A93907CB5354AE5D61B1D /* sk.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = sk.lproj; sourceTree = "<group>"; };
 		9AFBD76643C4450560624DDB08A8B2AC /* PNChart-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PNChart-umbrella.h"; sourceTree = "<group>"; };
 		9B4D9E56AD31E9A7E2B06703A53AC167 /* MJProperty.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJProperty.m; path = MJExtension/MJProperty.m; sourceTree = "<group>"; };
 		9BF57FE5C11F109E60F1843A1B95EB01 /* Pods-BenchTrackerTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-BenchTrackerTests-dummy.m"; sourceTree = "<group>"; };
@@ -689,6 +695,7 @@
 		A0BEFE7227F863E24451A0C691EECD67 /* XLFormOptionsViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = XLFormOptionsViewController.m; path = XLForm/XL/Controllers/XLFormOptionsViewController.m; sourceTree = "<group>"; };
 		A18E3FCF81F65EDBCAC6002E21349D03 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A2F9BCB0EBED65FC59C58065903A4FC2 /* Toast-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Toast-umbrella.h"; sourceTree = "<group>"; };
+		A315D7C1F255C373C576372D53C2939D /* nb.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = nb.lproj; sourceTree = "<group>"; };
 		A4B85BCAD28FE29F3E0A4F1FEB4B65A9 /* Pods-BenchTrackerTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-BenchTrackerTests-acknowledgements.plist"; sourceTree = "<group>"; };
 		A50FE23CED3787744718AB31B16B3786 /* PNScatterChartDataItem.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PNScatterChartDataItem.m; path = PNChart/PNScatterChartDataItem.m; sourceTree = "<group>"; };
 		A5567D72A89DB3BDAEC1788CB4DD0E1F /* FSCalendarCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSCalendarCell.h; path = FSCalendar/FSCalendarCell.h; sourceTree = "<group>"; };
@@ -696,12 +703,12 @@
 		A5ED7E4C02C586AF1A1824CE1831C456 /* OnboardingViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OnboardingViewController.m; path = Source/OnboardingViewController.m; sourceTree = "<group>"; };
 		A748939C3DF81FE56EFDD6413CBA9F2F /* FSCalendarExtensions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FSCalendarExtensions.m; path = FSCalendar/FSCalendarExtensions.m; sourceTree = "<group>"; };
 		A9105FC59D99E035CC1BFF150DAB7D47 /* XLForm.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = XLForm.bundle; path = XLForm/XLForm.bundle; sourceTree = "<group>"; };
+		A96A17BAF59B1F9890507CC2D3AF80C3 /* ar.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = ar.lproj; sourceTree = "<group>"; };
 		A9C2ACD8A8980F6422C91FDD56D045D3 /* FSCalendar-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FSCalendar-umbrella.h"; sourceTree = "<group>"; };
 		AB4C990430944E28DD0386649ECF035F /* OnboardingContentViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OnboardingContentViewController.m; path = Source/OnboardingContentViewController.m; sourceTree = "<group>"; };
 		ABDE51976E04207F83F225AD700DF848 /* XLFormValidationStatus.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = XLFormValidationStatus.h; path = XLForm/XL/Validation/XLFormValidationStatus.h; sourceTree = "<group>"; };
 		ADBD17C6585FE6DCA1AA86EDF11CE0BE /* PNPieChart.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PNPieChart.h; path = PNChart/PNPieChart.h; sourceTree = "<group>"; };
 		AF7C9E03A88E0C6193E057935C40C2D6 /* XLFormOptionsViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = XLFormOptionsViewController.h; path = XLForm/XL/Controllers/XLFormOptionsViewController.h; sourceTree = "<group>"; };
-		AF949213040C513C3B09A56AEECC97AF /* he.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = he.lproj; sourceTree = "<group>"; };
 		B01528A28E8E7A0D02162151EEE21F34 /* MMQRCodeScanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = MMQRCodeScanner.framework; path = MMQRCodeScanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B02502CABA8355B91CA3A8D8D902921B /* MJFoundation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJFoundation.h; path = MJExtension/MJFoundation.h; sourceTree = "<group>"; };
 		B07DF9FE3E5E0AB92EFD14FA12E3C57E /* JSONHTTPClient.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JSONHTTPClient.m; path = JSONModel/JSONModelNetworking/JSONHTTPClient.m; sourceTree = "<group>"; };
@@ -713,7 +720,6 @@
 		B6A1DE65E8DDBE19752490AE6764C43E /* Toast.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Toast.modulemap; sourceTree = "<group>"; };
 		B6CC9B78B8156150F0A75F173B2CA3C1 /* JSONModel-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JSONModel-prefix.pch"; sourceTree = "<group>"; };
 		B6D532426F824D467FE9AE7EBC400312 /* PNRadarChartDataItem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PNRadarChartDataItem.h; path = PNChart/PNRadarChartDataItem.h; sourceTree = "<group>"; };
-		B70B491086D3D14683E00AA3E551277C /* el.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = el.lproj; sourceTree = "<group>"; };
 		B731058FD5D3C51C6B8A4AAC78E2942F /* FSCalendarConstants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSCalendarConstants.h; path = FSCalendar/FSCalendarConstants.h; sourceTree = "<group>"; };
 		B90E7A20C7E8096CE6A68242C420ADE4 /* Toast-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Toast-dummy.m"; sourceTree = "<group>"; };
 		B9E2D11D35DD5E22D252CD0A1C8871F4 /* HMSegmentedControl.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = HMSegmentedControl.m; path = HMSegmentedControl/HMSegmentedControl.m; sourceTree = "<group>"; };
@@ -721,6 +727,8 @@
 		BA533815425BBD4D7FE4CC6682F240AC /* PNChart-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PNChart-prefix.pch"; sourceTree = "<group>"; };
 		BAD7CB2EB79F6E749A5A70F350A348A4 /* MJExtension.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = MJExtension.modulemap; sourceTree = "<group>"; };
 		BB473E8C86F329FC25F67688260F6F80 /* NSString+MJExtension.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSString+MJExtension.m"; path = "MJExtension/NSString+MJExtension.m"; sourceTree = "<group>"; };
+		BBFDBAE886235E204337D93524BB0572 /* ru.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = ru.lproj; sourceTree = "<group>"; };
+		BC313D4943EB20C005ECDE6ADE9370A8 /* it.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = it.lproj; sourceTree = "<group>"; };
 		BC9CBBE8AF33D43F4AD199B6C022671B /* NSObject+MJProperty.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+MJProperty.h"; path = "MJExtension/NSObject+MJProperty.h"; sourceTree = "<group>"; };
 		BD104BBC024C3C063735C54BB79962E8 /* XLFormPickerCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = XLFormPickerCell.h; path = XLForm/XL/Cell/XLFormPickerCell.h; sourceTree = "<group>"; };
 		BEFAB64C1B21FF3B628C47B2A4F294C4 /* NSExpression+XLFormAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSExpression+XLFormAdditions.m"; path = "XLForm/XL/Helpers/NSExpression+XLFormAdditions.m"; sourceTree = "<group>"; };
@@ -728,7 +736,6 @@
 		BFB8F1BADEC85D5DE3B49CF0B5535157 /* UICountingLabel.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = UICountingLabel.xcconfig; sourceTree = "<group>"; };
 		C06C47C9DE7574A8E5BE61409E9CA441 /* PNLineChartData.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PNLineChartData.m; path = PNChart/PNLineChartData.m; sourceTree = "<group>"; };
 		C0F12C71E118D9FA7E902538558B2539 /* MGSwipeTableCell.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = MGSwipeTableCell.framework; path = MGSwipeTableCell.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C1137C91D3FF46CE2208AB6C7C4D0B62 /* ko.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = ko.lproj; sourceTree = "<group>"; };
 		C2321B78D50B553035708EB0705A85C7 /* JSONModel-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "JSONModel-dummy.m"; sourceTree = "<group>"; };
 		C28E275AFF77CD9A7CC3290135DB1941 /* MJFoundation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJFoundation.m; path = MJExtension/MJFoundation.m; sourceTree = "<group>"; };
 		C2B720D14AF19B364C6F0E82C1FB23F1 /* FSCalendarCollectionViewLayout.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FSCalendarCollectionViewLayout.m; path = FSCalendar/FSCalendarCollectionViewLayout.m; sourceTree = "<group>"; };
@@ -741,14 +748,10 @@
 		C58447DB0B80E7AA89343A5C106E24B0 /* MMScanerLayerView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MMScanerLayerView.m; path = MMQRCodeScanner/MMScanerLayerView.m; sourceTree = "<group>"; };
 		C60B49A82D7F85780DDE010619D0B5CA /* FSCalendar.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FSCalendar.m; path = FSCalendar/FSCalendar.m; sourceTree = "<group>"; };
 		C62DF408B9C93E4293156CA498FA6EAB /* PNGenericChart.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PNGenericChart.h; path = PNChart/PNGenericChart.h; sourceTree = "<group>"; };
-		C678FA9F3CC4E5CFF1B4A83CBAF1571B /* uk.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = uk.lproj; sourceTree = "<group>"; };
-		C70B9DE2168F986B4C98FEEB32F0650B /* vi.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = vi.lproj; sourceTree = "<group>"; };
 		C71686151190C76FE3F766067E8D152D /* JSONModelError.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JSONModelError.m; path = JSONModel/JSONModel/JSONModelError.m; sourceTree = "<group>"; };
-		C726C0EB84EF3213F00C8EBF37CB4647 /* AppiraterDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AppiraterDelegate.h; sourceTree = "<group>"; };
 		C736D04C04B8AA554DB009313EC71969 /* FSCalendarHeaderView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FSCalendarHeaderView.m; path = FSCalendar/FSCalendarHeaderView.m; sourceTree = "<group>"; };
 		C7C42DD76A0B2596390B5458677437AA /* FSCalendarHeaderView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSCalendarHeaderView.h; path = FSCalendar/FSCalendarHeaderView.h; sourceTree = "<group>"; };
 		C7F344A4310010838A303F4ABA279330 /* MGSwipeTableCell.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = MGSwipeTableCell.modulemap; sourceTree = "<group>"; };
-		C85E7947DF9EEAED2955D3F07E6D5975 /* Appirater-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Appirater-dummy.m"; sourceTree = "<group>"; };
 		C8BF4B90A855DC0D4CA8604C37F7D462 /* JSONKeyMapper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JSONKeyMapper.m; path = JSONModel/JSONModelTransformations/JSONKeyMapper.m; sourceTree = "<group>"; };
 		C8EFAD6CB269C76AD70078856711C317 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/AVFoundation.framework; sourceTree = DEVELOPER_DIR; };
 		C907FA50875700948E7B6BE6F600B5F7 /* PNGenericChart.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PNGenericChart.m; path = PNChart/PNGenericChart.m; sourceTree = "<group>"; };
@@ -761,13 +764,12 @@
 		CDE352F84EC745317E6911CDA599B6BA /* Pods-BenchTracker.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-BenchTracker.modulemap"; sourceTree = "<group>"; };
 		CF2FD0F5D599776182C56D1257EB0451 /* PNChartLabel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PNChartLabel.h; path = PNChart/PNChartLabel.h; sourceTree = "<group>"; };
 		CF3B14816668F0B31C81EEDDBD6AADD9 /* ZFDragableModalTransition.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ZFDragableModalTransition.xcconfig; sourceTree = "<group>"; };
-		CF3BCCE5ACD77BCF9CBB83CF339D7CE4 /* Appirater.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = Appirater.h; sourceTree = "<group>"; };
-		D0699487553DFA2301108093CB663D84 /* th.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = th.lproj; sourceTree = "<group>"; };
+		D041885520E18F733C472E51F07D3AA1 /* ResourceBundle-Appirater-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-Appirater-Info.plist"; sourceTree = "<group>"; };
 		D080A9C324682E0D1563A299F9229DD7 /* WZLBadge.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = WZLBadge.modulemap; sourceTree = "<group>"; };
 		D0BD32F062CB6664FD080E8AAB042CE3 /* XLFormSegmentedCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = XLFormSegmentedCell.m; path = XLForm/XL/Cell/XLFormSegmentedCell.m; sourceTree = "<group>"; };
 		D1276CA3B861F94FAB3B813C38B0EF72 /* XLFormDatePickerCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = XLFormDatePickerCell.h; path = XLForm/XL/Cell/XLFormDatePickerCell.h; sourceTree = "<group>"; };
 		D1DC96456AE9209CDEE27E621FA195A3 /* Pods-BenchTracker-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-BenchTracker-umbrella.h"; sourceTree = "<group>"; };
-		D2AE351C2040A06B0A0C1CAA09B152EB /* en.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = en.lproj; sourceTree = "<group>"; };
+		D208C6B5AD3DFC1869C7B203022E2021 /* th.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = th.lproj; sourceTree = "<group>"; };
 		D2E60787AF132F66FCE58033FCFE8180 /* JSONHTTPClient.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JSONHTTPClient.h; path = JSONModel/JSONModelNetworking/JSONHTTPClient.h; sourceTree = "<group>"; };
 		D33B57FD9DB7372B78266A235C272923 /* PNChart.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PNChart.xcconfig; sourceTree = "<group>"; };
 		D3D76CB003AA0859325BD2644F2A72C1 /* XLFormTextView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = XLFormTextView.h; path = XLForm/XL/Helpers/Views/XLFormTextView.h; sourceTree = "<group>"; };
@@ -782,18 +784,21 @@
 		D9DA8D9AB9262AF77ADCA07874B1DF60 /* XLFormValidationStatus.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = XLFormValidationStatus.m; path = XLForm/XL/Validation/XLFormValidationStatus.m; sourceTree = "<group>"; };
 		DAD39EC2CF5D2AC1FEA32625135F92E9 /* XLFormDescriptorCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = XLFormDescriptorCell.h; path = XLForm/XL/Cell/XLFormDescriptorCell.h; sourceTree = "<group>"; };
 		DBEDAD224BD314972A34C0372371D194 /* JSONModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JSONModel.h; path = JSONModel/JSONModel/JSONModel.h; sourceTree = "<group>"; };
+		DCBC34E29FAC5A443215832A7221FEA4 /* ja.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = ja.lproj; sourceTree = "<group>"; };
 		DD565BACC7CA0EF78D3E0D46F8399933 /* NSArray+XLFormAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSArray+XLFormAdditions.m"; path = "XLForm/XL/Helpers/NSArray+XLFormAdditions.m"; sourceTree = "<group>"; };
 		DDEAA80126B4F105E34B40306DBC52AF /* CAAnimation+WAnimation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "CAAnimation+WAnimation.h"; path = "WZLBadge/CategorySupport/CAAnimation+WAnimation.h"; sourceTree = "<group>"; };
 		DE74C82233383E2432A54A582F192F53 /* MMQRCodeMakerUtil.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MMQRCodeMakerUtil.m; path = MMQRCodeScanner/MMQRCodeMakerUtil.m; sourceTree = "<group>"; };
+		DECBB5A461F85530FFAE003B2433C905 /* cs.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = cs.lproj; sourceTree = "<group>"; };
 		DF0FC326B13C1C141CCE034B9971FE29 /* Pods-BenchTracker-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-BenchTracker-frameworks.sh"; sourceTree = "<group>"; };
 		E13CCB1FFF1F419F92A8A3D3A42A4FE8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
 		E14C2B97080B4302AE0BC46A7E3D8D4F /* XLFormCheckCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = XLFormCheckCell.m; path = XLForm/XL/Cell/XLFormCheckCell.m; sourceTree = "<group>"; };
+		E2325088F215ADC3202CC10A1170D533 /* AppiraterDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AppiraterDelegate.h; sourceTree = "<group>"; };
 		E27A9CEA182EFFAAC8EA87BD69200575 /* MJExtension.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MJExtension.xcconfig; sourceTree = "<group>"; };
+		E2B9408618598257FD66BB96CD500355 /* vi.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = vi.lproj; sourceTree = "<group>"; };
 		E2E7D7DD086A540605CB320BDC970A60 /* XLFormSliderCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = XLFormSliderCell.m; path = XLForm/XL/Cell/XLFormSliderCell.m; sourceTree = "<group>"; };
 		E31C76E6D85C0A97D13419C6EF44C640 /* FSCalendarCalculator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSCalendarCalculator.h; path = FSCalendar/FSCalendarCalculator.h; sourceTree = "<group>"; };
 		E359DB7A6C8431CC51820ABBB0673A65 /* Pods-BenchTrackerTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-BenchTrackerTests.modulemap"; sourceTree = "<group>"; };
 		E3625589A2F170541F8952C2FF34D53F /* XLFormBaseCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = XLFormBaseCell.m; path = XLForm/XL/Cell/XLFormBaseCell.m; sourceTree = "<group>"; };
-		E404BD93B5A1A5B954B0A176BA7163B2 /* zh-Hant.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = "zh-Hant.lproj"; sourceTree = "<group>"; };
 		E54B38C29799458CBCF27B3892ECDDBC /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E602CFAA01EA71840BDA0204DD6686B3 /* XLFormOptionsObject.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = XLFormOptionsObject.m; path = XLForm/XL/Controllers/XLFormOptionsObject.m; sourceTree = "<group>"; };
 		E69029B10D2AF755AD0419CB890329DA /* ZFDragableModalTransition.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = ZFDragableModalTransition.modulemap; sourceTree = "<group>"; };
@@ -802,27 +807,26 @@
 		E97984586993335C2ACD1D1DFD65C61C /* FSCalendar.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FSCalendar.xcconfig; sourceTree = "<group>"; };
 		EA9FC0CFB7CF29690ED115E92A25AFDC /* PNLineChart.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PNLineChart.m; path = PNChart/PNLineChart.m; sourceTree = "<group>"; };
 		EBF3C77FBA33EEFE9EC0DB23B7A204F9 /* PNChart.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = PNChart.framework; path = PNChart.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EC50CB0F7FFAB243A063A7D614DF830B /* pt.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = pt.lproj; sourceTree = "<group>"; };
 		EDA715F415135CF4C941A0EA89B05629 /* JSONModel-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JSONModel-umbrella.h"; sourceTree = "<group>"; };
 		EE3C6B8AB684E1B1444304252A59DDAB /* XLFormButtonCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = XLFormButtonCell.m; path = XLForm/XL/Cell/XLFormButtonCell.m; sourceTree = "<group>"; };
 		EFF2ACBF23352DA5D4D3CD622649B7CE /* JSONModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = JSONModel.framework; path = JSONModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0657542D9876215D28D8443C3F76B84 /* UICountingLabel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = UICountingLabel.h; sourceTree = "<group>"; };
 		F0736E42548E87E1C4953CA3A23FDCFE /* FSCalendarStickyHeader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSCalendarStickyHeader.h; path = FSCalendar/FSCalendarStickyHeader.h; sourceTree = "<group>"; };
+		F1A0444E3DCB477C9E149FC6166E4081 /* hu.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = hu.lproj; sourceTree = "<group>"; };
 		F21C06ECCFF54A2347198224EBC79D5F /* XLFormSelectorCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = XLFormSelectorCell.m; path = XLForm/XL/Cell/XLFormSelectorCell.m; sourceTree = "<group>"; };
+		F3795F46CC2CE67EE2186B07DACA7DE5 /* zh-Hans.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = "zh-Hans.lproj"; sourceTree = "<group>"; };
 		F3A13A7C6CE83E47B8C62037D7166095 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F40A0BDD741881C0725A1DE234968329 /* PNScatterChart.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PNScatterChart.m; path = PNChart/PNScatterChart.m; sourceTree = "<group>"; };
-		F56F3E51740E25CB10C3EDEB6456298A /* id.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = id.lproj; sourceTree = "<group>"; };
 		F5B54D9DCFA52DBBA3CBF52BADA46362 /* MGSwipeTableCell-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MGSwipeTableCell-umbrella.h"; sourceTree = "<group>"; };
 		F615BB8C4B531266F1F3094A68F58979 /* PNColor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PNColor.h; path = PNChart/PNColor.h; sourceTree = "<group>"; };
 		F7229E84AADE966CF8F1D85859E5F336 /* XLForm.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = XLForm.m; path = XLForm/XL/XLForm.m; sourceTree = "<group>"; };
 		F77CC3EE80F4B80DFE415DD879F0F3EC /* MMQRCodeScanner-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MMQRCodeScanner-prefix.pch"; sourceTree = "<group>"; };
 		F812E5D2005DDA6EE13FC79E6C5B2278 /* Appirater.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = Appirater.bundle; path = Appirater.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
-		F87471944FF583D676C2FB1D1CD26C28 /* Appirater.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Appirater.modulemap; sourceTree = "<group>"; };
 		F89BED8A11CD8B41406FF8030FB24ABF /* Pods-BenchTrackerTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-BenchTrackerTests-frameworks.sh"; sourceTree = "<group>"; };
-		F932924A0EE505EA1CF287211754AF19 /* ro.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = ro.lproj; sourceTree = "<group>"; };
 		FB36AF042909562FC6BEA1AAFBB64258 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FBA081D5ADA5A9DBC4E12D3EB9C5E866 /* FSCalendar-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FSCalendar-prefix.pch"; sourceTree = "<group>"; };
 		FBE1CBB4F2EE27D7B9DFED66CD85BF23 /* PNBarChart.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PNBarChart.h; path = PNChart/PNBarChart.h; sourceTree = "<group>"; };
+		FC668637A9F6A97E8C9FAF0A1AA81793 /* sv.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = sv.lproj; sourceTree = "<group>"; };
 		FDF296EA5DE9AE46386CD668CEEA1EC8 /* MGSwipeTableCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MGSwipeTableCell.m; path = MGSwipeTableCell/MGSwipeTableCell.m; sourceTree = "<group>"; };
 		FE6B246D1B7E487CF4E7886456F274CE /* XLFormDescriptor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = XLFormDescriptor.h; path = XLForm/XL/Descriptors/XLFormDescriptor.h; sourceTree = "<group>"; };
 		FF345761459AA864701AE580E6C95941 /* Onboard-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Onboard-dummy.m"; sourceTree = "<group>"; };
@@ -1064,6 +1068,21 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		19507E3DC7971049D49A1F4E3871DCB2 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				73F123FDE3DE3B6A059CBBF36A73623A /* Appirater.modulemap */,
+				0B080B2CB79CD0B5B2A25F38BB894D2A /* Appirater.xcconfig */,
+				8C79C6C7FCF3CEC1E5F4F2B3106A59DE /* Appirater-dummy.m */,
+				121E6E0BB975159C380E14F743907A79 /* Appirater-prefix.pch */,
+				03C3ECBE22FE1E1586EB84E5B7898830 /* Appirater-umbrella.h */,
+				2224C88842428DD638712993A28D498B /* Info.plist */,
+				D041885520E18F733C472E51F07D3AA1 /* ResourceBundle-Appirater-Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Appirater";
+			sourceTree = "<group>";
+		};
 		1A1265ABA3030151830ADC3F7C9E374B /* UICountingLabel */ = {
 			isa = PBXGroup;
 			children = (
@@ -1152,6 +1171,47 @@
 			path = "../Target Support Files/PNChart";
 			sourceTree = "<group>";
 		};
+		3F6B440120DD35F80D2F0A5D6D124583 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A96A17BAF59B1F9890507CC2D3AF80C3 /* ar.lproj */,
+				598314A861B9F59B30762E9659B47E4C /* ca.lproj */,
+				DECBB5A461F85530FFAE003B2433C905 /* cs.lproj */,
+				3A5140932B52001F2EE5DA0F0F9C448F /* da.lproj */,
+				76C16159C75A56BE77E8A150875F012A /* de.lproj */,
+				641EC3FC0909B33792CBB5664CA6C6AF /* el.lproj */,
+				67DBE261060584E5EA1E88F6C86DFC4D /* en.lproj */,
+				6901F3C041230EAD39E85A6C90AFD89D /* es.lproj */,
+				7F4E4BC6B0EC9BD3A1665845A3AAB07A /* fa.lproj */,
+				9928DB7CF622575BDF4E18029D332CE2 /* fi.lproj */,
+				098C95EBAF61739B25069F8DB37D5838 /* fr.lproj */,
+				40910151BE42A5CE7540A8F21711B104 /* he.lproj */,
+				F1A0444E3DCB477C9E149FC6166E4081 /* hu.lproj */,
+				11E623FDF599D46692D1E0866D1EA117 /* hy.lproj */,
+				28FEE2443F63628D5262AD82C0A1B993 /* id.lproj */,
+				BC313D4943EB20C005ECDE6ADE9370A8 /* it.lproj */,
+				DCBC34E29FAC5A443215832A7221FEA4 /* ja.lproj */,
+				7A75948C11F30176C29841EA4F468330 /* ko.lproj */,
+				4E20558D549DC1A82EE9DB3D88906700 /* ms.lproj */,
+				A315D7C1F255C373C576372D53C2939D /* nb.lproj */,
+				794173AE5FA4C63C9AC77CDC9486DA93 /* nl.lproj */,
+				574B38C71285E729B1A5A834197F0509 /* pl.lproj */,
+				13EEFBC3EA13F6B68DF6A2203C5FD64E /* pt.lproj */,
+				047B8BDD5A9B1EFFABD3E4B166BC8BD2 /* pt-BR.lproj */,
+				948A88B562EE6C40A0C557300E44C3DF /* ro.lproj */,
+				BBFDBAE886235E204337D93524BB0572 /* ru.lproj */,
+				9AE24442215A93907CB5354AE5D61B1D /* sk.lproj */,
+				FC668637A9F6A97E8C9FAF0A1AA81793 /* sv.lproj */,
+				D208C6B5AD3DFC1869C7B203022E2021 /* th.lproj */,
+				60F28BBEEC903DEE38183D45D0BC5B77 /* tr.lproj */,
+				8DF6453843299327CDE2B1989B37B2F0 /* uk.lproj */,
+				E2B9408618598257FD66BB96CD500355 /* vi.lproj */,
+				F3795F46CC2CE67EE2186B07DACA7DE5 /* zh-Hans.lproj */,
+				0C544BAF6B9385EEC34274C17A15DBC0 /* zh-Hant.lproj */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		4C7B95F5895399D5412E42B5F8801142 /* JSONModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -1227,60 +1287,6 @@
 			path = ZFDragableModalTransition;
 			sourceTree = "<group>";
 		};
-		54C3B71253DEEE466963D2019BB6D16B /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				F87471944FF583D676C2FB1D1CD26C28 /* Appirater.modulemap */,
-				30051CA80E8EAF96A0C218620E141407 /* Appirater.xcconfig */,
-				C85E7947DF9EEAED2955D3F07E6D5975 /* Appirater-dummy.m */,
-				42ABF0AF0E6B84E9AE1B901525D1275F /* Appirater-prefix.pch */,
-				457AC8E3EC4F74F6BBB0C2EDA19FC1DB /* Appirater-umbrella.h */,
-				4AF8EBA3218F86C4A41F4EEE3DDB012C /* Info.plist */,
-				3E57C2B57623CD175BACE35057561D80 /* ResourceBundle-Appirater-Info.plist */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/Appirater";
-			sourceTree = "<group>";
-		};
-		5FF7D5D0E8E1AD4449AD520C57D04C04 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				3365C58B577CD082E18A93E211C56F29 /* ar.lproj */,
-				381894970AA437F912FAFCA4F3BC9F60 /* ca.lproj */,
-				77D0B0207A7433DAE5DBA668DD4D6182 /* cs.lproj */,
-				6D3C4DA21A1E7B21ACDD79C0FB016F87 /* da.lproj */,
-				930FFB1BD3C5C59CACD96B412658FA87 /* de.lproj */,
-				B70B491086D3D14683E00AA3E551277C /* el.lproj */,
-				D2AE351C2040A06B0A0C1CAA09B152EB /* en.lproj */,
-				54C83C40B70BAEA14822C5F4D708C5DC /* es.lproj */,
-				8B70EAA82EABAAB65BE222050F292558 /* fi.lproj */,
-				307175472A3787F4CA80CC0C0B93BE0E /* fr.lproj */,
-				AF949213040C513C3B09A56AEECC97AF /* he.lproj */,
-				712842F975EB5165E542B97DE73F9D4F /* hu.lproj */,
-				F56F3E51740E25CB10C3EDEB6456298A /* id.lproj */,
-				5E36A5E562752E870D2A14A4187A49DD /* it.lproj */,
-				18AC2C50CB96FFD716CE9E35B0FE4EBD /* ja.lproj */,
-				C1137C91D3FF46CE2208AB6C7C4D0B62 /* ko.lproj */,
-				7740600B728E49E538545DFA8FDEC155 /* ms.lproj */,
-				748DB0A40805781E8B20031323FF2A11 /* nb.lproj */,
-				869966BFC59E1BC909D7C7FE126840BB /* nl.lproj */,
-				09AACAD67EF62D8F3AE74D15E94C909F /* pl.lproj */,
-				EC50CB0F7FFAB243A063A7D614DF830B /* pt.lproj */,
-				315C46CF53A3E0ED22D007898C1814CF /* pt-BR.lproj */,
-				F932924A0EE505EA1CF287211754AF19 /* ro.lproj */,
-				54E4C789DCB25EE369D62705A6024522 /* ru.lproj */,
-				13205105ABAB941B9BA34D73C2ED3503 /* sk.lproj */,
-				8EA912C852A3339B001F367E3FBB484B /* sv.lproj */,
-				D0699487553DFA2301108093CB663D84 /* th.lproj */,
-				5E49B6D95B4D0A6B24AAAE31D89BF0C2 /* tr.lproj */,
-				C678FA9F3CC4E5CFF1B4A83CBAF1571B /* uk.lproj */,
-				C70B9DE2168F986B4C98FEEB32F0650B /* vi.lproj */,
-				1D29220A23463DF85EA2B40368BDDD2B /* zh-Hans.lproj */,
-				E404BD93B5A1A5B954B0A176BA7163B2 /* zh-Hant.lproj */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
 		72DD2EA7FD1DF15D26C9E5C81796FE55 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -1337,7 +1343,7 @@
 		902DF317854D3A207C38D084FC49971E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				9E6CC09DF8BDBC1290C62EFD84877DC2 /* Appirater */,
+				A817FF7175056EAE4DB0AB7B9333FB82 /* Appirater */,
 				F256F8E640F72C2039D2BD2D9A2B522C /* FSCalendar */,
 				4F0B98584EE30E9A09BC5F7567C304AE /* HMSegmentedControl */,
 				4C7B95F5895399D5412E42B5F8801142 /* JSONModel */,
@@ -1456,19 +1462,6 @@
 			path = XLForm;
 			sourceTree = "<group>";
 		};
-		9E6CC09DF8BDBC1290C62EFD84877DC2 /* Appirater */ = {
-			isa = PBXGroup;
-			children = (
-				CF3BCCE5ACD77BCF9CBB83CF339D7CE4 /* Appirater.h */,
-				96D24FAE6AB9126C8A3E9EE8D41620BF /* Appirater.m */,
-				C726C0EB84EF3213F00C8EBF37CB4647 /* AppiraterDelegate.h */,
-				5FF7D5D0E8E1AD4449AD520C57D04C04 /* Resources */,
-				54C3B71253DEEE466963D2019BB6D16B /* Support Files */,
-			);
-			name = Appirater;
-			path = Appirater;
-			sourceTree = "<group>";
-		};
 		A2C106D57D26E417F4CCB2E6E73FD480 /* WZLBadge */ = {
 			isa = PBXGroup;
 			children = (
@@ -1486,6 +1479,19 @@
 			);
 			name = WZLBadge;
 			path = WZLBadge;
+			sourceTree = "<group>";
+		};
+		A817FF7175056EAE4DB0AB7B9333FB82 /* Appirater */ = {
+			isa = PBXGroup;
+			children = (
+				13B0E9E450EA014381859837EEF38350 /* Appirater.h */,
+				40C3691C26C0641F78369C8DD29F12C8 /* Appirater.m */,
+				E2325088F215ADC3202CC10A1170D533 /* AppiraterDelegate.h */,
+				3F6B440120DD35F80D2F0A5D6D124583 /* Resources */,
+				19507E3DC7971049D49A1F4E3871DCB2 /* Support Files */,
+			);
+			name = Appirater;
+			path = Appirater;
 			sourceTree = "<group>";
 		};
 		A991DF336F5FE9A3D9A22A3ABE99E867 /* MJExtension */ = {
@@ -1980,7 +1986,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 782AD3C225DF6AF102A6DB24AFC59B5F /* Build configuration list for PBXNativeTarget "MGSwipeTableCell" */;
 			buildPhases = (
-				119E444BE35160E7AD3F82008DEF1E29 /* Sources */,
+				E5160283030B58DF7DFFA1BDC106605C /* Sources */,
 				5F86A802147CAEDCD5D2F69F78B5A758 /* Frameworks */,
 				60763A650B6C8007ECC91753A617BAB1 /* Headers */,
 			);
@@ -2151,7 +2157,7 @@
 			buildPhases = (
 				1AC48A56FB4021E52B6E8A95757EA114 /* Sources */,
 				F1CE9F88CD2E65D601E7C2FF3028290F /* Frameworks */,
-				1FB4665FBE8391B18AE515A6E10024E2 /* Resources */,
+				273830A4F6AB81EF0D7916106A19C691 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -2309,42 +2315,44 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		1FB4665FBE8391B18AE515A6E10024E2 /* Resources */ = {
+		273830A4F6AB81EF0D7916106A19C691 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7283E2BF15CD94AB43402F22F019372 /* ar.lproj in Resources */,
-				76876328878D461763E9DD5D2B28D0B3 /* ca.lproj in Resources */,
-				0613930CE4BE9AFFC32769EC8383D23E /* cs.lproj in Resources */,
-				BA8FDCCDD75A30332CAFA461DCBB239D /* da.lproj in Resources */,
-				69F9B8811DD0A69D1AD805A8F50D9562 /* de.lproj in Resources */,
-				DA0EA60B841C69FC75C503617803CDFB /* el.lproj in Resources */,
-				DCEBE3F854647503DF849E5414D0C958 /* en.lproj in Resources */,
-				4931B820C9FD977F0E19AE7A1B0421F4 /* es.lproj in Resources */,
-				02FABE1669CAAEDA7EF7CAA2831294DE /* fi.lproj in Resources */,
-				27439D0E7749F8E8E4D9700B532D2EA7 /* fr.lproj in Resources */,
-				375E483BD7C0630E14787F377E3C1C3D /* he.lproj in Resources */,
-				98EF54AFF63E0B2AB38143141A14A35B /* hu.lproj in Resources */,
-				D85A70A42894F6B9EC438E5A9357A8FA /* id.lproj in Resources */,
-				7656C4EC91318AE279D2B92E7A164A61 /* it.lproj in Resources */,
-				38B99715207D14F4FBCAB2ED994D9502 /* ja.lproj in Resources */,
-				5E347930A65947CC97DF690BEE0FF2C7 /* ko.lproj in Resources */,
-				109255F460CF656303F5C867EF3FE415 /* ms.lproj in Resources */,
-				C6605A862DC070D4578D72028349D153 /* nb.lproj in Resources */,
-				4FE9A30258F3440ED66B2D6113F6E692 /* nl.lproj in Resources */,
-				A112BD31A75E990E992F96C36D8D4DFC /* pl.lproj in Resources */,
-				55554B26283AE1CC67DCD5B01D9F7710 /* pt-BR.lproj in Resources */,
-				6FA780AAB02A551B955D736DCFE3ADC2 /* pt.lproj in Resources */,
-				581D92C30D24113E05FE0AFE09256611 /* ro.lproj in Resources */,
-				AA948CDB548D0A490471DCA0C3E9BAD3 /* ru.lproj in Resources */,
-				26972794C2FBE7DD8758175B07C9C01E /* sk.lproj in Resources */,
-				5E2F081EBBAEC5B0661D0609417784EF /* sv.lproj in Resources */,
-				52C04BC5A16E7D5DA43317B7622E4B5B /* th.lproj in Resources */,
-				E8979B89210E8201F2850FDE0AB1347F /* tr.lproj in Resources */,
-				DEC3099C0C9045886B467F863DCAC082 /* uk.lproj in Resources */,
-				44FBBB6C9C0F9F99219F55C118D58E33 /* vi.lproj in Resources */,
-				B2009F70FE55DCE47D621C1C1754ADAC /* zh-Hans.lproj in Resources */,
-				077CC403DA16EE7CB0D9FFE27AEA9F5A /* zh-Hant.lproj in Resources */,
+				745D1E48DFA432EE5A09843D3199798C /* ar.lproj in Resources */,
+				4113152F32729488101F2AB09CB37DDE /* ca.lproj in Resources */,
+				E49980ED4FBC1DA1234E360B69A96085 /* cs.lproj in Resources */,
+				5EC4C622CBAA507F1561F5D1BCA05A68 /* da.lproj in Resources */,
+				22B7DDB8DA73ED6A63EFAE2CB203FEA3 /* de.lproj in Resources */,
+				95D1B85F077851CA35399679DA08B488 /* el.lproj in Resources */,
+				A186EB875BBE6BC57EA043F1ABC37FBA /* en.lproj in Resources */,
+				34863D3F3C70F6332CAED604F135A641 /* es.lproj in Resources */,
+				0D5B4AE735F90B2F10B4F9B6D05C01FF /* fa.lproj in Resources */,
+				27713DA898925D0F8D3A3FBCD243D00B /* fi.lproj in Resources */,
+				B41B56539E3114E1508DA5E2D9AC71D7 /* fr.lproj in Resources */,
+				68781A37907F484F60CE73B6160CBCC2 /* he.lproj in Resources */,
+				CCA179AC56A1CB32A359E0F3D1EA7D7E /* hu.lproj in Resources */,
+				7188552FBF40FACE7660265F5D46E35B /* hy.lproj in Resources */,
+				36791B025A1B6701886A4F76D6E37148 /* id.lproj in Resources */,
+				BA3043A80213DBA6056C810E542771DD /* it.lproj in Resources */,
+				494772608F4C99B9DB79187F5B18332B /* ja.lproj in Resources */,
+				3A17985EB1DB111D7257B12918C4DC1E /* ko.lproj in Resources */,
+				EA4F839A03DAE1AC0FF4548896F4B1F7 /* ms.lproj in Resources */,
+				5EE0E4B9DF69BC9A113D8B6E53D6E0D5 /* nb.lproj in Resources */,
+				50574E077671E9E93F7E87B0374B7AD4 /* nl.lproj in Resources */,
+				3FB1E8FB0404827E61447392E2315311 /* pl.lproj in Resources */,
+				359060418B6B6CBBF4AEE26AFEDC0875 /* pt-BR.lproj in Resources */,
+				99F3DA9AAD18111EF6F81881F9B16A80 /* pt.lproj in Resources */,
+				2898EDEAC13CF9515CF3A8EDD8ACBB63 /* ro.lproj in Resources */,
+				80386505D4677E4E7FBA3E42C0C9BB21 /* ru.lproj in Resources */,
+				7477FB10DF55F0004D1F6F4FD8365A1A /* sk.lproj in Resources */,
+				9B43454E095D9220E6133218B231C337 /* sv.lproj in Resources */,
+				76EF058AB04EF6707B53D639DDB58E85 /* th.lproj in Resources */,
+				7C5CB3EBC1CBEC64F80E419FCDDC5D0A /* tr.lproj in Resources */,
+				7D5211524508F30492C81346C80955D4 /* uk.lproj in Resources */,
+				2E06EA179A31CB60BD3DAC6ACD0D8B4E /* vi.lproj in Resources */,
+				A7B60C9537C85DEE1205D83290306031 /* zh-Hans.lproj in Resources */,
+				8EE0A1D4B05D1939EB11C05F89B253EC /* zh-Hant.lproj in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2384,16 +2392,6 @@
 				DFF8CB6CE450CED94E604B450A181155 /* Onboard-dummy.m in Sources */,
 				991F609C73269DC78E11180E3C3E1032 /* OnboardingContentViewController.m in Sources */,
 				C537A2C98FD1DF6D4B6C6C8958000891 /* OnboardingViewController.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		119E444BE35160E7AD3F82008DEF1E29 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				112B3AE3695C10E75BD89585295481AB /* MGSwipeButton.m in Sources */,
-				6CA804342026C8DD0D47F82901AE587D /* MGSwipeTableCell-dummy.m in Sources */,
-				DB33341B93BFF0A556A6F333BE95CFAD /* MGSwipeTableCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2606,6 +2604,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E5160283030B58DF7DFFA1BDC106605C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				02C3B5C4CB40FFA9F7D5BF21A06E062F /* MGSwipeButton.m in Sources */,
+				181A9C4C01FE49B42A1F01A506873F56 /* MGSwipeTableCell-dummy.m in Sources */,
+				1CDA9CF3831C4BE7AC9F922031EDB667 /* MGSwipeTableCell.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F90ACBFECE1AAA7D6D613BE99C365E57 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2815,7 +2823,7 @@
 		};
 		26FCB8825F62C3738B4CDA918E6E5A9E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 30051CA80E8EAF96A0C218620E141407 /* Appirater.xcconfig */;
+			baseConfigurationReference = 0B080B2CB79CD0B5B2A25F38BB894D2A /* Appirater.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -2847,7 +2855,7 @@
 		};
 		27FEAD8C37F9F8B86593A8DDA0457FAF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 30051CA80E8EAF96A0C218620E141407 /* Appirater.xcconfig */;
+			baseConfigurationReference = 0B080B2CB79CD0B5B2A25F38BB894D2A /* Appirater.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Appirater";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -3008,7 +3016,7 @@
 		};
 		64AF3D03A7251D76D80A7B543619BD0D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 30051CA80E8EAF96A0C218620E141407 /* Appirater.xcconfig */;
+			baseConfigurationReference = 0B080B2CB79CD0B5B2A25F38BB894D2A /* Appirater.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -3572,7 +3580,7 @@
 		};
 		DEA34DE2BECAE1DAE4F204E3B1FF2E7F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 30051CA80E8EAF96A0C218620E141407 /* Appirater.xcconfig */;
+			baseConfigurationReference = 0B080B2CB79CD0B5B2A25F38BB894D2A /* Appirater.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Appirater";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;

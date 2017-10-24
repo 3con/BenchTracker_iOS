@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BTCollectionViewCell.h"
 
 @class BTAchievement;
 
-@interface AchievementCollectionViewCell : UICollectionViewCell
+@interface AchievementCollectionViewCell : BTCollectionViewCell
 
 - (void)loadWithAchievement:(BTAchievement *)achievement;
 

@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BTCollectionViewCell.h"
 
-@interface SetCollectionViewCell : UICollectionViewCell
+@interface SetCollectionViewCell : BTCollectionViewCell
 
 @property (nonatomic) UIColor *color;
 

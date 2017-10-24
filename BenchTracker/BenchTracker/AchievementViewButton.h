@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BTButton.h"
 
-@interface AchievementViewButton : UIButton
+@interface AchievementViewButton : BTButton
 
 @end

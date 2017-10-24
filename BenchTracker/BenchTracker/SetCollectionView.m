@@ -31,7 +31,7 @@
     flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     [self setCollectionViewLayout:flowLayout];
     [self registerNib:[UINib nibWithNibName:@"SetCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"Cell"];
-    [self registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"ACell"];
+    [self registerClass:[BTCollectionViewCell class] forCellWithReuseIdentifier:@"ACell"];
 }
 
 - (void)setSets:(NSMutableArray<NSString *> *)sets {
@@ -64,7 +64,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) { //first cell: add set
-        UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ACell" forIndexPath:indexPath];
+        BTCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ACell" forIndexPath:indexPath];
         cell.backgroundColor = [UIColor BTSecondaryColor];
         cell.layer.cornerRadius = 12;
         cell.clipsToBounds = YES;

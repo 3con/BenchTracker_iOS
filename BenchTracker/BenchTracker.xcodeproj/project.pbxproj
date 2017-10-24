@@ -36,6 +36,8 @@
 		5066F9B61F61E75D00159130 /* AchievementCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5066F9B41F61E75D00159130 /* AchievementCollectionViewCell.xib */; };
 		506C90DB1F63BC8800DAB6D4 /* UserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 506C90DA1F63BC8800DAB6D4 /* UserView.m */; };
 		506C90DD1F63BC8E00DAB6D4 /* UserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 506C90DC1F63BC8E00DAB6D4 /* UserView.xib */; };
+		506C91591F9FEEA9003C4758 /* BTButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 506C91581F9FEEA9003C4758 /* BTButton.m */; };
+		506C915D1F9FF29F003C4758 /* BTCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 506C915C1F9FF29F003C4758 /* BTCollectionViewCell.m */; };
 		507FC4CF1F3243FA00A88A35 /* BTDataTransferManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 507FC4CE1F3243FA00A88A35 /* BTDataTransferManager.m */; };
 		5084CF1D1F3BCCC40083FA19 /* BTWorkoutTemplateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5084CF1C1F3BCCC40083FA19 /* BTWorkoutTemplateModel.m */; };
 		5084CF211F3BD66F0083FA19 /* BTTemplateListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5084CF201F3BD66F0083FA19 /* BTTemplateListModel.m */; };
@@ -207,6 +209,10 @@
 		506C90D91F63BC8800DAB6D4 /* UserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserView.h; sourceTree = "<group>"; };
 		506C90DA1F63BC8800DAB6D4 /* UserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserView.m; sourceTree = "<group>"; };
 		506C90DC1F63BC8E00DAB6D4 /* UserView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserView.xib; sourceTree = "<group>"; };
+		506C91571F9FEEA9003C4758 /* BTButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTButton.h; sourceTree = "<group>"; };
+		506C91581F9FEEA9003C4758 /* BTButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTButton.m; sourceTree = "<group>"; };
+		506C915B1F9FF29F003C4758 /* BTCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTCollectionViewCell.h; sourceTree = "<group>"; };
+		506C915C1F9FF29F003C4758 /* BTCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTCollectionViewCell.m; sourceTree = "<group>"; };
 		507FC4CD1F3243FA00A88A35 /* BTDataTransferManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTDataTransferManager.h; sourceTree = "<group>"; };
 		507FC4CE1F3243FA00A88A35 /* BTDataTransferManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTDataTransferManager.m; sourceTree = "<group>"; };
 		5084CF1B1F3BCCC40083FA19 /* BTWorkoutTemplateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTWorkoutTemplateModel.h; sourceTree = "<group>"; };
@@ -642,6 +648,17 @@
 			name = "User vIew";
 			sourceTree = "<group>";
 		};
+		506C915A1F9FEEAD003C4758 /* BTButton */ = {
+			isa = PBXGroup;
+			children = (
+				506C91571F9FEEA9003C4758 /* BTButton.h */,
+				506C91581F9FEEA9003C4758 /* BTButton.m */,
+				506C915B1F9FF29F003C4758 /* BTCollectionViewCell.h */,
+				506C915C1F9FF29F003C4758 /* BTCollectionViewCell.m */,
+			);
+			name = BTButton;
+			sourceTree = "<group>";
+		};
 		507FC4D01F32440000A88A35 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1016,6 +1033,7 @@
 			children = (
 				F94C89461F15D5BC006C6BDD /* 1RM calculator */,
 				F9C240741F17FA7800A268F3 /* BTColor extension */,
+				506C915A1F9FEEAD003C4758 /* BTButton */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -1668,6 +1686,7 @@
 				505CFDA31F5B5795001469F8 /* SetSummaryCollectionView.m in Sources */,
 				F9DA75221F02EE9600347B0D /* BTUser+CoreDataClass.m in Sources */,
 				50971E741F2E4AB700B10D70 /* AETableHeaderView.m in Sources */,
+				506C915D1F9FF29F003C4758 /* BTCollectionViewCell.m in Sources */,
 				5004CDAE1F60F424000BF6F0 /* AchievementViewButton.m in Sources */,
 				5093AE6D1F394AD1006CA6F0 /* BTWorkoutTemplate+CoreDataClass.m in Sources */,
 				F9A5494C1F13067B00743897 /* BTRecentWorkoutsManager.m in Sources */,
@@ -1704,6 +1723,7 @@
 				507FC4CF1F3243FA00A88A35 /* BTDataTransferManager.m in Sources */,
 				50530C261F50BC4100472426 /* SetCollectionView.m in Sources */,
 				50060FDD1F33BB8E00F6DC00 /* BTWorkoutModel.m in Sources */,
+				506C91591F9FEEA9003C4758 /* BTButton.m in Sources */,
 				50636F2F1F2B9E0D00FB65B4 /* EEDetailViewController.m in Sources */,
 				5099F1BF1F5F6746000A6DE4 /* AchievementListModel.m in Sources */,
 				F9DA75111F02DC1700347B0D /* BTDataModel.xcdatamodeld in Sources */,
