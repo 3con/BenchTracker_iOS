@@ -1,0 +1,2818 @@
+{  
+   "typeList":{  
+      "list":[  
+         {  
+            "style":"repsWeight",
+            "name":"Barbell Bench Press",
+            "iterations":[  
+               "Flat",
+               "Incline",
+               "Decline",
+               "Wide-grip",
+               "Underhand"
+            ],
+            "category":"Chest"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Pec Deck",
+            "iterations":[  
+
+            ],
+            "category":"Chest"
+         },
+         {  
+            "style":"reps",
+            "name":"Pushups",
+            "iterations":[  
+               "Close-grip",
+               "Diamond"
+            ],
+            "category":"Triceps"
+         },
+         {  
+            "style":"timeWeight",
+            "name":"Weighted Planks",
+            "iterations":[  
+
+            ],
+            "category":"Abs \/ Core"
+         },
+         {  
+            "style":"custom",
+            "name":"Elliptical",
+            "iterations":[  
+
+            ],
+            "category":"Cardio"
+         },
+         {  
+            "style":"custom",
+            "name":"Rowing \/ Erg",
+            "iterations":[  
+
+            ],
+            "category":"Cardio"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Underhand-grip Rows",
+            "iterations":[  
+               "Barbell",
+               "Dumbbell"
+            ],
+            "category":"Triceps"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Clean",
+            "iterations":[  
+               "Hang",
+               "Power"
+            ],
+            "category":"Olympic"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"One-arm Rows",
+            "iterations":[  
+               "Dumbbell",
+               "Cable",
+               "Band",
+               "Long Bar"
+            ],
+            "category":"Back"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"DB Flyes",
+            "iterations":[  
+               "Flat",
+               "Incline",
+               "Decline"
+            ],
+            "category":"Chest"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Lateral Raises",
+            "iterations":[  
+               "Dumbbell",
+               "Cable",
+               "Band"
+            ],
+            "category":"Shoulders"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Jerk",
+            "iterations":[  
+               "Split"
+            ],
+            "category":"Olympic"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Underhand Front Raises",
+            "iterations":[  
+               "Dumbbell",
+               "Barbell",
+               "Band"
+            ],
+            "category":"Chest"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Dumbbell Bench Press",
+            "iterations":[  
+               "Flat",
+               "Incline",
+               "Decline"
+            ],
+            "category":"Chest"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Overhead Extensions",
+            "iterations":[  
+               "Dumbbell",
+               "Barbell",
+               "One-arm",
+               "Machine",
+               "Band"
+            ],
+            "category":"Triceps"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Conventional Curls",
+            "iterations":[  
+               "Dumbbell",
+               "Barbell",
+               "Barbell cheating",
+               "Close-grip BB",
+               "Wide-grip BB"
+            ],
+            "category":"Biceps"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Weighted Russian Twists",
+            "iterations":[  
+
+            ],
+            "category":"Abs \/ Core"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Leg Curls",
+            "iterations":[  
+               "Sitting",
+               "Lying"
+            ],
+            "category":"Legs"
+         },
+         {  
+            "style":"time",
+            "name":"Jacknifes",
+            "iterations":[  
+
+            ],
+            "category":"Abs \/ Core"
+         },
+         {  
+            "style":"reps",
+            "name":"Pushups",
+            "iterations":[  
+               "Normal",
+               "Wide-hand"
+            ],
+            "category":"Chest"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Seated Rows",
+            "iterations":[  
+               "Cable",
+               "Band",
+               "Machine"
+            ],
+            "category":"Back"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Band Curls",
+            "iterations":[  
+
+            ],
+            "category":"Biceps"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Lunges",
+            "iterations":[  
+               "Dumbbell",
+               "Barbell"
+            ],
+            "category":"Legs"
+         },
+         {  
+            "style":"reps",
+            "name":"Bodyweight Situps",
+            "iterations":[  
+               "Normal",
+               "Ball"
+            ],
+            "category":"Abs \/ Core"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Hammer Curls",
+            "iterations":[  
+
+            ],
+            "category":"Biceps"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Clean and Jerk",
+            "iterations":[  
+
+            ],
+            "category":"Olympic"
+         },
+         {  
+            "style":"custom",
+            "name":"Step Machine",
+            "iterations":[  
+
+            ],
+            "category":"Cardio"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Cable Flys",
+            "iterations":[  
+
+            ],
+            "category":"Chest"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Upright Rows",
+            "iterations":[  
+               "Barbell",
+               "Dumbbell",
+               "Cable",
+               "Band"
+            ],
+            "category":"Back"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Tricep Pushdowns",
+            "iterations":[  
+
+            ],
+            "category":"Triceps"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Arnold Press",
+            "iterations":[  
+
+            ],
+            "category":"Shoulders"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Machine Bench Press",
+            "iterations":[  
+               "Flat",
+               "Incline",
+               "Decline"
+            ],
+            "category":"Chest"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Weighted Crunches",
+            "iterations":[  
+               "Cable",
+               "Band",
+               "Suitcase"
+            ],
+            "category":"Abs \/ Core"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Weighted Pull-ups",
+            "iterations":[  
+               "Normal",
+               "Wide-grip",
+               "Close-grip",
+               "Neutral-grip",
+               "Towel"
+            ],
+            "category":"Back"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Lat Pullovers",
+            "iterations":[  
+               "Dumbbell",
+               "Barbell"
+            ],
+            "category":"Back"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Deadlift",
+            "iterations":[  
+               "Conventional",
+               "Sumo",
+               "Dumbbell",
+               "Romanian",
+               "Trap Bar",
+               "Stiff legged",
+               "Deficit"
+            ],
+            "category":"Back"
+         },
+         {  
+            "style":"reps",
+            "name":"Leg Raises",
+            "iterations":[  
+               "Hanging",
+               "Lying"
+            ],
+            "category":"Abs \/ Core"
+         },
+         {  
+            "style":"reps",
+            "name":"Bodyweight Chin-ups",
+            "iterations":[  
+               "Normal",
+               "Wide-grip",
+               "Close-grip"
+            ],
+            "category":"Back"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Concentration Curls",
+            "iterations":[  
+
+            ],
+            "category":"Biceps"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Cable Crossovers",
+            "iterations":[  
+               "Normal",
+               "Upward",
+               "Downward"
+            ],
+            "category":"Chest"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Face Pulls",
+            "iterations":[  
+               "Cable",
+               "Band"
+            ],
+            "category":"Shoulders"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Reverse Flyes",
+            "iterations":[  
+               "Bent",
+               "Incline Bench",
+               "Flat Bench",
+               "Machine"
+            ],
+            "category":"Back"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Squats",
+            "iterations":[  
+               "Back",
+               "Front",
+               "Box",
+               "Bulgarian split",
+               "Hack",
+               "Dumbbell"
+            ],
+            "category":"Legs"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Shrugs",
+            "iterations":[  
+               "Dumbbell",
+               "Barbell",
+               "Cable",
+               "Band"
+            ],
+            "category":"Back"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Bent Rows",
+            "iterations":[  
+               "Barbell",
+               "Dumbbell",
+               "T-Bar",
+               "Pendlay",
+               "Cable",
+               "Band"
+            ],
+            "category":"Back"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Snatch",
+            "iterations":[  
+               "Hang",
+               "Power"
+            ],
+            "category":"Olympic"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Leg Extensions",
+            "iterations":[  
+
+            ],
+            "category":"Legs"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Landmine Press",
+            "iterations":[  
+               "Kneeling",
+               "Standing"
+            ],
+            "category":"Chest"
+         },
+         {  
+            "style":"reps",
+            "name":"Windshield Wipers",
+            "iterations":[  
+               "Hanging",
+               "Lying"
+            ],
+            "category":"Abs \/ Core"
+         },
+         {  
+            "style":"reps",
+            "name":"Bodyweight Pull-ups",
+            "iterations":[  
+               "Normal",
+               "Wide-grip",
+               "Close-grip",
+               "Neutral-grip",
+               "Towel",
+               "Kipping"
+            ],
+            "category":"Back"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Spider Curls",
+            "iterations":[  
+               "Barbell",
+               "Dumbbell"
+            ],
+            "category":"Biceps"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Woodchoppers",
+            "iterations":[  
+               "Downwards Cable",
+               "Horizontal Cable",
+               "Upwards Cable",
+               "Downwards Band",
+               "Horizontal Band",
+               "Upwards Band"
+            ],
+            "category":"Abs \/ Core"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Push Press",
+            "iterations":[  
+               "Barbell",
+               "Dumbbell",
+               "Behind-neck"
+            ],
+            "category":"Shoulders"
+         },
+         {  
+            "style":"custom",
+            "name":"Running",
+            "iterations":[  
+               "Treadmill"
+            ],
+            "category":"Cardio"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Front Raises",
+            "iterations":[  
+               "Dumbbell",
+               "Cable",
+               "Band",
+               "Barbell"
+            ],
+            "category":"Shoulders"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Preacher Curls",
+            "iterations":[  
+               "Dumbbell",
+               "Barbell"
+            ],
+            "category":"Biceps"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Overhead Press",
+            "iterations":[  
+               "Barbell",
+               "Dumbbell",
+               "Machine",
+               "Behind-neck"
+            ],
+            "category":"Shoulders"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Reverse Curls",
+            "iterations":[  
+
+            ],
+            "category":"Biceps"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Machine Curls",
+            "iterations":[  
+               "One-arm",
+               "Two-arm"
+            ],
+            "category":"Biceps"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Back Extensions",
+            "iterations":[  
+               "Normal",
+               "Machine"
+            ],
+            "category":"Back"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Zottoman Curls",
+            "iterations":[  
+
+            ],
+            "category":"Biceps"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Weighted Chin-ups",
+            "iterations":[  
+               "Normal",
+               "Wide-grip",
+               "Close-grip"
+            ],
+            "category":"Back"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Weighted Calf Raises",
+            "iterations":[  
+               "Machine",
+               "Barbell",
+               "Dumbbell"
+            ],
+            "category":"Legs"
+         },
+         {  
+            "style":"time",
+            "name":"Bodyweight Planks",
+            "iterations":[  
+               "Normal",
+               "Side"
+            ],
+            "category":"Abs \/ Core"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Weighted Situps",
+            "iterations":[  
+               "Normal",
+               "Ball"
+            ],
+            "category":"Abs \/ Core"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Skullcrushers",
+            "iterations":[  
+               "Normal",
+               "Reverse-grip"
+            ],
+            "category":"Triceps"
+         },
+         {  
+            "style":"reps",
+            "name":"Tricep Dips",
+            "iterations":[  
+
+            ],
+            "category":"Triceps"
+         },
+         {  
+            "style":"reps",
+            "name":"Bodyweight Crunches",
+            "iterations":[  
+               "Normal",
+               "Side",
+               "Decline",
+               "Reverse",
+               "Ball"
+            ],
+            "category":"Abs \/ Core"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Machine Squats",
+            "iterations":[  
+               "Hack",
+               "Back"
+            ],
+            "category":"Legs"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Military Press",
+            "iterations":[  
+               "Dumbbell",
+               "Barbell",
+               "Machine",
+               "Behind-neck"
+            ],
+            "category":"Shoulders"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Lat Pulldowns",
+            "iterations":[  
+               "Normal",
+               "Close-grip",
+               "Wide-grip",
+               "Behind-neck",
+               "One-arm"
+            ],
+            "category":"Back"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Close-grip Bench Press",
+            "iterations":[  
+
+            ],
+            "category":"Triceps"
+         },
+         {  
+            "style":"reps",
+            "name":"Ab Roller",
+            "iterations":[  
+
+            ],
+            "category":"Abs \/ Core"
+         },
+         {  
+            "style":"reps",
+            "name":"Bodyweight Calf Raises",
+            "iterations":[  
+
+            ],
+            "category":"Legs"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Hip Thrusts",
+            "iterations":[  
+
+            ],
+            "category":"Legs"
+         },
+         {  
+            "style":"reps",
+            "name":"Chest Dips",
+            "iterations":[  
+
+            ],
+            "category":"Chest"
+         },
+         {  
+            "style":"reps",
+            "name":"Inverted Rows",
+            "iterations":[  
+               "Incline",
+               "Flat"
+            ],
+            "category":"Back"
+         },
+         {  
+            "style":"custom",
+            "name":"Cycling",
+            "iterations":[  
+               "Machine"
+            ],
+            "category":"Cardio"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Leg Press",
+            "iterations":[  
+               "Horizontal",
+               "Incline"
+            ],
+            "category":"Legs"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Rack Pulls",
+            "iterations":[  
+
+            ],
+            "category":"Back"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"Side Bends",
+            "iterations":[  
+               "Dumbbell"
+            ],
+            "category":"Abs \/ Core"
+         },
+         {  
+            "style":"repsWeight",
+            "name":"70 degree incline press",
+            "iterations":[  
+
+            ],
+            "category":"Shoulders"
+         }
+      ],
+      "colors":{  
+         "Olympic":"009688",
+         "Cardio":"E91E63",
+         "Abs \/ Core":"F44336",
+         "Legs":"DAC400",
+         "Shoulders":"EF6C00",
+         "Biceps":"8E24AA",
+         "Back":"3F51B5",
+         "Triceps":"4CAF50",
+         "Chest":"039BE5"
+      }
+   },
+   "achievements":[  
+      "strong2",
+      "gains1",
+      "power2",
+      "super1",
+      "strong1",
+      "iron1",
+      "firstWorkout",
+      "power3",
+      "dedication2",
+      "power1",
+      "streak2",
+      "dedication1",
+      "sets1",
+      "marathon1",
+      "marathon2",
+      "types2",
+      "heavy2",
+      "analyze",
+      "speed1",
+      "heavy1",
+      "streak1",
+      "sets2",
+      "speed2"
+   ],
+   "templateList":{  
+      "userWorkouts":[  
+
+      ],
+      "defaultWorkouts":[  
+         {  
+            "exercises":[  
+               {  
+                  "style":"reps",
+                  "name":"Bodyweight Crunches",
+                  "category":"Abs \/ Core"
+               },
+               {  
+                  "style":"time",
+                  "name":"Bodyweight Planks",
+                  "category":"Abs \/ Core"
+               },
+               {  
+                  "style":"repsWeight",
+                  "name":"Weighted Russian Twists",
+                  "category":"Abs \/ Core"
+               },
+               {  
+                  "style":"reps",
+                  "name":"Leg Raises",
+                  "category":"Abs \/ Core"
+               },
+               {  
+                  "style":"repsWeight",
+                  "name":"Woodchoppers",
+                  "category":"Abs \/ Core"
+               }
+            ],
+            "supersets":[  
+               [  
+                  0,
+                  1,
+                  2
+               ]
+            ],
+            "name":"Shredded Abs 😜",
+            "summary":"5 Abs \/ Core"
+         },
+         {  
+            "exercises":[  
+               {  
+                  "style":"repsWeight",
+                  "name":"Barbell Bench Press",
+                  "category":"Chest"
+               },
+               {  
+                  "style":"repsWeight",
+                  "name":"Overhead Press",
+                  "category":"Shoulders"
+               },
+               {  
+                  "style":"repsWeight",
+                  "name":"Skullcrushers",
+                  "category":"Triceps"
+               },
+               {  
+                  "style":"repsWeight",
+                  "name":"DB Flyes",
+                  "category":"Chest"
+               },
+               {  
+                  "style":"repsWeight",
+                  "name":"Overhead Extensions",
+                  "category":"Triceps"
+               },
+               {  
+                  "style":"repsWeight",
+                  "name":"Lateral Raises",
+                  "category":"Shoulders"
+               }
+            ],
+            "supersets":[  
+
+            ],
+            "name":"Push Day 🙌",
+            "summary":"2 Chest#2 Triceps#2 Shoulders"
+         },
+         {  
+            "exercises":[  
+               {  
+                  "iteration":"Dumbbell",
+                  "style":"repsWeight",
+                  "name":"Conventional Curls",
+                  "category":"Biceps"
+               },
+               {  
+                  "style":"repsWeight",
+                  "name":"Close-grip Bench Press",
+                  "category":"Triceps"
+               },
+               {  
+                  "style":"repsWeight",
+                  "name":"Preacher Curls",
+                  "category":"Biceps"
+               },
+               {  
+                  "style":"repsWeight",
+                  "name":"Overhead Extensions",
+                  "category":"Triceps"
+               },
+               {  
+                  "style":"repsWeight",
+                  "name":"Concentration Curls",
+                  "category":"Biceps"
+               },
+               {  
+                  "style":"repsWeight",
+                  "name":"Tricep Pushdowns",
+                  "category":"Triceps"
+               }
+            ],
+            "supersets":[  
+
+            ],
+            "name":"Arm Workout 💪",
+            "summary":"3 Triceps#3 Biceps"
+         },
+         {  
+            "exercises":[  
+               {  
+                  "style":"repsWeight",
+                  "name":"Squats",
+                  "category":"Legs"
+               },
+               {  
+                  "style":"repsWeight",
+                  "name":"Weighted Calf Raises",
+                  "category":"Legs"
+               },
+               {  
+                  "style":"repsWeight",
+                  "name":"Hip Thrusts",
+                  "category":"Legs"
+               },
+               {  
+                  "style":"repsWeight",
+                  "name":"Lunges",
+                  "category":"Legs"
+               },
+               {  
+                  "style":"repsWeight",
+                  "name":"Leg Press",
+                  "category":"Legs"
+               }
+            ],
+            "supersets":[  
+
+            ],
+            "name":"Leg Day 🏋",
+            "summary":"5 Legs"
+         },
+         {  
+            "exercises":[  
+               {  
+                  "style":"repsWeight",
+                  "name":"Lat Pulldowns",
+                  "category":"Back"
+               },
+               {  
+                  "style":"repsWeight",
+                  "name":"Conventional Curls",
+                  "category":"Biceps"
+               },
+               {  
+                  "style":"repsWeight",
+                  "name":"Shrugs",
+                  "category":"Back"
+               },
+               {  
+                  "style":"repsWeight",
+                  "name":"Seated Rows",
+                  "category":"Back"
+               },
+               {  
+                  "style":"repsWeight",
+                  "name":"Preacher Curls",
+                  "category":"Biceps"
+               },
+               {  
+                  "style":"reps",
+                  "name":"Bodyweight Pull-ups",
+                  "category":"Back"
+               }
+            ],
+            "supersets":[  
+
+            ],
+            "name":"Pull Day 😁",
+            "summary":"4 Back#2 Biceps"
+         }
+      ]
+   },
+   "workouts":[  
+      {  
+         "exercises":[  
+            {  
+               "iteration":"Flat",
+               "style":"repsWeight",
+               "sets":[  
+                  "5 145.0",
+                  "7 135.0",
+                  "8 130.0",
+                  "6 150.0"
+               ],
+               "name":"Barbell Bench Press",
+               "category":"Chest"
+            },
+            {  
+               "iteration":"One-arm",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 30.0",
+                  "10 30.0",
+                  "8 30.0",
+                  "8 30.0"
+               ],
+               "name":"Overhead Extensions",
+               "category":"Triceps"
+            },
+            {  
+               "iteration":"Incline",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 105.0",
+                  "10 105.0",
+                  "8 110.0",
+                  "8 110.0"
+               ],
+               "name":"Machine Bench Press",
+               "category":"Chest"
+            },
+            {  
+               "style":"repsWeight",
+               "sets":[  
+                  "10 55.0",
+                  "10 55.0",
+                  "10 55.0",
+                  "10 55.0"
+               ],
+               "name":"Tricep Pushdowns",
+               "category":"Triceps"
+            },
+            {  
+               "style":"repsWeight",
+               "sets":[  
+                  "10 25.0",
+                  "10 25.0",
+                  "8 25.0",
+                  "8 25.0"
+               ],
+               "name":"Pec Deck",
+               "category":"Chest"
+            },
+            {  
+               "iteration":"Dumbbell",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 40.0",
+                  "10 40.0",
+                  "8 40.0",
+                  "8 40.0"
+               ],
+               "name":"Overhead Extensions",
+               "category":"Triceps"
+            },
+            {  
+               "iteration":"Incline",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 45.0",
+                  "10 45.0",
+                  "8 45.0",
+                  "8 45.0"
+               ],
+               "name":"Dumbbell Bench Press",
+               "category":"Chest"
+            }
+         ],
+         "date":"2017-08-29 21:22",
+         "uuid":"00C5A1D4-AC5F-41F8-9F3C-1B2379DDACFF",
+         "duration":3700,
+         "name":"Chest Day 🙏",
+         "supersets":[  
+            "0 1",
+            "2 3",
+            "4 5"
+         ]
+      },
+      {  
+         "exercises":[  
+            {  
+               "iteration":"Normal",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 65.0",
+                  "10 65.0",
+                  "8 65.0",
+                  "8 65.0"
+               ],
+               "name":"Lat Pulldowns",
+               "category":"Back"
+            },
+            {  
+               "iteration":"Dumbbell",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 30.0",
+                  "10 30.0",
+                  "8 30.0",
+                  "8 30.0"
+               ],
+               "name":"Conventional Curls",
+               "category":"Biceps"
+            },
+            {  
+               "iteration":"Cable",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 75.0",
+                  "10 75.0",
+                  "10 75.0",
+                  "10 75.0"
+               ],
+               "name":"Rows",
+               "category":"Back"
+            },
+            {  
+               "style":"repsWeight",
+               "sets":[  
+                  "10 30.0",
+                  "10 30.0",
+                  "9 30.0",
+                  "9 30.0"
+               ],
+               "name":"Hammer Curls",
+               "category":"Biceps"
+            },
+            {  
+               "iteration":"Dumbbell",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 40.0",
+                  "10 40.0",
+                  "9 40.0",
+                  "9 40.0"
+               ],
+               "name":"Lat Pullovers",
+               "category":"Back"
+            },
+            {  
+               "iteration":"Barbell",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 55.0",
+                  "10 55.0",
+                  "10 55.0",
+                  "10 55.0"
+               ],
+               "name":"Preacher Curls",
+               "category":"Biceps"
+            }
+         ],
+         "date":"2017-08-28 21:21",
+         "uuid":"FF2DB0CF-C842-4431-8AA1-A68EC92A41EE",
+         "duration":3400,
+         "name":"Arm Day 💪",
+         "supersets":[  
+            "0 1",
+            "2 3",
+            "4 5"
+         ]
+      },
+      {  
+         "exercises":[  
+            {  
+               "iteration":"Normal",
+               "style":"time",
+               "sets":[  
+                  "s 60",
+                  "s 60",
+                  "s 60"
+               ],
+               "name":"Bodyweight Planks",
+               "category":"Abs \/ Core"
+            },
+            {  
+               "iteration":"Hanging",
+               "style":"reps",
+               "sets":[  
+                  "10",
+                  "10",
+                  "10"
+               ],
+               "name":"Leg Raises",
+               "category":"Abs \/ Core"
+            },
+            {  
+               "iteration":"Back",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 135.0",
+                  "10 135.0",
+                  "8 135.0",
+                  "8 135.0"
+               ],
+               "name":"Squats",
+               "category":"Legs"
+            },
+            {  
+               "style":"reps",
+               "sets":[  
+                  "30",
+                  "30",
+                  "30",
+                  "30"
+               ],
+               "name":"Bodyweight Calf Raises",
+               "category":"Legs"
+            },
+            {  
+               "style":"repsWeight",
+               "sets":[  
+                  "10 30.0",
+                  "10 30.0",
+                  "10 30.0",
+                  "10 30.0"
+               ],
+               "name":"Arnold Press",
+               "category":"Shoulders"
+            },
+            {  
+               "iteration":"Dumbbell",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 20.0",
+                  "10 20.0",
+                  "10 20.0",
+                  "10 20.0"
+               ],
+               "name":"Front Raises",
+               "category":"Shoulders"
+            },
+            {  
+               "iteration":"Dumbbell",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 20.0",
+                  "10 20.0",
+                  "10 20.0",
+                  "10 20.0"
+               ],
+               "name":"Lateral Raises",
+               "category":"Shoulders"
+            },
+            {  
+               "iteration":"Normal",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 25.0",
+                  "10 25.0",
+                  "10 25.0",
+                  "10 25.0"
+               ],
+               "name":"Weighted Situps",
+               "category":"Abs \/ Core"
+            }
+         ],
+         "date":"2017-08-26 21:19",
+         "uuid":"7F2E3D84-81EC-4115-8F20-47CF885EE093",
+         "duration":3000,
+         "name":"Leg Day 😑",
+         "supersets":[  
+            "0 1",
+            "2 3",
+            "5 6"
+         ]
+      },
+      {  
+         "exercises":[  
+            {  
+               "iteration":"Flat",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 130.0",
+                  "8 130.0",
+                  "8 130.0",
+                  "10 120.0"
+               ],
+               "name":"Barbell Bench Press",
+               "category":"Chest"
+            },
+            {  
+               "style":"reps",
+               "sets":[  
+                  "8",
+                  "8",
+                  "8",
+                  "8"
+               ],
+               "name":"Tricep Dips",
+               "category":"Triceps"
+            },
+            {  
+               "iteration":"Incline",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 20.0",
+                  "10 20.0",
+                  "8 25.0",
+                  "8 25.0"
+               ],
+               "name":"DB Flyes",
+               "category":"Chest"
+            },
+            {  
+               "iteration":"Normal",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 55.0",
+                  "10 55.0",
+                  "10 55.0",
+                  "10 55.0"
+               ],
+               "name":"Skullcrushers",
+               "category":"Triceps"
+            },
+            {  
+               "iteration":"Kneeling",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 75.0",
+                  "10 75.0",
+                  "10 75.0",
+                  "10 75.0"
+               ],
+               "name":"Landmine Press",
+               "category":"Chest"
+            },
+            {  
+               "iteration":"Dumbbell",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 40.0",
+                  "10 40.0",
+                  "10 40.0",
+                  "10 40.0"
+               ],
+               "name":"Overhead Extensions",
+               "category":"Triceps"
+            }
+         ],
+         "date":"2017-08-25 21:18",
+         "uuid":"FBBEF0F4-0740-4D52-A040-17A52D3EF95F",
+         "duration":4200,
+         "name":"Chest Day 🙏",
+         "supersets":[  
+            "0 1",
+            "2 3",
+            "4 5"
+         ]
+      },
+      {  
+         "exercises":[  
+            {  
+               "iteration":"BB Bent",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 85.0",
+                  "10 85.0",
+                  "8 85.0",
+                  "8 85.0"
+               ],
+               "name":"Rows",
+               "category":"Back"
+            },
+            {  
+               "iteration":"Barbell",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 65.0",
+                  "10 65.0",
+                  "8 70.0",
+                  "8 70.0"
+               ],
+               "name":"Conventional Curls",
+               "category":"Biceps"
+            },
+            {  
+               "iteration":"Conventional",
+               "style":"repsWeight",
+               "sets":[  
+                  "3 185.0",
+                  "3 185.0",
+                  "3 195.0",
+                  "3 195.0"
+               ],
+               "name":"Deadlift",
+               "category":"Back"
+            },
+            {  
+               "style":"repsWeight",
+               "sets":[  
+                  "10 30.0",
+                  "10 30.0",
+                  "9 30.0",
+                  "9 30.0"
+               ],
+               "name":"Machine Curls",
+               "category":"Biceps"
+            },
+            {  
+               "iteration":"Normal",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 65.0",
+                  "10 65.0",
+                  "10 65.0",
+                  "10 65.0"
+               ],
+               "name":"Lat Pulldowns",
+               "category":"Back"
+            },
+            {  
+               "style":"repsWeight",
+               "sets":[  
+                  "10 30.0",
+                  "10 30.0",
+                  "10 30.0",
+                  "10 30.0"
+               ],
+               "name":"Hammer Curls",
+               "category":"Biceps"
+            },
+            {  
+               "iteration":"Normal",
+               "style":"reps",
+               "sets":[  
+                  "10",
+                  "10",
+                  "8",
+                  "8"
+               ],
+               "name":"Bodyweight Pull-ups",
+               "category":"Back"
+            }
+         ],
+         "date":"2017-08-24 21:16",
+         "uuid":"D0D231B5-92CA-416A-A6D3-36F54D523062",
+         "duration":3800,
+         "name":"Arm Day 💪",
+         "supersets":[  
+            "0 1",
+            "2 3",
+            "4 5"
+         ]
+      },
+      {  
+         "exercises":[  
+            {  
+               "iteration":"Front",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 105.0",
+                  "10 105.0",
+                  "8 115.0",
+                  "8 115.0"
+               ],
+               "name":"Squats",
+               "category":"Legs"
+            },
+            {  
+               "style":"repsWeight",
+               "sets":[  
+                  "8 30.0",
+                  "8 30.0",
+                  "10 25.0",
+                  "10 25.0"
+               ],
+               "name":"Arnold Press",
+               "category":"Shoulders"
+            },
+            {  
+               "iteration":"Incline",
+               "style":"repsWeight",
+               "sets":[  
+                  "12 135.0",
+                  "12 135.0",
+                  "10 135.0",
+                  "10 135.0"
+               ],
+               "name":"Leg Press",
+               "category":"Legs"
+            },
+            {  
+               "iteration":"Dumbbell",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 15.0",
+                  "10 15.0",
+                  "9 15.0",
+                  "9 15.0"
+               ],
+               "name":"Lateral Raises",
+               "category":"Shoulders"
+            },
+            {  
+               "iteration":"Machine",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 80.0",
+                  "10 80.0",
+                  "10 80.0",
+                  "10 80.0"
+               ],
+               "name":"Weighted Calf Raises",
+               "category":"Legs"
+            },
+            {  
+               "iteration":"Machine",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 30.0",
+                  "10 30.0",
+                  "8 30.0",
+                  "8 30.0"
+               ],
+               "name":"Oblique Twists",
+               "category":"Abs \/ Core"
+            }
+         ],
+         "date":"2017-08-22 21:14",
+         "uuid":"499CACE3-7360-4F93-BC98-9409DB4F0E10",
+         "duration":3100,
+         "name":"Leg Day 😑",
+         "supersets":[  
+            "0 1",
+            "2 3",
+            "4 5"
+         ]
+      },
+      {  
+         "exercises":[  
+            {  
+               "iteration":"Flat",
+               "style":"repsWeight",
+               "sets":[  
+                  "9 130.0",
+                  "8 130.0",
+                  "10 125.0",
+                  "10 125.0"
+               ],
+               "name":"Barbell Bench Press",
+               "category":"Chest"
+            },
+            {  
+               "style":"repsWeight",
+               "sets":[  
+                  "10 45.0",
+                  "10 45.0",
+                  "8 45.0",
+                  "8 45.0"
+               ],
+               "name":"Tricep Pushdowns",
+               "category":"Triceps"
+            },
+            {  
+               "style":"repsWeight",
+               "sets":[  
+                  "10 100.0",
+                  "10 100.0",
+                  "9 100.0",
+                  "9 100.0"
+               ],
+               "name":"Close-grip Bench Press",
+               "category":"Triceps"
+            },
+            {  
+               "iteration":"Downward",
+               "style":"repsWeight",
+               "sets":[  
+                  "9 30.0",
+                  "9 30.0",
+                  "9 30.0",
+                  "8 30.0"
+               ],
+               "name":"Cable Crossovers",
+               "category":"Chest"
+            },
+            {  
+               "iteration":"Normal",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 55.0",
+                  "10 55.0",
+                  "8 55.0",
+                  "8 55.0"
+               ],
+               "name":"Skullcrushers",
+               "category":"Triceps"
+            },
+            {  
+               "iteration":"Dumbbell",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 15.0",
+                  "10 15.0",
+                  "8 15.0",
+                  "8 15.0"
+               ],
+               "name":"Underhand Front Raises",
+               "category":"Chest"
+            },
+            {  
+               "iteration":"Flat",
+               "style":"repsWeight",
+               "sets":[  
+                  "8 30.0",
+                  "8 30.0",
+                  "10 25.0",
+                  "10 25.0"
+               ],
+               "name":"DB Flyes",
+               "category":"Chest"
+            }
+         ],
+         "date":"2017-08-21 21:13",
+         "uuid":"700B5A9F-2376-43C7-9E64-19F5E269CBAE",
+         "duration":3400,
+         "name":"Chest Day 🙏",
+         "supersets":[  
+            "0 1",
+            "2 3",
+            "4 5"
+         ]
+      },
+      {  
+         "exercises":[  
+            {  
+               "iteration":"Conventional",
+               "style":"repsWeight",
+               "sets":[  
+                  "3 165.0",
+                  "3 165.0",
+                  "3 175.0",
+                  "3 175.0"
+               ],
+               "name":"Deadlift",
+               "category":"Back"
+            },
+            {  
+               "style":"repsWeight",
+               "sets":[  
+                  "10 30.0",
+                  "10 30.0",
+                  "8 30.0",
+                  "8 30.0"
+               ],
+               "name":"Hammer Curls",
+               "category":"Biceps"
+            },
+            {  
+               "iteration":"Wide-grip",
+               "style":"repsWeight",
+               "sets":[  
+                  "12 65.0",
+                  "12 65.0",
+                  "10 70.0",
+                  "10 70.0"
+               ],
+               "name":"Lat Pulldowns",
+               "category":"Back"
+            },
+            {  
+               "style":"repsWeight",
+               "sets":[  
+                  "10 25.0",
+                  "10 25.0",
+                  "10 25.0",
+                  "10 25.0"
+               ],
+               "name":"Machine Curls",
+               "category":"Biceps"
+            },
+            {  
+               "iteration":"DB Bent",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 25.0",
+                  "10 25.0",
+                  "10 25.0",
+                  "10 25.0"
+               ],
+               "name":"Rows",
+               "category":"Back"
+            },
+            {  
+               "style":"repsWeight",
+               "sets":[  
+                  "10 25.0",
+                  "10 25.0",
+                  "8 25.0",
+                  "8 25.0"
+               ],
+               "name":"Concentration Curls",
+               "category":"Biceps"
+            },
+            {  
+               "iteration":"Dumbbell",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 40.0",
+                  "10 40.0",
+                  "8 40.0",
+                  "8 40.0"
+               ],
+               "name":"Shrugs",
+               "category":"Back"
+            },
+            {  
+               "iteration":"Hanging",
+               "style":"reps",
+               "sets":[  
+                  "10",
+                  "10",
+                  "10",
+                  "10"
+               ],
+               "name":"Leg Raises",
+               "category":"Abs \/ Core"
+            }
+         ],
+         "date":"2017-08-19 21:11",
+         "uuid":"229C3A44-7833-4E0B-BDE9-5DEA4508FF58",
+         "duration":3200,
+         "name":"Arm Day 💪",
+         "supersets":[  
+            "0 1",
+            "2 3",
+            "4 5"
+         ]
+      },
+      {  
+         "exercises":[  
+            {  
+               "iteration":"Back",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 135.0",
+                  "8 135.0",
+                  "8 145.0",
+                  "8 155.0"
+               ],
+               "name":"Squats",
+               "category":"Legs"
+            },
+            {  
+               "iteration":"Hanging",
+               "style":"reps",
+               "sets":[  
+                  "10",
+                  "10",
+                  "9",
+                  "8"
+               ],
+               "name":"Leg Raises",
+               "category":"Abs \/ Core"
+            },
+            {  
+               "style":"repsWeight",
+               "sets":[  
+                  "10 85.0",
+                  "10 85.0",
+                  "10 85.0",
+                  "10 85.0"
+               ],
+               "name":"Leg Extensions",
+               "category":"Legs"
+            },
+            {  
+               "iteration":"Cable",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 25.0",
+                  "10 25.0",
+                  "9 25.0",
+                  "9 25.0"
+               ],
+               "name":"Oblique Twists",
+               "category":"Abs \/ Core"
+            },
+            {  
+               "iteration":"Barbell",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 60.0",
+                  "10 60.0",
+                  "10 60.0",
+                  "10 60.0"
+               ],
+               "name":"Push Press",
+               "category":"Shoulders"
+            },
+            {  
+               "iteration":"Ball",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 10.0",
+                  "10 10.0",
+                  "10 10.0",
+                  "10 10.0"
+               ],
+               "name":"Weighted Situps",
+               "category":"Abs \/ Core"
+            }
+         ],
+         "date":"2017-08-18 19:03",
+         "uuid":"4640383D-F97C-4E6A-B743-C4ED1E606C5B",
+         "duration":3500,
+         "name":"Leg Day 😑",
+         "supersets":[  
+
+         ]
+      },
+      {  
+         "exercises":[  
+            {  
+               "iteration":"Flat",
+               "style":"repsWeight",
+               "sets":[  
+                  "13 120.0",
+                  "12 120.0",
+                  "10 120.0",
+                  "10 120.0"
+               ],
+               "name":"Barbell Bench Press",
+               "category":"Chest"
+            },
+            {  
+               "style":"repsWeight",
+               "sets":[  
+                  "10 30.0",
+                  "10 30.0",
+                  "8 30.0",
+                  "8 30.0"
+               ],
+               "name":"Pec Deck",
+               "category":"Chest"
+            },
+            {  
+               "style":"repsWeight",
+               "sets":[  
+                  "10 95.0",
+                  "10 95.0",
+                  "8 95.0",
+                  "8 95.0"
+               ],
+               "name":"Close-grip Bench Press",
+               "category":"Triceps"
+            },
+            {  
+               "style":"repsWeight",
+               "sets":[  
+                  "10 45.0",
+                  "10 45.0",
+                  "9 45.0",
+                  "8 45.0"
+               ],
+               "name":"Tricep Pushdowns",
+               "category":"Triceps"
+            },
+            {  
+               "iteration":"Normal",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 55.0",
+                  "10 55.0",
+                  "10 55.0",
+                  "9 55.0"
+               ],
+               "name":"Skullcrushers",
+               "category":"Triceps"
+            }
+         ],
+         "date":"2017-08-17 18:59",
+         "uuid":"4979DCD0-898A-4AE1-972C-2A14E2AB71F4",
+         "duration":3900,
+         "name":"Chest Day 🙏",
+         "supersets":[  
+            "1 2"
+         ]
+      },
+      {  
+         "exercises":[  
+            {  
+               "iteration":"Deficit",
+               "style":"repsWeight",
+               "sets":[  
+                  "3 165.0",
+                  "3 165.0",
+                  "3 155.0",
+                  "3 155.0"
+               ],
+               "name":"Deadlift",
+               "category":"Back"
+            },
+            {  
+               "iteration":"BB Bent",
+               "style":"repsWeight",
+               "sets":[  
+                  "8 65.0",
+                  "8 65.0",
+                  "8 65.0",
+                  "8 65.0"
+               ],
+               "name":"Rows",
+               "category":"Back"
+            },
+            {  
+               "iteration":"Barbell",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 55.0",
+                  "10 55.0",
+                  "10 55.0",
+                  "10 45.0"
+               ],
+               "name":"Spider Curls",
+               "category":"Biceps"
+            },
+            {  
+               "iteration":"Cable",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 35.0",
+                  "10 35.0",
+                  "8 35.0",
+                  "8 35.0"
+               ],
+               "name":"One-arm Rows",
+               "category":"Back"
+            },
+            {  
+               "iteration":"Barbell",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 45.0",
+                  "10 45.0",
+                  "8 45.0",
+                  "8 45.0"
+               ],
+               "name":"Preacher Curls",
+               "category":"Biceps"
+            },
+            {  
+               "iteration":"Dumbbell",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 35.0",
+                  "10 35.0",
+                  "8 35.0",
+                  "8 35.0"
+               ],
+               "name":"Lat Pullovers",
+               "category":"Back"
+            }
+         ],
+         "date":"2017-08-15 18:57",
+         "uuid":"49F38C22-90C3-486C-8DB6-4A857288B072",
+         "duration":3700,
+         "name":"Arm Day 💪",
+         "supersets":[  
+            "1 2",
+            "3 4"
+         ]
+      },
+      {  
+         "exercises":[  
+            {  
+               "iteration":"Incline",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 125.0",
+                  "10 125.0",
+                  "10 135.0",
+                  "9 135.0"
+               ],
+               "name":"Leg Press",
+               "category":"Legs"
+            },
+            {  
+               "iteration":"Dumbbell",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 15.0",
+                  "10 15.0",
+                  "8 15.0",
+                  "8 15.0"
+               ],
+               "name":"Lateral Raises",
+               "category":"Shoulders"
+            },
+            {  
+               "style":"repsWeight",
+               "sets":[  
+                  "10 65.0",
+                  "10 65.0",
+                  "8 65.0",
+                  "8 65.0"
+               ],
+               "name":"Leg Curls",
+               "category":"Legs"
+            },
+            {  
+               "iteration":"Barbell",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 55.0",
+                  "10 55.0",
+                  "12 45.0",
+                  "12 45.0"
+               ],
+               "name":"Military Press",
+               "category":"Shoulders"
+            },
+            {  
+               "iteration":"Dumbbell",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 45.0",
+                  "10 45.0",
+                  "8 45.0",
+                  "8 45.0"
+               ],
+               "name":"Weighted Calf Raises",
+               "category":"Legs"
+            },
+            {  
+               "iteration":"Dumbbell",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 15.0",
+                  "10 15.0",
+                  "10 15.0",
+                  "10 15.0"
+               ],
+               "name":"Front Raises",
+               "category":"Shoulders"
+            }
+         ],
+         "date":"2017-08-14 18:56",
+         "uuid":"5C674393-6ADF-441D-B740-F7FAAB1B6DA0",
+         "duration":3300,
+         "name":"Leg Day 😑",
+         "supersets":[  
+            "0 1",
+            "2 3",
+            "4 5"
+         ]
+      },
+      {  
+         "exercises":[  
+            {  
+               "iteration":"Flat",
+               "style":"repsWeight",
+               "sets":[  
+                  "11 120.0",
+                  "10 120.0",
+                  "10 120.0",
+                  "10 120.0"
+               ],
+               "name":"Barbell Bench Press",
+               "category":"Chest"
+            },
+            {  
+               "iteration":"Normal",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 45.0",
+                  "10 45.0",
+                  "8 45.0",
+                  "8 45.0"
+               ],
+               "name":"Skullcrushers",
+               "category":"Triceps"
+            },
+            {  
+               "iteration":"Flat",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 25.0",
+                  "10 25.0",
+                  "9 25.0",
+                  "9 25.0"
+               ],
+               "name":"DB Flyes",
+               "category":"Chest"
+            },
+            {  
+               "iteration":"One-arm",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 25.0",
+                  "10 25.0",
+                  "10 25.0",
+                  "10 25.0"
+               ],
+               "name":"Overhead Extensions",
+               "category":"Triceps"
+            },
+            {  
+               "style":"repsWeight",
+               "sets":[  
+                  "10 45.0",
+                  "10 45.0",
+                  "9 45.0",
+                  "9 45.0"
+               ],
+               "name":"Tricep Pushdowns",
+               "category":"Triceps"
+            },
+            {  
+               "iteration":"Downward",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 30.0",
+                  "10 30.0",
+                  "8 30.0",
+                  "8 30.0"
+               ],
+               "name":"Cable Crossovers",
+               "category":"Chest"
+            },
+            {  
+               "style":"repsWeight",
+               "sets":[  
+                  "8 100.0",
+                  "8 100.0",
+                  "8 105.0",
+                  "8 105.0"
+               ],
+               "name":"Close-grip Bench Press",
+               "category":"Triceps"
+            }
+         ],
+         "date":"2017-08-12 18:55",
+         "uuid":"244A122B-8658-4234-86D9-CA37C795BFE3",
+         "duration":3200,
+         "name":"Chest Day 🙏",
+         "supersets":[  
+            "2 3",
+            "4 5"
+         ]
+      },
+      {  
+         "exercises":[  
+            {  
+               "iteration":"Dumbbell",
+               "style":"repsWeight",
+               "sets":[  
+                  "12 40.0",
+                  "12 40.0",
+                  "12 40.0",
+                  "10 45.0"
+               ],
+               "name":"Shrugs",
+               "category":"Back"
+            },
+            {  
+               "iteration":"Barbell",
+               "style":"repsWeight",
+               "sets":[  
+                  "8 30.0",
+                  "8 30.0",
+                  "8 30.0",
+                  "8 30.0"
+               ],
+               "name":"Conventional Curls",
+               "category":"Biceps"
+            },
+            {  
+               "iteration":"Flat",
+               "style":"reps",
+               "sets":[  
+                  "8",
+                  "8",
+                  "8",
+                  "8"
+               ],
+               "name":"Inverted Rows",
+               "category":"Back"
+            },
+            {  
+               "style":"repsWeight",
+               "sets":[  
+                  "8 25.0",
+                  "8 25.0",
+                  "8 25.0",
+                  "8 25.0"
+               ],
+               "name":"Band Curls",
+               "category":"Biceps"
+            },
+            {  
+               "iteration":"Normal",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 65.0",
+                  "10 65.0",
+                  "8 75.0",
+                  "8 75.0"
+               ],
+               "name":"Lat Pulldowns",
+               "category":"Back"
+            },
+            {  
+               "iteration":"Barbell",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 45.0",
+                  "10 45.0",
+                  "8 45.0",
+                  "8 45.0"
+               ],
+               "name":"Preacher Curls",
+               "category":"Biceps"
+            },
+            {  
+               "iteration":"Cable",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 85.0",
+                  "10 85.0",
+                  "10 85.0"
+               ],
+               "name":"Weighted Crunches",
+               "category":"Abs \/ Core"
+            }
+         ],
+         "date":"2017-08-11 18:52",
+         "uuid":"5113F29A-B8CF-4B13-999D-9B14D6C1B97B",
+         "duration":3900,
+         "name":"Arm Day 💪",
+         "supersets":[  
+            "0 1",
+            "2 3",
+            "4 5"
+         ]
+      },
+      {  
+         "exercises":[  
+            {  
+               "iteration":"Back",
+               "style":"repsWeight",
+               "sets":[  
+                  "12 125.0",
+                  "10 135.0",
+                  "10 135.0",
+                  "8 145.0"
+               ],
+               "name":"Squats",
+               "category":"Legs"
+            },
+            {  
+               "style":"reps",
+               "sets":[  
+                  "30",
+                  "30",
+                  "30",
+                  "30"
+               ],
+               "name":"Bodyweight Calf Raises",
+               "category":"Legs"
+            },
+            {  
+               "style":"repsWeight",
+               "sets":[  
+                  "8 30.0",
+                  "8 30.0",
+                  "8 30.0",
+                  "8 30.0"
+               ],
+               "name":"Arnold Press",
+               "category":"Shoulders"
+            },
+            {  
+               "iteration":"Cable",
+               "style":"repsWeight",
+               "sets":[  
+                  "8 30.0",
+                  "8 30.0",
+                  "5 40.0",
+                  "5 40.0"
+               ],
+               "name":"Face Pulls",
+               "category":"Shoulders"
+            },
+            {  
+               "iteration":"Dumbbell",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 35.0",
+                  "10 35.0",
+                  "8 35.0",
+                  "8 35.0"
+               ],
+               "name":"Lunges",
+               "category":"Legs"
+            }
+         ],
+         "date":"2017-08-09 18:33",
+         "uuid":"44696D95-F4B8-447A-B5B4-A13D253311D5",
+         "duration":3700,
+         "name":"Leg Day 😑",
+         "supersets":[  
+            "0 1"
+         ]
+      },
+      {  
+         "exercises":[  
+            {  
+               "iteration":"Flat",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 125.0",
+                  "9 125.0",
+                  "8 125.0",
+                  "10 115.0"
+               ],
+               "name":"Barbell Bench Press",
+               "category":"Chest"
+            },
+            {  
+               "iteration":"Incline",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 85.0",
+                  "10 85.0",
+                  "8 85.0",
+                  "8 85.0"
+               ],
+               "name":"Barbell Bench Press",
+               "category":"Chest"
+            },
+            {  
+               "iteration":"Dumbbell",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 40.0",
+                  "10 40.0",
+                  "8 40.0",
+                  "8 40.0"
+               ],
+               "name":"Overhead Extensions",
+               "category":"Triceps"
+            },
+            {  
+               "iteration":"Incline",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 25.0",
+                  "10 25.0",
+                  "10 25.0",
+                  "10 25.0"
+               ],
+               "name":"DB Flyes",
+               "category":"Chest"
+            },
+            {  
+               "style":"repsWeight",
+               "sets":[  
+                  "10 55.0",
+                  "10 55.0",
+                  "8 55.0",
+                  "8 55.0"
+               ],
+               "name":"Tricep Pushdowns",
+               "category":"Triceps"
+            },
+            {  
+               "style":"repsWeight",
+               "sets":[  
+                  "10 20.0",
+                  "10 20.0",
+                  "8 20.0",
+                  "8 20.0"
+               ],
+               "name":"Pec Deck",
+               "category":"Chest"
+            },
+            {  
+               "iteration":"Barbell",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 15.0",
+                  "10 15.0",
+                  "8 15.0",
+                  "8 15.0"
+               ],
+               "name":"Underhand-grip Rows",
+               "category":"Triceps"
+            }
+         ],
+         "date":"2017-08-07 18:32",
+         "uuid":"AE2A4DCC-6A69-4648-9011-C0AEE1E37930",
+         "duration":3300,
+         "name":"Chest Day 🙏",
+         "supersets":[  
+            "1 2",
+            "3 4",
+            "5 6"
+         ]
+      },
+      {  
+         "exercises":[  
+            {  
+               "iteration":"Conventional",
+               "style":"repsWeight",
+               "sets":[  
+                  "5 135.0",
+                  "5 165.0",
+                  "5 175.0",
+                  "5 185.0"
+               ],
+               "name":"Deadlift",
+               "category":"Back"
+            },
+            {  
+               "iteration":"Barbell",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 65.0",
+                  "8 70.0",
+                  "8 70.0",
+                  "8 65.0"
+               ],
+               "name":"Conventional Curls",
+               "category":"Biceps"
+            },
+            {  
+               "iteration":"Cable",
+               "style":"repsWeight",
+               "sets":[  
+                  "12 80.0",
+                  "10 80.0",
+                  "10 80.0",
+                  "9 80.0"
+               ],
+               "name":"Rows",
+               "category":"Back"
+            },
+            {  
+               "style":"repsWeight",
+               "sets":[  
+                  "10 25.0",
+                  "10 25.0",
+                  "8 25.0",
+                  "8 25.0"
+               ],
+               "name":"Concentration Curls",
+               "category":"Biceps"
+            },
+            {  
+               "iteration":"T Bar",
+               "style":"repsWeight",
+               "sets":[  
+                  "8 85.0",
+                  "8 85.0",
+                  "6 95.0",
+                  "6 95.0"
+               ],
+               "name":"Rows",
+               "category":"Back"
+            },
+            {  
+               "style":"repsWeight",
+               "sets":[  
+                  "10 25.0",
+                  "10 25.0",
+                  "10 25.0",
+                  "9 25.0"
+               ],
+               "name":"Band Curls",
+               "category":"Biceps"
+            }
+         ],
+         "date":"2017-08-05 18:31",
+         "uuid":"664CD379-8685-4443-A124-D017B9EF8113",
+         "duration":3600,
+         "name":"Arm Day 💪",
+         "supersets":[  
+            "2 3",
+            "4 5"
+         ]
+      },
+      {  
+         "exercises":[  
+            {  
+               "iteration":"Machine",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 75.0",
+                  "10 75.0",
+                  "10 65.0",
+                  "10 65.0"
+               ],
+               "name":"Overhead Press",
+               "category":"Shoulders"
+            },
+            {  
+               "style":"repsWeight",
+               "sets":[  
+                  "10 140.0",
+                  "10 140.0",
+                  "8 145.0",
+                  "8 145.0"
+               ],
+               "name":"Leg Extensions",
+               "category":"Legs"
+            },
+            {  
+               "style":"repsWeight",
+               "sets":[  
+                  "12 30.0",
+                  "12 30.0",
+                  "10 30.0",
+                  "10 30.0"
+               ],
+               "name":"Arnold Press",
+               "category":"Shoulders"
+            },
+            {  
+               "style":"repsWeight",
+               "sets":[  
+                  "15 75.0",
+                  "15 75.0",
+                  "12 85.0",
+                  "12 85.0"
+               ],
+               "name":"Leg Curls",
+               "category":"Legs"
+            },
+            {  
+               "iteration":"Cable",
+               "style":"repsWeight",
+               "sets":[  
+                  "15 20.0",
+                  "15 20.0",
+                  "8 30.0",
+                  "8 30.0"
+               ],
+               "name":"Lateral Raises",
+               "category":"Shoulders"
+            },
+            {  
+               "iteration":"Cable",
+               "style":"repsWeight",
+               "sets":[  
+                  "12 100.0",
+                  "12 100.0",
+                  "10 100.0"
+               ],
+               "name":"Weighted Crunches",
+               "category":"Abs \/ Core"
+            }
+         ],
+         "date":"2017-08-03 17:17",
+         "uuid":"19F6880C-40E1-426C-8A3A-439811024E56",
+         "duration":3400,
+         "name":"Leg Day 😑",
+         "supersets":[  
+
+         ]
+      },
+      {  
+         "exercises":[  
+            {  
+               "iteration":"Flat",
+               "style":"repsWeight",
+               "sets":[  
+                  "12 115.0",
+                  "10 120.0",
+                  "10 120.0",
+                  "8 125.0"
+               ],
+               "name":"Barbell Bench Press",
+               "category":"Chest"
+            },
+            {  
+               "style":"repsWeight",
+               "sets":[  
+                  "10 95.0",
+                  "10 95.0",
+                  "8 95.0",
+                  "8 95.0"
+               ],
+               "name":"Close-grip Bench Press",
+               "category":"Triceps"
+            },
+            {  
+               "iteration":"Incline",
+               "style":"repsWeight",
+               "sets":[  
+                  "12 25.0",
+                  "12 25.0",
+                  "10 25.0",
+                  "10 25.0"
+               ],
+               "name":"DB Flyes",
+               "category":"Chest"
+            },
+            {  
+               "iteration":"Normal",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 45.0",
+                  "10 45.0",
+                  "8 50.0",
+                  "8 50.0"
+               ],
+               "name":"Skullcrushers",
+               "category":"Triceps"
+            },
+            {  
+               "iteration":"Downward",
+               "style":"repsWeight",
+               "sets":[  
+                  "12 30.0",
+                  "12 30.0",
+                  "12 30.0",
+                  "10 30.0"
+               ],
+               "name":"Cable Crossovers",
+               "category":"Chest"
+            },
+            {  
+               "style":"reps",
+               "sets":[  
+                  "5",
+                  "5",
+                  "4",
+                  "4"
+               ],
+               "name":"Tricep Dips",
+               "category":"Triceps"
+            },
+            {  
+               "iteration":"Normal",
+               "style":"reps",
+               "sets":[  
+                  "20",
+                  "20",
+                  "20"
+               ],
+               "name":"Pushups",
+               "category":"Chest"
+            }
+         ],
+         "date":"2017-08-01 15:54",
+         "uuid":"3EF1AF2C-3EE3-4A81-B306-D0BCB0EFDF0E",
+         "duration":3300,
+         "name":"Chest Day 🙏",
+         "supersets":[  
+            "2 3",
+            "4 5"
+         ]
+      },
+      {  
+         "exercises":[  
+            {  
+               "iteration":"Conventional",
+               "style":"repsWeight",
+               "sets":[  
+                  "3 180.0",
+                  "3 180.0",
+                  "3 185.0",
+                  "3 180.0"
+               ],
+               "name":"Deadlift",
+               "category":"Back"
+            },
+            {  
+               "iteration":"Dumbbell",
+               "style":"repsWeight",
+               "sets":[  
+                  "8 25.0",
+                  "8 25.0",
+                  "7 25.0",
+                  "7 25.0"
+               ],
+               "name":"Conventional Curls",
+               "category":"Biceps"
+            },
+            {  
+               "iteration":"Cable",
+               "style":"repsWeight",
+               "sets":[  
+                  "8 65.0",
+                  "8 65.0",
+                  "8 65.0",
+                  "8 65.0"
+               ],
+               "name":"Rows",
+               "category":"Back"
+            },
+            {  
+               "style":"repsWeight",
+               "sets":[  
+                  "10 30.0",
+                  "10 30.0",
+                  "8 30.0",
+                  "8 30.0"
+               ],
+               "name":"Machine Curls",
+               "category":"Biceps"
+            },
+            {  
+               "iteration":"Barbell",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 45.0",
+                  "10 45.0",
+                  "10 45.0",
+                  "8 45.0"
+               ],
+               "name":"Preacher Curls",
+               "category":"Biceps"
+            },
+            {  
+               "iteration":"Incline Bench",
+               "style":"repsWeight",
+               "sets":[  
+                  "10 15.0",
+                  "10 15.0",
+                  "10 15.0",
+                  "10 15.0"
+               ],
+               "name":"Reverse Flyes",
+               "category":"Back"
+            },
+            {  
+               "style":"reps",
+               "sets":[  
+                  "10",
+                  "10",
+                  "10"
+               ],
+               "name":"Ab Roller",
+               "category":"Abs \/ Core"
+            },
+            {  
+               "iteration":"Hanging",
+               "style":"reps",
+               "sets":[  
+                  "8",
+                  "8",
+                  "8"
+               ],
+               "name":"Leg Raises",
+               "category":"Abs \/ Core"
+            }
+         ],
+         "date":"2017-07-31 15:49",
+         "uuid":"2D52C8B1-0A48-4E35-95B4-6312CAD09990",
+         "duration":3000,
+         "name":"Arm Day 💪",
+         "supersets":[  
+            "0 1",
+            "2 3",
+            "4 5",
+            "6 7"
+         ]
+      }
+   ],
+   "version":4,
+   "settings":{  
+      "showWorkoutDetails":false,
+      "weightInLbs":true,
+      "bodyweightMultiplier":1,
+      "startWeekOnMonday":true,
+      "bodyweightIsVolume":false,
+      "showLastWorkout":true,
+      "disableSleep":true,
+      "showEquivalencyChart":true
+   },
+   "user":{  
+      "weight":0,
+      "totalWorkouts":20,
+      "longestStreak":3,
+      "totalVolume":247000,
+      "dateCreated":"2017-08-16T11:10:34-0700",
+      "achievementListVersion":1,
+      "xp":240,
+      "totalDuration":69480,
+      "currentStreak":2,
+      "imageData": "",
+      "name": ""
+   }
+}

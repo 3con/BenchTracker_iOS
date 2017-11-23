@@ -21,7 +21,7 @@
 
 - (void)setXAxisData:(NSArray <NSString *> *)data {
     if (data.count == 1) [self setXLabels:@[@"", data[0]]];
-    else [self setXLabels:data]; //FIX in PNLineChart.h -> setXLabel:withWidth: NSInteger x = (index * _xLabelWidth + _chartMarginLeft);
+    else [self setXLabels:data]; //FIX in PNLineChart.m -> setXLabel:withWidth: NSInteger x = (index * _xLabelWidth + _chartMarginLeft);
 }
 
 - (void)setYAxisData:(NSArray <NSNumber *> *)data {
@@ -66,8 +66,8 @@
 #pragma mark - private mathods
 
 - (void)loadLayout {
-    self.showSmoothLines = YES; //FIX in PNLineChart.h: chartLine.fillColor = [[UIColor clearColor] CGColor];
-                                //FIX in PNLineChart.h: (self.showSmoothLines && chartData.itemCount >= 3)
+    self.showSmoothLines = YES; //FIX in PNLineChart.m: chartLine.fillColor = [[UIColor clearColor] CGColor];
+                                //FIX in PNLineChart.m: (self.showSmoothLines && chartData.itemCount >= 3)
     self.backgroundColor = [UIColor clearColor];
     self.yLabelFont = [UIFont systemFontOfSize:10 weight:UIFontWeightBold];
     self.yLabelColor = [UIColor whiteColor];
