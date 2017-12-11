@@ -106,11 +106,10 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F97-uh-Mja">
                                 <rect key="frame" x="20" y="310" width="335" height="210"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recent 1RM Equivalents" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ALH-qx-B9k">
-                                        <rect key="frame" x="47.666666666666686" y="5" width="240" height="25"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recent 1RM Equivalents" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="ALH-qx-B9k">
+                                        <rect key="frame" x="35" y="5" width="265.33333333333331" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="285-ib-qp9"/>
-                                            <constraint firstAttribute="width" constant="240" id="Vhc-lh-pkG"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -120,6 +119,7 @@
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="ALH-qx-B9k" firstAttribute="centerX" secondItem="F97-uh-Mja" secondAttribute="centerX" id="Ymr-Ya-B2m"/>
+                                    <constraint firstItem="ALH-qx-B9k" firstAttribute="leading" secondItem="F97-uh-Mja" secondAttribute="leading" constant="35" id="e3u-m1-nBN"/>
                                     <constraint firstItem="ALH-qx-B9k" firstAttribute="top" secondItem="F97-uh-Mja" secondAttribute="top" constant="5" id="eTe-FF-S7a"/>
                                     <constraint firstAttribute="height" constant="210" id="gbq-nH-aze"/>
                                 </constraints>

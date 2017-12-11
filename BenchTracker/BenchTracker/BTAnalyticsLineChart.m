@@ -22,7 +22,10 @@
 - (void)setXAxisData:(NSArray <NSString *> *)data {
     if (data.count == 1) [self setXLabels:@[@"", data[0]]];
     else [self setXLabels:data]; //FIX in PNLineChart.m -> setXLabel:withWidth: NSInteger x = (index * _xLabelWidth + _chartMarginLeft);
-}
+}                                //FIX in PNLineChart.m -> ""
+                                        //PNChartLabel *label = [[PNChartLabel alloc] initWithFrame:
+                                        //CGRectMake(x+MIN(0, (_xLabelWidth-30)/2.0), y,
+                                        //(NSInteger) MAX(30, _xLabelWidth), (NSInteger) _chartMarginBottom)];
 
 - (void)setYAxisData:(NSArray <NSNumber *> *)data {
     if (data.count == 0) {
@@ -52,7 +55,7 @@
     else if (diff <= 600) interval = 100;
     else interval = 250;
     interval = interval*scaleFactor;
-    self.yFixedValueMin = MAX(0, ((int)min)/interval*interval-interval);
+    self.yFixedValueMin = MAX(0, ((int)min)/interval*interval);
     self.yFixedValueMax = MAX(10, ((int)max)/interval*interval+interval*self.yAxisSpaceTop);
     self.yLabelNum = (self.yFixedValueMax-self.yFixedValueMin)/interval;
     PNLineChartData *yData = [PNLineChartData new];

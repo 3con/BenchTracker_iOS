@@ -46,6 +46,7 @@
 }
 
 - (IBAction)doneButtonPressed:(id)sender {
+    [self.delegate QRDisplayViewControllerWillDismiss:self];
     [self animateOut];
 }
 

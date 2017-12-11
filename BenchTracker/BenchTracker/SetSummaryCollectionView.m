@@ -26,9 +26,9 @@
     self.userInteractionEnabled = NO;
     self.showsHorizontalScrollIndicator = NO;
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    flowLayout.itemSize = CGSizeMake(60, 16);
-    flowLayout.minimumInteritemSpacing = 10;
-    flowLayout.sectionInset = UIEdgeInsetsMake(2, 10, 2, 10);
+    flowLayout.itemSize = CGSizeMake(56, 16);
+    flowLayout.minimumInteritemSpacing = 8;
+    flowLayout.sectionInset = UIEdgeInsetsMake(2, 8, 2, 8);
     flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     [self setCollectionViewLayout:flowLayout];
     [self registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"Cell"];
@@ -41,7 +41,7 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    self.maxCells = (int)(self.frame.size.width) / 70;
+    self.maxCells = (int)(self.frame.size.width) / 62;
     if (self.visibleCells.count == 0 && self.sets.count > 0)
         [self reloadData];
 }
@@ -63,7 +63,7 @@
 #pragma mark - collectionView dataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    int count = (self.sets) ? MIN(self.sets.count, self.maxCells) : 0;
+    int count = (self.sets) ? (int)MIN(self.sets.count, self.maxCells) : 0;
     self.overlayLabel.alpha = self.enableOverlayLabel && !count;
     return count;
 }
@@ -75,7 +75,7 @@
         cell.backgroundColor = self.backgroundColor;
         cell.layer.cornerRadius = 4;
         cell.clipsToBounds = YES;
-        label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 60, 16)];
+        label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 56, 16)];
         label.backgroundColor = [UIColor clearColor];
         label.textColor = self.textColor;
         label.textAlignment = NSTextAlignmentCenter;
@@ -85,7 +85,7 @@
     }
     else label = cell.subviews[1];
     if (self.sets.count > self.maxCells && indexPath.row == self.maxCells-1) {
-        label.text = [NSString stringWithFormat:@"+%d more",(int)self.sets.count-(int)self.maxCells];
+        label.text = [NSString stringWithFormat:@"+%d more",(int)self.sets.count-(int)self.maxCells+1];
         label.font = [UIFont systemFontOfSize:8 weight:UIFontWeightHeavy];
     }
     else {

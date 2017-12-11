@@ -91,7 +91,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.addExerciseButton.alpha = 1;
+    self.addExerciseButton.hidden = NO;
     if (self.settings.disableSleep) [UIApplication sharedApplication].idleTimerDisabled = YES;
 }
 
@@ -104,6 +104,7 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [UIApplication sharedApplication].idleTimerDisabled = NO;
+    self.addExerciseButton.hidden = YES;
 }
 
 - (void)dealloc {
@@ -120,10 +121,10 @@
 
 - (void)handleEnteredBackground:(id)sender {
     [self updateWorkout];
-    [self performSelector:@selector(delayedAWSDSave) withObject:nil afterDelay:.2];
+    [self performSelector:@selector(delayedSave) withObject:nil afterDelay:.2];
 }
 
-- (void)delayedAWSDSave {
+- (void)delayedSave {
     [self.context save:nil];
 }
 
@@ -145,6 +146,7 @@
     [self workoutWillEnd];
     [self.delegate workoutViewController:self willDismissWithResultWorkout:self.workout];
     [self dismissViewControllerAnimated:YES completion:^{
+        [self.delegate workoutViewController:self didDismissWithResultWorkout:self.workout];
         [BTAchievement updateAchievementsWithWorkout:self.workout];
     }];
 }
@@ -208,7 +210,7 @@
     [self.context save:nil];
     [self.delegate workoutViewController:self willDismissWithResultWorkout:nil];
     [self dismissViewControllerAnimated:YES completion:^{
-        
+        [self.delegate workoutViewController:self didDismissWithResultWorkout:nil];
     }];
 }
 
@@ -573,13 +575,12 @@
 #pragma mark - settingsVC delegate
 
 - (void)WorkoutSettingsViewControllerWillDismiss:(WorkoutSettingsViewController *)wsVC {
-    
+    self.addExerciseButton.hidden = NO;
 }
 
 #pragma mark - view handling
 
 - (void)presentAddExerciseViewController {
-    self.addExerciseButton.alpha = 0;
     AddExerciseViewController *addVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ae"];
     addVC.delegate = self;
     addVC.context = self.context;

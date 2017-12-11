@@ -58,6 +58,10 @@
 - (void)viewDidAppear:(BOOL)animated {
     [(UserView *)self.userContainerView.subviews.firstObject animateIn];
     [self updateAchievementButton];
+    if (self.forwardToAcheivements) {
+        [self presentAchievementsViewController];
+        self.forwardToAcheivements = NO;
+    }
 }
 
 - (void)refreshStats {
@@ -80,11 +84,18 @@
                                                           ([[NSDate date] timeIntervalSinceDate:self.user.dateCreated]/86400+1)*100];
                 break;
             case 1:
-                statView.titleLabel.text = (self.isShowingFirstStats) ? @"Total Duration" : @"Volume / Hour";
-                statView.statLabel.text = (self.isShowingFirstStats) ?
-                    [NSString stringWithFormat:@"%.1f hrs", self.user.totalDuration/3600.0] : (self.user.totalDuration) ?
-                    [NSString stringWithFormat:@"%.1fk %@", self.user.totalVolume/1000.0/self.user.totalDuration*3600, self.settings.weightSuffix] :
-                    @"N/A";
+                if (self.isShowingFirstStats) {
+                    statView.titleLabel.text = @"Total Duration";
+                    statView.statLabel.text = (self.user.totalDuration < 100*3600.0) ?
+                        [NSString stringWithFormat:@"%.1f hrs", self.user.totalDuration/3600.0] :
+                        [NSString stringWithFormat:@"%.0f hrs", self.user.totalDuration/3600.0];
+                }
+                else {
+                    statView.titleLabel.text = @"Volume / Hour";
+                    statView.statLabel.text = (self.user.totalDuration) ?
+                        [NSString stringWithFormat:@"%.1fk %@", self.user.totalVolume/1000.0/self.user.totalDuration*3600, self.settings.weightSuffix] :
+                        @"N/A";
+                }
                 break;
             case 2:
                 statView.titleLabel.text = (self.isShowingFirstStats) ? @"# of Workouts" : @"Average Duration";
@@ -94,11 +105,18 @@
                     @"N/A";
                 break;
             case 3:
-                statView.titleLabel.text = (self.isShowingFirstStats) ? @"Total Volume" : @"Average Volume";
-                statView.statLabel.text = (self.isShowingFirstStats) ?
-                    [NSString stringWithFormat:@"%lldk %@", self.user.totalVolume/1000, self.settings.weightSuffix] : (self.user.totalWorkouts) ?
-                    [NSString stringWithFormat:@"%.1fk %@", self.user.totalVolume/1000.0/self.user.totalWorkouts, self.settings.weightSuffix] :
-                    @"N/A";
+                if (self.isShowingFirstStats) {
+                    statView.titleLabel.text = @"Total Volume";
+                    statView.statLabel.text = (self.user.totalVolume < 1000000) ?
+                        [NSString stringWithFormat:@"%lldk %@", self.user.totalVolume/1000, self.settings.weightSuffix] :
+                        [NSString stringWithFormat:@"%.2fm %@", self.user.totalVolume/1000000.0, self.settings.weightSuffix];
+                }
+                else {
+                    statView.titleLabel.text = @"Average Volume";
+                    statView.statLabel.text = (self.user.totalWorkouts) ?
+                        [NSString stringWithFormat:@"%.1fk %@", self.user.totalVolume/1000.0/self.user.totalWorkouts, self.settings.weightSuffix] :
+                        @"N/A";
+                }
                 break;
             case 4:
                 statView.titleLabel.text = (self.isShowingFirstStats) ? @"Current Streak" : @"Longest Duration";
@@ -155,7 +173,6 @@
 
 - (void)achievementViewButtonPressed:(id)sender {
     [self presentAchievementsViewController];
-    [BTAchievement resetUnreadAcheivements];
 }
 
 - (IBAction)switchStatsButtonPressed:(UIButton *)sender {

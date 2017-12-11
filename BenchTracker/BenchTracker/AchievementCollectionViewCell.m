@@ -30,7 +30,7 @@
     self.imageView.image = achievement.image;
     self.badgeView.alpha = achievement.completed;
     if (achievement.hidden && !achievement.completed) {
-        self.alpha = .4;
+        self.backgroundColor = [self.backgroundColor colorWithAlphaComponent:.4];
         self.nameLabel.text = @"???";
         self.detailLabel.text = @"";
     }

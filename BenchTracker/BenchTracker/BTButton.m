@@ -28,4 +28,13 @@
     }];
 }
 
+- (void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [super touchesCancelled:touches withEvent:event];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+    [UIView animateWithDuration:0.08 animations:^{
+        self.transform = CGAffineTransformIdentity;
+        self.alpha = 1.0;
+    }];
+}
+
 @end

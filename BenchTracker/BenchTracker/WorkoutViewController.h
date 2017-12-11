@@ -18,6 +18,7 @@
 @protocol WorkoutViewControllerDelegate <NSObject>
 @required
 - (void) workoutViewController:(WorkoutViewController *)workoutVC willDismissWithResultWorkout:(BTWorkout *)workout;
+- (void) workoutViewController:(WorkoutViewController *)workoutVC didDismissWithResultWorkout:(BTWorkout *)workout;
 @end
 
 @interface WorkoutViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UIAlertViewDelegate, AddExerciseViewControllerDelegate, ExerciseViewControllerDelegate, MGSwipeTableCellDelegate, UIGestureRecognizerDelegate, WorkoutSettingsViewControllerDelegate>

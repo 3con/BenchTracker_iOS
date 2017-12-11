@@ -164,7 +164,7 @@
 
 - (IBAction)rightBarButtonPressed:(UIButton *)sender {
     if(self.segmentedControl.selectedSegmentIndex == 0)
-         [self presentUserViewController];
+         [self presentUserViewControllerWithForwardToAcheivements:NO];
     else [self workoutButtonPressed:sender];
 }
 
@@ -520,6 +520,23 @@
     [self presentViewController:workoutVC animated:YES completion:nil];
 }
 
+- (void)presentWorkoutSummaryViewControllerWithWorkout:(BTWorkout *)workout {
+    WorkoutSummaryViewController *wssVC = [self.storyboard instantiateViewControllerWithIdentifier:@"wss"];
+    wssVC.delegate = self;
+    wssVC.context = self.context;
+    wssVC.workout = workout;
+    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:wssVC];
+    self.animator.bounces = NO;
+    self.animator.dragable = NO;
+    self.animator.behindViewAlpha = 1.0;
+    self.animator.behindViewScale = 1.0;
+    self.animator.transitionDuration = 0.0;
+    self.animator.direction = ZFModalTransitonDirectionBottom;
+    wssVC.transitioningDelegate = self.animator;
+    wssVC.modalPresentationStyle = UIModalPresentationCustom;
+    [self presentViewController:wssVC animated:YES completion:nil];
+}
+
 - (void)presentWorkoutSelectionViewControllerWithOriginPoint:(CGPoint)point date:(NSDate *)date {
     WorkoutSelectionViewController *wsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ws"];
     wsVC.delegate = self;
@@ -571,10 +588,11 @@
     [self presentViewController:tsVC animated:YES completion:nil];
 }
 
-- (void)presentUserViewController {
+- (void)presentUserViewControllerWithForwardToAcheivements:(BOOL)forward {
     UserViewController *userVC = [self.storyboard instantiateViewControllerWithIdentifier:@"us"];
     userVC.delegate = self;
     userVC.context = self.context;
+    userVC.forwardToAcheivements = forward;
     self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:userVC];
     self.animator.bounces = NO;
     self.animator.dragable = YES;
@@ -592,6 +610,25 @@
 - (void)workoutViewController:(WorkoutViewController *)workoutVC willDismissWithResultWorkout:(BTWorkout *)workout {
     [self.calendarView reloadData];
     [self.weekdayView reloadData];
+}
+
+- (void)workoutViewController:(WorkoutViewController *)workoutVC didDismissWithResultWorkout:(BTWorkout *)workout {
+    self.blankWorkoutButton.hidden = YES;
+    self.scanWorkoutButton.hidden = YES;
+    self.templateButton.hidden = YES;
+    [self performSelector:@selector(presentWorkoutSummaryViewControllerWithWorkout:) withObject:workout afterDelay:.2];
+}
+
+#pragma mark - workoutSummaryVC delegate
+
+- (void)workoutSummaryViewControllerWillDismiss:(WorkoutSummaryViewController *)wsVC {
+    self.blankWorkoutButton.hidden = NO;
+    self.scanWorkoutButton.hidden = NO;
+    self.templateButton.hidden = NO;
+}
+
+- (void)workoutSummaryViewControllerDidDismissWithAcheievementShowRequest:(WorkoutSummaryViewController *)wsVC {
+    [self presentUserViewControllerWithForwardToAcheivements:YES];
 }
 
 #pragma mark - settingsVC delegate

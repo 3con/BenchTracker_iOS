@@ -88,6 +88,7 @@
 
 - (IBAction)qrButtonPressed:(UIButton *)sender {
     [self presentQRDisplayViewControllerWithPoint:[self.view convertPoint:sender.center fromView:self.contentView]];
+    self.doneButton.hidden = YES;
 }
 
 - (IBAction)printButtonPressed:(UIButton *)sender {
@@ -164,7 +165,7 @@
 #pragma mark - qrView delegate
 
 - (void)QRDisplayViewControllerWillDismiss:(QRDisplayViewController *)qrDisplayVC {
-    
+    self.doneButton.hidden = NO;
 }
 
 #pragma mark - view handling
@@ -176,6 +177,7 @@
     qVC.image1 = [MMQRCodeMakerUtil qrImageWithContent:jsonString logoImage:nil qrColor:nil qrWidth:440];
     qVC.image2 = [MMQRCodeMakerUtil qrImageWithContent:jsonString2 logoImage:nil qrColor:nil qrWidth:440];
     qVC.point = point;
+    qVC.delegate = self;
     self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:qVC];
     self.animator.bounces = NO;
     self.animator.dragable = NO;

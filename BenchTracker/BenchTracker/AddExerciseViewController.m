@@ -91,8 +91,7 @@
         button.clipsToBounds = YES;
         button.titleLabel.numberOfLines = 2;
         button.titleLabel.textAlignment = NSTextAlignmentCenter;
-        button.userInteractionEnabled = NO;
-        button.alpha = 0;
+        button.hidden = YES;
     }
 }
 
@@ -285,8 +284,7 @@
     NSInteger numSelected = self.selectedTypes.count;
     if (numSelected == 1) {
         for (UIButton *button in @[self.supersetButton, self.addExerciseButton, self.clearButton]) {
-            button.userInteractionEnabled = YES;
-            button.alpha = 1;
+            button.hidden = NO;
         }
     }
     [self.addExerciseButton setTitle:(numSelected == 1) ? @"Add\nExercise" :
@@ -294,8 +292,7 @@
                                     forState:UIControlStateNormal];
     [self.supersetButton setTitle:[NSString stringWithFormat:@"Superset\n%ld Exercises",(long)numSelected]
                                     forState:UIControlStateNormal];
-    self.supersetButton.alpha = (numSelected != 1);
-    self.supersetButton.userInteractionEnabled = (numSelected != 1);
+    self.supersetButton.hidden = (numSelected == 1);
     self.addExerciseConstraint.constant = (numSelected != 1) ? 135 : 5;
 }
 
@@ -303,8 +300,7 @@
     NSInteger numSelected = self.selectedTypes.count;
     if (numSelected == 0) {
         for (UIButton *button in @[self.supersetButton, self.addExerciseButton, self.clearButton]) {
-            button.userInteractionEnabled = NO;
-            button.alpha = 0;
+            button.hidden = YES;
         }
     }
     else {
@@ -313,8 +309,7 @@
                                         forState:UIControlStateNormal];
         [self.supersetButton setTitle:[NSString stringWithFormat:@"Superset\n%ld Exercises",(long)numSelected]
                                         forState:UIControlStateNormal];
-        self.supersetButton.alpha = (numSelected != 1);
-        self.supersetButton.userInteractionEnabled = (numSelected != 1);
+        self.supersetButton.hidden = (numSelected == 1);
         self.addExerciseConstraint.constant = (numSelected != 1) ? 135 : 5;
     }
 }
@@ -474,8 +469,7 @@
     [self.selectedTypes removeAllObjects];
     [self.selectedIterations removeAllObjects];
     for (UIButton *button in @[self.supersetButton, self.addExerciseButton, self.clearButton]) {
-        button.userInteractionEnabled = NO;
-        button.alpha = 0;
+        button.hidden = YES;
     }
     [self.tableView reloadData];
 }

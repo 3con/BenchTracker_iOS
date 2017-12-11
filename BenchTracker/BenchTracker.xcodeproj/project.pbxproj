@@ -10,8 +10,12 @@
 		5004CDAE1F60F424000BF6F0 /* AchievementViewButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5004CDAD1F60F424000BF6F0 /* AchievementViewButton.m */; };
 		5004CDB11F60F436000BF6F0 /* AchievementViewButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5004CDB01F60F436000BF6F0 /* AchievementViewButton.xib */; };
 		5004CDB41F61A0AB000BF6F0 /* AchievementsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5004CDB31F61A0AB000BF6F0 /* AchievementsViewController.m */; };
+		500544E01FDF2D5100BB836F /* WorkoutSummaryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 500544DE1FDF2D5100BB836F /* WorkoutSummaryTableViewCell.m */; };
+		500544E11FDF2D5100BB836F /* WorkoutSummaryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 500544DF1FDF2D5100BB836F /* WorkoutSummaryTableViewCell.xib */; };
+		500544E51FDF313B00BB836F /* WorkoutMilestone.m in Sources */ = {isa = PBXBuildFile; fileRef = 500544E41FDF313B00BB836F /* WorkoutMilestone.m */; };
 		50060FDA1F33A83B00F6DC00 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50060FD91F33A83B00F6DC00 /* Assets.xcassets */; };
 		50060FDD1F33BB8E00F6DC00 /* BTWorkoutModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50060FDC1F33BB8E00F6DC00 /* BTWorkoutModel.m */; };
+		502145A41FDE5ABE00048F46 /* WorkoutSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 502145A21FDE5ABE00048F46 /* WorkoutSummaryViewController.m */; };
 		5037F6531F609936001939EA /* UserStatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5037F6521F609936001939EA /* UserStatView.m */; };
 		5037F6551F60993F001939EA /* UserStatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5037F6541F60993F001939EA /* UserStatView.xib */; };
 		503961101F604E4900CBC9EB /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5039610F1F604E4900CBC9EB /* UserViewController.m */; };
@@ -163,9 +167,16 @@
 		5004CDB01F60F436000BF6F0 /* AchievementViewButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AchievementViewButton.xib; sourceTree = "<group>"; };
 		5004CDB21F61A0AB000BF6F0 /* AchievementsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AchievementsViewController.h; sourceTree = "<group>"; };
 		5004CDB31F61A0AB000BF6F0 /* AchievementsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AchievementsViewController.m; sourceTree = "<group>"; };
+		500544DD1FDF2D5100BB836F /* WorkoutSummaryTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WorkoutSummaryTableViewCell.h; sourceTree = "<group>"; };
+		500544DE1FDF2D5100BB836F /* WorkoutSummaryTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WorkoutSummaryTableViewCell.m; sourceTree = "<group>"; };
+		500544DF1FDF2D5100BB836F /* WorkoutSummaryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkoutSummaryTableViewCell.xib; sourceTree = "<group>"; };
+		500544E31FDF313B00BB836F /* WorkoutMilestone.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WorkoutMilestone.h; sourceTree = "<group>"; };
+		500544E41FDF313B00BB836F /* WorkoutMilestone.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WorkoutMilestone.m; sourceTree = "<group>"; };
 		50060FD91F33A83B00F6DC00 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		50060FDB1F33BB8E00F6DC00 /* BTWorkoutModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BTWorkoutModel.h; path = BenchTracker/BTWorkoutModel.h; sourceTree = "<group>"; };
 		50060FDC1F33BB8E00F6DC00 /* BTWorkoutModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BTWorkoutModel.m; path = BenchTracker/BTWorkoutModel.m; sourceTree = "<group>"; };
+		502145A11FDE5ABE00048F46 /* WorkoutSummaryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WorkoutSummaryViewController.h; sourceTree = "<group>"; };
+		502145A21FDE5ABE00048F46 /* WorkoutSummaryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WorkoutSummaryViewController.m; sourceTree = "<group>"; };
 		502C95251F5FC58400883850 /* BTDataModel6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BTDataModel6.xcdatamodel; sourceTree = "<group>"; };
 		5037F6511F609936001939EA /* UserStatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserStatView.h; sourceTree = "<group>"; };
 		5037F6521F609936001939EA /* UserStatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserStatView.m; sourceTree = "<group>"; };
@@ -451,6 +462,25 @@
 			name = Achievements;
 			sourceTree = "<group>";
 		};
+		500544E21FDF2D5500BB836F /* WS tvc */ = {
+			isa = PBXGroup;
+			children = (
+				500544DD1FDF2D5100BB836F /* WorkoutSummaryTableViewCell.h */,
+				500544DE1FDF2D5100BB836F /* WorkoutSummaryTableViewCell.m */,
+				500544DF1FDF2D5100BB836F /* WorkoutSummaryTableViewCell.xib */,
+			);
+			name = "WS tvc";
+			sourceTree = "<group>";
+		};
+		500544E61FDF314100BB836F /* Workout milestone */ = {
+			isa = PBXGroup;
+			children = (
+				500544E31FDF313B00BB836F /* WorkoutMilestone.h */,
+				500544E41FDF313B00BB836F /* WorkoutMilestone.m */,
+			);
+			name = "Workout milestone";
+			sourceTree = "<group>";
+		};
 		50060FDE1F33BB9200F6DC00 /* WorkoutModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -458,6 +488,17 @@
 				50060FDC1F33BB8E00F6DC00 /* BTWorkoutModel.m */,
 			);
 			name = WorkoutModel;
+			sourceTree = "<group>";
+		};
+		502145A61FDE5ACC00048F46 /* Summary vc */ = {
+			isa = PBXGroup;
+			children = (
+				502145A11FDE5ABE00048F46 /* WorkoutSummaryViewController.h */,
+				502145A21FDE5ABE00048F46 /* WorkoutSummaryViewController.m */,
+				500544E61FDF314100BB836F /* Workout milestone */,
+				500544E21FDF2D5500BB836F /* WS tvc */,
+			);
+			name = "Summary vc";
 			sourceTree = "<group>";
 		};
 		5037F6561F60A29F001939EA /* Stat view */ = {
@@ -541,13 +582,13 @@
 			name = "Set Collection View";
 			sourceTree = "<group>";
 		};
-		50530C2B1F511BCA00472426 /* Settings */ = {
+		50530C2B1F511BCA00472426 /* Settings vc */ = {
 			isa = PBXGroup;
 			children = (
 				50530C281F511BC600472426 /* WorkoutSettingsViewController.h */,
 				50530C291F511BC600472426 /* WorkoutSettingsViewController.m */,
 			);
-			name = Settings;
+			name = "Settings vc";
 			sourceTree = "<group>";
 		};
 		50530C311F52412600472426 /* Template TVC */ = {
@@ -897,13 +938,13 @@
 			name = "Workout PDF";
 			sourceTree = "<group>";
 		};
-		F917BB611F0DD40500614AB1 /* QR display */ = {
+		F917BB611F0DD40500614AB1 /* QR display vc */ = {
 			isa = PBXGroup;
 			children = (
 				F917BB5E1F0DD40200614AB1 /* QRDisplayViewController.h */,
 				F917BB5F1F0DD40200614AB1 /* QRDisplayViewController.m */,
 			);
-			name = "QR display";
+			name = "QR display vc";
 			sourceTree = "<group>";
 		};
 		F917BB651F0DEA9700614AB1 /* QR scanner */ = {
@@ -1063,11 +1104,12 @@
 			children = (
 				F95F93421F03738B00A19C4D /* WorkoutViewController.h */,
 				F95F93431F03738B00A19C4D /* WorkoutViewController.m */,
-				50530C2B1F511BCA00472426 /* Settings */,
-				F917BB611F0DD40500614AB1 /* QR display */,
+				50530C2B1F511BCA00472426 /* Settings vc */,
+				F917BB611F0DD40500614AB1 /* QR display vc */,
 				F917BB511F0D24EB00614AB1 /* PDF generator */,
 				F96207731F05DCF800DE2330 /* Exercise cell */,
 				F9F522F11F193E4400061AF0 /* Pass touches view */,
+				502145A61FDE5ACC00048F46 /* Summary vc */,
 			);
 			name = Workout;
 			sourceTree = "<group>";
@@ -1557,6 +1599,7 @@
 				50060FDA1F33A83B00F6DC00 /* Assets.xcassets in Resources */,
 				F9AF067F1F07535C003A2200 /* WorkoutTableViewCell.xib in Resources */,
 				5037F6551F60993F001939EA /* UserStatView.xib in Resources */,
+				500544E11FDF2D5100BB836F /* WorkoutSummaryTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1672,10 +1715,12 @@
 				50404F5B1F3280430070B1A9 /* BTUserModel.m in Sources */,
 				F90712AA19415FB1008694E5 /* AppDelegate.m in Sources */,
 				F9418FBC1F04CEE80083C3DC /* SetCollectionViewCell.m in Sources */,
+				500544E01FDF2D5100BB836F /* WorkoutSummaryTableViewCell.m in Sources */,
 				5099F1BA1F5F637A000A6DE4 /* BTAchievement+CoreDataClass.m in Sources */,
 				F9DA75281F02EE9600347B0D /* BTWorkout+CoreDataClass.m in Sources */,
 				F9DA75271F02EE9600347B0D /* BTExerciseType+CoreDataProperties.m in Sources */,
 				F9A5494E1F13075600743897 /* AnalyticsViewController.m in Sources */,
+				502145A41FDE5ABE00048F46 /* WorkoutSummaryViewController.m in Sources */,
 				50530C2F1F52412200472426 /* WorkoutTemplateTableViewCell.m in Sources */,
 				5093AE741F394B14006CA6F0 /* BTExerciseTemplate+CoreDataProperties.m in Sources */,
 				F9A549511F134A3100743897 /* AnalyticsDetailViewController.m in Sources */,
@@ -1692,6 +1737,7 @@
 				F9A5494C1F13067B00743897 /* BTRecentWorkoutsManager.m in Sources */,
 				F9B7D7D71F06303700376201 /* passTouchesView.m in Sources */,
 				F9FD19E91F14746E00AB3FEE /* ADWeeklySummaryViewController.m in Sources */,
+				500544E51FDF313B00BB836F /* WorkoutMilestone.m in Sources */,
 				5066F9B51F61E75D00159130 /* AchievementCollectionViewCell.m in Sources */,
 				F9FD19E31F141FF300AB3FEE /* ADWorkoutsViewController.m in Sources */,
 				F917BB501F0D24E500614AB1 /* BTPDFGenerator.m in Sources */,

@@ -15,9 +15,10 @@
 #import "WeekdayView.h"
 #import "MGSwipeTableCell.h"
 #import "TemplateSelectionViewController.h"
+#import "WorkoutSummaryViewController.h"
 #import "BTCalendarCell.h"
 
-@interface MainViewController : UIViewController <WorkoutViewControllerDelegate, AnalyticsViewControllerDelegate, WorkoutSelectionViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance, MGSwipeTableCellDelegate, WeekdayViewDelegate, BTQRScannerViewControllerDelegate, UserViewControllerDelegate, TemplateSelectionViewControllerDelegate>
+@interface MainViewController : UIViewController <WorkoutViewControllerDelegate, AnalyticsViewControllerDelegate, WorkoutSelectionViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance, MGSwipeTableCellDelegate, WeekdayViewDelegate, BTQRScannerViewControllerDelegate, UserViewControllerDelegate, TemplateSelectionViewControllerDelegate, WorkoutSummaryViewControllerDelegate>
 
 @property (nonatomic) NSManagedObjectContext *context;
 

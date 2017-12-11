@@ -29,6 +29,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [BTAchievement resetUnreadAcheivements];
     self.navView.backgroundColor = [UIColor BTPrimaryColor];
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;

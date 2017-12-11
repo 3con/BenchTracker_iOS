@@ -119,20 +119,49 @@
         self.graphView.alpha = 0;
         return;
     }
-    NSString *s = (self.segmentedControl.selectedSegmentIndex == 0) ? @"Recent" : @"Top";
+    NSString *s = (self.segmentedControl.selectedSegmentIndex == 0) ? @"Recent" : (self.segmentedControl.selectedSegmentIndex == 1) ? @"Top" : @"";
     if ([self.exerciseType.style isEqualToString:STYLE_REPSWEIGHT])      s = [s stringByAppendingString:@" 1RM Equivalents"];
     else if ([self.exerciseType.style isEqualToString:STYLE_REPS])       s = [s stringByAppendingString:@" Max Reps"];
     else if ([self.exerciseType.style isEqualToString:STYLE_TIMEWEIGHT]) s = [s stringByAppendingString:@" Max Loads"];
     else if ([self.exerciseType.style isEqualToString:STYLE_TIME])       s = [s stringByAppendingString:@" Max Durations"];
+    if (self.segmentedControl.selectedSegmentIndex == 2)
+        s = [[s substringFromIndex:1] stringByAppendingString:@": Rolling Average"];
     self.graphTitleLabel.text = s;
     NSMutableArray *xAxisArr = [NSMutableArray array];
     NSMutableArray *yAxisArr = [NSMutableArray array];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"MMMMM d";
-    for (BTExercise *exercise in self.fetchedResultsController.fetchedObjects) {
-        if (xAxisArr.count >= MIN(15, (self.view.frame.size.width-80)/38)) break;
-        [xAxisArr addObject:[formatter stringFromDate:exercise.workout.date]];
-        [yAxisArr addObject:[NSNumber numberWithFloat:exercise.oneRM]];
+    if (self.segmentedControl.selectedSegmentIndex <= 1) {
+        for (BTExercise *exercise in self.fetchedResultsController.fetchedObjects) {
+            if (xAxisArr.count >= MIN(15, (self.view.frame.size.width-80)/38)) break;
+            [xAxisArr addObject:[formatter stringFromDate:exercise.workout.date]];
+            [yAxisArr addObject:[NSNumber numberWithFloat:exercise.oneRM]];
+        }
+    }
+    else if (self.fetchedResultsController.fetchedObjects.count >= 15) {
+        int offset = self.fetchedResultsController.fetchedObjects.count % 3;
+        for (int i = 0; i < self.fetchedResultsController.fetchedObjects.count/3; i++) {
+            BTExercise *first = self.fetchedResultsController.fetchedObjects[3*i+offset];
+            BTExercise *second = self.fetchedResultsController.fetchedObjects[3*i+1+offset];
+            BTExercise *third = self.fetchedResultsController.fetchedObjects[3*i+2+offset];
+            [yAxisArr addObject:[NSNumber numberWithFloat:(first.oneRM+second.oneRM+third.oneRM)/3.0]];
+            [xAxisArr addObject:(i == 0) ? [formatter stringFromDate:first.workout.date] :
+                (i == self.fetchedResultsController.fetchedObjects.count/3-1) ?
+                    [formatter stringFromDate:third.workout.date] : @""];
+        }
+    }
+    else if (self.fetchedResultsController.fetchedObjects.count >= 3) {
+        int64_t first = 0,
+                second = ((BTExercise *)self.fetchedResultsController.fetchedObjects[0]).oneRM,
+                third = ((BTExercise *)self.fetchedResultsController.fetchedObjects[1]).oneRM;
+        for (int i = 2; i < self.fetchedResultsController.fetchedObjects.count; i++) {
+            BTExercise *exercise = self.fetchedResultsController.fetchedObjects[i];
+            first = second; second = third;
+            third = exercise.oneRM;
+            [yAxisArr addObject:[NSNumber numberWithFloat:(first+second+third)/3.0]];
+            [xAxisArr addObject:(i == 2 || i == self.fetchedResultsController.fetchedObjects.count-1) ?
+                [formatter stringFromDate:exercise.workout.date] : @""];
+        }
     }
     self.graphNoDataLabel.alpha = (xAxisArr.count == 0);
     [self.graphView setXAxisData:[[xAxisArr reverseObjectEnumerator] allObjects]];
@@ -224,7 +253,7 @@
 #pragma mark - segmedtedControl
 
 - (void)loadSegmentedControl {
-    self.segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"Recent", @"Top"]];
+    self.segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"Recent", @"Top", @"Average"]];
     self.segmentedControl.frame = CGRectMake(0, 0, self.segmentedControllerContainerView.frame.size.width,
                                                    self.segmentedControllerContainerView.frame.size.height);
     self.segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -260,7 +289,7 @@
     if (_fetchedResultsController != nil) return _fetchedResultsController;
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"BTExercise"];
     [self updateFetchRequest:fetchRequest];
-    fetchRequest.fetchLimit = 25;
+    fetchRequest.fetchLimit = 100;
     fetchRequest.fetchBatchSize = 5;
     NSFetchedResultsController *theFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
                                                                 managedObjectContext:self.context sectionNameKeyPath:nil cacheName:nil];
@@ -274,7 +303,7 @@
          request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"workout.date" ascending:NO]];
     else if (self.segmentedControl.selectedSegmentIndex == 1)
          request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"oneRM" ascending:NO]];
-    else request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"oneRM" ascending:NO]];
+    else request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"workout.date" ascending:NO]];
     [request setPredicate:[self predicateForExerciseTypeAndIteration]];
 }
 

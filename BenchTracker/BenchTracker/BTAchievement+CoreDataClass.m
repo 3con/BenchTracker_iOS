@@ -134,15 +134,15 @@
         [BTAchievement markAchievementComplete:ACHIEVEMENT_MARATHON4 animated:YES];
     if (user.totalDuration >= 500*60*60)
         [BTAchievement markAchievementComplete:ACHIEVEMENT_MARATHON5 animated:YES];
-    if (user.totalDuration >= 50000*weightX)
+    if (user.totalVolume >= 50000*weightX)
         [BTAchievement markAchievementComplete:ACHIEVEMENT_GAINS1 animated:YES];
-    if (user.totalDuration >= 100000*weightX)
+    if (user.totalVolume >= 100000*weightX)
         [BTAchievement markAchievementComplete:ACHIEVEMENT_GAINS2 animated:YES];
-    if (user.totalDuration >= 500000*weightX)
+    if (user.totalVolume >= 500000*weightX)
         [BTAchievement markAchievementComplete:ACHIEVEMENT_GAINS3 animated:YES];
-    if (user.totalDuration >= 1000000*weightX)
+    if (user.totalVolume >= 1000000*weightX)
         [BTAchievement markAchievementComplete:ACHIEVEMENT_GAINS4 animated:YES];
-    if (user.totalDuration >= 10000000*weightX)
+    if (user.totalVolume >= 10000000*weightX)
         [BTAchievement markAchievementComplete:ACHIEVEMENT_GAINS5 animated:YES];
     [BTUser updateStreaks];
     if (user.currentStreak >= 3)

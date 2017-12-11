@@ -21,4 +21,6 @@
 
 @property (nonatomic) NSManagedObjectContext *context;
 
+@property (nonatomic) BOOL forwardToAcheivements;
+
 @end
