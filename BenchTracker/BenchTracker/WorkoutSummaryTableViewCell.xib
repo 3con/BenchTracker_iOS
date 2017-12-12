@@ -21,15 +21,15 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Badge" translatesAutoresizingMaskIntoConstraints="NO" id="n88-nd-cFv">
-                        <rect key="frame" x="12" y="13.5" width="22" height="22"/>
+                        <rect key="frame" x="12" y="17" width="16" height="16"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="n88-nd-cFv" secondAttribute="height" id="6Cb-hY-ruh"/>
-                            <constraint firstAttribute="width" constant="22" id="xmy-Dh-HOr"/>
+                            <constraint firstAttribute="width" constant="16" id="xmy-Dh-HOr"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#5 Gains example this month" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oNt-cf-Phz">
-                        <rect key="frame" x="42" y="16" width="273" height="18"/>
-                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#5 Gains example this month" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oNt-cf-Phz">
+                        <rect key="frame" x="36" y="17" width="279" height="16"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>

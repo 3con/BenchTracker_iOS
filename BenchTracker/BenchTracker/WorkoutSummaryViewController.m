@@ -82,11 +82,11 @@
     NSMutableAttributedString *s = [[NSMutableAttributedString alloc] initWithString:
                                     [NSString stringWithFormat:@"%lld", self.workout.volume/1000]];
     [s appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"k %@", self.settings.weightSuffix]
-        attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:12 weight:UIFontWeightMedium]}]];
+        attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:11 weight:UIFontWeightMedium]}]];
     self.headerLabels[1].attributedText = s;
-    s = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"%lld", self.workout.duration/3600]];
+    s = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"%lld", self.workout.duration/60]];
     [s appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@" min"]
-                                                              attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:12 weight:UIFontWeightMedium]}]];
+                                                              attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:11 weight:UIFontWeightMedium]}]];
     self.headerLabels[2].attributedText = s;
     self.milestones = [WorkoutMilestone milestonesForWorkout:self.workout];
     for (WorkoutMilestone *milestone in self.milestones)

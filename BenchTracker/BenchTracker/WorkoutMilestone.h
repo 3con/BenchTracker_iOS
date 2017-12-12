@@ -11,7 +11,8 @@
 typedef enum WorkoutMilestoneType : NSInteger {
     WorkoutMilestoneTypeAchievement,
     WorkoutMilestoneTypeWorkout,
-    WorkoutMilestoneTypeLift
+    WorkoutMilestoneTypeTopExercise,
+    WorkoutMilestoneTypeNewExercise
 } WorkoutMilestoneType;
 
 @class BTWorkout;

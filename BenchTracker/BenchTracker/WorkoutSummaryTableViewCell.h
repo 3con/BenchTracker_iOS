@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "WorkoutMilestone.h"
+
+@class WorkoutMilestone;
 
 @interface WorkoutSummaryTableViewCell : UITableViewCell
 

@@ -7,6 +7,7 @@
 //
 
 #import "WorkoutSummaryTableViewCell.h"
+#import "WorkoutMilestone.h"
 
 @implementation WorkoutSummaryTableViewCell
 
@@ -18,6 +19,12 @@
 - (void)loadWithMilestone:(WorkoutMilestone *)milestone {
     if (milestone) {
         self.titleLabel.text = milestone.title;
+        switch (milestone.type) {
+            case WorkoutMilestoneTypeTopExercise: self.titleImageView.image = [UIImage imageNamed:@"Exercise"]; break;
+            case WorkoutMilestoneTypeWorkout:     self.titleImageView.image = [UIImage imageNamed:@"Workout"]; break;
+            case WorkoutMilestoneTypeNewExercise: self.titleImageView.image = [UIImage imageNamed:@"New"]; break;
+            case WorkoutMilestoneTypeAchievement: self.titleImageView.image = [UIImage imageNamed:@"Badge"]; break;
+        }
     }
     else {
         self.titleLabel.text = @"";

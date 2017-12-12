@@ -29,9 +29,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (BTExercise *)lastInstance; //last instance (excluding this one)
 
-- (NSInteger)allTimeRank; //this lift's rank in all instances (1-10, else -1)
+- (NSArray<NSNumber *> *)allTimeRank; //[0]: (int) lift's rank in all instances (1-5, else -1)
+                                      //[1]: (BOOL) is tied
 
-- (NSInteger)thirtyDayRank; //this lift's rank in instances last 30 days (1-5, else -1)
+- (NSArray<NSNumber *> *)thirtyDayRank; //[0]: (int) lift's rank in instances last 30 days (1-5, else -1)
+                                        //[1]: (BOOL) is tied
 
 + (NSInteger)oneRMForExerciseName:(NSString *)name;
 
