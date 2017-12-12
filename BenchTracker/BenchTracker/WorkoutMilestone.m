@@ -8,6 +8,8 @@
 
 #import "WorkoutMilestone.h"
 #import "BTAchievement+CoreDataClass.h"
+#import "BTWorkout+CoreDataClass.h"
+#import "BTExercise+CoreDataClass.h"
 
 @implementation WorkoutMilestone
 
@@ -26,6 +28,9 @@
     if ([BTAchievement numberOfUnreadAchievements] != 0)
         [milestones addObject: [WorkoutMilestone milestoneWithTitle:[NSString stringWithFormat:@"%ld new achievements",
                                     [BTAchievement numberOfUnreadAchievements]] importance:999 type:WorkoutMilestoneTypeAchievement]];
+    for (BTExercise *exercise in workout.exercises) {
+        NSLog(@"%@: %ld %ld", exercise.name, exercise.thirtyDayRank, exercise.allTimeRank);
+    }
     return milestones;
 }
 

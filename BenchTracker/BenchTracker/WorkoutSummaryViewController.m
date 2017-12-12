@@ -84,7 +84,7 @@
     [s appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"k %@", self.settings.weightSuffix]
         attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:12 weight:UIFontWeightMedium]}]];
     self.headerLabels[1].attributedText = s;
-    s = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"%lld", self.workout.duration]];
+    s = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"%lld", self.workout.duration/3600]];
     [s appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@" min"]
                                                               attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:12 weight:UIFontWeightMedium]}]];
     self.headerLabels[2].attributedText = s;
@@ -108,7 +108,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     WorkoutSummaryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     if (cell == nil) cell = [[NSBundle mainBundle] loadNibNamed:@"WorkoutSummaryTableViewCell" owner:self options:nil].firstObject;
-    [cell loadWithMilestone:(self.milestones.count-1 >= indexPath.row) ? self.milestones[indexPath.row] : nil];
+    [cell loadWithMilestone:(self.milestones.count && self.milestones.count-1 >= indexPath.row) ? self.milestones[indexPath.row] : nil];
     return cell;
 }
 

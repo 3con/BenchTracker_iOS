@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -21,10 +21,10 @@
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WvP-3e-0TQ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="72"/>
+                        <rect key="frame" x="0.0" y="-24" width="375" height="94"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9o9-K0-KGN">
-                                <rect key="frame" x="12" y="30" width="50" height="30"/>
+                                <rect key="frame" x="12" y="50" width="50" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="1z0-5o-6CD"/>
                                     <constraint firstAttribute="width" constant="50" id="QwJ-Um-XKE"/>
@@ -37,7 +37,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Workout Scanner" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kyc-7b-EJW">
-                                <rect key="frame" x="87.5" y="30" width="200" height="30"/>
+                                <rect key="frame" x="87.5" y="50" width="200" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="nW2-zz-1Jr"/>
                                     <constraint firstAttribute="height" constant="30" id="r0L-Ig-to1"/>
@@ -47,7 +47,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AFl-Ns-iz7">
-                                <rect key="frame" x="313" y="30" width="50" height="30"/>
+                                <rect key="frame" x="313" y="50" width="50" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="eX9-G8-Pfk"/>
                                     <constraint firstAttribute="width" constant="50" id="lv3-eI-d9d"/>
@@ -63,18 +63,18 @@
                         <color key="backgroundColor" red="0.078297413885593414" green="0.077457226812839508" blue="0.32783538103103638" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="AFl-Ns-iz7" secondAttribute="trailing" constant="12" id="0Jj-3A-QNj"/>
-                            <constraint firstItem="kyc-7b-EJW" firstAttribute="top" secondItem="WvP-3e-0TQ" secondAttribute="top" constant="30" id="864-EW-r9E"/>
-                            <constraint firstAttribute="height" constant="72" id="R7a-QT-6ex"/>
+                            <constraint firstAttribute="bottom" secondItem="kyc-7b-EJW" secondAttribute="bottom" constant="14" id="0OS-BR-Njy"/>
+                            <constraint firstAttribute="height" constant="94" id="R7a-QT-6ex"/>
                             <constraint firstItem="9o9-K0-KGN" firstAttribute="leading" secondItem="WvP-3e-0TQ" secondAttribute="leading" constant="12" id="YIW-K7-vmp"/>
+                            <constraint firstItem="AFl-Ns-iz7" firstAttribute="centerY" secondItem="kyc-7b-EJW" secondAttribute="centerY" id="foh-9D-5Kb"/>
+                            <constraint firstItem="9o9-K0-KGN" firstAttribute="centerY" secondItem="kyc-7b-EJW" secondAttribute="centerY" id="nNb-ZR-rD7"/>
                             <constraint firstItem="kyc-7b-EJW" firstAttribute="centerX" secondItem="WvP-3e-0TQ" secondAttribute="centerX" id="s2k-AQ-16V"/>
-                            <constraint firstItem="AFl-Ns-iz7" firstAttribute="top" secondItem="WvP-3e-0TQ" secondAttribute="top" constant="30" id="uGe-Mh-Ixv"/>
-                            <constraint firstItem="9o9-K0-KGN" firstAttribute="top" secondItem="WvP-3e-0TQ" secondAttribute="top" constant="30" id="zb5-pL-93y"/>
                         </constraints>
                     </view>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 <constraints>
-                    <constraint firstItem="WvP-3e-0TQ" firstAttribute="top" secondItem="rAR-mL-x2h" secondAttribute="bottom" constant="-20" id="HKM-H6-8Wm"/>
+                    <constraint firstItem="WvP-3e-0TQ" firstAttribute="bottom" secondItem="rAR-mL-x2h" secondAttribute="bottom" constant="50" id="HKM-H6-8Wm"/>
                     <constraint firstItem="WvP-3e-0TQ" firstAttribute="width" secondItem="LNG-SW-qCg" secondAttribute="width" id="LJa-PE-eqA"/>
                     <constraint firstItem="WvP-3e-0TQ" firstAttribute="centerX" secondItem="LNG-SW-qCg" secondAttribute="centerX" id="OQS-RX-LD1"/>
                 </constraints>

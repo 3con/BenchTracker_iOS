@@ -29,6 +29,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (BTExercise *)lastInstance; //last instance (excluding this one)
 
+- (NSInteger)allTimeRank; //this lift's rank in all instances (1-10, else -1)
+
+- (NSInteger)thirtyDayRank; //this lift's rank in instances last 30 days (1-5, else -1)
+
 + (NSInteger)oneRMForExerciseName:(NSString *)name;
 
 + (NSInteger)powerliftingTotalWeight;

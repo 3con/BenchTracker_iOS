@@ -44,25 +44,56 @@
     }
 }
 
+- (BTExercise *)lastInstance {
+    NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"BTExercise"];
+    NSMutableArray *p = @[[NSPredicate predicateWithFormat:[NSString stringWithFormat:@"name == \"%@\"", self.name]],
+                          [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"category == \"%@\"", self.category]],
+                          [NSPredicate predicateWithFormat:@"workout != %@", self.workout]].mutableCopy;
+    if (self.iteration) [p addObject:[NSPredicate predicateWithFormat:[NSString stringWithFormat:@"iteration == \"%@\"", self.iteration]]];
+    fetchRequest.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:p];
+    fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"workout.date" ascending:NO]];
+    fetchRequest.fetchLimit = 1;
+    NSArray <BTExercise *> *results = [context executeFetchRequest:fetchRequest error:nil];
+    return (results && results.count > 0) ? results.firstObject : nil;
+}
+
+- (NSInteger)allTimeRank {
+    NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"BTExercise"];
+    NSMutableArray *p = @[[NSPredicate predicateWithFormat:[NSString stringWithFormat:@"name == \"%@\"", self.name]],
+                          [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"category == \"%@\"", self.category]]].mutableCopy;
+    if (self.iteration) [p addObject:[NSPredicate predicateWithFormat:[NSString stringWithFormat:@"iteration == \"%@\"", self.iteration]]];
+    fetchRequest.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:p];
+    fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"oneRM" ascending:NO],
+                                     [NSSortDescriptor sortDescriptorWithKey:@"workout.date" ascending:NO]];
+    fetchRequest.fetchLimit = 10;
+    NSArray <BTExercise *> *results = [context executeFetchRequest:fetchRequest error:nil];
+    NSInteger rank = [results indexOfObject:self]+1;
+    return (results && results.count > 0 && rank > 0 && rank < 11) ? rank : -1;
+}
+
+- (NSInteger)thirtyDayRank {
+    NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"BTExercise"];
+    NSMutableArray *p = @[[NSPredicate predicateWithFormat:[NSString stringWithFormat:@"name == \"%@\"", self.name]],
+                          [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"category == \"%@\"", self.category]],
+                          [NSPredicate predicateWithFormat:@"workout.date >= %@", [NSDate.date dateByAddingTimeInterval:-30*86400]]].mutableCopy;
+    if (self.iteration) [p addObject:[NSPredicate predicateWithFormat:[NSString stringWithFormat:@"iteration == \"%@\"", self.iteration]]];
+    fetchRequest.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:p];
+    fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"oneRM" ascending:NO],
+                                     [NSSortDescriptor sortDescriptorWithKey:@"workout.date" ascending:NO]];
+    fetchRequest.fetchLimit = 5;
+    NSArray <BTExercise *> *results = [context executeFetchRequest:fetchRequest error:nil];
+    NSInteger rank = [results indexOfObject:self]+1;
+    return (results && results.count > 0 && rank > 0 && rank < 6) ? rank : -1;
+}
+
 + (NSInteger)powerliftingTotalWeight {
     NSInteger benchMax = [BTExercise oneRMForExerciseName:@"Barbell Bench Press"];
     NSInteger deadliftMax = [BTExercise oneRMForExerciseName:@"Deadlift"];
     NSInteger squatMax = [BTExercise oneRMForExerciseName:@"Squats"];
     return (benchMax > 0 && deadliftMax > 0 && squatMax > 0) ? benchMax + deadliftMax + squatMax : 0;
-}
-
-- (BTExercise *)lastInstance {
-    NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"BTExercise"];
-    NSMutableArray *pArr = @[[NSPredicate predicateWithFormat:[NSString stringWithFormat:@"name == \"%@\"", self.name]],
-                             [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"category == \"%@\"", self.category]],
-                             [NSPredicate predicateWithFormat:@"workout != %@", self.workout]].mutableCopy;
-    if (self.iteration) [pArr addObject:[NSPredicate predicateWithFormat:[NSString stringWithFormat:@"iteration == \"%@\"", self.iteration]]];
-    fetchRequest.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:pArr];
-    fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"workout.date" ascending:NO]];
-    fetchRequest.fetchLimit = 1;
-    NSArray <BTExercise *> *results = [context executeFetchRequest:fetchRequest error:nil];
-    return (results && results.count > 0) ? results.firstObject : nil;
 }
 
 + (NSInteger)oneRMForExerciseName:(NSString *)name {
