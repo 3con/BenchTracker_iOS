@@ -613,10 +613,12 @@
 }
 
 - (void)workoutViewController:(WorkoutViewController *)workoutVC didDismissWithResultWorkout:(BTWorkout *)workout {
-    self.blankWorkoutButton.hidden = YES;
-    self.scanWorkoutButton.hidden = YES;
-    self.templateButton.hidden = YES;
-    [self performSelector:@selector(presentWorkoutSummaryViewControllerWithWorkout:) withObject:workout afterDelay:.2];
+    if (workout && workout.duration != self.settings.activeWorkoutBeforeDuration) {
+        self.blankWorkoutButton.hidden = YES;
+        self.scanWorkoutButton.hidden = YES;
+        self.templateButton.hidden = YES;
+        [self performSelector:@selector(presentWorkoutSummaryViewControllerWithWorkout:) withObject:workout afterDelay:.2];
+    }
 }
 
 #pragma mark - workoutSummaryVC delegate

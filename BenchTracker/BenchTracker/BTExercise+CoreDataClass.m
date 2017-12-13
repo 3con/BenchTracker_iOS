@@ -67,7 +67,7 @@
     fetchRequest.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:p];
     fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"oneRM" ascending:NO],
                                      [NSSortDescriptor sortDescriptorWithKey:@"workout.date" ascending:NO]];
-    fetchRequest.fetchLimit = 5;
+    fetchRequest.fetchLimit = 6;
     NSArray <BTExercise *> *results = [context executeFetchRequest:fetchRequest error:nil];
     NSInteger rank = [results indexOfObject:self]+1;
     BOOL isTied = results.count > rank && results[rank].oneRM == self.oneRM;
@@ -85,7 +85,7 @@
     fetchRequest.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:p];
     fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"oneRM" ascending:NO],
                                      [NSSortDescriptor sortDescriptorWithKey:@"workout.date" ascending:NO]];
-    fetchRequest.fetchLimit = 5;
+    fetchRequest.fetchLimit = 6;
     NSArray <BTExercise *> *results = [context executeFetchRequest:fetchRequest error:nil];
     NSInteger rank = [results indexOfObject:self]+1;
     BOOL isTied = results.count > rank && results[rank].oneRM == self.oneRM;

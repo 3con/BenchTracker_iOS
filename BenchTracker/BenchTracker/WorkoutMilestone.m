@@ -41,14 +41,14 @@
             }
             if (allTime[0].integerValue != -1) {
                 [milestones addObject: [WorkoutMilestone milestoneWithTitle:[NSString stringWithFormat:@"%@ %@ of all-time",
-                    [WorkoutMilestone formattedNumber:allTime], type]
+                    [WorkoutMilestone formattedNumber:allTime withBest:NO], type]
                     importance:40-allTime[0].integerValue type:WorkoutMilestoneTypeWorkout]];
             }
             else {
                 NSArray<NSNumber *> *thirtyDay = [workout thirtyDayRankForProperty:i];
                 if (thirtyDay[0].integerValue != -1) {
-                    [milestones addObject: [WorkoutMilestone milestoneWithTitle:[NSString stringWithFormat:@"%@ %@ in the last 30-days",
-                        [WorkoutMilestone formattedNumber:thirtyDay], type]
+                    [milestones addObject: [WorkoutMilestone milestoneWithTitle:[NSString stringWithFormat:@"%@ %@ in the last 30 days",
+                        [WorkoutMilestone formattedNumber:thirtyDay withBest:NO], type]
                         importance:22-thirtyDay[0].integerValue type:WorkoutMilestoneTypeWorkout]];
                 }
             }
@@ -64,14 +64,14 @@
                 NSArray<NSNumber *> *allTime = exercise.allTimeRank;
                 if (allTime[0].integerValue != -1) {
                     [milestones addObject: [WorkoutMilestone milestoneWithTitle:[NSString stringWithFormat:
-                                                                                 @"%@ best all-time 1RM equivalent:\n   %@ %@",
-                        [WorkoutMilestone formattedNumber:allTime], (exercise.iteration) ? exercise.iteration : @"", exercise.name]
+                                                                                 @"%@ all-time 1RM equivalent:\n   %@ %@",
+                        [WorkoutMilestone formattedNumber:allTime withBest:YES], (exercise.iteration) ? exercise.iteration : @"", exercise.name]
                         importance:20-allTime[0].integerValue-allTime[1].boolValue type:WorkoutMilestoneTypeTopExercise]];
                 }
                 else if (thirty[0].integerValue != -1) {
                     [milestones addObject: [WorkoutMilestone milestoneWithTitle:[NSString stringWithFormat:
-                                                                                 @"%@ best 30-day 1RM equivalent:\n   %@ %@",
-                        [WorkoutMilestone formattedNumber:thirty], (exercise.iteration) ? exercise.iteration : @"", exercise.name]
+                                                                                 @"%@ 30-day 1RM equivalent:\n   %@ %@",
+                        [WorkoutMilestone formattedNumber:thirty withBest:YES], (exercise.iteration) ? exercise.iteration : @"", exercise.name]
                         importance:10-thirty[0].integerValue-thirty[1].boolValue type:WorkoutMilestoneTypeTopExercise]];
                 }
             }
@@ -87,9 +87,10 @@
 
 #pragma mark - helper method
 
-+ (NSString *)formattedNumber:(NSArray<NSNumber *> *)arr {
-    return [NSString stringWithFormat:@"%@%ld%@", arr[1].boolValue ? @"T-" : @"", arr.firstObject.integerValue,
-            [@[@"th",@"st",@"nd",@"rd",@"th",@"th",@"th",@"th",@"th",@"th"] objectAtIndex:(arr.firstObject.integerValue % 10)]];
++ (NSString *)formattedNumber:(NSArray<NSNumber *> *)arr withBest:(BOOL)best {
+    return [NSString stringWithFormat:@"%@%ld%@%@", arr[1].boolValue ? @"T-" : @"", arr[0].integerValue,
+               @[@"th",@"st",@"nd",@"rd",@"th",@"th",@"th",@"th",@"th",@"th"][arr[0].integerValue % 10],
+               (best && arr[0].integerValue != 1) ? @" best" : @""];
 }
 
 @end

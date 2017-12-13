@@ -76,6 +76,7 @@
         self.workout = [BTWorkout workout];
     }
     [BTUser removeWorkoutFromTotals:self.workout];
+    self.settings.activeWorkoutBeforeDuration = self.workout.duration;
     self.nameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:self.workout.name
         attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor], NSFontAttributeName:[UIFont italicSystemFontOfSize:22]}];
     self.tempSupersets = [NSKeyedUnarchiver unarchiveObjectWithData:self.workout.supersets];

@@ -230,7 +230,7 @@
         case WorkoutPropertyTypeDuration: sD = [NSSortDescriptor sortDescriptorWithKey:@"duration" ascending:NO]; break;
     }
     fetchRequest.sortDescriptors = @[sD, [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO]];
-    fetchRequest.fetchLimit = 10;
+    fetchRequest.fetchLimit = 11;
     NSArray <BTWorkout *> *results = [context executeFetchRequest:fetchRequest error:nil];
     NSInteger rank = [results indexOfObject:self]+1;
     BOOL isTied;
@@ -254,7 +254,7 @@
         case WorkoutPropertyTypeDuration: sD = [NSSortDescriptor sortDescriptorWithKey:@"duration" ascending:NO]; break;
     }
     fetchRequest.sortDescriptors = @[sD, [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO]];
-    fetchRequest.fetchLimit = 5;
+    fetchRequest.fetchLimit = 6;
     NSArray <BTWorkout *> *results = [context executeFetchRequest:fetchRequest error:nil];
     NSInteger rank = [results indexOfObject:self]+1;
     BOOL isTied;

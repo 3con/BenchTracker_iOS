@@ -261,6 +261,7 @@
 		5099F1C21F5F6774000A6DE4 /* AchievementListVersionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AchievementListVersionModel.m; path = BenchTracker/AchievementListVersionModel.m; sourceTree = "<group>"; };
 		5099F1C51F5F6803000A6DE4 /* BTDataModel4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BTDataModel4.xcdatamodel; sourceTree = "<group>"; };
 		5099F1C61F5F9C9C000A6DE4 /* BTDataModel5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BTDataModel5.xcdatamodel; sourceTree = "<group>"; };
+		50B8C3BD1FE0E35300378331 /* BTDataModel7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BTDataModel7.xcdatamodel; sourceTree = "<group>"; };
 		50CF69D41F3A685C00DDE8A6 /* TemplateSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemplateSelectionViewController.h; sourceTree = "<group>"; };
 		50CF69D51F3A685C00DDE8A6 /* TemplateSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TemplateSelectionViewController.m; sourceTree = "<group>"; };
 		50FB89931F5A48A3002EA7A4 /* BTDataModel2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BTDataModel2.xcdatamodel; sourceTree = "<group>"; };
@@ -2046,6 +2047,7 @@
 		F9DA750F1F02DC1700347B0D /* BTDataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				50B8C3BD1FE0E35300378331 /* BTDataModel7.xcdatamodel */,
 				502C95251F5FC58400883850 /* BTDataModel6.xcdatamodel */,
 				5099F1C61F5F9C9C000A6DE4 /* BTDataModel5.xcdatamodel */,
 				5099F1C51F5F6803000A6DE4 /* BTDataModel4.xcdatamodel */,
@@ -2053,7 +2055,7 @@
 				50FB89931F5A48A3002EA7A4 /* BTDataModel2.xcdatamodel */,
 				F9DA75101F02DC1700347B0D /* BTDataModel.xcdatamodel */,
 			);
-			currentVersion = 502C95251F5FC58400883850 /* BTDataModel6.xcdatamodel */;
+			currentVersion = 50B8C3BD1FE0E35300378331 /* BTDataModel7.xcdatamodel */;
 			path = BTDataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

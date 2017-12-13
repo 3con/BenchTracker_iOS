@@ -32,6 +32,7 @@
         <attribute name="style" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="BTSettings" representedClassName="BTSettings" syncable="YES">
+        <attribute name="activeWorkoutBeforeDuration" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="activeWorkoutLastUpdate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="activeWorkoutStartDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="bodyweightIsVolume" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
@@ -85,7 +86,7 @@
         <element name="BTExercise" positionX="-164" positionY="-42" width="128" height="150"/>
         <element name="BTExerciseTemplate" positionX="-164" positionY="-228" width="128" height="118"/>
         <element name="BTExerciseType" positionX="-549" positionY="-256" width="128" height="103"/>
-        <element name="BTSettings" positionX="-549" positionY="104" width="128" height="240"/>
+        <element name="BTSettings" positionX="-549" positionY="104" width="128" height="255"/>
         <element name="BTUser" positionX="-549" positionY="-126" width="128" height="210"/>
         <element name="BTWorkout" positionX="-353" positionY="-87" width="128" height="210"/>
         <element name="BTWorkoutTemplate" positionX="-353" positionY="-228" width="128" height="133"/>

@@ -14,6 +14,10 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.backgroundColor = [UIColor clearColor];
+    self.titleLabel.alpha = 0;
+    self.titleImageView.alpha = 0;
+    self.titleLabel.transform = CGAffineTransformMakeScale(0, 0);
+    self.titleImageView.transform = CGAffineTransformMakeScale(0, 0);
 }
 
 - (void)loadWithMilestone:(WorkoutMilestone *)milestone {
@@ -30,6 +34,15 @@
         self.titleLabel.text = @"";
         self.titleImageView.image = nil;
     }
+}
+
+-(void)animateIn {
+    [UIView animateWithDuration:.4 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        self.titleLabel.alpha = 1;
+        self.titleImageView.alpha = 1;
+        self.titleLabel.transform = CGAffineTransformIdentity;
+        self.titleImageView.transform = CGAffineTransformIdentity;
+    } completion:nil];
 }
 
 @end

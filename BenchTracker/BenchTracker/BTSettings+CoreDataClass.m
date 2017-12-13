@@ -24,6 +24,7 @@
     self.activeWorkout = nil;
     self.activeWorkoutStartDate = nil;
     self.activeWorkoutLastUpdate = nil;
+    self.activeWorkoutBeforeDuration = 0;
     self.hiddenExerciseTypeSections = [NSKeyedArchiver archivedDataWithRootObject:[NSMutableArray array]];
     self.exerciseTypeColors = nil;
     self.startWeekOnMonday = YES;

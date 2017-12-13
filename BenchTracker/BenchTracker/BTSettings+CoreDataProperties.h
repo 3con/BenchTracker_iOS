@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) BTWorkout *activeWorkout;
 @property (nullable, nonatomic, copy)   NSDate *activeWorkoutStartDate;
 @property (nullable, nonatomic, copy)   NSDate *activeWorkoutLastUpdate;
+@property (nonatomic) int64_t activeWorkoutBeforeDuration;
 
 @property (nullable, nonatomic, retain) NSData *hiddenExerciseTypeSections;
 @property (nullable, nonatomic, retain) NSData *exerciseTypeColors;

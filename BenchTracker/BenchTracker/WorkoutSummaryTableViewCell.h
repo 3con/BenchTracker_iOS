@@ -17,4 +17,6 @@
 
 - (void)loadWithMilestone:(WorkoutMilestone *)milestone;
 
+- (void)animateIn;
+
 @end
