@@ -109,7 +109,7 @@
     self.deletedView.userInteractionEnabled = NO;
     self.deleteButton.layer.cornerRadius = 12;
     self.deleteButton.clipsToBounds = YES;
-    self.contentView.layer.cornerRadius = 12;
+    self.contentView.layer.cornerRadius = 16;
     self.contentView.clipsToBounds = YES;
     self.pickerView.dataSource = self;
     self.pickerView.delegate = self;

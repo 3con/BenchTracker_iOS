@@ -36,7 +36,7 @@
     self.aboveSupersetView.backgroundColor = [UIColor BTSecondaryColor];
     self.belowSupersetView.backgroundColor = [UIColor BTSecondaryColor];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-    self.containerView.layer.cornerRadius = 8;
+    self.containerView.layer.cornerRadius = 12;
     self.containerView.clipsToBounds = YES;
 }
 

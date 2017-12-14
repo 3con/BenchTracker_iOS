@@ -23,7 +23,7 @@
     [super awakeFromNib];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.cellSelected = NO;
-    self.iterationLabel.layer.cornerRadius = 8;
+    self.iterationLabel.layer.cornerRadius = 10;
     self.iterationLabel.clipsToBounds = YES;
 }
 

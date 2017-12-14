@@ -105,7 +105,7 @@
     cell.subtitleLabel.text =
         @[@"Week of ---",
           @"Recent Workouts",
-          @"",
+          @"All Exercises",
           @"Recent Workouts",
           @"Recent Workouts",
           @"Recent Workouts",

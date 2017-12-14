@@ -28,6 +28,7 @@
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray<UILabel *> *headerLabels;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UILabel *noMilestonesLabel;
 @property (nonatomic) NSArray<WorkoutMilestone *> *milestones;
 
 @end
@@ -37,6 +38,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.settings = [BTSettings sharedInstance];
+    self.noMilestonesLabel.alpha = 0;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorColor = [UIColor clearColor];
@@ -119,6 +121,7 @@
 #pragma mark - tableView delegate / dataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    self.noMilestonesLabel.alpha = !self.milestones.count;
     return 5;
 }
 

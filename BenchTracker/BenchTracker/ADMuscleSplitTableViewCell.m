@@ -30,7 +30,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-    self.containerView.layer.cornerRadius = 12;
+    self.containerView.layer.cornerRadius = 25;
     self.containerView.clipsToBounds = YES;
 }
 

@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *noDataLabel;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *graphHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *fullListConstraint;
 
 @property (weak, nonatomic) IBOutlet UIView *tableContainerView;
 
@@ -28,17 +29,6 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    self.layer.cornerRadius = 12;
-    self.clipsToBounds = YES;
-    self.graphContainerView.layer.masksToBounds = NO;
-    self.graphContainerView.layer.cornerRadius = 8;
-    self.graphContainerView.clipsToBounds = YES;
-    self.tableContainerView.layer.masksToBounds = NO;
-    self.tableContainerView.layer.cornerRadius = 8;
-    self.tableContainerView.clipsToBounds = YES;
-    self.seeMoreButton.layer.cornerRadius = 12;
-    self.seeMoreButton.clipsToBounds = YES;
-    self.seeMoreButton.userInteractionEnabled = NO;
     self.tableView = [[UITableView alloc] init];
     self.tableView.userInteractionEnabled = NO;
     self.tableView.delegate = self;
@@ -58,6 +48,7 @@
 }
 
 - (void)setGraphHeight:(CGFloat)graphHeight {
+    self.fullListConstraint.active = graphHeight == 0;
     _graphHeight = graphHeight;
     self.graphHeightConstraint.constant = graphHeight;
     self.tableView.frame = CGRectMake(0, 0, self.originSize.width-40, self.originSize.height-graphHeight-186);

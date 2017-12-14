@@ -44,7 +44,7 @@
 }
 
 - (void)viewDidLayoutSubviews {
-    self.tableView.layer.cornerRadius = 12.0;
+    self.tableView.layer.cornerRadius = 12;
     self.tableView.clipsToBounds = YES;
     self.containingView.alpha = 0.0;
     self.backgroundView.alpha = 0.0;

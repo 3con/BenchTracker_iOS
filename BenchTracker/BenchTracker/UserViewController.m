@@ -175,9 +175,24 @@
     [self presentAchievementsViewController];
 }
 
-- (IBAction)switchStatsButtonPressed:(UIButton *)sender {
+- (IBAction)switchStatsButtonPressed:(UIButton *)sender forEvent:(UIEvent *)event {
+    //CGPoint location = [[[event touchesForView:sender] anyObject] locationInView:sender];
+    //int index = (int)(location.y/(sender.frame.size.height/3.0))*2+(int)(location.x/(sender.frame.size.width/2.0));
+    [self animateCells];
     self.isShowingFirstStats = !self.isShowingFirstStats;
     [self refreshStats];
+}
+
+-(void)animateCells {
+    for (int i = 0; i < 6; i++) {
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        [UIView beginAnimations:nil context:context];
+        [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.statContainerViews[i] cache:YES];
+        [UIView setAnimationDelay:i*.1];
+        [UIView setAnimationDuration:0.2];
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+        [UIView commitAnimations];
+    }
 }
 
 - (void)presentAchievementsViewController {

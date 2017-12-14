@@ -1213,7 +1213,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uXj-yo-uDw">
                                         <rect key="frame" x="0.0" y="125.33333333333329" width="342.66666666666669" height="422.66666666666674"/>
                                         <connections>
-                                            <action selector="switchStatsButtonPressed:" destination="9gN-qJ-SOe" eventType="touchUpInside" id="R7u-cx-Nr1"/>
+                                            <action selector="switchStatsButtonPressed:forEvent:" destination="9gN-qJ-SOe" eventType="touchUpInside" id="2Bk-uy-Th7"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1960,13 +1960,21 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Milestones" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="obN-fP-G3U">
+                                                <rect key="frame" x="91.666666666666657" y="253.66666666666666" width="113.66666666666666" height="19.333333333333343"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="0.40000000000000002" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="RPP-bf-JtY" firstAttribute="leading" secondItem="9OH-Q8-pbk" secondAttribute="leading" constant="20" id="13G-lk-ICb"/>
                                             <constraint firstItem="6gY-jo-LGF" firstAttribute="leading" secondItem="9OH-Q8-pbk" secondAttribute="leading" constant="20" id="9VQ-TK-4lm"/>
+                                            <constraint firstItem="obN-fP-G3U" firstAttribute="centerY" secondItem="6gY-jo-LGF" secondAttribute="centerY" id="B14-fH-350"/>
                                             <constraint firstItem="6gY-jo-LGF" firstAttribute="top" secondItem="RPP-bf-JtY" secondAttribute="bottom" constant="20" id="FxW-1P-0bj"/>
                                             <constraint firstItem="FEU-gg-WGN" firstAttribute="centerX" secondItem="9OH-Q8-pbk" secondAttribute="centerX" id="G1K-0t-Sq1"/>
+                                            <constraint firstItem="obN-fP-G3U" firstAttribute="centerX" secondItem="9OH-Q8-pbk" secondAttribute="centerX" id="KuM-RI-TnV"/>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="360" id="Va6-v8-hne"/>
                                             <constraint firstItem="6gY-jo-LGF" firstAttribute="centerX" secondItem="9OH-Q8-pbk" secondAttribute="centerX" id="XbU-Wb-YJm"/>
                                             <constraint firstItem="FEU-gg-WGN" firstAttribute="leading" secondItem="9OH-Q8-pbk" secondAttribute="leading" constant="5" id="an3-j6-v7K"/>
@@ -2069,6 +2077,7 @@
                         <outlet property="doneButton" destination="kcI-7R-Wfl" id="1zv-bj-ZpA"/>
                         <outlet property="doneButtonCenterConstraint" destination="TAv-0h-oQL" id="Tib-Mi-y0t"/>
                         <outlet property="doneButtonWidthConstraint" destination="m2a-ZY-YKi" id="O3C-Nd-TLn"/>
+                        <outlet property="noMilestonesLabel" destination="obN-fP-G3U" id="Hli-DB-wn8"/>
                         <outlet property="scrollView" destination="lVJ-u3-B2e" id="73x-41-c9U"/>
                         <outlet property="secondaryButton" destination="AOk-sH-27s" id="S7b-tB-FhQ"/>
                         <outlet property="tableView" destination="6gY-jo-LGF" id="04i-ca-Kb4"/>

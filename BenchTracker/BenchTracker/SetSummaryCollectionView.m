@@ -73,7 +73,7 @@
     UILabel *label;
     if (cell.subviews.count == 1) {
         cell.backgroundColor = self.backgroundColor;
-        cell.layer.cornerRadius = 4;
+        cell.layer.cornerRadius = 6;
         cell.clipsToBounds = YES;
         label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 56, 16)];
         label.backgroundColor = [UIColor clearColor];
