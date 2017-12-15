@@ -13,10 +13,12 @@
 #import "BTSettings+CoreDataClass.h"
 #import "BTWorkout+CoreDataClass.h"
 #import "AchievementViewButton.h"
+#import "LeaderboardViewButton.h"
 #import "AchievementsViewController.h"
 #import "BTAchievement+CoreDataClass.h"
 #import "WZLBadgeImport.h"
 #import "UserView.h"
+#import "UserStats.h"
 
 @interface UserViewController ()
 
@@ -25,12 +27,16 @@
 
 @property (nonatomic) ZFModalTransitionAnimator *animator;
 
-@property (weak, nonatomic) IBOutlet UIView *achievementButtonContainerView;
-
-@property (strong, nonatomic) IBOutletCollection(UIView) NSArray <UIView *> *statContainerViews;
+@property (weak, nonatomic) IBOutlet UIView *containerView;
+@property (weak, nonatomic) AchievementViewButton *achievementButton;
+@property (weak, nonatomic) LeaderboardViewButton *leaderboardButton;
+@property (weak, nonatomic) NSMutableArray <UserStatView *> *statViews;
+@property (nonatomic) CGFloat buttonHeight;
+@property (nonatomic) CGFloat interLineSpacing;
 
 @property (nonatomic) BTSettings *settings;
 @property (nonatomic) BTUser *user;
+@property (nonatomic) UserStats *userStats;
 
 @property (nonatomic) BOOL isShowingFirstStats;
 
@@ -42,15 +48,20 @@
     [super viewDidLoad];
     self.settings = [BTSettings sharedInstance];
     self.user = [BTUser sharedInstance];
+    self.userStats = [UserStats statsWithUser:self.user settings:self.settings];
     [BTUser updateStreaks];
     self.navView.backgroundColor = [UIColor BTPrimaryColor];
     self.isShowingFirstStats = YES;
-    [self refreshStats];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    if (self.achievementButtonContainerView.subviews.count == 0) { //first load
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    if (self.containerView.subviews.count == 1) { //first load
+        self.interLineSpacing = 10;
+        self.buttonHeight = (self.containerView.frame.size.height-self.interLineSpacing*4)/5.0;
         [self loadAchievementButton];
+        [self loadLeaderboardButton];
+        [self refreshStats];
         [self loadUserView];
     }
 }
@@ -65,94 +76,48 @@
 }
 
 - (void)refreshStats {
-    for (int i = 0; i < self.statContainerViews.count; i++) {
-        UserStatView *statView;
-        if (self.statContainerViews[i].subviews.count == 0) {
+    for (int i = 0; i < 6; i++) {
+        UserStatView *statView = (self.statViews.count < i) ? nil : self.statViews[i];
+        if (!statView) {
             statView = [[NSBundle mainBundle] loadNibNamed:@"UserStatView" owner:self options:nil].firstObject;
-            statView.frame = self.statContainerViews[i].bounds;
+            CGFloat w = self.containerView.frame.size.width;
+            statView.frame = CGRectMake((i%2)*(w/2.0+self.interLineSpacing/2.0), (self.buttonHeight+self.interLineSpacing)*(2+i/2),
+                                        w/2-self.interLineSpacing/2.0, self.buttonHeight);
             statView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-            statView.backgroundColor = [UIColor BTVibrantColors][i+1];
+            statView.backgroundColor = (i == 5) ? [UIColor BTButtonPrimaryColor] : [UIColor BTVibrantColors][i+2];
         }
-        else statView = self.statContainerViews[i].subviews.firstObject;
-        switch (i) {
-            case 0:
-                statView.titleLabel.text = (self.isShowingFirstStats) ? @"Tracking for" : @"Workout %";
-                NSInteger days = [[NSDate date] timeIntervalSinceDate:self.user.dateCreated]/86400+1;
-                statView.statLabel.text = (self.isShowingFirstStats) ?
-                    [NSString stringWithFormat:@"%ld day%@", days, (days == 1) ? @"" : @"s"] :
-                    [NSString stringWithFormat:@"%.0f%%", ((float)self.user.totalWorkouts)/
-                                                          ([[NSDate date] timeIntervalSinceDate:self.user.dateCreated]/86400+1)*100];
-                break;
-            case 1:
-                if (self.isShowingFirstStats) {
-                    statView.titleLabel.text = @"Total Duration";
-                    statView.statLabel.text = (self.user.totalDuration < 100*3600.0) ?
-                        [NSString stringWithFormat:@"%.1f hrs", self.user.totalDuration/3600.0] :
-                        [NSString stringWithFormat:@"%.0f hrs", self.user.totalDuration/3600.0];
-                }
-                else {
-                    statView.titleLabel.text = @"Volume / Hour";
-                    statView.statLabel.text = (self.user.totalDuration) ?
-                        [NSString stringWithFormat:@"%.1fk %@", self.user.totalVolume/1000.0/self.user.totalDuration*3600, self.settings.weightSuffix] :
-                        @"N/A";
-                }
-                break;
-            case 2:
-                statView.titleLabel.text = (self.isShowingFirstStats) ? @"# of Workouts" : @"Average Duration";
-                statView.statLabel.text = (self.isShowingFirstStats) ?
-                    [NSString stringWithFormat:@"%lld", self.user.totalWorkouts] : (self.user.totalWorkouts) ?
-                    [NSString stringWithFormat:@"%.1f min", self.user.totalDuration/60.0/self.user.totalWorkouts] :
-                    @"N/A";
-                break;
-            case 3:
-                if (self.isShowingFirstStats) {
-                    statView.titleLabel.text = @"Total Volume";
-                    statView.statLabel.text = (self.user.totalVolume < 1000000) ?
-                        [NSString stringWithFormat:@"%lldk %@", self.user.totalVolume/1000, self.settings.weightSuffix] :
-                        [NSString stringWithFormat:@"%.2fm %@", self.user.totalVolume/1000000.0, self.settings.weightSuffix];
-                }
-                else {
-                    statView.titleLabel.text = @"Average Volume";
-                    statView.statLabel.text = (self.user.totalWorkouts) ?
-                        [NSString stringWithFormat:@"%.1fk %@", self.user.totalVolume/1000.0/self.user.totalWorkouts, self.settings.weightSuffix] :
-                        @"N/A";
-                }
-                break;
-            case 4:
-                statView.titleLabel.text = (self.isShowingFirstStats) ? @"Current Streak" : @"Longest Duration";
-                statView.statLabel.text = (self.isShowingFirstStats) ?
-                    [NSString stringWithFormat:@"%lld day%@", self.user.currentStreak, (self.user.currentStreak == 1) ? @"" : @"s"] :
-                    [NSString stringWithFormat:@"%ld min", [self maxWorkoutDuration]/60];
-                break;
-            default:
-                statView.titleLabel.text = (self.isShowingFirstStats) ? @"Longest Streak" : @"Highest Volume";
-                statView.statLabel.text = (self.isShowingFirstStats) ?
-                [NSString stringWithFormat:@"%lld day%@", self.user.longestStreak, (self.user.longestStreak == 1) ? @"" : @"s"] :
-                    [NSString stringWithFormat:@"%ldk %@",[self maxWorkoutVolume]/1000, self.settings.weightSuffix];
-                break;
-        }
-        [self.statContainerViews[i] addSubview:statView];
+        statView.titleLabel.text = [self.userStats statForIndex:i+!self.isShowingFirstStats*6][0];
+        statView.statLabel.text = [self.userStats statForIndex:i+!self.isShowingFirstStats*6][1];
+        [self.containerView addSubview:statView];
     }
 }
 
 - (void)loadAchievementButton {
-    AchievementViewButton *button = [[NSBundle mainBundle] loadNibNamed:@"AchievementViewButton" owner:self options:nil].firstObject;
-    button.frame = self.achievementButtonContainerView.bounds;
-    button.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    [button addTarget:self action:@selector(achievementViewButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [self.achievementButtonContainerView addSubview:button];
+    self.achievementButton = [[NSBundle mainBundle] loadNibNamed:@"AchievementViewButton" owner:self options:nil].firstObject;
+    self.achievementButton.frame = CGRectMake(0, 0, self.containerView.frame.size.width, self.buttonHeight);
+    self.achievementButton.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [self.achievementButton addTarget:self action:@selector(achievementViewButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self.containerView addSubview:self.achievementButton];
+}
+
+- (void)loadLeaderboardButton {
+    self.leaderboardButton = [[NSBundle mainBundle] loadNibNamed:@"LeaderboardViewButton" owner:self options:nil].firstObject;
+    self.leaderboardButton.frame = CGRectMake(0, self.buttonHeight+self.interLineSpacing, self.containerView.frame.size.width, self.buttonHeight);
+    self.leaderboardButton.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [self.leaderboardButton addTarget:self action:@selector(leaderboardViewButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self.containerView addSubview:self.leaderboardButton];
 }
 
 - (void)updateAchievementButton {
     NSInteger num = [BTAchievement numberOfUnreadAchievements];
     if (num) {
-        [self.achievementButtonContainerView showBadgeWithStyle:WBadgeStyleNumber value:num animationType:WBadgeAnimTypeNone];
-        self.achievementButtonContainerView.badgeFrame = CGRectMake(0, 0, 32, 32);
-        self.achievementButtonContainerView.badge.layer.cornerRadius = 16;
-        self.achievementButtonContainerView.badgeCenterOffset = CGPointMake(-6, 6);
-        self.achievementButtonContainerView.badgeFont = [UIFont systemFontOfSize:15 weight:UIFontWeightSemibold];
+        [self.achievementButton showBadgeWithStyle:WBadgeStyleNumber value:num animationType:WBadgeAnimTypeNone];
+        self.achievementButton.badgeFrame = CGRectMake(0, 0, 32, 32);
+        self.achievementButton.badge.layer.cornerRadius = 16;
+        self.achievementButton.badgeCenterOffset = CGPointMake(-12, 10);
+        self.achievementButton.badgeFont = [UIFont systemFontOfSize:15 weight:UIFontWeightSemibold];
     }
-    else [self.achievementButtonContainerView clearBadge];
+    else [self.achievementButton clearBadge];
 }
 
 - (void)loadUserView {
@@ -175,6 +140,10 @@
     [self presentAchievementsViewController];
 }
 
+- (void)leaderboardViewButtonPressed:(id)sender {
+    [self presentAchievementsViewController];
+}
+
 - (IBAction)switchStatsButtonPressed:(UIButton *)sender forEvent:(UIEvent *)event {
     //CGPoint location = [[[event touchesForView:sender] anyObject] locationInView:sender];
     //int index = (int)(location.y/(sender.frame.size.height/3.0))*2+(int)(location.x/(sender.frame.size.width/2.0));
@@ -187,7 +156,7 @@
     for (int i = 0; i < 6; i++) {
         CGContextRef context = UIGraphicsGetCurrentContext();
         [UIView beginAnimations:nil context:context];
-        [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.statContainerViews[i] cache:YES];
+        [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.statViews[i] cache:YES];
         [UIView setAnimationDelay:i*.1];
         [UIView setAnimationDuration:0.2];
         [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];

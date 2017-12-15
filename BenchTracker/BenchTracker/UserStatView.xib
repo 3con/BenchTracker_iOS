@@ -1,37 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="UserStatView">
-            <rect key="frame" x="0.0" y="0.0" width="180" height="55"/>
+            <rect key="frame" x="0.0" y="0.0" width="180" height="60"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qbT-zS-ieH">
-                    <rect key="frame" x="0.0" y="5" width="180" height="45"/>
+                    <rect key="frame" x="0.0" y="5" width="180" height="50"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="# Workouts" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="thB-uq-sIa">
-                            <rect key="frame" x="5" y="0.0" width="170" height="20"/>
+                            <rect key="frame" x="5" y="2" width="170" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="20" id="nEb-Jo-BS7"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="650k lbs" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rMG-By-NgD">
-                            <rect key="frame" x="5" y="13" width="170" height="35"/>
+                            <rect key="frame" x="5" y="15" width="170" height="35"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="35" id="nl2-g6-9Ln"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="28"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="23"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -41,10 +42,10 @@
                         <constraint firstItem="thB-uq-sIa" firstAttribute="centerX" secondItem="qbT-zS-ieH" secondAttribute="centerX" id="0Lv-wu-M3E"/>
                         <constraint firstItem="rMG-By-NgD" firstAttribute="leading" secondItem="qbT-zS-ieH" secondAttribute="leading" constant="5" id="4bK-QP-nNd"/>
                         <constraint firstItem="rMG-By-NgD" firstAttribute="centerX" secondItem="qbT-zS-ieH" secondAttribute="centerX" id="9h8-yd-qty"/>
-                        <constraint firstAttribute="bottom" secondItem="rMG-By-NgD" secondAttribute="bottom" constant="-3" id="IO4-HF-n2z"/>
+                        <constraint firstAttribute="bottom" secondItem="rMG-By-NgD" secondAttribute="bottom" id="IO4-HF-n2z"/>
                         <constraint firstItem="thB-uq-sIa" firstAttribute="leading" secondItem="qbT-zS-ieH" secondAttribute="leading" constant="5" id="JTe-fI-Hdb"/>
                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="55" id="cuP-06-AMj"/>
-                        <constraint firstItem="thB-uq-sIa" firstAttribute="top" secondItem="qbT-zS-ieH" secondAttribute="top" id="soD-Ob-FMi"/>
+                        <constraint firstItem="thB-uq-sIa" firstAttribute="top" secondItem="qbT-zS-ieH" secondAttribute="top" constant="2" id="soD-Ob-FMi"/>
                     </constraints>
                 </view>
             </subviews>

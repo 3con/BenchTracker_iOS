@@ -1,20 +1,21 @@
 //
-//  AchievementViewButton.m
+//  LeaderboardViewButton.m
 //  BenchTracker
 //
-//  Created by Chappy Asel on 9/6/17.
+//  Created by Chappy Asel on 12/15/17.
 //  Copyright © 2017 CD. All rights reserved.
 //
 
-#import "AchievementViewButton.h"
+#import "LeaderboardViewButton.h"
 
-@implementation AchievementViewButton
+@implementation LeaderboardViewButton
 
 - (instancetype)initWithCoder:(NSCoder *)coder {
     self = [super initWithCoder:coder];
     if (self) {
         self.layer.cornerRadius = 12.0;
-        self.backgroundColor = [UIColor BTVibrantColors][0];
+        self.clipsToBounds = YES;
+        self.backgroundColor = [UIColor BTVibrantColors][1];
     }
     return self;
 }

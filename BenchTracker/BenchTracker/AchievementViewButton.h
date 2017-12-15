@@ -6,7 +6,6 @@
 //  Copyright © 2017 CD. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "BTButton.h"
 
 @interface AchievementViewButton : BTButton
