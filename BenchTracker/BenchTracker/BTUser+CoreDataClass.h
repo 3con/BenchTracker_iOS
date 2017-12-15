@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, readonly) CGFloat levelProgress;
 
+#pragma mark - client
+
 + (BTUser *)sharedInstance;
 
 + (void)removeWorkoutFromTotals:(BTWorkout *)workout;
@@ -30,6 +32,10 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)checkForTotalsPurge;
 
 + (void)updateStreaks;
+
+#pragma mark - server only
+
+- (void)userExistsWithUsername: (NSString *)username continueWithBlock:(void (^)(BOOL exists))completed;
 
 @end
 

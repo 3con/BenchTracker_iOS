@@ -60,7 +60,14 @@
     dispatch_once(&onceToken, ^{
         sharedInstance = [self fetchUser];
         sharedInstance.mapper = [AWSDynamoDBObjectMapper defaultDynamoDBObjectMapper];
-        [sharedInstance pushAWSUserWithCompletionBlock:nil];
+        if (!sharedInstance.name || sharedInstance.name.length == 0) {
+            sharedInstance.name = [NSString stringWithFormat:@"User %d", arc4random()%99999999];
+            [sharedInstance pushAWSUserWithCompletionBlock:^(BOOL success) { }];
+        }
+        else {
+            [sharedInstance fetchAWSUserWithCompletionBlock:^(BOOL success) { }];
+        }
+        NSLog(@"%@",sharedInstance.name);
     });
     return sharedInstance;
 }
@@ -141,6 +148,16 @@
     user.longestStreak = MAX(user.currentStreak, user.longestStreak);
 }
 
+#pragma mark - server only
+
+- (void)userExistsWithUsername: (NSString *)username continueWithBlock:(void (^)(BOOL exists))completed {
+    [[self.mapper load:[awsUser class] hashKey:username rangeKey:nil] continueWithBlock:^id(AWSTask *task) {
+        if (task.error) NSLog(@"AWSUsername get error: [%@]", task.error);
+        else completed(task.result != nil);
+        return nil;
+    }];
+}
+
 #pragma mark - private methods
 
 + (BTUser *)fetchUser {
@@ -169,19 +186,43 @@
     return object[0];
 }
 
-- (void)pushAWSUserWithCompletionBlock:(void (^)())completed {
-    self.awsUser = [AWSUsername new];
-    self.awsUser.lastUpdate = [BTUser stringForDate:[NSDate date]];
-    self.awsUser.deviceID = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
-    self.name = (self.name && self.name.length > 0) ? self.name : [NSString stringWithFormat:@"User %d", arc4random()%99999999];
-    self.awsUser.username = self.name;
-    [[self.mapper save:self.awsUser] continueWithBlock:^id(AWSTask *task) {
-        if (task.error) NSLog(@"AWSUsername push error: [%@]", task.error);
-        //else completed();
+- (void)fetchAWSUserWithCompletionBlock:(void (^)(BOOL success))completed {
+    [[self.mapper load:[AWSUsername class] hashKey:self.name rangeKey:nil] continueWithBlock:^id(AWSTask *task) {
+        if (task.error) {
+            NSLog(@"AWSUsername get error: [%@]", task.error);
+            completed(NO);
+        }
+        else {
+            if (task.result) //user exists
+                 self.awsUser = task.result;
+            else [self pushAWSUserWithCompletionBlock:^(BOOL success) {
+                completed(success);
+            }];
+        }
         return nil;
     }];
-    NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
-    [context save:nil];
+}
+
+- (void)pushAWSUserWithCompletionBlock:(void (^)(BOOL success))completed {
+    if (!self.awsUser) {
+        self.awsUser = [AWSUsername new];
+        self.awsUser.dateCreated = [BTUser stringForDate:[NSDate date]];
+        self.awsUser.deviceID = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+    }
+    self.awsUser.lastUpdate = [BTUser stringForDate:[NSDate date]];
+    self.awsUser.username = self.name;
+    [[self.mapper save:self.awsUser] continueWithBlock:^id(AWSTask *task) {
+        if (task.error) {
+            NSLog(@"AWSUsername push error: [%@]", task.error);
+            completed(NO);
+        }
+        else completed(YES);
+        return nil;
+    }];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+        [context save:nil];
+    });
 }
 
 + (NSString *)stringForDate:(NSDate *)date {
