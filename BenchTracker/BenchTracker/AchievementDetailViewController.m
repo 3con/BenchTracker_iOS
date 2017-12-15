@@ -27,7 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.scrollView.delegate = self;
-    self.containingView.layer.cornerRadius = 12;
+    self.containingView.layer.cornerRadius = 25;
     self.containingView.clipsToBounds = YES;
     if (self.achievement.completed) self.containingView.backgroundColor = [UIColor BTVibrantColors][1];
     else self.containingView.backgroundColor = (self.color) ? self.color : [UIColor BTVibrantColors][0];

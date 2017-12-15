@@ -34,7 +34,7 @@
     self.nameLabel.textColor = [UIColor BTBlackColor];
     self.dateLabel.textColor = [UIColor BTGrayColor];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-    self.stackedView.layer.cornerRadius = 5;
+    self.stackedView.layer.cornerRadius = 6;
     self.stackedView.clipsToBounds = YES;
 }
 

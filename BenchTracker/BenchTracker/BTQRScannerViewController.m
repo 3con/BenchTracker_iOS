@@ -65,7 +65,8 @@
 - (IBAction)galleryButtonPressed:(UIButton *)sender {
     UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
     imagePicker.delegate = self;
-    imagePicker.navigationBar.tintColor = [UIColor BTBlackColor];
+    imagePicker.navigationBar.tintColor = [UIColor BTPrimaryColor];
+    imagePicker.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor BTPrimaryColor]};
     [self presentViewController:imagePicker animated:YES completion:nil];
 }
 

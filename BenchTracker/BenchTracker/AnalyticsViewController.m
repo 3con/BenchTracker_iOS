@@ -97,7 +97,7 @@
     cell.titleLabel.text =
         @[@"Weekly Summary",
           @"Favorite Exercises",
-          @"Track your Progress",
+          @"Track Your Progress",
           @"Volume",
           @"Duration",
           @"Number of Exercises",

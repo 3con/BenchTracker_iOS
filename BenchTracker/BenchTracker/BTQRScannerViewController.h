@@ -17,7 +17,7 @@
 - (void)qrScannerVC:(BTQRScannerViewController *)qrVC didDismissWithScannedString:(NSString *)string;
 @end
 
-@interface BTQRScannerViewController : UIViewController
+@interface BTQRScannerViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @property (nonatomic) id<BTQRScannerViewControllerDelegate> delegate;
 

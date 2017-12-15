@@ -31,7 +31,7 @@
     self.detailLabel1.textColor = [UIColor BTGrayColor];
     self.detailLabel2.textColor = [UIColor BTGrayColor];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-    self.stackedBarView.layer.cornerRadius = 5;
+    self.stackedBarView.layer.cornerRadius = 6;
     self.stackedBarView.clipsToBounds = YES;
 }
 

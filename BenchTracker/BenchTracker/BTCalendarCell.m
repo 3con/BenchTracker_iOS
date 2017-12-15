@@ -23,7 +23,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.stackedView = [[BTStackedBarView alloc] initWithFrame:CGRectMake(0, 0, MIN(60, frame.size.width-10), 20)];
-        self.stackedView.layer.cornerRadius = 5;
+        self.stackedView.layer.cornerRadius = 6;
         self.stackedView.clipsToBounds = YES;
         [self.contentView insertSubview:self.stackedView belowSubview:self.titleLabel];
     }

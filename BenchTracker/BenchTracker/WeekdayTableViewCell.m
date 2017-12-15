@@ -33,7 +33,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-    self.stackedView.layer.cornerRadius = 5;
+    self.stackedView.layer.cornerRadius = 6;
     self.stackedView.clipsToBounds = YES;
 }
 
