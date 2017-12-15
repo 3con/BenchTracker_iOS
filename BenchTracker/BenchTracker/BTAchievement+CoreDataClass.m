@@ -200,7 +200,7 @@
             [viewController.view makeToast:str duration:3.0 position:CSToastPositionTop title:achievement.name
                                      image:achievement.image style:style completion:^(BOOL didTap) {
                     if (didTap && [viewController isKindOfClass:[MainViewController class]])
-                        [(MainViewController *)viewController presentUserViewController];
+                        [(MainViewController *)viewController presentUserViewControllerWithForwardToAcheivements:YES];
             }];
             if ([viewController isKindOfClass:[MainViewController class]])
                 [(MainViewController *)viewController updateBadgeView];

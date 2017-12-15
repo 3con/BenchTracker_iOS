@@ -1,5 +1,10 @@
 PODS:
   - Appirater (2.2.0)
+  - AWSCognito (2.6.5):
+    - AWSCore (= 2.6.5)
+  - AWSCore (2.6.5)
+  - AWSDynamoDB (2.6.5):
+    - AWSCore (= 2.6.5)
   - FSCalendar (2.7.9)
   - HMSegmentedControl (1.5.4)
   - JSONModel (1.7.0)
@@ -17,6 +22,8 @@ PODS:
 
 DEPENDENCIES:
   - Appirater
+  - AWSCognito
+  - AWSDynamoDB
   - FSCalendar
   - HMSegmentedControl
   - JSONModel
@@ -32,6 +39,9 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Appirater: eccc7b82b47f2bffaf0023bc49862b36680c542f
+  AWSCognito: 763ef7a193e6eaeddff382db4daa7608ec61be69
+  AWSCore: b4895b4a5256d0040f8825ad31f3477d081f508f
+  AWSDynamoDB: 8723495e4f010b65e7012fdc59f813c3a0a30006
   FSCalendar: a04b09f16f811bc92e82f3cf852a15225233b9d5
   HMSegmentedControl: b25bc4ec44766e073d62c473188fb354ee244b76
   JSONModel: 840bc0fcffb24b8454d2c026bf26fea454b8e98d
@@ -46,6 +56,6 @@ SPEC CHECKSUMS:
   XLForm: d5c391dfc62865927b5bcab0a5a0dbfb3e02b0ec
   ZFDragableModalTransition: 0d294eaaba6edfcb9839595de765f9ca06a4b524
 
-PODFILE CHECKSUM: 7382cde77561cfc7c072ebafb59502a026074fc2
+PODFILE CHECKSUM: 90560f3530aae594d1631e971200ad7d41285883
 
 COCOAPODS: 1.2.1

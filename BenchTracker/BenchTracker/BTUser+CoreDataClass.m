@@ -8,9 +8,21 @@
 
 #import "BTUser+CoreDataClass.h"
 #import "BTWorkout+CoreDataClass.h"
+#import <AWSDynamoDB/AWSDynamoDB.h>
+#import "AWSUsername.h"
 #import "AppDelegate.h"
 
+@interface BTUser ()
+
+@property (nonatomic, strong) AWSDynamoDBObjectMapper *mapper;
+@property (nonatomic, strong) AWSUsername *awsUser;
+
+@end
+
 @implementation BTUser
+
+@synthesize awsUser;
+@synthesize mapper;
 
 - (void)setImage:(UIImage *)image {
     self.imageData = UIImagePNGRepresentation(image);
@@ -47,6 +59,8 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedInstance = [self fetchUser];
+        sharedInstance.mapper = [AWSDynamoDBObjectMapper defaultDynamoDBObjectMapper];
+        [sharedInstance pushAWSUserWithCompletionBlock:nil];
     });
     return sharedInstance;
 }
@@ -153,6 +167,35 @@
         return user;
     }
     return object[0];
+}
+
+- (void)pushAWSUserWithCompletionBlock:(void (^)())completed {
+    self.awsUser = [AWSUsername new];
+    self.awsUser.lastUpdate = [BTUser stringForDate:[NSDate date]];
+    self.awsUser.deviceID = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+    self.name = (self.name && self.name.length > 0) ? self.name : [NSString stringWithFormat:@"User %d", arc4random()%99999999];
+    self.awsUser.username = self.name;
+    [[self.mapper save:self.awsUser] continueWithBlock:^id(AWSTask *task) {
+        if (task.error) NSLog(@"AWSUsername push error: [%@]", task.error);
+        //else completed();
+        return nil;
+    }];
+    NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    [context save:nil];
+}
+
++ (NSString *)stringForDate:(NSDate *)date {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+    return [dateFormatter stringFromDate:date];
+}
+
++ (NSDate *)dateForString:(NSString *)string {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+    return [dateFormatter dateFromString:string];
 }
 
 + (NSInteger)levelForXP:(NSInteger)xp {

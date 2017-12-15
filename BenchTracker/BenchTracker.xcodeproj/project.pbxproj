@@ -16,6 +16,7 @@
 		50060FDA1F33A83B00F6DC00 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50060FD91F33A83B00F6DC00 /* Assets.xcassets */; };
 		50060FDD1F33BB8E00F6DC00 /* BTWorkoutModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50060FDC1F33BB8E00F6DC00 /* BTWorkoutModel.m */; };
 		502145A41FDE5ABE00048F46 /* WorkoutSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 502145A21FDE5ABE00048F46 /* WorkoutSummaryViewController.m */; };
+		502ABF7E1FE42A8C00C0232C /* AWSUsername.m in Sources */ = {isa = PBXBuildFile; fileRef = 502ABF7D1FE42A8C00C0232C /* AWSUsername.m */; };
 		5037F6531F609936001939EA /* UserStatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5037F6521F609936001939EA /* UserStatView.m */; };
 		5037F6551F60993F001939EA /* UserStatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5037F6541F60993F001939EA /* UserStatView.xib */; };
 		503961101F604E4900CBC9EB /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5039610F1F604E4900CBC9EB /* UserViewController.m */; };
@@ -177,6 +178,9 @@
 		50060FDC1F33BB8E00F6DC00 /* BTWorkoutModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BTWorkoutModel.m; path = BenchTracker/BTWorkoutModel.m; sourceTree = "<group>"; };
 		502145A11FDE5ABE00048F46 /* WorkoutSummaryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WorkoutSummaryViewController.h; sourceTree = "<group>"; };
 		502145A21FDE5ABE00048F46 /* WorkoutSummaryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WorkoutSummaryViewController.m; sourceTree = "<group>"; };
+		502ABF7B1FE425AB00C0232C /* BenchTrackerKeys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BenchTrackerKeys.h; sourceTree = "<group>"; };
+		502ABF7C1FE42A8C00C0232C /* AWSUsername.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AWSUsername.h; sourceTree = "<group>"; };
+		502ABF7D1FE42A8C00C0232C /* AWSUsername.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AWSUsername.m; sourceTree = "<group>"; };
 		502C95251F5FC58400883850 /* BTDataModel6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BTDataModel6.xcdatamodel; sourceTree = "<group>"; };
 		5037F6511F609936001939EA /* UserStatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserStatView.h; sourceTree = "<group>"; };
 		5037F6521F609936001939EA /* UserStatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserStatView.m; sourceTree = "<group>"; };
@@ -500,6 +504,16 @@
 				500544E21FDF2D5500BB836F /* WS tvc */,
 			);
 			name = "Summary vc";
+			sourceTree = "<group>";
+		};
+		502ABF7F1FE42A9500C0232C /* AWS username */ = {
+			isa = PBXGroup;
+			children = (
+				502ABF7C1FE42A8C00C0232C /* AWSUsername.h */,
+				502ABF7D1FE42A8C00C0232C /* AWSUsername.m */,
+			);
+			name = "AWS username";
+			path = BenchTracker;
 			sourceTree = "<group>";
 		};
 		5037F6561F60A29F001939EA /* Stat view */ = {
@@ -893,6 +907,7 @@
 		F90712A419415FB0008694E5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				502ABF7B1FE425AB00C0232C /* BenchTrackerKeys.h */,
 				F9C240751F183D0B00A268F3 /* BenchTrackerPrefixHeader.pch */,
 				F90712A519415FB0008694E5 /* Info.plist */,
 				50060FD91F33A83B00F6DC00 /* Assets.xcassets */,
@@ -1352,6 +1367,7 @@
 				F9DA75131F02EE9600347B0D /* BTUser+CoreDataClass.m */,
 				F9DA75141F02EE9600347B0D /* BTUser+CoreDataProperties.h */,
 				F9DA75151F02EE9600347B0D /* BTUser+CoreDataProperties.m */,
+				502ABF7F1FE42A9500C0232C /* AWS username */,
 				50404F5C1F32804A0070B1A9 /* UserModel */,
 			);
 			name = BTUser;
@@ -1724,6 +1740,7 @@
 				502145A41FDE5ABE00048F46 /* WorkoutSummaryViewController.m in Sources */,
 				50530C2F1F52412200472426 /* WorkoutTemplateTableViewCell.m in Sources */,
 				5093AE741F394B14006CA6F0 /* BTExerciseTemplate+CoreDataProperties.m in Sources */,
+				502ABF7E1FE42A8C00C0232C /* AWSUsername.m in Sources */,
 				F9A549511F134A3100743897 /* AnalyticsDetailViewController.m in Sources */,
 				508568CC1F310DDD0046A76F /* ECSideTableViewCell.m in Sources */,
 				F95F933B1F034DA500A19C4D /* MainViewController.m in Sources */,

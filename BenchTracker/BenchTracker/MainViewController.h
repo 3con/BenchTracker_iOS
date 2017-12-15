@@ -22,7 +22,7 @@
 
 @property (nonatomic) NSManagedObjectContext *context;
 
-- (void)presentUserViewController;
+- (void)presentUserViewControllerWithForwardToAcheivements:(BOOL)forward;
 
 - (void)updateBadgeView;
 

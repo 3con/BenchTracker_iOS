@@ -7,6 +7,9 @@
 //
 
 #import "AppDelegate.h"
+#import <AWSCore/AWSCore.h>
+#import <AWSCognito/AWSCognito.h>
+#import "BenchTrackerKeys.h"
 #import "BTExerciseType+CoreDataClass.h"
 #import "BTUser+CoreDataClass.h"
 #import "BTWorkoutTemplate+CoreDataClass.h"
@@ -24,6 +27,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [UIApplication sharedApplication].idleTimerDisabled = NO;
+    //COGNITO HANDLING
+    AWSCognitoCredentialsProvider *credentialsProvider = [[AWSCognitoCredentialsProvider alloc]
+                                                          initWithRegionType:AWSRegionUSEast1
+                                                          identityPoolId:AWS_POOL_ID];
+    AWSServiceConfiguration *configuration = [[AWSServiceConfiguration alloc] initWithRegion:AWSRegionUSEast1 credentialsProvider:credentialsProvider];
+    [AWSServiceManager defaultServiceManager].defaultServiceConfiguration = configuration;
+    //USER ADD
     //TYPE LIST HANDLING
     [BTExerciseType checkForExistingTypeList];
     //TEMPLATE LIST HANDLING

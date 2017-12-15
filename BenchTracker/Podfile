@@ -18,6 +18,8 @@ target 'BenchTracker' do
   pod 'Onboard'
   pod 'Toast'
   pod 'WZLBadge'
+  pod 'AWSCognito'
+  pod 'AWSDynamoDB'
 
   # Pods for BenchTracker
 
