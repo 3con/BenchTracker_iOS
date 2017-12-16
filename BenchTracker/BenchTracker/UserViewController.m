@@ -30,7 +30,8 @@
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (weak, nonatomic) AchievementViewButton *achievementButton;
 @property (weak, nonatomic) LeaderboardViewButton *leaderboardButton;
-@property (weak, nonatomic) NSMutableArray <UserStatView *> *statViews;
+@property (nonatomic) NSMutableArray <UserStatView *> *statViews;
+@property (nonatomic) CGFloat numRows;
 @property (nonatomic) CGFloat buttonHeight;
 @property (nonatomic) CGFloat interLineSpacing;
 
@@ -38,7 +39,7 @@
 @property (nonatomic) BTUser *user;
 @property (nonatomic) UserStats *userStats;
 
-@property (nonatomic) BOOL isShowingFirstStats;
+@property (nonatomic) int statsOffset;
 
 @end
 
@@ -51,17 +52,20 @@
     self.userStats = [UserStats statsWithUser:self.user settings:self.settings];
     [BTUser updateStreaks];
     self.navView.backgroundColor = [UIColor BTPrimaryColor];
-    self.isShowingFirstStats = YES;
+    self.statsOffset = 0;
 }
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     if (self.containerView.subviews.count == 1) { //first load
+        self.numRows = 5;
         self.interLineSpacing = 10;
-        self.buttonHeight = (self.containerView.frame.size.height-self.interLineSpacing*4)/5.0;
+        self.buttonHeight = (self.containerView.frame.size.height-self.interLineSpacing*self.numRows)/self.numRows;
         [self loadAchievementButton];
         [self loadLeaderboardButton];
+        self.statViews = @[].mutableCopy;
         [self refreshStats];
+        [self loadSwitchStatsButton];
         [self loadUserView];
     }
 }
@@ -76,19 +80,20 @@
 }
 
 - (void)refreshStats {
-    for (int i = 0; i < 6; i++) {
-        UserStatView *statView = (self.statViews.count < i) ? nil : self.statViews[i];
+    for (int i = 0; i < (self.numRows-2)*2; i++) {
+        UserStatView *statView = (self.statViews.count <= i) ? nil : self.statViews[i];
         if (!statView) {
             statView = [[NSBundle mainBundle] loadNibNamed:@"UserStatView" owner:self options:nil].firstObject;
             CGFloat w = self.containerView.frame.size.width;
             statView.frame = CGRectMake((i%2)*(w/2.0+self.interLineSpacing/2.0), (self.buttonHeight+self.interLineSpacing)*(2+i/2),
                                         w/2-self.interLineSpacing/2.0, self.buttonHeight);
             statView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-            statView.backgroundColor = (i == 5) ? [UIColor BTButtonPrimaryColor] : [UIColor BTVibrantColors][i+2];
+            statView.backgroundColor = (i >= 5) ? [UIColor BTButtonPrimaryColor] : [UIColor BTVibrantColors][i+2];
+            [self.containerView addSubview:statView];
+            [self.statViews addObject:statView];
         }
-        statView.titleLabel.text = [self.userStats statForIndex:i+!self.isShowingFirstStats*6][0];
-        statView.statLabel.text = [self.userStats statForIndex:i+!self.isShowingFirstStats*6][1];
-        [self.containerView addSubview:statView];
+        statView.titleLabel.text = [self.userStats statForIndex:i+self.statsOffset*(self.numRows-2)*2][0];
+        statView.statLabel.text = [self.userStats statForIndex:i+self.statsOffset*(self.numRows-2)*2][1];
     }
 }
 
@@ -106,6 +111,14 @@
     self.leaderboardButton.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.leaderboardButton addTarget:self action:@selector(leaderboardViewButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.containerView addSubview:self.leaderboardButton];
+}
+
+- (void)loadSwitchStatsButton {
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, (self.buttonHeight+self.interLineSpacing)*2,
+        self.containerView.frame.size.width, (self.buttonHeight+self.interLineSpacing)*(self.numRows-2))];
+    button.backgroundColor = [UIColor clearColor];
+    [button addTarget:self action:@selector(switchStatsButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self.containerView addSubview:button];
 }
 
 - (void)updateAchievementButton {
@@ -144,16 +157,16 @@
     [self presentAchievementsViewController];
 }
 
-- (IBAction)switchStatsButtonPressed:(UIButton *)sender forEvent:(UIEvent *)event {
+- (IBAction)switchStatsButtonPressed:(UIButton *)sender { // forEvent:(UIEvent *)event
     //CGPoint location = [[[event touchesForView:sender] anyObject] locationInView:sender];
     //int index = (int)(location.y/(sender.frame.size.height/3.0))*2+(int)(location.x/(sender.frame.size.width/2.0));
     [self animateCells];
-    self.isShowingFirstStats = !self.isShowingFirstStats;
+    self.statsOffset = (self.statsOffset+1)%(12/(int)((self.numRows-2)*2));
     [self refreshStats];
 }
 
 -(void)animateCells {
-    for (int i = 0; i < 6; i++) {
+    for (int i = 0; i < self.statViews.count; i++) {
         CGContextRef context = UIGraphicsGetCurrentContext();
         [UIView beginAnimations:nil context:context];
         [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.statViews[i] cache:YES];
