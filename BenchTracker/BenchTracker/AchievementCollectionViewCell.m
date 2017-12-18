@@ -26,7 +26,7 @@
 
 - (void)loadWithAchievement:(BTAchievement *)achievement {
     self.backgroundColor = (achievement.completed) ? [UIColor BTVibrantColors][1] :
-                                (achievement.color) ? achievement.color : [UIColor BTVibrantColors][0];
+                           (achievement.color) ? achievement.color : [[UIColor BTVibrantColors][0] colorWithAlphaComponent:.8];
     self.imageView.image = achievement.image;
     self.badgeView.alpha = achievement.completed;
     if (achievement.hidden && !achievement.completed) {

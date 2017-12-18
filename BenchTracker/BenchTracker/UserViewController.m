@@ -15,6 +15,7 @@
 #import "AchievementViewButton.h"
 #import "LeaderboardViewButton.h"
 #import "AchievementsViewController.h"
+#import "LeaderboardViewController.h"
 #import "BTAchievement+CoreDataClass.h"
 #import "WZLBadgeImport.h"
 #import "UserView.h"
@@ -154,7 +155,7 @@
 }
 
 - (void)leaderboardViewButtonPressed:(id)sender {
-    [self presentAchievementsViewController];
+    [self presentLeaderboardViewController];
 }
 
 - (IBAction)switchStatsButtonPressed:(UIButton *)sender { // forEvent:(UIEvent *)event
@@ -191,6 +192,21 @@
     aVC.transitioningDelegate = self.animator;
     aVC.modalPresentationStyle = UIModalPresentationFullScreen;
     [self presentViewController:aVC animated:YES completion:nil];
+}
+
+- (void)presentLeaderboardViewController {
+    LeaderboardViewController *lVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ld"];
+    lVC.context = self.context;
+    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:lVC];
+    self.animator.bounces = NO;
+    self.animator.dragable = YES;
+    self.animator.behindViewAlpha = 0.6;
+    self.animator.behindViewScale = 1.0;
+    self.animator.transitionDuration = 0.35;
+    self.animator.direction = ZFModalTransitonDirectionRight;
+    lVC.transitioningDelegate = self.animator;
+    lVC.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self presentViewController:lVC animated:YES completion:nil];
 }
 
 - (void)presentSettingsViewController {

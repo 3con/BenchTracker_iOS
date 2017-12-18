@@ -10,6 +10,7 @@
 #import <CoreData/CoreData.h>
 
 @class BTWorkout;
+@class AWSLeaderboard;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -35,7 +36,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - server only
 
-- (void)userExistsWithUsername: (NSString *)username continueWithBlock:(void (^)(BOOL exists))completed;
+- (void)userExistsWithUsername:(NSString *)username continueWithBlock:(void (^)(BOOL exists))completed;
+
+- (void)topLevelsWithCompletionBlock:(void (^)(NSArray<AWSLeaderboard *> *topLevels))completed;
 
 @end
 

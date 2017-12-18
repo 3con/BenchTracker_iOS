@@ -42,6 +42,10 @@
 		50636F331F2C37B000FB65B4 /* BTExerciseTypeStyleTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 50636F321F2C37B000FB65B4 /* BTExerciseTypeStyleTransformer.m */; };
 		5066F9B51F61E75D00159130 /* AchievementCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5066F9B31F61E75D00159130 /* AchievementCollectionViewCell.m */; };
 		5066F9B61F61E75D00159130 /* AchievementCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5066F9B41F61E75D00159130 /* AchievementCollectionViewCell.xib */; };
+		506C0CAD1FE5904300865BED /* LeaderboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 506C0CAC1FE5904300865BED /* LeaderboardViewController.m */; };
+		506C0CB21FE5957900865BED /* LeaderboardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 506C0CB01FE5957900865BED /* LeaderboardTableViewCell.m */; };
+		506C0CB31FE5957900865BED /* LeaderboardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 506C0CB11FE5957900865BED /* LeaderboardTableViewCell.xib */; };
+		506C0CB71FE59DFB00865BED /* AWSLeaderboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 506C0CB61FE59DFB00865BED /* AWSLeaderboard.m */; };
 		506C90DB1F63BC8800DAB6D4 /* UserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 506C90DA1F63BC8800DAB6D4 /* UserView.m */; };
 		506C90DD1F63BC8E00DAB6D4 /* UserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 506C90DC1F63BC8E00DAB6D4 /* UserView.xib */; };
 		506C91591F9FEEA9003C4758 /* BTButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 506C91581F9FEEA9003C4758 /* BTButton.m */; };
@@ -229,6 +233,13 @@
 		5066F9B21F61E75D00159130 /* AchievementCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AchievementCollectionViewCell.h; sourceTree = "<group>"; };
 		5066F9B31F61E75D00159130 /* AchievementCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AchievementCollectionViewCell.m; sourceTree = "<group>"; };
 		5066F9B41F61E75D00159130 /* AchievementCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AchievementCollectionViewCell.xib; sourceTree = "<group>"; };
+		506C0CAB1FE5904300865BED /* LeaderboardViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LeaderboardViewController.h; sourceTree = "<group>"; };
+		506C0CAC1FE5904300865BED /* LeaderboardViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LeaderboardViewController.m; sourceTree = "<group>"; };
+		506C0CAF1FE5957900865BED /* LeaderboardTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LeaderboardTableViewCell.h; sourceTree = "<group>"; };
+		506C0CB01FE5957900865BED /* LeaderboardTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LeaderboardTableViewCell.m; sourceTree = "<group>"; };
+		506C0CB11FE5957900865BED /* LeaderboardTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaderboardTableViewCell.xib; sourceTree = "<group>"; };
+		506C0CB51FE59DFB00865BED /* AWSLeaderboard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AWSLeaderboard.h; sourceTree = "<group>"; };
+		506C0CB61FE59DFB00865BED /* AWSLeaderboard.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AWSLeaderboard.m; sourceTree = "<group>"; };
 		506C90D91F63BC8800DAB6D4 /* UserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserView.h; sourceTree = "<group>"; };
 		506C90DA1F63BC8800DAB6D4 /* UserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserView.m; sourceTree = "<group>"; };
 		506C90DC1F63BC8E00DAB6D4 /* UserView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserView.xib; sourceTree = "<group>"; };
@@ -464,7 +475,7 @@
 			name = "Achievement button";
 			sourceTree = "<group>";
 		};
-		5004CDB51F61A0AF000BF6F0 /* Achievements */ = {
+		5004CDB51F61A0AF000BF6F0 /* Achievements vc */ = {
 			isa = PBXGroup;
 			children = (
 				5004CDB21F61A0AB000BF6F0 /* AchievementsViewController.h */,
@@ -472,7 +483,7 @@
 				504C269C1F62F2C1008CA41B /* ADetailView */,
 				5066F9B71F61E76000159130 /* Achivement CVC */,
 			);
-			name = Achievements;
+			name = "Achievements vc";
 			sourceTree = "<group>";
 		};
 		500544E21FDF2D5500BB836F /* WS tvc */ = {
@@ -558,7 +569,8 @@
 			children = (
 				5039610E1F604E4900CBC9EB /* UserViewController.h */,
 				5039610F1F604E4900CBC9EB /* UserViewController.m */,
-				5004CDB51F61A0AF000BF6F0 /* Achievements */,
+				5004CDB51F61A0AF000BF6F0 /* Achievements vc */,
+				506C0CAE1FE5904B00865BED /* Leaderboard vc */,
 				F95F5CF71F08B55700A567FA /* Settings */,
 				506C90DE1F63BC9100DAB6D4 /* User vIew */,
 				5004CDAF1F60F428000BF6F0 /* Achievement button */,
@@ -721,6 +733,35 @@
 				5066F9B41F61E75D00159130 /* AchievementCollectionViewCell.xib */,
 			);
 			name = "Achivement CVC";
+			sourceTree = "<group>";
+		};
+		506C0CAE1FE5904B00865BED /* Leaderboard vc */ = {
+			isa = PBXGroup;
+			children = (
+				506C0CAB1FE5904300865BED /* LeaderboardViewController.h */,
+				506C0CAC1FE5904300865BED /* LeaderboardViewController.m */,
+				506C0CB41FE5957D00865BED /* Leaderboard tvc */,
+			);
+			name = "Leaderboard vc";
+			sourceTree = "<group>";
+		};
+		506C0CB41FE5957D00865BED /* Leaderboard tvc */ = {
+			isa = PBXGroup;
+			children = (
+				506C0CAF1FE5957900865BED /* LeaderboardTableViewCell.h */,
+				506C0CB01FE5957900865BED /* LeaderboardTableViewCell.m */,
+				506C0CB11FE5957900865BED /* LeaderboardTableViewCell.xib */,
+			);
+			name = "Leaderboard tvc";
+			sourceTree = "<group>";
+		};
+		506C0CB81FE59DFF00865BED /* AWS leaderboard */ = {
+			isa = PBXGroup;
+			children = (
+				506C0CB51FE59DFB00865BED /* AWSLeaderboard.h */,
+				506C0CB61FE59DFB00865BED /* AWSLeaderboard.m */,
+			);
+			path = "AWS leaderboard";
 			sourceTree = "<group>";
 		};
 		506C90DE1F63BC9100DAB6D4 /* User vIew */ = {
@@ -1396,6 +1437,7 @@
 				F9DA75131F02EE9600347B0D /* BTUser+CoreDataClass.m */,
 				F9DA75141F02EE9600347B0D /* BTUser+CoreDataProperties.h */,
 				F9DA75151F02EE9600347B0D /* BTUser+CoreDataProperties.m */,
+				506C0CB81FE59DFF00865BED /* AWS leaderboard */,
 				502ABF7F1FE42A9500C0232C /* AWS username */,
 				50404F5C1F32804A0070B1A9 /* UserModel */,
 			);
@@ -1640,6 +1682,7 @@
 				F94C893B1F154498006C6BDD /* ADPodiumView.xib in Resources */,
 				50530C301F52412200472426 /* WorkoutTemplateTableViewCell.xib in Resources */,
 				F94C89411F15B68D006C6BDD /* ADMuscleSplitTableViewCell.xib in Resources */,
+				506C0CB31FE5957900865BED /* LeaderboardTableViewCell.xib in Resources */,
 				5093651C1F53D8DA005619CA /* EmptyTemplateTableViewCell.xib in Resources */,
 				F9418FBE1F04CEF80083C3DC /* SetCollectionViewCell.xib in Resources */,
 				F9FD19E41F141FF300AB3FEE /* ADWorkoutsViewController.xib in Resources */,
@@ -1839,6 +1882,7 @@
 				50636F331F2C37B000FB65B4 /* BTExerciseTypeStyleTransformer.m in Sources */,
 				F9AF06831F07596F003A2200 /* BTStackedBarView.m in Sources */,
 				5054D8D31F3391C3000EBC21 /* BTTutorialManager.m in Sources */,
+				506C0CB71FE59DFB00865BED /* AWSLeaderboard.m in Sources */,
 				F9DA75241F02EE9600347B0D /* BTExercise+CoreDataClass.m in Sources */,
 				502ABF821FE441CA00C0232C /* LeaderboardViewButton.m in Sources */,
 				5054845F1F54B67500658BD2 /* BTCalendarCell.m in Sources */,
@@ -1847,8 +1891,10 @@
 				F9DA75231F02EE9600347B0D /* BTUser+CoreDataProperties.m in Sources */,
 				50519B021F5C8D9500C109E1 /* WorkoutDetailsView.m in Sources */,
 				F9640BD91F080E590053C9C0 /* BTSettings+CoreDataProperties.m in Sources */,
+				506C0CAD1FE5904300865BED /* LeaderboardViewController.m in Sources */,
 				50530C2A1F511BC600472426 /* WorkoutSettingsViewController.m in Sources */,
 				F9A549401F13064400743897 /* BTAnalyticsBarChart.m in Sources */,
+				506C0CB21FE5957900865BED /* LeaderboardTableViewCell.m in Sources */,
 				F95F932F1F02FC5000A19C4D /* BTTypeListModel.m in Sources */,
 				F95F5CF61F08B54500A567FA /* SettingsViewController.m in Sources */,
 				F917BB5D1F0DCA6A00614AB1 /* BTTemplateWorkoutQRModel.m in Sources */,

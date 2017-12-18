@@ -10,6 +10,7 @@
 #import "BTWorkout+CoreDataClass.h"
 #import <AWSDynamoDB/AWSDynamoDB.h>
 #import "AWSUsername.h"
+#import "AWSLeaderboard.h"
 #import "AppDelegate.h"
 
 @interface BTUser ()
@@ -65,7 +66,9 @@
             [sharedInstance pushAWSUserWithCompletionBlock:^(BOOL success) { }];
         }
         else {
-            [sharedInstance fetchAWSUserWithCompletionBlock:^(BOOL success) { }];
+            [sharedInstance fetchAWSUserWithCompletionBlock:^(BOOL success) {
+                [sharedInstance pushAWSUserWithCompletionBlock:^(BOOL success) { }];
+            }];
         }
         NSLog(@"%@",sharedInstance.name);
     });
@@ -103,7 +106,7 @@
     if (user.totalWorkouts == numWorkouts) return;
     if (user.totalWorkouts > numWorkouts) [BTUser totalPurge];
     if (num > 5) [BTUser totalPurge];
-    NSLog(@"Running short pruge");
+    NSLog(@"Running short purge");
     for (BTWorkout *workout in [BTWorkout allWorkoutsWithFactoredIntoTotalsFilter:YES])
         [BTUser addWorkoutToTotals:workout];
     [self runPurgeNumber:num+1];
@@ -150,12 +153,31 @@
 
 #pragma mark - server only
 
-- (void)userExistsWithUsername: (NSString *)username continueWithBlock:(void (^)(BOOL exists))completed {
+- (void)userExistsWithUsername:(NSString *)username continueWithBlock:(void (^)(BOOL exists))completed {
     [[self.mapper load:[awsUser class] hashKey:username rangeKey:nil] continueWithBlock:^id(AWSTask *task) {
-        if (task.error) NSLog(@"AWSUsername get error: [%@]", task.error);
+        if (task.error) NSLog(@"AWSUsername exists error: [%@]", task.error);
         else completed(task.result != nil);
         return nil;
     }];
+}
+
+- (void)topLevelsWithCompletionBlock:(void (^)(NSArray<AWSLeaderboard *> *topLevels))completed {
+    AWSDynamoDBQueryExpression *queryExpression = [AWSDynamoDBQueryExpression new];
+    queryExpression.indexName = @"valid-experience-index";
+    queryExpression.keyConditionExpression = @"valid = :val";
+    queryExpression.expressionAttributeValues = @{@":val": @"YES"};
+    queryExpression.limit = @100;
+    queryExpression.scanIndexForward = @NO;
+    [[self.mapper query:[AWSLeaderboard class] expression:queryExpression] continueWithBlock:^id(AWSTask *task) {
+         if (task.error) {
+             NSLog(@"The request failed. Error: [%@]", task.error);
+             completed(nil);
+         } else {
+             AWSDynamoDBPaginatedOutput *output = task.result;
+             completed(output.items);
+         }
+         return nil;
+     }];
 }
 
 #pragma mark - private methods
@@ -189,12 +211,14 @@
 - (void)fetchAWSUserWithCompletionBlock:(void (^)(BOOL success))completed {
     [[self.mapper load:[AWSUsername class] hashKey:self.name rangeKey:nil] continueWithBlock:^id(AWSTask *task) {
         if (task.error) {
-            NSLog(@"AWSUsername get error: [%@]", task.error);
+            NSLog(@"AWSUsername fetch error: [%@]", task.error);
             completed(NO);
         }
         else {
-            if (task.result) //user exists
-                 self.awsUser = task.result;
+            if (task.result) { //user exists
+                self.awsUser = task.result;
+                completed(YES);
+            }
             else [self pushAWSUserWithCompletionBlock:^(BOOL success) {
                 completed(success);
             }];
@@ -214,6 +238,18 @@
     [[self.mapper save:self.awsUser] continueWithBlock:^id(AWSTask *task) {
         if (task.error) {
             NSLog(@"AWSUsername push error: [%@]", task.error);
+            completed(NO);
+        }
+        else completed(YES);
+        return nil;
+    }];
+    AWSLeaderboard *awsL = [AWSLeaderboard new];
+    awsL.valid = @"YES";
+    awsL.username = self.name;
+    awsL.experience = [NSNumber numberWithInteger:self.xp];
+    [[self.mapper save:awsL] continueWithBlock:^id(AWSTask *task) {
+        if (task.error) {
+            NSLog(@"AWSLeaderboard push error: [%@]", task.error);
             completed(NO);
         }
         else completed(YES);
