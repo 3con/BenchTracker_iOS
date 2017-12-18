@@ -17,13 +17,15 @@
 
 @property (nonatomic, strong) AWSDynamoDBObjectMapper *mapper;
 @property (nonatomic, strong) AWSUsername *awsUser;
+@property (nonatomic, strong) AWSLeaderboard *awsLeaderboard;
 
 @end
 
 @implementation BTUser
 
-@synthesize awsUser;
 @synthesize mapper;
+@synthesize awsUser;
+@synthesize awsLeaderboard;
 
 - (void)setImage:(UIImage *)image {
     self.imageData = UIImagePNGRepresentation(image);
@@ -161,12 +163,25 @@
     }];
 }
 
+- (void)changeUserToUsername:(NSString *)username continueWithBlock:(void (^)(BOOL success))completed {
+    [self deleteAWSUserWithCompletionBlock:^(BOOL success) {
+        if (!success) completed(false);
+        else {
+            self.name = username;
+            self.awsUser.username = username;
+            [self pushAWSUserWithCompletionBlock:^(BOOL success) {
+                completed(success);
+            }];
+        }
+    }];
+}
+
 - (void)topLevelsWithCompletionBlock:(void (^)(NSArray<AWSLeaderboard *> *topLevels))completed {
     AWSDynamoDBQueryExpression *queryExpression = [AWSDynamoDBQueryExpression new];
     queryExpression.indexName = @"valid-experience-index";
     queryExpression.keyConditionExpression = @"valid = :val";
     queryExpression.expressionAttributeValues = @{@":val": @"YES"};
-    queryExpression.limit = @100;
+    queryExpression.limit = @99;
     queryExpression.scanIndexForward = @NO;
     [[self.mapper query:[AWSLeaderboard class] expression:queryExpression] continueWithBlock:^id(AWSTask *task) {
          if (task.error) {
@@ -243,11 +258,13 @@
         else completed(YES);
         return nil;
     }];
-    AWSLeaderboard *awsL = [AWSLeaderboard new];
-    awsL.valid = @"YES";
-    awsL.username = self.name;
-    awsL.experience = [NSNumber numberWithInteger:self.xp];
-    [[self.mapper save:awsL] continueWithBlock:^id(AWSTask *task) {
+    if (!self.awsLeaderboard) {
+        self.awsLeaderboard = [AWSLeaderboard new];
+        self.awsLeaderboard.valid = @"YES";
+    }
+    self.awsLeaderboard.username = self.name;
+    self.awsLeaderboard.experience = [NSNumber numberWithInteger:self.xp];
+    [[self.mapper save:self.awsLeaderboard] continueWithBlock:^id(AWSTask *task) {
         if (task.error) {
             NSLog(@"AWSLeaderboard push error: [%@]", task.error);
             completed(NO);
@@ -259,6 +276,19 @@
         NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
         [context save:nil];
     });
+}
+
+- (void)deleteAWSUserWithCompletionBlock:(void (^)(BOOL success))completed {
+    [[self.mapper remove:self.awsUser] continueWithBlock:^id _Nullable(AWSTask *task) {
+        if (task.error) completed(NO);
+        else {
+            [[self.mapper remove:self.awsLeaderboard] continueWithBlock:^id _Nullable(AWSTask *task) {
+                completed(!task.error);
+                return nil;
+            }];
+        }
+        return nil;
+    }];
 }
 
 + (NSString *)stringForDate:(NSDate *)date {

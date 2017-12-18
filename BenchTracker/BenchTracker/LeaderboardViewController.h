@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EditUsernameViewController.h"
 
-@interface LeaderboardViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface LeaderboardViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, EditUsernameViewControllerDelegate>
 
 @property (nonatomic) NSManagedObjectContext *context;
 

@@ -46,6 +46,7 @@
 		506C0CB21FE5957900865BED /* LeaderboardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 506C0CB01FE5957900865BED /* LeaderboardTableViewCell.m */; };
 		506C0CB31FE5957900865BED /* LeaderboardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 506C0CB11FE5957900865BED /* LeaderboardTableViewCell.xib */; };
 		506C0CB71FE59DFB00865BED /* AWSLeaderboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 506C0CB61FE59DFB00865BED /* AWSLeaderboard.m */; };
+		506C0CBB1FE852A200865BED /* EditUsernameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 506C0CBA1FE852A200865BED /* EditUsernameViewController.m */; };
 		506C90DB1F63BC8800DAB6D4 /* UserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 506C90DA1F63BC8800DAB6D4 /* UserView.m */; };
 		506C90DD1F63BC8E00DAB6D4 /* UserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 506C90DC1F63BC8E00DAB6D4 /* UserView.xib */; };
 		506C91591F9FEEA9003C4758 /* BTButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 506C91581F9FEEA9003C4758 /* BTButton.m */; };
@@ -240,6 +241,8 @@
 		506C0CB11FE5957900865BED /* LeaderboardTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaderboardTableViewCell.xib; sourceTree = "<group>"; };
 		506C0CB51FE59DFB00865BED /* AWSLeaderboard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AWSLeaderboard.h; sourceTree = "<group>"; };
 		506C0CB61FE59DFB00865BED /* AWSLeaderboard.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AWSLeaderboard.m; sourceTree = "<group>"; };
+		506C0CB91FE852A200865BED /* EditUsernameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditUsernameViewController.h; sourceTree = "<group>"; };
+		506C0CBA1FE852A200865BED /* EditUsernameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditUsernameViewController.m; sourceTree = "<group>"; };
 		506C90D91F63BC8800DAB6D4 /* UserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserView.h; sourceTree = "<group>"; };
 		506C90DA1F63BC8800DAB6D4 /* UserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserView.m; sourceTree = "<group>"; };
 		506C90DC1F63BC8E00DAB6D4 /* UserView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserView.xib; sourceTree = "<group>"; };
@@ -740,6 +743,7 @@
 			children = (
 				506C0CAB1FE5904300865BED /* LeaderboardViewController.h */,
 				506C0CAC1FE5904300865BED /* LeaderboardViewController.m */,
+				506C0CBC1FE852A900865BED /* Edit name vc */,
 				506C0CB41FE5957D00865BED /* Leaderboard tvc */,
 			);
 			name = "Leaderboard vc";
@@ -762,6 +766,15 @@
 				506C0CB61FE59DFB00865BED /* AWSLeaderboard.m */,
 			);
 			path = "AWS leaderboard";
+			sourceTree = "<group>";
+		};
+		506C0CBC1FE852A900865BED /* Edit name vc */ = {
+			isa = PBXGroup;
+			children = (
+				506C0CB91FE852A200865BED /* EditUsernameViewController.h */,
+				506C0CBA1FE852A200865BED /* EditUsernameViewController.m */,
+			);
+			name = "Edit name vc";
 			sourceTree = "<group>";
 		};
 		506C90DE1F63BC9100DAB6D4 /* User vIew */ = {
@@ -1851,6 +1864,7 @@
 				F9DA75291F02EE9600347B0D /* BTWorkout+CoreDataProperties.m in Sources */,
 				508568BB1F30E4090046A76F /* EquivalencyChartViewController.m in Sources */,
 				F95F93441F03738B00A19C4D /* WorkoutViewController.m in Sources */,
+				506C0CBB1FE852A200865BED /* EditUsernameViewController.m in Sources */,
 				F9B27CE51F117852008FCC7F /* AnalyticsCollectionViewCell.m in Sources */,
 				F9418FA31F048B1E0083C3DC /* AddExerciseTableViewCell.m in Sources */,
 				5093AE731F394B14006CA6F0 /* BTExerciseTemplate+CoreDataClass.m in Sources */,

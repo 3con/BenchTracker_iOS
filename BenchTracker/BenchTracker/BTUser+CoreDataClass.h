@@ -38,6 +38,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)userExistsWithUsername:(NSString *)username continueWithBlock:(void (^)(BOOL exists))completed;
 
+- (void)changeUserToUsername:(NSString *)username continueWithBlock:(void (^)(BOOL success))completed;
+
 - (void)topLevelsWithCompletionBlock:(void (^)(NSArray<AWSLeaderboard *> *topLevels))completed;
 
 @end

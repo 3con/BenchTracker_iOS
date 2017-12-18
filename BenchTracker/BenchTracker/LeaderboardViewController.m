@@ -7,6 +7,7 @@
 //
 
 #import "LeaderboardViewController.h"
+#import "ZFModalTransitionAnimator.h"
 #import "LeaderboardTableViewCell.h"
 #import "BTUser+CoreDataClass.h"
 #import "AWSLeaderboard.h"
@@ -16,6 +17,9 @@
 @property (weak, nonatomic) IBOutlet UIView *navView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonnull) NSArray<AWSLeaderboard *> *leaderboard;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+
+@property (nonatomic) ZFModalTransitionAnimator *animator;
 
 @property (weak, nonatomic) IBOutlet UILabel *localRankView;
 @property (weak, nonatomic) IBOutlet UILabel *localUsernameView;
@@ -36,16 +40,28 @@
     self.tableView.showsVerticalScrollIndicator = NO;
     self.tableView.allowsSelection = NO;
     self.user = [BTUser sharedInstance];
+    [self refreshLeaderboard];
+}
+
+- (void)refreshLeaderboard {
     [self.user topLevelsWithCompletionBlock:^(NSArray<AWSLeaderboard *> *topLevels) {
         dispatch_async(dispatch_get_main_queue(), ^{
+            [self.activityIndicator stopAnimating];
             self.leaderboard = topLevels;
             [self.tableView reloadData];
         });
     }];
+    self.localRankView.text = @"100+";
+    self.localUsernameView.text = self.user.name;
+    self.localScoreView.text = [NSString stringWithFormat:@"%d xp", self.user.xp];
 }
 
 - (IBAction)backButtonPressed:(UIButton *)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)editUsernameButtonPressed:(UIButton *)sender {
+    [self presentEditUsernameViewControllerWithPoint:sender.center];
 }
 
 #pragma mark - tableView delegate / dataSource
@@ -66,12 +82,34 @@
     cell.titleLabel.text = leader.username;
     cell.statLabel.text = [NSString stringWithFormat:@"%@ xp", leader.experience];
     cell.isSelf = leader.experience.longValue == self.user.xp && [leader.username isEqualToString:self.user.name];
-    if (cell.isSelf) {
+    if (cell.isSelf)
         self.localRankView.text = [NSString stringWithFormat:@"%ld.",cell.rank];
-        self.localUsernameView.text = cell.titleLabel.text;
-        self.localScoreView.text = cell.statLabel.text;
-    }
     return cell;
+}
+
+#pragma mark - editUsernameVC delegate
+
+- (void)editUsernameViewControllerWillDismissWithUpdatedUsername:(EditUsernameViewController *)euVC {
+    [self refreshLeaderboard];
+}
+
+#pragma mark - view handling
+
+- (void)presentEditUsernameViewControllerWithPoint:(CGPoint)point {
+    EditUsernameViewController *euVC = [self.storyboard instantiateViewControllerWithIdentifier:@"eu"];
+    euVC.delegate = self;
+    euVC.user = self.user;
+    euVC.originPoint = point;
+    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:euVC];
+    self.animator.bounces = NO;
+    self.animator.dragable = NO;
+    self.animator.behindViewAlpha = 1.0;
+    self.animator.behindViewScale = 1.0;
+    self.animator.transitionDuration = .0;
+    self.animator.direction = ZFModalTransitonDirectionBottom;
+    euVC.transitioningDelegate = self.animator;
+    euVC.modalPresentationStyle = UIModalPresentationCustom;
+    [self presentViewController:euVC animated:YES completion:nil];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
