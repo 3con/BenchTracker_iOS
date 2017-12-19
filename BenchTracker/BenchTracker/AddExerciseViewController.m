@@ -84,7 +84,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    self.containerView.layer.cornerRadius = 12;
+    self.containerView.layer.cornerRadius = 16;
     self.containerView.clipsToBounds = YES;
     for (UIButton *button in @[self.supersetButton, self.addExerciseButton, self.clearButton]) {
         button.layer.cornerRadius = 12;

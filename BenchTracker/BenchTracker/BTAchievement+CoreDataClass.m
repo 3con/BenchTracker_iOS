@@ -38,20 +38,20 @@
     [BTAchievement markAchievementComplete:ACHIEVEMENT_FIRSTWORKOUT animated:YES];
     if (workout.duration >= 60*30 && workout.numSets <= 10)
         [BTAchievement markAchievementComplete:ACHIEVEMENT_SPEED0 animated:YES];
-    if (workout.duration < 60*60) {
+    if (workout.duration < 60*60 && workout.duration > 20*60) {
         if (workout.numSets >= 25) [BTAchievement markAchievementComplete:ACHIEVEMENT_SPEED1 animated:YES];
         if (workout.numSets >= 30) [BTAchievement markAchievementComplete:ACHIEVEMENT_SPEED2 animated:YES];
         if (workout.numSets >= 40) [BTAchievement markAchievementComplete:ACHIEVEMENT_SPEED9 animated:YES];
     }
     else if (workout.numSets > 6) {
         [BTAchievement markAchievementComplete:ACHIEVEMENT_IRON1 animated:YES];
-        if (workout.duration >= 60*69 && workout.duration < 60*70)
+        if (workout.duration >= 69*60 && workout.duration < 70*60)
             [BTAchievement markAchievementComplete:ACHIEVEMENT_IRON15 animated:YES];
-        if (workout.duration >= 60*80)
+        if (workout.duration >= 80*60)
             [BTAchievement markAchievementComplete:ACHIEVEMENT_IRON2 animated:YES];
-        if (workout.duration >= 60*100)
+        if (workout.duration >= 100*60)
             [BTAchievement markAchievementComplete:ACHIEVEMENT_IRON3 animated:YES];
-        if (workout.duration >= 60*150)
+        if (workout.duration >= 150*60)
             [BTAchievement markAchievementComplete:ACHIEVEMENT_IRON9 animated:YES];
     }
     if (workout.numSets >= 20) {
@@ -66,22 +66,21 @@
         [BTAchievement markAchievementComplete:ACHIEVEMENT_HEAVY2 animated:YES];
     if (workout.volume > 30000*weightX)
         [BTAchievement markAchievementComplete:ACHIEVEMENT_HEAVY3 animated:YES];
-    if (workout.volume > 40000*weightX)
+    if (workout.volume > 40000*weightX && workout.duration > 30*60)
         [BTAchievement markAchievementComplete:ACHIEVEMENT_HEAVY4 animated:YES];
-    if (workout.volume > 60000*weightX)
+    if (workout.volume > 60000*weightX && workout.duration > 40*60)
         [BTAchievement markAchievementComplete:ACHIEVEMENT_HEAVY9 animated:YES];
     if (workout.numSets >= 15)
         [BTAchievement markAchievementComplete:ACHIEVEMENT_SETS1 animated:YES];
     if (workout.numSets >= 25)
         [BTAchievement markAchievementComplete:ACHIEVEMENT_SETS2 animated:YES];
-    if (workout.numSets >= 35)
+    if (workout.numSets >= 35 && workout.duration > 20*60)
         [BTAchievement markAchievementComplete:ACHIEVEMENT_SETS3 animated:YES];
-    if (workout.numSets >= 50)
+    if (workout.numSets >= 50 && workout.duration > 30*60)
         [BTAchievement markAchievementComplete:ACHIEVEMENT_SETS9 animated:YES];
     NSArray *supersets = [NSKeyedUnarchiver unarchiveObjectWithData:workout.supersets];
-    if (supersets.count > 0 && workout.numSets > 6)
+    if (supersets.count > 0 && workout.numSets > 6 && workout.duration > 20*60) {
         [BTAchievement markAchievementComplete:ACHIEVEMENT_SUPER1 animated:YES];
-    if (workout.numSets > 8) {
         for (NSArray *superset in supersets) {
             if (superset.count >= 3)
                 [BTAchievement markAchievementComplete:ACHIEVEMENT_SUPER2 animated:YES];
@@ -89,7 +88,7 @@
                 [BTAchievement markAchievementComplete:ACHIEVEMENT_SUPER9 animated:YES];
         }
     }
-    if (workout.numSets > 6) {
+    if (workout.numSets > 6 && workout.duration > 20*60) {
         NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitHour | NSCalendarUnitMinute fromDate:workout.date];
         if (components.hour < 5)
             [BTAchievement markAchievementComplete:ACHIEVEMENT_TIME2 animated:YES];
@@ -134,15 +133,15 @@
         [BTAchievement markAchievementComplete:ACHIEVEMENT_MARATHON4 animated:YES];
     if (user.totalDuration >= 500*60*60)
         [BTAchievement markAchievementComplete:ACHIEVEMENT_MARATHON5 animated:YES];
-    if (user.totalVolume >= 50000*weightX)
+    if (user.totalVolume >= 50000*weightX && user.totalDuration > 1*60*60)
         [BTAchievement markAchievementComplete:ACHIEVEMENT_GAINS1 animated:YES];
-    if (user.totalVolume >= 100000*weightX)
+    if (user.totalVolume >= 100000*weightX && user.totalDuration > 2*60*60)
         [BTAchievement markAchievementComplete:ACHIEVEMENT_GAINS2 animated:YES];
-    if (user.totalVolume >= 500000*weightX)
+    if (user.totalVolume >= 500000*weightX && user.totalDuration > 10*60*60)
         [BTAchievement markAchievementComplete:ACHIEVEMENT_GAINS3 animated:YES];
-    if (user.totalVolume >= 1000000*weightX)
+    if (user.totalVolume >= 1000000*weightX && user.totalDuration > 20*60*60)
         [BTAchievement markAchievementComplete:ACHIEVEMENT_GAINS4 animated:YES];
-    if (user.totalVolume >= 10000000*weightX)
+    if (user.totalVolume >= 10000000*weightX && user.totalDuration > 200*60*60)
         [BTAchievement markAchievementComplete:ACHIEVEMENT_GAINS5 animated:YES];
     [BTUser updateStreaks];
     if (user.currentStreak >= 3)
@@ -159,9 +158,9 @@
         [BTAchievement markAchievementComplete:ACHIEVEMENT_DEDICATION2 animated:YES];
     if (user.totalWorkouts >= 25)
         [BTAchievement markAchievementComplete:ACHIEVEMENT_DEDICATION3 animated:YES];
-    if (user.totalWorkouts >= 50)
+    if (user.totalWorkouts >= 50 && user.totalDuration > 10*60*60)
         [BTAchievement markAchievementComplete:ACHIEVEMENT_DEDICATION4 animated:YES];
-    if (user.totalWorkouts >= 69)
+    if (user.totalWorkouts >= 69 && user.totalDuration > 12*60*60)
         [BTAchievement markAchievementComplete:ACHIEVEMENT_DEDICATION15 animated:YES];
     NSInteger total = [BTExercise powerliftingTotalWeight];
     if (total > 0) {
@@ -196,7 +195,8 @@
             style.maxWidthPercentage = 90;
             style.imageSize = CGSizeMake(80, 80);
             style.fadeDuration = .25;
-            NSString *str = [NSString stringWithFormat:@"ACHIEVEMENT UNLOCKED!\n+%d xp (Level %ld)", achievement.xp, [BTUser sharedInstance].level];
+            NSString *str = [NSString stringWithFormat:@"ACHIEVEMENT UNLOCKED!\n+%d xp (Level %ld)",
+                                                        achievement.xp, (long)[BTUser sharedInstance].level];
             [viewController.view makeToast:str duration:3.0 position:CSToastPositionTop title:achievement.name
                                      image:achievement.image style:style completion:^(BOOL didTap) {
                     if (didTap && [viewController isKindOfClass:[MainViewController class]])
