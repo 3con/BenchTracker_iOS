@@ -16,7 +16,10 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (weak, nonatomic) IBOutlet UILabel *errorLabel;
+
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+
+@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 @property (weak, nonatomic) IBOutlet UIButton *changeButton;
 
 @end
@@ -29,6 +32,8 @@
     self.containingView.backgroundColor = [UIColor BTVibrantColors][1];
     self.textField.textColor = [UIColor BTGrayColor];
     self.textField.tintColor = [UIColor BTVibrantColors][1];
+    self.errorLabel.textColor = [UIColor BTRedColor];
+    [self.cancelButton setTitleColor:[UIColor BTRedColor] forState:UIControlStateNormal];
     self.textField.delegate = self;
     self.containingView.alpha = 0.0;
     self.backgroundView.alpha = 0.0;

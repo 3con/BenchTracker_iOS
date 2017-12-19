@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,7 +20,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jul 21 '17: Incline Bench Press" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y9c-KS-ClH">
-                        <rect key="frame" x="20" y="6" width="284" height="20"/>
+                        <rect key="frame" x="20" y="9" width="284" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="rNU-rt-9uE"/>
                         </constraints>
@@ -29,7 +29,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="DXb-UK-yRJ" customClass="SetSummaryCollectionView">
-                        <rect key="frame" x="-10" y="26.666666666666664" width="414" height="20.999999999999993"/>
+                        <rect key="frame" x="2" y="24" width="410" height="21"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="Scz-54-m6t"/>
@@ -42,7 +42,7 @@
                         </collectionViewFlowLayout>
                     </collectionView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1RM: 321 lbs" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VQq-T7-O78">
-                        <rect key="frame" x="314" y="6" width="80" height="20"/>
+                        <rect key="frame" x="314" y="9" width="80" height="20"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="80" id="Dwj-jA-DTE"/>
@@ -61,7 +61,7 @@
                     <constraint firstItem="VQq-T7-O78" firstAttribute="leading" secondItem="Y9c-KS-ClH" secondAttribute="trailing" constant="10" id="RBr-pA-nOe"/>
                     <constraint firstItem="Y9c-KS-ClH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="W3N-fh-A6S"/>
                     <constraint firstAttribute="bottomMargin" secondItem="DXb-UK-yRJ" secondAttribute="bottom" constant="-1" id="aA0-bP-WFU"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="DXb-UK-yRJ" secondAttribute="trailing" constant="2" id="bVz-oR-xpE"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="DXb-UK-yRJ" secondAttribute="trailing" constant="-18" id="bVz-oR-xpE"/>
                     <constraint firstItem="Y9c-KS-ClH" firstAttribute="centerY" secondItem="VQq-T7-O78" secondAttribute="centerY" id="fvX-Oe-nJA"/>
                 </constraints>
             </tableViewCellContentView>

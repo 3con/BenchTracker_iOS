@@ -41,7 +41,7 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    self.maxCells = (int)(self.frame.size.width) / 62;
+    self.maxCells = (int)(self.frame.size.width-8) / 64;
     if (self.visibleCells.count == 0 && self.sets.count > 0)
         [self reloadData];
 }

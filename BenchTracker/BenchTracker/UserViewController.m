@@ -88,7 +88,7 @@
             CGFloat w = self.containerView.frame.size.width;
             statView.frame = CGRectMake((i%2)*(w/2.0+self.interLineSpacing/2.0), (self.buttonHeight+self.interLineSpacing)*(2+i/2),
                                         w/2-self.interLineSpacing/2.0, self.buttonHeight);
-            statView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+            statView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
             statView.backgroundColor = (i >= 5) ? [UIColor BTButtonPrimaryColor] : [UIColor BTVibrantColors][i+2];
             [self.containerView addSubview:statView];
             [self.statViews addObject:statView];

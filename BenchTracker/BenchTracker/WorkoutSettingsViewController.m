@@ -44,7 +44,7 @@
         button.backgroundColor = [UIColor BTSecondaryColor];
         button.imageView.contentMode = UIViewContentModeScaleAspectFit;
     }
-    self.contentView.layer.cornerRadius = 12;
+    self.contentView.layer.cornerRadius = 25;
     self.contentView.clipsToBounds = YES;
     self.doneButton.layer.cornerRadius = 12;
     self.contentView.alpha = 0.0;
