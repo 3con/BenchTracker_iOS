@@ -48,17 +48,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navView.backgroundColor = [UIColor BTPrimaryColor];
-    self.finishWorkoutButton.backgroundColor = [UIColor BTSecondaryColor];
-    [self.finishWorkoutButton setTitleColor: [UIColor BTButtonTextSecondaryColor] forState:UIControlStateNormal];
-    self.addExerciseButton.backgroundColor = [UIColor BTButtonPrimaryColor];
-    [self.addExerciseButton setTitleColor: [UIColor BTButtonTextPrimaryColor] forState:UIControlStateNormal];
-    [self.settingsButton setImage:[[UIImage imageNamed:@"More"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]
-                         forState:UIControlStateNormal];
-    self.settingsButton.tintColor = [UIColor BTTextPrimaryColor];
-    self.deleteWorkoutButton.backgroundColor = [UIColor BTRedColor];
-    self.tableView.backgroundColor = [UIColor BTTableViewBackgroundColor];
-    self.tableView.separatorColor = [UIColor BTTableViewSeparatorColor];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(colorSchemeChange:)
+                                                 name:@"colorSchemeChange" object:nil];
+    [self updateInterface];
     self.paused = NO;
     self.pauseView.alpha = 0;
     self.pauseView.userInteractionEnabled = NO;
@@ -98,6 +90,25 @@
                                                object: nil];
 }
 
+- (void)updateInterface {
+    self.navView.backgroundColor = [UIColor BTPrimaryColor];
+    self.finishWorkoutButton.backgroundColor = [UIColor BTSecondaryColor];
+    [self.finishWorkoutButton setTitleColor: [UIColor BTButtonTextSecondaryColor] forState:UIControlStateNormal];
+    self.addExerciseButton.backgroundColor = [UIColor BTButtonPrimaryColor];
+    [self.addExerciseButton setTitleColor: [UIColor BTButtonTextPrimaryColor] forState:UIControlStateNormal];
+    [self.settingsButton setImage:[[UIImage imageNamed:@"More"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]
+                         forState:UIControlStateNormal];
+    self.settingsButton.tintColor = [UIColor BTTextPrimaryColor];
+    self.deleteWorkoutButton.backgroundColor = [UIColor BTRedColor];
+    self.tableView.backgroundColor = [UIColor BTTableViewBackgroundColor];
+    self.tableView.separatorColor = [UIColor BTTableViewSeparatorColor];
+}
+
+- (void)colorSchemeChange:(NSNotification *)notification  {
+    [self updateInterface];
+    [self.tableView reloadData];
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.addExerciseButton.hidden = NO;
@@ -114,10 +125,6 @@
     [super viewWillDisappear:animated];
     [UIApplication sharedApplication].idleTimerDisabled = NO;
     self.addExerciseButton.hidden = YES;
-}
-
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)workoutWillEnd {
@@ -639,6 +646,10 @@
     wseVC.transitioningDelegate = self.animator;
     wseVC.modalPresentationStyle = UIModalPresentationCustom;
     [self presentViewController:wseVC animated:YES completion:nil];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {

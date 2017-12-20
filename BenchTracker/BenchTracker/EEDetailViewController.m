@@ -32,7 +32,7 @@
     self.titleLabel.textColor = [UIColor BTTextPrimaryColor];
     [self.cancelButton setTitleColor:[UIColor BTTextPrimaryColor] forState:UIControlStateNormal];
     [self.createButton setTitleColor:[UIColor BTTextPrimaryColor] forState:UIControlStateNormal];
-    self.tableView.backgroundColor = [UIColor BTTableViewBackgroundColor];
+    self.tableView.backgroundColor = [UIColor BTGroupTableViewBackgroundColor];
     self.tableView.separatorColor = [UIColor BTTableViewSeparatorColor];
     self.tableView.contentInset = UIEdgeInsetsMake(72, 0, 0, 0);
     self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(72, 0, 0, 0);

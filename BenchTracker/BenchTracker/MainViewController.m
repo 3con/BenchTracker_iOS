@@ -58,20 +58,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navView.backgroundColor = [UIColor BTPrimaryColor];
-    self.titleLabel.textColor = [UIColor BTTextPrimaryColor];
-    self.blankWorkoutButton.backgroundColor = [UIColor BTButtonPrimaryColor];
-    [self.blankWorkoutButton setTitleColor: [UIColor BTButtonTextPrimaryColor] forState:UIControlStateNormal];
-    self.scanWorkoutButton.backgroundColor = [UIColor BTButtonSecondaryColor];
-    [self.scanWorkoutButton setTitleColor: [UIColor BTButtonTextSecondaryColor] forState:UIControlStateNormal];
-    self.templateButton.backgroundColor = [UIColor BTButtonSecondaryColor];
-    [self.templateButton setTitleColor: [UIColor BTButtonTextSecondaryColor] forState:UIControlStateNormal];
-    self.rightBarButton.tintColor = [UIColor BTTextPrimaryColor];
-    [self.leftBarButton setImage:[[UIImage imageNamed:@"Chart"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]
-                        forState:UIControlStateNormal];
-    self.leftBarButton.tintColor = [UIColor BTTextPrimaryColor];
-    self.listTableView.backgroundColor = [UIColor BTTableViewBackgroundColor];
-    self.listTableView.separatorColor = [UIColor BTTableViewSeparatorColor];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(colorSchemeChange:)
+                                                 name:@"colorSchemeChange" object:nil];
+    [self updateInterface];
     self.context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
     self.user = [BTUser sharedInstance];
     CSToastStyle *style = [[CSToastStyle alloc] initWithDefaultStyle];
@@ -91,6 +80,31 @@
     self.listTableView.contentInset = UIEdgeInsetsMake(0, 0, 95, 0);
     self.listTableView.separatorInset = UIEdgeInsetsMake(0, 25, 0, 25);
     [self.listTableView registerNib:[UINib nibWithNibName:@"WorkoutTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"Cell"];
+}
+
+- (void)updateInterface {
+    self.navView.backgroundColor = [UIColor BTPrimaryColor];
+    self.titleLabel.textColor = [UIColor BTTextPrimaryColor];
+    self.blankWorkoutButton.backgroundColor = [UIColor BTButtonPrimaryColor];
+    [self.blankWorkoutButton setTitleColor: [UIColor BTButtonTextPrimaryColor] forState:UIControlStateNormal];
+    self.scanWorkoutButton.backgroundColor = [UIColor BTButtonSecondaryColor];
+    [self.scanWorkoutButton setTitleColor: [UIColor BTButtonTextSecondaryColor] forState:UIControlStateNormal];
+    self.templateButton.backgroundColor = [UIColor BTButtonSecondaryColor];
+    [self.templateButton setTitleColor: [UIColor BTButtonTextSecondaryColor] forState:UIControlStateNormal];
+    self.rightBarButton.tintColor = [UIColor BTTextPrimaryColor];
+    [self.leftBarButton setImage:[[UIImage imageNamed:@"Chart"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]
+                        forState:UIControlStateNormal];
+    self.leftBarButton.tintColor = [UIColor BTTextPrimaryColor];
+    self.listTableView.backgroundColor = [UIColor BTTableViewBackgroundColor];
+    self.listTableView.separatorColor = [UIColor BTTableViewSeparatorColor];
+}
+
+- (void)colorSchemeChange:(NSNotification *)notification  {
+    [self updateInterface];
+    [self.listTableView reloadData];
+    [self.weekdayView removeFromSuperview];
+    self.weekdayView = nil;
+    [self viewDidLayoutSubviews];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -130,6 +144,8 @@
 }
 
 - (void)loadTableViewGradient {
+    for (CALayer *layer in self.gradientView.layer.sublayers)
+        [layer removeFromSuperlayer];
     CAGradientLayer *gradientLayer = [CAGradientLayer layer];
     gradientLayer.frame = self.gradientView.bounds;
     gradientLayer.startPoint = CGPointMake(0.5,0.0);
@@ -137,9 +153,16 @@
     gradientLayer.locations = @[@.05,
                                 @.70,
                                 @1.0];
-    gradientLayer.colors =    @[(id)[UIColor clearColor].CGColor,
-                                (id)[[UIColor BTTableViewBackgroundColor] colorWithAlphaComponent:.5].CGColor,
-                                (id)[UIColor BTTableViewBackgroundColor].CGColor];
+    if ([[UIColor BTTableViewBackgroundColor] isEqual:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]]) {
+        gradientLayer.colors =    @[(id)[UIColor colorWithWhite:1 alpha:0].CGColor,
+                                    (id)[[UIColor BTTableViewBackgroundColor] colorWithAlphaComponent:.5].CGColor,
+                                    (id)[UIColor BTTableViewBackgroundColor].CGColor];
+    }
+    else {
+        gradientLayer.colors =    @[(id)[UIColor clearColor].CGColor,
+                                    (id)[[UIColor BTTableViewBackgroundColor] colorWithAlphaComponent:.5].CGColor,
+                                    (id)[UIColor BTTableViewBackgroundColor].CGColor];
+    }
     [self.gradientView.layer insertSublayer:gradientLayer atIndex:0];
 }
 
@@ -716,6 +739,10 @@
 - (CGFloat)cellHeight {
     if (_cellHeight == 0) _cellHeight = [WorkoutTableViewCell heightForWorkoutCell];
     return _cellHeight;
+}
+
+- (void) dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {

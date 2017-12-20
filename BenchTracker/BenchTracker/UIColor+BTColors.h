@@ -10,6 +10,10 @@
 
 @interface UIColor (BTColor)
 
++ (void)changeColorSchemeTo:(int)colorScheme;
+
++ (int)colorScheme;
+
 //BASE COLORS
 
 + (UIColor *)BTPrimaryColor;
@@ -26,9 +30,11 @@
 
 + (UIColor *)BTButtonTextSecondaryColor;
 
-//TV COLORS
+//TABLE VIEW COLORS
 
 + (UIColor *)BTTableViewBackgroundColor;
+
++ (UIColor *)BTGroupTableViewBackgroundColor;
 
 + (UIColor *)BTTableViewSeparatorColor;
 

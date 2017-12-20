@@ -21,7 +21,7 @@
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NXR-R8-h71" customClass="BTStackedBarView">
                         <rect key="frame" x="213" y="13" width="181" height="40"/>
-                        <color key="backgroundColor" red="0.5711783832436429" green="0.57039963433723084" blue="0.58400243798685814" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="0.35649947168064822" green="0.35601341761793803" blue="0.36450357140654732" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="4mg-TT-89j"/>
                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="280" id="JPq-B2-w9u"/>

@@ -171,6 +171,7 @@
 		2C3B197020A386DB147CEDEE /* Pods-BenchTrackerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BenchTrackerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BenchTrackerTests/Pods-BenchTrackerTests.release.xcconfig"; sourceTree = "<group>"; };
 		2C83D3A0EA46ECDF1788C990 /* Pods_BenchTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BenchTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		40B18DFBDA158AF111B21958 /* Pods_BenchTrackerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BenchTrackerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		50012E1F1FEB0EA100A6B08F /* BTDataModel8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BTDataModel8.xcdatamodel; sourceTree = "<group>"; };
 		5004CDAC1F60F424000BF6F0 /* AchievementViewButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AchievementViewButton.h; sourceTree = "<group>"; };
 		5004CDAD1F60F424000BF6F0 /* AchievementViewButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AchievementViewButton.m; sourceTree = "<group>"; };
 		5004CDB01F60F436000BF6F0 /* AchievementViewButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AchievementViewButton.xib; sourceTree = "<group>"; };
@@ -2156,6 +2157,7 @@
 		F9DA750F1F02DC1700347B0D /* BTDataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				50012E1F1FEB0EA100A6B08F /* BTDataModel8.xcdatamodel */,
 				50B8C3BD1FE0E35300378331 /* BTDataModel7.xcdatamodel */,
 				502C95251F5FC58400883850 /* BTDataModel6.xcdatamodel */,
 				5099F1C61F5F9C9C000A6DE4 /* BTDataModel5.xcdatamodel */,

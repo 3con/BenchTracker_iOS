@@ -35,7 +35,7 @@
     self.titleLabel.textColor = [UIColor BTTextPrimaryColor];
     [self.backButton setTitleColor:[UIColor BTTextPrimaryColor] forState:UIControlStateNormal];
     self.settings = [BTSettings sharedInstance];
-    self.tableView.backgroundColor = [UIColor BTTableViewBackgroundColor];
+    self.tableView.backgroundColor = [UIColor BTGroupTableViewBackgroundColor];
     self.tableView.separatorColor = [UIColor BTTableViewSeparatorColor];
     self.tableView.contentInset = UIEdgeInsetsMake(72, 0, 0, 0);
     self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(72, 0, 0, 0);
@@ -60,7 +60,15 @@
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"editExercises" rowType:XLFormRowDescriptorTypeSelectorPush title:@"Edit exercises"];
     [section addFormRow:row];
     
-    // Section 2: Weight Unit
+    // Section 2: Dark Mode
+    section = [XLFormSectionDescriptor formSection];
+    section.footerTitle = @"Enable an app-wide dark mode.";
+    [form addFormSection:section];
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"darkMode" rowType:XLFormRowDescriptorTypeBooleanSwitch title:@"Dark mode"];
+    row.value = [NSNumber numberWithBool:[UIColor colorScheme] == 1];
+    [section addFormRow:row];
+    
+    // Section 3: Weight Unit
     section = [XLFormSectionDescriptor formSection];
     section.footerTitle = @"Show all weights in 🇪🇺 (kg). 🇺🇸 (lbs) is the default.";
     [form addFormSection:section];
@@ -69,7 +77,7 @@
     //WARN USER PAST WORKOUTS WILL NOT BE ADJUSTED
     [section addFormRow:row];
     
-    // Section 3: Start week on Sunday
+    // Section 4: Start week on Sunday
     section = [XLFormSectionDescriptor formSection];
     section.footerTitle = @"Start your workout week on Sunday. Monday is the default.";
     [form addFormSection:section];
@@ -77,7 +85,7 @@
     row.value = [NSNumber numberWithBool:!self.settings.startWeekOnMonday];
     [section addFormRow:row];
     
-    // Section 4: Disable screen sleep
+    // Section 5: Disable screen sleep
     section = [XLFormSectionDescriptor formSection];
     section.footerTitle = @"Prevent your device from going to sleep while you are in the process of working out.";
     [form addFormSection:section];
@@ -85,7 +93,7 @@
     row.value = [NSNumber numberWithBool:self.settings.disableSleep];
     [section addFormRow:row];
     
-    // Section 5: Workout details
+    // Section 6: Workout details
     section = [XLFormSectionDescriptor formSection];
     section.footerTitle = @"Displays statistics below each workout in your home screen.";
     [form addFormSection:section];
@@ -93,7 +101,7 @@
     row.value = [NSNumber numberWithBool:self.settings.showWorkoutDetails];
     [section addFormRow:row];
     
-    // Section 6: Show in exercise view
+    // Section 7: Show in exercise view
     section = [XLFormSectionDescriptor formSection];
     section.title = @"SHOW IN EXERCISE VIEW";
     section.footerTitle = @"Exercise analytics: displays analytics relating to the exercise you are performing.\nEquivalency chart: displays a chart with equivalent one-rep-maxes for appropriate exercises.";
@@ -105,7 +113,7 @@
     row.value = [NSNumber numberWithBool:self.settings.showEquivalencyChart];
     [section addFormRow:row];
     
-    // Section 7: Import, Export data
+    // Section 8: Import, Export data
     section = [XLFormSectionDescriptor formSection];
     section.footerTitle = @"Import or export all of your Bench Tracker data using email attachments. This includes all of your workouts and custom exercises.";
     [form addFormSection:section];
@@ -116,7 +124,7 @@
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"export" rowType:XLFormRowDescriptorTypeButton title:@"Export all data"];
     [section addFormRow:row];
     
-    // Section 8: Share, Rate
+    // Section 9: Share, Rate
     section = [XLFormSectionDescriptor formSection];
     [form addFormSection:section];
     //Share
@@ -126,7 +134,7 @@
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"rate" rowType:XLFormRowDescriptorTypeButton title:@"Rate Bench Tracker"];
     [section addFormRow:row];
     
-    // Section 9: Reset data
+    // Section 10: Reset data
     section = [XLFormSectionDescriptor formSection];
     [form addFormSection:section];
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"reset" rowType:XLFormRowDescriptorTypeBTButton title:@"Reset Data"];
@@ -151,6 +159,7 @@
                 [result setObject:(row.value ?: [NSNull null]) forKey:row.tag];
         }
     }
+    [UIColor changeColorSchemeTo:([result[@"darkMode"] boolValue])];
     self.settings.weightInLbs = ![result[@"weightInKg"] boolValue];
     self.settings.startWeekOnMonday = ![result[@"startWeekOnSunday"] boolValue];
     self.settings.disableSleep = [result[@"disableSleep"] boolValue];

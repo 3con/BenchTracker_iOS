@@ -32,14 +32,6 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    self.backgroundColor = [UIColor BTTableViewBackgroundColor];
-    self.calendarImageView.image = [self.calendarImageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    self.calendarImageView.tintColor = [UIColor BTGrayColor];
-    self.nameLabel.textColor = [UIColor BTBlackColor];
-    self.dateLabel.textColor = [UIColor BTGrayColor];
-    self.selectionStyle = UITableViewCellSelectionStyleNone;
-    self.stackedView.layer.cornerRadius = 6;
-    self.stackedView.clipsToBounds = YES;
 }
 
 - (void)layoutIfNeeded {
@@ -48,6 +40,8 @@
 }
 
 - (void)loadWorkout:(BTWorkout *)workout {
+    [self loadInterface];
+    
     MGSwipeButton *delButton = [MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"Trash"]
                                               backgroundColor:[UIColor BTRedColor]];
     delButton.buttonWidth = 80;
@@ -83,6 +77,17 @@
         [self.workoutDetailsView removeFromSuperview];
         self.workoutDetailsView = nil;
     }
+}
+
+- (void)loadInterface {
+    self.backgroundColor = [UIColor BTTableViewBackgroundColor];
+    self.calendarImageView.image = [self.calendarImageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    self.calendarImageView.tintColor = [UIColor BTGrayColor];
+    self.nameLabel.textColor = [UIColor BTBlackColor];
+    self.dateLabel.textColor = [UIColor BTGrayColor];
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+    self.stackedView.layer.cornerRadius = 6;
+    self.stackedView.clipsToBounds = YES;
 }
 
 - (void)loadStackedView {

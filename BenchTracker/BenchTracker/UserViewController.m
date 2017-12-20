@@ -50,17 +50,27 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor BTTableViewBackgroundColor];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(colorSchemeChange:)
+                                                 name:@"colorSchemeChange" object:nil];
+    [self updateInterface];
     self.settings = [BTSettings sharedInstance];
     self.user = [BTUser sharedInstance];
     self.userStats = [UserStats statsWithUser:self.user settings:self.settings];
     [BTUser updateStreaks];
+    self.statsOffset = 0;
+}
+
+- (void)updateInterface {
+    self.view.backgroundColor = [UIColor BTTableViewBackgroundColor];
     self.navView.backgroundColor = [UIColor BTPrimaryColor];
     [self.backButton setTitleColor:[UIColor BTTextPrimaryColor] forState:UIControlStateNormal];
     [self.settingsButton setImage:[[UIImage imageNamed:@"Settings"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]
                          forState:UIControlStateNormal];
     self.settingsButton.tintColor = [UIColor BTTextPrimaryColor];
-    self.statsOffset = 0;
+}
+
+- (void)colorSchemeChange:(NSNotification *)notification  {
+    [self updateInterface];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -254,6 +264,10 @@
     fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"volume" ascending:NO]];
     NSArray <BTWorkout *> *arr = [self.context executeFetchRequest:fetchRequest error:nil];
     return (arr && arr.count > 0) ? arr.firstObject.volume : 0;
+}
+
+- (void) dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {

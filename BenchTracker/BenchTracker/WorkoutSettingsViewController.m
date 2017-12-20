@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *qrButton;
 @property (weak, nonatomic) IBOutlet UIButton *printButton;
 @property (weak, nonatomic) IBOutlet UIButton *templateButton;
+@property (weak, nonatomic) IBOutlet UIButton *darkModeButton;
 @property (weak, nonatomic) IBOutlet UILabel *detailLabel;
 
 @property (nonatomic) ZFModalTransitionAnimator *animator;
@@ -37,8 +38,19 @@
     [super viewDidLoad];
     self.scrollView.delegate = self;
     self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 90, 0);
+    [self updateInterface];
+    self.contentView.layer.cornerRadius = 25;
+    self.contentView.clipsToBounds = YES;
+    self.doneButton.layer.cornerRadius = 12;
+    self.contentView.alpha = 0.0;
+    self.backgroundView.alpha = 0.0;
+    self.doneButton.alpha = 0.0;
+    [self updateTemplateButton];
+}
+
+- (void)updateInterface {
     self.contentView.backgroundColor = [UIColor BTPrimaryColor];
-    for (UIButton *button in @[self.qrButton, self.printButton, self.templateButton]) {
+    for (UIButton *button in @[self.qrButton, self.printButton, self.templateButton, self.darkModeButton]) {
         button.layer.cornerRadius = 12;
         button.clipsToBounds = YES;
         button.backgroundColor = [UIColor BTSecondaryColor];
@@ -51,13 +63,8 @@
     self.detailLabel.textColor = [UIColor BTTextPrimaryColor];
     self.doneButton.backgroundColor = [UIColor BTButtonPrimaryColor];
     [self.doneButton setTitleColor: [UIColor BTButtonTextPrimaryColor] forState:UIControlStateNormal];
-    self.contentView.layer.cornerRadius = 25;
-    self.contentView.clipsToBounds = YES;
-    self.doneButton.layer.cornerRadius = 12;
-    self.contentView.alpha = 0.0;
-    self.backgroundView.alpha = 0.0;
-    self.doneButton.alpha = 0.0;
-    [self updateTemplateButton];
+    [self.darkModeButton setTitle:([UIColor colorScheme] == 0) ? @"Enable dark mode" : @"Disable dark mode"
+                         forState:UIControlStateNormal];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -112,6 +119,12 @@
         if (!completed && error) NSLog(@"PDF print failed due to error in domain %@, error code %ld", error.domain, (long)error.code);
         if (completed) [BTAchievement markAchievementComplete:ACHIEVEMENT_PRINT animated:YES];
     }];
+}
+
+- (IBAction)darkModeButtonPressed:(UIButton *)sender {
+    int colorScheme = [UIColor colorScheme];
+    [UIColor changeColorSchemeTo:(colorScheme+1)%2];
+    [self updateInterface];
 }
 
 - (IBAction)templateButtonPressed:(UIButton *)sender {
