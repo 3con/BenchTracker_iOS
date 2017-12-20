@@ -32,9 +32,11 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    self.backgroundColor = [UIColor BTTableViewBackgroundColor];
     self.containerView.backgroundColor = [UIColor BTSecondaryColor];
     self.aboveSupersetView.backgroundColor = [UIColor BTSecondaryColor];
     self.belowSupersetView.backgroundColor = [UIColor BTSecondaryColor];
+    self.nameLabel.textColor = [UIColor BTTextPrimaryColor];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.containerView.layer.cornerRadius = 12;
     self.containerView.clipsToBounds = YES;
@@ -61,7 +63,7 @@
         self.colorView3.backgroundColor = self.color;
     }
     self.collectionView.enableOverlayLabel = YES;
-    self.collectionView.backgroundColor = [UIColor whiteColor];
+    self.collectionView.backgroundColor = [UIColor BTTextPrimaryColor];
     self.collectionView.textColor = [UIColor BTSecondaryColor];
     self.collectionView.sets = [NSKeyedUnarchiver unarchiveObjectWithData:self.exercise.sets];
 }

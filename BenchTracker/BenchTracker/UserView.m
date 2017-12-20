@@ -25,6 +25,15 @@
 
 @implementation UserView
 
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    self.topLabel.textColor = [UIColor BTTextPrimaryColor];
+    self.mainLabel.textColor = [UIColor BTTextPrimaryColor];
+    self.bottomLabel.textColor = [UIColor BTTextPrimaryColor];
+    self.progressForegroundView.backgroundColor = [UIColor BTTextPrimaryColor];
+    self.progressBackgroundView.backgroundColor = [[UIColor BTTextPrimaryColor] colorWithAlphaComponent:.3];
+}
+
 - (void)loadUser:(BTUser *)user {
     self.progressBackgroundView.layer.cornerRadius = self.progressBackgroundView.frame.size.height/2.0;
     self.progressBackgroundView.clipsToBounds = YES;

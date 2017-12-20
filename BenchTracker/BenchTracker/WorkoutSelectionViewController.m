@@ -47,6 +47,8 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.scrollEnabled = NO;
+    self.tableView.backgroundColor = [UIColor BTTableViewBackgroundColor];
+    self.tableView.separatorColor = [UIColor BTTableViewSeparatorColor];
     self.tableView.separatorInset = UIEdgeInsetsMake(0, 25, 0, 25);
     self.tableView.tableFooterView = [UIView new];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"ACell"];
@@ -134,7 +136,7 @@
         cell.backgroundColor = [UIColor BTPrimaryColor];
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.frame.size.width, cell.frame.size.height)];
         label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        label.textColor = [UIColor whiteColor];
+        label.textColor = [UIColor BTTextPrimaryColor];
         label.textAlignment = NSTextAlignmentCenter;
         label.font = [UIFont systemFontOfSize:17 weight:UIFontWeightMedium];
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -319,7 +321,7 @@
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
+    return [UIColor statusBarStyle];
 }
 
 /*

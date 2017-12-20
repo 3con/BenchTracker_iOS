@@ -27,6 +27,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    self.backgroundColor = [UIColor BTTableViewBackgroundColor];
     self.nameLabel.textColor = [UIColor BTBlackColor];
     self.detailLabel1.textColor = [UIColor BTGrayColor];
     self.detailLabel2.textColor = [UIColor BTGrayColor];

@@ -34,6 +34,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navView.backgroundColor = [UIColor BTVibrantColors][1];
+    self.tableView.backgroundColor = [UIColor BTTableViewBackgroundColor];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorColor = [UIColor clearColor];
@@ -113,7 +114,7 @@
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
+    return [UIColor statusBarStyle];
 }
 
 @end

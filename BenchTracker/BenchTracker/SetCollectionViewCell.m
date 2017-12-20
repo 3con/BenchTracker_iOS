@@ -26,6 +26,8 @@
     [super awakeFromNib];
     self.display1RM = NO;
     self.containerView.backgroundColor = [UIColor BTSecondaryColor];
+    self.topLabel.textColor = [UIColor BTTextPrimaryColor];
+    self.bottomLabel.textColor = [UIColor BTTextPrimaryColor];
     self.deleteButton.backgroundColor = [UIColor BTRedColor];
     self.containerView.layer.cornerRadius = 12;
     self.containerView.clipsToBounds = YES;

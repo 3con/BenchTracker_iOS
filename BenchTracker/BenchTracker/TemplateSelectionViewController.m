@@ -14,6 +14,7 @@
 @interface TemplateSelectionViewController ()
 
 @property (weak, nonatomic) IBOutlet UIView *navView;
+@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -26,10 +27,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navView.backgroundColor = [UIColor BTPrimaryColor];
+    [self.cancelButton setTitleColor:[UIColor BTTextPrimaryColor] forState:UIControlStateNormal];
     NSError *error;
     if (![[self fetchedResultsController] performFetch:&error]) {
         NSLog(@"Template selection fetch error: %@, %@", error, [error userInfo]);
     }
+    self.tableView.backgroundColor = [UIColor BTTableViewBackgroundColor];
+    self.tableView.separatorColor = [UIColor BTTableViewSeparatorColor];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"EmptyTemplateTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"ACell"];
@@ -63,7 +67,7 @@
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 52)];
     label.text = (section == 0) ? @"Your Templates" : @"Default Templates";
     label.textAlignment = NSTextAlignmentCenter;
-    label.textColor = [UIColor whiteColor];
+    label.textColor = [UIColor BTTextPrimaryColor];
     label.font = [UIFont systemFontOfSize:21 weight:UIFontWeightSemibold];
     [view addSubview:label];
     return view;
@@ -205,7 +209,7 @@
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
+    return [UIColor statusBarStyle];
 }
 
 @end

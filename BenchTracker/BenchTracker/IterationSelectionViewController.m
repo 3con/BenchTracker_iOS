@@ -36,6 +36,8 @@
                                                                  multiplier:1
                                                                    constant:45+50*(self.tempIerations.count+1)];
     [self.view addConstraint:constraint];
+    self.tableView.backgroundColor = [UIColor BTTableViewBackgroundColor];
+    self.tableView.separatorColor = [UIColor BTTableViewSeparatorColor];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.tableFooterView = [UIView new];
@@ -44,7 +46,7 @@
 }
 
 - (void)viewDidLayoutSubviews {
-    self.tableView.layer.cornerRadius = 12;
+    self.tableView.layer.cornerRadius = 16;
     self.tableView.clipsToBounds = YES;
     self.containingView.alpha = 0.0;
     self.backgroundView.alpha = 0.0;
@@ -181,17 +183,7 @@
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
+    return [UIColor statusBarStyle];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

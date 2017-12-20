@@ -16,6 +16,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    self.backgroundColor = [UIColor BTTableViewBackgroundColor];
     self.titleLabel.textColor = [UIColor BTGrayColor];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;

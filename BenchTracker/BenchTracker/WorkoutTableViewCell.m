@@ -14,6 +14,7 @@
 
 @interface WorkoutTableViewCell()
 
+@property (weak, nonatomic) IBOutlet UIImageView *calendarImageView;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 
@@ -31,6 +32,9 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    self.backgroundColor = [UIColor BTTableViewBackgroundColor];
+    self.calendarImageView.image = [self.calendarImageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    self.calendarImageView.tintColor = [UIColor BTGrayColor];
     self.nameLabel.textColor = [UIColor BTBlackColor];
     self.dateLabel.textColor = [UIColor BTGrayColor];
     self.selectionStyle = UITableViewCellSelectionStyleNone;

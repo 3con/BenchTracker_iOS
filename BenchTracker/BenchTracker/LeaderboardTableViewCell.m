@@ -28,6 +28,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    self.backgroundColor = [UIColor BTTableViewBackgroundColor];
     self.rankLabel.textColor = [UIColor BTGrayColor];
     self.titleLabel.textColor = [UIColor BTGrayColor];
     self.statLabel.textColor = [UIColor BTLightGrayColor];

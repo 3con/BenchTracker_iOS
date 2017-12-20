@@ -24,6 +24,8 @@
     [super viewDidLoad];
     self.scrollView.delegate = self;
     self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 90, 0);
+    self.doneButton.backgroundColor = [UIColor BTButtonPrimaryColor];
+    [self.doneButton setTitleColor: [UIColor BTButtonTextPrimaryColor] forState:UIControlStateNormal];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -100,7 +102,7 @@
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
+    return [UIColor statusBarStyle];
 }
 
 @end

@@ -690,13 +690,13 @@
 			name = WorkoutQRModels;
 			sourceTree = "<group>";
 		};
-		505CFDA41F5B5799001469F8 /* Set Sumamry CV */ = {
+		505CFDA41F5B5799001469F8 /* Set Sumamary CV */ = {
 			isa = PBXGroup;
 			children = (
 				505CFDA11F5B5795001469F8 /* SetSummaryCollectionView.h */,
 				505CFDA21F5B5795001469F8 /* SetSummaryCollectionView.m */,
 			);
-			name = "Set Sumamry CV";
+			name = "Set Sumamary CV";
 			sourceTree = "<group>";
 		};
 		50636F2C1F2B9C0200FB65B4 /* Exercise type cell */ = {
@@ -1248,7 +1248,7 @@
 				F962076E1F05DCF200DE2330 /* ExerciseTableViewCell.h */,
 				F962076F1F05DCF200DE2330 /* ExerciseTableViewCell.m */,
 				F96207701F05DCF200DE2330 /* ExerciseTableViewCell.xib */,
-				505CFDA41F5B5799001469F8 /* Set Sumamry CV */,
+				505CFDA41F5B5799001469F8 /* Set Sumamary CV */,
 			);
 			name = "Exercise cell";
 			sourceTree = "<group>";

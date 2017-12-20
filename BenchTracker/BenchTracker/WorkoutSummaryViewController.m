@@ -52,6 +52,9 @@
     self.secondaryButton.titleLabel.numberOfLines = 2;
     self.secondaryButton.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.secondaryButton.backgroundColor = [UIColor BTButtonSecondaryColor];
+    [self.secondaryButton setTitleColor: [UIColor BTButtonTextSecondaryColor] forState:UIControlStateNormal];
+    self.doneButton.backgroundColor = [UIColor BTButtonPrimaryColor];
+    [self.doneButton setTitleColor: [UIColor BTButtonTextPrimaryColor] forState:UIControlStateNormal];
     [self setSecondaryButtonHidden:YES];
     [self loadWorkout];
 }
@@ -190,7 +193,7 @@
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
+    return [UIColor statusBarStyle];
 }
 
 @end

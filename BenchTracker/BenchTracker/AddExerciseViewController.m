@@ -17,8 +17,9 @@
 @interface AddExerciseViewController ()
 
 @property (weak, nonatomic) IBOutlet UIView *containerView;
-
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
+@property (weak, nonatomic) IBOutlet UIButton *editButton;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic) UISearchBar *searchBar;
@@ -47,8 +48,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.containerView.backgroundColor = [UIColor BTPrimaryColor];
+    self.titleLabel.textColor = [UIColor BTTextPrimaryColor];
+    [self.cancelButton setTitleColor:[UIColor BTTextPrimaryColor] forState:UIControlStateNormal];
+    [self.editButton setTitleColor:[UIColor BTTextPrimaryColor] forState:UIControlStateNormal];
     self.addExerciseButton.backgroundColor = [UIColor BTButtonPrimaryColor];
+    [self.addExerciseButton setTitleColor: [UIColor BTButtonTextPrimaryColor] forState:UIControlStateNormal];
     self.supersetButton.backgroundColor = [UIColor BTButtonSecondaryColor];
+    [self.supersetButton setTitleColor: [UIColor BTButtonTextSecondaryColor] forState:UIControlStateNormal];
     self.clearButton.backgroundColor = [UIColor BTRedColor];
     self.searchString = @"";
     NSError *error;
@@ -58,6 +64,8 @@
     BTSettings *settings = [BTSettings sharedInstance];
     self.exerciseTypeColors = [NSKeyedUnarchiver unarchiveObjectWithData:settings.exerciseTypeColors];
     self.tempHiddenSections = [NSKeyedUnarchiver unarchiveObjectWithData:settings.hiddenExerciseTypeSections];
+    self.tableView.backgroundColor = [UIColor BTTableViewBackgroundColor];
+    self.tableView.separatorColor = [UIColor BTTableViewSeparatorColor];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.allowsMultipleSelection = YES;
@@ -75,6 +83,7 @@
     self.searchBar.delegate = self;
     self.searchBar.barTintColor = [UIColor BTPrimaryColor];
     self.searchBar.tintColor = [UIColor whiteColor];
+    self.searchBar.keyboardAppearance = [UIColor keyboardAppearance];
     self.searchBar.layer.borderWidth = 1;
     self.searchBar.layer.borderColor = self.searchBar.barTintColor.CGColor;
     self.tableView.tableHeaderView = self.searchBar;
@@ -436,7 +445,7 @@
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
+    return [UIColor statusBarStyle];
 }
      
 #pragma mark - TI methods

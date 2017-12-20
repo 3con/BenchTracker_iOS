@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,15 +20,15 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NXR-R8-h71" customClass="BTStackedBarView">
-                        <rect key="frame" x="201" y="10" width="205" height="40"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <rect key="frame" x="213" y="13" width="181" height="40"/>
+                        <color key="backgroundColor" red="0.5711783832436429" green="0.57039963433723084" blue="0.58400243798685814" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="4mg-TT-89j"/>
                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="280" id="JPq-B2-w9u"/>
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="500" text="Afternoon Workout" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="La5-Wr-E7U">
-                        <rect key="frame" x="6" y="25" width="185" height="28"/>
+                        <rect key="frame" x="18" y="28" width="185" height="28"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="28" id="49c-xk-aXg"/>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="185" id="Co9-j0-ASx"/>
@@ -38,7 +38,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" text="Thursday, September 29" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="Rdh-Kp-cdO">
-                        <rect key="frame" x="21" y="7" width="170" height="20"/>
+                        <rect key="frame" x="33" y="10" width="170" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="JIo-D2-Q3C"/>
                         </constraints>
@@ -47,7 +47,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Calendar" translatesAutoresizingMaskIntoConstraints="NO" id="tXK-fV-KKf">
-                        <rect key="frame" x="8" y="12" width="10" height="10"/>
+                        <rect key="frame" x="20" y="15" width="10" height="10"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="10" id="jGl-du-0pV"/>
                             <constraint firstAttribute="width" constant="10" id="zQ2-SP-Msc"/>
@@ -68,6 +68,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="calendarImageView" destination="tXK-fV-KKf" id="djU-NW-2vF"/>
                 <outlet property="dateLabel" destination="Rdh-Kp-cdO" id="x3t-r2-MqZ"/>
                 <outlet property="nameLabel" destination="La5-Wr-E7U" id="UR3-bN-fXf"/>
                 <outlet property="stackedView" destination="NXR-R8-h71" id="g5z-fY-aKR"/>

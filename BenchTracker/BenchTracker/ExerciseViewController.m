@@ -39,6 +39,7 @@
     [super viewDidLoad];
     self.firstShow = YES;
     self.doneButton.backgroundColor = [UIColor BTButtonPrimaryColor];
+    [self.doneButton setTitleColor: [UIColor BTButtonTextPrimaryColor] forState:UIControlStateNormal];
     self.scrollView.delegate = self;
     [[NSNotificationCenter defaultCenter] addObserver: self
                                              selector: @selector(handleEnterBackground:)
@@ -154,7 +155,7 @@
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
+    return [UIColor statusBarStyle];
 }
 
 #pragma mark - view handling

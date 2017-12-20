@@ -24,6 +24,8 @@
 @property (nonatomic) BTSettings *settings;
 
 @property (weak, nonatomic) IBOutlet UIView *navView;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UIButton *backButton;
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic) CGSize itemSize;
@@ -35,7 +37,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navView.backgroundColor = [UIColor BTPrimaryColor];
+    self.titleLabel.textColor = [UIColor BTTextPrimaryColor];
+    [self.backButton setTitleColor:[UIColor BTTextPrimaryColor] forState:UIControlStateNormal];
     self.settings = [BTSettings sharedInstance];
+    self.collectionView.backgroundColor = [UIColor BTTableViewBackgroundColor];
     self.recentWorkoutsManager = [[BTRecentWorkoutsManager alloc] init];
     self.recentWorkoutsManager.maxFetch = 8;
     self.collectionView.delegate = self;
@@ -232,7 +237,7 @@
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
+    return [UIColor statusBarStyle];
 }
 
 /*

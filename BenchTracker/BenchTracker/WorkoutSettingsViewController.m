@@ -42,8 +42,15 @@
         button.layer.cornerRadius = 12;
         button.clipsToBounds = YES;
         button.backgroundColor = [UIColor BTSecondaryColor];
+        [button setTitleColor:[UIColor BTTextPrimaryColor] forState:UIControlStateNormal];
+        [button setImage:[button.imageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]
+                forState:UIControlStateNormal];
+        button.tintColor = [UIColor BTTextPrimaryColor];
         button.imageView.contentMode = UIViewContentModeScaleAspectFit;
     }
+    self.detailLabel.textColor = [UIColor BTTextPrimaryColor];
+    self.doneButton.backgroundColor = [UIColor BTButtonPrimaryColor];
+    [self.doneButton setTitleColor: [UIColor BTButtonTextPrimaryColor] forState:UIControlStateNormal];
     self.contentView.layer.cornerRadius = 25;
     self.contentView.clipsToBounds = YES;
     self.doneButton.layer.cornerRadius = 12;
@@ -120,11 +127,13 @@
     } completion:^(BOOL finished) {
         if (![BTWorkoutTemplate templateExistsForWorkout:self.workout]) {
             [self.templateButton setTitle:@"Add to templates" forState:UIControlStateNormal];
-            [self.templateButton setImage:[UIImage imageNamed:@"TemplateAdd"] forState:UIControlStateNormal];
+            [self.templateButton setImage:[[UIImage imageNamed:@"TemplateAdd"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]
+                                 forState:UIControlStateNormal];
         }
         else {
             [self.templateButton setTitle:@"Remove from templates" forState:UIControlStateNormal];
-            [self.templateButton setImage:[UIImage imageNamed:@"TemplateDelete"] forState:UIControlStateNormal];
+            [self.templateButton setImage:[[UIImage imageNamed:@"TemplateDelete"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]
+                                 forState:UIControlStateNormal];
         }
         [UIView animateWithDuration:.1 animations:^{
             self.templateButton.alpha = 1;
@@ -240,7 +249,7 @@
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
+    return [UIColor statusBarStyle];
 }
 
 @end

@@ -13,6 +13,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.contentView.backgroundColor = [UIColor BTPrimaryColor];
+    self.titleLabel.textColor = [UIColor BTTextPrimaryColor];
 }
 
 @end

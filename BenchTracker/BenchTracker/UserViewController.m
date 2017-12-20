@@ -25,6 +25,8 @@
 
 @property (weak, nonatomic) IBOutlet UIView *navView;
 @property (weak, nonatomic) IBOutlet UIView *userContainerView;
+@property (weak, nonatomic) IBOutlet UIButton *backButton;
+@property (weak, nonatomic) IBOutlet UIButton *settingsButton;
 
 @property (nonatomic) ZFModalTransitionAnimator *animator;
 
@@ -48,11 +50,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor BTTableViewBackgroundColor];
     self.settings = [BTSettings sharedInstance];
     self.user = [BTUser sharedInstance];
     self.userStats = [UserStats statsWithUser:self.user settings:self.settings];
     [BTUser updateStreaks];
     self.navView.backgroundColor = [UIColor BTPrimaryColor];
+    [self.backButton setTitleColor:[UIColor BTTextPrimaryColor] forState:UIControlStateNormal];
+    [self.settingsButton setImage:[[UIImage imageNamed:@"Settings"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]
+                         forState:UIControlStateNormal];
+    self.settingsButton.tintColor = [UIColor BTTextPrimaryColor];
     self.statsOffset = 0;
 }
 
@@ -250,7 +257,7 @@
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
+    return [UIColor statusBarStyle];
 }
 
 @end

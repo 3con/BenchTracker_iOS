@@ -32,6 +32,8 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.navView.backgroundColor = [UIColor BTPrimaryColor];
+    self.tableView.backgroundColor = [UIColor BTTableViewBackgroundColor];
+    self.tableView.separatorColor = [UIColor BTTableViewSeparatorColor];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self loadTitleView];
@@ -142,7 +144,7 @@
                             [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 40)],
                             [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 40)]];
         for (UILabel *l in self.titleViews) {
-            l.textColor = [UIColor whiteColor];
+            l.textColor = [UIColor BTTextPrimaryColor];
             l.textAlignment = NSTextAlignmentCenter;
             l.font = [UIFont systemFontOfSize:18 weight:UIFontWeightSemibold];
             [self.titleView addSubview:l];

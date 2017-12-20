@@ -13,6 +13,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    self.backgroundColor = [UIColor BTTableViewBackgroundColor];
 }
 
 - (void)loadWithWeight:(NSInteger)weight length:(NSInteger)length {
@@ -22,12 +23,12 @@
         label.layer.cornerRadius = 12.0;
         label.clipsToBounds = YES;
         if (i == self.selectedSection) {
-            label.textColor = [UIColor whiteColor];
+            label.textColor = [UIColor BTTextPrimaryColor];
             label.backgroundColor = [UIColor BTSecondaryColor];
         }
         else {
             label.textColor = [UIColor BTGrayColor];
-            label.backgroundColor = [UIColor whiteColor];
+            label.backgroundColor = [UIColor clearColor];
         }
         label.textAlignment = NSTextAlignmentCenter;
         label.font = [UIFont systemFontOfSize:15 weight:UIFontWeightSemibold];

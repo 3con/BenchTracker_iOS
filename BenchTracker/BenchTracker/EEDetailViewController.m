@@ -13,8 +13,10 @@
 
 @interface EEDetailViewController ()
 
-@property (weak, nonatomic) IBOutlet UILabel *navLabel;
 @property (weak, nonatomic) IBOutlet UIView *navView;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
+@property (weak, nonatomic) IBOutlet UIButton *createButton;
 
 @property (nonatomic) BOOL awardCreation;
 @property (nonatomic) NSInteger numStartVariations;
@@ -27,6 +29,11 @@
     [super viewDidLoad];
     self.awardCreation = NO;
     self.navView.backgroundColor = [UIColor BTPrimaryColor];
+    self.titleLabel.textColor = [UIColor BTTextPrimaryColor];
+    [self.cancelButton setTitleColor:[UIColor BTTextPrimaryColor] forState:UIControlStateNormal];
+    [self.createButton setTitleColor:[UIColor BTTextPrimaryColor] forState:UIControlStateNormal];
+    self.tableView.backgroundColor = [UIColor BTTableViewBackgroundColor];
+    self.tableView.separatorColor = [UIColor BTTableViewSeparatorColor];
     self.tableView.contentInset = UIEdgeInsetsMake(72, 0, 0, 0);
     self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(72, 0, 0, 0);
     [self loadForm];
@@ -36,7 +43,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.navLabel.text = (self.type) ? @"Edit Exercise" : @"New Exercise";
+    self.titleLabel.text = (self.type) ? @"Edit Exercise" : @"New Exercise";
     self.tableView.contentOffset = CGPointMake(0, 0);
 }
 
@@ -83,8 +90,10 @@
     section.multivaluedTag = @"variations";
     section.multivaluedAddButton.title = @"Add a variation";
     row = [XLFormRowDescriptor formRowDescriptorWithTag:nil rowType:XLFormRowDescriptorTypeText title:nil];
-    [row.cellConfig setObject:[UIColor BTBlackColor] forKey:@"textLabel.textColor"];
-    [row.cellConfig setObject:@"Variation name" forKey:@"textField.placeholder"];
+    row.cellConfig[@"textField.placeholder"] = @"Variation name";
+    row.cellConfig[@"backgroundColor"] = [UIColor colorWithWhite:1 alpha:.1];
+    row.cellConfig[@"textLabel.textColor"] = [UIColor BTBlackColor];
+    row.cellConfig[@"tintColor"] = [UIColor BTSecondaryColor];
     section.multivaluedRowTemplate = row;
     if (self.type) {
         for (NSString *varitaion in [NSKeyedUnarchiver unarchiveObjectWithData:self.type.iterations]) {
@@ -105,9 +114,11 @@
     
     for (XLFormSectionDescriptor *section in form.formSections) {
         for (XLFormRowDescriptor *row in section.formRows) {
-            [row.cellConfig setObject:[UIColor BTBlackColor] forKey:@"textLabel.textColor"];
-            [row.cellConfig setObject:[UIColor BTSecondaryColor] forKey:@"tintColor"];
-    }   }
+            row.cellConfig[@"backgroundColor"] = [UIColor colorWithWhite:1 alpha:.1];
+            row.cellConfig[@"textLabel.textColor"] = [UIColor BTBlackColor];
+            row.cellConfig[@"tintColor"] = [UIColor BTSecondaryColor];
+        }
+    }
     self.form = form;
 }
 
@@ -178,7 +189,7 @@
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
+    return [UIColor statusBarStyle];
 }
 
 @end

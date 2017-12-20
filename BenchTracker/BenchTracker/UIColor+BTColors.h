@@ -18,6 +18,20 @@
 
 + (UIColor *)BTTertiaryColor;
 
+//TEXT COLORS
+
++ (UIColor *)BTTextPrimaryColor;
+
++ (UIColor *)BTButtonTextPrimaryColor;
+
++ (UIColor *)BTButtonTextSecondaryColor;
+
+//TV COLORS
+
++ (UIColor *)BTTableViewBackgroundColor;
+
++ (UIColor *)BTTableViewSeparatorColor;
+
 //BUTTON COLORS
 
 + (UIColor *)BTButtonPrimaryColor;
@@ -37,5 +51,11 @@
 //VIBRANT COLORS
 
 + (NSArray <UIColor *> *)BTVibrantColors;
+
+//STATUS BAR
+
++ (UIStatusBarStyle)statusBarStyle;
+
++ (UIKeyboardAppearance)keyboardAppearance;
 
 @end

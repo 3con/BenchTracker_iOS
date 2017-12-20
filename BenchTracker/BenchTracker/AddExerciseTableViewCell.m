@@ -59,7 +59,7 @@
         self.cellSelected = YES;
     }
     else {
-        self.backgroundColor = [UIColor whiteColor];
+        self.backgroundColor = [UIColor BTTableViewBackgroundColor];
         self.nameLabel.textColor = [UIColor BTBlackColor];
         self.iterationLabel.backgroundColor = [self.color colorWithAlphaComponent:1];
         self.iterationLabel.textColor = [UIColor whiteColor];

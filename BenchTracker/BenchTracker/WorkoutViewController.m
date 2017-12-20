@@ -20,6 +20,7 @@
 
 @property (weak, nonatomic) IBOutlet UIView *navView;
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
+@property (weak, nonatomic) IBOutlet UIButton *settingsButton;
 
 @property (weak, nonatomic) IBOutlet UIButton *finishWorkoutButton;
 @property (weak, nonatomic) IBOutlet UIButton *deleteWorkoutButton;
@@ -49,8 +50,15 @@
     [super viewDidLoad];
     self.navView.backgroundColor = [UIColor BTPrimaryColor];
     self.finishWorkoutButton.backgroundColor = [UIColor BTSecondaryColor];
+    [self.finishWorkoutButton setTitleColor: [UIColor BTButtonTextSecondaryColor] forState:UIControlStateNormal];
     self.addExerciseButton.backgroundColor = [UIColor BTButtonPrimaryColor];
+    [self.addExerciseButton setTitleColor: [UIColor BTButtonTextPrimaryColor] forState:UIControlStateNormal];
+    [self.settingsButton setImage:[[UIImage imageNamed:@"More"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]
+                         forState:UIControlStateNormal];
+    self.settingsButton.tintColor = [UIColor BTTextPrimaryColor];
     self.deleteWorkoutButton.backgroundColor = [UIColor BTRedColor];
+    self.tableView.backgroundColor = [UIColor BTTableViewBackgroundColor];
+    self.tableView.separatorColor = [UIColor BTTableViewSeparatorColor];
     self.paused = NO;
     self.pauseView.alpha = 0;
     self.pauseView.userInteractionEnabled = NO;
@@ -78,7 +86,7 @@
     [BTUser removeWorkoutFromTotals:self.workout];
     self.settings.activeWorkoutBeforeDuration = self.workout.duration;
     self.nameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:self.workout.name
-        attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor], NSFontAttributeName:[UIFont italicSystemFontOfSize:22]}];
+        attributes:@{NSForegroundColorAttributeName:[UIColor BTTextPrimaryColor], NSFontAttributeName:[UIFont italicSystemFontOfSize:22]}];
     self.tempSupersets = [NSKeyedUnarchiver unarchiveObjectWithData:self.workout.supersets];
     [[NSNotificationCenter defaultCenter] addObserver: self
                                              selector: @selector(handleEnteredBackground:)
@@ -634,7 +642,7 @@
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
+    return [UIColor statusBarStyle];
 }
 
 @end

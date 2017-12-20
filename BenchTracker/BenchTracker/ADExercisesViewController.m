@@ -33,6 +33,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.searchString = @"";
+    self.tableView.backgroundColor = [UIColor BTTableViewBackgroundColor];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.separatorColor = [UIColor clearColor];
@@ -56,6 +57,7 @@
     self.searchBar.delegate = self;
     self.searchBar.barTintColor = self.color;
     self.searchBar.tintColor = [UIColor whiteColor];
+    self.searchBar.keyboardAppearance = [UIColor keyboardAppearance];
     self.searchBar.layer.borderWidth = 1;
     self.searchBar.layer.borderColor = self.searchBar.barTintColor.CGColor;
     self.tableView.tableHeaderView = self.searchBar;

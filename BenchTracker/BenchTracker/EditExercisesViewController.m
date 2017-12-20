@@ -15,6 +15,9 @@
 @interface EditExercisesViewController ()
 
 @property (weak, nonatomic) IBOutlet UIView *navBar;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UIButton *doneButton;
+@property (weak, nonatomic) IBOutlet UIButton *createButton;
 
 @property (nonatomic) ZFModalTransitionAnimator *animator;
 
@@ -35,7 +38,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navBar.backgroundColor = [UIColor BTPrimaryColor];
+    self.titleLabel.textColor = [UIColor BTTextPrimaryColor];
+    [self.doneButton setTitleColor:[UIColor BTTextPrimaryColor] forState:UIControlStateNormal];
+    [self.createButton setTitleColor:[UIColor BTTextPrimaryColor] forState:UIControlStateNormal];
     self.searchString = @"";
+    self.tableView.backgroundColor = [UIColor BTTableViewBackgroundColor];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.separatorColor = [UIColor clearColor];
@@ -56,6 +63,7 @@
     self.searchBar.delegate = self;
     self.searchBar.barTintColor = [UIColor BTPrimaryColor];
     self.searchBar.tintColor = [UIColor whiteColor];
+    self.searchBar.keyboardAppearance = [UIColor keyboardAppearance];
     self.searchBar.layer.borderWidth = 1;
     self.searchBar.layer.borderColor = self.searchBar.barTintColor.CGColor;
     self.tableView.tableHeaderView = self.searchBar;
@@ -267,7 +275,7 @@
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
+    return [UIColor statusBarStyle];
 }
 
 @end

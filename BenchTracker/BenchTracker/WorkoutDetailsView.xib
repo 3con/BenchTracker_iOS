@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -86,9 +87,12 @@
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="label1" destination="NLt-mu-3f6" id="jRA-YG-8sf"/>
-                <outlet property="label2" destination="ddQ-ZV-ayq" id="ns4-P3-Upn"/>
-                <outlet property="label3" destination="Qc5-eJ-KUH" id="t7m-bx-Mc0"/>
+                <outletCollection property="images" destination="n80-03-Yb8" id="hrY-Mo-KLt"/>
+                <outletCollection property="labels" destination="NLt-mu-3f6" id="wbb-Cg-NMU"/>
+                <outletCollection property="images" destination="HXF-XO-VJV" id="PAS-mT-FD9"/>
+                <outletCollection property="images" destination="rO1-dx-nk7" id="yBq-8B-Ddr"/>
+                <outletCollection property="labels" destination="ddQ-ZV-ayq" id="ieV-t4-UU6"/>
+                <outletCollection property="labels" destination="Qc5-eJ-KUH" id="f4c-6W-fPY"/>
             </connections>
             <point key="canvasLocation" x="91" y="42"/>
         </view>

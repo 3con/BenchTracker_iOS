@@ -18,6 +18,8 @@
 @interface SettingsViewController ()
 
 @property (weak, nonatomic) IBOutlet UIView *navView;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UIButton *backButton;
 
 @property (nonatomic) ZFModalTransitionAnimator *animator;
 
@@ -30,7 +32,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navView.backgroundColor = [UIColor BTPrimaryColor];
+    self.titleLabel.textColor = [UIColor BTTextPrimaryColor];
+    [self.backButton setTitleColor:[UIColor BTTextPrimaryColor] forState:UIControlStateNormal];
     self.settings = [BTSettings sharedInstance];
+    self.tableView.backgroundColor = [UIColor BTTableViewBackgroundColor];
+    self.tableView.separatorColor = [UIColor BTTableViewSeparatorColor];
     self.tableView.contentInset = UIEdgeInsetsMake(72, 0, 0, 0);
     self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(72, 0, 0, 0);
     [self loadForm];
@@ -105,11 +111,9 @@
     [form addFormSection:section];
     //Import
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"import" rowType:XLFormRowDescriptorTypeButton title:@"Import data"];
-    [row.cellConfig setObject:@(NSTextAlignmentNatural) forKey:@"textLabel.textAlignment"];
     [section addFormRow:row];
     //Export
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"export" rowType:XLFormRowDescriptorTypeButton title:@"Export all data"];
-    [row.cellConfig setObject:@(NSTextAlignmentNatural) forKey:@"textLabel.textAlignment"];
     [section addFormRow:row];
     
     // Section 8: Share, Rate
@@ -117,11 +121,9 @@
     [form addFormSection:section];
     //Share
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"share" rowType:XLFormRowDescriptorTypeButton title:@"Share Bench Tracker"];
-    [row.cellConfig setObject:@(NSTextAlignmentNatural) forKey:@"textLabel.textAlignment"];
     [section addFormRow:row];
     //Rate
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"rate" rowType:XLFormRowDescriptorTypeButton title:@"Rate Bench Tracker"];
-    [row.cellConfig setObject:@(NSTextAlignmentNatural) forKey:@"textLabel.textAlignment"];
     [section addFormRow:row];
     
     // Section 9: Reset data
@@ -133,7 +135,9 @@
     
     for (XLFormSectionDescriptor *section in form.formSections) {
         for (XLFormRowDescriptor *row in section.formRows) {
-            [row.cellConfig setObject:[UIColor BTBlackColor] forKey:@"textLabel.textColor"];
+            row.cellConfig[@"backgroundColor"] = [[UIColor whiteColor] colorWithAlphaComponent:.1];
+            row.cellConfig[@"textLabel.textColor"] = [UIColor BTBlackColor];
+            row.cellConfig[@"textLabel.textAlignment"] = @(NSTextAlignmentNatural);
         }
     }
     self.form = form;
@@ -271,7 +275,7 @@
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
+    return [UIColor statusBarStyle];
 }
 
 @end

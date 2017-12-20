@@ -21,6 +21,7 @@
 @interface MainViewController ()
 
 @property (weak, nonatomic) IBOutlet UIView *navView;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @property (weak, nonatomic) IBOutlet UIButton *leftBarButton;
 @property (weak, nonatomic) IBOutlet UIButton *rightBarButton;
@@ -58,9 +59,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navView.backgroundColor = [UIColor BTPrimaryColor];
+    self.titleLabel.textColor = [UIColor BTTextPrimaryColor];
     self.blankWorkoutButton.backgroundColor = [UIColor BTButtonPrimaryColor];
+    [self.blankWorkoutButton setTitleColor: [UIColor BTButtonTextPrimaryColor] forState:UIControlStateNormal];
     self.scanWorkoutButton.backgroundColor = [UIColor BTButtonSecondaryColor];
+    [self.scanWorkoutButton setTitleColor: [UIColor BTButtonTextSecondaryColor] forState:UIControlStateNormal];
     self.templateButton.backgroundColor = [UIColor BTButtonSecondaryColor];
+    [self.templateButton setTitleColor: [UIColor BTButtonTextSecondaryColor] forState:UIControlStateNormal];
+    self.rightBarButton.tintColor = [UIColor BTTextPrimaryColor];
+    [self.leftBarButton setImage:[[UIImage imageNamed:@"Chart"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]
+                        forState:UIControlStateNormal];
+    self.leftBarButton.tintColor = [UIColor BTTextPrimaryColor];
+    self.listTableView.backgroundColor = [UIColor BTTableViewBackgroundColor];
+    self.listTableView.separatorColor = [UIColor BTTableViewSeparatorColor];
     self.context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
     self.user = [BTUser sharedInstance];
     CSToastStyle *style = [[CSToastStyle alloc] initWithDefaultStyle];
@@ -88,7 +99,7 @@
         button.layer.cornerRadius = 12;
         button.clipsToBounds = YES;
         button.layer.borderWidth = 0;
-        button.layer.borderColor = [UIColor whiteColor].CGColor;
+        button.layer.borderColor = [UIColor BTTableViewBackgroundColor].CGColor;
     }
     self.rightBarButton.layer.cornerRadius = 12;
     self.settings = [BTSettings sharedInstance];
@@ -123,12 +134,12 @@
     gradientLayer.frame = self.gradientView.bounds;
     gradientLayer.startPoint = CGPointMake(0.5,0.0);
     gradientLayer.endPoint = CGPointMake(0.5,1.0);
-    gradientLayer.locations = @[@(0.05),
-                                @(0.70),
-                                @(1.00)];
-    gradientLayer.colors =    @[(id)[UIColor colorWithWhite:1.0 alpha:0.0].CGColor,
-                                (id)[UIColor colorWithWhite:1.0 alpha:0.5].CGColor,
-                                (id)[UIColor colorWithWhite:1.0 alpha:1.0].CGColor];
+    gradientLayer.locations = @[@.05,
+                                @.70,
+                                @1.0];
+    gradientLayer.colors =    @[(id)[UIColor clearColor].CGColor,
+                                (id)[[UIColor BTTableViewBackgroundColor] colorWithAlphaComponent:.5].CGColor,
+                                (id)[UIColor BTTableViewBackgroundColor].CGColor];
     [self.gradientView.layer insertSublayer:gradientLayer atIndex:0];
 }
 
@@ -200,6 +211,7 @@
 }
 
 - (void)setUpCalendarView {
+    self.calendarView.backgroundColor = [UIColor BTTableViewBackgroundColor];
     self.calendarView.firstWeekday = (self.settings.startWeekOnMonday) ? 2 : 1;
     self.calendarView.delegate = self;
     self.calendarView.dataSource = self;
@@ -208,7 +220,9 @@
     self.calendarView.calendarWeekdayView.backgroundColor = [UIColor BTPrimaryColor];
     self.calendarView.calendarHeaderView.backgroundColor = [UIColor BTPrimaryColor];
     self.calendarView.appearance.headerTitleFont = [UIFont systemFontOfSize:18 weight:UIFontWeightSemibold];
+    self.calendarView.appearance.headerTitleColor = [UIColor BTTextPrimaryColor];
     self.calendarView.appearance.weekdayFont = [UIFont systemFontOfSize:15 weight:UIFontWeightSemibold];
+    self.calendarView.appearance.weekdayTextColor = [UIColor BTTextPrimaryColor];
     [self.calendarView registerClass:[BTCalendarCell class] forCellReuseIdentifier:@"cell"];
 }
 
@@ -275,12 +289,10 @@
     self.segmentedControl.backgroundColor = [UIColor BTSecondaryColor];
     self.segmentedControl.selectionIndicatorBoxOpacity = 1.0;
     self.segmentedControl.selectionIndicatorBoxColor = [UIColor BTTertiaryColor];
-    self.segmentedControl.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-                                                 [UIColor whiteColor], NSForegroundColorAttributeName,
-                                                 [UIFont systemFontOfSize:15 weight:UIFontWeightMedium], NSFontAttributeName, nil];
-    self.segmentedControl.selectedTitleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-                                                         [UIColor whiteColor], NSForegroundColorAttributeName,
-                                                         [UIFont systemFontOfSize:15 weight:UIFontWeightMedium], NSFontAttributeName, nil];
+    self.segmentedControl.titleTextAttributes         = @{NSForegroundColorAttributeName: [UIColor BTTextPrimaryColor],
+                                                          NSFontAttributeName: [UIFont systemFontOfSize:15 weight:UIFontWeightMedium]};
+    self.segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName: [UIColor BTTextPrimaryColor],
+                                                          NSFontAttributeName: [UIFont systemFontOfSize:15 weight:UIFontWeightMedium]};
     [self.segmentedControl addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
     [self.segmentedControlContainerView addSubview:self.segmentedControl];
 }
@@ -297,7 +309,8 @@
         self.rightBarButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
         self.rightBarButton.titleLabel.font = [UIFont systemFontOfSize:17 weight:UIFontWeightMedium];
         [self.rightBarButton setTitle:@"" forState:UIControlStateNormal];
-        [self.rightBarButton setImage:[UIImage imageNamed:@"User"] forState:UIControlStateNormal];
+        [self.rightBarButton setImage:[[UIImage imageNamed:@"User"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]
+                             forState:UIControlStateNormal];
         self.calendarView.userInteractionEnabled = NO;
         self.weekdayContainerView.userInteractionEnabled = NO;
         [UIView animateWithDuration:.2 animations:^{
@@ -706,7 +719,7 @@
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
+    return [UIColor statusBarStyle];
 }
 
 @end

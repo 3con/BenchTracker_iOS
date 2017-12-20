@@ -49,20 +49,27 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.contentView.backgroundColor = [UIColor BTPrimaryColor];
+    self.nameLabel.textColor = [UIColor BTTextPrimaryColor];
+    [self.editButton setImage:[self.editButton.imageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]  forState:UIControlStateNormal];
+    self.editButton.tintColor = [UIColor BTTextPrimaryColor];
+    self.categoryLabel.textColor = [UIColor BTTextPrimaryColor];
     self.textField.backgroundColor = [UIColor BTSecondaryColor];
+    self.textField.textColor = [UIColor BTTextPrimaryColor];
     self.leftTextField.backgroundColor = [UIColor BTSecondaryColor];
+    self.leftTextField.textColor = [UIColor BTTextPrimaryColor];
     self.centerTextField.backgroundColor = [UIColor BTSecondaryColor];
+    self.centerTextField.textColor = [UIColor BTTextPrimaryColor];
     self.rightTextField.backgroundColor = [UIColor BTSecondaryColor];
+    self.rightTextField.textColor = [UIColor BTTextPrimaryColor];
     self.deleteButton.backgroundColor = [UIColor BTRedColor];
     for (UIButton *button in @[self.tableShowButton, self.previousExerciseButton]) {
         button.backgroundColor = [UIColor BTSecondaryColor];
         button.layer.cornerRadius = 8;
         button.clipsToBounds = YES;
+        [button setImage:[[self translucentImageFromImage:button.imageView.image withAlpha:.8]
+                          imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
+        button.tintColor = [UIColor BTTextPrimaryColor];
     }
-    [self.tableShowButton setImage:[self translucentImageFromImage:[UIImage imageNamed:@"Table"] withAlpha:.8]
-                          forState:UIControlStateNormal];
-    [self.previousExerciseButton setImage:[self translucentImageFromImage:[UIImage imageNamed:@"Chart"] withAlpha:.8]
-                                 forState:UIControlStateNormal];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillShow:)
                                                  name:UIKeyboardWillShowNotification
@@ -294,7 +301,7 @@
     if (!label){
         label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 150, 30)];
         label.font = [UIFont systemFontOfSize:17 weight:UIFontWeightRegular];
-        label.textColor = [UIColor whiteColor];
+        label.textColor = [UIColor BTTextPrimaryColor];
         label.textAlignment = NSTextAlignmentCenter;
     }
     if (component == 1) { //weight

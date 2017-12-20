@@ -29,6 +29,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    self.backgroundColor = [UIColor BTTableViewBackgroundColor];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.containerView.layer.cornerRadius = 25;
     self.containerView.clipsToBounds = YES;

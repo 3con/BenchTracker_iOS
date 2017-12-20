@@ -32,6 +32,10 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    self.backgroundColor = [UIColor BTTableViewBackgroundColor];
+    self.weekdayTitleLabel.textColor = [UIColor BTTextPrimaryColor];
+    self.weekdaySubtitleLabel.textColor = [UIColor BTTextPrimaryColor];
+    self.nameLabel.textColor = [UIColor BTBlackColor];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.stackedView.layer.cornerRadius = 6;
     self.stackedView.clipsToBounds = YES;

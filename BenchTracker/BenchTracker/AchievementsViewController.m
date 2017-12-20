@@ -31,6 +31,7 @@
     [super viewDidLoad];
     [BTAchievement resetUnreadAcheivements];
     self.navView.backgroundColor = [UIColor BTVibrantColors][0];
+    self.collectionView.backgroundColor = [UIColor BTTableViewBackgroundColor];
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     self.collectionView.showsHorizontalScrollIndicator = NO;
@@ -184,7 +185,7 @@
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
+    return [UIColor statusBarStyle];
 }
 
 @end

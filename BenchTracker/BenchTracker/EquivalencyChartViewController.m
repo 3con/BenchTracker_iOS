@@ -16,12 +16,15 @@
 
 @interface EquivalencyChartViewController ()
 @property (weak, nonatomic) IBOutlet UIView *navView;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UIButton *doneButton;
 
 @property (nonatomic) NSManagedObjectContext *context;
 
 @property (weak, nonatomic) IBOutlet SetCollectionView *collectionView;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *topScrollView;
+@property (weak, nonatomic) IBOutlet UILabel *repsLabel;
 @property (weak, nonatomic) IBOutlet UITableView *sideTableView;
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
 
@@ -36,7 +39,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navView.backgroundColor = [UIColor BTSecondaryColor];
+    self.mainTableView.backgroundColor = [UIColor BTTableViewBackgroundColor];
+    self.titleLabel.textColor = [UIColor BTTextPrimaryColor];
+    [self.doneButton setTitleColor:[UIColor BTTextPrimaryColor] forState:UIControlStateNormal];
     self.view.backgroundColor = [UIColor BTPrimaryColor];
+    self.repsLabel.textColor = [UIColor BTTextPrimaryColor];
     self.context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
     self.collectionView.display1RM = YES;
     self.collectionView.setDataSource = self;
@@ -68,7 +75,7 @@
     for (int i = 0; i < SIZE_WIDTH-1; i++) {
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(50*i, 0, 50, 35)];
         label.backgroundColor = [UIColor BTPrimaryColor];
-        label.textColor = [UIColor whiteColor];
+        label.textColor = [UIColor BTTextPrimaryColor];
         label.textAlignment = NSTextAlignmentCenter;
         label.font = [UIFont systemFontOfSize:15 weight:UIFontWeightBold];
         label.text = [NSString stringWithFormat:@"%d",i+2];
@@ -149,7 +156,7 @@
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
+    return [UIColor statusBarStyle];
 }
 
 @end

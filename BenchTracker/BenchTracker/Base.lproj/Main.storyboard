@@ -69,7 +69,9 @@
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
+                        <outlet property="backButton" destination="6qd-uE-Whm" id="N4r-Hv-UP1"/>
                         <outlet property="navView" destination="BKf-EK-lTX" id="vj9-Fl-E8Z"/>
+                        <outlet property="titleLabel" destination="7ML-2s-rPl" id="z6x-i5-0Qk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tme-eh-CID" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -147,8 +149,10 @@
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
+                        <outlet property="backButton" destination="uWQ-em-S82" id="opk-Sp-EgA"/>
                         <outlet property="collectionView" destination="eUA-P5-CbN" id="EDc-I3-oDX"/>
                         <outlet property="navView" destination="u0q-f3-L3b" id="ngo-9D-gv7"/>
+                        <outlet property="titleLabel" destination="Qsx-Sk-HQ8" id="1ij-pj-UVI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="auv-05-gfD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -418,6 +422,7 @@
                         <outlet property="segmentedControl" destination="2Oe-gD-jXD" id="SHV-tO-87F"/>
                         <outlet property="segmentedControlContainerView" destination="2Oe-gD-jXD" id="bPy-Tq-Zt0"/>
                         <outlet property="templateButton" destination="jO5-Az-ZYq" id="WFJ-z5-STg"/>
+                        <outlet property="titleLabel" destination="Nca-iP-Olh" id="hfY-J5-3JD"/>
                         <outlet property="weekdayContainerView" destination="Kjz-wY-iG2" id="AoP-ls-kXd"/>
                     </connections>
                 </viewController>
@@ -597,6 +602,7 @@
                         <outlet property="nameTextField" destination="W1s-v4-xf3" id="FsI-3M-6Jk"/>
                         <outlet property="navView" destination="D7n-as-euy" id="hGf-YU-aLy"/>
                         <outlet property="pauseView" destination="bCM-CD-4b0" id="mlh-kZ-QOF"/>
+                        <outlet property="settingsButton" destination="1J2-jh-rSG" id="xRX-GT-GuU"/>
                         <outlet property="tableView" destination="nkC-SS-85L" id="tAV-Xq-K7X"/>
                     </connections>
                 </viewController>
@@ -794,9 +800,12 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="collectionView" destination="RB3-s6-rJm" id="HVH-36-Pua"/>
+                        <outlet property="doneButton" destination="sdC-M5-cme" id="aXz-s8-fL9"/>
                         <outlet property="mainTableView" destination="nee-iG-Tog" id="BEd-FR-g9d"/>
                         <outlet property="navView" destination="mh3-Ka-nD8" id="S4S-8G-HTC"/>
+                        <outlet property="repsLabel" destination="SBO-3h-zIB" id="4fU-ck-NMM"/>
                         <outlet property="sideTableView" destination="64F-fh-kgJ" id="VEM-Ih-d8h"/>
+                        <outlet property="titleLabel" destination="Feu-9e-VHv" id="zhW-8u-lyy"/>
                         <outlet property="topScrollView" destination="dKO-Ae-Pa9" id="uqc-qY-35r"/>
                     </connections>
                 </viewController>
@@ -889,8 +898,11 @@
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
+                        <outlet property="createButton" destination="lHr-LD-bYj" id="llF-oi-yhm"/>
+                        <outlet property="doneButton" destination="lId-e1-jKx" id="zDo-RT-Wkc"/>
                         <outlet property="navBar" destination="fJx-NX-g40" id="fYt-bd-4ss"/>
                         <outlet property="tableView" destination="XUT-fa-UdE" id="cBy-9Z-0eZ"/>
+                        <outlet property="titleLabel" destination="gDt-4I-E9o" id="cWb-ob-bKq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dvp-bi-hU7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -969,8 +981,10 @@
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
-                        <outlet property="navLabel" destination="oQJ-af-gST" id="gFR-Dt-DkG"/>
+                        <outlet property="cancelButton" destination="BQm-T7-8Vs" id="8mY-gE-xOm"/>
+                        <outlet property="createButton" destination="eMg-zl-wCl" id="NIi-Wc-5Kf"/>
                         <outlet property="navView" destination="GQy-IM-r96" id="T2m-3J-kgX"/>
+                        <outlet property="titleLabel" destination="oQJ-af-gST" id="g8H-mV-eCG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oc2-fh-Oiq" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1027,6 +1041,7 @@
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
+                        <outlet property="cancelButton" destination="asc-tP-7G5" id="1uA-b6-7Lf"/>
                         <outlet property="navView" destination="vJc-7E-cZc" id="Ssg-p5-sFq"/>
                         <outlet property="tableView" destination="CHa-DT-5jj" id="VK7-qi-tEx"/>
                     </connections>
@@ -1463,7 +1478,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="G3j-9h-v0i" secondAttribute="bottom" constant="-15" id="J7q-q3-gTn"/>
                                     <constraint firstItem="G3j-9h-v0i" firstAttribute="centerX" secondItem="nmC-hu-RUm" secondAttribute="centerX" id="QKO-3I-f5R"/>
@@ -1488,8 +1503,10 @@
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
+                        <outlet property="backButton" destination="Hnn-r0-dtL" id="8Pm-c2-GBC"/>
                         <outlet property="containerView" destination="nmC-hu-RUm" id="jzV-7B-Msg"/>
                         <outlet property="navView" destination="pku-gP-QSv" id="YfF-83-MUl"/>
+                        <outlet property="settingsButton" destination="52j-al-0Ob" id="ebE-30-aTB"/>
                         <outlet property="userContainerView" destination="Iae-cz-LaF" id="RCd-5a-zMP"/>
                     </connections>
                 </viewController>
@@ -1645,8 +1662,10 @@
                         <outlet property="cancelButton" destination="Rhg-8M-RWr" id="1FC-4n-1dy"/>
                         <outlet property="clearButton" destination="5oh-a6-cZW" id="N0W-GU-Lm3"/>
                         <outlet property="containerView" destination="VSj-Bx-meF" id="KZu-gf-wpa"/>
+                        <outlet property="editButton" destination="2SH-aF-xWb" id="NSM-Df-7GR"/>
                         <outlet property="supersetButton" destination="Fkn-7j-kjl" id="Kcd-qE-m4h"/>
                         <outlet property="tableView" destination="bFD-A5-3Xk" id="O59-YV-pMp"/>
+                        <outlet property="titleLabel" destination="25L-X6-4fD" id="kP7-NG-rqF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r8A-T7-XnJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
