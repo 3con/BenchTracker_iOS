@@ -22,6 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.backgroundView.backgroundColor = [UIColor BTModalViewBackgroundColor];
     self.scrollView.delegate = self;
     self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 90, 0);
     self.doneButton.backgroundColor = [UIColor BTButtonPrimaryColor];

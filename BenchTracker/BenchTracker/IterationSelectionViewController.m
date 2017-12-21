@@ -36,6 +36,7 @@
                                                                  multiplier:1
                                                                    constant:45+50*(self.tempIerations.count+1)];
     [self.view addConstraint:constraint];
+    self.backgroundView.backgroundColor = [UIColor BTModalViewBackgroundColor];
     self.tableView.backgroundColor = [UIColor BTTableViewBackgroundColor];
     self.tableView.separatorColor = [UIColor BTTableViewSeparatorColor];
     self.tableView.delegate = self;

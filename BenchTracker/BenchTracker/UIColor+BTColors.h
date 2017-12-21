@@ -54,6 +54,8 @@
 
 + (UIColor *)BTLightGrayColor;
 
++ (UIColor *)BTModalViewBackgroundColor;
+
 //VIBRANT COLORS
 
 + (NSArray <UIColor *> *)BTVibrantColors;

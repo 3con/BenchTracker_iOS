@@ -23,6 +23,8 @@
 - (void)setIsSelf:(BOOL)isSelf {
     self.titleLabel.font = [UIFont systemFontOfSize:self.titleLabel.font.pointSize weight:(isSelf) ? UIFontWeightBold : UIFontWeightMedium];
     self.titleLabel.textColor = (isSelf) ? [UIColor BTBlackColor] : [UIColor BTGrayColor];
+    self.rankLabel.textColor = (isSelf) ? [UIColor BTBlackColor] : [UIColor BTGrayColor];
+    self.statLabel.textColor = (isSelf) ? [UIColor BTBlackColor] : [UIColor BTGrayColor];
     _isSelf = isSelf;
 }
 

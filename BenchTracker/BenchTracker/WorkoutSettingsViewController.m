@@ -50,6 +50,7 @@
 
 - (void)updateInterface {
     self.contentView.backgroundColor = [UIColor BTPrimaryColor];
+    self.backgroundView.backgroundColor = [UIColor BTModalViewBackgroundColor];
     for (UIButton *button in @[self.qrButton, self.printButton, self.templateButton, self.darkModeButton]) {
         button.layer.cornerRadius = 12;
         button.clipsToBounds = YES;
@@ -164,7 +165,7 @@
                                                                        preferredStyle:UIAlertControllerStyleAlert];
     [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.placeholder = [NSString stringWithFormat:@"%lld mins", self.workout.duration/60];
-        textField.textColor = [UIColor BTBlackColor];
+        textField.textColor = [UIColor darkGrayColor];
         textField.font = [UIFont systemFontOfSize:15 weight:UIFontWeightRegular];
         textField.keyboardType = UIKeyboardTypeNumberPad;
     }];

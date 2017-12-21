@@ -29,7 +29,7 @@
 + (UIColor *)BTPrimaryColor {             //rgb(20,43,132)    //indigo 800 (r-20, g-10)
     switch ([self colorScheme]) {
         case 0: return [UIColor colorWithRed:20/255.0 green:53/255.0 blue:132/255.0 alpha:1];
-        case 1: return [UIColor colorWithRed:35/255.0 green:52/255.0 blue:70/255.0 alpha:1];
+        case 1: return [UIColor colorWithRed:36/255.0 green:51/255.0 blue:72/255.0 alpha:1];
         default: return nil;
     }
 }
@@ -81,7 +81,7 @@
 + (UIColor *)BTTableViewBackgroundColor { //rgb(255,255,255)   //white
     switch ([self colorScheme]) {
         case 0: return [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1];
-        case 1: return [UIColor colorWithRed:27/255.0 green:41/255.0 blue:54/255.0 alpha:1];
+        case 1: return [UIColor colorWithRed:26/255.0 green:39/255.0 blue:55/255.0 alpha:1];
         default: return nil;
     }
 }
@@ -89,7 +89,7 @@
 + (UIColor *)BTGroupTableViewBackgroundColor {
     switch ([self colorScheme]) {
         case 0: return [UIColor colorWithRed:235/255.0 green:235/255.0 blue:241/255.0 alpha:1];
-        case 1: return [UIColor colorWithRed:27/255.0 green:41/255.0 blue:54/255.0 alpha:1];
+        case 1: return [UIColor colorWithRed:26/255.0 green:39/255.0 blue:55/255.0 alpha:1];
         default: return nil;
     }
 }
@@ -97,7 +97,7 @@
 + (UIColor *)BTTableViewSeparatorColor {  //rgb(188, 187, 193) //light gray - default
     switch ([self colorScheme]) {
         case 0: return [UIColor colorWithRed:188/255.0 green:187/255.0 blue:193/255.0 alpha:1];
-        case 1: return [UIColor colorWithRed:52/255.0 green:66/255.0 blue:79/255.0 alpha:1];
+        case 1: return [UIColor colorWithRed:0/255.0 green:4/255.0 blue:8/255.0 alpha:1];
         default: return nil;
     }
 }
@@ -107,7 +107,7 @@
 + (UIColor *)BTButtonPrimaryColor {       //rgb(251,192,45)   //yellow 700
     switch ([self colorScheme]) {
         case 0: return [UIColor colorWithRed:251/255.0 green:192/255.0 blue:45/255.0 alpha:1];
-        case 1: return [UIColor colorWithRed:251/255.0 green:192/255.0 blue:45/255.0 alpha:1];
+        case 1: return [UIColor colorWithRed:231/255.0 green:176/255.0 blue:38/255.0 alpha:1];
         default: return nil;
     }
 }
@@ -115,7 +115,7 @@
 + (UIColor *)BTButtonSecondaryColor {     //rgb(3,155,229)    //light blue 600
     switch ([self colorScheme]) {
         case 0: return [UIColor colorWithRed:3/255.0 green:155/255.0 blue:229/255.0 alpha:1];
-        case 1: return [UIColor colorWithRed:3/255.0 green:155/255.0 blue:229/255.0 alpha:1];
+        case 1: return [UIColor colorWithRed:3/255.0 green:141/255.0 blue:207/255.0 alpha:1];
         default: return nil;
     }
 }
@@ -123,7 +123,7 @@
 + (UIColor *)BTRedColor {                 //rgb(229,57,53)    //red 600
     switch ([self colorScheme]) {
         case 0: return [UIColor colorWithRed:229/255.0 green:57/255.0 blue:53/255.0 alpha:1];
-        case 1: return [UIColor colorWithRed:229/255.0 green:57/255.0 blue:53/255.0 alpha:1];
+        case 1: return [UIColor colorWithRed:194/255.0 green:49/255.0 blue:46/255.0 alpha:1];
         default: return nil;
     }
 }
@@ -141,7 +141,7 @@
 + (UIColor *)BTGrayColor {                //rgb(97,97,97)     //gray 700
     switch ([self colorScheme]) {
         case 0: return [UIColor colorWithRed:97/255.0 green:97/255.0 blue:97/255.0 alpha:1];
-        case 1: return [UIColor colorWithRed:200/255.0 green:200/255.0 blue:200/255.0 alpha:1];
+        case 1: return [UIColor colorWithRed:136/255.0 green:154/255.0 blue:168/255.0 alpha:1];
         default: return nil;
     }
 }
@@ -149,7 +149,15 @@
 + (UIColor *)BTLightGrayColor {           //rgb(158,158,158)  //gray 500
     switch ([self colorScheme]) {
         case 0: return [UIColor colorWithRed:158/255.0 green:158/255.0 blue:158/255.0 alpha:1];
-        case 1: return [UIColor colorWithRed:158/255.0 green:158/255.0 blue:158/255.0 alpha:1];
+        case 1: return [UIColor colorWithRed:136/255.0 green:154/255.0 blue:168/255.0 alpha:1];
+        default: return nil;
+    }
+}
+
++ (UIColor *)BTModalViewBackgroundColor { //Note: Only alpha compenent is used for exerciseVC, addExerciseVC
+    switch ([self colorScheme]) {
+        case 0: return [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:.6];
+        case 1: return [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:.4];
         default: return nil;
     }
 }

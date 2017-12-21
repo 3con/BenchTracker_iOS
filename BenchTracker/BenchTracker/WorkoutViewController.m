@@ -603,7 +603,7 @@
     self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:addVC];
     self.animator.bounces = NO;
     self.animator.dragable = NO;
-    self.animator.behindViewAlpha = 0.4;
+    self.animator.behindViewAlpha = 1-CGColorGetComponents([UIColor BTModalViewBackgroundColor].CGColor)[3];
     self.animator.behindViewScale = 1.0;
     self.animator.transitionDuration = 0.75;
     self.animator.direction = ZFModalTransitonDirectionBottom;
@@ -620,7 +620,7 @@
     self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:eVC];
     self.animator.bounces = NO;
     self.animator.dragable = NO;
-    self.animator.behindViewAlpha = 0.4;
+    self.animator.behindViewAlpha = 1-CGColorGetComponents([UIColor BTModalViewBackgroundColor].CGColor)[3];
     self.animator.behindViewScale = 1.0;
     self.animator.transitionDuration = 0.75;
     self.animator.direction = ZFModalTransitonDirectionBottom;

@@ -35,6 +35,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.backgroundView.backgroundColor = [UIColor BTModalViewBackgroundColor];
     self.needsAnimation = YES;
     self.firstLoad = YES;
     self.scrollView.delegate = self;

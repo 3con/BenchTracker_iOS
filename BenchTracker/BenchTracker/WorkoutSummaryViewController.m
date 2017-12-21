@@ -44,6 +44,7 @@
     self.tableView.separatorColor = [UIColor clearColor];
     self.scrollView.delegate = self;
     self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 90, 0);
+    self.backgroundView.backgroundColor = [UIColor BTModalViewBackgroundColor];
     self.contentView.backgroundColor = [UIColor BTVibrantColors][0];
     self.contentView.alpha = 0.0;
     self.backgroundView.alpha = 0.0;

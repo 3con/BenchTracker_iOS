@@ -29,6 +29,7 @@
     self.scrollView.delegate = self;
     self.containingView.layer.cornerRadius = 25;
     self.containingView.clipsToBounds = YES;
+    self.backgroundView.backgroundColor = [UIColor BTModalViewBackgroundColor];
     if (self.achievement.completed) self.containingView.backgroundColor = [UIColor BTVibrantColors][1];
     else self.containingView.backgroundColor = (self.color) ? self.color : [UIColor BTVibrantColors][0];
     self.badgeView.alpha = self.achievement.completed;

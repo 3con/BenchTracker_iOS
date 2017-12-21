@@ -29,6 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.scrollView.delegate = self;
+    self.backgroundView.backgroundColor = [UIColor BTModalViewBackgroundColor];
     self.containingView.backgroundColor = [UIColor BTVibrantColors][1];
     self.textField.textColor = [UIColor BTGrayColor];
     self.textField.tintColor = [UIColor BTVibrantColors][1];
