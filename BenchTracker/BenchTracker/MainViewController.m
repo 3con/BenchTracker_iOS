@@ -29,6 +29,7 @@
 @property (weak, nonatomic) IBOutlet UIView *segmentedControlContainerView;
 
 @property (weak, nonatomic) IBOutlet UITableView *listTableView;
+@property (nonatomic, strong) id previewingContext;
 @property (nonatomic) CGFloat cellHeight;
 @property (weak, nonatomic) IBOutlet UIView *gradientView;
 @property (weak, nonatomic) IBOutlet UIView *noWorkoutsView;
@@ -80,10 +81,69 @@
     self.listTableView.contentInset = UIEdgeInsetsMake(0, 0, 95, 0);
     self.listTableView.separatorInset = UIEdgeInsetsMake(0, 25, 0, 25);
     [self.listTableView registerNib:[UINib nibWithNibName:@"WorkoutTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"Cell"];
+    if ([self isForceTouchAvailable]) {
+        self.previewingContext = [self registerForPreviewingWithDelegate:self sourceView:self.view];
+    }
+}
+
+- (UIViewController *)previewingContext:(id<UIViewControllerPreviewing>)previewingContext viewControllerForLocation:(CGPoint)location {
+    if ([self.presentedViewController isKindOfClass:[WorkoutViewController class]]) return nil;
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    WorkoutViewController *wVC = [storyboard instantiateViewControllerWithIdentifier:@"w"];
+    wVC.delegate = self;
+    wVC.context = self.context;
+    if (self.segmentedControl.selectedSegmentIndex == 0) {
+        CGPoint cellPostion = [self.listTableView convertPoint:location fromView:self.view];
+        NSIndexPath *path = [self.listTableView indexPathForRowAtPoint:cellPostion];
+        if (path) {
+            WorkoutTableViewCell *tableCell = [self.listTableView cellForRowAtIndexPath:path];
+            wVC.workout = self.fetchedResultsController.fetchedObjects[path.row];
+            previewingContext.sourceRect = [self.view convertRect:tableCell.frame fromView:self.listTableView];
+            return wVC;
+        }
+    }
+    else if (self.segmentedControl.selectedSegmentIndex == 1) {
+        CGPoint cellPostion = [self.weekdayView convertPoint:location fromView:self.view];
+        NSIndexPath *path = [self.weekdayView indexPathForRowAtPoint:cellPostion];
+        if (path) {
+            WeekdayTableViewCell *tableCell = [self.weekdayView cellForRowAtIndexPath:path];
+            BTWorkout *workout = [BTWorkout workoutsBetweenBeginDate:tableCell.date
+                                                          andEndDate:[tableCell.date dateByAddingTimeInterval:86400]].firstObject;
+            if (workout) {
+                wVC.workout = workout;
+                previewingContext.sourceRect = [self.view convertRect:[self.weekdayView sourceRectForIndex:path] fromView:self.weekdayView];
+                return wVC;
+            }
+        }
+    }
+    else {
+        CGPoint cellPostion = [self.calendarView.collectionView convertPoint:location fromView:self.view];
+        //COCOAPODS FSCALENDAR FIX: Move collectionview from FSCalendar.m to FSCalendar.h
+        NSIndexPath *path = [self.calendarView.collectionView indexPathForItemAtPoint:cellPostion];
+        if (path) {
+            NSIndexPath *lP = [self.calendarView.collectionView indexPathForCell:self.calendarView.visibleCells.firstObject];
+            BTCalendarCell *cell = (BTCalendarCell *)[self.calendarView.collectionView cellForItemAtIndexPath:
+                                    [NSIndexPath indexPathForRow:path.row inSection:lP.section]];
+            NSDate *d = [self.calendarView dateForCell:cell];
+            BTWorkout *workout = [BTWorkout workoutsBetweenBeginDate:d andEndDate:[d dateByAddingTimeInterval:86400]].firstObject;
+            if (workout) {
+                wVC.workout = workout;
+                previewingContext.sourceRect = [self.calendarView frameForDate:d];
+                return wVC;
+            }
+        }
+    }
+    return nil;
+}
+
+- (void)previewingContext:(id<UIViewControllerPreviewing>)previewingContext commitViewController:(UIViewController *)viewControllerToCommit {
+    [self presentViewController:viewControllerToCommit animated:YES completion:nil];
 }
 
 - (void)updateInterface {
     self.navView.backgroundColor = [UIColor BTPrimaryColor];
+    self.navView.layer.borderWidth = 1.0;
+    self.navView.layer.borderColor = [UIColor BTNavBarLineColor].CGColor;
     self.titleLabel.textColor = [UIColor BTTextPrimaryColor];
     self.blankWorkoutButton.backgroundColor = [UIColor BTButtonPrimaryColor];
     [self.blankWorkoutButton setTitleColor: [UIColor BTButtonTextPrimaryColor] forState:UIControlStateNormal];
@@ -739,6 +799,23 @@
 - (CGFloat)cellHeight {
     if (_cellHeight == 0) _cellHeight = [WorkoutTableViewCell heightForWorkoutCell];
     return _cellHeight;
+}
+
+- (BOOL)isForceTouchAvailable {
+    return [self.traitCollection respondsToSelector:@selector(forceTouchCapability)] &&
+           self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable;
+}
+
+- (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection {
+    [super traitCollectionDidChange:previousTraitCollection];
+    if ([self isForceTouchAvailable]) {
+        if (!self.previewingContext)
+            self.previewingContext = [self registerForPreviewingWithDelegate:self sourceView:self.view];
+    }
+    else if (self.previewingContext) {
+        [self unregisterForPreviewingWithContext:self.previewingContext];
+        self.previewingContext = nil;
+    }
 }
 
 - (void) dealloc {

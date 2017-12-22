@@ -15,6 +15,7 @@
 #import "PassTouchesView.h"
 #import "BTSettings+CoreDataClass.h"
 #import "Appirater.h"
+#import "AppDelegate.h"
 
 @interface WorkoutViewController ()
 
@@ -71,6 +72,7 @@
     self.finishWorkoutButton.clipsToBounds = YES;
     self.deleteWorkoutButton.layer.cornerRadius = 12.5;
     self.deleteWorkoutButton.clipsToBounds = YES;
+    if (!self.context) self.context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
     if (!self.workout) {
         [Appirater userDidSignificantEvent:YES];
         self.workout = [BTWorkout workout];
@@ -92,6 +94,8 @@
 
 - (void)updateInterface {
     self.navView.backgroundColor = [UIColor BTPrimaryColor];
+    self.navView.layer.borderWidth = 1.0;
+    self.navView.layer.borderColor = [UIColor BTNavBarLineColor].CGColor;
     self.finishWorkoutButton.backgroundColor = [UIColor BTSecondaryColor];
     [self.finishWorkoutButton setTitleColor: [UIColor BTButtonTextSecondaryColor] forState:UIControlStateNormal];
     self.addExerciseButton.backgroundColor = [UIColor BTButtonPrimaryColor];

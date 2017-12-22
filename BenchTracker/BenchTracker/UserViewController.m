@@ -25,6 +25,7 @@
 
 @property (weak, nonatomic) IBOutlet UIView *navView;
 @property (weak, nonatomic) IBOutlet UIView *userContainerView;
+@property (nonatomic) UserView *userView;
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
 @property (weak, nonatomic) IBOutlet UIButton *settingsButton;
 
@@ -61,8 +62,11 @@
 }
 
 - (void)updateInterface {
+    [self.userView updateInterface];
     self.view.backgroundColor = [UIColor BTTableViewBackgroundColor];
     self.navView.backgroundColor = [UIColor BTPrimaryColor];
+    self.navView.layer.borderWidth = 1.0;
+    self.navView.layer.borderColor = [UIColor BTNavBarLineColor].CGColor;
     [self.backButton setTitleColor:[UIColor BTTextPrimaryColor] forState:UIControlStateNormal];
     [self.settingsButton setImage:[[UIImage imageNamed:@"Settings"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]
                          forState:UIControlStateNormal];
@@ -152,11 +156,11 @@
 }
 
 - (void)loadUserView {
-    UserView *userView = [[NSBundle mainBundle] loadNibNamed:@"UserView" owner:self options:nil].firstObject;
-    userView.frame = self.userContainerView.bounds;
-    userView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    [userView loadUser:self.user];
-    [self.userContainerView addSubview:userView];
+    self.userView = [[NSBundle mainBundle] loadNibNamed:@"UserView" owner:self options:nil].firstObject;
+    self.userView.frame = self.userContainerView.bounds;
+    self.userView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [self.userView loadUser:self.user];
+    [self.userContainerView addSubview:self.userView];
 }
 
 - (IBAction)doneButtonPressed:(UIButton *)sender {

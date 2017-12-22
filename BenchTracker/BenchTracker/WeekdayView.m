@@ -92,6 +92,18 @@
     }
 }
 
+- (NSIndexPath *)indexPathForRowAtPoint:(CGPoint)point {
+    return [self.tableView indexPathForRowAtPoint:[self.tableView convertPoint:point fromView:self]];
+}
+
+- (WeekdayTableViewCell *)cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return [self.tableView cellForRowAtIndexPath:indexPath];
+}
+
+- (CGRect)sourceRectForIndex:(NSIndexPath *)indexPath {
+    return [self convertRect:[self.tableView cellForRowAtIndexPath:indexPath].frame fromView:self.tableView];
+}
+
 #pragma mark - tableView dataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -109,7 +121,7 @@
     if (self.settings.exerciseTypeColors)
         cell.exerciseTypeColors = [NSKeyedUnarchiver unarchiveObjectWithData:self.settings.exerciseTypeColors];
     [cell loadWithWorkouts:[BTWorkout workoutsBetweenBeginDate:date andEndDate:[date dateByAddingTimeInterval:86400]]];
-    [cell loadDate:date];
+    cell.date = date;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

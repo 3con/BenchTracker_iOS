@@ -185,7 +185,7 @@
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
-    return [UIColor statusBarStyle];
+    return UIStatusBarStyleLightContent;
 }
 
 @end

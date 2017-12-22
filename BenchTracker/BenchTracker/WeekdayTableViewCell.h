@@ -15,9 +15,9 @@
 
 @property (nonatomic) BOOL today;
 
-@property (nonatomic) NSDictionary *exerciseTypeColors;
+@property (nonatomic) NSDate *date;
 
-- (void)loadDate:(NSDate *)date;
+@property (nonatomic) NSDictionary *exerciseTypeColors;
 
 - (void)loadWithWorkouts:(NSArray <BTWorkout *> *)workouts;
 

@@ -154,10 +154,6 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ExerciseViewScroll" object:nil];
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle {
-    return [UIColor statusBarStyle];
-}
-
 #pragma mark - view handling
 
 - (void)presentIterationSelectionViewControllerWithExercise:(BTExercise *)exercise point:(CGPoint)point {
@@ -211,6 +207,10 @@
     ecVC.transitioningDelegate = self.animator;
     ecVC.modalPresentationStyle = UIModalPresentationFullScreen;
     [self presentViewController:ecVC animated:YES completion:nil];
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 @end

@@ -13,6 +13,8 @@
 
 @interface BTCalendarCell : FSCalendarCell <BTStackedBarViewDataSource>
 
+@property (nonatomic) NSDate *date;
+
 @property (nonatomic) NSMutableDictionary *exerciseTypeColors;
 
 - (void)loadWithWorkouts:(NSArray <BTWorkout *> *)workouts;

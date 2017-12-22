@@ -46,7 +46,8 @@
     [self.stackedView reloadData];
 }
 
-- (void)loadDate:(NSDate *)date {
+- (void)setDate:(NSDate *)date {
+    _date = date;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"E";
     self.weekdayTitleLabel.text = [formatter stringFromDate:date];

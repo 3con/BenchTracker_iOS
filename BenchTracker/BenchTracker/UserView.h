@@ -12,6 +12,8 @@
 
 @interface UserView : UIView
 
+- (void)updateInterface;
+
 - (void)loadUser:(BTUser *)user;
 
 - (void)animateIn;

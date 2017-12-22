@@ -25,8 +25,7 @@
 
 @implementation UserView
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
+- (void)updateInterface {
     self.topLabel.textColor = [UIColor BTTextPrimaryColor];
     self.mainLabel.textColor = [UIColor BTTextPrimaryColor];
     self.bottomLabel.textColor = [UIColor BTTextPrimaryColor];
@@ -35,6 +34,7 @@
 }
 
 - (void)loadUser:(BTUser *)user {
+    [self updateInterface];
     self.progressBackgroundView.layer.cornerRadius = self.progressBackgroundView.frame.size.height/2.0;
     self.progressBackgroundView.clipsToBounds = YES;
     self.mainLabel.text = [NSString stringWithFormat:@"%ld",user.level];

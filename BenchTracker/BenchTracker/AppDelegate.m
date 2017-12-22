@@ -16,9 +16,12 @@
 #import "BTAchievement+CoreDataClass.h"
 #import "Appirater.h"
 #import "BTDataTransferManager.h"
+#import "MainViewController.h"
+#import "WorkoutViewController.h"
+
+#define ROOTVIEW [[[UIApplication sharedApplication] keyWindow] rootViewController]
 
 @interface AppDelegate ()
-            
 
 @end
 
@@ -43,18 +46,34 @@
     [BTUser checkForTotalsPurge];
     [BTUser updateStreaks];
     //APPIRATER
-//    [Appirater setAppId:@"1266077653"];
-//    [Appirater setDaysUntilPrompt:0];
-//    [Appirater setUsesUntilPrompt:0];
-//    [Appirater setSignificantEventsUntilPrompt:5];
-//    [Appirater setTimeBeforeReminding:3];
-//    [Appirater setCustomAlertTitle:@"Rate Bench Tracker"];
-//    [Appirater setCustomAlertMessage:@"If you are enjoying using Bench Tracker, would you mind taking a moment to rate it? It truly means the world to us. Your support is what keeps us going!"];
-//    [Appirater setCustomAlertRateButtonTitle:@"Rate Bench Tracker"];
-//    [Appirater setDebug:NO];
-//
-//    [Appirater appLaunched:YES];
+    [Appirater setAppId:@"1266077653"];
+    [Appirater setDaysUntilPrompt:999];
+    [Appirater setUsesUntilPrompt:999];
+    [Appirater setSignificantEventsUntilPrompt:5];
+    [Appirater setTimeBeforeReminding:3];
+    [Appirater setCustomAlertTitle:@"Rate Bench Tracker"];
+    [Appirater setCustomAlertMessage:@"If you are enjoying using Bench Tracker, would you mind taking a moment to rate it? It truly means the world to us. Your support is what keeps us going!"];
+    [Appirater setCustomAlertRateButtonTitle:@"Rate Bench Tracker"];
+    [Appirater setDebug:NO];
+    [Appirater appLaunched:YES];
     return YES;
+}
+
+- (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem
+                                                            completionHandler:(void (^)(BOOL))completionHandler {
+    if ([shortcutItem.type isEqualToString:@"com.chappyasel.benchtracker.newworkout"]) {
+        if (ROOTVIEW.class == WorkoutViewController.class) return;
+        if (ROOTVIEW.class != MainViewController.class) {
+            MainViewController *mVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"m"];
+            [ROOTVIEW presentViewController:mVC animated:NO completion:^{
+                [mVC performSelector:@selector(presentWorkoutViewControllerWithWorkout:) withObject:nil afterDelay:.2];
+            }];
+        }
+        else {
+            [ROOTVIEW performSelector:@selector(presentWorkoutViewControllerWithWorkout:) withObject:nil afterDelay:.2];
+        }
+        
+    }
 }
 
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {

@@ -18,11 +18,13 @@
 #import "WorkoutSummaryViewController.h"
 #import "BTCalendarCell.h"
 
-@interface MainViewController : UIViewController <WorkoutViewControllerDelegate, AnalyticsViewControllerDelegate, WorkoutSelectionViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance, MGSwipeTableCellDelegate, WeekdayViewDelegate, BTQRScannerViewControllerDelegate, UserViewControllerDelegate, TemplateSelectionViewControllerDelegate, WorkoutSummaryViewControllerDelegate>
+@interface MainViewController : UIViewController <WorkoutViewControllerDelegate, AnalyticsViewControllerDelegate, WorkoutSelectionViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance, MGSwipeTableCellDelegate, WeekdayViewDelegate, BTQRScannerViewControllerDelegate, UserViewControllerDelegate, TemplateSelectionViewControllerDelegate, WorkoutSummaryViewControllerDelegate, UIViewControllerPreviewingDelegate>
 
 @property (nonatomic) NSManagedObjectContext *context;
 
 - (void)presentUserViewControllerWithForwardToAcheivements:(BOOL)forward;
+
+- (void)presentWorkoutViewControllerWithWorkout:(BTWorkout *)workout;
 
 - (void)updateBadgeView;
 

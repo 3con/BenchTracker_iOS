@@ -11,6 +11,7 @@
 @class BTUser;
 @class BTWorkoutManager;
 @class BTSettings;
+@class WeekdayTableViewCell;
 
 @class WeekdayView;
 
@@ -30,5 +31,13 @@
 - (void)reloadData;
 
 - (void)scrollToDate:(NSDate *)date;
+
+//3D Touch
+
+- (NSIndexPath *)indexPathForRowAtPoint:(CGPoint)point;
+
+- (WeekdayTableViewCell *)cellForRowAtIndexPath:(NSIndexPath *)indexPath;
+
+- (CGRect)sourceRectForIndex:(NSIndexPath *)indexPath;
 
 @end

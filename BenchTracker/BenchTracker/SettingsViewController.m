@@ -32,6 +32,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navView.backgroundColor = [UIColor BTPrimaryColor];
+    self.navView.layer.borderWidth = 1.0;
+    self.navView.layer.borderColor = [UIColor BTNavBarLineColor].CGColor;
     self.titleLabel.textColor = [UIColor BTTextPrimaryColor];
     [self.backButton setTitleColor:[UIColor BTTextPrimaryColor] forState:UIControlStateNormal];
     self.settings = [BTSettings sharedInstance];

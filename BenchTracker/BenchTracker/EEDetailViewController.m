@@ -29,6 +29,8 @@
     [super viewDidLoad];
     self.awardCreation = NO;
     self.navView.backgroundColor = [UIColor BTPrimaryColor];
+    self.navView.layer.borderWidth = 1.0;
+    self.navView.layer.borderColor = [UIColor BTNavBarLineColor].CGColor;
     self.titleLabel.textColor = [UIColor BTTextPrimaryColor];
     [self.cancelButton setTitleColor:[UIColor BTTextPrimaryColor] forState:UIControlStateNormal];
     [self.createButton setTitleColor:[UIColor BTTextPrimaryColor] forState:UIControlStateNormal];

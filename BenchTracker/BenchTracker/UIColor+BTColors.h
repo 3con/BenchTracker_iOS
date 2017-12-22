@@ -22,6 +22,8 @@
 
 + (UIColor *)BTTertiaryColor;
 
++ (UIColor *)BTNavBarLineColor;
+
 //TEXT COLORS
 
 + (UIColor *)BTTextPrimaryColor;
