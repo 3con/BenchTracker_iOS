@@ -5,19 +5,19 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>Bench Tracker</string>
+	<string>Weightlifting</string>
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
 			<key>CFBundleTypeName</key>
-			<string>Bench Tracker Data</string>
+			<string>Weightlifting App Data</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Owner</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>com.chappyasel.benchtrackerdata.btd</string>
+				<string>com.chappyasel.benchtrackerdata.wld</string>
 			</array>
 		</dict>
 	</array>
@@ -42,9 +42,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>Bench Tracker uses the camera to read workout QR codes. Please allow access to use this feature.</string>
+	<string>Weightlifting App uses the camera to read workout QR codes. Please allow access to use this feature.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Bench Tracker can scan QR codes directly from your camera roll. Please allow access to use this feature.</string>
+	<string>Weightlifting App can scan QR codes directly from your camera roll. Please allow access to use this feature.</string>
 	<key>UIApplicationShortcutItems</key>
 	<array>
 		<dict>
@@ -100,13 +100,13 @@
 				<string>public.data</string>
 			</array>
 			<key>UTTypeDescription</key>
-			<string>Bench Tracker Data</string>
+			<string>Weightlifting App Data</string>
 			<key>UTTypeIdentifier</key>
-			<string>com.chappyasel.benchtrackerdata.btd</string>
+			<string>com.chappyasel.benchtrackerdata.wld</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
-				<string>btd</string>
+				<string>wld</string>
 				<key>public.mime-type</key>
 				<string>application/benchtracker</string>
 			</dict>

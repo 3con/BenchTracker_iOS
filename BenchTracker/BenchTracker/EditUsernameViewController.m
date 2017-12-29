@@ -34,8 +34,9 @@
     self.textField.textColor = [UIColor BTGrayColor];
     self.textField.tintColor = [UIColor BTVibrantColors][1];
     self.errorLabel.textColor = [UIColor BTRedColor];
-    [self.cancelButton setTitleColor:[UIColor BTRedColor] forState:UIControlStateNormal];
     self.textField.delegate = self;
+    self.textField.layer.cornerRadius = 12;
+    self.textField.clipsToBounds = YES;
     self.containingView.alpha = 0.0;
     self.backgroundView.alpha = 0.0;
     self.errorLabel.hidden = YES;

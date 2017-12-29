@@ -20,7 +20,7 @@
 }
 
 - (OnboardingViewController *)onboardingViewControllerforSize:(CGSize)size { //Welcome, Intuitive, Powerful, Analytical, Get Started
-    OnboardingContentViewController *firstPage = [OnboardingContentViewController contentWithTitle:@"Welcome to\nBench Tracker"
+    OnboardingContentViewController *firstPage = [OnboardingContentViewController contentWithTitle:@"Welcome to\nWeightlifting App"
                                                                                               body:@"Your new favorite workout tracker"
                                                                                              image:[UIImage imageNamed:@"Onboard1"]
                                                                                         buttonText:nil

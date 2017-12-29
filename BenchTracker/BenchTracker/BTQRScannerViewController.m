@@ -187,7 +187,7 @@
     if (!_noteLab) {
         _noteLab = [[UILabel alloc] initWithFrame:CGRectMake(0, self.qrScanArea.origin.y+self.qrScanArea.size.height+10, self.view.width, 20)];
         _noteLab.textColor = [UIColor BTGrayColor];
-        _noteLab.text = @"Center your Bench Tracker QR code here";
+        _noteLab.text = @"Center your Weightlifting App QR code here";
         _noteLab.textAlignment = NSTextAlignmentCenter;
         _noteLab.backgroundColor = [UIColor clearColor];
         _noteLab.font = [UIFont systemFontOfSize:12.0];

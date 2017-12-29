@@ -1172,8 +1172,8 @@
 		F94C89471F15D5C5006C6BDD /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				F94C89461F15D5BC006C6BDD /* 1RM calculator */,
 				F9C240741F17FA7800A268F3 /* BTColor extension */,
+				F94C89461F15D5BC006C6BDD /* 1RM calculator */,
 				506C915A1F9FEEAD003C4758 /* BTButton */,
 			);
 			name = Utility;

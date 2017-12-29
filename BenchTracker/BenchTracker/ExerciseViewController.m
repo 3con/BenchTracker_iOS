@@ -17,6 +17,7 @@
 @interface ExerciseViewController ()
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, strong) id previewingContext;
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 
 @property (weak, nonatomic) IBOutlet UIButton *doneButton;
@@ -90,8 +91,34 @@
     }
 }
 
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+- (UIViewController *)previewingContext:(id<UIViewControllerPreviewing>)previewingContext viewControllerForLocation:(CGPoint)location {
+    if ([self.presentedViewController isKindOfClass:[EquivalencyChartViewController class]] ||
+        [self.presentedViewController isKindOfClass:[ADExercisesDetailViewController class]]) return nil;
+    for (ExerciseView *view in self.exerciseViews) {
+        CGPoint point = [view.contentView convertPoint:location fromView:self.view];
+        if (CGRectContainsPoint(view.previousExerciseButton.frame, point)) {
+            ADExercisesDetailViewController *adedVC = [[NSBundle mainBundle] loadNibNamed:@"ADExercisesDetailViewController"
+                                                                                    owner:self options:nil].firstObject;
+            adedVC.settings = self.settings;
+            adedVC.color = [UIColor BTButtonSecondaryColor];
+            adedVC.titleString = [view getExercise].name;
+            adedVC.iteration = [view getExercise].iteration;
+            previewingContext.sourceRect = [self.view convertRect:view.previousExerciseButton.frame fromView:view.contentView];
+            return adedVC;
+        }
+        if (CGRectContainsPoint(view.tableShowButton.frame, point)) {
+            EquivalencyChartViewController *ecVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ec"];
+            ecVC.settings = self.settings;
+            ecVC.exercise = [view getExercise];
+            previewingContext.sourceRect = [self.view convertRect:view.tableShowButton.frame fromView:view.contentView];
+            return ecVC;
+        }
+    }
+    return nil;
+}
+
+- (void)previewingContext:(id<UIViewControllerPreviewing>)previewingContext commitViewController:(UIViewController *)viewControllerToCommit {
+    [self presentViewController:viewControllerToCommit animated:YES completion:nil];
 }
 
 - (void)handleEnterBackground:(id)sender {
@@ -207,6 +234,27 @@
     ecVC.transitioningDelegate = self.animator;
     ecVC.modalPresentationStyle = UIModalPresentationFullScreen;
     [self presentViewController:ecVC animated:YES completion:nil];
+}
+
+- (BOOL)isForceTouchAvailable {
+    return [self.traitCollection respondsToSelector:@selector(forceTouchCapability)] &&
+    self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable;
+}
+
+- (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection {
+    [super traitCollectionDidChange:previousTraitCollection];
+    if ([self isForceTouchAvailable]) {
+        if (!self.previewingContext)
+            self.previewingContext = [self registerForPreviewingWithDelegate:self sourceView:self.view];
+    }
+    else if (self.previewingContext) {
+        [self unregisterForPreviewingWithContext:self.previewingContext];
+        self.previewingContext = nil;
+    }
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {

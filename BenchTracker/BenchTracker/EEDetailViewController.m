@@ -116,7 +116,7 @@
     
     for (XLFormSectionDescriptor *section in form.formSections) {
         for (XLFormRowDescriptor *row in section.formRows) {
-            row.cellConfig[@"backgroundColor"] = [UIColor colorWithWhite:1 alpha:.1];
+            row.cellConfig[@"backgroundColor"] = [UIColor colorWithWhite:.2 alpha:.1];
             row.cellConfig[@"textLabel.textColor"] = [UIColor BTBlackColor];
             row.cellConfig[@"tintColor"] = [UIColor BTSecondaryColor];
         }

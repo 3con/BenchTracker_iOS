@@ -31,18 +31,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self updateInterface];
+    self.settings = [BTSettings sharedInstance];
+    self.tableView.contentInset = UIEdgeInsetsMake(72, 0, 0, 0);
+    self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(72, 0, 0, 0);
+    [self loadForm];
+    [self.view sendSubviewToBack:self.tableView];
+}
+
+- (void)updateInterface {
     self.navView.backgroundColor = [UIColor BTPrimaryColor];
     self.navView.layer.borderWidth = 1.0;
     self.navView.layer.borderColor = [UIColor BTNavBarLineColor].CGColor;
     self.titleLabel.textColor = [UIColor BTTextPrimaryColor];
     [self.backButton setTitleColor:[UIColor BTTextPrimaryColor] forState:UIControlStateNormal];
-    self.settings = [BTSettings sharedInstance];
     self.tableView.backgroundColor = [UIColor BTGroupTableViewBackgroundColor];
     self.tableView.separatorColor = [UIColor BTTableViewSeparatorColor];
-    self.tableView.contentInset = UIEdgeInsetsMake(72, 0, 0, 0);
-    self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(72, 0, 0, 0);
-    [self loadForm];
-    [self.view sendSubviewToBack:self.tableView];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -117,7 +121,7 @@
     
     // Section 8: Import, Export data
     section = [XLFormSectionDescriptor formSection];
-    section.footerTitle = @"Import or export all of your Bench Tracker data using email attachments. This includes all of your workouts and custom exercises.";
+    section.footerTitle = @"Import or export all of your Weightlifting App data using email attachments. This includes all of your workouts and custom exercises.";
     [form addFormSection:section];
     //Import
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"import" rowType:XLFormRowDescriptorTypeButton title:@"Import data"];
@@ -130,10 +134,10 @@
     section = [XLFormSectionDescriptor formSection];
     [form addFormSection:section];
     //Share
-    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"share" rowType:XLFormRowDescriptorTypeButton title:@"Share Bench Tracker"];
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"share" rowType:XLFormRowDescriptorTypeButton title:@"Share Weightlifting App"];
     [section addFormRow:row];
     //Rate
-    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"rate" rowType:XLFormRowDescriptorTypeButton title:@"Rate Bench Tracker"];
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"rate" rowType:XLFormRowDescriptorTypeButton title:@"Rate Weightlifting App"];
     [section addFormRow:row];
     
     // Section 10: Reset data
@@ -145,7 +149,7 @@
     
     for (XLFormSectionDescriptor *section in form.formSections) {
         for (XLFormRowDescriptor *row in section.formRows) {
-            row.cellConfig[@"backgroundColor"] = [[UIColor whiteColor] colorWithAlphaComponent:.1];
+            row.cellConfig[@"backgroundColor"] = [UIColor colorWithWhite:.2 alpha:.1];
             row.cellConfig[@"textLabel.textColor"] = [UIColor BTBlackColor];
             row.cellConfig[@"textLabel.textAlignment"] = @(NSTextAlignmentNatural);
         }
@@ -179,7 +183,7 @@
 - (IBAction)resetDataButtonPressed:(UIButton *)sender {
     [(AppDelegate *)[[UIApplication sharedApplication] delegate] resetCoreData];
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Reset Complete"
-                                                                   message:@"Bench Tracker has reset your data. The app will now close to complete the process."
+                                                                   message:@"Weightlifting App has reset your data. The app will now close to complete the process."
                                                              preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *okButton = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
         assert(! "BT: User reset data. Intentional crash.");
@@ -191,7 +195,13 @@
 #pragma mark - XLForm delegate
 
 -(void)formRowDescriptorValueHasChanged:(XLFormRowDescriptor *)formRow oldValue:(id)oldValue newValue:(id)newValue {
-    if ([formRow.title containsString:@"eight"]) {
+    if ([formRow.tag isEqualToString:@"darkMode"]) {
+        [UIColor changeColorSchemeTo:[formRow.value intValue]];
+        [self updateInterface];
+        [self saveSettings];
+        [self loadForm];
+    }
+    else if ([formRow.tag isEqualToString:@"weightInKg"]) {
         UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Warning"
                                                                         message:@"Please be aware that changing your weight units WILL NOT adjust the relative weights of your previous workouts. Instead, they will simply display as the other unit and remain un-converted."
                                                                  preferredStyle:UIAlertControllerStyleAlert];
@@ -204,7 +214,7 @@
     if ([formRow.tag isEqualToString:@"editExercises"]) [self presentEditExercisesViewController];
     else if ([formRow.tag isEqualToString:@"import"]) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Import Data"
-                                                                       message:@"To import your Bench Tracker data, please open an email with the compatible '.btd' file. Then, tap on the file to open it in the Bench Tracker App."
+                                                                       message:@"To import your Weightlifting App data, please open an email with the compatible '.btd' file. Then, tap on the file to open it in the Weightlifting App."
                                                                 preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *okButton = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
         [alert addAction:okButton];
@@ -225,17 +235,17 @@
                 [self presentViewController:alert animated:YES completion:nil];
             }
             else {
-                [email setSubject:@"Bench Tracker Data"];
-                [email addAttachmentData:BTData mimeType:@"application/benchtracker" fileName:@"Bench Tracker Data"];
+                [email setSubject:@"Weightlifting App Data"];
+                [email addAttachmentData:BTData mimeType:@"application/benchtracker" fileName:@"Weightlifting App Data"];
                 [email setToRecipients:[NSArray array]];
-                [email setMessageBody:@"Here's my Bench Tracker data. Once you have the Bench Tracker app, tap on the file to open it." isHTML:NO];
+                [email setMessageBody:@"Here's my Weightlifting App data. Once you have the Weightlifting App, tap on the file to open it." isHTML:NO];
                 [email setMailComposeDelegate:self];
                 [self presentViewController:email animated:YES completion:nil];
             }
         }
     }
     else if ([formRow.tag isEqualToString:@"share"]) {
-        NSArray *dataToShare = @[@"Go download Bench Tracker on the iOS App Store! https://itunes.apple.com/app/id1266077653"];
+        NSArray *dataToShare = @[@"Go download Weightlifting App on the iOS App Store! https://itunes.apple.com/app/id1266077653"];
         UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:dataToShare
                                                                                              applicationActivities:nil];
         [activityViewController setCompletionWithItemsHandler:^(NSString *activityType, BOOL completed, NSArray *returnedItems, NSError *activityError) {

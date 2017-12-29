@@ -21,7 +21,9 @@
 
 @property (nonatomic) ZFModalTransitionAnimator *animator;
 
+@property (weak, nonatomic) IBOutlet UIView *bottomContainerView;
 @property (weak, nonatomic) IBOutlet UILabel *localRankView;
+@property (nonatomic) NSNumber *localRank;
 @property (weak, nonatomic) IBOutlet UILabel *localUsernameView;
 @property (weak, nonatomic) IBOutlet UILabel *localScoreView;
 
@@ -39,20 +41,26 @@
     self.tableView.dataSource = self;
     self.tableView.separatorColor = [UIColor clearColor];
     self.tableView.showsVerticalScrollIndicator = NO;
-    self.tableView.allowsSelection = NO;
     self.user = [BTUser sharedInstance];
     [self refreshLeaderboard];
 }
 
 - (void)refreshLeaderboard {
     [self.user topLevelsWithCompletionBlock:^(NSArray<AWSLeaderboard *> *topLevels) {
+        for (NSInteger i = 0; i < topLevels.count; i++) {
+            if (topLevels[i].experience.longValue == self.user.xp && [topLevels[i].username isEqualToString:self.user.name]) {
+                self.localRank = [NSNumber numberWithInteger:i];
+                break;
+            }
+        }
+        self.leaderboard = topLevels;
         dispatch_async(dispatch_get_main_queue(), ^{
+            self.localRankView.text = (self.localRank) ? [NSString stringWithFormat:@"%ld.",self.localRank.integerValue+1] : @"100+";
             [self.activityIndicator stopAnimating];
-            self.leaderboard = topLevels;
             [self.tableView reloadData];
         });
     }];
-    self.localRankView.text = @"100+";
+    self.localRankView.text = @"-";
     self.localUsernameView.text = self.user.name;
     self.localScoreView.text = [NSString stringWithFormat:@"%d xp", self.user.xp];
 }
@@ -62,7 +70,8 @@
 }
 
 - (IBAction)editUsernameButtonPressed:(UIButton *)sender {
-    [self presentEditUsernameViewControllerWithPoint:sender.center];
+    [self presentEditUsernameViewControllerWithPoint:
+     [self.bottomContainerView convertPoint:sender.center toView:self.view]];
 }
 
 #pragma mark - tableView delegate / dataSource
@@ -82,10 +91,14 @@
     AWSLeaderboard *leader = self.leaderboard[indexPath.row];
     cell.titleLabel.text = leader.username;
     cell.statLabel.text = [NSString stringWithFormat:@"%@ xp", leader.experience];
-    cell.isSelf = leader.experience.longValue == self.user.xp && [leader.username isEqualToString:self.user.name];
-    if (cell.isSelf)
-        self.localRankView.text = [NSString stringWithFormat:@"%ld.",cell.rank];
+    cell.isSelf = (indexPath.row == self.localRank.integerValue);
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == self.localRank.integerValue)
+        [self presentEditUsernameViewControllerWithPoint:
+            [self.tableView convertPoint:[tableView cellForRowAtIndexPath:indexPath].center toView:self.view]];
 }
 
 #pragma mark - editUsernameVC delegate

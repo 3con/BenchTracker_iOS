@@ -47,7 +47,6 @@
     self.context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
     self.collectionView.display1RM = YES;
     self.collectionView.setDataSource = self;
-    self.collectionView.sets = [NSKeyedUnarchiver unarchiveObjectWithData:self.exercise.sets];
     self.collectionView.settings = self.settings;
     self.mainScrollViews = [NSMutableSet set];
     for (UITableView *tableView in @[self.sideTableView, self.mainTableView]) {
@@ -58,12 +57,11 @@
     [self.mainTableView registerNib:[UINib nibWithNibName:@"ECTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
     [self.sideTableView registerNib:[UINib nibWithNibName:@"ECSideTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
     [self loadTopScrollView];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+    
+    self.collectionView.sets = [NSKeyedUnarchiver unarchiveObjectWithData:self.exercise.sets];
+    [self.collectionView reloadData];
     NSArray <NSString *> *arr = (self.collectionView.sets.lastObject) ?
-        [self.collectionView.sets.lastObject componentsSeparatedByString:@" "] : nil;
+    [self.collectionView.sets.lastObject componentsSeparatedByString:@" "] : nil;
     self.selectedIndexPath = (arr) ? [NSIndexPath indexPathForRow:MIN(118, MAX(0, (arr[1].floatValue-7.5)/5.0))
                                                         inSection:MIN(24, MAX(0, arr[0].intValue-2))] : nil;
     [self.mainTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.selectedIndexPath.row inSection:0]
@@ -151,6 +149,7 @@
 }
 
 - (void)scrollHorizontallyToOffset:(CGPoint)offset {
+    if (offset.x < 0) return;
     for (UIScrollView *sV in self.mainScrollViews)
         sV.contentOffset = offset;
 }

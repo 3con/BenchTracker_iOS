@@ -22,7 +22,7 @@
 - (void)exerciseViewDidAddSet:(ExerciseView *)exerciseView withResultExercise:(BTExercise *)exercise;
 @end
 
-@interface ExerciseViewController : UIViewController <UIScrollViewDelegate, ExerciseViewDelegate, IterationSelectionViewControllerDelegate>
+@interface ExerciseViewController : UIViewController <UIScrollViewDelegate, ExerciseViewDelegate, IterationSelectionViewControllerDelegate, UIViewControllerPreviewingDelegate>
 
 @property id<ExerciseViewControllerDelegate> delegate;
 

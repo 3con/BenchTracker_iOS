@@ -69,7 +69,7 @@
     transferModel.achievements = [BTAchievement completedAchievementKeys];
     //SAVE TO FILE
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *path = [NSString stringWithFormat:@"%@/BenchTrackerData.btd", paths.firstObject];
+    NSString *path = [NSString stringWithFormat:@"%@/WeightliftingAppData.wld", paths.firstObject];
     [[transferModel toJSONData] writeToFile:path atomically:YES];
     return path;
 }

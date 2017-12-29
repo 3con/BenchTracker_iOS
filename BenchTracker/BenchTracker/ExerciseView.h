@@ -26,6 +26,11 @@
 
 @property (nonatomic) BOOL isDeleted;
 
+//3D Touch
+@property (weak, nonatomic) IBOutlet UIView *contentView;
+@property (weak, nonatomic) IBOutlet UIButton *previousExerciseButton;
+@property (weak, nonatomic) IBOutlet UIButton *tableShowButton;
+
 @property (nonatomic) BTSettings *settings;
 @property (nonatomic) UIColor *color;
 

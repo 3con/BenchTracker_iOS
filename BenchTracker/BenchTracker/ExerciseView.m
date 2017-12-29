@@ -17,15 +17,11 @@
 
 @interface ExerciseView ()
 
-@property (weak, nonatomic) IBOutlet UIView *contentView;
-
 @property (weak, nonatomic) IBOutlet UIView *deletedView;
 @property (weak, nonatomic) IBOutlet UIView *undoDeleteButton;
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 
-@property (weak, nonatomic) IBOutlet UIButton *previousExerciseButton;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *previousExerciseButtonCenterConstraint;
-@property (weak, nonatomic) IBOutlet UIButton *tableShowButton;
 
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *categoryLabel;

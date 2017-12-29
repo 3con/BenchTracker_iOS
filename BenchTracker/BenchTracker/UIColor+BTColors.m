@@ -28,7 +28,7 @@
 
 + (UIColor *)BTPrimaryColor {             //rgb(20,43,132)    //indigo 800 (r-20, g-10)
     switch ([self colorScheme]) {
-        case 0: return [UIColor colorWithRed:89/255.0 green:113/255.0 blue:147/255.0 alpha:1];
+        case 0: return [UIColor colorWithRed:74/255.0 green:101/255.0 blue:139/255.0 alpha:1];
         case 1: return [UIColor colorWithRed:36/255.0 green:51/255.0 blue:72/255.0 alpha:1];
         default: return nil;
     }
@@ -36,7 +36,7 @@
 
 + (UIColor *)BTSecondaryColor {           //rgb(22,58,171)    //indigo 600 (r-25, g-15)
     switch ([self colorScheme]) {
-        case 0: return [UIColor colorWithRed:109/255.0 green:133/255.0 blue:167/255.0 alpha:1];
+        case 0: return [UIColor colorWithRed:85/255.0 green:112/255.0 blue:151/255.0 alpha:1];
         case 1: return [UIColor colorWithRed:40/255.0 green:62/255.0 blue:84/255.0 alpha:1];
         default: return nil;
     }
@@ -44,7 +44,7 @@
 
 + (UIColor *)BTTertiaryColor {            //rgb(55,80,200)    //indigo 500 (r-30, g-20)
     switch ([self colorScheme]) {
-        case 0: return [UIColor colorWithRed:129/255.0 green:153/255.0 blue:187/255.0 alpha:1];
+        case 0: return [UIColor colorWithRed:92/255.0 green:123/255.0 blue:167/255.0 alpha:1];
         case 1: return [UIColor colorWithRed:50/255.0 green:75/255.0 blue:100/255.0 alpha:1];
         default: return nil;
     }
@@ -96,7 +96,7 @@
 
 + (UIColor *)BTGroupTableViewBackgroundColor { //rgb(235,235,241)
     switch ([self colorScheme]) {
-        case 0: return [UIColor colorWithRed:176/255.0 green:189/255.0 blue:205/255.0 alpha:1];
+        case 0: return [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1];
         case 1: return [UIColor colorWithRed:26/255.0 green:39/255.0 blue:55/255.0 alpha:1];
         default: return nil;
     }

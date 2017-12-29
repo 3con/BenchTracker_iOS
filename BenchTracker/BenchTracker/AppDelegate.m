@@ -51,9 +51,9 @@
     [Appirater setUsesUntilPrompt:999];
     [Appirater setSignificantEventsUntilPrompt:5];
     [Appirater setTimeBeforeReminding:3];
-    [Appirater setCustomAlertTitle:@"Rate Bench Tracker"];
-    [Appirater setCustomAlertMessage:@"If you are enjoying using Bench Tracker, would you mind taking a moment to rate it? It truly means the world to us. Your support is what keeps us going!"];
-    [Appirater setCustomAlertRateButtonTitle:@"Rate Bench Tracker"];
+    [Appirater setCustomAlertTitle:@"Rate Weightlifting App"];
+    [Appirater setCustomAlertMessage:@"If you are enjoying using Weightlifting App, would you mind taking a moment to rate it? It truly means the world to us. Your support is what keeps us going!"];
+    [Appirater setCustomAlertRateButtonTitle:@"Rate Weightlifting App"];
     [Appirater setDebug:NO];
     [Appirater appLaunched:YES];
     return YES;
@@ -84,7 +84,7 @@
                                                        preferredStyle:UIAlertControllerStyleAlert];
     else                                //Failed to load file
         alertController = [UIAlertController alertControllerWithTitle:@"Import Failed"
-                                                              message:@"Unfortunately, we could not import your data. Please make sure the version of Bench Tracker on this app is the same as the one you used to export and that no data was lost between the transfer. We apoligize for the inconvenience."
+                                                              message:@"Unfortunately, we could not import your data. Please make sure the version of Weightlifting App on this app is the same as the one you used to export and that no data was lost between the transfer. We apoligize for the inconvenience."
                                                        preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
     [alertController addAction:ok];
