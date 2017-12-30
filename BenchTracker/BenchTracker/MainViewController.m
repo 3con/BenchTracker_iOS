@@ -167,19 +167,6 @@
     [self viewDidLayoutSubviews];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    for (UIButton *button in @[self.scanWorkoutButton, self.blankWorkoutButton, self.templateButton]) {
-        button.layer.cornerRadius = 12;
-        button.clipsToBounds = YES;
-        button.layer.borderWidth = 0;
-        button.layer.borderColor = [UIColor BTTableViewBackgroundColor].CGColor;
-    }
-    self.rightBarButton.layer.cornerRadius = 12;
-    self.settings = [BTSettings sharedInstance];
-    self.exerciseTypeColors = [NSKeyedUnarchiver unarchiveObjectWithData:self.settings.exerciseTypeColors];
-}
-
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     if (!self.weekdayView) { //first load
@@ -193,7 +180,6 @@
         [self.weekdayContainerView addSubview:self.weekdayView];
         [self loadUser];
         [self loadTableViewGradient];
-        [self.weekdayView scrollToDate:[NSDate date]];
         [self setUpCalendarView];
         [self.segmentedControlContainerView setNeedsLayout];
         [self.segmentedControlContainerView layoutIfNeeded];
@@ -201,6 +187,31 @@
         [self setSelectedViewIndex:0];
     }
     self.rightBarButton.imageEdgeInsets = UIEdgeInsetsMake(8, self.rightBarButton.frame.size.width-24, 8, 0);
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    for (UIButton *button in @[self.scanWorkoutButton, self.blankWorkoutButton, self.templateButton]) {
+        button.layer.cornerRadius = 12;
+        button.clipsToBounds = YES;
+        button.layer.borderWidth = 0;
+        button.layer.borderColor = [UIColor BTTableViewBackgroundColor].CGColor;
+    }
+    self.rightBarButton.layer.cornerRadius = 12;
+    self.settings = [BTSettings sharedInstance];
+    self.exerciseTypeColors = [NSKeyedUnarchiver unarchiveObjectWithData:self.settings.exerciseTypeColors];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self.weekdayView scrollToDate:[NSDate date]];
+    if ([BTTutorialManager needsOnboarding]) {
+        BTTutorialManager *manager = [[BTTutorialManager alloc] init];
+        [self presentViewController:[manager onboardingViewControllerforSize:self.view.frame.size] animated:YES completion:nil];
+    }
+    if (self.settings.activeWorkout)
+        [self presentWorkoutViewControllerWithWorkout:self.settings.activeWorkout];
+    [self updateBadgeView];
 }
 
 - (void)loadTableViewGradient {
@@ -224,17 +235,6 @@
                                     (id)[UIColor BTTableViewBackgroundColor].CGColor];
     }
     [self.gradientView.layer insertSublayer:gradientLayer atIndex:0];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    if ([BTTutorialManager needsOnboarding]) {
-        BTTutorialManager *manager = [[BTTutorialManager alloc] init];
-        [self presentViewController:[manager onboardingViewControllerforSize:self.view.frame.size] animated:YES completion:nil];
-    }
-    if (self.settings.activeWorkout)
-        [self presentWorkoutViewControllerWithWorkout:self.settings.activeWorkout];
-    [self updateBadgeView];
 }
 
 - (void)updateBadgeView {

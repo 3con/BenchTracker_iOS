@@ -60,7 +60,7 @@
     offset = (comp.weekday != 1) ? -(comp.weekday-2) : -6;
     if (!self.settings.startWeekOnMonday) offset = (comp.weekday != 1) ? -(comp.weekday-1) : 0;
     NSDate *dayOfFirst = [self normalizedDateForDate:firstDate];
-    self.firstDayDate = [dayOfFirst dateByAddingTimeInterval:offset*86400-70*86400];
+    self.firstDayDate = [dayOfFirst dateByAddingTimeInterval:offset*86400-35*86400];
 }
 
 - (NSDate *)dateOfFirstWorkout {
@@ -81,12 +81,12 @@
 
 - (void)scrollToDate:(NSDate *)date {
     if (self.user) {
-        NSDateComponents* comp = [[NSCalendar currentCalendar] components:NSCalendarUnitWeekday fromDate:date];
+        NSDateComponents *comp = [NSCalendar.currentCalendar components:NSCalendarUnitWeekday fromDate:date];
         NSInteger offset = (comp.weekday != 1) ? -(comp.weekday-2) : -6;
         if (!self.settings.startWeekOnMonday) offset = (comp.weekday != 1) ? -(comp.weekday-1) : 0;
-        NSDate *targetDate = [date dateByAddingTimeInterval:offset*86400];
-        [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:
-            [targetDate timeIntervalSinceDate:self.firstDayDate]/86400 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
+        date = [date dateByAddingTimeInterval:offset*86400];
+        [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:(int)[date timeIntervalSinceDate:self.firstDayDate]/86400 inSection:0]
+                                    animated:NO scrollPosition:UITableViewScrollPositionTop];
         [self updateTitles];
         [self scrollViewDidScroll:self.tableView];
     }
@@ -107,7 +107,7 @@
 #pragma mark - tableView dataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (self.user) return 70+[self.firstDayOfWeekDate timeIntervalSinceDate:self.firstDayDate]/86400+70; //10 weeks before, 10 weeks after
+    if (self.user) return 35+(int)[self.firstDayOfWeekDate timeIntervalSinceDate:self.firstDayDate]/86400+35; //5 weeks before, 5 weeks after
     return 0;
 }
 
@@ -204,7 +204,8 @@
     }
 }
 
-- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity
+              targetContentOffset:(inout CGPoint *)targetContentOffset {
     self.currentTabIndex = (int)self.tableView.contentOffset.y/self.tableView.frame.size.height;
     [self updateTitles];
 }
