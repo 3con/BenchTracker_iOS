@@ -120,7 +120,7 @@
     cell.today = [[NSCalendar currentCalendar] isDate:date inSameDayAsDate:[NSDate date]];
     if (self.settings.exerciseTypeColors)
         cell.exerciseTypeColors = [NSKeyedUnarchiver unarchiveObjectWithData:self.settings.exerciseTypeColors];
-    [cell loadWithWorkouts:[BTWorkout workoutsBetweenBeginDate:date andEndDate:[date dateByAddingTimeInterval:86400]]];
+    [cell loadWithWorkouts:[BTWorkout workoutsBetweenBeginDate:[date dateByAddingTimeInterval:-86400] andEndDate:date]];
     cell.date = date;
 }
 

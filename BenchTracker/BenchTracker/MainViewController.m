@@ -34,7 +34,8 @@
 @property (weak, nonatomic) IBOutlet UIView *gradientView;
 @property (weak, nonatomic) IBOutlet UIView *noWorkoutsView;
 @property (weak, nonatomic) IBOutlet UIView *weekdayContainerView;
-@property (weak, nonatomic) IBOutlet WeekdayView *weekdayView;
+@property (weak, nonatomic) WeekdayView *weekdayView;
+@property (nonatomic) BOOL firstLoad;
 @property (weak, nonatomic) IBOutlet FSCalendar *calendarView;
 
 @property (weak, nonatomic) IBOutlet UIButton *blankWorkoutButton;
@@ -59,6 +60,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.firstLoad = YES;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(colorSchemeChange:)
                                                  name:@"colorSchemeChange" object:nil];
     [self updateInterface];
@@ -73,17 +75,15 @@
     [CSToastManager setTapToDismissEnabled:YES];
     [CSToastManager setQueueEnabled:YES];
     NSError *error;
-    if (![[self fetchedResultsController] performFetch:&error]) {
+    if (![[self fetchedResultsController] performFetch:&error])
         NSLog(@"Main fetch error: %@, %@", error, [error userInfo]);
-    }
     self.listTableView.dataSource = self;
     self.listTableView.delegate = self;
     self.listTableView.contentInset = UIEdgeInsetsMake(0, 0, 95, 0);
     self.listTableView.separatorInset = UIEdgeInsetsMake(0, 25, 0, 25);
     [self.listTableView registerNib:[UINib nibWithNibName:@"WorkoutTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"Cell"];
-    if ([self isForceTouchAvailable]) {
+    if ([self isForceTouchAvailable])
         self.previewingContext = [self registerForPreviewingWithDelegate:self sourceView:self.view];
-    }
 }
 
 - (UIViewController *)previewingContext:(id<UIViewControllerPreviewing>)previewingContext viewControllerForLocation:(CGPoint)location {
@@ -93,6 +93,7 @@
     wVC.delegate = self;
     wVC.context = self.context;
     if (self.segmentedControl.selectedSegmentIndex == 0) {
+        if (location.y > self.view.frame.size.height-100) return nil;
         CGPoint cellPostion = [self.listTableView convertPoint:location fromView:self.view];
         NSIndexPath *path = [self.listTableView indexPathForRowAtPoint:cellPostion];
         if (path) {
@@ -204,7 +205,10 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self.weekdayView scrollToDate:[NSDate date]];
+    if (self.firstLoad) {
+        [self.weekdayView scrollToDate:[NSDate date]];
+        self.firstLoad = NO;
+    }
     if ([BTTutorialManager needsOnboarding]) {
         BTTutorialManager *manager = [[BTTutorialManager alloc] init];
         [self presentViewController:[manager onboardingViewControllerforSize:self.view.frame.size] animated:YES completion:nil];
@@ -215,6 +219,7 @@
 }
 
 - (void)loadTableViewGradient {
+    self.gradientView.userInteractionEnabled = NO;
     for (CALayer *layer in self.gradientView.layer.sublayers)
         [layer removeFromSuperlayer];
     CAGradientLayer *gradientLayer = [CAGradientLayer layer];
@@ -352,9 +357,11 @@
 #pragma mark - FSCalendar delegate
 
 - (BOOL)calendar:(FSCalendar *)calendar shouldSelectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition {
-    CGRect frame = [calendar frameForDate:date];
-    CGPoint point = CGPointMake(frame.origin.x+frame.size.width/2.0, frame.origin.y+frame.size.height/2.0);
-    [self presentWorkoutSelectionViewControllerWithOriginPoint:point date:date];
+    if ([BTWorkout workoutsBetweenBeginDate:date andEndDate:[date dateByAddingTimeInterval:86400]].count > 0) {
+        CGRect frame = [calendar frameForDate:date];
+        CGPoint point = CGPointMake(frame.origin.x+frame.size.width/2.0, frame.origin.y+frame.size.height/2.0);
+        [self presentWorkoutSelectionViewControllerWithOriginPoint:point date:date];
+    }
     return NO;
 }
 
