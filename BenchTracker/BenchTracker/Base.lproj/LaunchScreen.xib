@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,7 +17,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="HLR-H7-Clm">
-                    <rect key="frame" x="40" y="201" width="334" height="334"/>
+                    <rect key="frame" x="80" y="241" width="254" height="254"/>
                     <constraints>
                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="400" id="Vfc-B5-tOX"/>
                         <constraint firstAttribute="width" secondItem="HLR-H7-Clm" secondAttribute="height" id="qtV-AP-45T"/>
@@ -25,7 +26,7 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="HLR-H7-Clm" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" priority="800" constant="40" id="2WF-Uc-Eox"/>
+                <constraint firstItem="HLR-H7-Clm" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" priority="800" constant="80" id="2WF-Uc-Eox"/>
                 <constraint firstItem="HLR-H7-Clm" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="VG3-NF-Pcj"/>
                 <constraint firstItem="HLR-H7-Clm" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="b4d-gS-Oiz"/>
             </constraints>
@@ -34,6 +35,6 @@
         </view>
     </objects>
     <resources>
-        <image name="Logo" width="666" height="666"/>
+        <image name="Logo" width="341" height="341"/>
     </resources>
 </document>

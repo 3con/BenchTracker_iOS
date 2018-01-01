@@ -62,12 +62,12 @@
     CGSize screenshotSize = CGSizeMake(height*(1242.0/2419), height);
     for (OnboardingContentViewController *viewController in self.onboardingVC.viewControllers) {
         viewController.view.backgroundColor = [UIColor whiteColor];
-        viewController.titleLabel.font = [UIFont systemFontOfSize:28 weight:UIFontWeightBold];
+        viewController.titleLabel.font = [UIFont systemFontOfSize:28 weight:UIFontWeightHeavy];
         viewController.bodyLabel.font = [UIFont systemFontOfSize:17 weight:UIFontWeightSemibold];
         viewController.actionButton.titleLabel.font = [UIFont systemFontOfSize:21 weight:UIFontWeightSemibold];
-        viewController.titleLabel.textColor = [UIColor BTGrayColor];
-        viewController.bodyLabel.textColor = [UIColor BTGrayColor];
-        [viewController.actionButton setTitleColor:[UIColor BTGrayColor] forState:UIControlStateNormal];
+        viewController.titleLabel.textColor = [UIColor BTLightGrayColor];
+        viewController.bodyLabel.textColor = [UIColor BTLightGrayColor];
+        [viewController.actionButton setTitleColor:[UIColor BTLightGrayColor] forState:UIControlStateNormal];
         viewController.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
         viewController.iconHeight = screenshotSize.height;
         viewController.iconWidth = screenshotSize.width;
@@ -91,7 +91,7 @@
             
         }];
     };
-    self.onboardingVC.skipButton.titleLabel.font = [UIFont systemFontOfSize:17 weight:UIFontWeightMedium];
+    self.onboardingVC.skipButton.titleLabel.font = [UIFont systemFontOfSize:15 weight:UIFontWeightMedium];
     [self.onboardingVC.skipButton setTitleColor:[UIColor BTLightGrayColor] forState:UIControlStateNormal];
     return self.onboardingVC;
 }
