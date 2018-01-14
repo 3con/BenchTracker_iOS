@@ -13,7 +13,7 @@
 - (instancetype)initWithCoder:(NSCoder *)coder {
     self = [super initWithCoder:coder];
     if (self) {
-        self.layer.cornerRadius = 12.0;
+        self.layer.cornerRadius = 16;
         self.clipsToBounds = YES;
         self.backgroundColor = [UIColor BTVibrantColors][1];
     }

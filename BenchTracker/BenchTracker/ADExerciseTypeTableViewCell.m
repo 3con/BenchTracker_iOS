@@ -26,6 +26,11 @@
     self.badgeLabel.clipsToBounds = YES;
 }
 
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
+    self.backgroundColor = (highlighted) ? [UIColor BTTableViewSelectionColor] :
+                                           [UIColor BTTableViewBackgroundColor];
+}
+
 - (void)loadWithName:(NSString *)name num:(NSInteger)num color:(UIColor *)color {
     self.titleLabel.text = name;
     self.badgeLabel.alpha = MIN(1, num);

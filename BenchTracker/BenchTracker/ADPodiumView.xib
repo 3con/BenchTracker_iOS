@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -16,7 +16,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mpW-C7-eOi">
-                    <rect key="frame" x="10" y="124" width="93.5" height="16"/>
+                    <rect key="frame" x="10" y="116" width="93.5" height="24"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="32k lbs" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="86Y-Vz-Qfc">
                             <rect key="frame" x="0.0" y="0.0" width="93.5" height="35"/>
@@ -45,11 +45,11 @@
                         <constraint firstItem="16f-DG-Diq" firstAttribute="width" secondItem="86Y-Vz-Qfc" secondAttribute="width" id="X1G-io-1A3"/>
                         <constraint firstItem="86Y-Vz-Qfc" firstAttribute="top" secondItem="mpW-C7-eOi" secondAttribute="top" id="Zlb-9J-GhY"/>
                         <constraint firstItem="16f-DG-Diq" firstAttribute="centerX" secondItem="86Y-Vz-Qfc" secondAttribute="centerX" id="nkV-1P-7IK"/>
-                        <constraint firstAttribute="height" constant="16" id="o1A-Og-OlN"/>
+                        <constraint firstAttribute="height" constant="24" id="o1A-Og-OlN"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zJb-XO-7fT">
-                    <rect key="frame" x="113.5" y="124" width="93" height="16"/>
+                    <rect key="frame" x="113.5" y="116" width="93" height="24"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="41k lbs" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r4X-Z2-R8V">
                             <rect key="frame" x="0.0" y="0.0" width="93" height="35"/>
@@ -74,7 +74,7 @@
                     <constraints>
                         <constraint firstItem="r4X-Z2-R8V" firstAttribute="centerX" secondItem="zJb-XO-7fT" secondAttribute="centerX" id="2Sv-nb-vLf"/>
                         <constraint firstItem="r4X-Z2-R8V" firstAttribute="width" secondItem="zJb-XO-7fT" secondAttribute="width" id="5rt-bA-zAP"/>
-                        <constraint firstAttribute="height" constant="16" id="HkE-67-CZa"/>
+                        <constraint firstAttribute="height" constant="24" id="HkE-67-CZa"/>
                         <constraint firstItem="r4X-Z2-R8V" firstAttribute="top" secondItem="zJb-XO-7fT" secondAttribute="top" id="Ilc-0X-XCi"/>
                         <constraint firstItem="7V1-kD-roa" firstAttribute="top" secondItem="r4X-Z2-R8V" secondAttribute="bottom" constant="-10" id="Mf7-CL-6o6"/>
                         <constraint firstItem="7V1-kD-roa" firstAttribute="centerX" secondItem="r4X-Z2-R8V" secondAttribute="centerX" id="fTe-oY-vaI"/>
@@ -82,7 +82,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cBM-4g-DMX">
-                    <rect key="frame" x="216.5" y="124" width="93.5" height="16"/>
+                    <rect key="frame" x="216.5" y="116" width="93.5" height="24"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="37k lbs" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PXM-sa-Cjg">
                             <rect key="frame" x="0.0" y="0.0" width="93.5" height="35"/>
@@ -111,7 +111,7 @@
                         <constraint firstItem="PXM-sa-Cjg" firstAttribute="width" secondItem="cBM-4g-DMX" secondAttribute="width" id="ZOw-bm-bJH"/>
                         <constraint firstItem="H29-Vr-xaa" firstAttribute="centerX" secondItem="PXM-sa-Cjg" secondAttribute="centerX" id="jAI-N8-Kgq"/>
                         <constraint firstItem="H29-Vr-xaa" firstAttribute="top" secondItem="PXM-sa-Cjg" secondAttribute="bottom" constant="-10" id="mI6-wj-8Li"/>
-                        <constraint firstAttribute="height" constant="16" id="zoQ-f2-u8Y"/>
+                        <constraint firstAttribute="height" constant="24" id="zoQ-f2-u8Y"/>
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jun 27 '17" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="otH-Zx-qmk">

@@ -27,6 +27,17 @@
     self.iterationLabel.clipsToBounds = YES;
 }
 
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
+    if (self.cellSelected) {
+        self.backgroundColor = (highlighted) ? [self.color colorWithAlphaComponent:.85] :
+                                               self.color;
+    }
+    else {
+        self.backgroundColor = (highlighted) ? [UIColor BTTableViewSelectionColor] :
+                                               [UIColor BTTableViewBackgroundColor];
+    }
+}
+
 - (void)loadExerciseType:(BTExerciseType *)exerciseType {
     self.exerciseType = exerciseType;
     NSInteger count = [[NSKeyedUnarchiver unarchiveObjectWithData:exerciseType.iterations] count];

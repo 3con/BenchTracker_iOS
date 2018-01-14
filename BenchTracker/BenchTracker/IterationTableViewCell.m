@@ -18,8 +18,14 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.backgroundColor = [UIColor BTTableViewBackgroundColor];
     self.nameLabel.textColor = [UIColor BTBlackColor];
+}
+
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
+    self.backgroundColor = (highlighted) ? [UIColor BTTableViewSelectionColor] :
+                                           [UIColor BTTableViewBackgroundColor];
 }
 
 - (void)loadName:(NSString *)name iteration:(NSString *)iteration {

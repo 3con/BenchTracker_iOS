@@ -36,6 +36,8 @@
 
 + (UIColor *)BTTableViewBackgroundColor;
 
++ (UIColor *)BTTableViewSelectionColor;
+
 + (UIColor *)BTGroupTableViewBackgroundColor;
 
 + (UIColor *)BTTableViewSeparatorColor;

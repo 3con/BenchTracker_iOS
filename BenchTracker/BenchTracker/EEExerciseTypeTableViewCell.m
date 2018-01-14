@@ -22,6 +22,11 @@
     self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 }
 
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
+    self.backgroundColor = (highlighted) ? [UIColor BTTableViewSelectionColor] :
+                                           [UIColor BTTableViewBackgroundColor];
+}
+
 - (void)loadWithName:(NSString *)name {
     self.titleLabel.text = name;
     MGSwipeButton *delButton = [MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"Trash"] backgroundColor:[UIColor BTRedColor]];

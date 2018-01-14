@@ -54,8 +54,9 @@
     else if ([self.supersetMode isEqualToString:SUPERSET_ABOVE]) self.aboveSupersetView.alpha = 0;
     else if ([self.supersetMode isEqualToString:SUPERSET_BELOW]) self.belowSupersetView.alpha = 0;
     self.exercise = exercise;
-    if (exercise.iteration) self.nameLabel.text = [NSString stringWithFormat:@"%@ %@",exercise.iteration,exercise.name];
-    else                    self.nameLabel.text = exercise.name;
+    if (exercise.iteration && exercise.iteration.length > 0)
+         self.nameLabel.text = [NSString stringWithFormat:@"%@ %@",exercise.iteration,exercise.name];
+    else self.nameLabel.text = exercise.name;
     self.categoryLabel.text = exercise.category;
     if (self.color) {
         self.colorView1.backgroundColor = self.color;

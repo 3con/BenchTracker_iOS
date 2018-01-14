@@ -95,8 +95,9 @@
 #pragma mark - public methods
 
 - (void)updateTitleLabel {
-    if (self.exercise.iteration) self.nameLabel.text = [NSString stringWithFormat:@"%@ %@", self.exercise.iteration, self.exercise.name];
-    else                         self.nameLabel.text = self.exercise.name;
+    if (self.exercise.iteration && self.exercise.iteration.length > 0)
+         self.nameLabel.text = [NSString stringWithFormat:@"%@ %@", self.exercise.iteration, self.exercise.name];
+    else self.nameLabel.text = self.exercise.name;
 }
 
 - (void)loadExercise:(BTExercise *)exercise {

@@ -26,6 +26,11 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
+    self.backgroundColor = (highlighted) ? [UIColor colorWithWhite:1 alpha:.15] :
+                                           [UIColor clearColor];
+}
+
 - (void)setColor:(UIColor *)color {
     _color = color;
     self.contentView.backgroundColor = [UIColor clearColor];

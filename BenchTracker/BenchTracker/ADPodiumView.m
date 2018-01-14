@@ -37,7 +37,7 @@
     [super awakeFromNib];
     self.hasAnimatedIn = NO;
     for (UIView *v in @[self.podiumView1, self.podiumView2, self.podiumView3]) {
-        v.layer.cornerRadius = 8;
+        v.layer.cornerRadius = 12;
         v.clipsToBounds = YES;
     }
 }
@@ -80,9 +80,9 @@
     [self alpa:0 forPodium:3];
     [self alpa:0 forPodium:2];
     [self alpa:0 forPodium:1];
-    self.heightConstraint3.constant = 16;
-    self.heightConstraint2.constant = 16;
-    self.heightConstraint1.constant = 16;
+    self.heightConstraint3.constant = 24;
+    self.heightConstraint2.constant = 24;
+    self.heightConstraint1.constant = 24;
     [self.superview layoutIfNeeded];
     self.heightConstraint3.constant = 60;
     [UIView animateWithDuration:.5 delay:.0 options:UIViewAnimationOptionCurveEaseIn animations:^{

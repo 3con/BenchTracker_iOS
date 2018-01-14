@@ -94,6 +94,14 @@
     }
 }
 
++ (UIColor *)BTTableViewSelectionColor {
+    switch ([self colorScheme]) {
+        case 0: return [UIColor colorWithRed:235/255.0 green:235/255.0 blue:241/255.0 alpha:1];
+        case 1: return [UIColor colorWithRed:46/255.0 green:61/255.0 blue:80/255.0 alpha:1];
+        default: return nil;
+    }
+}
+
 + (UIColor *)BTGroupTableViewBackgroundColor { //rgb(235,235,241)
     switch ([self colorScheme]) {
         case 0: return [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1];

@@ -12,11 +12,7 @@
 #import "HMSegmentedControl.h"
 #import "BTWorkout+CoreDataClass.h"
 #import "BTSettings+CoreDataClass.h"
-
-#define QUERY_TYPE_VOLUME       0
-#define QUERY_TYPE_DURATION     1
-#define QUERY_TYPE_NUMEXERCISES 2
-#define QUERY_TYPE_NUMSETS      3
+#import "ADWorkoutsTableViewCell.h"
 
 @interface ADWorkoutsViewController ()
 
@@ -49,6 +45,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, CGFLOAT_MAX);
+    self.tableView.contentInset = UIEdgeInsetsMake(4, 0, 4, 0);
     self.tableView.layer.cornerRadius = 12;
     self.tableView.clipsToBounds = YES;
 }
@@ -70,7 +67,7 @@
         self.tableView.backgroundColor = [self.color colorWithAlphaComponent:.8];
         [self setUpSegmentedControl];
         [self loadPodiumView];
-        self.tableViewHeightConstraint.constant = MAX(self.view.frame.size.height-(314+72), self.fetchedResultsController.fetchedObjects.count*40);
+        self.tableViewHeightConstraint.constant = MAX(self.view.frame.size.height-(314+72), self.fetchedResultsController.fetchedObjects.count*46+8);
     }
 }
 
@@ -91,9 +88,15 @@
     NSMutableArray *dateArray = [NSMutableArray array];
     NSMutableArray *valueArray = [NSMutableArray array];
     for (int i = 0; i < MIN(self.fetchedResultsController.fetchedObjects.count, 3); i++) {
-        NSArray *a = [self dateAndValueForIndex:i];
-        [dateArray addObject:a[0]];
-        [valueArray addObject:a[1]];
+        BTWorkout *workout = self.fetchedResultsController.fetchedObjects[i];
+        NSString *suffix = (self.queryType == QUERY_TYPE_VOLUME) ?
+                                [NSString stringWithFormat:@"k %@",  self.settings.weightSuffix] :
+                           (self.queryType == QUERY_TYPE_DURATION) ? @" min" : @"";
+        long long value = (self.queryType == QUERY_TYPE_VOLUME) ? workout.volume/1000 :
+                          (self.queryType == QUERY_TYPE_DURATION) ? workout.duration/60 :
+                          (self.queryType == QUERY_TYPE_NUMEXERCISES) ? workout.numExercises : workout.numSets;
+        [dateArray addObject:workout.date];
+        [valueArray addObject:[NSString stringWithFormat:@"%lld%@",value,suffix]];
     }
     self.podiumView.dates = dateArray;
     self.podiumView.values = valueArray;
@@ -166,22 +169,19 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 40;
+    return 46;
 }
 
-- (void)configureWorkoutCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    NSArray *a = [self dateAndValueForIndex:indexPath.row];
-    cell.textLabel.attributedText = [self attributedStringForDate:a[0] value:a[1]];
+- (void)configureWorkoutCell:(ADWorkoutsTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    cell.type = self.queryType;
+    cell.weightSuffix = self.settings.weightSuffix;
+    cell.workout = [self.fetchedResultsController objectAtIndexPath:indexPath];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
-        cell.textLabel.textColor = [UIColor whiteColor];
-        cell.backgroundColor = [UIColor clearColor];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
+    ADWorkoutsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    if (cell == nil) cell = [[NSBundle mainBundle] loadNibNamed:@"ADWorkoutsTableViewCell" owner:self
+                                                        options:nil].firstObject;
     [self configureWorkoutCell:cell atIndexPath:indexPath];
     return cell;
 }
@@ -219,25 +219,8 @@
     
 }
 
-#pragma mark - helper methods
-
-- (NSArray *)dateAndValueForIndex:(NSInteger)index {
-    BTWorkout *workout = self.fetchedResultsController.fetchedObjects[index];
-    NSString *suffix = (self.queryType == QUERY_TYPE_VOLUME) ? [NSString stringWithFormat:@"k %@", self.settings.weightSuffix] :
-                       (self.queryType == QUERY_TYPE_DURATION) ? @" min" : @"";
-    long long value = (self.queryType == QUERY_TYPE_VOLUME) ? workout.volume/1000 :
-                      (self.queryType == QUERY_TYPE_DURATION) ? workout.duration/60 :
-                      (self.queryType == QUERY_TYPE_NUMEXERCISES) ? workout.numExercises : workout.numSets;
-    return @[workout.date, [NSString stringWithFormat:@"%lld%@",value,suffix]];
-}
-
-- (NSAttributedString *)attributedStringForDate:(NSDate *)date value:(NSString *)value {
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"E, MMM d";
-    NSMutableAttributedString *mAS = [[NSMutableAttributedString alloc] initWithString:
-                                      [NSString stringWithFormat:@"%@ %@", value, [formatter stringFromDate:date]]];
-    [mAS setAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:17 weight:UIFontWeightHeavy]} range:NSMakeRange(0, value.length)];
-    return mAS;
+- (void)workoutViewController:(WorkoutViewController *)workoutVC didDismissWithResultWorkout:(BTWorkout *)workout {
+    
 }
 
 #pragma mark - fetchedResultsController delegate
