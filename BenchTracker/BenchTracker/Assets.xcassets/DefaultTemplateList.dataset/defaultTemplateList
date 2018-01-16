@@ -40,9 +40,9 @@
             "summary":"3 Triceps#3 Biceps",
             "name":"Arm Workout 💪",
             "supersets":[
-				[0, 1],
-				[2, 3],
-				[4, 5]
+					[0, 1],
+					[2, 3],
+					[4, 5]
             ]
          },
          {
@@ -81,9 +81,9 @@
             "summary":"2 Chest#2 Triceps#2 Shoulders",
             "name":"Push Day 🙌",
             "supersets":[
-				[0, 1],
-				[2, 3],
-				[4, 5]
+					[0, 1],
+					[2, 3],
+					[4, 5]
             ]
          },
          {
@@ -117,8 +117,8 @@
             "summary":"5 Legs",
             "name":"Leg Day 🏋",
             "supersets":[
-				[0, 1],
-				[2, 3]
+					[0, 1],
+					[2, 3]
             ]
          },
          {
@@ -157,9 +157,9 @@
             "summary":"4 Back#2 Biceps",
             "name":"Pull Day 😁",
             "supersets":[
-				[0, 1],
-				[2, 3],
-				[4, 5]
+					[0, 1],
+					[2, 3],
+					[4, 5]
             ]
          },
          {
@@ -193,8 +193,8 @@
             "summary":"5 Abs \/ Core",
             "name":"Shredded Abs 😜",
             "supersets":[
-               [ 0, 1, 2 ]
-			   [ 3, 4 ]
+               [ 0, 1, 2 ],
+			   	[ 3, 4 ]
             ]
          }
       ]

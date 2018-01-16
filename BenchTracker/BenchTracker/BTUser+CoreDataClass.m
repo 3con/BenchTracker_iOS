@@ -99,19 +99,14 @@
 }
 
 + (void)checkForTotalsPurge {
-    [self runPurgeNumber:0];
-}
-
-+ (void)runPurgeNumber:(int)num {
     BTUser *user = [BTUser sharedInstance];
     NSInteger numWorkouts = [BTWorkout numberOfWorkouts];
     if (user.totalWorkouts == numWorkouts) return;
     if (user.totalWorkouts > numWorkouts) [BTUser totalPurge];
-    if (num > 5) [BTUser totalPurge];
     NSLog(@"Running short purge");
     for (BTWorkout *workout in [BTWorkout allWorkoutsWithFactoredIntoTotalsFilter:YES])
         [BTUser addWorkoutToTotals:workout];
-    [self runPurgeNumber:num+1];
+    if (user.totalWorkouts != numWorkouts) [BTUser totalPurge];
 }
 
 + (void)totalPurge {
