@@ -31,6 +31,11 @@
                                            [UIColor clearColor];
 }
 
+- (void)layoutIfNeeded {
+    [super layoutIfNeeded];
+    [self.stackedBarView reloadData];
+}
+
 - (void)setWorkout:(BTWorkout *)workout {
     _workout = workout;
     NSString *suffix = (self.type == QUERY_TYPE_VOLUME) ? [NSString stringWithFormat:@"k %@", self.weightSuffix] :

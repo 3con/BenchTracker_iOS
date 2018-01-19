@@ -108,8 +108,8 @@
         NSIndexPath *path = [self.weekdayView indexPathForRowAtPoint:cellPostion];
         if (path) {
             WeekdayTableViewCell *tableCell = [self.weekdayView cellForRowAtIndexPath:path];
-            BTWorkout *workout = [BTWorkout workoutsBetweenBeginDate:tableCell.date
-                                                          andEndDate:[tableCell.date dateByAddingTimeInterval:86400]].firstObject;
+            BTWorkout *workout = [BTWorkout workoutsBetweenBeginDate:[tableCell.date dateByAddingTimeInterval:-86400]
+                                                          andEndDate:tableCell.date].firstObject;
             if (workout) {
                 wVC.workout = workout;
                 previewingContext.sourceRect = [self.view convertRect:[self.weekdayView sourceRectForIndex:path] fromView:self.weekdayView];

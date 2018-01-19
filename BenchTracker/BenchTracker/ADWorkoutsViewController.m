@@ -22,8 +22,12 @@
 @property (weak, nonatomic) IBOutlet UILabel *podiumTitleLabel;
 @property (nonatomic) ADPodiumView *podiumView;
 
-@property (weak, nonatomic) IBOutlet UIView *segmentedControlContainerView;
-@property (nonatomic) HMSegmentedControl *segmentedControl;
+@property (weak, nonatomic) IBOutlet UIView *timeSegmentedControlContainerView;
+@property (nonatomic) HMSegmentedControl *timeSegmentedControl;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *timeLayoutConstraint;
+
+@property (weak, nonatomic) IBOutlet UIView *typeSegmentedControlContainerView;
+@property (nonatomic) HMSegmentedControl *typeSegmentedControl;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewHeightConstraint;
@@ -64,10 +68,10 @@
         if (![[self fetchedResultsController] performFetch:&error]) {
             NSLog(@"Main fetch error: %@, %@", error, [error userInfo]);
         }
+        [self updateTableHeightConstraint];
         self.tableView.backgroundColor = [self.color colorWithAlphaComponent:.8];
-        [self setUpSegmentedControl];
+        [self setUpSegmentedControls];
         [self loadPodiumView];
-        self.tableViewHeightConstraint.constant = MAX(self.view.frame.size.height-(314+72), self.fetchedResultsController.fetchedObjects.count*46+8);
     }
 }
 
@@ -75,6 +79,12 @@
     [super viewDidAppear:animated];
     if (!self.podiumView.hasAnimatedIn)
         [self.podiumView animateIn];
+}
+
+- (void)updateTableHeightConstraint {
+    BOOL collapsed = self.typeSegmentedControl.selectedSegmentIndex == 1;
+    self.tableViewHeightConstraint.constant = MAX(self.view.frame.size.height-(379+72+collapsed*-65),
+                                                  self.fetchedResultsController.fetchedObjects.count*46+8);
 }
 
 - (void)loadPodiumView {
@@ -105,33 +115,48 @@
 
 #pragma mark - segmedtedControl
 
-- (void)setUpSegmentedControl {
-    self.segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"Top", @"Recent"]];
-    self.segmentedControl.frame = CGRectMake(0, 0, self.segmentedControlContainerView.frame.size.width,
-                                                   self.segmentedControlContainerView.frame.size.height);
-    self.segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    self.segmentedControl.layer.cornerRadius = 12;
-    self.segmentedControl.clipsToBounds = YES;
-    self.segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleBox;
-    self.segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationNone;
-    self.segmentedControl.backgroundColor = self.color;
-    self.segmentedControl.selectionIndicatorBoxColor = [UIColor whiteColor];
-    self.segmentedControl.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-                                                 [UIColor whiteColor], NSForegroundColorAttributeName,
-                                                 [UIFont systemFontOfSize:15 weight:UIFontWeightMedium], NSFontAttributeName, nil];
-    self.segmentedControl.selectedTitleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-                                                         [UIColor whiteColor], NSForegroundColorAttributeName,
-                                                         [UIFont systemFontOfSize:15 weight:UIFontWeightMedium], NSFontAttributeName, nil];
-    [self.segmentedControl addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
-    [self.segmentedControlContainerView addSubview:self.segmentedControl];
+- (void)setUpSegmentedControls {
+    self.timeSegmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"All-Time", @"30-Day"]];
+    self.typeSegmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"Top", @"Recent"]];
+    for (HMSegmentedControl *segmentedControl in @[self.timeSegmentedControl, self.typeSegmentedControl]) {
+        segmentedControl.frame = CGRectMake(0, 0, self.timeSegmentedControlContainerView.frame.size.width,
+                                                       self.timeSegmentedControlContainerView.frame.size.height);
+        segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        segmentedControl.layer.cornerRadius = 12;
+        segmentedControl.clipsToBounds = YES;
+        segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleBox;
+        segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationNone;
+        segmentedControl.backgroundColor = self.color;
+        segmentedControl.selectionIndicatorBoxColor = [UIColor whiteColor];
+        segmentedControl.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                                     [UIColor whiteColor], NSForegroundColorAttributeName,
+                                                     [UIFont systemFontOfSize:15 weight:UIFontWeightMedium], NSFontAttributeName, nil];
+        segmentedControl.selectedTitleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                                             [UIColor whiteColor], NSForegroundColorAttributeName,
+                                                             [UIFont systemFontOfSize:15 weight:UIFontWeightMedium], NSFontAttributeName, nil];
+        [segmentedControl addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
+    }
+    [self.timeSegmentedControlContainerView addSubview:self.timeSegmentedControl];
+    [self.typeSegmentedControlContainerView addSubview:self.typeSegmentedControl];
 }
 
 - (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl {
+    [self setTimeSegmentedControlCollapsed:self.typeSegmentedControl.selectedSegmentIndex == 1];
     [self updateFetchRequest:self.fetchedResultsController.fetchRequest];
     NSError *error;
     if (![[self fetchedResultsController] performFetch:&error])
         NSLog(@"Main fetch error: %@, %@", error, [error userInfo]);
     [self.tableView reloadData];
+    [self updateTableHeightConstraint];
+}
+
+- (void)setTimeSegmentedControlCollapsed:(BOOL)collapsed {
+    self.timeSegmentedControlContainerView.userInteractionEnabled = !collapsed;
+    self.timeLayoutConstraint.constant = (collapsed) ? 20 : 85;
+    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        [self.view layoutIfNeeded];
+        self.timeSegmentedControlContainerView.alpha = !collapsed;
+    } completion:nil];
 }
 
 #pragma mark - fetchedResultsController
@@ -141,7 +166,7 @@
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"BTWorkout"];
     [self updateFetchRequest:fetchRequest];
     fetchRequest.fetchBatchSize = 5;
-    fetchRequest.fetchLimit = 25;
+    fetchRequest.fetchLimit = 50;
     NSFetchedResultsController *theFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
                                                                managedObjectContext:self.context sectionNameKeyPath:nil cacheName:nil];
     self.fetchedResultsController = theFetchedResultsController;
@@ -150,7 +175,10 @@
 }
 
 - (void)updateFetchRequest:(NSFetchRequest *)request {
-    if (self.segmentedControl.selectedSegmentIndex == 0) {
+    if (self.typeSegmentedControl.selectedSegmentIndex == 0 && self.timeSegmentedControl.selectedSegmentIndex == 1)
+         request.predicate = [NSPredicate predicateWithFormat:@"date >= %@",[NSDate.date dateByAddingTimeInterval:86400*-30]];
+    else request.predicate = nil;
+    if (self.typeSegmentedControl.selectedSegmentIndex == 0) {
         if (self.queryType == QUERY_TYPE_VOLUME)
              request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"volume" ascending:NO]];
         else if (self.queryType == QUERY_TYPE_DURATION)

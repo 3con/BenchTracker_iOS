@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13528" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13526"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -89,33 +89,42 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8bc-HH-7Lm">
-                                <rect key="frame" x="20" y="230" width="335" height="45"/>
+                                <rect key="frame" x="20" y="295" width="335" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="yzV-J6-scH"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Nm9-Q5-ezj">
-                                <rect key="frame" x="20" y="295" width="335" height="300"/>
+                                <rect key="frame" x="20" y="360" width="335" height="300"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="4Mo-jp-CxT"/>
                                 </constraints>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SKJ-oo-vD9">
+                                <rect key="frame" x="20" y="230" width="335" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="Eou-jP-vxA"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="8bc-HH-7Lm" firstAttribute="top" secondItem="SKJ-oo-vD9" secondAttribute="bottom" constant="20" id="6Wo-8Y-XJb"/>
                             <constraint firstItem="Nm9-Q5-ezj" firstAttribute="centerX" secondItem="rMH-ml-sdh" secondAttribute="centerX" id="KOb-gD-2LC"/>
                             <constraint firstItem="8bc-HH-7Lm" firstAttribute="centerX" secondItem="rMH-ml-sdh" secondAttribute="centerX" id="NPC-Q2-oIY"/>
+                            <constraint firstItem="SKJ-oo-vD9" firstAttribute="centerX" secondItem="rMH-ml-sdh" secondAttribute="centerX" id="PjJ-rf-M16"/>
                             <constraint firstItem="hVp-sQ-wxO" firstAttribute="top" secondItem="rMH-ml-sdh" secondAttribute="top" constant="20" id="Tgi-Mk-h8d"/>
                             <constraint firstItem="th4-yS-TyJ" firstAttribute="top" secondItem="rMH-ml-sdh" secondAttribute="top" id="X6x-vH-z8p"/>
-                            <constraint firstItem="Nm9-Q5-ezj" firstAttribute="top" secondItem="8bc-HH-7Lm" secondAttribute="bottom" constant="20" id="XXR-uC-DGg"/>
+                            <constraint firstItem="Nm9-Q5-ezj" firstAttribute="top" secondItem="SKJ-oo-vD9" secondAttribute="bottom" constant="85" id="bu6-Az-xBV"/>
                             <constraint firstItem="Nm9-Q5-ezj" firstAttribute="width" secondItem="8bc-HH-7Lm" secondAttribute="width" id="cC9-B2-nLh"/>
                             <constraint firstItem="th4-yS-TyJ" firstAttribute="leading" secondItem="rMH-ml-sdh" secondAttribute="leading" id="dAB-xX-wFB"/>
                             <constraint firstAttribute="trailing" secondItem="th4-yS-TyJ" secondAttribute="trailing" id="eRD-VX-74f"/>
                             <constraint firstItem="hVp-sQ-wxO" firstAttribute="centerX" secondItem="rMH-ml-sdh" secondAttribute="centerX" id="fSt-cW-ySy"/>
                             <constraint firstItem="hVp-sQ-wxO" firstAttribute="leading" secondItem="rMH-ml-sdh" secondAttribute="leading" priority="800" constant="20" id="iX5-Qy-zH3"/>
+                            <constraint firstItem="SKJ-oo-vD9" firstAttribute="width" secondItem="Nm9-Q5-ezj" secondAttribute="width" id="lda-kM-ImG"/>
                             <constraint firstAttribute="bottom" secondItem="Nm9-Q5-ezj" secondAttribute="bottom" constant="20" id="ozP-sP-vpH"/>
                             <constraint firstItem="8bc-HH-7Lm" firstAttribute="width" secondItem="hVp-sQ-wxO" secondAttribute="width" id="tfI-1G-Fo5"/>
-                            <constraint firstItem="8bc-HH-7Lm" firstAttribute="top" secondItem="hVp-sQ-wxO" secondAttribute="bottom" constant="20" id="xhI-Xa-1xj"/>
+                            <constraint firstItem="SKJ-oo-vD9" firstAttribute="top" secondItem="hVp-sQ-wxO" secondAttribute="bottom" constant="20" id="x43-U4-bB1"/>
                         </constraints>
                     </scrollView>
                 </subviews>
@@ -136,10 +145,12 @@
                 <outlet property="navView" destination="fVh-Pd-fCg" id="a16-II-s1O"/>
                 <outlet property="podiumContainerView" destination="hVp-sQ-wxO" id="h4D-CM-7aL"/>
                 <outlet property="podiumTitleLabel" destination="JPa-Ii-nC3" id="CYD-gb-jhr"/>
-                <outlet property="segmentedControlContainerView" destination="8bc-HH-7Lm" id="iql-QR-f7t"/>
                 <outlet property="tableView" destination="Nm9-Q5-ezj" id="AtF-vZ-wHQ"/>
                 <outlet property="tableViewHeightConstraint" destination="4Mo-jp-CxT" id="K9J-my-n79"/>
+                <outlet property="timeLayoutConstraint" destination="bu6-Az-xBV" id="5sn-7o-Mwu"/>
+                <outlet property="timeSegmentedControlContainerView" destination="8bc-HH-7Lm" id="wvI-lX-ysg"/>
                 <outlet property="titleLabel" destination="2jN-HZ-eFE" id="Gp7-1R-L0U"/>
+                <outlet property="typeSegmentedControlContainerView" destination="SKJ-oo-vD9" id="OZ9-w5-Vru"/>
             </connections>
             <point key="canvasLocation" x="-422" y="54"/>
         </viewController>
