@@ -176,7 +176,7 @@
     queryExpression.indexName = @"valid-experience-index";
     queryExpression.keyConditionExpression = @"valid = :val";
     queryExpression.expressionAttributeValues = @{@":val": @"YES"};
-    queryExpression.limit = @99;
+    queryExpression.limit = @100;
     queryExpression.scanIndexForward = @NO;
     [[self.mapper query:[AWSLeaderboard class] expression:queryExpression] continueWithBlock:^id(AWSTask *task) {
          if (task.error) {

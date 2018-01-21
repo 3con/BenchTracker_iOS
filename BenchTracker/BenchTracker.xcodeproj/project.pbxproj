@@ -1281,14 +1281,14 @@
 			name = BTSettings;
 			sourceTree = "<group>";
 		};
-		F97773E31F1726A6009AEDE3 /* Exercise type cell */ = {
+		F97773E31F1726A6009AEDE3 /* Exercise type tvc */ = {
 			isa = PBXGroup;
 			children = (
 				F97773DE1F1726A2009AEDE3 /* ADExerciseTypeTableViewCell.h */,
 				F97773DF1F1726A2009AEDE3 /* ADExerciseTypeTableViewCell.m */,
 				F97773E01F1726A2009AEDE3 /* ADExerciseTypeTableViewCell.xib */,
 			);
-			name = "Exercise type cell";
+			name = "Exercise type tvc";
 			sourceTree = "<group>";
 		};
 		F97B1CA41F09759700B3EEC7 /* Weekday tvc */ = {
@@ -1404,14 +1404,14 @@
 			name = "Analytics cell";
 			sourceTree = "<group>";
 		};
-		F9C240701F17D94F00A268F3 /* Exercise cell */ = {
+		F9C240701F17D94F00A268F3 /* Exercise tvc */ = {
 			isa = PBXGroup;
 			children = (
 				F9C2406B1F17D94900A268F3 /* ADEDExerciseTableViewCell.h */,
 				F9C2406C1F17D94900A268F3 /* ADEDExerciseTableViewCell.m */,
 				F9C2406D1F17D94900A268F3 /* ADEDExerciseTableViewCell.xib */,
 			);
-			name = "Exercise cell";
+			name = "Exercise tvc";
 			sourceTree = "<group>";
 		};
 		F9C240741F17FA7800A268F3 /* BTColor extension */ = {
@@ -1580,7 +1580,7 @@
 				F9FD19ED1F14748800AB3FEE /* ADExercisesViewController.m */,
 				F9FD19EE1F14748800AB3FEE /* ADExercisesViewController.xib */,
 				F9FD19F71F147F7900AB3FEE /* Exercises detail */,
-				F97773E31F1726A6009AEDE3 /* Exercise type cell */,
+				F97773E31F1726A6009AEDE3 /* Exercise type tvc */,
 			);
 			name = Exercises;
 			sourceTree = "<group>";
@@ -1591,7 +1591,7 @@
 				F9FD19F21F147F7600AB3FEE /* ADExercisesDetailViewController.h */,
 				F9FD19F31F147F7600AB3FEE /* ADExercisesDetailViewController.m */,
 				F9FD19F41F147F7600AB3FEE /* ADExercisesDetailViewController.xib */,
-				F9C240701F17D94F00A268F3 /* Exercise cell */,
+				F9C240701F17D94F00A268F3 /* Exercise tvc */,
 			);
 			name = "Exercises detail";
 			sourceTree = "<group>";

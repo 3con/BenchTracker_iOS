@@ -54,10 +54,12 @@
         [str addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:15 weight:UIFontWeightRegular]
                     range:NSMakeRange(iteration.length, str.length-iteration.length)];
         self.nameLabel.attributedText = str;
+        self.iterationLabel.hidden = YES;
     }
     else {
         self.nameLabel.text = self.exerciseType.name;
         self.nameLabel.font = [UIFont systemFontOfSize:15 weight:UIFontWeightRegular];
+        self.iterationLabel.hidden = NO;
     }
 }
 

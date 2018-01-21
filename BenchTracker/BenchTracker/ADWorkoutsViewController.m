@@ -70,7 +70,8 @@
         }
         [self updateTableHeightConstraint];
         self.tableView.backgroundColor = [self.color colorWithAlphaComponent:.8];
-        [self setUpSegmentedControls];
+        [self loadSegmentedControls];
+        [self setTimeSegmentedControlCollapsed:YES];
         [self loadPodiumView];
     }
 }
@@ -115,7 +116,7 @@
 
 #pragma mark - segmedtedControl
 
-- (void)setUpSegmentedControls {
+- (void)loadSegmentedControls {
     self.timeSegmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"All-Time", @"30-Day"]];
     self.typeSegmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"Top", @"Recent"]];
     for (HMSegmentedControl *segmentedControl in @[self.timeSegmentedControl, self.typeSegmentedControl]) {

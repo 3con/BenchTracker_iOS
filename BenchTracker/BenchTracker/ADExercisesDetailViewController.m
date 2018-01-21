@@ -37,8 +37,12 @@
 @property (nonatomic) BTAnalyticsLineChart *graphView;
 @property (weak, nonatomic) IBOutlet UILabel *graphNoDataLabel;
 
-@property (weak, nonatomic) IBOutlet UIView *segmentedControllerContainerView;
-@property (nonatomic) HMSegmentedControl *segmentedControl;
+@property (weak, nonatomic) IBOutlet UIView *typeSegmentedControlContainerView;
+@property (nonatomic) HMSegmentedControl *typeSegmentedControl;
+
+@property (weak, nonatomic) IBOutlet UIView *timeSegmentedControlContainerView;
+@property (nonatomic) HMSegmentedControl *timeSegmentedControl;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *timeLayoutConstraint;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewHeightConstraint;
@@ -69,15 +73,15 @@
         if (![[self fetchedResultsController] performFetch:&error]) {
             NSLog(@"AD exercise detail fetch error: %@, %@", error, [error userInfo]);
         }
-        self.tableViewHeightConstraint.constant = MAX(self.view.frame.size.height-624-72,
-                                                      self.fetchedResultsController.fetchedObjects.count*CELL_HEIGHT);
+        [self updateTableHeightConstraint];
         for (UIView *view in @[self.iterationButton, self.podiumContainerView, self.graphContainerView, self.tableView]) {
             view.layer.cornerRadius = 12;
             view.clipsToBounds = YES;
             view.backgroundColor = [self.color colorWithAlphaComponent:.8];
         }
         [self loadPodiumView];
-        [self loadSegmentedControl];
+        [self loadSegmentedControls];
+        [self setTimeSegmentedControlCollapsed:YES];
         [self loadGraphView];
         [self loadIterationButton];
     }
@@ -88,6 +92,12 @@
     [BTAchievement markAchievementComplete:ACHIEVEMENT_ANALYZE animated:YES];
     if (!self.podiumView.hasAnimatedIn)
         [self.podiumView animateIn];
+}
+
+- (void)updateTableHeightConstraint {
+    BOOL collapsed = self.typeSegmentedControl.selectedSegmentIndex == 1;
+    self.tableViewHeightConstraint.constant = MAX(self.view.frame.size.height-(624+72+!collapsed*65),
+                                                  self.fetchedResultsController.fetchedObjects.count*CELL_HEIGHT);
 }
 
 - (IBAction)iterationButtonPressed:(UIButton *)sender {
@@ -120,19 +130,20 @@
         self.graphView.alpha = 0;
         return;
     }
-    NSString *s = (self.segmentedControl.selectedSegmentIndex == 0) ? @"Recent" : (self.segmentedControl.selectedSegmentIndex == 1) ? @"Top" : @"";
+    NSString *s = (self.typeSegmentedControl.selectedSegmentIndex == 0) ? @"Recent" :
+                  (self.typeSegmentedControl.selectedSegmentIndex == 1) ? @"Top" : @"";
     if ([self.exerciseType.style isEqualToString:STYLE_REPSWEIGHT])      s = [s stringByAppendingString:@" 1RM Equivalents"];
     else if ([self.exerciseType.style isEqualToString:STYLE_REPS])       s = [s stringByAppendingString:@" Max Reps"];
     else if ([self.exerciseType.style isEqualToString:STYLE_TIMEWEIGHT]) s = [s stringByAppendingString:@" Max Loads"];
     else if ([self.exerciseType.style isEqualToString:STYLE_TIME])       s = [s stringByAppendingString:@" Max Durations"];
-    if (self.segmentedControl.selectedSegmentIndex == 2)
+    if (self.typeSegmentedControl.selectedSegmentIndex == 2)
         s = [[s substringFromIndex:1] stringByAppendingString:@": Rolling Average"];
     self.graphTitleLabel.text = s;
     NSMutableArray *xAxisArr = [NSMutableArray array];
     NSMutableArray *yAxisArr = [NSMutableArray array];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"MMMMM d";
-    if (self.segmentedControl.selectedSegmentIndex <= 1) {
+    if (self.typeSegmentedControl.selectedSegmentIndex <= 1) {
         for (BTExercise *exercise in self.fetchedResultsController.fetchedObjects) {
             if (xAxisArr.count >= MIN(15, (self.view.frame.size.width-80)/38)) break;
             [xAxisArr addObject:[formatter stringFromDate:exercise.workout.date]];
@@ -186,7 +197,7 @@
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setEntity:[NSEntityDescription entityForName:@"BTExercise" inManagedObjectContext:self.context]];
     [request setSortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"oneRM" ascending:NO]]];
-    [request setPredicate:[self predicateForExerciseTypeAndIteration]];
+    [request setPredicate:[self predicateForExerciseTypeIterationAndTime]];
     [request setFetchBatchSize:3];
     NSError *error;
     NSArray <BTExercise *> *topArr = [self.context executeFetchRequest:request error:&error];
@@ -253,28 +264,33 @@
 
 #pragma mark - segmedtedControl
 
-- (void)loadSegmentedControl {
-    self.segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"Recent", @"Top", @"Average"]];
-    self.segmentedControl.frame = CGRectMake(0, 0, self.segmentedControllerContainerView.frame.size.width,
-                                                   self.segmentedControllerContainerView.frame.size.height);
-    self.segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    self.segmentedControl.layer.cornerRadius = 12;
-    self.segmentedControl.clipsToBounds = YES;
-    self.segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleBox;
-    self.segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationNone;
-    self.segmentedControl.backgroundColor = self.color;
-    self.segmentedControl.selectionIndicatorBoxColor = [UIColor whiteColor];
-    self.segmentedControl.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-                                                 [UIColor whiteColor], NSForegroundColorAttributeName,
-                                                 [UIFont systemFontOfSize:15 weight:UIFontWeightMedium], NSFontAttributeName, nil];
-    self.segmentedControl.selectedTitleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-                                                         [UIColor whiteColor], NSForegroundColorAttributeName,
-                                                         [UIFont systemFontOfSize:15 weight:UIFontWeightMedium], NSFontAttributeName, nil];
-    [self.segmentedControl addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
-    [self.segmentedControllerContainerView addSubview:self.segmentedControl];
+- (void)loadSegmentedControls {
+    self.typeSegmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"Recent", @"Top", @"Average"]];
+    self.timeSegmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"All-Time", @"30-Day"]];
+    for (HMSegmentedControl *segmentedControl in @[self.timeSegmentedControl, self.typeSegmentedControl]) {
+        segmentedControl.frame = CGRectMake(0, 0, self.timeSegmentedControlContainerView.frame.size.width,
+                                            self.timeSegmentedControlContainerView.frame.size.height);
+        segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        segmentedControl.layer.cornerRadius = 12;
+        segmentedControl.clipsToBounds = YES;
+        segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleBox;
+        segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationNone;
+        segmentedControl.backgroundColor = self.color;
+        segmentedControl.selectionIndicatorBoxColor = [UIColor whiteColor];
+        segmentedControl.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                                [UIColor whiteColor], NSForegroundColorAttributeName,
+                                                [UIFont systemFontOfSize:15 weight:UIFontWeightMedium], NSFontAttributeName, nil];
+        segmentedControl.selectedTitleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                                        [UIColor whiteColor], NSForegroundColorAttributeName,
+                                                        [UIFont systemFontOfSize:15 weight:UIFontWeightMedium], NSFontAttributeName, nil];
+        [segmentedControl addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
+    }
+    [self.timeSegmentedControlContainerView addSubview:self.timeSegmentedControl];
+    [self.typeSegmentedControlContainerView addSubview:self.typeSegmentedControl];
 }
 
 - (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl {
+    [self setTimeSegmentedControlCollapsed:self.typeSegmentedControl.selectedSegmentIndex != 1];
     [self updateFetchRequest:self.fetchedResultsController.fetchRequest];
     NSError *error;
     if (![[self fetchedResultsController] performFetch:&error]) {
@@ -282,6 +298,16 @@
     }
     [self.tableView reloadData];
     [self updateGraphView];
+    [self updateTableHeightConstraint];
+}
+
+- (void)setTimeSegmentedControlCollapsed:(BOOL)collapsed {
+    self.timeSegmentedControlContainerView.userInteractionEnabled = !collapsed;
+    self.timeLayoutConstraint.constant = (collapsed) ? 20 : 85;
+    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        [self.view layoutIfNeeded];
+        self.timeSegmentedControlContainerView.alpha = !collapsed;
+    } completion:nil];
 }
 
 #pragma mark - fetchedResultsController
@@ -300,18 +326,22 @@
 }
 
 - (void)updateFetchRequest:(NSFetchRequest *)request {
-    if (self.segmentedControl.selectedSegmentIndex == 0)
+    if (self.typeSegmentedControl.selectedSegmentIndex == 0)
          request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"workout.date" ascending:NO]];
-    else if (self.segmentedControl.selectedSegmentIndex == 1)
+    else if (self.typeSegmentedControl.selectedSegmentIndex == 1)
          request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"oneRM" ascending:NO]];
     else request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"workout.date" ascending:NO]];
-    [request setPredicate:[self predicateForExerciseTypeAndIteration]];
+    [request setPredicate:[self predicateForExerciseTypeIterationAndTime]];
 }
 
-- (NSPredicate *)predicateForExerciseTypeAndIteration {
-    NSPredicate *p1 = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"name == '%@'",self.titleString]];
-    NSPredicate *p2 = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"iteration == '%@'",self.iteration]];
-    return (self.iteration.length > 0) ? [NSCompoundPredicate andPredicateWithSubpredicates:@[p1, p2]] : p1;
+- (NSPredicate *)predicateForExerciseTypeIterationAndTime {
+    NSPredicate *p3;
+    if (self.typeSegmentedControl.selectedSegmentIndex == 1 && self.timeSegmentedControl.selectedSegmentIndex == 1)
+        p3 = [NSPredicate predicateWithFormat:@"workout.date >= %@", [NSDate.date dateByAddingTimeInterval:-86400*30]];
+    NSPredicate *p1 = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"name == '%@'", self.titleString]];
+    NSPredicate *p2 = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"iteration == '%@'", self.iteration]];
+    NSPredicate *p4 = (p3) ? [NSCompoundPredicate andPredicateWithSubpredicates:@[p1, p3]] : p1;
+    return (self.iteration.length > 0) ? [NSCompoundPredicate andPredicateWithSubpredicates:@[p4, p2]] : p4;
 }
 
 #pragma mark - tableView dataSource
@@ -349,7 +379,7 @@
 #pragma mrk - iterationVC delegate
 
 - (void)iterationSelectionVC:(IterationSelectionViewController *)iterationVC willDismissWithSelectedIteration:(NSString *)iteration {
-    [self.segmentedControl setSelectedSegmentIndex:0 animated:YES];
+    [self.typeSegmentedControl setSelectedSegmentIndex:0 animated:YES];
     self.iteration = iteration;
     [self updateIterationButtonText];
     [self updatePodiumView];
@@ -413,6 +443,11 @@
 - (void)workoutViewController:(WorkoutViewController *)workoutVC willDismissWithResultWorkout:(BTWorkout *)workout {
 
 }
+
+- (void)workoutViewController:(WorkoutViewController *)workoutVC didDismissWithResultWorkout:(BTWorkout *)workout {
+    
+}
+
 
 #pragma mark - fetchedResultsController delegate
 
