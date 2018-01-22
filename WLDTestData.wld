@@ -1115,10 +1115,10 @@
                "iteration":"Flat",
                "style":"repsWeight",
                "sets":[  
-                  "5 145.0",
-                  "7 135.0",
-                  "8 130.0",
-                  "6 150.0"
+                  "5 145",
+                  "7 135",
+                  "8 130",
+                  "6 150"
                ],
                "name":"Barbell Bench Press",
                "category":"Chest"
@@ -1127,10 +1127,10 @@
                "iteration":"One-arm",
                "style":"repsWeight",
                "sets":[  
-                  "10 30.0",
-                  "10 30.0",
-                  "8 30.0",
-                  "8 30.0"
+                  "10 30",
+                  "10 30",
+                  "8 30",
+                  "8 30"
                ],
                "name":"Overhead Extensions",
                "category":"Triceps"
@@ -1139,10 +1139,10 @@
                "iteration":"Incline",
                "style":"repsWeight",
                "sets":[  
-                  "10 105.0",
-                  "10 105.0",
-                  "8 110.0",
-                  "8 110.0"
+                  "10 105",
+                  "10 105",
+                  "8 110",
+                  "8 110"
                ],
                "name":"Machine Bench Press",
                "category":"Chest"
@@ -1150,10 +1150,10 @@
             {  
                "style":"repsWeight",
                "sets":[  
-                  "10 55.0",
-                  "10 55.0",
-                  "10 55.0",
-                  "10 55.0"
+                  "10 55",
+                  "10 55",
+                  "10 55",
+                  "10 55"
                ],
                "name":"Tricep Pushdowns",
                "category":"Triceps"
@@ -1161,10 +1161,10 @@
             {  
                "style":"repsWeight",
                "sets":[  
-                  "10 25.0",
-                  "10 25.0",
-                  "8 25.0",
-                  "8 25.0"
+                  "10 25",
+                  "10 25",
+                  "8 25",
+                  "8 25"
                ],
                "name":"Pec Deck",
                "category":"Chest"
@@ -1173,10 +1173,10 @@
                "iteration":"Dumbbell",
                "style":"repsWeight",
                "sets":[  
-                  "10 40.0",
-                  "10 40.0",
-                  "8 40.0",
-                  "8 40.0"
+                  "10 40",
+                  "10 40",
+                  "8 40",
+                  "8 40"
                ],
                "name":"Overhead Extensions",
                "category":"Triceps"
@@ -1185,10 +1185,10 @@
                "iteration":"Incline",
                "style":"repsWeight",
                "sets":[  
-                  "10 45.0",
-                  "10 45.0",
-                  "8 45.0",
-                  "8 45.0"
+                  "10 45",
+                  "10 45",
+                  "8 45",
+                  "8 45"
                ],
                "name":"Dumbbell Bench Press",
                "category":"Chest"
@@ -1210,10 +1210,10 @@
                "iteration":"Normal",
                "style":"repsWeight",
                "sets":[  
-                  "10 65.0",
-                  "10 65.0",
-                  "8 65.0",
-                  "8 65.0"
+                  "10 65",
+                  "10 65",
+                  "8 65",
+                  "8 65"
                ],
                "name":"Lat Pulldowns",
                "category":"Back"
@@ -1222,10 +1222,10 @@
                "iteration":"Dumbbell",
                "style":"repsWeight",
                "sets":[  
-                  "10 30.0",
-                  "10 30.0",
-                  "8 30.0",
-                  "8 30.0"
+                  "10 30",
+                  "10 30",
+                  "8 30",
+                  "8 30"
                ],
                "name":"Conventional Curls",
                "category":"Biceps"
@@ -1234,10 +1234,10 @@
                "iteration":"Cable",
                "style":"repsWeight",
                "sets":[  
-                  "10 75.0",
-                  "10 75.0",
-                  "10 75.0",
-                  "10 75.0"
+                  "10 75",
+                  "10 75",
+                  "10 75",
+                  "10 75"
                ],
                "name":"Rows",
                "category":"Back"
@@ -1245,10 +1245,10 @@
             {  
                "style":"repsWeight",
                "sets":[  
-                  "10 30.0",
-                  "10 30.0",
-                  "9 30.0",
-                  "9 30.0"
+                  "10 30",
+                  "10 30",
+                  "9 30",
+                  "9 30"
                ],
                "name":"Hammer Curls",
                "category":"Biceps"
@@ -1257,10 +1257,10 @@
                "iteration":"Dumbbell",
                "style":"repsWeight",
                "sets":[  
-                  "10 40.0",
-                  "10 40.0",
-                  "9 40.0",
-                  "9 40.0"
+                  "10 40",
+                  "10 40",
+                  "9 40",
+                  "9 40"
                ],
                "name":"Lat Pullovers",
                "category":"Back"
@@ -1269,10 +1269,10 @@
                "iteration":"Barbell",
                "style":"repsWeight",
                "sets":[  
-                  "10 55.0",
-                  "10 55.0",
-                  "10 55.0",
-                  "10 55.0"
+                  "10 55",
+                  "10 55",
+                  "10 55",
+                  "10 55"
                ],
                "name":"Preacher Curls",
                "category":"Biceps"
@@ -1316,10 +1316,10 @@
                "iteration":"Back",
                "style":"repsWeight",
                "sets":[  
-                  "10 135.0",
-                  "10 135.0",
-                  "8 135.0",
-                  "8 135.0"
+                  "10 135",
+                  "10 135",
+                  "8 135",
+                  "8 135"
                ],
                "name":"Squats",
                "category":"Legs"
@@ -1338,10 +1338,10 @@
             {  
                "style":"repsWeight",
                "sets":[  
-                  "10 30.0",
-                  "10 30.0",
-                  "10 30.0",
-                  "10 30.0"
+                  "10 30",
+                  "10 30",
+                  "10 30",
+                  "10 30"
                ],
                "name":"Arnold Press",
                "category":"Shoulders"
@@ -1350,10 +1350,10 @@
                "iteration":"Dumbbell",
                "style":"repsWeight",
                "sets":[  
-                  "10 20.0",
-                  "10 20.0",
-                  "10 20.0",
-                  "10 20.0"
+                  "10 20",
+                  "10 20",
+                  "10 20",
+                  "10 20"
                ],
                "name":"Front Raises",
                "category":"Shoulders"
@@ -1362,10 +1362,10 @@
                "iteration":"Dumbbell",
                "style":"repsWeight",
                "sets":[  
-                  "10 20.0",
-                  "10 20.0",
-                  "10 20.0",
-                  "10 20.0"
+                  "10 20",
+                  "10 20",
+                  "10 20",
+                  "10 20"
                ],
                "name":"Lateral Raises",
                "category":"Shoulders"
@@ -1374,10 +1374,10 @@
                "iteration":"Normal",
                "style":"repsWeight",
                "sets":[  
-                  "10 25.0",
-                  "10 25.0",
-                  "10 25.0",
-                  "10 25.0"
+                  "10 25",
+                  "10 25",
+                  "10 25",
+                  "10 25"
                ],
                "name":"Weighted Situps",
                "category":"Abs \/ Core"
@@ -1399,10 +1399,10 @@
                "iteration":"Flat",
                "style":"repsWeight",
                "sets":[  
-                  "10 130.0",
-                  "8 130.0",
-                  "8 130.0",
-                  "10 120.0"
+                  "10 130",
+                  "8 130",
+                  "8 130",
+                  "10 120"
                ],
                "name":"Barbell Bench Press",
                "category":"Chest"
@@ -1422,10 +1422,10 @@
                "iteration":"Incline",
                "style":"repsWeight",
                "sets":[  
-                  "10 20.0",
-                  "10 20.0",
-                  "8 25.0",
-                  "8 25.0"
+                  "10 20",
+                  "10 20",
+                  "8 25",
+                  "8 25"
                ],
                "name":"DB Flyes",
                "category":"Chest"
@@ -1434,10 +1434,10 @@
                "iteration":"Normal",
                "style":"repsWeight",
                "sets":[  
-                  "10 55.0",
-                  "10 55.0",
-                  "10 55.0",
-                  "10 55.0"
+                  "10 55",
+                  "10 55",
+                  "10 55",
+                  "10 55"
                ],
                "name":"Skullcrushers",
                "category":"Triceps"
@@ -1446,10 +1446,10 @@
                "iteration":"Kneeling",
                "style":"repsWeight",
                "sets":[  
-                  "10 75.0",
-                  "10 75.0",
-                  "10 75.0",
-                  "10 75.0"
+                  "10 75",
+                  "10 75",
+                  "10 75",
+                  "10 75"
                ],
                "name":"Landmine Press",
                "category":"Chest"
@@ -1458,10 +1458,10 @@
                "iteration":"Dumbbell",
                "style":"repsWeight",
                "sets":[  
-                  "10 40.0",
-                  "10 40.0",
-                  "10 40.0",
-                  "10 40.0"
+                  "10 40",
+                  "10 40",
+                  "10 40",
+                  "10 40"
                ],
                "name":"Overhead Extensions",
                "category":"Triceps"
@@ -1483,10 +1483,10 @@
                "iteration":"BB Bent",
                "style":"repsWeight",
                "sets":[  
-                  "10 85.0",
-                  "10 85.0",
-                  "8 85.0",
-                  "8 85.0"
+                  "10 85",
+                  "10 85",
+                  "8 85",
+                  "8 85"
                ],
                "name":"Rows",
                "category":"Back"
@@ -1495,10 +1495,10 @@
                "iteration":"Barbell",
                "style":"repsWeight",
                "sets":[  
-                  "10 65.0",
-                  "10 65.0",
-                  "8 70.0",
-                  "8 70.0"
+                  "10 65",
+                  "10 65",
+                  "8 70",
+                  "8 70"
                ],
                "name":"Conventional Curls",
                "category":"Biceps"
@@ -1507,10 +1507,10 @@
                "iteration":"Conventional",
                "style":"repsWeight",
                "sets":[  
-                  "3 185.0",
-                  "3 185.0",
-                  "3 195.0",
-                  "3 195.0"
+                  "3 185",
+                  "3 185",
+                  "3 195",
+                  "3 195"
                ],
                "name":"Deadlift",
                "category":"Back"
@@ -1518,10 +1518,10 @@
             {  
                "style":"repsWeight",
                "sets":[  
-                  "10 30.0",
-                  "10 30.0",
-                  "9 30.0",
-                  "9 30.0"
+                  "10 30",
+                  "10 30",
+                  "9 30",
+                  "9 30"
                ],
                "name":"Machine Curls",
                "category":"Biceps"
@@ -1530,10 +1530,10 @@
                "iteration":"Normal",
                "style":"repsWeight",
                "sets":[  
-                  "10 65.0",
-                  "10 65.0",
-                  "10 65.0",
-                  "10 65.0"
+                  "10 65",
+                  "10 65",
+                  "10 65",
+                  "10 65"
                ],
                "name":"Lat Pulldowns",
                "category":"Back"
@@ -1541,10 +1541,10 @@
             {  
                "style":"repsWeight",
                "sets":[  
-                  "10 30.0",
-                  "10 30.0",
-                  "10 30.0",
-                  "10 30.0"
+                  "10 30",
+                  "10 30",
+                  "10 30",
+                  "10 30"
                ],
                "name":"Hammer Curls",
                "category":"Biceps"
@@ -1578,10 +1578,10 @@
                "iteration":"Front",
                "style":"repsWeight",
                "sets":[  
-                  "10 105.0",
-                  "10 105.0",
-                  "8 115.0",
-                  "8 115.0"
+                  "10 105",
+                  "10 105",
+                  "8 115",
+                  "8 115"
                ],
                "name":"Squats",
                "category":"Legs"
@@ -1589,10 +1589,10 @@
             {  
                "style":"repsWeight",
                "sets":[  
-                  "8 30.0",
-                  "8 30.0",
-                  "10 25.0",
-                  "10 25.0"
+                  "8 30",
+                  "8 30",
+                  "10 25",
+                  "10 25"
                ],
                "name":"Arnold Press",
                "category":"Shoulders"
@@ -1601,10 +1601,10 @@
                "iteration":"Incline",
                "style":"repsWeight",
                "sets":[  
-                  "12 135.0",
-                  "12 135.0",
-                  "10 135.0",
-                  "10 135.0"
+                  "12 135",
+                  "12 135",
+                  "10 135",
+                  "10 135"
                ],
                "name":"Leg Press",
                "category":"Legs"
@@ -1613,10 +1613,10 @@
                "iteration":"Dumbbell",
                "style":"repsWeight",
                "sets":[  
-                  "10 15.0",
-                  "10 15.0",
-                  "9 15.0",
-                  "9 15.0"
+                  "10 15",
+                  "10 15",
+                  "9 15",
+                  "9 15"
                ],
                "name":"Lateral Raises",
                "category":"Shoulders"
@@ -1625,10 +1625,10 @@
                "iteration":"Machine",
                "style":"repsWeight",
                "sets":[  
-                  "10 80.0",
-                  "10 80.0",
-                  "10 80.0",
-                  "10 80.0"
+                  "10 80",
+                  "10 80",
+                  "10 80",
+                  "10 80"
                ],
                "name":"Weighted Calf Raises",
                "category":"Legs"
@@ -1637,10 +1637,10 @@
                "iteration":"Machine",
                "style":"repsWeight",
                "sets":[  
-                  "10 30.0",
-                  "10 30.0",
-                  "8 30.0",
-                  "8 30.0"
+                  "10 30",
+                  "10 30",
+                  "8 30",
+                  "8 30"
                ],
                "name":"Oblique Twists",
                "category":"Abs \/ Core"
@@ -1662,10 +1662,10 @@
                "iteration":"Flat",
                "style":"repsWeight",
                "sets":[  
-                  "9 130.0",
-                  "8 130.0",
-                  "10 125.0",
-                  "10 125.0"
+                  "9 130",
+                  "8 130",
+                  "10 125",
+                  "10 125"
                ],
                "name":"Barbell Bench Press",
                "category":"Chest"
@@ -1673,10 +1673,10 @@
             {  
                "style":"repsWeight",
                "sets":[  
-                  "10 45.0",
-                  "10 45.0",
-                  "8 45.0",
-                  "8 45.0"
+                  "10 45",
+                  "10 45",
+                  "8 45",
+                  "8 45"
                ],
                "name":"Tricep Pushdowns",
                "category":"Triceps"
@@ -1684,10 +1684,10 @@
             {  
                "style":"repsWeight",
                "sets":[  
-                  "10 100.0",
-                  "10 100.0",
-                  "9 100.0",
-                  "9 100.0"
+                  "10 100",
+                  "10 100",
+                  "9 100",
+                  "9 100"
                ],
                "name":"Close-grip Bench Press",
                "category":"Triceps"
@@ -1696,10 +1696,10 @@
                "iteration":"Downward",
                "style":"repsWeight",
                "sets":[  
-                  "9 30.0",
-                  "9 30.0",
-                  "9 30.0",
-                  "8 30.0"
+                  "9 30",
+                  "9 30",
+                  "9 30",
+                  "8 30"
                ],
                "name":"Cable Crossovers",
                "category":"Chest"
@@ -1708,10 +1708,10 @@
                "iteration":"Normal",
                "style":"repsWeight",
                "sets":[  
-                  "10 55.0",
-                  "10 55.0",
-                  "8 55.0",
-                  "8 55.0"
+                  "10 55",
+                  "10 55",
+                  "8 55",
+                  "8 55"
                ],
                "name":"Skullcrushers",
                "category":"Triceps"
@@ -1720,10 +1720,10 @@
                "iteration":"Dumbbell",
                "style":"repsWeight",
                "sets":[  
-                  "10 15.0",
-                  "10 15.0",
-                  "8 15.0",
-                  "8 15.0"
+                  "10 15",
+                  "10 15",
+                  "8 15",
+                  "8 15"
                ],
                "name":"Underhand Front Raises",
                "category":"Chest"
@@ -1732,10 +1732,10 @@
                "iteration":"Flat",
                "style":"repsWeight",
                "sets":[  
-                  "8 30.0",
-                  "8 30.0",
-                  "10 25.0",
-                  "10 25.0"
+                  "8 30",
+                  "8 30",
+                  "10 25",
+                  "10 25"
                ],
                "name":"DB Flyes",
                "category":"Chest"
@@ -1757,10 +1757,10 @@
                "iteration":"Conventional",
                "style":"repsWeight",
                "sets":[  
-                  "3 165.0",
-                  "3 165.0",
-                  "3 175.0",
-                  "3 175.0"
+                  "3 165",
+                  "3 165",
+                  "3 175",
+                  "3 175"
                ],
                "name":"Deadlift",
                "category":"Back"
@@ -1768,10 +1768,10 @@
             {  
                "style":"repsWeight",
                "sets":[  
-                  "10 30.0",
-                  "10 30.0",
-                  "8 30.0",
-                  "8 30.0"
+                  "10 30",
+                  "10 30",
+                  "8 30",
+                  "8 30"
                ],
                "name":"Hammer Curls",
                "category":"Biceps"
@@ -1780,10 +1780,10 @@
                "iteration":"Wide-grip",
                "style":"repsWeight",
                "sets":[  
-                  "12 65.0",
-                  "12 65.0",
-                  "10 70.0",
-                  "10 70.0"
+                  "12 65",
+                  "12 65",
+                  "10 70",
+                  "10 70"
                ],
                "name":"Lat Pulldowns",
                "category":"Back"
@@ -1791,10 +1791,10 @@
             {  
                "style":"repsWeight",
                "sets":[  
-                  "10 25.0",
-                  "10 25.0",
-                  "10 25.0",
-                  "10 25.0"
+                  "10 25",
+                  "10 25",
+                  "10 25",
+                  "10 25"
                ],
                "name":"Machine Curls",
                "category":"Biceps"
@@ -1803,10 +1803,10 @@
                "iteration":"DB Bent",
                "style":"repsWeight",
                "sets":[  
-                  "10 25.0",
-                  "10 25.0",
-                  "10 25.0",
-                  "10 25.0"
+                  "10 25",
+                  "10 25",
+                  "10 25",
+                  "10 25"
                ],
                "name":"Rows",
                "category":"Back"
@@ -1814,10 +1814,10 @@
             {  
                "style":"repsWeight",
                "sets":[  
-                  "10 25.0",
-                  "10 25.0",
-                  "8 25.0",
-                  "8 25.0"
+                  "10 25",
+                  "10 25",
+                  "8 25",
+                  "8 25"
                ],
                "name":"Concentration Curls",
                "category":"Biceps"
@@ -1826,10 +1826,10 @@
                "iteration":"Dumbbell",
                "style":"repsWeight",
                "sets":[  
-                  "10 40.0",
-                  "10 40.0",
-                  "8 40.0",
-                  "8 40.0"
+                  "10 40",
+                  "10 40",
+                  "8 40",
+                  "8 40"
                ],
                "name":"Shrugs",
                "category":"Back"
@@ -1863,10 +1863,10 @@
                "iteration":"Back",
                "style":"repsWeight",
                "sets":[  
-                  "10 135.0",
-                  "8 135.0",
-                  "8 145.0",
-                  "8 155.0"
+                  "10 135",
+                  "8 135",
+                  "8 145",
+                  "8 155"
                ],
                "name":"Squats",
                "category":"Legs"
@@ -1886,10 +1886,10 @@
             {  
                "style":"repsWeight",
                "sets":[  
-                  "10 85.0",
-                  "10 85.0",
-                  "10 85.0",
-                  "10 85.0"
+                  "10 85",
+                  "10 85",
+                  "10 85",
+                  "10 85"
                ],
                "name":"Leg Extensions",
                "category":"Legs"
@@ -1898,10 +1898,10 @@
                "iteration":"Cable",
                "style":"repsWeight",
                "sets":[  
-                  "10 25.0",
-                  "10 25.0",
-                  "9 25.0",
-                  "9 25.0"
+                  "10 25",
+                  "10 25",
+                  "9 25",
+                  "9 25"
                ],
                "name":"Oblique Twists",
                "category":"Abs \/ Core"
@@ -1910,10 +1910,10 @@
                "iteration":"Barbell",
                "style":"repsWeight",
                "sets":[  
-                  "10 60.0",
-                  "10 60.0",
-                  "10 60.0",
-                  "10 60.0"
+                  "10 60",
+                  "10 60",
+                  "10 60",
+                  "10 60"
                ],
                "name":"Push Press",
                "category":"Shoulders"
@@ -1922,10 +1922,10 @@
                "iteration":"Ball",
                "style":"repsWeight",
                "sets":[  
-                  "10 10.0",
-                  "10 10.0",
-                  "10 10.0",
-                  "10 10.0"
+                  "10 10",
+                  "10 10",
+                  "10 10",
+                  "10 10"
                ],
                "name":"Weighted Situps",
                "category":"Abs \/ Core"
@@ -1945,10 +1945,10 @@
                "iteration":"Flat",
                "style":"repsWeight",
                "sets":[  
-                  "13 120.0",
-                  "12 120.0",
-                  "10 120.0",
-                  "10 120.0"
+                  "13 120",
+                  "12 120",
+                  "10 120",
+                  "10 120"
                ],
                "name":"Barbell Bench Press",
                "category":"Chest"
@@ -1956,10 +1956,10 @@
             {  
                "style":"repsWeight",
                "sets":[  
-                  "10 30.0",
-                  "10 30.0",
-                  "8 30.0",
-                  "8 30.0"
+                  "10 30",
+                  "10 30",
+                  "8 30",
+                  "8 30"
                ],
                "name":"Pec Deck",
                "category":"Chest"
@@ -1967,10 +1967,10 @@
             {  
                "style":"repsWeight",
                "sets":[  
-                  "10 95.0",
-                  "10 95.0",
-                  "8 95.0",
-                  "8 95.0"
+                  "10 95",
+                  "10 95",
+                  "8 95",
+                  "8 95"
                ],
                "name":"Close-grip Bench Press",
                "category":"Triceps"
@@ -1978,10 +1978,10 @@
             {  
                "style":"repsWeight",
                "sets":[  
-                  "10 45.0",
-                  "10 45.0",
-                  "9 45.0",
-                  "8 45.0"
+                  "10 45",
+                  "10 45",
+                  "9 45",
+                  "8 45"
                ],
                "name":"Tricep Pushdowns",
                "category":"Triceps"
@@ -1990,10 +1990,10 @@
                "iteration":"Normal",
                "style":"repsWeight",
                "sets":[  
-                  "10 55.0",
-                  "10 55.0",
-                  "10 55.0",
-                  "9 55.0"
+                  "10 55",
+                  "10 55",
+                  "10 55",
+                  "9 55"
                ],
                "name":"Skullcrushers",
                "category":"Triceps"
@@ -2013,10 +2013,10 @@
                "iteration":"Deficit",
                "style":"repsWeight",
                "sets":[  
-                  "3 165.0",
-                  "3 165.0",
-                  "3 155.0",
-                  "3 155.0"
+                  "3 165",
+                  "3 165",
+                  "3 155",
+                  "3 155"
                ],
                "name":"Deadlift",
                "category":"Back"
@@ -2025,10 +2025,10 @@
                "iteration":"BB Bent",
                "style":"repsWeight",
                "sets":[  
-                  "8 65.0",
-                  "8 65.0",
-                  "8 65.0",
-                  "8 65.0"
+                  "8 65",
+                  "8 65",
+                  "8 65",
+                  "8 65"
                ],
                "name":"Rows",
                "category":"Back"
@@ -2037,10 +2037,10 @@
                "iteration":"Barbell",
                "style":"repsWeight",
                "sets":[  
-                  "10 55.0",
-                  "10 55.0",
-                  "10 55.0",
-                  "10 45.0"
+                  "10 55",
+                  "10 55",
+                  "10 55",
+                  "10 45"
                ],
                "name":"Spider Curls",
                "category":"Biceps"
@@ -2049,10 +2049,10 @@
                "iteration":"Cable",
                "style":"repsWeight",
                "sets":[  
-                  "10 35.0",
-                  "10 35.0",
-                  "8 35.0",
-                  "8 35.0"
+                  "10 35",
+                  "10 35",
+                  "8 35",
+                  "8 35"
                ],
                "name":"One-arm Rows",
                "category":"Back"
@@ -2061,10 +2061,10 @@
                "iteration":"Barbell",
                "style":"repsWeight",
                "sets":[  
-                  "10 45.0",
-                  "10 45.0",
-                  "8 45.0",
-                  "8 45.0"
+                  "10 45",
+                  "10 45",
+                  "8 45",
+                  "8 45"
                ],
                "name":"Preacher Curls",
                "category":"Biceps"
@@ -2073,10 +2073,10 @@
                "iteration":"Dumbbell",
                "style":"repsWeight",
                "sets":[  
-                  "10 35.0",
-                  "10 35.0",
-                  "8 35.0",
-                  "8 35.0"
+                  "10 35",
+                  "10 35",
+                  "8 35",
+                  "8 35"
                ],
                "name":"Lat Pullovers",
                "category":"Back"
@@ -2097,10 +2097,10 @@
                "iteration":"Incline",
                "style":"repsWeight",
                "sets":[  
-                  "10 125.0",
-                  "10 125.0",
-                  "10 135.0",
-                  "9 135.0"
+                  "10 125",
+                  "10 125",
+                  "10 135",
+                  "9 135"
                ],
                "name":"Leg Press",
                "category":"Legs"
@@ -2109,10 +2109,10 @@
                "iteration":"Dumbbell",
                "style":"repsWeight",
                "sets":[  
-                  "10 15.0",
-                  "10 15.0",
-                  "8 15.0",
-                  "8 15.0"
+                  "10 15",
+                  "10 15",
+                  "8 15",
+                  "8 15"
                ],
                "name":"Lateral Raises",
                "category":"Shoulders"
@@ -2120,10 +2120,10 @@
             {  
                "style":"repsWeight",
                "sets":[  
-                  "10 65.0",
-                  "10 65.0",
-                  "8 65.0",
-                  "8 65.0"
+                  "10 65",
+                  "10 65",
+                  "8 65",
+                  "8 65"
                ],
                "name":"Leg Curls",
                "category":"Legs"
@@ -2132,10 +2132,10 @@
                "iteration":"Barbell",
                "style":"repsWeight",
                "sets":[  
-                  "10 55.0",
-                  "10 55.0",
-                  "12 45.0",
-                  "12 45.0"
+                  "10 55",
+                  "10 55",
+                  "12 45",
+                  "12 45"
                ],
                "name":"Military Press",
                "category":"Shoulders"
@@ -2144,10 +2144,10 @@
                "iteration":"Dumbbell",
                "style":"repsWeight",
                "sets":[  
-                  "10 45.0",
-                  "10 45.0",
-                  "8 45.0",
-                  "8 45.0"
+                  "10 45",
+                  "10 45",
+                  "8 45",
+                  "8 45"
                ],
                "name":"Weighted Calf Raises",
                "category":"Legs"
@@ -2156,10 +2156,10 @@
                "iteration":"Dumbbell",
                "style":"repsWeight",
                "sets":[  
-                  "10 15.0",
-                  "10 15.0",
-                  "10 15.0",
-                  "10 15.0"
+                  "10 15",
+                  "10 15",
+                  "10 15",
+                  "10 15"
                ],
                "name":"Front Raises",
                "category":"Shoulders"
@@ -2181,10 +2181,10 @@
                "iteration":"Flat",
                "style":"repsWeight",
                "sets":[  
-                  "11 120.0",
-                  "10 120.0",
-                  "10 120.0",
-                  "10 120.0"
+                  "11 120",
+                  "10 120",
+                  "10 120",
+                  "10 120"
                ],
                "name":"Barbell Bench Press",
                "category":"Chest"
@@ -2193,10 +2193,10 @@
                "iteration":"Normal",
                "style":"repsWeight",
                "sets":[  
-                  "10 45.0",
-                  "10 45.0",
-                  "8 45.0",
-                  "8 45.0"
+                  "10 45",
+                  "10 45",
+                  "8 45",
+                  "8 45"
                ],
                "name":"Skullcrushers",
                "category":"Triceps"
@@ -2205,10 +2205,10 @@
                "iteration":"Flat",
                "style":"repsWeight",
                "sets":[  
-                  "10 25.0",
-                  "10 25.0",
-                  "9 25.0",
-                  "9 25.0"
+                  "10 25",
+                  "10 25",
+                  "9 25",
+                  "9 25"
                ],
                "name":"DB Flyes",
                "category":"Chest"
@@ -2217,10 +2217,10 @@
                "iteration":"One-arm",
                "style":"repsWeight",
                "sets":[  
-                  "10 25.0",
-                  "10 25.0",
-                  "10 25.0",
-                  "10 25.0"
+                  "10 25",
+                  "10 25",
+                  "10 25",
+                  "10 25"
                ],
                "name":"Overhead Extensions",
                "category":"Triceps"
@@ -2228,10 +2228,10 @@
             {  
                "style":"repsWeight",
                "sets":[  
-                  "10 45.0",
-                  "10 45.0",
-                  "9 45.0",
-                  "9 45.0"
+                  "10 45",
+                  "10 45",
+                  "9 45",
+                  "9 45"
                ],
                "name":"Tricep Pushdowns",
                "category":"Triceps"
@@ -2240,10 +2240,10 @@
                "iteration":"Downward",
                "style":"repsWeight",
                "sets":[  
-                  "10 30.0",
-                  "10 30.0",
-                  "8 30.0",
-                  "8 30.0"
+                  "10 30",
+                  "10 30",
+                  "8 30",
+                  "8 30"
                ],
                "name":"Cable Crossovers",
                "category":"Chest"
@@ -2251,10 +2251,10 @@
             {  
                "style":"repsWeight",
                "sets":[  
-                  "8 100.0",
-                  "8 100.0",
-                  "8 105.0",
-                  "8 105.0"
+                  "8 100",
+                  "8 100",
+                  "8 105",
+                  "8 105"
                ],
                "name":"Close-grip Bench Press",
                "category":"Triceps"
@@ -2275,10 +2275,10 @@
                "iteration":"Dumbbell",
                "style":"repsWeight",
                "sets":[  
-                  "12 40.0",
-                  "12 40.0",
-                  "12 40.0",
-                  "10 45.0"
+                  "12 40",
+                  "12 40",
+                  "12 40",
+                  "10 45"
                ],
                "name":"Shrugs",
                "category":"Back"
@@ -2287,10 +2287,10 @@
                "iteration":"Barbell",
                "style":"repsWeight",
                "sets":[  
-                  "8 30.0",
-                  "8 30.0",
-                  "8 30.0",
-                  "8 30.0"
+                  "8 30",
+                  "8 30",
+                  "8 30",
+                  "8 30"
                ],
                "name":"Conventional Curls",
                "category":"Biceps"
@@ -2310,10 +2310,10 @@
             {  
                "style":"repsWeight",
                "sets":[  
-                  "8 25.0",
-                  "8 25.0",
-                  "8 25.0",
-                  "8 25.0"
+                  "8 25",
+                  "8 25",
+                  "8 25",
+                  "8 25"
                ],
                "name":"Band Curls",
                "category":"Biceps"
@@ -2322,10 +2322,10 @@
                "iteration":"Normal",
                "style":"repsWeight",
                "sets":[  
-                  "10 65.0",
-                  "10 65.0",
-                  "8 75.0",
-                  "8 75.0"
+                  "10 65",
+                  "10 65",
+                  "8 75",
+                  "8 75"
                ],
                "name":"Lat Pulldowns",
                "category":"Back"
@@ -2334,10 +2334,10 @@
                "iteration":"Barbell",
                "style":"repsWeight",
                "sets":[  
-                  "10 45.0",
-                  "10 45.0",
-                  "8 45.0",
-                  "8 45.0"
+                  "10 45",
+                  "10 45",
+                  "8 45",
+                  "8 45"
                ],
                "name":"Preacher Curls",
                "category":"Biceps"
@@ -2346,9 +2346,9 @@
                "iteration":"Cable",
                "style":"repsWeight",
                "sets":[  
-                  "10 85.0",
-                  "10 85.0",
-                  "10 85.0"
+                  "10 85",
+                  "10 85",
+                  "10 85"
                ],
                "name":"Weighted Crunches",
                "category":"Abs \/ Core"
@@ -2370,10 +2370,10 @@
                "iteration":"Back",
                "style":"repsWeight",
                "sets":[  
-                  "12 125.0",
-                  "10 135.0",
-                  "10 135.0",
-                  "8 145.0"
+                  "12 125",
+                  "10 135",
+                  "10 135",
+                  "8 145"
                ],
                "name":"Squats",
                "category":"Legs"
@@ -2392,10 +2392,10 @@
             {  
                "style":"repsWeight",
                "sets":[  
-                  "8 30.0",
-                  "8 30.0",
-                  "8 30.0",
-                  "8 30.0"
+                  "8 30",
+                  "8 30",
+                  "8 30",
+                  "8 30"
                ],
                "name":"Arnold Press",
                "category":"Shoulders"
@@ -2404,10 +2404,10 @@
                "iteration":"Cable",
                "style":"repsWeight",
                "sets":[  
-                  "8 30.0",
-                  "8 30.0",
-                  "5 40.0",
-                  "5 40.0"
+                  "8 30",
+                  "8 30",
+                  "5 40",
+                  "5 40"
                ],
                "name":"Face Pulls",
                "category":"Shoulders"
@@ -2416,10 +2416,10 @@
                "iteration":"Dumbbell",
                "style":"repsWeight",
                "sets":[  
-                  "10 35.0",
-                  "10 35.0",
-                  "8 35.0",
-                  "8 35.0"
+                  "10 35",
+                  "10 35",
+                  "8 35",
+                  "8 35"
                ],
                "name":"Lunges",
                "category":"Legs"
@@ -2439,10 +2439,10 @@
                "iteration":"Flat",
                "style":"repsWeight",
                "sets":[  
-                  "10 125.0",
-                  "9 125.0",
-                  "8 125.0",
-                  "10 115.0"
+                  "10 125",
+                  "9 125",
+                  "8 125",
+                  "10 115"
                ],
                "name":"Barbell Bench Press",
                "category":"Chest"
@@ -2451,10 +2451,10 @@
                "iteration":"Incline",
                "style":"repsWeight",
                "sets":[  
-                  "10 85.0",
-                  "10 85.0",
-                  "8 85.0",
-                  "8 85.0"
+                  "10 85",
+                  "10 85",
+                  "8 85",
+                  "8 85"
                ],
                "name":"Barbell Bench Press",
                "category":"Chest"
@@ -2463,10 +2463,10 @@
                "iteration":"Dumbbell",
                "style":"repsWeight",
                "sets":[  
-                  "10 40.0",
-                  "10 40.0",
-                  "8 40.0",
-                  "8 40.0"
+                  "10 40",
+                  "10 40",
+                  "8 40",
+                  "8 40"
                ],
                "name":"Overhead Extensions",
                "category":"Triceps"
@@ -2475,10 +2475,10 @@
                "iteration":"Incline",
                "style":"repsWeight",
                "sets":[  
-                  "10 25.0",
-                  "10 25.0",
-                  "10 25.0",
-                  "10 25.0"
+                  "10 25",
+                  "10 25",
+                  "10 25",
+                  "10 25"
                ],
                "name":"DB Flyes",
                "category":"Chest"
@@ -2486,10 +2486,10 @@
             {  
                "style":"repsWeight",
                "sets":[  
-                  "10 55.0",
-                  "10 55.0",
-                  "8 55.0",
-                  "8 55.0"
+                  "10 55",
+                  "10 55",
+                  "8 55",
+                  "8 55"
                ],
                "name":"Tricep Pushdowns",
                "category":"Triceps"
@@ -2497,10 +2497,10 @@
             {  
                "style":"repsWeight",
                "sets":[  
-                  "10 20.0",
-                  "10 20.0",
-                  "8 20.0",
-                  "8 20.0"
+                  "10 20",
+                  "10 20",
+                  "8 20",
+                  "8 20"
                ],
                "name":"Pec Deck",
                "category":"Chest"
@@ -2509,10 +2509,10 @@
                "iteration":"Barbell",
                "style":"repsWeight",
                "sets":[  
-                  "10 15.0",
-                  "10 15.0",
-                  "8 15.0",
-                  "8 15.0"
+                  "10 15",
+                  "10 15",
+                  "8 15",
+                  "8 15"
                ],
                "name":"Underhand-grip Rows",
                "category":"Triceps"
@@ -2534,10 +2534,10 @@
                "iteration":"Conventional",
                "style":"repsWeight",
                "sets":[  
-                  "5 135.0",
-                  "5 165.0",
-                  "5 175.0",
-                  "5 185.0"
+                  "5 135",
+                  "5 165",
+                  "5 175",
+                  "5 185"
                ],
                "name":"Deadlift",
                "category":"Back"
@@ -2546,10 +2546,10 @@
                "iteration":"Barbell",
                "style":"repsWeight",
                "sets":[  
-                  "10 65.0",
-                  "8 70.0",
-                  "8 70.0",
-                  "8 65.0"
+                  "10 65",
+                  "8 70",
+                  "8 70",
+                  "8 65"
                ],
                "name":"Conventional Curls",
                "category":"Biceps"
@@ -2558,10 +2558,10 @@
                "iteration":"Cable",
                "style":"repsWeight",
                "sets":[  
-                  "12 80.0",
-                  "10 80.0",
-                  "10 80.0",
-                  "9 80.0"
+                  "12 80",
+                  "10 80",
+                  "10 80",
+                  "9 80"
                ],
                "name":"Rows",
                "category":"Back"
@@ -2569,10 +2569,10 @@
             {  
                "style":"repsWeight",
                "sets":[  
-                  "10 25.0",
-                  "10 25.0",
-                  "8 25.0",
-                  "8 25.0"
+                  "10 25",
+                  "10 25",
+                  "8 25",
+                  "8 25"
                ],
                "name":"Concentration Curls",
                "category":"Biceps"
@@ -2581,10 +2581,10 @@
                "iteration":"T Bar",
                "style":"repsWeight",
                "sets":[  
-                  "8 85.0",
-                  "8 85.0",
-                  "6 95.0",
-                  "6 95.0"
+                  "8 85",
+                  "8 85",
+                  "6 95",
+                  "6 95"
                ],
                "name":"Rows",
                "category":"Back"
@@ -2592,10 +2592,10 @@
             {  
                "style":"repsWeight",
                "sets":[  
-                  "10 25.0",
-                  "10 25.0",
-                  "10 25.0",
-                  "9 25.0"
+                  "10 25",
+                  "10 25",
+                  "10 25",
+                  "9 25"
                ],
                "name":"Band Curls",
                "category":"Biceps"
@@ -2616,10 +2616,10 @@
                "iteration":"Machine",
                "style":"repsWeight",
                "sets":[  
-                  "10 75.0",
-                  "10 75.0",
-                  "10 65.0",
-                  "10 65.0"
+                  "10 75",
+                  "10 75",
+                  "10 65",
+                  "10 65"
                ],
                "name":"Overhead Press",
                "category":"Shoulders"
@@ -2627,10 +2627,10 @@
             {  
                "style":"repsWeight",
                "sets":[  
-                  "10 140.0",
-                  "10 140.0",
-                  "8 145.0",
-                  "8 145.0"
+                  "10 140",
+                  "10 140",
+                  "8 145",
+                  "8 145"
                ],
                "name":"Leg Extensions",
                "category":"Legs"
@@ -2638,10 +2638,10 @@
             {  
                "style":"repsWeight",
                "sets":[  
-                  "12 30.0",
-                  "12 30.0",
-                  "10 30.0",
-                  "10 30.0"
+                  "12 30",
+                  "12 30",
+                  "10 30",
+                  "10 30"
                ],
                "name":"Arnold Press",
                "category":"Shoulders"
@@ -2649,10 +2649,10 @@
             {  
                "style":"repsWeight",
                "sets":[  
-                  "15 75.0",
-                  "15 75.0",
-                  "12 85.0",
-                  "12 85.0"
+                  "15 75",
+                  "15 75",
+                  "12 85",
+                  "12 85"
                ],
                "name":"Leg Curls",
                "category":"Legs"
@@ -2661,10 +2661,10 @@
                "iteration":"Cable",
                "style":"repsWeight",
                "sets":[  
-                  "15 20.0",
-                  "15 20.0",
-                  "8 30.0",
-                  "8 30.0"
+                  "15 20",
+                  "15 20",
+                  "8 30",
+                  "8 30"
                ],
                "name":"Lateral Raises",
                "category":"Shoulders"
@@ -2673,9 +2673,9 @@
                "iteration":"Cable",
                "style":"repsWeight",
                "sets":[  
-                  "12 100.0",
-                  "12 100.0",
-                  "10 100.0"
+                  "12 100",
+                  "12 100",
+                  "10 100"
                ],
                "name":"Weighted Crunches",
                "category":"Abs \/ Core"
@@ -2695,10 +2695,10 @@
                "iteration":"Flat",
                "style":"repsWeight",
                "sets":[  
-                  "12 115.0",
-                  "10 120.0",
-                  "10 120.0",
-                  "8 125.0"
+                  "12 115",
+                  "10 120",
+                  "10 120",
+                  "8 125"
                ],
                "name":"Barbell Bench Press",
                "category":"Chest"
@@ -2706,10 +2706,10 @@
             {  
                "style":"repsWeight",
                "sets":[  
-                  "10 95.0",
-                  "10 95.0",
-                  "8 95.0",
-                  "8 95.0"
+                  "10 95",
+                  "10 95",
+                  "8 95",
+                  "8 95"
                ],
                "name":"Close-grip Bench Press",
                "category":"Triceps"
@@ -2718,10 +2718,10 @@
                "iteration":"Incline",
                "style":"repsWeight",
                "sets":[  
-                  "12 25.0",
-                  "12 25.0",
-                  "10 25.0",
-                  "10 25.0"
+                  "12 25",
+                  "12 25",
+                  "10 25",
+                  "10 25"
                ],
                "name":"DB Flyes",
                "category":"Chest"
@@ -2730,10 +2730,10 @@
                "iteration":"Normal",
                "style":"repsWeight",
                "sets":[  
-                  "10 45.0",
-                  "10 45.0",
-                  "8 50.0",
-                  "8 50.0"
+                  "10 45",
+                  "10 45",
+                  "8 50",
+                  "8 50"
                ],
                "name":"Skullcrushers",
                "category":"Triceps"
@@ -2742,10 +2742,10 @@
                "iteration":"Downward",
                "style":"repsWeight",
                "sets":[  
-                  "12 30.0",
-                  "12 30.0",
-                  "12 30.0",
-                  "10 30.0"
+                  "12 30",
+                  "12 30",
+                  "12 30",
+                  "10 30"
                ],
                "name":"Cable Crossovers",
                "category":"Chest"
@@ -2788,10 +2788,10 @@
                "iteration":"Conventional",
                "style":"repsWeight",
                "sets":[  
-                  "3 180.0",
-                  "3 180.0",
-                  "3 185.0",
-                  "3 180.0"
+                  "3 180",
+                  "3 180",
+                  "3 185",
+                  "3 180"
                ],
                "name":"Deadlift",
                "category":"Back"
@@ -2800,10 +2800,10 @@
                "iteration":"Dumbbell",
                "style":"repsWeight",
                "sets":[  
-                  "8 25.0",
-                  "8 25.0",
-                  "7 25.0",
-                  "7 25.0"
+                  "8 25",
+                  "8 25",
+                  "7 25",
+                  "7 25"
                ],
                "name":"Conventional Curls",
                "category":"Biceps"
@@ -2812,10 +2812,10 @@
                "iteration":"Cable",
                "style":"repsWeight",
                "sets":[  
-                  "8 65.0",
-                  "8 65.0",
-                  "8 65.0",
-                  "8 65.0"
+                  "8 65",
+                  "8 65",
+                  "8 65",
+                  "8 65"
                ],
                "name":"Rows",
                "category":"Back"
@@ -2823,10 +2823,10 @@
             {  
                "style":"repsWeight",
                "sets":[  
-                  "10 30.0",
-                  "10 30.0",
-                  "8 30.0",
-                  "8 30.0"
+                  "10 30",
+                  "10 30",
+                  "8 30",
+                  "8 30"
                ],
                "name":"Machine Curls",
                "category":"Biceps"
@@ -2835,10 +2835,10 @@
                "iteration":"Barbell",
                "style":"repsWeight",
                "sets":[  
-                  "10 45.0",
-                  "10 45.0",
-                  "10 45.0",
-                  "8 45.0"
+                  "10 45",
+                  "10 45",
+                  "10 45",
+                  "8 45"
                ],
                "name":"Preacher Curls",
                "category":"Biceps"
@@ -2847,10 +2847,10 @@
                "iteration":"Incline Bench",
                "style":"repsWeight",
                "sets":[  
-                  "10 15.0",
-                  "10 15.0",
-                  "10 15.0",
-                  "10 15.0"
+                  "10 15",
+                  "10 15",
+                  "10 15",
+                  "10 15"
                ],
                "name":"Reverse Flyes",
                "category":"Back"
