@@ -26,6 +26,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) int64_t totalDuration;
 @property (nonatomic) int64_t totalVolume;
 @property (nonatomic) int64_t totalWorkouts;
+@property (nonatomic) int64_t totalSets;
+@property (nonatomic) int64_t totalExercises;
+
 @property (nonatomic) int64_t currentStreak;
 @property (nonatomic) int64_t longestStreak;
 

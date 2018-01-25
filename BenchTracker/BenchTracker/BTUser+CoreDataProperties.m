@@ -22,10 +22,13 @@
 @dynamic xp;
 @dynamic achievementListVersion;
 
-@dynamic currentStreak;
-@dynamic longestStreak;
 @dynamic totalDuration;
 @dynamic totalVolume;
 @dynamic totalWorkouts;
+@dynamic totalSets;
+@dynamic totalExercises;
+
+@dynamic currentStreak;
+@dynamic longestStreak;
 
 @end

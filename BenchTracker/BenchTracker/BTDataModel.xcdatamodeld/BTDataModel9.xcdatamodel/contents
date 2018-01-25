@@ -37,6 +37,7 @@
         <attribute name="activeWorkoutStartDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="bodyweightIsVolume" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="bodyweightMultiplier" optional="YES" attributeType="Float" defaultValueString="1" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="colorScheme" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="disableSleep" optional="YES" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="exerciseTypeColors" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="hiddenExerciseTypeSections" optional="YES" attributeType="Binary" syncable="YES"/>
@@ -55,6 +56,8 @@
         <attribute name="longestStreak" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="totalDuration" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="totalExercises" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="totalSets" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="totalVolume" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="totalWorkouts" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="weight" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -86,8 +89,8 @@
         <element name="BTExercise" positionX="-164" positionY="-42" width="128" height="150"/>
         <element name="BTExerciseTemplate" positionX="-164" positionY="-228" width="128" height="118"/>
         <element name="BTExerciseType" positionX="-549" positionY="-256" width="128" height="103"/>
-        <element name="BTSettings" positionX="-549" positionY="104" width="128" height="255"/>
-        <element name="BTUser" positionX="-549" positionY="-126" width="128" height="210"/>
+        <element name="BTSettings" positionX="-549" positionY="104" width="128" height="270"/>
+        <element name="BTUser" positionX="-549" positionY="-126" width="128" height="240"/>
         <element name="BTWorkout" positionX="-353" positionY="-87" width="128" height="210"/>
         <element name="BTWorkoutTemplate" positionX="-353" positionY="-228" width="128" height="133"/>
     </elements>
