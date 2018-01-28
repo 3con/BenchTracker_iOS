@@ -29,14 +29,22 @@
 @property (weak, nonatomic) IBOutlet UIView *segmentedControlContainerView;
 
 @property (weak, nonatomic) IBOutlet UITableView *listTableView;
-@property (nonatomic, strong) id previewingContext;
 @property (nonatomic) CGFloat cellHeight;
+@property (nonatomic) UISearchBar *searchBar;
+@property (nonatomic) NSString *searchString;
 @property (weak, nonatomic) IBOutlet UIView *gradientView;
-@property (weak, nonatomic) IBOutlet UIView *noWorkoutsView;
+
+@property (strong, nonatomic) IBOutlet UIView *noWorkoutsView;
+@property (weak, nonatomic) IBOutlet UILabel *nWTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *nWDescriptionLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *nWDescriptionImageView;
+
 @property (weak, nonatomic) IBOutlet UIView *weekdayContainerView;
 @property (weak, nonatomic) WeekdayView *weekdayView;
-@property (nonatomic) BOOL firstLoad;
 @property (weak, nonatomic) IBOutlet FSCalendar *calendarView;
+@property (nonatomic) BOOL firstLoad;
+
+@property (nonatomic, strong) id previewingContext;
 
 @property (weak, nonatomic) IBOutlet UIButton *blankWorkoutButton;
 @property (weak, nonatomic) IBOutlet UIButton *scanWorkoutButton;
@@ -156,8 +164,18 @@
     [self.leftBarButton setImage:[[UIImage imageNamed:@"Chart"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]
                         forState:UIControlStateNormal];
     self.leftBarButton.tintColor = [UIColor BTTextPrimaryColor];
-    self.listTableView.backgroundColor = [UIColor BTTableViewBackgroundColor];
-    self.listTableView.separatorColor = [UIColor BTTableViewSeparatorColor];
+    [self updateTableViewColors];
+}
+
+- (void)updateTableViewColors {
+    NSInteger count = self.listTableView.visibleCells.count;
+    self.listTableView.backgroundColor = (count > 0) ? [UIColor BTTableViewBackgroundColor] : [UIColor clearColor];
+    self.listTableView.separatorColor = (count > 0) ? [UIColor BTTableViewSeparatorColor] : [UIColor clearColor];
+    self.noWorkoutsView.backgroundColor = [UIColor BTTableViewBackgroundColor];
+    self.nWTitleLabel.textColor = [UIColor BTLightGrayColor];
+    self.nWDescriptionLabel.textColor = [UIColor BTLightGrayColor];
+    self.nWDescriptionImageView.image = [self.nWDescriptionImageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    self.nWDescriptionImageView.tintColor = [UIColor BTLightGrayColor];
 }
 
 - (void)colorSchemeChange:(NSNotification *)notification  {
@@ -180,6 +198,7 @@
         self.weekdayView.frame = CGRectMake(0, 0, self.weekdayContainerView.frame.size.width, self.weekdayContainerView.frame.size.height);
         [self.weekdayContainerView addSubview:self.weekdayView];
         [self loadUser];
+        [self loadSearchBar];
         [self loadTableViewGradient];
         [self setUpCalendarView];
         [self.segmentedControlContainerView setNeedsLayout];
@@ -240,6 +259,22 @@
                                     (id)[UIColor BTTableViewBackgroundColor].CGColor];
     }
     [self.gradientView.layer insertSublayer:gradientLayer atIndex:0];
+}
+
+- (void)loadSearchBar {
+    self.searchBar = [[UISearchBar alloc] init];
+    self.searchBar.delegate = self;
+    self.searchBar.barTintColor = [UIColor BTPrimaryColor];
+    self.searchBar.tintColor = [UIColor whiteColor];
+    self.searchBar.keyboardAppearance = [UIColor keyboardAppearance];
+    self.searchBar.layer.borderWidth = 1;
+    self.searchBar.layer.borderColor = self.searchBar.barTintColor.CGColor;
+    self.listTableView.tableHeaderView = self.searchBar;
+    [self.searchBar sizeToFit];
+    self.searchBar.placeholder = @"Search for a workout";
+    [self.listTableView reloadData];
+    [self.listTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]
+                              atScrollPosition:UITableViewScrollPositionTop animated:NO];
 }
 
 - (void)updateBadgeView {
@@ -392,6 +427,7 @@
 }
 
 - (void)setSelectedViewIndex:(NSInteger)index {
+    [self.searchBar resignFirstResponder];
     [self updateBadgeView];
     if (index == 0) {
         self.rightBarButton.alpha = 0;
@@ -486,11 +522,46 @@
     return _fetchedResultsController;
 }
 
+- (void)searchForText:(NSString *)string {
+    self.searchString = string;
+    NSError *error;
+    if (self.searchString.length)
+        [self.fetchedResultsController.fetchRequest setPredicate:
+         [NSPredicate predicateWithFormat:@"name CONTAINS %@ OR summary CONTAINS %@", string, string]];
+    else [self.fetchedResultsController.fetchRequest setPredicate:nil];
+    if (![[self fetchedResultsController] performFetch:&error]) {
+        NSLog(@"Main fetch error: %@, %@", error, [error userInfo]);
+    }
+}
+
+#pragma mark - searchBar delegate
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    [searchBar setShowsCancelButton:(searchText.length != 0) animated:YES];
+    [self updateSearchResults];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    [searchBar resignFirstResponder];
+    searchBar.text = @"";
+    [searchBar setShowsCancelButton:NO animated:YES];
+    [self updateSearchResults];
+}
+
+- (void)updateSearchResults {
+    CGRect searchBarFrame = self.searchBar.frame;
+    [self.listTableView scrollRectToVisible:searchBarFrame animated:NO];
+    NSString *searchString = self.searchBar.text;
+    [self searchForText:searchString];
+    [self.listTableView reloadData];
+}
+
 #pragma mark - tableView dataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     NSInteger num = [[[_fetchedResultsController sections] objectAtIndex:section] numberOfObjects];
     self.noWorkoutsView.userInteractionEnabled = (num == 0);
+    [self updateTableViewColors];
     [UIView animateWithDuration:.25 animations:^{
         self.noWorkoutsView.alpha = (num == 0);
     }];
@@ -525,6 +596,10 @@
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     [cell setNeedsLayout];
     [cell layoutIfNeeded];
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    [self.searchBar resignFirstResponder];
 }
 
 #pragma mark - MGSwipeTableCell delegate
