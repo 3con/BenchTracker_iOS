@@ -71,7 +71,7 @@
         [self updateTableHeightConstraint];
         self.tableView.backgroundColor = [self.color colorWithAlphaComponent:.8];
         [self loadSegmentedControls];
-        [self setTimeSegmentedControlCollapsed:YES];
+        [self setTimeSegmentedControlCollapsed:NO];
         [self loadPodiumView];
     }
 }
@@ -205,6 +205,11 @@
     cell.type = self.queryType;
     cell.weightSuffix = self.settings.weightSuffix;
     cell.workout = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    [cell layoutIfNeeded];
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    [cell layoutIfNeeded];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

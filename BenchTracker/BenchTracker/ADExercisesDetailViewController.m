@@ -176,6 +176,7 @@
         }
     }
     self.graphNoDataLabel.alpha = (xAxisArr.count == 0);
+    self.graphView.alpha = (xAxisArr.count != 0);
     [self.graphView setXAxisData:[[xAxisArr reverseObjectEnumerator] allObjects]];
     [self.graphView setYAxisData:[[yAxisArr reverseObjectEnumerator] allObjects]];
     [self.graphView strokeChart];

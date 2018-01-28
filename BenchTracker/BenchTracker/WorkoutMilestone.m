@@ -44,7 +44,6 @@
     if (user.totalWorkouts >= 3) {
         for (int i = 0; i < 3; i++) {
             BTWorkoutRank allTime = [workout rankForProperty:i timeSpan:WorkoutTimeSpanTypeAllTime];
-            NSLog(@"WAT:  %ld    %ld    %ld",allTime.rank, allTime.total, allTime.numTied);
             NSString *type;
             switch (i) {
                 case 0:  type = @"most sets"; break;
@@ -60,7 +59,6 @@
             }
             else {
                 BTWorkoutRank thirtyDay = [workout rankForProperty:i timeSpan:WorkoutTimeSpanType30Day];
-                NSLog(@"WA3:  %ld    %ld    %ld\n\n",thirtyDay.rank, thirtyDay.total, thirtyDay.numTied);
                 BOOL impressive = thirtyDay.rank <= MIN(10, thirtyDay.total/3);
                 if (thirtyDay.rank != -1 && thirtyDay.total > 1 && thirtyDay.numTied < 5 && impressive) {
                     [milestones addObject: [WorkoutMilestone milestoneWithTitle:
@@ -105,7 +103,6 @@
                     (exercise.iteration) ? exercise.iteration : @"", exercise.name] importance:1 type:WorkoutMilestoneTypeNewExercise]];
             else {
                 BTExerciseRank allTime = [exercise rankForTimeSpan:BTExerciseTimeSpanTypeAllTime];
-                NSLog(@"EAT:  %ld    %ld    %ld",allTime.rank, allTime.total, allTime.numTied);
                 BOOL impressive = allTime.rank <= MIN(10, allTime.total/3);
                 if (allTime.rank != -1 && allTime.total > 4 && allTime.numTied < 8 && impressive) {
                     [milestones addObject: [WorkoutMilestone milestoneWithTitle:[NSString stringWithFormat: @"%@ all-time 1RM equivalent:\n   %@ %@",
@@ -115,7 +112,6 @@
                 }
                 else {
                     BTExerciseRank thirtyDay = [exercise rankForTimeSpan:BTExerciseTimeSpanType30Day];
-                    NSLog(@"EA3:  %ld    %ld    %ld\n\n",thirtyDay.rank, thirtyDay.total, thirtyDay.numTied);
                     BOOL impressive = thirtyDay.rank <= MIN(5, thirtyDay.total/2);
                     if (thirtyDay.rank != -1 && thirtyDay.total > 1 && thirtyDay.numTied < 5 && impressive) {
                         [milestones addObject: [WorkoutMilestone milestoneWithTitle:[NSString stringWithFormat: @"%@ 30-day 1RM equivalent:\n   %@ %@",

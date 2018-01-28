@@ -131,12 +131,19 @@
     self.addExerciseButton.hidden = YES;
 }
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [self workoutWillEnd];
+}
+
 - (void)workoutWillEnd {
-    self.settings.activeWorkout = nil;
-    self.settings.activeWorkoutStartDate = nil;
-    self.settings.activeWorkoutLastUpdate = nil;
-    [self updateWorkout];
-    [BTUser addWorkoutToTotals:self.workout];
+    if (self.settings.activeWorkout) {
+        self.settings.activeWorkout = nil;
+        self.settings.activeWorkoutStartDate = nil;
+        self.settings.activeWorkoutLastUpdate = nil;
+        [self updateWorkout];
+        [BTUser addWorkoutToTotals:self.workout];
+    }
 }
 
 - (void)handleEnteredBackground:(id)sender {
@@ -650,10 +657,6 @@
     wseVC.transitioningDelegate = self.animator;
     wseVC.modalPresentationStyle = UIModalPresentationCustom;
     [self presentViewController:wseVC animated:YES completion:nil];
-}
-
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
