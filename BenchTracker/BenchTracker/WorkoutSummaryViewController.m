@@ -100,7 +100,7 @@
 
 - (void)loadWorkout {
     self.titleLabel.text = @[@"Good Work!", @"Great Job!", @"Great Workout!", @"Massive Gains!", @"Way To Go!",
-                        @"Excellent Work!", @"Good One!", @"Nice Work!", @"🏋️ Gains!", @"💪 Gains!"][arc4random()%10];
+                        @"Excellent Work!", @"Way to Grind!", @"Nice Work!", @"🏋️ Gains!", @"💪 Gains!"][arc4random()%10];
     self.milestones = [WorkoutMilestone milestonesForWorkout:self.workout];
     [self loadHeaderLabelsWithRatio:@0];
     for (WorkoutMilestone *milestone in self.milestones)

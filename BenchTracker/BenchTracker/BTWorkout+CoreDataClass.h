@@ -15,6 +15,17 @@ typedef enum WorkoutPropertyType : NSInteger {
     WorkoutPropertyTypeDuration = 2
 } WorkoutPropertyType;
 
+typedef enum WorkoutTimeSpanType : NSInteger {
+    WorkoutTimeSpanType30Day   = 0,
+    WorkoutTimeSpanTypeAllTime = 1
+} WorkoutTimeSpanType;
+
+typedef struct {
+    NSInteger rank; //ranking of workout
+    NSInteger total; //total workouts in span
+    NSInteger numTied; //number of workouts tied
+} BTWorkoutRank;
+
 @class BTExercise, BTUser;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -37,11 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSArray <BTWorkout *> *)allWorkoutsWithFactoredIntoTotalsFilter:(BOOL)factoredIntoTotalsFilter;
 
-- (NSArray<NSNumber *> *)allTimeRankForProperty:(WorkoutPropertyType)property; //[0]: (int) lift's rank in all instances (1-10, else -1)
-                                                                               //[1]: (BOOL) is tied
-
-- (NSArray<NSNumber *> *)thirtyDayRankForProperty:(WorkoutPropertyType)property; //[0]: (int) lift's rank in all instances (1-5, else -1)
-                                                                                 //[1]: (BOOL) is tied
+- (BTWorkoutRank)rankForProperty:(WorkoutPropertyType)property timeSpan:(WorkoutTimeSpanType)timeSpan;
 
 @end
 

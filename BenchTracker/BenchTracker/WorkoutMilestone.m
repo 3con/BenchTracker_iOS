@@ -25,75 +25,109 @@
 }
 
 //Achievement: 999
-//AT Workout:  60-39
-//AT Exercise: 35-24
-//30 Workout:  22-11
-//30 Exercise: 10-0
-//New Exercse: 4
+//Streak long: 998
+
+//AT Workout:  <60-150> - 2x<1-20> - 5t
+//30 Workout:  <20-50>  - 2x<1-10> - 5t
+
+//AT Exercise: <27-65>  - 2x<1-10> - 4t
+//30 Exercise: <24-40>  - 2x<1-5>  - 4t
+
+//Streak:      5 + 2x
+//New Exercse: 1
 
 + (NSArray <WorkoutMilestone *> *)milestonesForWorkout:(BTWorkout *)workout {
-    NSMutableArray <WorkoutMilestone *> *milestones = @[].mutableCopy;
-    long num = [BTAchievement numberOfUnreadAchievements];
-    if (num != 0) [milestones addObject: [WorkoutMilestone milestoneWithTitle:[NSString stringWithFormat:@"%ld new achievement%@",
-                     (long)num, (num == 1) ? @"" : @"s"] importance:999 type:WorkoutMilestoneTypeAchievement]];
-    int64_t numWorkouts = BTUser.sharedInstance.totalWorkouts;
-    [BTUser updateStreaks];
     BTUser *user = [BTUser sharedInstance];
-    if (user.currentStreak >= 2) {
-        if (user.currentStreak == user.longestStreak)
-             [milestones addObject: [WorkoutMilestone milestoneWithTitle:[NSString stringWithFormat:@"New longest streak: %lld!",
-                user.currentStreak] importance:998 type:WorkoutMilestoneTypeStreak]];
-        else [milestones addObject: [WorkoutMilestone milestoneWithTitle:[NSString stringWithFormat:@"Current streak: %lld\nLongest streak: %lld",
-                user.currentStreak, user.longestStreak] importance:8+user.currentStreak*3 type:WorkoutMilestoneTypeStreak]];
-    }
+    NSMutableArray <WorkoutMilestone *> *milestones = @[].mutableCopy;
     
-    if (numWorkouts >= 3) {
+    //WORKOUT RANK
+    if (user.totalWorkouts >= 3) {
         for (int i = 0; i < 3; i++) {
-            NSArray<NSNumber *> *allTime = [workout allTimeRankForProperty:i];
+            BTWorkoutRank allTime = [workout rankForProperty:i timeSpan:WorkoutTimeSpanTypeAllTime];
+            NSLog(@"WAT:  %ld    %ld    %ld",allTime.rank, allTime.total, allTime.numTied);
             NSString *type;
             switch (i) {
                 case 0:  type = @"most sets"; break;
                 case 1:  type = @"largest volume"; break;
                 default: type = @"longest workout"; break;
             }
-            if (allTime[0].integerValue != -1) {
-                [milestones addObject: [WorkoutMilestone milestoneWithTitle:[NSString stringWithFormat:@"%@ %@ of all-time",
-                    [WorkoutMilestone formattedNumber:allTime withBest:NO], type]
-                    importance:60-allTime[0].integerValue*2-allTime[1].boolValue type:WorkoutMilestoneTypeWorkout]];
+            BOOL impressive = allTime.rank <= MIN(20, allTime.total/5);
+            if (allTime.rank != -1 && allTime.numTied < 8 && impressive) {
+                [milestones addObject: [WorkoutMilestone milestoneWithTitle:
+                    [NSString stringWithFormat:@"%@ %@ of all-time", [WorkoutMilestone formattedWorkoutRank:allTime], type]
+                        importance:50+MAX(10, MIN(100, user.totalWorkouts))-allTime.rank*2-allTime.numTied*5
+                              type:WorkoutMilestoneTypeWorkout]];
             }
             else {
-                NSArray<NSNumber *> *thirtyDay = [workout thirtyDayRankForProperty:i];
-                if (thirtyDay[0].integerValue != -1) {
-                    [milestones addObject: [WorkoutMilestone milestoneWithTitle:[NSString stringWithFormat:@"%@ %@ in the last 30 days",
-                        [WorkoutMilestone formattedNumber:thirtyDay withBest:NO], type]
-                        importance:22-thirtyDay[0].integerValue*2-thirtyDay[1].boolValue type:WorkoutMilestoneTypeWorkout]];
+                BTWorkoutRank thirtyDay = [workout rankForProperty:i timeSpan:WorkoutTimeSpanType30Day];
+                NSLog(@"WA3:  %ld    %ld    %ld\n\n",thirtyDay.rank, thirtyDay.total, thirtyDay.numTied);
+                BOOL impressive = thirtyDay.rank <= MIN(10, thirtyDay.total/3);
+                if (thirtyDay.rank != -1 && thirtyDay.total > 1 && thirtyDay.numTied < 5 && impressive) {
+                    [milestones addObject: [WorkoutMilestone milestoneWithTitle:
+                        [NSString stringWithFormat:@"%@ %@ in the last 30 days", [WorkoutMilestone formattedWorkoutRank:thirtyDay], type]
+                            importance:20+MAX(10, MIN(30, thirtyDay.total))-thirtyDay.rank*2-thirtyDay.numTied*5
+                                  type:WorkoutMilestoneTypeWorkout]];
                 }
             }
         }
     }
+    if (milestones.count >= 3) { //Only up to 2 workout-related milestones
+        WorkoutMilestone *low = milestones.firstObject;
+        for (int i = 1; i < milestones.count; i++)
+            low = (low.importance > milestones[i].importance) ? milestones[i] : low;
+        [milestones removeObject:low];
+    }
+    
+    //ACHIEVEMENTS
+    long num = [BTAchievement numberOfUnreadAchievements];
+    if (num != 0) [milestones addObject: [WorkoutMilestone milestoneWithTitle:[NSString stringWithFormat:@"%ld new achievement%@",
+                     (long)num, (num == 1) ? @"" : @"s"] importance:999 type:WorkoutMilestoneTypeAchievement]];
+    
+    //STREAKS
+    [BTUser updateStreaks];
+    if (user.currentStreak >= 2) {
+        if (user.currentStreak == user.longestStreak) {
+            if (user.currentStreak > 4)
+                 [milestones addObject: [WorkoutMilestone milestoneWithTitle:[NSString stringWithFormat:@"New longest streak: %lld!",
+                                                                             user.currentStreak] importance:998 type:WorkoutMilestoneTypeStreak]];
+            else [milestones addObject: [WorkoutMilestone milestoneWithTitle:[NSString stringWithFormat:@"New longest streak: %lld!",
+                                                                              user.currentStreak] importance:20 type:WorkoutMilestoneTypeStreak]];
+        }
+        else [milestones addObject: [WorkoutMilestone milestoneWithTitle:[NSString stringWithFormat:@"Current streak: %lld\nLongest streak: %lld",
+                user.currentStreak, user.longestStreak] importance:5+user.currentStreak*3 type:WorkoutMilestoneTypeStreak]];
+    }
+    
+    //EXERCISE RANK
     for (BTExercise *exercise in workout.exercises) {
         if (exercise.numberOfSets != 0) {
             if (exercise.lastInstance == nil)
                 [milestones addObject: [WorkoutMilestone milestoneWithTitle:[NSString stringWithFormat:@"New exercise:\n   %@ %@",
-                    (exercise.iteration) ? exercise.iteration : @"", exercise.name] importance:4 type:WorkoutMilestoneTypeNewExercise]];
+                    (exercise.iteration) ? exercise.iteration : @"", exercise.name] importance:1 type:WorkoutMilestoneTypeNewExercise]];
             else {
-                NSArray<NSNumber *> *thirty = exercise.thirtyDayRank;
-                NSArray<NSNumber *> *allTime = exercise.allTimeRank;
-                if (allTime[0].integerValue != -1) {
-                    [milestones addObject: [WorkoutMilestone milestoneWithTitle:[NSString stringWithFormat:
-                                                                                 @"%@ all-time 1RM equivalent:\n   %@ %@",
-                        [WorkoutMilestone formattedNumber:allTime withBest:YES], (exercise.iteration) ? exercise.iteration : @"", exercise.name]
-                        importance:35-allTime[0].integerValue*2-allTime[1].boolValue type:WorkoutMilestoneTypeTopExercise]];
+                BTExerciseRank allTime = [exercise rankForTimeSpan:BTExerciseTimeSpanTypeAllTime];
+                NSLog(@"EAT:  %ld    %ld    %ld",allTime.rank, allTime.total, allTime.numTied);
+                BOOL impressive = allTime.rank <= MIN(10, allTime.total/3);
+                if (allTime.rank != -1 && allTime.total > 4 && allTime.numTied < 8 && impressive) {
+                    [milestones addObject: [WorkoutMilestone milestoneWithTitle:[NSString stringWithFormat: @"%@ all-time 1RM equivalent:\n   %@ %@",
+                        [WorkoutMilestone formattedExerciseRank:allTime],(exercise.iteration)?exercise.iteration:@"",exercise.name]
+                            importance:25+MAX(2, MIN(40, allTime.total))-allTime.rank*2-allTime.numTied*4
+                                  type:WorkoutMilestoneTypeTopExercise]];
                 }
-                else if (thirty[0].integerValue != -1) {
-                    [milestones addObject: [WorkoutMilestone milestoneWithTitle:[NSString stringWithFormat:
-                                                                                 @"%@ 30-day 1RM equivalent:\n   %@ %@",
-                        [WorkoutMilestone formattedNumber:thirty withBest:YES], (exercise.iteration) ? exercise.iteration : @"", exercise.name]
-                        importance:10-thirty[0].integerValue*2-thirty[1].boolValue type:WorkoutMilestoneTypeTopExercise]];
+                else {
+                    BTExerciseRank thirtyDay = [exercise rankForTimeSpan:BTExerciseTimeSpanType30Day];
+                    NSLog(@"EA3:  %ld    %ld    %ld\n\n",thirtyDay.rank, thirtyDay.total, thirtyDay.numTied);
+                    BOOL impressive = thirtyDay.rank <= MIN(5, thirtyDay.total/2);
+                    if (thirtyDay.rank != -1 && thirtyDay.total > 1 && thirtyDay.numTied < 5 && impressive) {
+                        [milestones addObject: [WorkoutMilestone milestoneWithTitle:[NSString stringWithFormat: @"%@ 30-day 1RM equivalent:\n   %@ %@",
+                            [WorkoutMilestone formattedExerciseRank:thirtyDay],(exercise.iteration)?exercise.iteration:@"",exercise.name]
+                                importance:22+MAX(2, MIN(20, thirtyDay.total))-thirtyDay.rank*2-thirtyDay.numTied*4
+                                      type:WorkoutMilestoneTypeTopExercise]];
+                    }
                 }
             }
         }
     }
+    
     [milestones sortUsingComparator:^NSComparisonResult(WorkoutMilestone *obj1, WorkoutMilestone *obj2) {
         if (obj1.importance > obj2.importance) return NSOrderedAscending;
         if (obj1.importance < obj2.importance) return NSOrderedDescending;
@@ -104,10 +138,16 @@
 
 #pragma mark - helper method
 
-+ (NSString *)formattedNumber:(NSArray<NSNumber *> *)arr withBest:(BOOL)best {
-    return [NSString stringWithFormat:@"%@%ld%@%@", arr[1].boolValue ? @"T-" : @"", arr[0].integerValue,
-               @[@"th",@"st",@"nd",@"rd",@"th",@"th",@"th",@"th",@"th",@"th"][arr[0].integerValue % 10],
-               (best && arr[0].integerValue != 1) ? @" best" : @""];
++ (NSString *)formattedWorkoutRank:(BTWorkoutRank)wr {
+    if (wr.rank == 1 && wr.numTied == 0) return @"#1";
+    return [NSString stringWithFormat:@"%@%ld%@", (wr.numTied > 0) ? @"T-" : @"", wr.rank,
+               @[@"th",@"st",@"nd",@"rd",@"th",@"th",@"th",@"th",@"th",@"th"][wr.rank % 10]];
+}
+
++ (NSString *)formattedExerciseRank:(BTExerciseRank)er {
+    if (er.rank == 1 && er.numTied == 0) return @"#1";
+    return [NSString stringWithFormat:@"%@%ld%@", (er.numTied > 0) ? @"T-" : @"", er.rank,
+            @[@"th",@"st",@"nd",@"rd",@"th",@"th",@"th",@"th",@"th",@"th"][er.rank % 10]];
 }
 
 @end

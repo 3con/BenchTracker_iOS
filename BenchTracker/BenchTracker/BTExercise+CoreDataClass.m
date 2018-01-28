@@ -58,39 +58,32 @@
     return (results && results.count > 0) ? results.firstObject : nil;
 }
 
-- (NSArray<NSNumber *> *)allTimeRank {
+- (BTExerciseRank)rankForTimeSpan:(BTExerciseTimeSpanType)timeSpan {
     NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"BTExercise"];
     NSMutableArray *p = @[[NSPredicate predicateWithFormat:[NSString stringWithFormat:@"name == \"%@\"", self.name]],
                           [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"category == \"%@\"", self.category]]].mutableCopy;
+    if (timeSpan == BTExerciseTimeSpanType30Day)
+        [p addObject:[NSPredicate predicateWithFormat:@"workout.date >= %@", [NSDate.date dateByAddingTimeInterval:-30*86400]]];
     if (self.iteration) [p addObject:[NSPredicate predicateWithFormat:[NSString stringWithFormat:@"iteration == \"%@\"", self.iteration]]];
     fetchRequest.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:p];
     fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"oneRM" ascending:NO],
                                      [NSSortDescriptor sortDescriptorWithKey:@"workout.date" ascending:NO]];
-    fetchRequest.fetchLimit = 6;
+    fetchRequest.fetchLimit = (timeSpan == BTExerciseTimeSpanTypeAllTime) ? 40 : 20;
     NSArray <BTExercise *> *results = [context executeFetchRequest:fetchRequest error:nil];
     NSInteger rank = [results indexOfObject:self]+1;
-    BOOL isTied = results.count > rank && results[rank].oneRM == self.oneRM;
-    NSInteger ranking = (results.count > 0 && rank > 0 && rank < 6) ? rank : -1;
-    return @[[NSNumber numberWithInteger:ranking], [NSNumber numberWithBool:isTied]];
-}
-
-- (NSArray<NSNumber *> *)thirtyDayRank {
-    NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"BTExercise"];
-    NSMutableArray *p = @[[NSPredicate predicateWithFormat:[NSString stringWithFormat:@"name == \"%@\"", self.name]],
-                          [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"category == \"%@\"", self.category]],
-                          [NSPredicate predicateWithFormat:@"workout.date >= %@", [NSDate.date dateByAddingTimeInterval:-30*86400]]].mutableCopy;
-    if (self.iteration) [p addObject:[NSPredicate predicateWithFormat:[NSString stringWithFormat:@"iteration == \"%@\"", self.iteration]]];
-    fetchRequest.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:p];
-    fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"oneRM" ascending:NO],
-                                     [NSSortDescriptor sortDescriptorWithKey:@"workout.date" ascending:NO]];
-    fetchRequest.fetchLimit = 6;
-    NSArray <BTExercise *> *results = [context executeFetchRequest:fetchRequest error:nil];
-    NSInteger rank = [results indexOfObject:self]+1;
-    BOOL isTied = results.count > rank && results[rank].oneRM == self.oneRM;
-    NSInteger ranking = (results.count > 0 && rank > 0 && rank < 6) ? rank : -1;
-    return @[[NSNumber numberWithInteger:ranking], [NSNumber numberWithBool:isTied]];
+    if (rank < 0) rank = -1;
+    NSInteger numTied = 0;
+    if (rank > 0) {
+        while ((rank+numTied) < results.count) {
+            if (results[(rank+numTied)].oneRM == self.oneRM) numTied ++;
+            else break;
+        }
+    }
+    BTExerciseRank rankStruct = { .rank = rank,
+                                  .total = results.count,
+                                  .numTied = numTied      };
+    return rankStruct;
 }
 
 + (NSInteger)oneRMForExerciseName:(NSString *)name {

@@ -220,9 +220,11 @@
     return [context executeFetchRequest:fetchRequest error:nil];
 }
 
-- (NSArray<NSNumber *> *)allTimeRankForProperty:(WorkoutPropertyType)property {
+- (BTWorkoutRank)rankForProperty:(WorkoutPropertyType)property timeSpan:(WorkoutTimeSpanType)timeSpan {
     NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"BTWorkout"];
+    if (timeSpan == WorkoutTimeSpanType30Day)
+        fetchRequest.predicate = [NSPredicate predicateWithFormat:@"date >= %@", [NSDate.date dateByAddingTimeInterval:-30*86400]];
     NSSortDescriptor *sD;
     switch (property) {
         case WorkoutPropertyTypeNumSets:  sD = [NSSortDescriptor sortDescriptorWithKey:@"numSets" ascending:NO]; break;
@@ -230,41 +232,34 @@
         case WorkoutPropertyTypeDuration: sD = [NSSortDescriptor sortDescriptorWithKey:@"duration" ascending:NO]; break;
     }
     fetchRequest.sortDescriptors = @[sD, [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO]];
-    fetchRequest.fetchLimit = 11;
+    fetchRequest.fetchLimit = 30;
     NSArray <BTWorkout *> *results = [context executeFetchRequest:fetchRequest error:nil];
     NSInteger rank = [results indexOfObject:self]+1;
-    BOOL isTied;
-    switch (property) {
-        case WorkoutPropertyTypeNumSets:  isTied = results.count > rank && results[rank].numSets == self.numSets; break;
-        case WorkoutPropertyTypeVolume:   isTied = results.count > rank && results[rank].volume == self.volume; break;
-        case WorkoutPropertyTypeDuration: isTied = results.count > rank && results[rank].duration == self.duration; break;
+    if (rank < 0) rank = -1;
+    NSInteger numTied = 0;
+    if (rank > 0) {
+        switch (property) {
+            case WorkoutPropertyTypeNumSets:
+                while ((rank+numTied) < results.count) {
+                    if (results[(rank+numTied)].numSets == self.numSets) numTied ++;
+                    else break;
+                } break;
+            case WorkoutPropertyTypeVolume:
+                while ((rank+numTied) < results.count) {
+                    if (results[(rank+numTied)].volume == self.volume) numTied ++;
+                    else break;
+                } break;
+            case WorkoutPropertyTypeDuration:
+                while ((rank+numTied) < results.count) {
+                    if (results[(rank+numTied)].duration == self.duration) numTied ++;
+                    else break;
+                } break;
+        }
     }
-    NSInteger ranking = (results.count > 0 && rank > 0 && rank < 11) ? rank : -1;
-    return @[[NSNumber numberWithInteger:ranking], [NSNumber numberWithBool:isTied]];
-}
-
-- (NSArray<NSNumber *> *)thirtyDayRankForProperty:(WorkoutPropertyType)property {
-    NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"BTWorkout"];
-    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"date >= %@", [NSDate.date dateByAddingTimeInterval:-30*86400]];
-    NSSortDescriptor *sD;
-    switch (property) {
-        case WorkoutPropertyTypeNumSets:  sD = [NSSortDescriptor sortDescriptorWithKey:@"numSets" ascending:NO]; break;
-        case WorkoutPropertyTypeVolume:   sD = [NSSortDescriptor sortDescriptorWithKey:@"volume" ascending:NO]; break;
-        case WorkoutPropertyTypeDuration: sD = [NSSortDescriptor sortDescriptorWithKey:@"duration" ascending:NO]; break;
-    }
-    fetchRequest.sortDescriptors = @[sD, [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO]];
-    fetchRequest.fetchLimit = 6;
-    NSArray <BTWorkout *> *results = [context executeFetchRequest:fetchRequest error:nil];
-    NSInteger rank = [results indexOfObject:self]+1;
-    BOOL isTied;
-    switch (property) {
-        case WorkoutPropertyTypeNumSets:  isTied = results.count > rank && results[rank].numSets == self.numSets; break;
-        case WorkoutPropertyTypeVolume:   isTied = results.count > rank && results[rank].volume == self.volume; break;
-        case WorkoutPropertyTypeDuration: isTied = results.count > rank && results[rank].duration == self.duration; break;
-    }
-    NSInteger ranking = (results.count > 0 && rank > 0 && rank < 6) ? rank : -1;
-    return @[[NSNumber numberWithInteger:ranking], [NSNumber numberWithBool:isTied]];
+    BTWorkoutRank rankStruct = { .rank = rank,
+                                 .total = results.count,
+                                 .numTied = numTied      };
+    return rankStruct;
 }
 
 @end

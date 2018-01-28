@@ -15,6 +15,17 @@
 #define STYLE_TIME       @"time"
 #define STYLE_CUSTOM     @"custom"
 
+typedef enum BTExerciseTimeSpanType : NSInteger {
+    BTExerciseTimeSpanType30Day   = 0,
+    BTExerciseTimeSpanTypeAllTime = 1
+} BTExerciseTimeSpanType;
+
+typedef struct {
+    NSInteger rank; //ranking of oneRM
+    NSInteger total; //total exercises in span
+    NSInteger numTied; //number of oneRMs tied
+} BTExerciseRank;
+
 NS_ASSUME_NONNULL_BEGIN
 
 @class BTWorkout;
@@ -29,11 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (BTExercise *)lastInstance; //last instance (excluding this one)
 
-- (NSArray<NSNumber *> *)allTimeRank; //[0]: (int) lift's rank in all instances (1-5, else -1)
-                                      //[1]: (BOOL) is tied
-
-- (NSArray<NSNumber *> *)thirtyDayRank; //[0]: (int) lift's rank in instances last 30 days (1-5, else -1)
-                                        //[1]: (BOOL) is tied
+- (BTExerciseRank)rankForTimeSpan:(BTExerciseTimeSpanType)timeSpan;
 
 + (NSInteger)oneRMForExerciseName:(NSString *)name;
 
