@@ -33,10 +33,20 @@
 
 + (NSArray <WorkoutMilestone *> *)milestonesForWorkout:(BTWorkout *)workout {
     NSMutableArray <WorkoutMilestone *> *milestones = @[].mutableCopy;
-    if ([BTAchievement numberOfUnreadAchievements] != 0)
-        [milestones addObject: [WorkoutMilestone milestoneWithTitle:[NSString stringWithFormat:@"%ld new achievements",
-                                    (long)[BTAchievement numberOfUnreadAchievements]] importance:999 type:WorkoutMilestoneTypeAchievement]];
+    long num = [BTAchievement numberOfUnreadAchievements];
+    if (num != 0) [milestones addObject: [WorkoutMilestone milestoneWithTitle:[NSString stringWithFormat:@"%ld new achievement%@",
+                     (long)num, (num == 1) ? @"" : @"s"] importance:999 type:WorkoutMilestoneTypeAchievement]];
     int64_t numWorkouts = BTUser.sharedInstance.totalWorkouts;
+    [BTUser updateStreaks];
+    BTUser *user = [BTUser sharedInstance];
+    if (user.currentStreak >= 2) {
+        if (user.currentStreak == user.longestStreak)
+             [milestones addObject: [WorkoutMilestone milestoneWithTitle:[NSString stringWithFormat:@"New longest streak: %lld!",
+                user.currentStreak] importance:998 type:WorkoutMilestoneTypeStreak]];
+        else [milestones addObject: [WorkoutMilestone milestoneWithTitle:[NSString stringWithFormat:@"Current streak: %lld\nLongest streak: %lld",
+                user.currentStreak, user.longestStreak] importance:8+user.currentStreak*3 type:WorkoutMilestoneTypeStreak]];
+    }
+    
     if (numWorkouts >= 3) {
         for (int i = 0; i < 3; i++) {
             NSArray<NSNumber *> *allTime = [workout allTimeRankForProperty:i];

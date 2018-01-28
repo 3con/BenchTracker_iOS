@@ -17,4 +17,6 @@
 
 - (NSArray<NSString *> *)statForIndex:(int)index;
 
+- (NSInteger)numStats;
+
 @end

@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "New.png",
+      "filename" : "reload-symbol5-1.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "New-1.png",
+      "filename" : "reload-symbol5-2.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "New-2.png",
+      "filename" : "reload-symbol5-3.png",
       "scale" : "3x"
     }
   ],

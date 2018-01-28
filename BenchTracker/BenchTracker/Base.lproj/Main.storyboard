@@ -1479,10 +1479,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nmC-hu-RUm">
-                                <rect key="frame" x="10" y="170" width="355" height="477"/>
+                                <rect key="frame" x="10" y="170" width="355" height="469"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap any cell to see more" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G3j-9h-v0i">
-                                        <rect key="frame" x="0.0" y="472" width="355" height="20"/>
+                                        <rect key="frame" x="0.0" y="475" width="355" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="Wui-Ke-H3a"/>
                                         </constraints>
@@ -1493,23 +1493,30 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="G3j-9h-v0i" secondAttribute="bottom" constant="-15" id="J7q-q3-gTn"/>
+                                    <constraint firstAttribute="bottom" secondItem="G3j-9h-v0i" secondAttribute="bottom" constant="-26" id="J7q-q3-gTn"/>
                                     <constraint firstItem="G3j-9h-v0i" firstAttribute="centerX" secondItem="nmC-hu-RUm" secondAttribute="centerX" id="QKO-3I-f5R"/>
                                     <constraint firstItem="G3j-9h-v0i" firstAttribute="width" secondItem="nmC-hu-RUm" secondAttribute="width" id="Wdp-Fa-OjI"/>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="550" id="yrN-hp-E9b"/>
                                 </constraints>
                             </view>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="0fV-vU-mqs">
+                                <rect key="frame" x="168" y="623" width="39" height="37"/>
+                                <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="currentPageIndicatorTintColor" red="0.3803921569" green="0.3803921569" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
+                            </pageControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="0fV-vU-mqs" firstAttribute="centerX" secondItem="G3j-9h-v0i" secondAttribute="centerX" id="1xZ-OZ-jvv"/>
                             <constraint firstItem="pku-gP-QSv" firstAttribute="centerX" secondItem="d5A-cP-Hbe" secondAttribute="centerX" id="8UA-zq-fLX"/>
                             <constraint firstItem="d5A-cP-Hbe" firstAttribute="top" secondItem="Hnn-r0-dtL" secondAttribute="bottom" constant="-40" id="DGj-bv-QAq"/>
                             <constraint firstItem="nmC-hu-RUm" firstAttribute="leading" secondItem="ClY-W5-ilU" secondAttribute="leadingMargin" priority="750" constant="-6" id="Tpz-MQ-ASu"/>
                             <constraint firstItem="pku-gP-QSv" firstAttribute="bottom" secondItem="d5A-cP-Hbe" secondAttribute="top" constant="140" id="Y1e-gQ-ksM"/>
                             <constraint firstItem="nmC-hu-RUm" firstAttribute="centerX" secondItem="d5A-cP-Hbe" secondAttribute="centerX" id="YPO-1g-9Hf"/>
-                            <constraint firstItem="d5A-cP-Hbe" firstAttribute="bottom" secondItem="nmC-hu-RUm" secondAttribute="bottom" priority="750" constant="20" id="c1e-fa-ieS"/>
+                            <constraint firstItem="d5A-cP-Hbe" firstAttribute="bottom" secondItem="nmC-hu-RUm" secondAttribute="bottom" priority="750" constant="28" id="c1e-fa-ieS"/>
+                            <constraint firstItem="G3j-9h-v0i" firstAttribute="top" secondItem="0fV-vU-mqs" secondAttribute="bottom" constant="-15" id="cOf-YF-vem"/>
                             <constraint firstItem="nmC-hu-RUm" firstAttribute="top" secondItem="pku-gP-QSv" secondAttribute="bottom" constant="10" id="hf2-0h-Ypw"/>
-                            <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="nmC-hu-RUm" secondAttribute="bottom" constant="34" id="iK9-DH-cJt"/>
+                            <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="nmC-hu-RUm" secondAttribute="bottom" constant="44" id="iK9-DH-cJt"/>
                             <constraint firstItem="pku-gP-QSv" firstAttribute="width" secondItem="ClY-W5-ilU" secondAttribute="width" constant="2" id="rEX-Pd-nBW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="d5A-cP-Hbe"/>
@@ -1519,6 +1526,7 @@
                         <outlet property="backButton" destination="Hnn-r0-dtL" id="8Pm-c2-GBC"/>
                         <outlet property="containerView" destination="nmC-hu-RUm" id="jzV-7B-Msg"/>
                         <outlet property="navView" destination="pku-gP-QSv" id="YfF-83-MUl"/>
+                        <outlet property="pageControlView" destination="0fV-vU-mqs" id="mdN-rr-pDS"/>
                         <outlet property="settingsButton" destination="52j-al-0Ob" id="ebE-30-aTB"/>
                         <outlet property="userContainerView" destination="Iae-cz-LaF" id="RCd-5a-zMP"/>
                     </connections>

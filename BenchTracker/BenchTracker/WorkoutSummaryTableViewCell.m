@@ -28,6 +28,7 @@
             case WorkoutMilestoneTypeWorkout:     self.titleImageView.image = [UIImage imageNamed:@"Workout"]; break;
             case WorkoutMilestoneTypeNewExercise: self.titleImageView.image = [UIImage imageNamed:@"New"]; break;
             case WorkoutMilestoneTypeAchievement: self.titleImageView.image = [UIImage imageNamed:@"Badge"]; break;
+            case WorkoutMilestoneTypeStreak:      self.titleImageView.image = [UIImage imageNamed:@"Streak"]; break;
         }
     }
     else {

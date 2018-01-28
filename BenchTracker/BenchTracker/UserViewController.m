@@ -38,6 +38,7 @@
 @property (nonatomic) CGFloat numRows;
 @property (nonatomic) CGFloat buttonHeight;
 @property (nonatomic) CGFloat interLineSpacing;
+@property (weak, nonatomic) IBOutlet UIPageControl *pageControlView;
 
 @property (nonatomic) BTSettings *settings;
 @property (nonatomic) BTUser *user;
@@ -63,6 +64,8 @@
 
 - (void)updateInterface {
     [self.userView updateInterface];
+    self.pageControlView.pageIndicatorTintColor = [[UIColor lightGrayColor] colorWithAlphaComponent:.6];
+    self.pageControlView.currentPageIndicatorTintColor = [UIColor lightGrayColor];
     self.view.backgroundColor = [UIColor BTTableViewBackgroundColor];
     self.navView.backgroundColor = [UIColor BTPrimaryColor];
     self.navView.layer.borderWidth = 1.0;
@@ -183,7 +186,8 @@
     //CGPoint location = [[[event touchesForView:sender] anyObject] locationInView:sender];
     //int index = (int)(location.y/(sender.frame.size.height/3.0))*2+(int)(location.x/(sender.frame.size.width/2.0));
     [self animateCells];
-    self.statsOffset = (self.statsOffset+1)%(12/(int)((self.numRows-2)*2));
+    self.statsOffset = (self.statsOffset+1)%(self.userStats.numStats/(int)((self.numRows-2)*2));
+    self.pageControlView.currentPage = self.statsOffset;
     [self refreshStats];
 }
 
