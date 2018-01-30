@@ -50,6 +50,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (BTWorkoutRank)rankForProperty:(WorkoutPropertyType)property timeSpan:(WorkoutTimeSpanType)timeSpan;
 
+- (NSArray<NSNumber *> *)summaryArray;
+
 @end
 
 NS_ASSUME_NONNULL_END

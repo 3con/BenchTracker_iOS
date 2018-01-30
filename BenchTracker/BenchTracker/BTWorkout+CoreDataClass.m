@@ -214,9 +214,10 @@
 + (NSArray <BTWorkout *> *)allWorkoutsWithFactoredIntoTotalsFilter:(BOOL)factoredIntoTotalsFilter {
     NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"BTWorkout"];
-    fetchRequest.fetchLimit = 0;
-    fetchRequest.fetchBatchSize = 0;
+    fetchRequest.fetchLimit = 9999;
+    fetchRequest.fetchBatchSize = 9999;
     if (factoredIntoTotalsFilter) fetchRequest.predicate = [NSPredicate predicateWithFormat:@"factoredIntoTotals == NO"];
+    else                          fetchRequest.predicate = nil;
     return [context executeFetchRequest:fetchRequest error:nil];
 }
 
@@ -260,6 +261,16 @@
                                  .total = results.count,
                                  .numTied = numTied      };
     return rankStruct;
+}
+
+- (NSArray<NSNumber *> *)summaryArray {
+    NSArray *BODY_SPLITS = @[@"Abs / Core", @"Back", @"Biceps", @"Cardio", @"Chest", @"Legs", @"Olympic", @"Shoulders", @"Triceps"];
+    NSMutableArray<NSNumber *> *arr = @[@0, @0, @0, @0, @0, @0, @0, @0, @0, @0].mutableCopy;
+    for (NSString *bodySplit in [self.summary componentsSeparatedByString:@"#"]) {
+        NSArray<NSString *> *data = [bodySplit componentsSeparatedByString:@" "];
+        arr[[BODY_SPLITS indexOfObject:[bodySplit substringFromIndex:data[0].length+1]]] = [NSNumber numberWithInt:data[0].intValue];
+    }
+    return arr;
 }
 
 @end

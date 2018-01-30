@@ -18,6 +18,9 @@
 #import "BTAchievement+CoreDataClass.h"
 #import "WZLBadgeImport.h"
 
+#import <CoreML/CoreML.h>
+#import "BTWorkoutClassification.h"
+
 @interface MainViewController ()
 
 @property (weak, nonatomic) IBOutlet UIView *navView;
@@ -205,6 +208,21 @@
         [self.segmentedControlContainerView layoutIfNeeded];
         [self setUpSegmentedControl];
         [self setSelectedViewIndex:0];
+        if (@available(iOS 11, *)) {
+            BTWorkoutClassification *model = [[BTWorkoutClassification alloc] init];
+            NSError *error;
+            MLMultiArray *arr = [[MLMultiArray alloc] initWithShape:@[@9] dataType:MLMultiArrayDataTypeDouble error:&error];
+            for (BTWorkout *w in [BTWorkout allWorkoutsWithFactoredIntoTotalsFilter:NO]) {
+                NSArray <NSNumber *> *summaryArr = [w summaryArray];
+                for (int i = 0; i < summaryArr.count; i++)
+                    arr[i] = summaryArr[i];
+                if (error) NSLog(@"%@", error);
+                BTWorkoutClassificationOutput *output = [model predictionFromWorkoutSummary:arr error:&error];
+                if (error) NSLog(@"%@", error);
+                //NSLog(@"%@", output.probabilities);
+                NSLog(@"%@   -->   %@   (%.1f)", w.summary, output.classification, output.probabilities[output.classification].floatValue*100);
+            }
+        }
     }
     self.rightBarButton.imageEdgeInsets = UIEdgeInsetsMake(8, self.rightBarButton.frame.size.width-24, 8, 0);
 }
