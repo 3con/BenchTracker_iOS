@@ -65,6 +65,7 @@
     self.rightExpansion.threshold = 2.0;
     self.workout = workout;
     self.nameLabel.text = workout.name;
+    self.nameLabel.text = workout.smartNickname;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"EEEE, MMMM d"];
     self.dateLabel.text = [formatter stringFromDate:workout.date];

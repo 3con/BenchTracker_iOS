@@ -1,51 +1,25 @@
-# BenchTracker_iOS
+# Weightlifting App for iOS
 
-## [View on the iOS App Store](https://itunes.apple.com/us/app/bench-tracker-workout-weight-lifting-log/id1266077653)
-Bench Tracker is the only app designed by workout enthusiasts; for workout enthusiasts. We love working out just as much as you do, so we wrote the perfect app to track and analyze your workouts so you can maximize those gains!
-
-COMPLETELY AD-FREE / PREMIUM-FREE:
-* The only workout app with absolutely no ads and no premium mode
-
-TRACK YOUR WORKOUTS:
-* The only workout app with a colorful, useful workout overview display
-* View your workouts in one of three ways: List, Weekly, or Calendar
-* Export and import your data to switch between devices with ease
-
-ADVANCED WORKOUT FEATURES:
-* The only workout app with a weightlifting equivalency chart
-* The only workout app with camera-based workout sharing
-* Easily superset up to 5 exercises and add sets all at once
-* Two methods for inputting sets for maximum ease of use
-* Easily print out any workout via AirPrint
-
-ANALYZE EVERY ASPECT:
-* Analyze workout volume, duration, and muscle splits for every workout
-* View your progress on each exercise: graphed out and organized
-* Seamlessly determine your one-rep max for any exercise
-* Find your favorite exercises and browse new ones
-* View weekly summaries prepared each week highlighting your advancements
-
-CUSTOMIZE YOUR EXERCISES:
-* Create, name, and categorize any exercise
-* Choose from one of 5 different ways to track your exercise
-* Add variations to view your progress for each type
-* Settings to disable screen sleep, change weight unit, and more
+## [View on the iOS App Store](https://itunes.apple.com/us/app/id1266077653)
 
 ## Intro
-This app uses Core Data to record, analyze, and display a user's workouts through cataloging date, duration, exercises, sets, rep details, and more. In addition, the local Core Data stores are regularly compared with their counterparts stored on [Amazon Web Services](https://aws.amazon.com) servers so they can be synced across devices and eventually cross-platform. By using a simple username system, a user can easily log into their account on any iOS device and keep track of their workouts. Additionaly, users can export their workouts to PDF form and print them so they can be saved phyically in addition to electronically. QR codes included in the PDF can be used to re-digitize the workout at any time or create an empty replica.
+This app uses Core Data to record, analyze, and display a user's workouts through cataloging date, duration, exercises, sets, rep details, and more. In addition, the local Core Data stores are regularly compared with their counterparts stored on [Amazon Web Services](https://aws.amazon.com) servers so they can be synced across devices and eventually cross-platform. By using a simple username system, a user can easily log into their account on any iOS device and keep track of their workouts. Additionally, users can export their workouts to PDF form and print them so they can be saved phyically in addition to electronically. QR codes included in the PDF can be used to re-digitize the workout at any time or create an empty replica.
+
+#### 'Smart Name' feature using Machine Learning & [CoreML](https://developer.apple.com/documentation/coreml)
+Each workout has a calculated, customizable 'smart name' using deep learning to determine an appropriate name for a workout based on its exercises. See more implementation details [here](https://github.com/ChappyA12/WeightliftingAppML_Python).
 
 #### Backend Syncing
-Whenever a user opens up their app, the AWS user with the matching ```username``` is pulled from DynamoDB. Both versions of the user's ```recentEdits``` are then compared and the appropriate workouts are downloaded and deleted. The local and server ```exerciseTypeListVersions``` are then compared to determine whether or not an updated version must be downloaded. Whenever either of these updates are made, the fetched AWS object must be translated into its Core Data counterpart and vice versa when uploading. To save space and speed up server calls, certain data such as exercises are strategically converted into JSON format. Translating back and forth provides the advantage of speed and accessibility client-side and effieiency server-side.
+Whenever a user opens up their app, the AWS user with the matching ```username``` is pulled from DynamoDB. Both versions of the user's ```recentEdits``` are then compared and the appropriate workouts are downloaded and deleted. The local and server ```exerciseTypeListVersions``` are then compared to determine whether or not an updated version must be downloaded. Whenever either of these updates are made, the fetched AWS object must be translated into its Core Data counterpart and vice versa when uploading. To save space and speed up server calls, certain data such as exercises are strategically converted into JSON format. Translating back and forth provides the advantage of speed and accessibility client-side and efficiency server-side.
 
 #### QR code generation and scanning
-To make sharing workouts between users more effortless, a system of QR code generation has been implimented. Furthermore, this implimentation has the advantage of offline usability as it is not server-dependent. With the help of the MJExtension library, advanced techniques are used to dramatically downsize workout data objects to a more managable size (for example: a sample workout was shortened from 2600+ characters to 960 without any data loss). These raw JSON strings are then translated in QR codes and can be either displayed on the device itself or printed out. Any user is then welcome to scan the code and instantly either load the same workout with dates, durations, sets and more preserved or use it as a template for their own workout (no sets etc.).
+To make sharing workouts between users more effortless, a system of QR code generation has been implemented. Furthermore, this implementation has the advantage of offline usability as it is not server-dependent. With the help of the MJExtension library, advanced techniques are used to dramatically downsize workout data objects to a more manageable size (for example: a sample workout was shortened from 2600+ characters to 960 without any data loss). These raw JSON strings are then translated in QR codes and can be either displayed on the device itself or printed out. Any user is then welcome to scan the code and instantly either load the same workout with dates, durations, sets and more preserved or use it as a template for their own workout (no sets etc.).
 
 #### User data import / export
-Data import / export is used both as a form of unit testing and as a practical way for users to migrate from device to device. To accomplish this task, JSONModel equivilents to every Core Data class was written along with a ```BTDataTransferManager``` class. This class exports data by serializing user settings, custom exercises, and workouts into a JSON object and attaching it to an email. By defining a custom '.btd' file type, whenever another device opens the attachment it will automattically link to the Bench Tracker app. Importing involves taking the JSON string, turning it into a JSONModel object, and parsing through the object to reform the Core Data objects. Each JSON attachment comes with a ```version``` tag and the app will reject any newer version in case I decide to change the JSON format.
+Data import / export is used both as a form of unit testing and as a practical way for users to migrate from device to device. To accomplish this task, JSONModel equivalents to every Core Data class was written along with a ```BTDataTransferManager``` class. This class exports data by serializing user settings, custom exercises, and workouts into a JSON object and attaching it to an email. By defining a custom '.wld' file type, whenever another device opens the attachment it will automatically link to the Bench Tracker app. Importing involves taking the JSON string, turning it into a JSONModel object, and parsing through the object to reform the Core Data objects. Each JSON attachment comes with a ```version``` tag and the app will reject any newer version in case I decide to change the JSON format.
 
 ## Installation
 #### Test Data
-If you would like to test the app using a pre-defined set of 20 workouts, you can use the ```BTTestData.btd``` file included in this repo.
+If you would like to test the app using a pre-defined set of 20 workouts, you can use the ```WLTestData.wld``` file included in this repo.
 
 #### AWS Servers
 This app's backend uses Amazon Web Services to store user data, workouts, and custom exercise types. The DynamoDB pool and S3 bucket are authenticated using a [Cognito](https://aws.amazon.com/cognito/) unauth identity.
@@ -75,21 +49,22 @@ In order to get the app to fully function correctly, the file 'BenchTrackerKeys.
 
 #### Cocoapods
 [Cocoapods](https://cocoapods.org) is a dependency manager for Swift and ObjC projects. This app does not require additional setup to enable the pods to be used. This app uses the following pods and frameowrks:
-* [AWS iOS SDK](https://github.com/aws/aws-sdk-ios) - database solution
+* [AWS iOS SDK](https://github.com/aws/aws-sdk-ios) - Database solution
 * [JSONModel](https://github.com/jsonmodel/jsonmodel) - JSON serialization for server
-* [ZFDragableModalTransition](https://github.com/zoonooz/ZFDragableModalTransition) - popup views
-* [HMSegmentedControl](https://github.com/HeshamMegid/HMSegmentedControl) - custom segmented control
-* [FSCalendar](https://github.com/WenchaoD/FSCalendar) - calendar view
-* [MGSwipeTableCell](https://github.com/MortimerGoro/MGSwipeTableCell) - swipe-for-actions table cells
-* [MJExtension](https://github.com/CoderMJLee/MJExtension) - workout JSON serialization for QR codes
+* [ZFDragableModalTransition](https://github.com/zoonooz/ZFDragableModalTransition) - Popup views
+* [HMSegmentedControl](https://github.com/HeshamMegid/HMSegmentedControl) - Custom segmented control
+* [FSCalendar](https://github.com/WenchaoD/FSCalendar) - Calendar view
+* [MGSwipeTableCell](https://github.com/MortimerGoro/MGSwipeTableCell) - Swipe-for-actions table cells
+* [MJExtension](https://github.com/CoderMJLee/MJExtension) - Workout JSON serialization for QR codes
 * [MMQRCodeScanner](https://github.com/dexianyinjiu/MMQRCodeScanner) - QR code generation and scanning
 * [StickyCollectionView](https://github.com/matbeich/StickyCollectionView) - Analytics view card animation
 * [PNChart](https://github.com/kevinzhow/PNChart) - Analytics view graphs
 * [AppIRater](https://github.com/arashpayan/appirater) - App store review reminder
 * [Toast](https://github.com/scalessec/Toast) - Workout template add toast popup
-* [Onboard](https://github.com/mamaral/Onboard) - Tutorial splashscreen
-* [Core Data](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/CoreData/index.html) - on-device data storage
-* [Core Graphics / Text](https://developer.apple.com/library/content/documentation/StringsTextFonts/Conceptual/CoreText_Programming/Overview/Overview.html) - workout PDF generation
+* [Onboard](https://github.com/mamaral/Onboard) - Tutorial splash screen
+* [Core Data](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/CoreData/index.html) - On-device data storage
+* [CoreML](https://developer.apple.com/documentation/coreml) - Machine learning for workout 'smart name'
+* [Core Graphics / Text](https://developer.apple.com/library/content/documentation/StringsTextFonts/Conceptual/CoreText_Programming/Overview/Overview.html) - Workout PDF generation
 
 ## Images
 #### User login

@@ -39,6 +39,8 @@
     //USER ADD
     //TYPE LIST HANDLING
     [BTExerciseType checkForExistingTypeList];
+    //SMART NAMES
+    [BTWorkout calculateAllSmartNames];
     //TEMPLATE LIST HANDLING
     [BTWorkoutTemplate checkForExistingTemplateList];
     //ACHIEVEMENT LIST HANDLING

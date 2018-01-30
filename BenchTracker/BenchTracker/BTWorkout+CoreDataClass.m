@@ -13,8 +13,9 @@
 #import "BTWorkoutQRModel.h"
 #import "BTTemplateWorkoutQRModel.h"
 #import "BT1RMCalculator.h"
-
 #import "BTUser+CoreDataClass.h"
+#import <CoreML/CoreML.h>
+#import "BTWorkoutClassification.h"
 
 @implementation BTWorkout
 
@@ -261,6 +262,64 @@
                                  .total = results.count,
                                  .numTied = numTied      };
     return rankStruct;
+}
+
+- (NSString *)smartNickname {
+    return @{@"abs": @"Ab Day",
+             @"arms": @"Arm Day",
+             @"back": @"Back Day",
+             @"cardio": @"Cardio",
+             @"chest": @"Chest Day",
+             @"legs": @"Leg Day",
+             @"shoulders": @"Shoulders",
+             @"pull": @"Pull Day",
+             @"push": @"Push Day",
+             @"chestBack": @"Chest and Back",
+             @"chestBiceps": @"Chest and Biceps",
+             @"fullBody": @"Full Body" }[self.smartName];
+}
+
++ (void)calculateAllSmartNames {
+    if (@available(iOS 11, *)) {
+        NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"BTWorkout"];
+        fetchRequest.fetchLimit = 9999;
+        fetchRequest.fetchBatchSize = 9999;
+        fetchRequest.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[
+                                    [NSPredicate predicateWithFormat:@"smartName == nil"]]];
+        NSArray *arr = [context executeFetchRequest:fetchRequest error:nil];
+        if (!arr.count) return;
+        BTWorkoutClassification *model = [[BTWorkoutClassification alloc] init];
+        for (BTWorkout *w in arr) {
+            if (w.exercises.count > 0)
+                [w calculateSmartNameWithModel:model];
+        }
+        [context save:nil];
+    }
+}
+
+- (void)calculateSmartName {
+    if (@available(iOS 11, *)) {
+        if (self.exercises.count > 0) {
+            BTWorkoutClassification *model = [[BTWorkoutClassification alloc] init];
+            [self calculateSmartNameWithModel:model];
+        }
+    }
+}
+
+- (void)calculateSmartNameWithModel:(id)model {
+    if (@available(iOS 11, *)) {
+        NSError *error;
+        MLMultiArray *arr = [[MLMultiArray alloc] initWithShape:@[@9] dataType:MLMultiArrayDataTypeDouble error:&error];
+        NSArray <NSNumber *> *summaryArr = [self summaryArray];
+        for (int i = 0; i < summaryArr.count; i++)
+            arr[i] = summaryArr[i];
+        if (error) NSLog(@"%@", error);
+        BTWorkoutClassificationOutput *output = [model predictionFromWorkoutSummary:arr error:&error];
+        if (error) NSLog(@"%@", error);
+        //NSLog(@"%@   -->   %@   (%.1f)", self.summary, output.classification, output.probabilities[output.classification].floatValue*100);
+        self.smartName = output.classification;
+    }
 }
 
 - (NSArray<NSNumber *> *)summaryArray {

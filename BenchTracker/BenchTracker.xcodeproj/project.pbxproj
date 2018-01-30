@@ -37,7 +37,7 @@
 		50530C301F52412200472426 /* WorkoutTemplateTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50530C2E1F52412200472426 /* WorkoutTemplateTableViewCell.xib */; };
 		5054845F1F54B67500658BD2 /* BTCalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5054845E1F54B67500658BD2 /* BTCalendarCell.m */; };
 		5054D8D31F3391C3000EBC21 /* BTTutorialManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5054D8D21F3391C3000EBC21 /* BTTutorialManager.m */; };
-		5054FC692020313E00CD373D /* BTWorkoutClassification.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 5054FC682020313E00CD373D /* BTWorkoutClassification.mlmodel */; };
+		5054FC6C2020589700CD373D /* BTWorkoutClassification.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 5054FC6B2020589700CD373D /* BTWorkoutClassification.mlmodel */; };
 		505CFDA31F5B5795001469F8 /* SetSummaryCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 505CFDA21F5B5795001469F8 /* SetSummaryCollectionView.m */; };
 		50636F2A1F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50636F281F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.m */; };
 		50636F2B1F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50636F291F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.xib */; };
@@ -230,8 +230,7 @@
 		5054845E1F54B67500658BD2 /* BTCalendarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTCalendarCell.m; sourceTree = "<group>"; };
 		5054D8D11F3391C3000EBC21 /* BTTutorialManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTutorialManager.h; sourceTree = "<group>"; };
 		5054D8D21F3391C3000EBC21 /* BTTutorialManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTutorialManager.m; sourceTree = "<group>"; };
-		5054FC682020313E00CD373D /* BTWorkoutClassification.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = BTWorkoutClassification.mlmodel; path = ../../../WeightliftingAppML_Python/src/BTWorkoutClassification.mlmodel; sourceTree = "<group>"; };
-		5054FC6A2020315500CD373D /* BTWorkoutClassification.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = BTWorkoutClassification.mlmodel; sourceTree = "<group>"; };
+		5054FC6B2020589700CD373D /* BTWorkoutClassification.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = BTWorkoutClassification.mlmodel; sourceTree = "<group>"; };
 		505CFDA11F5B5795001469F8 /* SetSummaryCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetSummaryCollectionView.h; sourceTree = "<group>"; };
 		505CFDA21F5B5795001469F8 /* SetSummaryCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetSummaryCollectionView.m; sourceTree = "<group>"; };
 		50636F271F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EEExerciseTypeTableViewCell.h; sourceTree = "<group>"; };
@@ -241,6 +240,7 @@
 		50636F2E1F2B9E0D00FB65B4 /* EEDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EEDetailViewController.m; sourceTree = "<group>"; };
 		50636F311F2C37B000FB65B4 /* BTExerciseTypeStyleTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTExerciseTypeStyleTransformer.h; sourceTree = "<group>"; };
 		50636F321F2C37B000FB65B4 /* BTExerciseTypeStyleTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTExerciseTypeStyleTransformer.m; sourceTree = "<group>"; };
+		50669E712021123F007F603F /* BTDataModel10.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BTDataModel10.xcdatamodel; sourceTree = "<group>"; };
 		5066F9B21F61E75D00159130 /* AchievementCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AchievementCollectionViewCell.h; sourceTree = "<group>"; };
 		5066F9B31F61E75D00159130 /* AchievementCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AchievementCollectionViewCell.m; sourceTree = "<group>"; };
 		5066F9B41F61E75D00159130 /* AchievementCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AchievementCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -1002,7 +1002,7 @@
 				F90712A919415FB1008694E5 /* AppDelegate.m */,
 				F90712B119415FB1008694E5 /* Main.storyboard */,
 				F9DA750F1F02DC1700347B0D /* BTDataModel.xcdatamodeld */,
-				5054FC6A2020315500CD373D /* BTWorkoutClassification.mlmodel */,
+				5054FC6B2020589700CD373D /* BTWorkoutClassification.mlmodel */,
 				F90712A419415FB0008694E5 /* Supporting Files */,
 			);
 			path = BenchTracker;
@@ -1015,7 +1015,6 @@
 				F9C240751F183D0B00A268F3 /* BenchTrackerPrefixHeader.pch */,
 				F90712A519415FB0008694E5 /* Info.plist */,
 				50060FD91F33A83B00F6DC00 /* Assets.xcassets */,
-				5054FC682020313E00CD373D /* BTWorkoutClassification.mlmodel */,
 				F981D5871F022D9A00E7B456 /* LaunchScreen.xib */,
 				F90712A619415FB1008694E5 /* main.m */,
 			);
@@ -1934,7 +1933,7 @@
 				F9A549401F13064400743897 /* BTAnalyticsBarChart.m in Sources */,
 				506C0CB21FE5957900865BED /* LeaderboardTableViewCell.m in Sources */,
 				F95F932F1F02FC5000A19C4D /* BTTypeListModel.m in Sources */,
-				5054FC692020313E00CD373D /* BTWorkoutClassification.mlmodel in Sources */,
+				5054FC6C2020589700CD373D /* BTWorkoutClassification.mlmodel in Sources */,
 				F95F5CF61F08B54500A567FA /* SettingsViewController.m in Sources */,
 				F917BB5D1F0DCA6A00614AB1 /* BTTemplateWorkoutQRModel.m in Sources */,
 				F9B27CE11F1170F5008FCC7F /* StickCollectionViewFlowLayout.m in Sources */,
@@ -2182,6 +2181,7 @@
 		F9DA750F1F02DC1700347B0D /* BTDataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				50669E712021123F007F603F /* BTDataModel10.xcdatamodel */,
 				5025A2AA20199A0800CFEF0E /* BTDataModel9.xcdatamodel */,
 				50012E1F1FEB0EA100A6B08F /* BTDataModel8.xcdatamodel */,
 				50B8C3BD1FE0E35300378331 /* BTDataModel7.xcdatamodel */,
@@ -2192,7 +2192,7 @@
 				50FB89931F5A48A3002EA7A4 /* BTDataModel2.xcdatamodel */,
 				F9DA75101F02DC1700347B0D /* BTDataModel.xcdatamodel */,
 			);
-			currentVersion = 5025A2AA20199A0800CFEF0E /* BTDataModel9.xcdatamodel */;
+			currentVersion = 50669E712021123F007F603F /* BTDataModel10.xcdatamodel */;
 			path = BTDataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

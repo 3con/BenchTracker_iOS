@@ -23,6 +23,7 @@
 @dynamic numExercises;
 @dynamic numSets;
 @dynamic name;
+@dynamic smartName;
 @dynamic supersets;
 @dynamic exercises;
 

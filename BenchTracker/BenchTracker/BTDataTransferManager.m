@@ -36,6 +36,8 @@
     userModel.imageData = [[NSString alloc] initWithData:user.imageData encoding:NSUTF8StringEncoding];
     userModel.weight = [NSNumber numberWithInt:user.weight];
     userModel.totalDuration = [NSNumber numberWithLongLong:user.totalDuration];
+    userModel.totalSets = [NSNumber numberWithLongLong:user.totalSets];
+    userModel.totalExercises = [NSNumber numberWithLongLong:user.totalExercises];
     userModel.totalVolume = [NSNumber numberWithLongLong:user.totalVolume];
     userModel.totalWorkouts = [NSNumber numberWithLongLong:user.totalWorkouts];
     userModel.currentStreak = [NSNumber numberWithLongLong:user.currentStreak];
@@ -93,6 +95,8 @@
     user.xp = transferModel.user.xp.intValue;
     user.totalDuration = transferModel.user.totalDuration.integerValue;
     user.totalVolume = transferModel.user.totalVolume.integerValue;
+    user.totalSets = transferModel.user.totalSets.integerValue;
+    user.totalExercises = transferModel.user.totalExercises.integerValue;
     user.totalWorkouts = transferModel.user.totalWorkouts.integerValue;
     user.currentStreak = transferModel.user.currentStreak.integerValue;
     user.longestStreak = transferModel.user.longestStreak.integerValue;

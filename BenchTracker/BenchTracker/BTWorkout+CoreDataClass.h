@@ -50,7 +50,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (BTWorkoutRank)rankForProperty:(WorkoutPropertyType)property timeSpan:(WorkoutTimeSpanType)timeSpan;
 
-- (NSArray<NSNumber *> *)summaryArray;
+@property (nonatomic) NSString *smartNickname;
+
++ (void)calculateAllSmartNames;
+
+- (void)calculateSmartName;
 
 @end
 

@@ -199,6 +199,7 @@
         self.workout.summary = [self.workout.summary substringFromIndex:2];
     }
     self.workout.supersets = [NSKeyedArchiver archivedDataWithRootObject:self.tempSupersets];
+    [self.workout calculateSmartName];
     [self.context save:nil];
 }
 
