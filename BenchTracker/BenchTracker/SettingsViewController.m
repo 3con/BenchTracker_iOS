@@ -10,6 +10,7 @@
 #import "BTButtonFormCell.h"
 #import "ZFModalTransitionAnimator.h"
 #import "EditExercisesViewController.h"
+#import "EditSmartNamesViewController.h"
 #import "BTSettings+CoreDataClass.h"
 #import "BTDataTransferManager.h"
 #import "BTAchievement+CoreDataClass.h"
@@ -83,7 +84,17 @@
     //WARN USER PAST WORKOUTS WILL NOT BE ADJUSTED
     [section addFormRow:row];
     
-    // Section 4: Start week on Sunday
+    // Section 4: Workout smart names
+    section = [XLFormSectionDescriptor formSection];
+    section.footerTitle = @"Weightlifting App will use machine learning to automatically determine a smart name for your workout based on the exercises you perform.";
+    [form addFormSection:section];
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"showSmartNames" rowType:XLFormRowDescriptorTypeBooleanSwitch title:@"Workout smart names"];
+    row.value = [NSNumber numberWithBool:!self.settings.showSmartNames];
+    [section addFormRow:row];
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"editSmartNames" rowType:XLFormRowDescriptorTypeSelectorPush title:@"Edit smart names"];
+    [section addFormRow:row];
+    
+    // Section 5: Start week on Sunday
     section = [XLFormSectionDescriptor formSection];
     section.footerTitle = @"Start your workout week on Sunday. Monday is the default.";
     [form addFormSection:section];
@@ -91,7 +102,7 @@
     row.value = [NSNumber numberWithBool:!self.settings.startWeekOnMonday];
     [section addFormRow:row];
     
-    // Section 5: Disable screen sleep
+    // Section 6: Disable screen sleep
     section = [XLFormSectionDescriptor formSection];
     section.footerTitle = @"Prevent your device from going to sleep while you are in the process of working out.";
     [form addFormSection:section];
@@ -99,7 +110,7 @@
     row.value = [NSNumber numberWithBool:self.settings.disableSleep];
     [section addFormRow:row];
     
-    // Section 6: Workout details
+    // Section 7: Workout details
     section = [XLFormSectionDescriptor formSection];
     section.footerTitle = @"Displays statistics below each workout in your home screen.";
     [form addFormSection:section];
@@ -107,7 +118,7 @@
     row.value = [NSNumber numberWithBool:self.settings.showWorkoutDetails];
     [section addFormRow:row];
     
-    // Section 7: Show in exercise view
+    // Section 8: Show in exercise view
     section = [XLFormSectionDescriptor formSection];
     section.title = @"SHOW IN EXERCISE VIEW";
     section.footerTitle = @"Exercise analytics: displays analytics relating to the exercise you are performing.\nEquivalency chart: displays a chart with equivalent one-rep-maxes for appropriate exercises.";
@@ -119,9 +130,9 @@
     row.value = [NSNumber numberWithBool:self.settings.showEquivalencyChart];
     [section addFormRow:row];
     
-    // Section 8: Import, Export data
+    // Section 9: Import, Export data
     section = [XLFormSectionDescriptor formSection];
-    section.footerTitle = @"Import or export all of your Weightlifting App data using email attachments. This includes all of your workouts and custom exercises.";
+    section.footerTitle = @"Import or export all of your Weightlifting App data using email attachments. This includes all of your workouts and custom exercises. Open your data on another phone to transfer your gains.";
     [form addFormSection:section];
     //Import
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"import" rowType:XLFormRowDescriptorTypeButton title:@"Import data"];
@@ -130,7 +141,7 @@
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"export" rowType:XLFormRowDescriptorTypeButton title:@"Export all data"];
     [section addFormRow:row];
     
-    // Section 9: Share, Rate
+    // Section 10: Share, Rate
     section = [XLFormSectionDescriptor formSection];
     [form addFormSection:section];
     //Share
@@ -140,7 +151,7 @@
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"rate" rowType:XLFormRowDescriptorTypeButton title:@"Rate Weightlifting App"];
     [section addFormRow:row];
     
-    // Section 10: Reset data
+    // Section 11: Reset data
     section = [XLFormSectionDescriptor formSection];
     [form addFormSection:section];
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"reset" rowType:XLFormRowDescriptorTypeBTButton title:@"Reset Data"];
@@ -212,6 +223,7 @@
 
 - (void)didSelectFormRow:(XLFormRowDescriptor *)formRow {
     if ([formRow.tag isEqualToString:@"editExercises"]) [self presentEditExercisesViewController];
+    else if ([formRow.tag isEqualToString:@"editSmartNames"]) [self presentEditSmartNamesViewController];
     else if ([formRow.tag isEqualToString:@"import"]) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Import Data"
                                                                        message:@"To import your Weightlifting App data, please open an email with the compatible '.btd' file. Then, tap on the file to open it in the Weightlifting App."
@@ -281,7 +293,6 @@
 
 - (void)presentEditExercisesViewController {
     EditExercisesViewController *eeVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ee"];
-    //eeVC.delegate = self;
     eeVC.context = self.context;
     self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:eeVC];
     self.animator.bounces = NO;
@@ -293,6 +304,22 @@
     eeVC.transitioningDelegate = self.animator;
     eeVC.modalPresentationStyle = UIModalPresentationFullScreen;
     [self presentViewController:eeVC animated:YES completion:nil];
+}
+
+- (void)presentEditSmartNamesViewController {
+    EditSmartNamesViewController *esnVC = [[EditSmartNamesViewController alloc] initWithNibName:@"EditSmartNamesViewController"
+                                                                                         bundle:[NSBundle mainBundle]];
+    esnVC.settings = self.settings;
+    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:esnVC];
+    self.animator.bounces = NO;
+    self.animator.dragable = YES;
+    self.animator.behindViewAlpha = 0.6;
+    self.animator.behindViewScale = 1.0;
+    self.animator.transitionDuration = 0.35;
+    self.animator.direction = ZFModalTransitonDirectionRight;
+    esnVC.transitioningDelegate = self.animator;
+    esnVC.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self presentViewController:esnVC animated:YES completion:nil];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {

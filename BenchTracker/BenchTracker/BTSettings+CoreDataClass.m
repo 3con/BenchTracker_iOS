@@ -27,6 +27,8 @@
     self.activeWorkoutBeforeDuration = 0;
     self.hiddenExerciseTypeSections = [NSKeyedArchiver archivedDataWithRootObject:[NSMutableArray array]];
     self.exerciseTypeColors = nil;
+    self.showSmartNames = YES;
+    self.smartNicknames = nil;
     self.startWeekOnMonday = YES;
     self.disableSleep = YES;
     self.showWorkoutDetails = YES;
@@ -39,6 +41,24 @@
 
 - (NSString *)weightSuffix {
     return (self.weightInLbs) ? @"lbs" : @"kg";
+}
+
+- (NSDictionary *)smartNicknameDict {
+    if (self.smartNicknames) return [NSKeyedUnarchiver unarchiveObjectWithData:self.smartNicknames];
+    NSDictionary *dict = @{@"abs": @"Shredded Abs 😜",
+                           @"arms": @"Arm Workout 💪",
+                           @"back": @"Back Day 🤤",
+                           @"cardio": @"Cardio 🏃‍♂️",
+                           @"chest": @"Chest Day 🙌",
+                           @"legs": @"Leg Day 🏋️",
+                           @"shoulders": @"Shoulder Workout 😩",
+                           @"pull": @"Pull Day 👇",
+                           @"push": @"Push Day 👆",
+                           @"chestBack": @"Chest and Back 😊",
+                           @"chestBiceps": @"Chest and Biceps 💪",
+                           @"fullBody": @"Full Body Workout 🏋️" };
+    self.smartNicknames = [NSKeyedArchiver archivedDataWithRootObject:dict];
+    return dict;
 }
 
 #pragma mark - private methods

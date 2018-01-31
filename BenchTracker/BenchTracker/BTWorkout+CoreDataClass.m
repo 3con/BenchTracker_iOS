@@ -7,6 +7,7 @@
 //
 
 #import "BTWorkout+CoreDataClass.h"
+#import "BTSettings+CoreDataClass.h"
 #import "BTExercise+CoreDataClass.h"
 #import "AppDelegate.h"
 #import "MJExtension.h"
@@ -265,18 +266,7 @@
 }
 
 - (NSString *)smartNickname {
-    return @{@"abs": @"Ab Day",
-             @"arms": @"Arm Day",
-             @"back": @"Back Day",
-             @"cardio": @"Cardio",
-             @"chest": @"Chest Day",
-             @"legs": @"Leg Day",
-             @"shoulders": @"Shoulders",
-             @"pull": @"Pull Day",
-             @"push": @"Push Day",
-             @"chestBack": @"Chest and Back",
-             @"chestBiceps": @"Chest and Biceps",
-             @"fullBody": @"Full Body" }[self.smartName];
+    return BTSettings.sharedInstance.smartNicknameDict[self.smartName];
 }
 
 + (void)calculateAllSmartNames {

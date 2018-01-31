@@ -18,7 +18,7 @@
 #import "BT1RMCalculator.h"
 #import "BTAchievement+CoreDataClass.h"
 
-#define DATA_TRANSFER_VERSION 4
+#define DATA_TRANSFER_VERSION 5
 
 @implementation BTDataTransferManager
 
@@ -51,6 +51,8 @@
     settingsModel.weightInLbs = settings.weightInLbs;
     settingsModel.showWorkoutDetails = settings.showLastWorkout;
     settingsModel.showEquivalencyChart = settings.showEquivalencyChart;
+    settingsModel.showSmartNames = settings.showSmartNames;
+    settingsModel.smartNicknames = [NSKeyedUnarchiver unarchiveObjectWithData:settings.smartNicknames];
     settingsModel.showLastWorkout = settings.showLastWorkout;
     settingsModel.bodyweightIsVolume = settings.bodyweightIsVolume;
     settingsModel.bodyweightMultiplier = [NSNumber numberWithFloat:settings.bodyweightMultiplier];
@@ -106,6 +108,8 @@
     settings.startWeekOnMonday = transferModel.settings.startWeekOnMonday;
     settings.weightInLbs = transferModel.settings.weightInLbs;
     settings.disableSleep = transferModel.settings.disableSleep;
+    settings.showSmartNames = transferModel.settings.showSmartNames;
+    settings.smartNicknames = [NSKeyedArchiver archivedDataWithRootObject:transferModel.settings.smartNicknames];
     settings.showWorkoutDetails = transferModel.settings.showLastWorkout;
     settings.showEquivalencyChart = transferModel.settings.showEquivalencyChart;
     settings.showLastWorkout = transferModel.settings.showLastWorkout;

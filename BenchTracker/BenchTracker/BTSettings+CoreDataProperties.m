@@ -22,6 +22,9 @@
 @dynamic hiddenExerciseTypeSections;
 @dynamic exerciseTypeColors;
 
+@dynamic showSmartNames;
+@dynamic smartNicknames;
+
 @dynamic startWeekOnMonday;
 @dynamic disableSleep;
 @dynamic weightInLbs;

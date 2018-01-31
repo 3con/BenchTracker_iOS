@@ -25,6 +25,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSData *hiddenExerciseTypeSections;
 @property (nullable, nonatomic, retain) NSData *exerciseTypeColors;
 
+@property (nonatomic) BOOL showSmartNames;
+@property (nullable, nonatomic, retain) NSData *smartNicknames;
+
 @property (nonatomic) BOOL startWeekOnMonday;
 @property (nonatomic) BOOL disableSleep;
 @property (nonatomic) BOOL weightInLbs;
