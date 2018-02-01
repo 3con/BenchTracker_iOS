@@ -61,18 +61,21 @@
     stats.statDetails[7] = [NSString stringWithFormat:@"%lld day%@", user.currentStreak, (user.currentStreak == 1) ? @"" : @"s"];
     
     stats.statTitles[8] = @"Average Set";
-    stats.statDetails[8] = [NSString stringWithFormat:@"%.1f min", user.totalDuration / user.totalSets / 60.0];
+    stats.statDetails[8] = (user.totalSets) ?
+                                [NSString stringWithFormat:@"%.1f min", user.totalDuration / (float)user.totalSets / 60.0] : @"N/A";
     
     stats.statTitles[9] = @"Average Set";
-    long long avg = user.totalVolume / user.totalSets;
+    long long avg = (user.totalSets) ? user.totalVolume / user.totalSets : 0;
     stats.statDetails[9] = (avg < 1000) ? [NSString stringWithFormat:@"%lld %@", avg, settings.weightSuffix] :
                                           [NSString stringWithFormat:@"%.2fk %@", avg/1000.0, settings.weightSuffix];
     
     stats.statTitles[10] = @"Average Exercise";
-    stats.statDetails[10] = [NSString stringWithFormat:@"%.1f min", user.totalDuration / user.totalExercises / 60.0];
+    stats.statDetails[10] = (user.totalExercises) ?
+                                [NSString stringWithFormat:@"%.1f min", user.totalDuration / (float)user.totalExercises / 60.0] : @"N/A";
     
     stats.statTitles[11] = @"Average Exercise";
-    stats.statDetails[11] = [NSString stringWithFormat:@"%.2f sets", user.totalSets / (float)user.totalExercises];
+    stats.statDetails[11] = (user.totalExercises) ?
+                                [NSString stringWithFormat:@"%.2f sets", user.totalSets / (float)user.totalExercises] : @"N/A";
     
     stats.statTitles[12] = @"Volume Per Hour";
     stats.statDetails[12] = (user.totalDuration) ? [NSString stringWithFormat:@"%.1fk %@",

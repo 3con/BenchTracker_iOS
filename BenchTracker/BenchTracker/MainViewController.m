@@ -273,8 +273,9 @@
     [self.searchBar sizeToFit];
     self.searchBar.placeholder = @"Search for a workout";
     [self.listTableView reloadData];
-    [self.listTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]
-                              atScrollPosition:UITableViewScrollPositionTop animated:NO];
+    if (self.fetchedResultsController.fetchedObjects.count)
+        [self.listTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]
+                                  atScrollPosition:UITableViewScrollPositionTop animated:NO];
 }
 
 - (void)updateBadgeView {
