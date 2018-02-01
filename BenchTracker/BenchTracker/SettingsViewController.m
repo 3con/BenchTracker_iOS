@@ -84,15 +84,17 @@
     //WARN USER PAST WORKOUTS WILL NOT BE ADJUSTED
     [section addFormRow:row];
     
-    // Section 4: Workout smart names
-    section = [XLFormSectionDescriptor formSection];
-    section.footerTitle = @"Weightlifting App will use machine learning to automatically determine a smart name for your workout based on the exercises you perform.";
-    [form addFormSection:section];
-    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"showSmartNames" rowType:XLFormRowDescriptorTypeBooleanSwitch title:@"Workout smart names"];
-    row.value = [NSNumber numberWithBool:!self.settings.showSmartNames];
-    [section addFormRow:row];
-    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"editSmartNames" rowType:XLFormRowDescriptorTypeSelectorPush title:@"Edit smart names"];
-    [section addFormRow:row];
+    if (@available(iOS 11, *)) {
+        // Section 4: Workout smart names
+        section = [XLFormSectionDescriptor formSection];
+        section.footerTitle = @"Weightlifting App will use machine learning to automatically determine a smart name for your workout based on the exercises you perform.";
+        [form addFormSection:section];
+        row = [XLFormRowDescriptor formRowDescriptorWithTag:@"showSmartNames" rowType:XLFormRowDescriptorTypeBooleanSwitch title:@"Workout smart names"];
+        row.value = [NSNumber numberWithBool:!self.settings.showSmartNames];
+        [section addFormRow:row];
+        row = [XLFormRowDescriptor formRowDescriptorWithTag:@"editSmartNames" rowType:XLFormRowDescriptorTypeSelectorPush title:@"Edit smart names"];
+        [section addFormRow:row];
+    }
     
     // Section 5: Start week on Sunday
     section = [XLFormSectionDescriptor formSection];
@@ -160,7 +162,7 @@
     
     for (XLFormSectionDescriptor *section in form.formSections) {
         for (XLFormRowDescriptor *row in section.formRows) {
-            row.cellConfig[@"backgroundColor"] = [UIColor colorWithWhite:.2 alpha:.1];
+            row.cellConfig[@"backgroundColor"] = [UIColor colorWithWhite:.64 alpha:.1];
             row.cellConfig[@"textLabel.textColor"] = [UIColor BTBlackColor];
             row.cellConfig[@"textLabel.textAlignment"] = @(NSTextAlignmentNatural);
         }
@@ -180,6 +182,7 @@
     self.settings.weightInLbs = ![result[@"weightInKg"] boolValue];
     self.settings.startWeekOnMonday = ![result[@"startWeekOnSunday"] boolValue];
     self.settings.disableSleep = [result[@"disableSleep"] boolValue];
+    self.settings.showSmartNames = [result[@"showSmartNames"] boolValue];
     self.settings.showWorkoutDetails = [result[@"workoutDetails"] boolValue];
     self.settings.showLastWorkout = [result[@"showLastWorkout"] boolValue];
     self.settings.showEquivalencyChart = [result[@"showEquivChart"] boolValue];
@@ -309,6 +312,7 @@
 - (void)presentEditSmartNamesViewController {
     EditSmartNamesViewController *esnVC = [[EditSmartNamesViewController alloc] initWithNibName:@"EditSmartNamesViewController"
                                                                                          bundle:[NSBundle mainBundle]];
+    esnVC.context = self.context;
     esnVC.settings = self.settings;
     self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:esnVC];
     self.animator.bounces = NO;

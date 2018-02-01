@@ -74,8 +74,6 @@
 		5099F1C31F5F6774000A6DE4 /* AchievementListVersionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5099F1C21F5F6774000A6DE4 /* AchievementListVersionModel.m */; };
 		50CF4D9C2021642900B55679 /* EditSmartNamesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CF4D9A2021642900B55679 /* EditSmartNamesViewController.m */; };
 		50CF4D9D2021642900B55679 /* EditSmartNamesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50CF4D9B2021642900B55679 /* EditSmartNamesViewController.xib */; };
-		50CF4DA22021672E00B55679 /* SmartNameTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CF4DA02021672E00B55679 /* SmartNameTableViewCell.m */; };
-		50CF4DA32021672E00B55679 /* SmartNameTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50CF4DA12021672E00B55679 /* SmartNameTableViewCell.xib */; };
 		50CF69D61F3A685C00DDE8A6 /* TemplateSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CF69D51F3A685C00DDE8A6 /* TemplateSelectionViewController.m */; };
 		50DE11F32011CFD4005C67B1 /* AWSLeaderboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DE11F22011CFD4005C67B1 /* AWSLeaderboard.m */; };
 		6FF44576CFF404C6C4707802 /* Pods_BenchTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C83D3A0EA46ECDF1788C990 /* Pods_BenchTracker.framework */; };
@@ -304,9 +302,6 @@
 		50CF4D992021642900B55679 /* EditSmartNamesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditSmartNamesViewController.h; sourceTree = "<group>"; };
 		50CF4D9A2021642900B55679 /* EditSmartNamesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditSmartNamesViewController.m; sourceTree = "<group>"; };
 		50CF4D9B2021642900B55679 /* EditSmartNamesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditSmartNamesViewController.xib; sourceTree = "<group>"; };
-		50CF4D9F2021672E00B55679 /* SmartNameTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SmartNameTableViewCell.h; sourceTree = "<group>"; };
-		50CF4DA02021672E00B55679 /* SmartNameTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SmartNameTableViewCell.m; sourceTree = "<group>"; };
-		50CF4DA12021672E00B55679 /* SmartNameTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SmartNameTableViewCell.xib; sourceTree = "<group>"; };
 		50CF69D41F3A685C00DDE8A6 /* TemplateSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemplateSelectionViewController.h; sourceTree = "<group>"; };
 		50CF69D51F3A685C00DDE8A6 /* TemplateSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TemplateSelectionViewController.m; sourceTree = "<group>"; };
 		50DE11F12011CFD3005C67B1 /* AWSLeaderboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWSLeaderboard.h; path = BenchTracker/AWSLeaderboard.h; sourceTree = SOURCE_ROOT; };
@@ -605,7 +600,7 @@
 				5039610F1F604E4900CBC9EB /* UserViewController.m */,
 				5004CDB51F61A0AF000BF6F0 /* Achievements vc */,
 				506C0CAE1FE5904B00865BED /* Leaderboard vc */,
-				F95F5CF71F08B55700A567FA /* Settings */,
+				F95F5CF71F08B55700A567FA /* Settings vc */,
 				506C90DE1F63BC9100DAB6D4 /* User vIew */,
 				5004CDAF1F60F428000BF6F0 /* Achievement button */,
 				502ABF831FE441CE00C0232C /* Leaderboard button */,
@@ -970,19 +965,8 @@
 				50CF4D992021642900B55679 /* EditSmartNamesViewController.h */,
 				50CF4D9A2021642900B55679 /* EditSmartNamesViewController.m */,
 				50CF4D9B2021642900B55679 /* EditSmartNamesViewController.xib */,
-				50CF4DA42021673200B55679 /* Smart name tvc */,
 			);
 			name = "Edit smart names vc";
-			sourceTree = "<group>";
-		};
-		50CF4DA42021673200B55679 /* Smart name tvc */ = {
-			isa = PBXGroup;
-			children = (
-				50CF4D9F2021672E00B55679 /* SmartNameTableViewCell.h */,
-				50CF4DA02021672E00B55679 /* SmartNameTableViewCell.m */,
-				50CF4DA12021672E00B55679 /* SmartNameTableViewCell.xib */,
-			);
-			name = "Smart name tvc";
 			sourceTree = "<group>";
 		};
 		50CF69D71F3A686600DDE8A6 /* Template selection */ = {
@@ -1231,15 +1215,16 @@
 			name = Utility;
 			sourceTree = "<group>";
 		};
-		F95F5CF71F08B55700A567FA /* Settings */ = {
+		F95F5CF71F08B55700A567FA /* Settings vc */ = {
 			isa = PBXGroup;
 			children = (
 				F95F5CF41F08B54500A567FA /* SettingsViewController.h */,
 				F95F5CF51F08B54500A567FA /* SettingsViewController.m */,
+				F9F522FB1F19BC1000061AF0 /* Edit exercises vc */,
 				50CF4D9E2021642D00B55679 /* Edit smart names vc */,
 				F9F522F71F195B7A00061AF0 /* Button form cell */,
 			);
-			name = Settings;
+			name = "Settings vc";
 			sourceTree = "<group>";
 		};
 		F95F93301F02FC5600A19C4D /* TypeListModel */ = {
@@ -1291,7 +1276,6 @@
 				F95F93461F03739E00A19C4D /* Workout */,
 				F9418F9F1F04339E0083C3DC /* Add Exercise */,
 				F9418FA91F04A50C0083C3DC /* Exercise */,
-				F9F522FB1F19BC1000061AF0 /* Edit Exercises */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -1568,7 +1552,7 @@
 			name = "Button form cell";
 			sourceTree = "<group>";
 		};
-		F9F522FB1F19BC1000061AF0 /* Edit Exercises */ = {
+		F9F522FB1F19BC1000061AF0 /* Edit exercises vc */ = {
 			isa = PBXGroup;
 			children = (
 				F9F522F81F19BC0C00061AF0 /* EditExercisesViewController.h */,
@@ -1576,7 +1560,7 @@
 				50636F301F2B9E1200FB65B4 /* Detail */,
 				50636F2C1F2B9C0200FB65B4 /* Exercise type cell */,
 			);
-			name = "Edit Exercises";
+			name = "Edit exercises vc";
 			sourceTree = "<group>";
 		};
 		F9FA47271F0B39DF00A4AF98 /* Workout selection */ = {
@@ -1759,7 +1743,6 @@
 				F9AF067F1F07535C003A2200 /* WorkoutTableViewCell.xib in Resources */,
 				50CF4D9D2021642900B55679 /* EditSmartNamesViewController.xib in Resources */,
 				5037F6551F60993F001939EA /* UserStatView.xib in Resources */,
-				50CF4DA32021672E00B55679 /* SmartNameTableViewCell.xib in Resources */,
 				500544E11FDF2D5100BB836F /* WorkoutSummaryTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1934,7 +1917,6 @@
 				F97B1CA71F097D8A00B3EEC7 /* WeekdayView.m in Sources */,
 				507FC4CF1F3243FA00A88A35 /* BTDataTransferManager.m in Sources */,
 				50530C261F50BC4100472426 /* SetCollectionView.m in Sources */,
-				50CF4DA22021672E00B55679 /* SmartNameTableViewCell.m in Sources */,
 				50060FDD1F33BB8E00F6DC00 /* BTWorkoutModel.m in Sources */,
 				506C91591F9FEEA9003C4758 /* BTButton.m in Sources */,
 				50636F2F1F2B9E0D00FB65B4 /* EEDetailViewController.m in Sources */,

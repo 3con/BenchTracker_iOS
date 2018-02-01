@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "XLForm.h"
 
 @class BTSettings;
 
-@interface EditSmartNamesViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface EditSmartNamesViewController : XLFormViewController <XLFormDescriptorDelegate>
 
+@property (nonatomic) NSManagedObjectContext *context;
 @property (nonatomic) BTSettings *settings;
 
 @end

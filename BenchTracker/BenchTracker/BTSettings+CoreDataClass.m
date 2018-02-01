@@ -61,6 +61,12 @@
     return dict;
 }
 
+- (void)setNickname:(NSString *)nickname forSmartName:(NSString *)key {
+    NSMutableDictionary *dict = [self smartNicknameDict].mutableCopy;
+    if (dict[key] != nil) dict[key] = nickname;
+    self.smartNicknames = [NSKeyedArchiver archivedDataWithRootObject:dict];
+}
+
 #pragma mark - private methods
 
 + (BTSettings *)fetchSettings {

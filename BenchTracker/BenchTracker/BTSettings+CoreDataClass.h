@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSDictionary *)smartNicknameDict;
 
+- (void)setNickname:(NSString *)nickname forSmartName:(NSString *)key;
+
 @end
 
 NS_ASSUME_NONNULL_END

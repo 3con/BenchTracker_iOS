@@ -64,8 +64,7 @@
     self.rightExpansion.fillOnTrigger = NO;
     self.rightExpansion.threshold = 2.0;
     self.workout = workout;
-    self.nameLabel.text = workout.name;
-    self.nameLabel.text = workout.smartNickname;
+    self.nameLabel.text = ([BTSettings sharedInstance].showSmartNames && workout.smartName) ? workout.smartNickname : workout.name;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"EEEE, MMMM d"];
     self.dateLabel.text = [formatter stringFromDate:workout.date];
