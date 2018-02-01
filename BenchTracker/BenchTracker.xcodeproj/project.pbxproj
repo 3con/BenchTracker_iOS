@@ -598,9 +598,9 @@
 			children = (
 				5039610E1F604E4900CBC9EB /* UserViewController.h */,
 				5039610F1F604E4900CBC9EB /* UserViewController.m */,
+				F95F5CF71F08B55700A567FA /* Settings vc */,
 				5004CDB51F61A0AF000BF6F0 /* Achievements vc */,
 				506C0CAE1FE5904B00865BED /* Leaderboard vc */,
-				F95F5CF71F08B55700A567FA /* Settings vc */,
 				506C90DE1F63BC9100DAB6D4 /* User vIew */,
 				5004CDAF1F60F428000BF6F0 /* Achievement button */,
 				502ABF831FE441CE00C0232C /* Leaderboard button */,

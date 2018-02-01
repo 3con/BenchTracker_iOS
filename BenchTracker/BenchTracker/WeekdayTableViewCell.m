@@ -66,7 +66,9 @@
         self.stackedView.alpha = 0;
     }
     else {
-        if (workouts.count == 1) self.nameLabel.text = workouts[0].name;
+        if (workouts.count == 1)
+            self.nameLabel.text = ([BTSettings sharedInstance].showSmartNames && workouts[0].smartName) ?
+                workouts[0].smartNickname : workouts[0].name;
         else self.nameLabel.text = [NSString stringWithFormat:@"%ld workouts",(unsigned long)workouts.count];
         [self loadStackedViewWithWorkouts:workouts];
     }

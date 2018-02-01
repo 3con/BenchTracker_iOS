@@ -8,6 +8,7 @@
 
 #import "EditSmartNamesViewController.h"
 #import "BTSettings+CoreDataClass.h"
+#import "BTButtonFormCell.h"
 
 @interface EditSmartNamesViewController ()
 
@@ -40,8 +41,8 @@
                      @"chestBiceps": @"Chest & Biceps",
                      @"fullBody": @"Full Body" };
     [self updateInterface];
-    self.tableView.contentInset = UIEdgeInsetsMake(72, 0, 0, 0);
-    self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(72, 0, 0, 0);
+    self.tableView.contentInset = UIEdgeInsetsMake(50, 0, 0, 0);
+    self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(50, 0, 0, 0);
     [self loadForm];
     [self.view sendSubviewToBack:self.tableView];
 }
@@ -56,8 +57,12 @@
     self.tableView.separatorColor = [UIColor BTTableViewSeparatorColor];
 }
 
-- (IBAction)backButtonPressed:(UIButton *)sender {
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
     [self saveSettings];
+}
+
+- (IBAction)backButtonPressed:(UIButton *)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -76,10 +81,18 @@
         [section addFormRow:row];
     }
     
+    section = [XLFormSectionDescriptor formSection];
+    [form addFormSection:section];
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"reset" rowType:XLFormRowDescriptorTypeBTButton title:@"Restore Defaults"];
+    row.cellConfig[@"textLabel.textAlignment"] = @(NSTextAlignmentNatural);
+    [section addFormRow:row];
+    
     for (XLFormSectionDescriptor *section in form.formSections) {
         for (XLFormRowDescriptor *row in section.formRows) {
             row.cellConfig[@"backgroundColor"] = [UIColor colorWithWhite:.64 alpha:.1];
             row.height = 45;
+            if ([row.tag isEqualToString:@"reset"])
+                continue;
             row.cellConfig[@"textLabel.textColor"] = [UIColor BTBlackColor];
             row.cellConfig[@"textLabel.textAlignment"] = @(NSTextAlignmentNatural);
             row.cellConfig[@"textLabel.font"] = [UIFont systemFontOfSize:15 weight:UIFontWeightMedium];
@@ -87,17 +100,44 @@
             row.cellConfig[@"textField.textAlignment"] = @(NSTextAlignmentRight);
             row.cellConfig[@"textField.font"] = [UIFont systemFontOfSize:15 weight:UIFontWeightRegular];
             row.cellConfig[@"tintColor"] = [UIColor BTSecondaryColor];
+            if (self.selectedSmartName && [row.tag isEqualToString:self.selectedSmartName]) {
+                row.cellConfig[@"textLabel.textColor"] = [UIColor BTRedColor];
+                row.cellConfig[@"textField.textColor"] = [UIColor BTRedColor];
+                row.cellConfig[@"tintColor"] = [UIColor BTRedColor];
+            }
         }
     }
     self.form = form;
 }
 
 - (void)saveSettings {
-    NSMutableDictionary *result = [NSMutableDictionary dictionary];
     for (XLFormSectionDescriptor *section in self.form.formSections)
         for (XLFormRowDescriptor *row in section.formRows)
             [self.settings setNickname:row.value forSmartName:row.tag];
     [self.context save:nil];
+}
+
+#pragma mark - XLForm delegate
+
+- (void)didSelectFormRow:(XLFormRowDescriptor *)formRow {
+    if ([formRow.tag isEqualToString:@"reset"]) {
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Restore Defaults"
+                                                                        message:@"Are you sure you want to restore the default smart names? This action can not be undone."
+                                                                 preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *deleteButton = [UIAlertAction actionWithTitle:@"Restore" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.settings.smartNicknames = nil;
+                [self.settings smartNicknameDict];
+                [self.context save:nil];
+                [self loadForm];
+            });
+        }];
+        UIAlertAction *cancelButton = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:cancelButton];
+        [alert addAction:deleteButton];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {

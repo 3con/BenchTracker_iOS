@@ -80,9 +80,13 @@
     [yFormatter setDateFormat:@"M/d/yy"];
     NSDateFormatter *dFormatter = [[NSDateFormatter alloc] init];
     [dFormatter setDateFormat:@"h:mma"];
-    NSString *str = [NSString stringWithFormat:@"%@ (%@)\nExercises: %lld, Sets: %lld\nVolume: %lld %@\nStart: %@, Duration: %lld min",
-                     name, [yFormatter stringFromDate:self.workout.date], self.workout.numExercises, self.workout.numSets, self.workout.volume,
-                     self.settings.weightSuffix, [[dFormatter stringFromDate:self.workout.date] lowercaseString], self.workout.duration/60];
+    NSString *smartText = @"";
+    if (@available(iOS 11, *))
+        if (self.settings.showSmartNames && self.workout.smartName)
+            smartText = [NSString stringWithFormat:@"Smart name: %@\n", self.workout.smartNickname];
+    NSString *str = [NSString stringWithFormat:@"%@ (%@)\n%@Exercises: %lld, Sets: %lld\nVolume: %lld %@\nStart: %@, Duration: %lld min",
+        name, [yFormatter stringFromDate:self.workout.date], smartText, self.workout.numExercises, self.workout.numSets, self.workout.volume,
+        self.settings.weightSuffix, [[dFormatter stringFromDate:self.workout.date] lowercaseString], self.workout.duration/60];
     NSMutableAttributedString *aStr = [[NSMutableAttributedString alloc] initWithString:str];
     //[aStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0,5)];
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];

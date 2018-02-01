@@ -34,8 +34,8 @@
     [super viewDidLoad];
     [self updateInterface];
     self.settings = [BTSettings sharedInstance];
-    self.tableView.contentInset = UIEdgeInsetsMake(72, 0, 0, 0);
-    self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(72, 0, 0, 0);
+    self.tableView.contentInset = UIEdgeInsetsMake(50, 0, 0, 0);
+    self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(50, 0, 0, 0);
     [self loadForm];
     [self.view sendSubviewToBack:self.tableView];
 }
@@ -50,7 +50,12 @@
     self.tableView.separatorColor = [UIColor BTTableViewSeparatorColor];
 }
 
+- (IBAction)doneButtonPressed:(UIButton *)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (void)viewWillDisappear:(BOOL)animated {
+    [self saveSettings];
     [self.delegate settingsViewWillDismiss:self];
 }
 
@@ -90,7 +95,7 @@
         section.footerTitle = @"Weightlifting App will use machine learning to automatically determine a smart name for your workout based on the exercises you perform.";
         [form addFormSection:section];
         row = [XLFormRowDescriptor formRowDescriptorWithTag:@"showSmartNames" rowType:XLFormRowDescriptorTypeBooleanSwitch title:@"Workout smart names"];
-        row.value = [NSNumber numberWithBool:!self.settings.showSmartNames];
+        row.value = [NSNumber numberWithBool:self.settings.showSmartNames];
         [section addFormRow:row];
         row = [XLFormRowDescriptor formRowDescriptorWithTag:@"editSmartNames" rowType:XLFormRowDescriptorTypeSelectorPush title:@"Edit smart names"];
         [section addFormRow:row];
@@ -187,11 +192,6 @@
     self.settings.showLastWorkout = [result[@"showLastWorkout"] boolValue];
     self.settings.showEquivalencyChart = [result[@"showEquivChart"] boolValue];
     [self.context save:nil];
-}
-
-- (IBAction)doneButtonPressed:(UIButton *)sender {
-    [self saveSettings];
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)resetDataButtonPressed:(UIButton *)sender {

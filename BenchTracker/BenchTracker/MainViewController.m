@@ -525,10 +525,24 @@
 - (void)searchForText:(NSString *)string {
     self.searchString = string;
     NSError *error;
-    if (self.searchString.length)
-        [self.fetchedResultsController.fetchRequest setPredicate:
-         [NSPredicate predicateWithFormat:@"name CONTAINS %@ OR summary CONTAINS %@", string, string]];
-    else [self.fetchedResultsController.fetchRequest setPredicate:nil];
+    NSPredicate *p;
+    if (self.searchString.length) {
+        p = [NSPredicate predicateWithFormat:@"summary CONTAINS %@", string];
+        NSPredicate *p2;
+        if (@available(iOS 11, *)) {
+            if (self.settings.showSmartNames) {
+                NSMutableArray *keys = @[].mutableCopy;
+                for (NSString *key in self.settings.smartNicknameDict)
+                    if ([self.settings.smartNicknameDict[key] containsString:string])
+                        [keys addObject:key];
+                p2 = [NSPredicate predicateWithFormat:@"smartName IN %@", keys];
+            }
+        }
+        if (!p2) p2 = [NSPredicate predicateWithFormat:@"name CONTAINS %@", string];
+        p = [NSCompoundPredicate orPredicateWithSubpredicates:@[p, p2]];
+    }
+    else p = nil;
+    [self.fetchedResultsController.fetchRequest setPredicate:p];
     if (![[self fetchedResultsController] performFetch:&error]) {
         NSLog(@"Main fetch error: %@, %@", error, [error userInfo]);
     }

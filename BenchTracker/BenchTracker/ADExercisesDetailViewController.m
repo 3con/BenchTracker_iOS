@@ -73,6 +73,7 @@
         if (![[self fetchedResultsController] performFetch:&error]) {
             NSLog(@"AD exercise detail fetch error: %@, %@", error, [error userInfo]);
         }
+        [self.tableView reloadData];
         [self updateTableHeightConstraint];
         for (UIView *view in @[self.iterationButton, self.podiumContainerView, self.graphContainerView, self.tableView]) {
             view.layer.cornerRadius = 12;

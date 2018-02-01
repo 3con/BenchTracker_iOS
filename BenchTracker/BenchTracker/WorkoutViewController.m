@@ -11,6 +11,7 @@
 #import "BTExerciseType+CoreDataClass.h"
 #import "BTAchievement+CoreDataClass.h"
 #import "ZFModalTransitionAnimator.h"
+#import "EditSmartNamesViewController.h"
 #import "ExerciseTableViewCell.h"
 #import "PassTouchesView.h"
 #import "BTSettings+CoreDataClass.h"
@@ -79,8 +80,15 @@
     }
     [BTUser removeWorkoutFromTotals:self.workout];
     self.settings.activeWorkoutBeforeDuration = self.workout.duration;
-    self.nameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:self.workout.name
+    BOOL placeholder = true;
+    if (@available(iOS 11, *)) {
+        placeholder = !self.settings.showSmartNames;
+    }
+    if (placeholder) self.nameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:self.workout.name
         attributes:@{NSForegroundColorAttributeName:[UIColor BTTextPrimaryColor], NSFontAttributeName:[UIFont italicSystemFontOfSize:22]}];
+    else if (self.workout.smartName) self.nameTextField.text = self.workout.smartNickname;
+    else self.nameTextField.text = self.workout.name;
+    if (!placeholder) self.nameTextField.placeholder = @"";
     self.tempSupersets = [NSKeyedUnarchiver unarchiveObjectWithData:self.workout.supersets];
     [[NSNotificationCenter defaultCenter] addObserver: self
                                              selector: @selector(handleEnteredBackground:)
@@ -180,7 +188,6 @@
 
 - (void)updateWorkout {
     [self updateWorkoutInterval];
-    if (self.nameTextField.text.length > 0) self.workout.name = self.nameTextField.text;
     NSMutableDictionary <NSString *, NSNumber *> *dict = [[NSMutableDictionary alloc] init];
     self.workout.volume = 0;
     self.workout.numExercises = self.workout.exercises.count;
@@ -199,7 +206,16 @@
         self.workout.summary = [self.workout.summary substringFromIndex:2];
     }
     self.workout.supersets = [NSKeyedArchiver archivedDataWithRootObject:self.tempSupersets];
-    [self.workout calculateSmartName];
+    BOOL editName = YES;
+    if (@available(iOS 11, *)) {
+        if (self.settings.showSmartNames) {
+            [self.workout calculateSmartName];
+            self.nameTextField.text = (self.workout.smartName) ? self.workout.smartNickname : self.workout.name;
+            editName = NO;
+        }
+    }
+    if (editName && self.nameTextField.text.length > 0)
+        self.workout.name = self.nameTextField.text;
     [self.context save:nil];
 }
 
@@ -531,6 +547,7 @@
     [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationMiddle];
     [self.tableView endUpdates];
     [CATransaction commit];
+    [self updateWorkout];
 }
 
 - (BTExercise *)exerciseForExerciseType: (BTExerciseType *)type iteration: (id)iteration {
@@ -590,10 +607,20 @@
         [self.workout removeExercisesObject:exercise];
         [self.context deleteObject:exercise];
     }
+    [self updateWorkout];
     return deletedIndexPaths;
 }
 
 #pragma mark - textField delegate
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    if (@available(iOS 11, *)) {
+        if(self.settings.showSmartNames) {
+            [self presentEditSmartNamesViewController];
+            return NO;
+    }    }
+    return YES;
+}
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [self.nameTextField resignFirstResponder];
@@ -658,6 +685,24 @@
     wseVC.transitioningDelegate = self.animator;
     wseVC.modalPresentationStyle = UIModalPresentationCustom;
     [self presentViewController:wseVC animated:YES completion:nil];
+}
+
+- (void)presentEditSmartNamesViewController {
+    EditSmartNamesViewController *esnVC = [[EditSmartNamesViewController alloc] initWithNibName:@"EditSmartNamesViewController"
+                                                                                         bundle:[NSBundle mainBundle]];
+    esnVC.context = self.context;
+    esnVC.settings = self.settings;
+    esnVC.selectedSmartName = self.workout.smartName;
+    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:esnVC];
+    self.animator.bounces = NO;
+    self.animator.dragable = NO;
+    self.animator.behindViewAlpha = 0.6;
+    self.animator.behindViewScale = 1.0;
+    self.animator.transitionDuration = 0.35;
+    self.animator.direction = ZFModalTransitonDirectionBottom;
+    esnVC.transitioningDelegate = self.animator;
+    esnVC.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self presentViewController:esnVC animated:YES completion:nil];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {

@@ -294,6 +294,7 @@
             BTWorkoutClassification *model = [[BTWorkoutClassification alloc] init];
             [self calculateSmartNameWithModel:model];
         }
+        else self.smartName = nil;
     }
 }
 
@@ -317,6 +318,7 @@
     NSMutableArray<NSNumber *> *arr = @[@0, @0, @0, @0, @0, @0, @0, @0, @0, @0].mutableCopy;
     for (NSString *bodySplit in [self.summary componentsSeparatedByString:@"#"]) {
         NSArray<NSString *> *data = [bodySplit componentsSeparatedByString:@" "];
+        if (data.count == 1) continue;
         arr[[BODY_SPLITS indexOfObject:[bodySplit substringFromIndex:data[0].length+1]]] = [NSNumber numberWithInt:data[0].intValue];
     }
     return arr;

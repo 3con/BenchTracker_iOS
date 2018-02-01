@@ -47,11 +47,11 @@
     if (self.smartNicknames) return [NSKeyedUnarchiver unarchiveObjectWithData:self.smartNicknames];
     NSDictionary *dict = @{@"abs": @"Shredded Abs 😜",
                            @"arms": @"Arm Workout 💪",
-                           @"back": @"Back Day 🤤",
+                           @"back": @"Back Day 😤",
                            @"cardio": @"Cardio 🏃‍♂️",
                            @"chest": @"Chest Day 🙌",
                            @"legs": @"Leg Day 🏋️",
-                           @"shoulders": @"Shoulder Workout 😩",
+                           @"shoulders": @"Shoulder Workout 😁",
                            @"pull": @"Pull Day 👇",
                            @"push": @"Push Day 👆",
                            @"chestBack": @"Chest and Back 😊",

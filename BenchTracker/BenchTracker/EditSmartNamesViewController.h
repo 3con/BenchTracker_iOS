@@ -16,4 +16,6 @@
 @property (nonatomic) NSManagedObjectContext *context;
 @property (nonatomic) BTSettings *settings;
 
+@property (nonatomic) NSString *selectedSmartName;
+
 @end
