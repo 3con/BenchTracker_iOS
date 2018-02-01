@@ -196,6 +196,7 @@
         if (dict[exercise.category]) dict[exercise.category] = [NSNumber numberWithInt:dict[exercise.category].intValue + 1];
         else                         dict[exercise.category] = [NSNumber numberWithInt:1];
         [exercise calculateOneRM];
+        [exercise calculateVolume];
         self.workout.numSets += exercise.numberOfSets;
         self.workout.volume += exercise.volume;
     }

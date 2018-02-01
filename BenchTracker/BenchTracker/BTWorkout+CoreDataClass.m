@@ -275,8 +275,7 @@
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"BTWorkout"];
         fetchRequest.fetchLimit = 9999;
         fetchRequest.fetchBatchSize = 9999;
-        fetchRequest.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[
-                                    [NSPredicate predicateWithFormat:@"smartName == nil"]]];
+        fetchRequest.predicate = [NSPredicate predicateWithFormat:@"smartName == nil"];
         NSArray *arr = [context executeFetchRequest:fetchRequest error:nil];
         if (!arr.count) return;
         BTWorkoutClassification *model = [[BTWorkoutClassification alloc] init];

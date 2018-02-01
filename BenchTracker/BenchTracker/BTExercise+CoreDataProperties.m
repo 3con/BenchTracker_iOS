@@ -16,6 +16,7 @@
 
 @dynamic sets;
 @dynamic oneRM;
+@dynamic volume;
 @dynamic style;
 @dynamic name;
 @dynamic iteration;

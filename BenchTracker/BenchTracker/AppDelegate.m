@@ -11,6 +11,7 @@
 #import <AWSCognito/AWSCognito.h>
 #import "BenchTrackerKeys.h"
 #import "BTExerciseType+CoreDataClass.h"
+#import "BTExercise+CoreDataClass.h"
 #import "BTUser+CoreDataClass.h"
 #import "BTWorkoutTemplate+CoreDataClass.h"
 #import "BTAchievement+CoreDataClass.h"
@@ -36,11 +37,12 @@
                                                           identityPoolId:AWS_POOL_ID];
     AWSServiceConfiguration *configuration = [[AWSServiceConfiguration alloc] initWithRegion:AWSRegionUSEast1 credentialsProvider:credentialsProvider];
     [AWSServiceManager defaultServiceManager].defaultServiceConfiguration = configuration;
-    //USER ADD
     //TYPE LIST HANDLING
     [BTExerciseType checkForExistingTypeList];
     //SMART NAMES
     [BTWorkout calculateAllSmartNames];
+    //EXERCISE VOLUMES
+    [BTExercise calculateAllVolumes];
     //TEMPLATE LIST HANDLING
     [BTWorkoutTemplate checkForExistingTemplateList];
     //ACHIEVEMENT LIST HANDLING

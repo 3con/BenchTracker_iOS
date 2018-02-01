@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nullable, nonatomic, retain) NSData *sets; //repsSets: "10 50" reps: "10" timeWeight: "s 10 50" time: "s 10" custom: "~ xxxxxxxx"
 @property (nonatomic) int64_t oneRM;
+@property (nonatomic) int64_t volume;
 @property (nullable, nonatomic, copy) NSString *style;
 @property (nullable, nonatomic, copy) NSString *name;
 @property (nullable, nonatomic, copy) NSString *iteration;

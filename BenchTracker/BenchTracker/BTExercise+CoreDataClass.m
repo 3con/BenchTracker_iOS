@@ -17,18 +17,6 @@
     return [[NSKeyedUnarchiver unarchiveObjectWithData:self.sets] count];
 }
 
-- (CGFloat)volume {
-    if ([self.style isEqualToString:STYLE_REPSWEIGHT]) {
-        CGFloat volume = 0;
-        for (NSString *set in [NSKeyedUnarchiver unarchiveObjectWithData:self.sets]) {
-            NSArray <NSString *> *split = [set componentsSeparatedByString:@" "];
-            volume += split[0].floatValue*split[1].floatValue;
-        }
-        return volume;
-    }
-    return 0;
-}
-
 - (void)calculateOneRM {
     self.oneRM = 0;
     for (NSString *set in [NSKeyedUnarchiver unarchiveObjectWithData:self.sets]) {
@@ -84,6 +72,28 @@
                                   .total = results.count,
                                   .numTied = numTied      };
     return rankStruct;
+}
+
+- (void)calculateVolume {
+    self.volume = 0;
+    if ([self.style isEqualToString:STYLE_REPSWEIGHT]) {
+        for (NSString *set in [NSKeyedUnarchiver unarchiveObjectWithData:self.sets]) {
+            NSArray <NSString *> *split = [set componentsSeparatedByString:@" "];
+            self.volume += (int)(split[0].floatValue*split[1].floatValue);
+        }
+    }
+}
+
++ (void)calculateAllVolumes {
+    NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"BTExercise"];
+    fetchRequest.fetchLimit = 9999;
+    fetchRequest.fetchBatchSize = 9999;
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"volume == %d", -1];
+    NSArray *arr = [context executeFetchRequest:fetchRequest error:nil];
+    if (!arr.count) return;
+    for (BTExercise *exercise in arr)
+        [exercise calculateVolume];
 }
 
 + (NSInteger)oneRMForExerciseName:(NSString *)name {
