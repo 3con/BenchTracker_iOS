@@ -75,7 +75,7 @@
         }
         [self.tableView reloadData];
         [self updateTableHeightConstraint];
-        for (UIView *view in @[self.iterationButton, self.podiumContainerView, self.graphContainerView, self.tableView]) {
+        for (UIView *view in @[self.podiumContainerView, self.graphContainerView, self.tableView]) {
             view.layer.cornerRadius = 12;
             view.clipsToBounds = YES;
             view.backgroundColor = [self.color colorWithAlphaComponent:.8];
@@ -254,12 +254,13 @@
     }
     else {
         NSString *buttonText = (self.iteration.length > 0) ?
-            [NSString stringWithFormat:@"Variation: %@ %@\nTap to Change", self.iteration, self.titleString] :
-            [NSString stringWithFormat:@"%@: All Variations\nTap to Change", self.titleString];
+            [NSString stringWithFormat:@"%@ %@\nTap to Change Variation", self.iteration, self.titleString] :
+            [NSString stringWithFormat:@"%@\nTap to Select a Variation", self.titleString];
+        int length = (self.iteration.length > 0) ? 23 : 25;
         NSMutableAttributedString *mAS = [[NSMutableAttributedString alloc] initWithString:buttonText];
         [mAS setAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:13 weight:UIFontWeightBold],
                              NSForegroundColorAttributeName: [UIColor colorWithWhite:1 alpha:.8]}
-                     range:NSMakeRange(mAS.length-13, 13)];
+                     range:NSMakeRange(mAS.length-length, length)];
         [self.iterationButton setAttributedTitle:mAS forState:UIControlStateNormal];
     }
 }

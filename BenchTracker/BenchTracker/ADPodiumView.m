@@ -84,17 +84,17 @@
     self.heightConstraint2.constant = 24;
     self.heightConstraint1.constant = 24;
     [self.superview layoutIfNeeded];
-    self.heightConstraint3.constant = 60;
+    self.heightConstraint3.constant = (self.frame.size.height-55)*.44;
     [UIView animateWithDuration:.5 delay:.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
         [self.superview layoutIfNeeded];
         [self alpa:1 forPodium:3];
     } completion:^(BOOL finished) {
-        self.heightConstraint2.constant = 90;
+        self.heightConstraint2.constant = (self.frame.size.height-55)*.72;
         [UIView animateWithDuration:.5 delay:.25 options:UIViewAnimationOptionCurveEaseIn animations:^{
             [self.superview layoutIfNeeded];
             [self alpa:1 forPodium:2];
         } completion:^(BOOL finished) {
-            self.heightConstraint1.constant = 120;
+            self.heightConstraint1.constant = self.frame.size.height-55;
             [UIView animateWithDuration:.5 delay:.25 options:UIViewAnimationOptionCurveEaseIn animations:^{
                 [self.superview layoutIfNeeded];
                 [self alpa:1 forPodium:1];

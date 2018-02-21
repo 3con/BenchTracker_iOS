@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BTSettings : NSManagedObject
 
-+ (BTSettings *) sharedInstance;
++ (BTSettings *)sharedInstance;
 
 - (void)reset;
 
