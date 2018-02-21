@@ -14,6 +14,8 @@
 
 @property (nonatomic) UIColor *color;
 
+@property (nonatomic) BOOL isVolume;
+
 - (void)loadExercise:(BTExercise *)exercise withWeightSuffix:(NSString *)suffix;
 
 @end

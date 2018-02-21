@@ -28,6 +28,10 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *iterationButton;
 
+@property (weak, nonatomic) IBOutlet UIView *metricSegmentedControlContainerView;
+@property (nonatomic) HMSegmentedControl *metricSegmentedControl;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *metricLayoutConstraint;
+
 @property (weak, nonatomic) IBOutlet UIView *podiumContainerView;
 @property (weak, nonatomic) IBOutlet UILabel *podiumTitleLabel;
 @property (nonatomic) ADPodiumView *podiumView;
@@ -133,7 +137,9 @@
     }
     NSString *s = (self.typeSegmentedControl.selectedSegmentIndex == 0) ? @"Recent" :
                   (self.typeSegmentedControl.selectedSegmentIndex == 1) ? @"Top" : @"";
-    if ([self.exerciseType.style isEqualToString:STYLE_REPSWEIGHT])      s = [s stringByAppendingString:@" 1RM Equivalents"];
+    if ([self.exerciseType.style isEqualToString:STYLE_REPSWEIGHT])      s = (self.metricSegmentedControl.selectedSegmentIndex == 1) ?
+        [s stringByAppendingString:@" Total Volumes"] :
+        [s stringByAppendingString:@" 1RM Equivalents"];
     else if ([self.exerciseType.style isEqualToString:STYLE_REPS])       s = [s stringByAppendingString:@" Max Reps"];
     else if ([self.exerciseType.style isEqualToString:STYLE_TIMEWEIGHT]) s = [s stringByAppendingString:@" Max Loads"];
     else if ([self.exerciseType.style isEqualToString:STYLE_TIME])       s = [s stringByAppendingString:@" Max Durations"];
@@ -148,7 +154,8 @@
         for (BTExercise *exercise in self.fetchedResultsController.fetchedObjects) {
             if (xAxisArr.count >= MIN(15, (self.view.frame.size.width-80)/38)) break;
             [xAxisArr addObject:[formatter stringFromDate:exercise.workout.date]];
-            [yAxisArr addObject:[NSNumber numberWithFloat:exercise.oneRM]];
+            [yAxisArr addObject:[NSNumber numberWithFloat:
+                                 (self.metricSegmentedControl.selectedSegmentIndex == 1) ? exercise.volume : exercise.oneRM]];
         }
     }
     else if (self.fetchedResultsController.fetchedObjects.count >= 15) {
@@ -157,20 +164,26 @@
             BTExercise *first = self.fetchedResultsController.fetchedObjects[3*i+offset];
             BTExercise *second = self.fetchedResultsController.fetchedObjects[3*i+1+offset];
             BTExercise *third = self.fetchedResultsController.fetchedObjects[3*i+2+offset];
-            [yAxisArr addObject:[NSNumber numberWithFloat:(first.oneRM+second.oneRM+third.oneRM)/3.0]];
+            if (self.metricSegmentedControl.selectedSegmentIndex == 1)
+                 [yAxisArr addObject:[NSNumber numberWithFloat:(first.volume+second.volume+third.volume)/3.0]];
+            else [yAxisArr addObject:[NSNumber numberWithFloat:(first.oneRM+second.oneRM+third.oneRM)/3.0]];
             [xAxisArr addObject:(i == 0) ? [formatter stringFromDate:first.workout.date] :
                 (i == self.fetchedResultsController.fetchedObjects.count/3-1) ?
                     [formatter stringFromDate:third.workout.date] : @""];
         }
     }
     else if (self.fetchedResultsController.fetchedObjects.count >= 3) {
-        int64_t first = 0,
-                second = ((BTExercise *)self.fetchedResultsController.fetchedObjects[0]).oneRM,
-                third = ((BTExercise *)self.fetchedResultsController.fetchedObjects[1]).oneRM;
+        int64_t first = 0;
+        int64_t second = (self.metricSegmentedControl.selectedSegmentIndex == 1) ?
+                            ((BTExercise *)self.fetchedResultsController.fetchedObjects[0]).volume :
+                            ((BTExercise *)self.fetchedResultsController.fetchedObjects[0]).oneRM;
+        int64_t third = (self.metricSegmentedControl.selectedSegmentIndex == 1) ?
+                            ((BTExercise *)self.fetchedResultsController.fetchedObjects[1]).volume :
+                            ((BTExercise *)self.fetchedResultsController.fetchedObjects[0]).oneRM;
         for (int i = 2; i < self.fetchedResultsController.fetchedObjects.count; i++) {
             BTExercise *exercise = self.fetchedResultsController.fetchedObjects[i];
             first = second; second = third;
-            third = exercise.oneRM;
+            third = (self.metricSegmentedControl.selectedSegmentIndex == 1) ? exercise.volume : exercise.oneRM;
             [yAxisArr addObject:[NSNumber numberWithFloat:(first+second+third)/3.0]];
             [xAxisArr addObject:(i == 2 || i == self.fetchedResultsController.fetchedObjects.count-1) ?
                 [formatter stringFromDate:exercise.workout.date] : @""];
@@ -198,7 +211,8 @@
 - (void)updatePodiumView {
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setEntity:[NSEntityDescription entityForName:@"BTExercise" inManagedObjectContext:self.context]];
-    [request setSortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"oneRM" ascending:NO]]];
+    [request setSortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:
+                                    (self.metricSegmentedControl.selectedSegmentIndex == 1) ? @"volume" : @"oneRM" ascending:NO]]];
     [request setPredicate:[self predicateForExerciseTypeIterationAndTime]];
     [request setFetchBatchSize:3];
     NSError *error;
@@ -211,8 +225,14 @@
         if (topArr.count > i) {
             if ([topArr[i].style isEqualToString:STYLE_CUSTOM]) break;
             [dateArray addObject:topArr[i].workout.date];
-            if ([topArr[i].style isEqualToString:STYLE_REPSWEIGHT])
-                [valueArray addObject:[NSString stringWithFormat:@"%lld %@", topArr[i].oneRM, self.settings.weightSuffix]];
+            if ([topArr[i].style isEqualToString:STYLE_REPSWEIGHT]) {
+                if (self.metricSegmentedControl.selectedSegmentIndex == 1) {
+                    [valueArray addObject:(topArr[i].volume < 10000) ?
+                        [NSString stringWithFormat:@"%lld %@", topArr[i].volume, self.settings.weightSuffix] :
+                        [NSString stringWithFormat:@"%.1fk %@", topArr[i].volume/1000.0, self.settings.weightSuffix]];
+                }
+                else [valueArray addObject:[NSString stringWithFormat:@"%lld %@", topArr[i].oneRM, self.settings.weightSuffix]];
+            }
             else if ([topArr[i].style isEqualToString:STYLE_REPS])
                 [valueArray addObject:[NSString stringWithFormat:@"%lld reps", topArr[i].oneRM]];
             else if ([topArr[i].style isEqualToString:STYLE_TIME])
@@ -220,11 +240,16 @@
             else if ([topArr[i].style isEqualToString:STYLE_TIMEWEIGHT])
                 [valueArray addObject:[NSString stringWithFormat:@"%lld %@", topArr[i].oneRM, self.settings.weightSuffix]];
             if ([topArr[i].style isEqualToString:STYLE_REPSWEIGHT]) {
-                for (NSString *set in [NSKeyedUnarchiver unarchiveObjectWithData:topArr[i].sets]) {
-                    NSArray <NSString *> *a = [set componentsSeparatedByString:@" "];
-                    if ([BT1RMCalculator equivilentForReps:a[0].intValue weight:a[1].floatValue] == topArr[i].oneRM) {
-                        [subValueArray addObject:[set stringByReplacingOccurrencesOfString:@" " withString:@" x "]];
-                        break;
+                NSArray <NSString *> *sets = [NSKeyedUnarchiver unarchiveObjectWithData:topArr[i].sets];
+                if (self.metricSegmentedControl.selectedSegmentIndex == 1)
+                    [subValueArray addObject:[NSString stringWithFormat:@"%ld sets", sets.count]];
+                else {
+                    for (NSString *set in sets) {
+                        NSArray <NSString *> *a = [set componentsSeparatedByString:@" "];
+                        if ([BT1RMCalculator equivilentForReps:a[0].intValue weight:a[1].floatValue] == topArr[i].oneRM) {
+                            [subValueArray addObject:[set stringByReplacingOccurrencesOfString:@" " withString:@" x "]];
+                            break;
+                        }
                     }
                 }
             }
@@ -268,9 +293,10 @@
 #pragma mark - segmedtedControl
 
 - (void)loadSegmentedControls {
+    self.metricSegmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"One-Rep Max", @"Volume"]];
     self.typeSegmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"Recent", @"Top", @"Average"]];
     self.timeSegmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"All-Time", @"30-Day"]];
-    for (HMSegmentedControl *segmentedControl in @[self.timeSegmentedControl, self.typeSegmentedControl]) {
+    for (HMSegmentedControl *segmentedControl in @[self.metricSegmentedControl, self.timeSegmentedControl, self.typeSegmentedControl]) {
         segmentedControl.frame = CGRectMake(0, 0, self.timeSegmentedControlContainerView.frame.size.width,
                                             self.timeSegmentedControlContainerView.frame.size.height);
         segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -288,6 +314,9 @@
                                                         [UIFont systemFontOfSize:15 weight:UIFontWeightMedium], NSFontAttributeName, nil];
         [segmentedControl addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
     }
+    BOOL showMetrics = [self.exerciseType.style isEqualToString:STYLE_REPSWEIGHT];
+    if (showMetrics) [self.metricSegmentedControlContainerView addSubview:self.metricSegmentedControl];
+    self.metricLayoutConstraint.active = !showMetrics;
     [self.timeSegmentedControlContainerView addSubview:self.timeSegmentedControl];
     [self.typeSegmentedControlContainerView addSubview:self.typeSegmentedControl];
 }
@@ -302,6 +331,10 @@
     [self.tableView reloadData];
     [self updateGraphView];
     [self updateTableHeightConstraint];
+    if (segmentedControl == self.metricSegmentedControl) {
+        [self updatePodiumView];
+        [self.podiumView animateIn];
+    }
 }
 
 - (void)setTimeSegmentedControlCollapsed:(BOOL)collapsed {
@@ -329,11 +362,13 @@
 }
 
 - (void)updateFetchRequest:(NSFetchRequest *)request {
-    if (self.typeSegmentedControl.selectedSegmentIndex == 0)
-         request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"workout.date" ascending:NO]];
-    else if (self.typeSegmentedControl.selectedSegmentIndex == 1)
-         request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"oneRM" ascending:NO]];
-    else request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"workout.date" ascending:NO]];
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"workout.date" ascending:NO]];
+    if (self.typeSegmentedControl.selectedSegmentIndex == 1) {
+        NSSortDescriptor *d = (self.metricSegmentedControl.selectedSegmentIndex == 1) ?
+                                    [NSSortDescriptor sortDescriptorWithKey:@"volume" ascending:NO] :
+                                    [NSSortDescriptor sortDescriptorWithKey:@"oneRM" ascending:NO];
+        request.sortDescriptors = @[d, request.sortDescriptors.firstObject];
+    }
     [request setPredicate:[self predicateForExerciseTypeIterationAndTime]];
 }
 
@@ -360,14 +395,13 @@
 - (void)configureExerciseCell:(ADEDExerciseTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     BTExercise *exercise = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.color = self.color;
+    cell.isVolume = self.metricSegmentedControl.selectedSegmentIndex == 1;
     [cell loadExercise:exercise withWeightSuffix:[self.settings weightSuffix]];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ADEDExerciseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    if (!cell) {
-        cell = [[NSBundle mainBundle] loadNibNamed:@"ADEDExerciseTableViewCell" owner:self options:nil].firstObject;
-    }
+    if (!cell) cell = [[NSBundle mainBundle] loadNibNamed:@"ADEDExerciseTableViewCell" owner:self options:nil].firstObject;
     [self configureExerciseCell:cell atIndexPath:indexPath];
     return cell;
 }

@@ -19,8 +19,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="414" height="54.666666666666664"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jul 21 '17: Incline Bench Press" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y9c-KS-ClH">
-                        <rect key="frame" x="20" y="9" width="284" height="20"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jul 21 '17: Incline Bench Press" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y9c-KS-ClH">
+                        <rect key="frame" x="12" y="9" width="295" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="rNU-rt-9uE"/>
                         </constraints>
@@ -42,10 +42,10 @@
                         </collectionViewFlowLayout>
                     </collectionView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1RM: 321 lbs" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VQq-T7-O78">
-                        <rect key="frame" x="314" y="9" width="80" height="20"/>
+                        <rect key="frame" x="312" y="9" width="90" height="20"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="80" id="Dwj-jA-DTE"/>
+                            <constraint firstAttribute="width" constant="90" id="Dwj-jA-DTE"/>
                             <constraint firstAttribute="height" constant="20" id="Hcf-XI-fHl"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="11"/>
@@ -54,11 +54,11 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="VQq-T7-O78" secondAttribute="trailing" constant="20" id="BEn-am-3ly"/>
+                    <constraint firstAttribute="trailing" secondItem="VQq-T7-O78" secondAttribute="trailing" constant="12" id="BEn-am-3ly"/>
                     <constraint firstItem="VQq-T7-O78" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-2" id="Hu6-Ms-lQK"/>
                     <constraint firstAttribute="leadingMargin" secondItem="DXb-UK-yRJ" secondAttribute="leading" constant="18" id="ISN-Ca-h1W"/>
-                    <constraint firstItem="VQq-T7-O78" firstAttribute="leading" secondItem="Y9c-KS-ClH" secondAttribute="trailing" constant="10" id="RBr-pA-nOe"/>
-                    <constraint firstItem="Y9c-KS-ClH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="W3N-fh-A6S"/>
+                    <constraint firstItem="VQq-T7-O78" firstAttribute="leading" secondItem="Y9c-KS-ClH" secondAttribute="trailing" constant="5" id="RBr-pA-nOe"/>
+                    <constraint firstItem="Y9c-KS-ClH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="W3N-fh-A6S"/>
                     <constraint firstAttribute="bottomMargin" secondItem="DXb-UK-yRJ" secondAttribute="bottom" constant="-1" id="aA0-bP-WFU"/>
                     <constraint firstAttribute="trailingMargin" secondItem="DXb-UK-yRJ" secondAttribute="trailing" constant="-18" id="bVz-oR-xpE"/>
                     <constraint firstItem="Y9c-KS-ClH" firstAttribute="centerY" secondItem="VQq-T7-O78" secondAttribute="centerY" id="fvX-Oe-nJA"/>

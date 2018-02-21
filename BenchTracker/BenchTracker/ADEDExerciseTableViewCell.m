@@ -39,7 +39,9 @@
 
 - (void)loadExercise:(BTExercise *)exercise withWeightSuffix:(NSString *)suffix {
     NSString *s;
-    if ([exercise.style isEqualToString:STYLE_REPSWEIGHT])      s = [NSString stringWithFormat:@"1RM: %lld %@",exercise.oneRM, suffix];
+    if ([exercise.style isEqualToString:STYLE_REPSWEIGHT]) s = (self.isVolume) ?
+        [NSString stringWithFormat:@"Tot: %lld %@",exercise.volume, suffix] :
+        [NSString stringWithFormat:@"1RM: %lld %@",exercise.oneRM, suffix];
     else if ([exercise.style isEqualToString:STYLE_REPS])       s = [NSString stringWithFormat:@"Max: %lld reps",exercise.oneRM];
     else if ([exercise.style isEqualToString:STYLE_TIMEWEIGHT]) s = [NSString stringWithFormat:@"Max: %lld %@",exercise.oneRM, suffix];
     else if ([exercise.style isEqualToString:STYLE_TIME])       s = [NSString stringWithFormat:@"Max: %lld secs",exercise.oneRM];

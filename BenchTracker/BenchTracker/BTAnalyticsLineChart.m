@@ -59,6 +59,12 @@
     self.yFixedValueMax = MAX(10, ((int)max)/interval*interval+interval*self.yAxisSpaceTop);
     self.yLabelNum = (self.yFixedValueMax-self.yFixedValueMin)/interval;
     PNLineChartData *yData = [PNLineChartData new];
+    if (self.yFixedValueMin > 1000) {
+        NSMutableArray *yLabels = @[].mutableCopy;
+        for (int i = self.yFixedValueMin; i <= self.yFixedValueMax; i += interval)
+            [yLabels addObject:[NSString stringWithFormat:@"%.0fk", i/1000.0]];
+        self.yLabels = yLabels;
+    }
     yData.color = [UIColor whiteColor];
     yData.lineWidth = 5;
     yData.itemCount = data.count;
