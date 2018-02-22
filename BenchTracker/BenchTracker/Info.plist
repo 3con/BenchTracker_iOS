@@ -10,6 +10,18 @@
 	<array>
 		<dict>
 			<key>CFBundleTypeName</key>
+			<string>Bench Tracker Data</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.chappyasel.benchtrackerdata.btd</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeName</key>
 			<string>Weightlifting App Data</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>

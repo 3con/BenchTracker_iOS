@@ -79,8 +79,8 @@
         }
         [self.tableView reloadData];
         [self updateTableHeightConstraint];
-        for (UIView *view in @[self.podiumContainerView, self.graphContainerView, self.tableView]) {
-            view.layer.cornerRadius = 12;
+        for (UIView *view in @[self.graphContainerView, self.tableView]) {
+            view.layer.cornerRadius = 16;
             view.clipsToBounds = YES;
             view.backgroundColor = [self.color colorWithAlphaComponent:.8];
         }
@@ -300,7 +300,7 @@
         segmentedControl.frame = CGRectMake(0, 0, self.timeSegmentedControlContainerView.frame.size.width,
                                             self.timeSegmentedControlContainerView.frame.size.height);
         segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        segmentedControl.layer.cornerRadius = 12;
+        segmentedControl.layer.cornerRadius = 16;
         segmentedControl.clipsToBounds = YES;
         segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleBox;
         segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationNone;
@@ -339,7 +339,7 @@
 
 - (void)setTimeSegmentedControlCollapsed:(BOOL)collapsed {
     self.timeSegmentedControlContainerView.userInteractionEnabled = !collapsed;
-    self.timeLayoutConstraint.constant = (collapsed) ? 20 : 85;
+    self.timeLayoutConstraint.constant = (collapsed) ? 20 : 90;
     [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         [self.view layoutIfNeeded];
         self.timeSegmentedControlContainerView.alpha = !collapsed;

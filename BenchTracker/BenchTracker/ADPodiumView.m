@@ -37,7 +37,7 @@
     [super awakeFromNib];
     self.hasAnimatedIn = NO;
     for (UIView *v in @[self.podiumView1, self.podiumView2, self.podiumView3]) {
-        v.layer.cornerRadius = 12;
+        v.layer.cornerRadius = 16;
         v.clipsToBounds = YES;
     }
 }
@@ -80,21 +80,21 @@
     [self alpa:0 forPodium:3];
     [self alpa:0 forPodium:2];
     [self alpa:0 forPodium:1];
-    self.heightConstraint3.constant = 24;
-    self.heightConstraint2.constant = 24;
-    self.heightConstraint1.constant = 24;
+    self.heightConstraint3.constant = 32;
+    self.heightConstraint2.constant = 32;
+    self.heightConstraint1.constant = 32;
     [self.superview layoutIfNeeded];
-    self.heightConstraint3.constant = (self.frame.size.height-55)*.44;
+    self.heightConstraint3.constant = (self.frame.size.height-50)*.44;
     [UIView animateWithDuration:.5 delay:.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
         [self.superview layoutIfNeeded];
         [self alpa:1 forPodium:3];
     } completion:^(BOOL finished) {
-        self.heightConstraint2.constant = (self.frame.size.height-55)*.72;
+        self.heightConstraint2.constant = (self.frame.size.height-50)*.72;
         [UIView animateWithDuration:.5 delay:.25 options:UIViewAnimationOptionCurveEaseIn animations:^{
             [self.superview layoutIfNeeded];
             [self alpa:1 forPodium:2];
         } completion:^(BOOL finished) {
-            self.heightConstraint1.constant = self.frame.size.height-55;
+            self.heightConstraint1.constant = self.frame.size.height-50;
             [UIView animateWithDuration:.5 delay:.25 options:UIViewAnimationOptionCurveEaseIn animations:^{
                 [self.superview layoutIfNeeded];
                 [self alpa:1 forPodium:1];

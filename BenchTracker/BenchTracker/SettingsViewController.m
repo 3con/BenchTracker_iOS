@@ -229,7 +229,7 @@
     else if ([formRow.tag isEqualToString:@"editSmartNames"]) [self presentEditSmartNamesViewController];
     else if ([formRow.tag isEqualToString:@"import"]) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Import Data"
-                                                                       message:@"To import your Weightlifting App data, please open an email with the compatible '.btd' file. Then, tap on the file to open it in the Weightlifting App."
+                                                                       message:@"To import your Weightlifting App data, please open an email with the compatible '.wld' file. Then, tap on the file to open it in the Weightlifting App."
                                                                 preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *okButton = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
         [alert addAction:okButton];

@@ -50,7 +50,7 @@
     self.tableView.dataSource = self;
     self.tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, CGFLOAT_MAX);
     self.tableView.contentInset = UIEdgeInsetsMake(4, 0, 4, 0);
-    self.tableView.layer.cornerRadius = 12;
+    self.tableView.layer.cornerRadius = 16;
     self.tableView.clipsToBounds = YES;
 }
 
@@ -123,7 +123,7 @@
         segmentedControl.frame = CGRectMake(0, 0, self.timeSegmentedControlContainerView.frame.size.width,
                                                        self.timeSegmentedControlContainerView.frame.size.height);
         segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        segmentedControl.layer.cornerRadius = 12;
+        segmentedControl.layer.cornerRadius = 16;
         segmentedControl.clipsToBounds = YES;
         segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleBox;
         segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationNone;
@@ -153,7 +153,7 @@
 
 - (void)setTimeSegmentedControlCollapsed:(BOOL)collapsed {
     self.timeSegmentedControlContainerView.userInteractionEnabled = !collapsed;
-    self.timeLayoutConstraint.constant = (collapsed) ? 20 : 85;
+    self.timeLayoutConstraint.constant = (collapsed) ? 20 : 90;
     [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         [self.view layoutIfNeeded];
         self.timeSegmentedControlContainerView.alpha = !collapsed;

@@ -145,6 +145,8 @@
             [label setTextAlignment:NSTextAlignmentRight];
             label.text = labelText;
             [self setCustomStyleForYLabel:label];
+            label.minimumScaleFactor = 0.1;
+            label.numberOfLines = 1;
             [self addSubview:label];
             [_yChartLabels addObject:label];
         }

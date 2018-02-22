@@ -193,6 +193,7 @@
         exercise.style = exerciseModel.style;
         exercise.sets = [NSKeyedArchiver archivedDataWithRootObject:(exerciseModel.sets) ? exerciseModel.sets : [NSMutableArray array]];
         [exercise calculateOneRM];
+        [exercise calculateVolume];
         workout.numSets += exercise.numberOfSets;
         workout.volume += exercise.volume;
         exercise.workout = workout;
