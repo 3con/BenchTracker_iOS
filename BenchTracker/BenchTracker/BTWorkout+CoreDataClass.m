@@ -164,6 +164,7 @@
         exercise.style = exerciseModel.style;
         exercise.sets = [NSKeyedArchiver archivedDataWithRootObject:(exerciseModel.sets) ? exerciseModel.sets : [NSMutableArray array]];
         [exercise calculateOneRM];
+        [exercise calculateVolume];
         workout.numSets += exercise.numberOfSets;
         workout.volume += exercise.volume;
         exercise.workout = workout;
@@ -223,16 +224,16 @@
     return [context executeFetchRequest:fetchRequest error:nil];
 }
 
-- (BTWorkoutRank)rankForProperty:(WorkoutPropertyType)property timeSpan:(WorkoutTimeSpanType)timeSpan {
+- (BTWorkoutRank)rankForProperty:(BTWorkoutPropertyType)property timeSpan:(BTWorkoutTimeSpanType)timeSpan {
     NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"BTWorkout"];
-    if (timeSpan == WorkoutTimeSpanType30Day)
+    if (timeSpan == BTWorkoutTimeSpanType30Day)
         fetchRequest.predicate = [NSPredicate predicateWithFormat:@"date >= %@", [NSDate.date dateByAddingTimeInterval:-30*86400]];
     NSSortDescriptor *sD;
     switch (property) {
-        case WorkoutPropertyTypeNumSets:  sD = [NSSortDescriptor sortDescriptorWithKey:@"numSets" ascending:NO]; break;
-        case WorkoutPropertyTypeVolume:   sD = [NSSortDescriptor sortDescriptorWithKey:@"volume" ascending:NO]; break;
-        case WorkoutPropertyTypeDuration: sD = [NSSortDescriptor sortDescriptorWithKey:@"duration" ascending:NO]; break;
+        case BTWorkoutPropertyTypeNumSets:  sD = [NSSortDescriptor sortDescriptorWithKey:@"numSets" ascending:NO]; break;
+        case BTWorkoutPropertyTypeVolume:   sD = [NSSortDescriptor sortDescriptorWithKey:@"volume" ascending:NO]; break;
+        case BTWorkoutPropertyTypeDuration: sD = [NSSortDescriptor sortDescriptorWithKey:@"duration" ascending:NO]; break;
     }
     fetchRequest.sortDescriptors = @[sD, [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO]];
     fetchRequest.fetchLimit = 30;
@@ -242,17 +243,17 @@
     NSInteger numTied = 0;
     if (rank > 0) {
         switch (property) {
-            case WorkoutPropertyTypeNumSets:
+            case BTWorkoutPropertyTypeNumSets:
                 while ((rank+numTied) < results.count) {
                     if (results[(rank+numTied)].numSets == self.numSets) numTied ++;
                     else break;
                 } break;
-            case WorkoutPropertyTypeVolume:
+            case BTWorkoutPropertyTypeVolume:
                 while ((rank+numTied) < results.count) {
                     if (results[(rank+numTied)].volume == self.volume) numTied ++;
                     else break;
                 } break;
-            case WorkoutPropertyTypeDuration:
+            case BTWorkoutPropertyTypeDuration:
                 while ((rank+numTied) < results.count) {
                     if (results[(rank+numTied)].duration == self.duration) numTied ++;
                     else break;

@@ -43,11 +43,11 @@
     //WORKOUT RANK
     if (user.totalWorkouts >= 3) {
         for (int i = 0; i < 3; i++) {
-            BTWorkoutRank allTime = [workout rankForProperty:i timeSpan:WorkoutTimeSpanTypeAllTime];
+            BTWorkoutRank allTime = [workout rankForProperty:i timeSpan:BTWorkoutTimeSpanTypeAllTime];
             NSString *type;
             switch (i) {
                 case 0:  type = @"most sets"; break;
-                case 1:  type = @"largest volume"; break;
+                case 1:  type = @"largest workout volume"; break;
                 default: type = @"longest workout"; break;
             }
             BOOL impressive = allTime.rank <= MIN(20, allTime.total/5);
@@ -58,7 +58,7 @@
                               type:WorkoutMilestoneTypeWorkout]];
             }
             else {
-                BTWorkoutRank thirtyDay = [workout rankForProperty:i timeSpan:WorkoutTimeSpanType30Day];
+                BTWorkoutRank thirtyDay = [workout rankForProperty:i timeSpan:BTWorkoutTimeSpanType30Day];
                 BOOL impressive = thirtyDay.rank <= MIN(10, thirtyDay.total/3);
                 if (thirtyDay.rank != -1 && thirtyDay.total > 1 && thirtyDay.numTied < 5 && impressive) {
                     [milestones addObject: [WorkoutMilestone milestoneWithTitle:
@@ -102,22 +102,27 @@
                 [milestones addObject: [WorkoutMilestone milestoneWithTitle:[NSString stringWithFormat:@"New exercise:\n   %@ %@",
                     (exercise.iteration) ? exercise.iteration : @"", exercise.name] importance:1 type:WorkoutMilestoneTypeNewExercise]];
             else {
-                BTExerciseRank allTime = [exercise rankForTimeSpan:BTExerciseTimeSpanTypeAllTime];
-                BOOL impressive = allTime.rank <= MIN(10, allTime.total/3);
-                if (allTime.rank != -1 && allTime.total > 4 && allTime.numTied < 8 && impressive) {
-                    [milestones addObject: [WorkoutMilestone milestoneWithTitle:[NSString stringWithFormat: @"%@ all-time 1RM equivalent:\n   %@ %@",
-                        [WorkoutMilestone formattedExerciseRank:allTime],(exercise.iteration)?exercise.iteration:@"",exercise.name]
-                            importance:25+MAX(2, MIN(40, allTime.total))-allTime.rank*2-allTime.numTied*4
-                                  type:WorkoutMilestoneTypeTopExercise]];
-                }
-                else {
-                    BTExerciseRank thirtyDay = [exercise rankForTimeSpan:BTExerciseTimeSpanType30Day];
-                    BOOL impressive = thirtyDay.rank <= MIN(5, thirtyDay.total/2);
-                    if (thirtyDay.rank != -1 && thirtyDay.total > 1 && thirtyDay.numTied < 5 && impressive) {
-                        [milestones addObject: [WorkoutMilestone milestoneWithTitle:[NSString stringWithFormat: @"%@ 30-day 1RM equivalent:\n   %@ %@",
-                            [WorkoutMilestone formattedExerciseRank:thirtyDay],(exercise.iteration)?exercise.iteration:@"",exercise.name]
-                                importance:22+MAX(2, MIN(20, thirtyDay.total))-thirtyDay.rank*2-thirtyDay.numTied*4
-                                      type:WorkoutMilestoneTypeTopExercise]];
+                for (int i = 0; i < 2; i++) {
+                    if (i == 1 && ![exercise.style isEqualToString:STYLE_REPSWEIGHT]) continue;
+                    BTExerciseRank allTime = [exercise rankForProperty:i timeSpan:BTExerciseTimeSpanTypeAllTime];
+                    BOOL impressive = allTime.rank <= MIN(10, allTime.total/3);
+                    if (allTime.rank != -1 && allTime.total > 4 && allTime.numTied < 8 && impressive) {
+                        NSString *t = i ? @"exercise volume" : @"1RM equivalent";
+                        [milestones addObject: [WorkoutMilestone milestoneWithTitle:[NSString stringWithFormat: @"%@ all-time %@:\n   %@ %@",
+                            [WorkoutMilestone formattedExerciseRank:allTime], t, (exercise.iteration)?exercise.iteration:@"",exercise.name]
+                                importance:25+MAX(2, MIN(40, allTime.total))-allTime.rank*2-allTime.numTied*4
+                                      type:i ? WorkoutMilestoneTypeVolumeExercise : WorkoutMilestoneTypeOneRMExercise]];
+                    }
+                    else {
+                        BTExerciseRank thirtyDay = [exercise rankForProperty:i timeSpan:BTExerciseTimeSpanType30Day];
+                        BOOL impressive = thirtyDay.rank <= MIN(5, thirtyDay.total/2);
+                        if (thirtyDay.rank != -1 && thirtyDay.total > 1 && thirtyDay.numTied < 5 && impressive) {
+                            NSString *t = i ? @"exercise volume" : @"1RM equivalent";
+                            [milestones addObject: [WorkoutMilestone milestoneWithTitle:[NSString stringWithFormat: @"%@ 30-day %@:\n   %@ %@",
+                                [WorkoutMilestone formattedExerciseRank:thirtyDay], t, (exercise.iteration)?exercise.iteration:@"",exercise.name]
+                                    importance:22+MAX(2, MIN(20, thirtyDay.total))-thirtyDay.rank*2-thirtyDay.numTied*4
+                                          type:i ? WorkoutMilestoneTypeVolumeExercise : WorkoutMilestoneTypeOneRMExercise]];
+                        }
                     }
                 }
             }

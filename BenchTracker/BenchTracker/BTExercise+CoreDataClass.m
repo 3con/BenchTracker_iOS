@@ -46,7 +46,7 @@
     return (results && results.count > 0) ? results.firstObject : nil;
 }
 
-- (BTExerciseRank)rankForTimeSpan:(BTExerciseTimeSpanType)timeSpan {
+- (BTExerciseRank)rankForProperty:(BTExercisePropertyType)property timeSpan:(BTExerciseTimeSpanType)timeSpan {
     NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"BTExercise"];
     NSMutableArray *p = @[[NSPredicate predicateWithFormat:[NSString stringWithFormat:@"name == \"%@\"", self.name]],
@@ -55,8 +55,12 @@
         [p addObject:[NSPredicate predicateWithFormat:@"workout.date >= %@", [NSDate.date dateByAddingTimeInterval:-30*86400]]];
     if (self.iteration) [p addObject:[NSPredicate predicateWithFormat:[NSString stringWithFormat:@"iteration == \"%@\"", self.iteration]]];
     fetchRequest.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:p];
-    fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"oneRM" ascending:NO],
-                                     [NSSortDescriptor sortDescriptorWithKey:@"workout.date" ascending:NO]];
+    NSSortDescriptor *sD;
+    switch (property) {
+        case BTExercisePropertyTypeOneRM:  sD = [NSSortDescriptor sortDescriptorWithKey:@"oneRM" ascending:NO]; break;
+        case BTExercisePropertyTypeVolume: sD = [NSSortDescriptor sortDescriptorWithKey:@"volume" ascending:NO]; break;
+    }
+    fetchRequest.sortDescriptors = @[sD, [NSSortDescriptor sortDescriptorWithKey:@"workout.date" ascending:NO]];
     fetchRequest.fetchLimit = (timeSpan == BTExerciseTimeSpanTypeAllTime) ? 40 : 20;
     NSArray <BTExercise *> *results = [context executeFetchRequest:fetchRequest error:nil];
     NSInteger rank = [results indexOfObject:self]+1;

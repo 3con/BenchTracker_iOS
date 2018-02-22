@@ -24,12 +24,15 @@
     if (milestone) {
         self.titleLabel.text = milestone.title;
         switch (milestone.type) {
-            case WorkoutMilestoneTypeTopExercise: self.titleImageView.image = [UIImage imageNamed:@"Exercise"]; break;
+            case WorkoutMilestoneTypeOneRMExercise: self.titleImageView.image = [UIImage imageNamed:@"Exercise"]; break;
+            case WorkoutMilestoneTypeVolumeExercise: self.titleImageView.image = [UIImage imageNamed:@"Weight"]; break;
             case WorkoutMilestoneTypeWorkout:     self.titleImageView.image = [UIImage imageNamed:@"Workout"]; break;
             case WorkoutMilestoneTypeNewExercise: self.titleImageView.image = [UIImage imageNamed:@"New"]; break;
             case WorkoutMilestoneTypeAchievement: self.titleImageView.image = [UIImage imageNamed:@"Badge"]; break;
             case WorkoutMilestoneTypeStreak:      self.titleImageView.image = [UIImage imageNamed:@"Streak"]; break;
         }
+        self.titleImageView.image = [self.titleImageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        self.titleImageView.tintColor = [UIColor whiteColor];
     }
     else {
         self.titleLabel.text = @"";

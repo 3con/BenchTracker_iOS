@@ -15,6 +15,11 @@
 #define STYLE_TIME       @"time"
 #define STYLE_CUSTOM     @"custom"
 
+typedef enum BTExercisePropertyType : NSInteger {
+    BTExercisePropertyTypeOneRM  = 0,
+    BTExercisePropertyTypeVolume = 1
+} BTExercisePropertyType;
+
 typedef enum BTExerciseTimeSpanType : NSInteger {
     BTExerciseTimeSpanType30Day   = 0,
     BTExerciseTimeSpanTypeAllTime = 1
@@ -38,7 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (BTExercise *)lastInstance; //last instance (excluding this one)
 
-- (BTExerciseRank)rankForTimeSpan:(BTExerciseTimeSpanType)timeSpan;
+- (BTExerciseRank)rankForProperty:(BTExercisePropertyType)property timeSpan:(BTExerciseTimeSpanType)timeSpan;
 
 - (void)calculateVolume;
 

@@ -9,16 +9,16 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-typedef enum WorkoutPropertyType : NSInteger {
-    WorkoutPropertyTypeNumSets  = 0,
-    WorkoutPropertyTypeVolume   = 1,
-    WorkoutPropertyTypeDuration = 2
-} WorkoutPropertyType;
+typedef enum BTWorkoutPropertyType : NSInteger {
+    BTWorkoutPropertyTypeNumSets  = 0,
+    BTWorkoutPropertyTypeVolume   = 1,
+    BTWorkoutPropertyTypeDuration = 2
+} BTWorkoutPropertyType;
 
-typedef enum WorkoutTimeSpanType : NSInteger {
-    WorkoutTimeSpanType30Day   = 0,
-    WorkoutTimeSpanTypeAllTime = 1
-} WorkoutTimeSpanType;
+typedef enum BTWorkoutTimeSpanType : NSInteger {
+    BTWorkoutTimeSpanType30Day   = 0,
+    BTWorkoutTimeSpanTypeAllTime = 1
+} BTWorkoutTimeSpanType;
 
 typedef struct {
     NSInteger rank; //ranking of workout
@@ -48,7 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSArray <BTWorkout *> *)allWorkoutsWithFactoredIntoTotalsFilter:(BOOL)factoredIntoTotalsFilter;
 
-- (BTWorkoutRank)rankForProperty:(WorkoutPropertyType)property timeSpan:(WorkoutTimeSpanType)timeSpan;
+- (BTWorkoutRank)rankForProperty:(BTWorkoutPropertyType)property timeSpan:(BTWorkoutTimeSpanType)timeSpan;
 
 @property (nonatomic) NSString *smartNickname;
 
