@@ -16,9 +16,11 @@
 #import "BTWorkout+CoreDataClass.h"
 #import "ADPodiumView.h"
 #import "BTAnalyticsLineChart.h"
+#import "BTAnalyticsPieChart.h"
 #import "HMSegmentedControl.h"
 #import "BT1RMCalculator.h"
 #import "AppDelegate.h"
+#import "BTButton.h"
 
 #define CELL_HEIGHT 55
 
@@ -40,6 +42,19 @@
 @property (weak, nonatomic) IBOutlet UILabel *graphTitleLabel;
 @property (nonatomic) BTAnalyticsLineChart *graphView;
 @property (weak, nonatomic) IBOutlet UILabel *graphNoDataLabel;
+
+@property (nonatomic) BOOL isViewingMore;
+@property (weak, nonatomic) IBOutlet BTButton *viewMoreButton;
+@property (weak, nonatomic) IBOutlet UIView *graph2ContainerView;
+@property (weak, nonatomic) IBOutlet UILabel *graph2TitleLabel;
+@property (nonatomic) BTAnalyticsLineChart *graphView2;
+@property (weak, nonatomic) IBOutlet UILabel *graph2NoDataLabel;
+@property (weak, nonatomic) IBOutlet UIView *graph3ContainerView;
+@property (weak, nonatomic) IBOutlet UILabel *graph3TitleLabel;
+@property (nonatomic) BTAnalyticsPieChart *graphView3;
+@property (weak, nonatomic) IBOutlet UILabel *graph3NoDataLabel;
+@property (weak, nonatomic) IBOutlet UIView *viewMoreContainerView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewMoreHeightConstraint;
 
 @property (weak, nonatomic) IBOutlet UIView *typeSegmentedControlContainerView;
 @property (nonatomic) HMSegmentedControl *typeSegmentedControl;
@@ -66,6 +81,8 @@
     self.tableView.dataSource = self;
     self.tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, CGFLOAT_MAX);
     self.iteration = nil;
+    self.isViewingMore = NO;
+    [self updateViewMoreHeight];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -80,11 +97,13 @@
         [self.tableView reloadData];
         [self updateTableHeightConstraint];
         for (UIView *view in @[self.graphContainerView, self.tableView]) {
-            view.layer.cornerRadius = 16;
             view.clipsToBounds = YES;
             view.backgroundColor = [self.color colorWithAlphaComponent:.8];
         }
+        self.viewMoreButton.backgroundColor = self.color;
         [self loadPodiumView];
+        [self updatePodiumView];
+        [self loadViewMore];
         [self loadSegmentedControls];
         [self setTimeSegmentedControlCollapsed:YES];
         [self loadGraphView];
@@ -95,8 +114,6 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [BTAchievement markAchievementComplete:ACHIEVEMENT_ANALYZE animated:YES];
-    if (!self.podiumView.hasAnimatedIn)
-        [self.podiumView animateIn];
 }
 
 - (void)updateTableHeightConstraint {
@@ -128,72 +145,109 @@
     [self updateGraphView];
 }
 
+- (IBAction)viewMoreButtonPressed:(UIButton *)sender {
+    self.isViewingMore = !self.isViewingMore;
+    [self updateViewMoreHeight];
+}
+
+- (void)loadViewMore {
+    for (UIView *view in self.viewMoreContainerView.subviews) {
+        view.backgroundColor = [self.color colorWithAlphaComponent:.8];
+        view.clipsToBounds = YES;
+    }
+    BTAnalyticsLineChart *lineChart = [[BTAnalyticsLineChart alloc]
+                                       initWithFrame:CGRectMake(5, 10, (MIN(500,self.view.frame.size.width-40))+10, 198)];
+    lineChart.yAxisSpaceTop = 2;
+    self.graphView2 = lineChart;
+    [self.graphView2 strokeChart];
+    [self.graph2ContainerView addSubview:self.graphView2];
+    BTAnalyticsPieChart *pieChart = [[BTAnalyticsPieChart alloc]
+                                       initWithFrame:CGRectMake(5, 10, (MIN(500,self.view.frame.size.width-40))+10, 198)];
+    self.graphView3 = pieChart;
+    [self.graph3ContainerView addSubview:self.graphView3];
+    [self.graphView3 strokeChart];
+}
+
+- (void)updateViewMoreHeight {
+    [self.viewMoreButton setTitle:(self.isViewingMore) ? @"Show Less" : @"Show More" forState:UIControlStateNormal];
+    self.viewMoreHeightConstraint.constant = (self.isViewingMore) ? 460 : 0;
+    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        [self.view layoutIfNeeded];
+        self.viewMoreContainerView.alpha = self.isViewingMore;
+    } completion:nil];
+}
+
 - (void)updateGraphView {
-    if ([self.exerciseType.style isEqualToString:STYLE_CUSTOM]) {
-        self.graphTitleLabel.text = @"";
-        self.graphNoDataLabel.text = @"No Graph Available";
-        self.graphView.alpha = 0;
-        return;
-    }
-    NSString *s = (self.typeSegmentedControl.selectedSegmentIndex == 0) ? @"Recent" :
-                  (self.typeSegmentedControl.selectedSegmentIndex == 1) ? @"Top" : @"";
-    if ([self.exerciseType.style isEqualToString:STYLE_REPSWEIGHT])      s = (self.metricSegmentedControl.selectedSegmentIndex == 1) ?
-        [s stringByAppendingString:@" Total Volumes"] :
-        [s stringByAppendingString:@" 1RM Equivalents"];
-    else if ([self.exerciseType.style isEqualToString:STYLE_REPS])       s = [s stringByAppendingString:@" Max Reps"];
-    else if ([self.exerciseType.style isEqualToString:STYLE_TIMEWEIGHT]) s = [s stringByAppendingString:@" Max Loads"];
-    else if ([self.exerciseType.style isEqualToString:STYLE_TIME])       s = [s stringByAppendingString:@" Max Durations"];
-    if (self.typeSegmentedControl.selectedSegmentIndex == 2)
-        s = [[s substringFromIndex:1] stringByAppendingString:@": Rolling Average"];
-    self.graphTitleLabel.text = s;
-    NSMutableArray *xAxisArr = [NSMutableArray array];
-    NSMutableArray *yAxisArr = [NSMutableArray array];
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"MMMMM d";
-    if (self.typeSegmentedControl.selectedSegmentIndex <= 1) {
-        for (BTExercise *exercise in self.fetchedResultsController.fetchedObjects) {
-            if (xAxisArr.count >= MIN(15, (self.view.frame.size.width-80)/38)) break;
-            [xAxisArr addObject:[formatter stringFromDate:exercise.workout.date]];
-            [yAxisArr addObject:[NSNumber numberWithFloat:
-                                 (self.metricSegmentedControl.selectedSegmentIndex == 1) ? exercise.volume : exercise.oneRM]];
+    __block int optMax = (self.view.frame.size.width-80)/38;
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        if ([self.exerciseType.style isEqualToString:STYLE_CUSTOM]) {
+            self.graphTitleLabel.text = @"";
+            self.graphNoDataLabel.text = @"No Graph Available";
+            self.graphView.alpha = 0;
+            return;
         }
-    }
-    else if (self.fetchedResultsController.fetchedObjects.count >= 15) {
-        int offset = self.fetchedResultsController.fetchedObjects.count % 3;
-        for (int i = 0; i < self.fetchedResultsController.fetchedObjects.count/3; i++) {
-            BTExercise *first = self.fetchedResultsController.fetchedObjects[3*i+offset];
-            BTExercise *second = self.fetchedResultsController.fetchedObjects[3*i+1+offset];
-            BTExercise *third = self.fetchedResultsController.fetchedObjects[3*i+2+offset];
-            if (self.metricSegmentedControl.selectedSegmentIndex == 1)
-                 [yAxisArr addObject:[NSNumber numberWithFloat:(first.volume+second.volume+third.volume)/3.0]];
-            else [yAxisArr addObject:[NSNumber numberWithFloat:(first.oneRM+second.oneRM+third.oneRM)/3.0]];
-            [xAxisArr addObject:(i == 0) ? [formatter stringFromDate:first.workout.date] :
-                (i == self.fetchedResultsController.fetchedObjects.count/3-1) ?
-                    [formatter stringFromDate:third.workout.date] : @""];
+        NSString *s = (self.typeSegmentedControl.selectedSegmentIndex == 0) ? @"Recent" :
+                      (self.typeSegmentedControl.selectedSegmentIndex == 1) ? @"Top" : @"";
+        if ([self.exerciseType.style isEqualToString:STYLE_REPSWEIGHT])      s = (self.metricSegmentedControl.selectedSegmentIndex == 1) ?
+            [s stringByAppendingString:@" Total Volumes"] :
+            [s stringByAppendingString:@" 1RM Equivalents"];
+        else if ([self.exerciseType.style isEqualToString:STYLE_REPS])       s = [s stringByAppendingString:@" Max Reps"];
+        else if ([self.exerciseType.style isEqualToString:STYLE_TIMEWEIGHT]) s = [s stringByAppendingString:@" Max Loads"];
+        else if ([self.exerciseType.style isEqualToString:STYLE_TIME])       s = [s stringByAppendingString:@" Max Durations"];
+        if (self.typeSegmentedControl.selectedSegmentIndex == 2)
+            s = [[s substringFromIndex:1] stringByAppendingString:@": Rolling Average"];
+        dispatch_async(dispatch_get_main_queue(), ^{ self.graphTitleLabel.text = s; });
+        NSMutableArray *xAxisArr = [NSMutableArray array];
+        NSMutableArray *yAxisArr = [NSMutableArray array];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        formatter.dateFormat = @"MMMMM d";
+        if (self.typeSegmentedControl.selectedSegmentIndex <= 1) {
+            for (int i = 0; i < MIN(self.fetchedResultsController.fetchedObjects.count, MIN(15, optMax)); i++) {
+                BTExercise *exercise = self.fetchedResultsController.fetchedObjects[i];
+                [xAxisArr addObject:[formatter stringFromDate:exercise.workout.date]];
+                [yAxisArr addObject:[NSNumber numberWithFloat:
+                                     (self.metricSegmentedControl.selectedSegmentIndex == 1) ? exercise.volume : exercise.oneRM]];
+            }
         }
-    }
-    else if (self.fetchedResultsController.fetchedObjects.count >= 3) {
-        int64_t first = 0;
-        int64_t second = (self.metricSegmentedControl.selectedSegmentIndex == 1) ?
-                            ((BTExercise *)self.fetchedResultsController.fetchedObjects[0]).volume :
-                            ((BTExercise *)self.fetchedResultsController.fetchedObjects[0]).oneRM;
-        int64_t third = (self.metricSegmentedControl.selectedSegmentIndex == 1) ?
-                            ((BTExercise *)self.fetchedResultsController.fetchedObjects[1]).volume :
-                            ((BTExercise *)self.fetchedResultsController.fetchedObjects[0]).oneRM;
-        for (int i = 2; i < self.fetchedResultsController.fetchedObjects.count; i++) {
-            BTExercise *exercise = self.fetchedResultsController.fetchedObjects[i];
-            first = second; second = third;
-            third = (self.metricSegmentedControl.selectedSegmentIndex == 1) ? exercise.volume : exercise.oneRM;
-            [yAxisArr addObject:[NSNumber numberWithFloat:(first+second+third)/3.0]];
-            [xAxisArr addObject:(i == 2 || i == self.fetchedResultsController.fetchedObjects.count-1) ?
-                [formatter stringFromDate:exercise.workout.date] : @""];
+        else if (self.fetchedResultsController.fetchedObjects.count >= 15) {
+            int offset = self.fetchedResultsController.fetchedObjects.count % 3;
+            for (int i = 0; i < self.fetchedResultsController.fetchedObjects.count/3; i++) {
+                BTExercise *first = self.fetchedResultsController.fetchedObjects[3*i+offset];
+                BTExercise *second = self.fetchedResultsController.fetchedObjects[3*i+1+offset];
+                BTExercise *third = self.fetchedResultsController.fetchedObjects[3*i+2+offset];
+                if (self.metricSegmentedControl.selectedSegmentIndex == 1)
+                     [yAxisArr addObject:[NSNumber numberWithFloat:(first.volume+second.volume+third.volume)/3.0]];
+                else [yAxisArr addObject:[NSNumber numberWithFloat:(first.oneRM+second.oneRM+third.oneRM)/3.0]];
+                [xAxisArr addObject:(i == 0) ? [formatter stringFromDate:first.workout.date] :
+                    (i == self.fetchedResultsController.fetchedObjects.count/3-1) ?
+                        [formatter stringFromDate:third.workout.date] : @""];
+            }
         }
-    }
-    self.graphNoDataLabel.alpha = (xAxisArr.count == 0);
-    self.graphView.alpha = (xAxisArr.count != 0);
-    [self.graphView setXAxisData:[[xAxisArr reverseObjectEnumerator] allObjects]];
-    [self.graphView setYAxisData:[[yAxisArr reverseObjectEnumerator] allObjects]];
-    [self.graphView strokeChart];
+        else if (self.fetchedResultsController.fetchedObjects.count >= 3) {
+            int64_t first = 0;
+            int64_t second = (self.metricSegmentedControl.selectedSegmentIndex == 1) ?
+                                ((BTExercise *)self.fetchedResultsController.fetchedObjects[0]).volume :
+                                ((BTExercise *)self.fetchedResultsController.fetchedObjects[0]).oneRM;
+            int64_t third = (self.metricSegmentedControl.selectedSegmentIndex == 1) ?
+                                ((BTExercise *)self.fetchedResultsController.fetchedObjects[1]).volume :
+                                ((BTExercise *)self.fetchedResultsController.fetchedObjects[0]).oneRM;
+            for (int i = 2; i < self.fetchedResultsController.fetchedObjects.count; i++) {
+                BTExercise *exercise = self.fetchedResultsController.fetchedObjects[i];
+                first = second; second = third;
+                third = (self.metricSegmentedControl.selectedSegmentIndex == 1) ? exercise.volume : exercise.oneRM;
+                [yAxisArr addObject:[NSNumber numberWithFloat:(first+second+third)/3.0]];
+                [xAxisArr addObject:(i == 2 || i == self.fetchedResultsController.fetchedObjects.count-1) ?
+                    [formatter stringFromDate:exercise.workout.date] : @""];
+            }
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.graphNoDataLabel.alpha = (xAxisArr.count == 0);
+            self.graphView.alpha = (xAxisArr.count != 0);
+            [self.graphView setXAxisData:[[xAxisArr reverseObjectEnumerator] allObjects]];
+            [self.graphView setYAxisData:[[yAxisArr reverseObjectEnumerator] allObjects]];
+            [self.graphView strokeChart];
+        });
+    });
 }
 
 - (void)loadPodiumView {
@@ -205,60 +259,62 @@
     [self.podiumContainerView addSubview:self.podiumView];
     self.podiumView.color = [self.color colorWithAlphaComponent:.8];
     self.podiumTitleLabel.textColor = self.color;
-    [self updatePodiumView];
 }
 
 - (void)updatePodiumView {
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:[NSEntityDescription entityForName:@"BTExercise" inManagedObjectContext:self.context]];
-    [request setSortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:
-                                    (self.metricSegmentedControl.selectedSegmentIndex == 1) ? @"volume" : @"oneRM" ascending:NO]]];
-    [request setPredicate:[self predicateForExerciseTypeIterationAndTime]];
-    [request setFetchBatchSize:3];
-    NSError *error;
-    NSArray <BTExercise *> *topArr = [self.context executeFetchRequest:request error:&error];
-    if (error) NSLog(@"AD exercise detail top fetch error: %@, %@", error, [error userInfo]);
-    NSMutableArray *dateArray = [NSMutableArray array];
-    NSMutableArray *valueArray = [NSMutableArray array];
-    NSMutableArray *subValueArray = [NSMutableArray array];
-    for (int i = 0; i < 3; i++) {
-        if (topArr.count > i) {
-            if ([topArr[i].style isEqualToString:STYLE_CUSTOM]) break;
-            [dateArray addObject:topArr[i].workout.date];
-            if ([topArr[i].style isEqualToString:STYLE_REPSWEIGHT]) {
-                if (self.metricSegmentedControl.selectedSegmentIndex == 1) {
-                    [valueArray addObject:(topArr[i].volume < 10000) ?
-                        [NSString stringWithFormat:@"%lld %@", topArr[i].volume, self.settings.weightSuffix] :
-                        [NSString stringWithFormat:@"%.1fk %@", topArr[i].volume/1000.0, self.settings.weightSuffix]];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+        [request setEntity:[NSEntityDescription entityForName:@"BTExercise" inManagedObjectContext:self.context]];
+        [request setSortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:
+                                        (self.metricSegmentedControl.selectedSegmentIndex == 1) ? @"volume" : @"oneRM" ascending:NO]]];
+        [request setPredicate:[self predicateForExerciseTypeIterationAndTime]];
+        [request setFetchBatchSize:3];
+        NSError *error;
+        NSArray <BTExercise *> *topArr = [self.context executeFetchRequest:request error:&error];
+        if (error) NSLog(@"AD exercise detail top fetch error: %@, %@", error, [error userInfo]);
+        NSMutableArray *dateArray = [NSMutableArray array];
+        NSMutableArray *valueArray = [NSMutableArray array];
+        NSMutableArray *subValueArray = [NSMutableArray array];
+        for (int i = 0; i < 3; i++) {
+            if (topArr.count > i) {
+                if ([topArr[i].style isEqualToString:STYLE_CUSTOM]) break;
+                [dateArray addObject:topArr[i].workout.date];
+                if ([topArr[i].style isEqualToString:STYLE_REPSWEIGHT]) {
+                    if (self.metricSegmentedControl.selectedSegmentIndex == 1) {
+                        [valueArray addObject:(topArr[i].volume < 10000) ?
+                            [NSString stringWithFormat:@"%lld %@", topArr[i].volume, self.settings.weightSuffix] :
+                            [NSString stringWithFormat:@"%.1fk %@", topArr[i].volume/1000.0, self.settings.weightSuffix]];
+                    }
+                    else [valueArray addObject:[NSString stringWithFormat:@"%lld %@", topArr[i].oneRM, self.settings.weightSuffix]];
                 }
-                else [valueArray addObject:[NSString stringWithFormat:@"%lld %@", topArr[i].oneRM, self.settings.weightSuffix]];
-            }
-            else if ([topArr[i].style isEqualToString:STYLE_REPS])
-                [valueArray addObject:[NSString stringWithFormat:@"%lld reps", topArr[i].oneRM]];
-            else if ([topArr[i].style isEqualToString:STYLE_TIME])
-                [valueArray addObject:[NSString stringWithFormat:@"%lld secs", topArr[i].oneRM]];
-            else if ([topArr[i].style isEqualToString:STYLE_TIMEWEIGHT])
-                [valueArray addObject:[NSString stringWithFormat:@"%lld %@", topArr[i].oneRM, self.settings.weightSuffix]];
-            if ([topArr[i].style isEqualToString:STYLE_REPSWEIGHT]) {
-                NSArray <NSString *> *sets = [NSKeyedUnarchiver unarchiveObjectWithData:topArr[i].sets];
-                if (self.metricSegmentedControl.selectedSegmentIndex == 1)
-                    [subValueArray addObject:[NSString stringWithFormat:@"%ld sets", sets.count]];
-                else {
-                    for (NSString *set in sets) {
-                        NSArray <NSString *> *a = [set componentsSeparatedByString:@" "];
-                        if ([BT1RMCalculator equivilentForReps:a[0].intValue weight:a[1].floatValue] == topArr[i].oneRM) {
-                            [subValueArray addObject:[set stringByReplacingOccurrencesOfString:@" " withString:@" x "]];
-                            break;
+                else if ([topArr[i].style isEqualToString:STYLE_REPS])
+                    [valueArray addObject:[NSString stringWithFormat:@"%lld reps", topArr[i].oneRM]];
+                else if ([topArr[i].style isEqualToString:STYLE_TIME])
+                    [valueArray addObject:[NSString stringWithFormat:@"%lld secs", topArr[i].oneRM]];
+                else if ([topArr[i].style isEqualToString:STYLE_TIMEWEIGHT])
+                    [valueArray addObject:[NSString stringWithFormat:@"%lld %@", topArr[i].oneRM, self.settings.weightSuffix]];
+                if ([topArr[i].style isEqualToString:STYLE_REPSWEIGHT]) {
+                    NSArray <NSString *> *sets = [NSKeyedUnarchiver unarchiveObjectWithData:topArr[i].sets];
+                    if (self.metricSegmentedControl.selectedSegmentIndex == 1)
+                        [subValueArray addObject:[NSString stringWithFormat:@"%ld sets", sets.count]];
+                    else {
+                        for (NSString *set in sets) {
+                            NSArray <NSString *> *a = [set componentsSeparatedByString:@" "];
+                            if ([BT1RMCalculator equivilentForReps:a[0].intValue weight:a[1].floatValue] == topArr[i].oneRM) {
+                                [subValueArray addObject:[set stringByReplacingOccurrencesOfString:@" " withString:@" x "]];
+                                break;
+                            }
                         }
                     }
                 }
+                else [subValueArray addObject:@""];
             }
-            else [subValueArray addObject:@""];
         }
-    }
-    self.podiumView.dates = dateArray;
-    self.podiumView.values = valueArray;
-    self.podiumView.subValues = subValueArray;
+        self.podiumView.dates = dateArray;
+        self.podiumView.values = valueArray;
+        self.podiumView.subValues = subValueArray;
+        [self.podiumView animateIn];
+    });
 }
 
 - (void)loadIterationButton {
@@ -333,7 +389,6 @@
     [self updateTableHeightConstraint];
     if (segmentedControl == self.metricSegmentedControl) {
         [self updatePodiumView];
-        [self.podiumView animateIn];
     }
 }
 
@@ -420,7 +475,6 @@
     self.iteration = iteration;
     [self updateIterationButtonText];
     [self updatePodiumView];
-    [self.podiumView animateIn];
     NSError *error;
     [self updateFetchRequest:self.fetchedResultsController.fetchRequest];
     if (![[self fetchedResultsController] performFetch:&error]) {

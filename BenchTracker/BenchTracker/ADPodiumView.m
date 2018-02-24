@@ -56,53 +56,61 @@
     _dates = dates;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"MMM d ''yy";
-    self.dateLabel3.text = (dates.count > 2) ? [formatter stringFromDate:dates[2]] : @"N/A";
-    self.dateLabel2.text = (dates.count > 1) ? [formatter stringFromDate:dates[1]] : @"N/A";
-    self.dateLabel1.text = (dates.count > 0) ? [formatter stringFromDate:dates[0]] : @"N/A";
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.dateLabel3.text = (dates.count > 2) ? [formatter stringFromDate:dates[2]] : @"N/A";
+        self.dateLabel2.text = (dates.count > 1) ? [formatter stringFromDate:dates[1]] : @"N/A";
+        self.dateLabel1.text = (dates.count > 0) ? [formatter stringFromDate:dates[0]] : @"N/A";
+    });
 }
 
 - (void)setValues:(NSArray<NSString *> *)values {
     _values = values;
-    self.valueLabel3.text = (values.count > 2) ? values[2] : @"-";
-    self.valueLabel2.text = (values.count > 1) ? values[1] : @"-";
-    self.valueLabel1.text = (values.count > 0) ? values[0] : @"-";
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.valueLabel3.text = (values.count > 2) ? values[2] : @"-";
+        self.valueLabel2.text = (values.count > 1) ? values[1] : @"-";
+        self.valueLabel1.text = (values.count > 0) ? values[0] : @"-";
+    });
 }
 
 - (void)setSubValues:(NSArray<NSString *> *)subValues {
     _subValues = subValues;
-    self.subLabel3.text = (subValues.count > 2) ? subValues[2] : @"";
-    self.subLabel2.text = (subValues.count > 1) ? subValues[1] : @"";
-    self.subLabel1.text = (subValues.count > 0) ? subValues[0] : @"";
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.subLabel3.text = (subValues.count > 2) ? subValues[2] : @"";
+        self.subLabel2.text = (subValues.count > 1) ? subValues[1] : @"";
+        self.subLabel1.text = (subValues.count > 0) ? subValues[0] : @"";
+    });
 }
 
 - (void)animateIn {
-    self.hasAnimatedIn = YES;
-    [self alpa:0 forPodium:3];
-    [self alpa:0 forPodium:2];
-    [self alpa:0 forPodium:1];
-    self.heightConstraint3.constant = 32;
-    self.heightConstraint2.constant = 32;
-    self.heightConstraint1.constant = 32;
-    [self.superview layoutIfNeeded];
-    self.heightConstraint3.constant = (self.frame.size.height-50)*.44;
-    [UIView animateWithDuration:.5 delay:.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.hasAnimatedIn = YES;
+        [self alpa:0 forPodium:3];
+        [self alpa:0 forPodium:2];
+        [self alpa:0 forPodium:1];
+        self.heightConstraint3.constant = 32;
+        self.heightConstraint2.constant = 32;
+        self.heightConstraint1.constant = 32;
         [self.superview layoutIfNeeded];
-        [self alpa:1 forPodium:3];
-    } completion:^(BOOL finished) {
-        self.heightConstraint2.constant = (self.frame.size.height-50)*.72;
-        [UIView animateWithDuration:.5 delay:.25 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        self.heightConstraint3.constant = (self.frame.size.height-50)*.44;
+        [UIView animateWithDuration:.5 delay:.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
             [self.superview layoutIfNeeded];
-            [self alpa:1 forPodium:2];
+            [self alpa:1 forPodium:3];
         } completion:^(BOOL finished) {
-            self.heightConstraint1.constant = self.frame.size.height-50;
+            self.heightConstraint2.constant = (self.frame.size.height-50)*.72;
             [UIView animateWithDuration:.5 delay:.25 options:UIViewAnimationOptionCurveEaseIn animations:^{
                 [self.superview layoutIfNeeded];
-                [self alpa:1 forPodium:1];
+                [self alpa:1 forPodium:2];
             } completion:^(BOOL finished) {
-                
+                self.heightConstraint1.constant = self.frame.size.height-50;
+                [UIView animateWithDuration:.5 delay:.25 options:UIViewAnimationOptionCurveEaseIn animations:^{
+                    [self.superview layoutIfNeeded];
+                    [self alpa:1 forPodium:1];
+                } completion:^(BOOL finished) {
+                    
+                }];
             }];
         }];
-    }];
+    });
 }
 
 - (void)alpa:(float)alpha forPodium:(int)podium {
