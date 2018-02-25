@@ -76,6 +76,8 @@
 		509AB30920422A35006FC96B /* RecentWorkoutsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 509AB30820422A35006FC96B /* RecentWorkoutsView.xib */; };
 		509AB30C2042341B006FC96B /* SetProgressionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 509AB30B2042341B006FC96B /* SetProgressionsView.m */; };
 		509AB30F20423434006FC96B /* SetProgressionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 509AB30E20423434006FC96B /* SetProgressionsView.xib */; };
+		50B8907B20426DD2000E7FE3 /* BTViewMoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B8907A20426DD2000E7FE3 /* BTViewMoreView.m */; };
+		50B8907D20426DD9000E7FE3 /* BTViewMoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50B8907C20426DD9000E7FE3 /* BTViewMoreView.xib */; };
 		50CF4D9C2021642900B55679 /* EditSmartNamesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CF4D9A2021642900B55679 /* EditSmartNamesViewController.m */; };
 		50CF4D9D2021642900B55679 /* EditSmartNamesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50CF4D9B2021642900B55679 /* EditSmartNamesViewController.xib */; };
 		50CF69D61F3A685C00DDE8A6 /* TemplateSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CF69D51F3A685C00DDE8A6 /* TemplateSelectionViewController.m */; };
@@ -307,6 +309,9 @@
 		509AB30A2042341B006FC96B /* SetProgressionsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetProgressionsView.h; sourceTree = "<group>"; };
 		509AB30B2042341B006FC96B /* SetProgressionsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetProgressionsView.m; sourceTree = "<group>"; };
 		509AB30E20423434006FC96B /* SetProgressionsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetProgressionsView.xib; sourceTree = "<group>"; };
+		50B8907920426DD2000E7FE3 /* BTViewMoreView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTViewMoreView.h; sourceTree = "<group>"; };
+		50B8907A20426DD2000E7FE3 /* BTViewMoreView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTViewMoreView.m; sourceTree = "<group>"; };
+		50B8907C20426DD9000E7FE3 /* BTViewMoreView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BTViewMoreView.xib; sourceTree = "<group>"; };
 		50B8C3BD1FE0E35300378331 /* BTDataModel7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BTDataModel7.xcdatamodel; sourceTree = "<group>"; };
 		50CF4D9820215F3400B55679 /* BTDataModel11.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BTDataModel11.xcdatamodel; sourceTree = "<group>"; };
 		50CF4D992021642900B55679 /* EditSmartNamesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditSmartNamesViewController.h; sourceTree = "<group>"; };
@@ -990,6 +995,18 @@
 			name = "Set progressions view";
 			sourceTree = "<group>";
 		};
+		50B8907E20426DE1000E7FE3 /* View more view */ = {
+			isa = PBXGroup;
+			children = (
+				50B8907920426DD2000E7FE3 /* BTViewMoreView.h */,
+				50B8907A20426DD2000E7FE3 /* BTViewMoreView.m */,
+				50B8907C20426DD9000E7FE3 /* BTViewMoreView.xib */,
+				509AB30D20423420006FC96B /* Set progressions view */,
+				509AB30720422A2C006FC96B /* Recent workouts view */,
+			);
+			name = "View more view";
+			sourceTree = "<group>";
+		};
 		50CF4D9E2021642D00B55679 /* Edit smart names vc */ = {
 			isa = PBXGroup;
 			children = (
@@ -1644,8 +1661,7 @@
 				F9FD19F21F147F7600AB3FEE /* ADExercisesDetailViewController.h */,
 				F9FD19F31F147F7600AB3FEE /* ADExercisesDetailViewController.m */,
 				F9FD19F41F147F7600AB3FEE /* ADExercisesDetailViewController.xib */,
-				509AB30D20423420006FC96B /* Set progressions view */,
-				509AB30720422A2C006FC96B /* Recent workouts view */,
+				50B8907E20426DE1000E7FE3 /* View more view */,
 				F9C240701F17D94F00A268F3 /* Exercise tvc */,
 			);
 			name = "Exercises detail";
@@ -1762,6 +1778,7 @@
 				F90712B319415FB1008694E5 /* Main.storyboard in Resources */,
 				F9FD19EA1F14746E00AB3FEE /* ADWeeklySummaryViewController.xib in Resources */,
 				F9F522F61F195B7200061AF0 /* BTButtonFormCell.xib in Resources */,
+				50B8907D20426DD9000E7FE3 /* BTViewMoreView.xib in Resources */,
 				508568CD1F310DDD0046A76F /* ECSideTableViewCell.xib in Resources */,
 				50519B051F5C8DAC00C109E1 /* WorkoutDetailsView.xib in Resources */,
 				509AB30920422A35006FC96B /* RecentWorkoutsView.xib in Resources */,
@@ -1906,6 +1923,7 @@
 				F9A549511F134A3100743897 /* AnalyticsDetailViewController.m in Sources */,
 				508568CC1F310DDD0046A76F /* ECSideTableViewCell.m in Sources */,
 				F95F933B1F034DA500A19C4D /* MainViewController.m in Sources */,
+				50B8907B20426DD2000E7FE3 /* BTViewMoreView.m in Sources */,
 				F9418FAC1F04A94E0083C3DC /* ExerciseView.m in Sources */,
 				F917BB541F0D2AB200614AB1 /* BTWorkoutPDF.m in Sources */,
 				505CFDA31F5B5795001469F8 /* SetSummaryCollectionView.m in Sources */,

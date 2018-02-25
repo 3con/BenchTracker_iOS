@@ -21,8 +21,7 @@
 #import "BT1RMCalculator.h"
 #import "AppDelegate.h"
 #import "BTButton.h"
-#import "SetProgressionsView.h"
-#import "RecentWorkoutsView.h"
+#import "BTViewMoreView.h"
 
 #define CELL_HEIGHT 55
 
@@ -45,13 +44,9 @@
 @property (nonatomic) BTAnalyticsLineChart *graphView;
 @property (weak, nonatomic) IBOutlet UILabel *graphNoDataLabel;
 
-@property (nonatomic) BOOL isViewingMore;
 @property (weak, nonatomic) IBOutlet BTButton *viewMoreButton;
-@property (weak, nonatomic) IBOutlet UIView *graph2ContainerView;
-@property (nonatomic) SetProgressionsView *graphView2;
-@property (weak, nonatomic) IBOutlet UIView *graph3ContainerView;
-@property (nonatomic) RecentWorkoutsView *graphView3;
 @property (weak, nonatomic) IBOutlet UIView *viewMoreContainerView;
+@property (nonatomic) BTViewMoreView *viewMoreView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewMoreHeightConstraint;
 
 @property (weak, nonatomic) IBOutlet UIView *typeSegmentedControlContainerView;
@@ -79,8 +74,6 @@
     self.tableView.dataSource = self;
     self.tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, CGFLOAT_MAX);
     self.iteration = nil;
-    self.isViewingMore = NO;
-    [self updateViewMoreHeight];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -103,6 +96,7 @@
         [self updatePodiumView];
         [self loadViewMore];
         [self updateViewMore];
+        [self updateViewMoreHeight];
         [self loadSegmentedControls];
         [self setTimeSegmentedControlCollapsed:YES];
         [self loadGraphView];
@@ -145,42 +139,31 @@
 }
 
 - (IBAction)viewMoreButtonPressed:(UIButton *)sender {
-    self.isViewingMore = !self.isViewingMore;
+    self.viewMoreView.expanded = !self.viewMoreView.expanded;
     [self updateViewMoreHeight];
 }
 
 - (void)loadViewMore {
-    for (UIView *view in self.viewMoreContainerView.subviews) {
-        view.backgroundColor = [self.color colorWithAlphaComponent:.8];
-        view.clipsToBounds = YES;
-    }
-    self.graphView2 = [[NSBundle mainBundle] loadNibNamed:@"SetProgressionsView" owner:self options:nil].firstObject;
-    [self.graph2ContainerView addSubview:self.graphView2];
-    self.graphView2.frame = self.graph2ContainerView.bounds;
-    self.graphView2.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    self.graphView3 = [[NSBundle mainBundle] loadNibNamed:@"RecentWorkoutsView" owner:self options:nil].firstObject;
-    [self.graph3ContainerView addSubview:self.graphView3];
-    self.graphView3.frame = self.graph3ContainerView.bounds;
-    self.graphView3.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    self.viewMoreView = [[NSBundle mainBundle] loadNibNamed:@"BTViewMoreView" owner:self options:nil].firstObject;
+    self.viewMoreView.color = [self.color colorWithAlphaComponent:.8];
+    self.viewMoreView.exerciseType = self.exerciseType;
+    self.viewMoreView.iteration = self.iteration;
+    self.viewMoreView.expanded = NO;
+    self.viewMoreView.frame = self.viewMoreContainerView.bounds;
+    self.viewMoreView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [self.viewMoreContainerView addSubview:self.viewMoreView];
 }
 
 - (void)updateViewMore {
-    [self.graphView2 loadWithExerciseType:self.exerciseType iteration:self.iteration];
-    [self.graphView2 strokeChart];
-    [self.graphView3 loadWithExerciseType:self.exerciseType iteration:self.iteration];
-    [self.graphView3 strokeChart];
+    self.viewMoreView.iteration = self.iteration;
 }
 
 - (void)updateViewMoreHeight {
-    [self.viewMoreButton setTitle:(self.isViewingMore) ? @"Show Less" : @"Show More" forState:UIControlStateNormal];
-    self.viewMoreHeightConstraint.constant = (self.isViewingMore) ? 460 : 0;
-    if (self.viewMoreHeightConstraint.constant) {
-       [self.graphView2 strokeChart];
-       [self.graphView3 strokeChart];
-    }
+    [self.viewMoreButton setTitle:(self.viewMoreView.expanded) ? @"Show Less" : @"Show More" forState:UIControlStateNormal];
+    self.viewMoreHeightConstraint.constant = self.viewMoreView.preferredHeight;
     [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         [self.view layoutIfNeeded];
-        self.viewMoreContainerView.alpha = self.isViewingMore;
+        self.viewMoreView.alpha = self.viewMoreView.expanded;
     } completion:nil];
 }
 
