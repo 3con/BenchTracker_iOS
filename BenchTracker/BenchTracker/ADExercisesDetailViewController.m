@@ -21,6 +21,8 @@
 #import "BT1RMCalculator.h"
 #import "AppDelegate.h"
 #import "BTButton.h"
+#import "SetProgressionsView.h"
+#import "RecentWorkoutsView.h"
 
 #define CELL_HEIGHT 55
 
@@ -46,13 +48,9 @@
 @property (nonatomic) BOOL isViewingMore;
 @property (weak, nonatomic) IBOutlet BTButton *viewMoreButton;
 @property (weak, nonatomic) IBOutlet UIView *graph2ContainerView;
-@property (weak, nonatomic) IBOutlet UILabel *graph2TitleLabel;
-@property (nonatomic) BTAnalyticsLineChart *graphView2;
-@property (weak, nonatomic) IBOutlet UILabel *graph2NoDataLabel;
+@property (nonatomic) SetProgressionsView *graphView2;
 @property (weak, nonatomic) IBOutlet UIView *graph3ContainerView;
-@property (weak, nonatomic) IBOutlet UILabel *graph3TitleLabel;
-@property (nonatomic) BTAnalyticsPieChart *graphView3;
-@property (weak, nonatomic) IBOutlet UILabel *graph3NoDataLabel;
+@property (nonatomic) RecentWorkoutsView *graphView3;
 @property (weak, nonatomic) IBOutlet UIView *viewMoreContainerView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewMoreHeightConstraint;
 
@@ -104,6 +102,7 @@
         [self loadPodiumView];
         [self updatePodiumView];
         [self loadViewMore];
+        [self updateViewMore];
         [self loadSegmentedControls];
         [self setTimeSegmentedControlCollapsed:YES];
         [self loadGraphView];
@@ -155,22 +154,30 @@
         view.backgroundColor = [self.color colorWithAlphaComponent:.8];
         view.clipsToBounds = YES;
     }
-    BTAnalyticsLineChart *lineChart = [[BTAnalyticsLineChart alloc]
-                                       initWithFrame:CGRectMake(5, 10, (MIN(500,self.view.frame.size.width-40))+10, 198)];
-    lineChart.yAxisSpaceTop = 2;
-    self.graphView2 = lineChart;
-    [self.graphView2 strokeChart];
+    self.graphView2 = [[NSBundle mainBundle] loadNibNamed:@"SetProgressionsView" owner:self options:nil].firstObject;
     [self.graph2ContainerView addSubview:self.graphView2];
-    BTAnalyticsPieChart *pieChart = [[BTAnalyticsPieChart alloc]
-                                       initWithFrame:CGRectMake(5, 10, (MIN(500,self.view.frame.size.width-40))+10, 198)];
-    self.graphView3 = pieChart;
+    self.graphView2.frame = self.graph2ContainerView.bounds;
+    self.graphView2.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    self.graphView3 = [[NSBundle mainBundle] loadNibNamed:@"RecentWorkoutsView" owner:self options:nil].firstObject;
     [self.graph3ContainerView addSubview:self.graphView3];
+    self.graphView3.frame = self.graph3ContainerView.bounds;
+    self.graphView3.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+}
+
+- (void)updateViewMore {
+    [self.graphView2 loadWithExerciseType:self.exerciseType iteration:self.iteration];
+    [self.graphView2 strokeChart];
+    [self.graphView3 loadWithExerciseType:self.exerciseType iteration:self.iteration];
     [self.graphView3 strokeChart];
 }
 
 - (void)updateViewMoreHeight {
     [self.viewMoreButton setTitle:(self.isViewingMore) ? @"Show Less" : @"Show More" forState:UIControlStateNormal];
     self.viewMoreHeightConstraint.constant = (self.isViewingMore) ? 460 : 0;
+    if (self.viewMoreHeightConstraint.constant) {
+       [self.graphView2 strokeChart];
+       [self.graphView3 strokeChart];
+    }
     [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         [self.view layoutIfNeeded];
         self.viewMoreContainerView.alpha = self.isViewingMore;
@@ -481,6 +488,7 @@
         NSLog(@"AD exercise detail fetch error: %@, %@", error, [error userInfo]);
     }
     [self updateGraphView];
+    [self updateViewMore];
     [self.tableView reloadData];
     self.tableViewHeightConstraint.constant = MAX(self.view.frame.size.height-624-72,
                                                   self.fetchedResultsController.fetchedObjects.count*CELL_HEIGHT);

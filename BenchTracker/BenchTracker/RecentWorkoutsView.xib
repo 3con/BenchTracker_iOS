@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="RecentWorkoutsView">
+            <rect key="frame" x="0.0" y="0.0" width="330" height="210"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recent Workouts" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="f53-IU-Web">
+                    <rect key="frame" x="10" y="5" width="311.5" height="25"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="25" id="SDh-mx-5cF"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lMW-2U-iE7">
+                    <rect key="frame" x="190" y="55" width="130" height="130"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="lMW-2U-iE7" secondAttribute="height" id="PH9-La-RA4"/>
+                        <constraint firstAttribute="width" constant="130" id="ZhL-eF-7r0"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ien-0V-tTV">
+                    <rect key="frame" x="0.0" y="40" width="185" height="160"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </tableView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Instances" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uf1-yP-RjD">
+                    <rect key="frame" x="90" y="90" width="150" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="150" id="Uri-cx-McM"/>
+                        <constraint firstAttribute="height" constant="30" id="iNz-s5-X3q"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="15"/>
+                    <color key="textColor" white="1" alpha="0.80000000000000004" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <constraints>
+                <constraint firstItem="lMW-2U-iE7" firstAttribute="centerY" secondItem="ien-0V-tTV" secondAttribute="centerY" id="7fm-IF-W7K"/>
+                <constraint firstItem="uf1-yP-RjD" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="EF8-EZ-dYS"/>
+                <constraint firstItem="lMW-2U-iE7" firstAttribute="leading" secondItem="ien-0V-tTV" secondAttribute="trailing" constant="5" id="MJW-jS-eeO"/>
+                <constraint firstItem="f53-IU-Web" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="WMR-Zd-1YE"/>
+                <constraint firstItem="ien-0V-tTV" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="XpV-ll-vUo"/>
+                <constraint firstItem="ien-0V-tTV" firstAttribute="top" secondItem="f53-IU-Web" secondAttribute="bottom" constant="10" id="alK-BL-XAf"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="ien-0V-tTV" secondAttribute="bottom" constant="10" id="dcr-sA-J3I"/>
+                <constraint firstItem="f53-IU-Web" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="gFf-nV-cPJ"/>
+                <constraint firstItem="uf1-yP-RjD" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="h8t-Iw-4uY"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="lMW-2U-iE7" secondAttribute="trailing" constant="10" id="hxj-jY-AZW"/>
+                <constraint firstItem="f53-IU-Web" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="5" id="iad-ny-6jw"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="noInstancesLabel" destination="uf1-yP-RjD" id="yRf-Ch-hwf"/>
+                <outlet property="pieChartContainerView" destination="lMW-2U-iE7" id="qqa-jF-h5c"/>
+                <outlet property="tableView" destination="ien-0V-tTV" id="q24-YL-b3N"/>
+                <outlet property="titleLabel" destination="f53-IU-Web" id="qIw-tL-Eci"/>
+            </connections>
+        </view>
+    </objects>
+</document>

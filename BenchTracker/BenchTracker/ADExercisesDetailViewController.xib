@@ -163,35 +163,9 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="45W-XY-FPa">
                                         <rect key="frame" x="0.0" y="20" width="335" height="210"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Instances" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qVy-gs-WBY">
-                                                <rect key="frame" x="92" y="90" width="150" height="30"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="150" id="Mg9-XW-zvQ"/>
-                                                    <constraint firstAttribute="height" constant="30" id="sSw-53-oWc"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="15"/>
-                                                <color key="textColor" white="1" alpha="0.80000000000000004" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recent Set Progressions" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="r81-O8-I1O">
-                                                <rect key="frame" x="35" y="5" width="265.33333333333331" height="25"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="25" id="Q6L-HS-8zk"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
                                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstItem="qVy-gs-WBY" firstAttribute="centerX" secondItem="45W-XY-FPa" secondAttribute="centerX" id="1Zm-48-lGa"/>
-                                            <constraint firstItem="r81-O8-I1O" firstAttribute="centerX" secondItem="45W-XY-FPa" secondAttribute="centerX" id="jDq-W9-DG9"/>
-                                            <constraint firstItem="r81-O8-I1O" firstAttribute="top" secondItem="45W-XY-FPa" secondAttribute="top" constant="5" id="obu-JH-4pU"/>
                                             <constraint firstAttribute="height" constant="210" id="pkU-If-a4n"/>
-                                            <constraint firstItem="r81-O8-I1O" firstAttribute="leading" secondItem="45W-XY-FPa" secondAttribute="leading" constant="35" id="wle-KW-E20"/>
-                                            <constraint firstItem="qVy-gs-WBY" firstAttribute="centerY" secondItem="45W-XY-FPa" secondAttribute="centerY" id="yeG-wL-3gf"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -201,34 +175,8 @@
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xdj-YR-SNo">
                                         <rect key="frame" x="0.0" y="250" width="335" height="210"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recent Workouts" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="mWd-6z-qoY">
-                                                <rect key="frame" x="35" y="5" width="265.33333333333331" height="25"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="25" id="TVd-Fd-ZdJ"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Instances" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qK1-bs-qKF">
-                                                <rect key="frame" x="92" y="90" width="150" height="30"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="150" id="4Vi-3D-jvg"/>
-                                                    <constraint firstAttribute="height" constant="30" id="jMv-ux-lnA"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="15"/>
-                                                <color key="textColor" white="1" alpha="0.80000000000000004" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
                                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstItem="mWd-6z-qoY" firstAttribute="top" secondItem="xdj-YR-SNo" secondAttribute="top" constant="5" id="NJ7-cu-KFo"/>
-                                            <constraint firstItem="qK1-bs-qKF" firstAttribute="centerX" secondItem="xdj-YR-SNo" secondAttribute="centerX" id="NdR-Be-KCN"/>
-                                            <constraint firstItem="mWd-6z-qoY" firstAttribute="leading" secondItem="xdj-YR-SNo" secondAttribute="leading" constant="35" id="YbZ-fC-n9u"/>
-                                            <constraint firstItem="qK1-bs-qKF" firstAttribute="centerY" secondItem="xdj-YR-SNo" secondAttribute="centerY" id="dPo-T1-Z8u"/>
-                                            <constraint firstItem="mWd-6z-qoY" firstAttribute="centerX" secondItem="xdj-YR-SNo" secondAttribute="centerX" id="hsZ-CX-vOz"/>
                                             <constraint firstAttribute="height" constant="210" id="wOd-Sc-bYl"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
@@ -325,11 +273,7 @@
             <size key="freeformSize" width="375" height="1500"/>
             <connections>
                 <outlet property="graph2ContainerView" destination="45W-XY-FPa" id="dSs-ki-wWd"/>
-                <outlet property="graph2NoDataLabel" destination="qVy-gs-WBY" id="uAw-dS-UmO"/>
-                <outlet property="graph2TitleLabel" destination="r81-O8-I1O" id="bCU-13-HxG"/>
                 <outlet property="graph3ContainerView" destination="xdj-YR-SNo" id="OLk-Qd-EPf"/>
-                <outlet property="graph3NoDataLabel" destination="qK1-bs-qKF" id="h60-3X-Adf"/>
-                <outlet property="graph3TitleLabel" destination="mWd-6z-qoY" id="0Tu-Pg-SoN"/>
                 <outlet property="graphContainerView" destination="F97-uh-Mja" id="acY-QT-75I"/>
                 <outlet property="graphNoDataLabel" destination="J2x-vc-QcW" id="RSk-Ee-e3D"/>
                 <outlet property="graphTitleLabel" destination="ALH-qx-B9k" id="XVP-TP-9bb"/>
@@ -348,7 +292,7 @@
                 <outlet property="viewMoreContainerView" destination="yn0-gw-Lbf" id="bBp-Vg-5B4"/>
                 <outlet property="viewMoreHeightConstraint" destination="l1H-f1-Dy1" id="OEk-cm-xFP"/>
             </connections>
-            <point key="canvasLocation" x="-132" y="33"/>
+            <point key="canvasLocation" x="-132.5" y="33"/>
         </viewController>
     </objects>
 </document>

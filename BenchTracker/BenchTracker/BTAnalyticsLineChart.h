@@ -18,4 +18,6 @@
 
 - (void)setYAxisData:(NSArray <NSNumber *> *)data;
 
+- (void)setYAxisMultiData:(NSArray<NSArray<NSNumber *> *> *)data;
+
 @end

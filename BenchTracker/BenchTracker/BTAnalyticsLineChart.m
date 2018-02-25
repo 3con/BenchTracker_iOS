@@ -28,19 +28,45 @@
                                         //(NSInteger) MAX(30, _xLabelWidth), (NSInteger) _chartMarginBottom)];
 
 - (void)setYAxisData:(NSArray <NSNumber *> *)data {
-    if (data.count == 0) {
-        self.tag = -1;
-        return;
-    }
+    if (data.count == 0) { self.tag = -1; return; }
     else self.tag = 0;
     if (data.count == 1) data = @[data[0], data[0]];
+    
+    [self setYAxisMultiData:@[data]];
+}
+
+- (void)setYAxisMultiData:(NSArray<NSArray<NSNumber *> *> *)data {
+    [self setYLabelData:data];
+    
+    NSMutableArray *yArr = @[].mutableCopy;
+    for (int i = 0; i < data.count; i++) {
+        NSArray *d = data[i];
+        PNLineChartData *yData = [PNLineChartData new];
+        yData.color = [UIColor whiteColor];
+        yData.alpha = (i==0) ? 1 : .7-.6*(i/(float)data.count);
+        yData.lineWidth = 5;
+        yData.itemCount = d.count;
+        yData.getData = ^(NSUInteger index) { return [PNLineChartDataItem dataItemWithY:[d[index] floatValue]]; };
+        [yArr addObject:yData];
+        
+    }
+    self.chartData = yArr;
+}
+
+#pragma mark - private mathods
+
+- (void)setYLabelData:(NSArray<NSArray<NSNumber *> *> *)data {
+    //FIX in PNLineChart.m -> setYLabels:withHeight: label.minimumScaleFactor = 0.1; label.numberOfLines = 1;
     float max = -MAXFLOAT;
     float min = MAXFLOAT;
-    for (NSNumber *num in data) {
-        float x = num.floatValue;
-        if (x < min) min = x;
-        if (x > max) max = x;
+    for (NSArray *d in data) {
+        for (NSNumber *num in d) {
+            float x = num.floatValue;
+            if (x < min) min = x;
+            if (x > max) max = x;
+        }
     }
+    
     float diff = max-min;
     int scaleFactor = 1;
     while (diff > 1000) {
@@ -55,10 +81,10 @@
     else if (diff <= 600) interval = 100;
     else interval = 250;
     interval = interval*scaleFactor;
+    
     self.yFixedValueMin = MAX(0, ((int)min)/interval*interval);
     self.yFixedValueMax = MAX(10, ((int)max)/interval*interval+interval*self.yAxisSpaceTop);
     self.yLabelNum = (self.yFixedValueMax-self.yFixedValueMin)/interval;
-    PNLineChartData *yData = [PNLineChartData new];
     NSMutableArray *yLabels = @[].mutableCopy;
     for (int i = self.yFixedValueMin; i <= self.yFixedValueMax; i += interval) {
         NSString *label;
@@ -67,16 +93,8 @@
         else label = [NSString stringWithFormat:@"%.0fk", i/1000.0];
         [yLabels addObject:label];
     }
-    //FIX in PNLineChart.m -> setYLabels:withHeight: label.minimumScaleFactor = 0.1; label.numberOfLines = 1;
     self.yLabels = yLabels;
-    yData.color = [UIColor whiteColor];
-    yData.lineWidth = 5;
-    yData.itemCount = data.count;
-    yData.getData = ^(NSUInteger index) { return [PNLineChartDataItem dataItemWithY:[data[index] floatValue]]; };
-    self.chartData = @[yData];
 }
-
-#pragma mark - private mathods
 
 - (void)loadLayout {
     self.showSmoothLines = YES; //FIX in PNLineChart.m: chartLine.fillColor = [[UIColor clearColor] CGColor];
@@ -89,13 +107,5 @@
     self.xLabelWidth = 80;
     self.thousandsSeparator = YES;
 }
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
 
 @end

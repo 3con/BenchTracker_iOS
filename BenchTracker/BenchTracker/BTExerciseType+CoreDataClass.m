@@ -11,6 +11,8 @@
 #import "AppDelegate.h"
 #import "BTTypeListModel.h"
 #import "BTSettings+CoreDataClass.h"
+#import "BTWorkout+CoreDataClass.h"
+#import "BT1RMCalculator.h"
 
 @implementation BTExerciseType
 
@@ -20,7 +22,7 @@
     NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
     NSFetchRequest *request = [BTExerciseType fetchRequest];
     request.fetchLimit = 1;
-    NSError *error = nil;
+    NSError *error;
     NSArray *object = [context executeFetchRequest:request error:&error];
     if (error) NSLog(@"TypeListManager error: %@",error);
     else if (object.count == 0) {
@@ -86,7 +88,46 @@
     return (arr && arr.count > 0) ? arr.firstObject : nil;
 }
 
+- (NSArray<NSArray<NSNumber *> *> *)recentSetProgressionsForIteration:(NSString *)iteration {
+    NSMutableArray <NSMutableArray <NSNumber *> *> *arr = @[].mutableCopy;
+    NSArray *exercises = [self recentInstances:10 withIteration:iteration];
+    for (BTExercise *exercise in exercises) {
+        NSMutableArray<NSNumber *> *setProgression = @[].mutableCopy;
+        for (NSString *set in [NSKeyedUnarchiver unarchiveObjectWithData:exercise.sets]) {
+            NSArray *sSet = [set componentsSeparatedByString:@" "];
+            [setProgression addObject:[NSNumber numberWithInt:
+                [BT1RMCalculator equivilentForReps:[sSet[0] intValue] weight:[sSet[1] floatValue]]]];
+        }
+        if (setProgression.count > 1) [arr addObject:setProgression];
+    }
+    return arr;
+}
+
+- (NSDictionary<NSString *, NSNumber *> *)recentSmartNameSplitsForIteration:(NSString *)iteration {
+    NSMutableDictionary<NSString *, NSNumber *> *dict = @{}.mutableCopy;
+    NSArray *exercises = [self recentInstances:20 withIteration:iteration];
+    for (BTExercise *exercise in exercises) {
+        if (exercise.workout.smartName) {
+            if (!dict[exercise.workout.smartNickname]) dict[exercise.workout.smartNickname] = [NSNumber numberWithInt:1];
+            else dict[exercise.workout.smartNickname] = [NSNumber numberWithInt:dict[exercise.workout.smartNickname].intValue+1];
+        }
+    }
+    return dict;
+}
+
 #pragma mark - private methods
+
+- (NSArray <BTExercise *> *)recentInstances:(int)num withIteration:(NSString *)iteration {
+    NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    NSFetchRequest *request = [BTExercise fetchRequest];
+    NSPredicate *p1 = (iteration != nil && iteration.length > 0) ? [NSPredicate predicateWithFormat:@"iteration = %@", iteration] : nil;
+    NSPredicate *p2 = [NSPredicate predicateWithFormat:@"name = %@", self.name];
+    request.predicate = (p1) ? [NSCompoundPredicate andPredicateWithSubpredicates:@[p1, p2]] : p2;
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"workout.date" ascending:NO]];
+    request.fetchLimit = num;
+    NSError *error;
+    return [context executeFetchRequest:request error:&error];
+}
 
 + (NSArray <BTExerciseType *> *)allExerciseTypes {
     NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];

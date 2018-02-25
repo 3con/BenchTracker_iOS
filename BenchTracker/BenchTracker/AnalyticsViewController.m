@@ -123,7 +123,8 @@
         cell.subtitleLabel.text = [NSString stringWithFormat:@"Week of %@",[self.recentWorkoutsManager formattedFirstDayOfWeek]];
         NSDictionary *data = [self.recentWorkoutsManager workoutExerciseTypesThisWeek];
         BTAnalyticsPieChart *pieChart = [[BTAnalyticsPieChart alloc]
-                                         initWithFrame:CGRectMake((cell.originSize.width-210)/2.0, 20, 170, 170) items:[BTAnalyticsPieChart pieDataForDictionary:data]];
+                                         initWithFrame:CGRectMake((cell.originSize.width-210)/2.0, 20, 170, 170)
+                                                 items:[BTAnalyticsPieChart pieDataForDictionary:data]];
         cell.graphView = pieChart;
         NSArray <NSString *> *data2 = [self.recentWorkoutsManager otherDataThisWeek];
         NSArray <NSString *> *strArr = @[@"Workouts", @"Exercises", @"Sets", @"Lifted"];
