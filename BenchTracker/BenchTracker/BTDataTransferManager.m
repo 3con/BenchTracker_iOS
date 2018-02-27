@@ -86,7 +86,7 @@
     BTDataTransferModel *transferModel = [[BTDataTransferModel alloc] initWithString:JSONString error:&error];
     if (error) { NSLog(@"Data Transfer error: %@",error); return NO; }
     //CHECK VERSION
-    if (transferModel.version != DATA_TRANSFER_VERSION) return NO;
+    if (transferModel.version != DATA_TRANSFER_VERSION) { NSLog(@"Data Transfer error: Version mismatch"); return NO; }
     //PARSE USER
     BTUser *user = [BTUser sharedInstance];
     user.dateCreated = transferModel.user.dateCreated;

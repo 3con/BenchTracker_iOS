@@ -26,6 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (BTExerciseType *)typeForExercise:(BTExercise *)exercise;
 
+- (NSArray<BTExercise *> *)allInstancesOfIteration:(NSString *)iteration;
+
 - (NSArray<NSArray<NSNumber *> *> *)recentSetProgressionsForIteration:(NSString *)iteration;
 
 - (NSDictionary<NSString *, NSNumber *> *)recentSmartNameSplitsForIteration:(NSString *)iteration;

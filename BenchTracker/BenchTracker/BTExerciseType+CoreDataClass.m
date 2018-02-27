@@ -88,6 +88,10 @@
     return (arr && arr.count > 0) ? arr.firstObject : nil;
 }
 
+- (NSArray<BTExercise *> *)allInstancesOfIteration:(NSString *)iteration {
+    return [self recentInstances:INT_MAX withIteration:iteration];
+}
+
 - (NSArray<NSArray<NSNumber *> *> *)recentSetProgressionsForIteration:(NSString *)iteration {
     NSMutableArray <NSMutableArray <NSNumber *> *> *arr = @[].mutableCopy;
     NSArray *exercises = [self recentInstances:10 withIteration:iteration];
@@ -95,8 +99,8 @@
         NSMutableArray<NSNumber *> *setProgression = @[].mutableCopy;
         for (NSString *set in [NSKeyedUnarchiver unarchiveObjectWithData:exercise.sets]) {
             NSArray *sSet = [set componentsSeparatedByString:@" "];
-            [setProgression addObject:[NSNumber numberWithInt:
-                [BT1RMCalculator equivilentForReps:[sSet[0] intValue] weight:[sSet[1] floatValue]]]];
+            [setProgression addObject:[NSNumber numberWithInt:(sSet.count == 1) ?
+                [sSet[0] intValue] : [BT1RMCalculator equivilentForReps:[sSet[0] intValue] weight:[sSet[1] floatValue]]]];
         }
         if (setProgression.count > 1) [arr addObject:setProgression];
     }
