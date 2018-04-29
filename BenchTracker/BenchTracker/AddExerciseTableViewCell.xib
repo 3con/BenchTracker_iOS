@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,11 +16,11 @@
             <rect key="frame" x="0.0" y="0.0" width="360" height="50"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="360" height="49.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="360" height="49.666666666666664"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bench Press" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vcw-eh-YBV">
-                        <rect key="frame" x="10" y="8" width="342" height="34"/>
+                        <rect key="frame" x="18" y="8" width="322" height="34"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="34" id="Mqf-y6-VqY"/>
                         </constraints>
@@ -27,8 +28,8 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="X iterations" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RKY-3G-NHR">
-                        <rect key="frame" x="280" y="10" width="70" height="29.666666666666664"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="X variations" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RKY-3G-NHR">
+                        <rect key="frame" x="272" y="13" width="70" height="24"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="70" id="oTK-2h-xyk"/>
@@ -42,9 +43,9 @@
                     <constraint firstAttribute="bottomMargin" secondItem="RKY-3G-NHR" secondAttribute="bottom" constant="2" id="9oh-op-mcX"/>
                     <constraint firstItem="RKY-3G-NHR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="2" id="BG0-H2-kD1"/>
                     <constraint firstAttribute="trailingMargin" secondItem="Vcw-eh-YBV" secondAttribute="trailing" id="DcA-rb-uo7"/>
-                    <constraint firstAttribute="leadingMargin" secondItem="Vcw-eh-YBV" secondAttribute="leading" constant="-2" id="FRc-ZV-y6u"/>
+                    <constraint firstItem="Vcw-eh-YBV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="18" id="FRc-ZV-y6u"/>
                     <constraint firstItem="Vcw-eh-YBV" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="YMM-tg-jhp"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="RKY-3G-NHR" secondAttribute="trailing" constant="2" id="iOt-Bb-KvM"/>
+                    <constraint firstAttribute="trailing" secondItem="RKY-3G-NHR" secondAttribute="trailing" constant="18" id="iOt-Bb-KvM"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

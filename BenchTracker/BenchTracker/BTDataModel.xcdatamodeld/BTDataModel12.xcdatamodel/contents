@@ -89,13 +89,13 @@
         <relationship name="exercises" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="BTExerciseTemplate" inverseName="workout" inverseEntity="BTExerciseTemplate" syncable="YES"/>
     </entity>
     <elements>
-        <element name="BTAchievement" positionX="-713" positionY="-96" width="128" height="150"/>
-        <element name="BTExercise" positionX="-164" positionY="-42" width="128" height="165"/>
+        <element name="BTAchievement" positionX="-729" positionY="-315" width="128" height="150"/>
+        <element name="BTExercise" positionX="-164" positionY="-21" width="128" height="165"/>
         <element name="BTExerciseTemplate" positionX="-164" positionY="-228" width="128" height="118"/>
-        <element name="BTExerciseType" positionX="-549" positionY="-256" width="128" height="103"/>
-        <element name="BTSettings" positionX="-549" positionY="104" width="128" height="300"/>
-        <element name="BTUser" positionX="-549" positionY="-126" width="128" height="240"/>
-        <element name="BTWorkout" positionX="-353" positionY="-87" width="128" height="225"/>
-        <element name="BTWorkoutTemplate" positionX="-353" positionY="-228" width="128" height="133"/>
+        <element name="BTExerciseType" positionX="-164" positionY="-391" width="128" height="103"/>
+        <element name="BTSettings" positionX="-576" positionY="-147" width="171" height="300"/>
+        <element name="BTUser" positionX="-576" positionY="-405" width="171" height="240"/>
+        <element name="BTWorkout" positionX="-360" positionY="-81" width="128" height="225"/>
+        <element name="BTWorkoutTemplate" positionX="-360" positionY="-241" width="128" height="133"/>
     </elements>
 </model>

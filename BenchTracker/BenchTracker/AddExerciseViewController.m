@@ -205,13 +205,13 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 36;
+    return 38;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     NSString *sectionName = _fetchedResultsController.sections[section].name;
     AETableHeaderView *headerView = [[NSBundle mainBundle] loadNibNamed:@"AETableHeaderView" owner:self options:nil].firstObject;
-    headerView.frame = CGRectMake(0, 0, tableView.frame.size.width, 32);
+    headerView.frame = CGRectMake(0, 0, tableView.frame.size.width, 38);
     headerView.color = self.exerciseTypeColors[sectionName];
     headerView.name = sectionName;
     headerView.expanded = ![self.tempHiddenSections containsObject:sectionName];

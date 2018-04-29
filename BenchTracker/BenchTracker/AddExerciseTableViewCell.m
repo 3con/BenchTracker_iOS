@@ -42,7 +42,7 @@
     self.exerciseType = exerciseType;
     NSInteger count = [[NSKeyedUnarchiver unarchiveObjectWithData:exerciseType.iterations] count];
     self.iterationLabel.alpha = count > 0;
-    if (count > 0) self.iterationLabel.text = [NSString stringWithFormat:@"%ld iteration%@",count,(count == 1) ? @"" : @"s"];
+    if (count > 0) self.iterationLabel.text = [NSString stringWithFormat:@"%ld variation%@",count,(count == 1) ? @"" : @"s"];
 }
 
 - (void)loadIteration:(NSString *)iteration {

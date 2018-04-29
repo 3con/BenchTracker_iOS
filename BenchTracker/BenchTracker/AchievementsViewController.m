@@ -48,12 +48,12 @@
 - (void)loadFlowLayout {
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     int horizCount = 4;
-    if (self.view.frame.size.width < 400) horizCount = 2;
+    if (self.view.frame.size.width < 420) horizCount = 2;
     else if (self.view.frame.size.width < 600) horizCount = 3;
-    flowLayout.itemSize = CGSizeMake((self.view.frame.size.width-(horizCount+1)*20)/horizCount, 120);
-    flowLayout.minimumInteritemSpacing = 20.0;
-    flowLayout.minimumLineSpacing = 20.0;
-    flowLayout.sectionInset = UIEdgeInsetsMake(20, 20, 20, 20);
+    flowLayout.itemSize = CGSizeMake((self.view.frame.size.width-(horizCount+1)*10)/horizCount, 130);
+    flowLayout.minimumInteritemSpacing = 10.0;
+    flowLayout.minimumLineSpacing = 10.0;
+    flowLayout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
     flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
     [self.collectionView setCollectionViewLayout:flowLayout];
 }

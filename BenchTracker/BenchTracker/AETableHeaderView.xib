@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,14 +17,14 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Arrow" translatesAutoresizingMaskIntoConstraints="NO" id="KfJ-XF-d7i">
-                    <rect key="frame" x="376" y="11" width="16" height="16"/>
+                    <rect key="frame" x="379" y="11.5" width="15" height="15"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="16" id="bZC-ip-NWY"/>
+                        <constraint firstAttribute="height" constant="15" id="bZC-ip-NWY"/>
                         <constraint firstAttribute="width" secondItem="KfJ-XF-d7i" secondAttribute="height" multiplier="1:1" id="koa-jj-2vZ"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Abs / Core" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xb4-Ck-Ob2">
-                    <rect key="frame" x="10" y="4" width="356" height="30"/>
+                    <rect key="frame" x="10" y="4" width="359" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="7NZ-T6-OhJ"/>
                     </constraints>
@@ -37,7 +37,7 @@
             <constraints>
                 <constraint firstItem="KfJ-XF-d7i" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="8Kp-Jj-jSL"/>
                 <constraint firstItem="KfJ-XF-d7i" firstAttribute="leading" secondItem="Xb4-Ck-Ob2" secondAttribute="trailing" constant="10" id="KGk-Le-mzo"/>
-                <constraint firstAttribute="trailing" secondItem="KfJ-XF-d7i" secondAttribute="trailing" constant="22" id="Xto-jj-EIc"/>
+                <constraint firstAttribute="trailing" secondItem="KfJ-XF-d7i" secondAttribute="trailing" constant="20" id="Xto-jj-EIc"/>
                 <constraint firstItem="Xb4-Ck-Ob2" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="bZ7-h2-Le6"/>
                 <constraint firstItem="Xb4-Ck-Ob2" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="uAY-2t-HPQ"/>
             </constraints>
