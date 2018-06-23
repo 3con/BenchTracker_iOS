@@ -48,7 +48,8 @@
 - (void)refreshLeaderboard {
     [self.user topLevelsWithCompletionBlock:^(NSArray<AWSLeaderboard *> *topLevels) {
         for (NSInteger i = 0; i < topLevels.count; i++) {
-            if (topLevels[i].experience.longValue == self.user.xp && [topLevels[i].username isEqualToString:self.user.name]) {
+            if (topLevels[i].experience.longValue == self.user.xp &&
+                [topLevels[i].username isEqualToString:self.user.name]) {
                 self.localRank = [NSNumber numberWithInteger:i];
                 break;
             }
@@ -91,7 +92,7 @@
     AWSLeaderboard *leader = self.leaderboard[indexPath.row];
     cell.titleLabel.text = leader.username;
     cell.statLabel.text = [NSString stringWithFormat:@"%@ xp", leader.experience];
-    cell.isSelf = (indexPath.row == self.localRank.integerValue);
+    cell.isSelf = (self.localRank && indexPath.row == self.localRank.integerValue);
     return cell;
 }
 

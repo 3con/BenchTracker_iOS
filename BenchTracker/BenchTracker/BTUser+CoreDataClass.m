@@ -187,7 +187,7 @@
     queryExpression.indexName = @"valid-experience-index";
     queryExpression.keyConditionExpression = @"valid = :val";
     queryExpression.expressionAttributeValues = @{@":val": @"YES"};
-    queryExpression.limit = @100;
+    queryExpression.limit = @99;
     queryExpression.scanIndexForward = @NO;
     [[self.mapper query:[AWSLeaderboard class] expression:queryExpression] continueWithBlock:^id(AWSTask *task) {
          if (task.error) {
@@ -279,6 +279,7 @@
         }
         else completed(YES);
         return nil;
+        
     }];
     dispatch_async(dispatch_get_main_queue(), ^{
         NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];

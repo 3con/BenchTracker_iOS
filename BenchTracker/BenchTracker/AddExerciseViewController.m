@@ -445,7 +445,7 @@
     [self.tableView endUpdates];
 }
      
-#pragma mark - TI methods
+#pragma mark - type iteration methods
 
 - (BOOL)typeExists:(BTExerciseType *)type {
     return [self.selectedTypes containsObject:type];
