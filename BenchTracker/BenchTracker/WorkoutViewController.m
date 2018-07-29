@@ -228,10 +228,13 @@
 }
 
 - (IBAction)deleteWorkoutButtonPressed:(UIButton *)sender {
-    UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Delete Workout"
-                                 message:@"Are you sure you want to delete this workout? You will lose all you hard work! This action cannot be undone."
-                                 preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction* deleteButton = [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
+    UIAlertController *alert =
+        [UIAlertController alertControllerWithTitle:@"Delete Workout"
+                                            message:@"Are you sure you want to delete this workout? You will lose all of your hard work! This action cannot be undone."
+                                     preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction* deleteButton = [UIAlertAction actionWithTitle:@"Delete"
+                                                           style:UIAlertActionStyleDestructive
+                                                         handler:^(UIAlertAction * action) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [self deleteWorkout];
         });

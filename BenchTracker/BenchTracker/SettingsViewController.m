@@ -274,7 +274,7 @@
     else if ([formRow.tag isEqualToString:@"reset"]) {
         //WARN USER DATA WILL BE DELETED, SUGGEST DOWNLOADING DATA
         UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Reset Data"
-                                                                        message:@"Are you sure you want to reset your accout? You will lose all your hard work! We suggest saving your data beforehand by exporting your data or printing out your workouts. This action cannot be undone."
+                                                                        message:@"Are you sure you want to reset your accout? You will lose all of your hard work! We suggest saving your data beforehand by exporting your data or printing out your workouts. This action cannot be undone."
                                                                  preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction* deleteButton = [UIAlertAction actionWithTitle:@"Reset" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
             dispatch_async(dispatch_get_main_queue(), ^{ [self resetDataButtonPressed:nil]; });

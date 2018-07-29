@@ -76,8 +76,8 @@
 }
 
 - (void)updateInfo {
-    NSString *name = (self.workout.name.length < 20) ?
-    self.workout.name : [NSString stringWithFormat:@"%@...",[self.workout.name substringToIndex:17]];
+    NSString *name = (self.workout.name.length < 20) ? self.workout.name :
+        [NSString stringWithFormat:@"%@...",[self.workout.name substringToIndex:17]];
     NSDateFormatter *yFormatter = [[NSDateFormatter alloc] init];
     [yFormatter setDateFormat:@"M/d/yy"];
     NSDateFormatter *dFormatter = [[NSDateFormatter alloc] init];
@@ -86,9 +86,12 @@
     if (@available(iOS 11, *))
         if (self.settings.showSmartNames && self.workout.smartName)
             smartText = [NSString stringWithFormat:@"Smart name: %@\n", self.workout.smartNickname];
-    NSString *str = [NSString stringWithFormat:@"%@ (%@)\n%@Exercises: %lld, Sets: %lld\nVolume: %lld %@\nStart: %@, Duration: %lld min",
-        name, [yFormatter stringFromDate:self.workout.date], smartText, self.workout.numExercises, self.workout.numSets, self.workout.volume,
-        self.settings.weightSuffix, [[dFormatter stringFromDate:self.workout.date] lowercaseString], self.workout.duration/60];
+    NSString *str = [NSString stringWithFormat:
+                     @"%@ (%@)\n%@Exercises: %lld, Sets: %lld\nVolume: %lld %@\nStart: %@, Duration: %lld min",
+                     name, [yFormatter stringFromDate:self.workout.date], smartText,
+                     self.workout.numExercises, self.workout.numSets, self.workout.volume,
+                     self.settings.weightSuffix, [[dFormatter stringFromDate:self.workout.date] lowercaseString],
+                     self.workout.duration/60];
     NSMutableAttributedString *aStr = [[NSMutableAttributedString alloc] initWithString:str];
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     paragraphStyle.minimumLineHeight = 20;
@@ -169,16 +172,19 @@
 }
 
 - (IBAction)durationButtonPressed:(UIButton *)sender {
-    UIAlertController * alertController = [UIAlertController alertControllerWithTitle: @"Manual Duration"
-                                                                              message: @"Please enter your workout duration in minutes. Be aware that if you continue adding sets workout duration will still increment."
-                                                                       preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController * alertController =
+        [UIAlertController alertControllerWithTitle: @"Manual Duration"
+                                            message: @"Please enter your workout duration in minutes. Be aware that if you continue adding sets workout duration will still increment."
+                                     preferredStyle:UIAlertControllerStyleAlert];
     [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.placeholder = [NSString stringWithFormat:@"%lld mins", self.workout.duration/60];
         textField.textColor = [UIColor darkGrayColor];
         textField.font = [UIFont systemFontOfSize:15 weight:UIFontWeightRegular];
         textField.keyboardType = UIKeyboardTypeNumberPad;
     }];
-    [alertController addAction:[UIAlertAction actionWithTitle:@"Done" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Done"
+                                                        style:UIAlertActionStyleDefault
+                                                      handler:^(UIAlertAction *action) {
         UITextField *durationField = alertController.textFields.firstObject;
         if (durationField.text && durationField.text.length > 0)
             self.workout.duration = durationField.text.integerValue * 60;
