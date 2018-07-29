@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSString *name;
 @property (nullable, nonatomic, copy) NSString *smartName;
 @property (nullable, nonatomic, copy) NSDate *date;
+@property (nonatomic) BOOL dateModified;
 @property (nonatomic) BOOL factoredIntoTotals;
 @property (nonatomic) int64_t duration;
 @property (nonatomic) int64_t volume;

@@ -18,7 +18,7 @@
 #import "BT1RMCalculator.h"
 #import "BTAchievement+CoreDataClass.h"
 
-#define DATA_TRANSFER_VERSION 5
+#define DATA_TRANSFER_VERSION 6
 
 @implementation BTDataTransferManager
 
@@ -142,6 +142,7 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
     workoutModel.date = [dateFormatter stringFromDate:workout.date];
+    workoutModel.dateModified = workout.dateModified;
     workoutModel.duration = [NSNumber numberWithInteger:(int)workout.duration];
     workoutModel.exercises = (NSMutableArray <BTExerciseModel *><BTExerciseModel> *)[NSMutableArray array];
     for (BTExercise *exercise in workout.exercises) {
@@ -171,6 +172,7 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
     workout.date = (workoutModel.date) ? [dateFormatter dateFromString: workoutModel.date] : [NSDate date];
+    workout.dateModified = workoutModel.dateModified;
     workout.duration = (workoutModel.duration) ? workoutModel.duration.integerValue : 0;
     workout.summary = @"0";
     NSMutableArray <NSMutableArray <NSNumber *> *> *tempSupersets = [NSMutableArray array];

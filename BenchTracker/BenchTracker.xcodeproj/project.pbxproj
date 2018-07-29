@@ -205,6 +205,7 @@
 		50060FDC1F33BB8E00F6DC00 /* BTWorkoutModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BTWorkoutModel.m; path = BenchTracker/BTWorkoutModel.m; sourceTree = "<group>"; };
 		50145692210E2ED700004AFD /* AdjustTimesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdjustTimesViewController.h; sourceTree = "<group>"; };
 		50145693210E2ED700004AFD /* AdjustTimesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdjustTimesViewController.m; sourceTree = "<group>"; };
+		50145696210E5B8D00004AFD /* BTDataModel13.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BTDataModel13.xcdatamodel; sourceTree = "<group>"; };
 		502145A11FDE5ABE00048F46 /* WorkoutSummaryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WorkoutSummaryViewController.h; sourceTree = "<group>"; };
 		502145A21FDE5ABE00048F46 /* WorkoutSummaryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WorkoutSummaryViewController.m; sourceTree = "<group>"; };
 		5025A2AA20199A0800CFEF0E /* BTDataModel9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BTDataModel9.xcdatamodel; sourceTree = "<group>"; };
@@ -2303,6 +2304,7 @@
 		F9DA750F1F02DC1700347B0D /* BTDataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				50145696210E5B8D00004AFD /* BTDataModel13.xcdatamodel */,
 				50D3E79B2022F40C00D83769 /* BTDataModel12.xcdatamodel */,
 				50CF4D9820215F3400B55679 /* BTDataModel11.xcdatamodel */,
 				50669E712021123F007F603F /* BTDataModel10.xcdatamodel */,
@@ -2316,7 +2318,7 @@
 				50FB89931F5A48A3002EA7A4 /* BTDataModel2.xcdatamodel */,
 				F9DA75101F02DC1700347B0D /* BTDataModel.xcdatamodel */,
 			);
-			currentVersion = 50D3E79B2022F40C00D83769 /* BTDataModel12.xcdatamodel */;
+			currentVersion = 50145696210E5B8D00004AFD /* BTDataModel13.xcdatamodel */;
 			path = BTDataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

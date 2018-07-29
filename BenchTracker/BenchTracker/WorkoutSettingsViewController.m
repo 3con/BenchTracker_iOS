@@ -94,7 +94,7 @@
                      self.workout.duration/60];
     NSMutableAttributedString *aStr = [[NSMutableAttributedString alloc] initWithString:str];
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    paragraphStyle.minimumLineHeight = 20;
+    paragraphStyle.minimumLineHeight = 16;
     paragraphStyle.alignment = NSTextAlignmentCenter;
     [aStr addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, aStr.length)];
     self.detailLabel.attributedText = aStr;

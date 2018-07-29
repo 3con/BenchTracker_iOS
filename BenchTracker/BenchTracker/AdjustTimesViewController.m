@@ -81,7 +81,7 @@
 
 - (void)updateAutoDurationState {
     self.durationLabel.text = (self.autoSwitchView.isOn) ? [NSString stringWithFormat:@"Duration: %lld min", self.workout.duration/60] : @"Duration:";
-    self.contentViewHeightConstraint.constant = (self.autoSwitchView.isOn) ? 240 : 320;
+    self.contentViewHeightConstraint.constant = (self.autoSwitchView.isOn) ? 265 : 360;
     [UIView animateWithDuration:.25 animations:^{
         self.durationPickerView.alpha = !self.autoSwitchView.isOn;
         self.autoTextLabel.alpha = self.autoSwitchView.isOn;
@@ -170,6 +170,7 @@
     day = [day dateByAddingTimeInterval:((rawHour == 11) ? 0 : rawHour + 1)*60*60];
     day = [day dateByAddingTimeInterval:[self.startTimePickerView selectedRowInComponent:2]*60];
     day = [day dateByAddingTimeInterval:[self.startTimePickerView selectedRowInComponent:3]*60*60*12];
+    self.workout.dateModified = fabs([date timeIntervalSinceDate:NSDate.date]) > 36*60*60; //36 hours before dateModified = YES
     return day;
 }
 
