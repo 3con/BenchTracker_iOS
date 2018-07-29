@@ -15,7 +15,6 @@
 #import "ExerciseTableViewCell.h"
 #import "PassTouchesView.h"
 #import "BTSettings+CoreDataClass.h"
-#import "Appirater.h"
 #import "AppDelegate.h"
 
 @interface WorkoutViewController ()
@@ -74,10 +73,7 @@
     self.deleteWorkoutButton.layer.cornerRadius = 12.5;
     self.deleteWorkoutButton.clipsToBounds = YES;
     if (!self.context) self.context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
-    if (!self.workout) {
-        [Appirater userDidSignificantEvent:YES];
-        self.workout = [BTWorkout workout];
-    }
+    if (!self.workout) self.workout = [BTWorkout workout];
     [BTUser removeWorkoutFromTotals:self.workout];
     self.settings.activeWorkoutBeforeDuration = self.workout.duration;
     BOOL placeholder = true;

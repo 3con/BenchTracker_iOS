@@ -17,6 +17,7 @@
 #import "BTWorkoutTemplate+CoreDataClass.h"
 #import "BTAchievement+CoreDataClass.h"
 #import "WZLBadgeImport.h"
+#import "Appirater.h"
 
 @interface MainViewController ()
 
@@ -727,7 +728,9 @@
     self.animator.direction = ZFModalTransitonDirectionBottom;
     wssVC.transitioningDelegate = self.animator;
     wssVC.modalPresentationStyle = UIModalPresentationCustom;
-    [self presentViewController:wssVC animated:YES completion:nil];
+    [self presentViewController:wssVC animated:YES completion:^{
+        [Appirater userDidSignificantEvent:YES];
+    }];
 }
 
 - (void)presentWorkoutSelectionViewControllerWithOriginPoint:(CGPoint)point date:(NSDate *)date {

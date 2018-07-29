@@ -53,7 +53,7 @@
     [Appirater setAppId:@"1266077653"];
     [Appirater setDaysUntilPrompt:999];
     [Appirater setUsesUntilPrompt:999];
-    [Appirater setSignificantEventsUntilPrompt:5];
+    [Appirater setSignificantEventsUntilPrompt:2];
     [Appirater setTimeBeforeReminding:3];
     [Appirater setCustomAlertTitle:@"Rate Weightlifting App"];
     [Appirater setCustomAlertMessage:@"If you are enjoying using Weightlifting App, would you mind taking a moment to rate it? It truly means the world to us. Your support is what keeps us going!"];

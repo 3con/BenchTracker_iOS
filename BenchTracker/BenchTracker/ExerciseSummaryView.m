@@ -47,7 +47,7 @@
             total1RM += exercise.oneRM;
             total ++;
         }
-        self.average1RM = total1RM/total;
+        self.average1RM = (total > 0) ? total1RM/total : 0;
         dispatch_async(dispatch_get_main_queue(), ^{
             [self loadHeaderLabelsWithRatio:@1];
         });
