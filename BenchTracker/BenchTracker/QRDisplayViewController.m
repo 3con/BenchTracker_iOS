@@ -97,7 +97,6 @@
         self.contentView.alpha = 0.0;
         self.doneButton.alpha = 0.0;
     } completion:^(BOOL finished) {
-        [self.delegate QRDisplayViewControllerWillDismiss:self];
         [self dismissViewControllerAnimated:NO completion:nil];
     }];
 }

@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIView *navView;
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (weak, nonatomic) IBOutlet UIButton *settingsButton;
+@property (weak, nonatomic) IBOutlet UIButton *adjustTimesButton;
 
 @property (weak, nonatomic) IBOutlet UIButton *finishWorkoutButton;
 @property (weak, nonatomic) IBOutlet UIButton *deleteWorkoutButton;
@@ -169,6 +170,11 @@
     [self presentSettingsViewControllerWithPoint:sender.center];
 }
 
+- (IBAction)adjustTimesButtonPressed:(UIButton *)sender {
+    self.addExerciseButton.hidden = YES;
+    [self presentAdjustTimesViewControllerWithPoint:sender.center];
+}
+
 - (IBAction)addExerciseButtonPressed:(UIButton *)sender {
     [self presentAddExerciseViewController];
 }   
@@ -232,14 +238,14 @@
         [UIAlertController alertControllerWithTitle:@"Delete Workout"
                                             message:@"Are you sure you want to delete this workout? You will lose all of your hard work! This action cannot be undone."
                                      preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction* deleteButton = [UIAlertAction actionWithTitle:@"Delete"
+    UIAlertAction *deleteButton = [UIAlertAction actionWithTitle:@"Delete"
                                                            style:UIAlertActionStyleDestructive
                                                          handler:^(UIAlertAction * action) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [self deleteWorkout];
         });
     }];
-    UIAlertAction* cancelButton = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *cancelButton = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
     [alert addAction:cancelButton];
     [alert addAction:deleteButton];
     [self presentViewController:alert animated:YES completion:nil];
@@ -626,6 +632,13 @@
     self.addExerciseButton.hidden = NO;
 }
 
+#pragma mark - adjustTimesVC delegate
+
+- (void)adjustTimesViewControllerWillDismiss:(AdjustTimesViewController *)adjustTimesVC {
+    [self updateWorkout];
+    self.addExerciseButton.hidden = NO;
+}
+
 #pragma mark - view handling
 
 - (void)presentAddExerciseViewController {
@@ -678,6 +691,24 @@
     wseVC.transitioningDelegate = self.animator;
     wseVC.modalPresentationStyle = UIModalPresentationCustom;
     [self presentViewController:wseVC animated:YES completion:nil];
+}
+
+- (void)presentAdjustTimesViewControllerWithPoint:(CGPoint)point {
+    AdjustTimesViewController *atVC = [self.storyboard instantiateViewControllerWithIdentifier:@"at"];
+    atVC.delegate = self;
+    atVC.point = point;
+    atVC.context = self.context;
+    atVC.workout = self.workout;
+    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:atVC];
+    self.animator.bounces = NO;
+    self.animator.dragable = NO;
+    self.animator.behindViewAlpha = 1.0;
+    self.animator.behindViewScale = 1.0;
+    self.animator.transitionDuration = 0;
+    self.animator.direction = ZFModalTransitonDirectionBottom;
+    atVC.transitioningDelegate = self.animator;
+    atVC.modalPresentationStyle = UIModalPresentationCustom;
+    [self presentViewController:atVC animated:YES completion:nil];
 }
 
 - (void)presentEditSmartNamesViewController {

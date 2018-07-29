@@ -110,7 +110,8 @@
 }
 
 - (IBAction)adjustDatesButtonPressed:(UIButton *)sender {
-    NSLog(@"g");
+    [self presentAdjustTimesViewControllerWithPoint:[self.view convertPoint:sender.center fromView:self.contentView]];
+    self.doneButton.hidden = YES;
 }
 
 - (IBAction)qrButtonPressed:(UIButton *)sender {
@@ -194,19 +195,44 @@
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
-#pragma mark - printInteractionVC delegate
+#pragma mark - adjustTimesVC delegate
 
-- (void)printInteractionControllerWillDismissPrinterOptions:(UIPrintInteractionController *)printInteractionController {
-    
+- (void)adjustTimesViewControllerWillDismiss:(AdjustTimesViewController *)adjustTimesVC {
+    [self updateInfo];
+    self.doneButton.hidden = NO;
 }
 
-#pragma mark - qrView delegate
+#pragma mark - qrVC delegate
 
 - (void)QRDisplayViewControllerWillDismiss:(QRDisplayViewController *)qrDisplayVC {
     self.doneButton.hidden = NO;
 }
 
+#pragma mark - printInteractionVC delegate
+
+- (void)printInteractionControllerWillDismissPrinterOptions:(UIPrintInteractionController *)printController {
+    
+}
+
 #pragma mark - view handling
+
+- (void)presentAdjustTimesViewControllerWithPoint:(CGPoint)point {
+    AdjustTimesViewController *atVC = [self.storyboard instantiateViewControllerWithIdentifier:@"at"];
+    atVC.delegate = self;
+    atVC.point = point;
+    atVC.context = self.context;
+    atVC.workout = self.workout;
+    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:atVC];
+    self.animator.bounces = NO;
+    self.animator.dragable = NO;
+    self.animator.behindViewAlpha = 1.0;
+    self.animator.behindViewScale = 1.0;
+    self.animator.transitionDuration = 0;
+    self.animator.direction = ZFModalTransitonDirectionBottom;
+    atVC.transitioningDelegate = self.animator;
+    atVC.modalPresentationStyle = UIModalPresentationCustom;
+    [self presentViewController:atVC animated:YES completion:nil];
+}
 
 - (void)presentQRDisplayViewControllerWithPoint:(CGPoint)point {
     NSString *jsonString = [BTWorkout jsonForWorkout:self.workout];
@@ -227,26 +253,6 @@
     qVC.modalPresentationStyle = UIModalPresentationCustom;
     [self presentViewController:qVC animated:YES completion:nil];
 }
-
-#pragma mark - scrollView delegate
-
-//- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity
-//              targetContentOffset:(inout CGPoint *)targetContentOffset {
-//    bool neglegable = fabs(velocity.y) < 0.2;
-//    float offset = fabs(scrollView.contentOffset.y);
-//    bool offsetPositive = scrollView.contentOffset.y >= 0;
-//    bool velocityPositive = velocity.y >= 0;
-//    if (neglegable && offset < 60.0) { } //no dismiss
-//    else if (!neglegable && (offsetPositive != velocityPositive)) { } //no dismiss
-//    else { //dismiss
-//        [self animateOut];
-//        [UIView animateWithDuration:.75 delay:.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-//            if (scrollView.contentOffset.y >= 0)
-//                scrollView.center = CGPointMake(scrollView.center.x, scrollView.center.y-scrollView.frame.size.height);
-//            else scrollView.center = CGPointMake(scrollView.center.x, scrollView.center.y+scrollView.frame.size.height);
-//        } completion:^(BOOL finished) {}];
-//    }
-//}
 
 #pragma mark - animation
 

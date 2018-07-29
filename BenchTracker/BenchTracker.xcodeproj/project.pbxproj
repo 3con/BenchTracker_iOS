@@ -17,6 +17,7 @@
 		500544E51FDF313B00BB836F /* WorkoutMilestone.m in Sources */ = {isa = PBXBuildFile; fileRef = 500544E41FDF313B00BB836F /* WorkoutMilestone.m */; };
 		50060FDA1F33A83B00F6DC00 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50060FD91F33A83B00F6DC00 /* Assets.xcassets */; };
 		50060FDD1F33BB8E00F6DC00 /* BTWorkoutModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50060FDC1F33BB8E00F6DC00 /* BTWorkoutModel.m */; };
+		50145694210E2ED700004AFD /* AdjustTimesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50145693210E2ED700004AFD /* AdjustTimesViewController.m */; };
 		502145A41FDE5ABE00048F46 /* WorkoutSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 502145A21FDE5ABE00048F46 /* WorkoutSummaryViewController.m */; };
 		502ABF7E1FE42A8C00C0232C /* AWSUsername.m in Sources */ = {isa = PBXBuildFile; fileRef = 502ABF7D1FE42A8C00C0232C /* AWSUsername.m */; };
 		502ABF821FE441CA00C0232C /* LeaderboardViewButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 502ABF811FE441CA00C0232C /* LeaderboardViewButton.m */; };
@@ -202,6 +203,8 @@
 		50060FD91F33A83B00F6DC00 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		50060FDB1F33BB8E00F6DC00 /* BTWorkoutModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BTWorkoutModel.h; path = BenchTracker/BTWorkoutModel.h; sourceTree = "<group>"; };
 		50060FDC1F33BB8E00F6DC00 /* BTWorkoutModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BTWorkoutModel.m; path = BenchTracker/BTWorkoutModel.m; sourceTree = "<group>"; };
+		50145692210E2ED700004AFD /* AdjustTimesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdjustTimesViewController.h; sourceTree = "<group>"; };
+		50145693210E2ED700004AFD /* AdjustTimesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdjustTimesViewController.m; sourceTree = "<group>"; };
 		502145A11FDE5ABE00048F46 /* WorkoutSummaryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WorkoutSummaryViewController.h; sourceTree = "<group>"; };
 		502145A21FDE5ABE00048F46 /* WorkoutSummaryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WorkoutSummaryViewController.m; sourceTree = "<group>"; };
 		5025A2AA20199A0800CFEF0E /* BTDataModel9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BTDataModel9.xcdatamodel; sourceTree = "<group>"; };
@@ -564,6 +567,15 @@
 			name = WorkoutModel;
 			sourceTree = "<group>";
 		};
+		50145695210E2EE000004AFD /* Adjust times vc */ = {
+			isa = PBXGroup;
+			children = (
+				50145692210E2ED700004AFD /* AdjustTimesViewController.h */,
+				50145693210E2ED700004AFD /* AdjustTimesViewController.m */,
+			);
+			name = "Adjust times vc";
+			sourceTree = "<group>";
+		};
 		502145A61FDE5ACC00048F46 /* Summary vc */ = {
 			isa = PBXGroup;
 			children = (
@@ -693,6 +705,9 @@
 			children = (
 				50530C281F511BC600472426 /* WorkoutSettingsViewController.h */,
 				50530C291F511BC600472426 /* WorkoutSettingsViewController.m */,
+				50145695210E2EE000004AFD /* Adjust times vc */,
+				F917BB611F0DD40500614AB1 /* QR display vc */,
+				F917BB511F0D24EB00614AB1 /* PDF generator */,
 			);
 			name = "Settings vc";
 			sourceTree = "<group>";
@@ -1307,8 +1322,6 @@
 				F95F93421F03738B00A19C4D /* WorkoutViewController.h */,
 				F95F93431F03738B00A19C4D /* WorkoutViewController.m */,
 				50530C2B1F511BCA00472426 /* Settings vc */,
-				F917BB611F0DD40500614AB1 /* QR display vc */,
-				F917BB511F0D24EB00614AB1 /* PDF generator */,
 				F96207731F05DCF800DE2330 /* Exercise tvc */,
 				F9F522F11F193E4400061AF0 /* Pass touches view */,
 				502145A61FDE5ACC00048F46 /* Summary vc */,
@@ -1931,6 +1944,7 @@
 				50B8908120427F5E000E7FE3 /* ExerciseSummaryView.m in Sources */,
 				500544E01FDF2D5100BB836F /* WorkoutSummaryTableViewCell.m in Sources */,
 				5099F1BA1F5F637A000A6DE4 /* BTAchievement+CoreDataClass.m in Sources */,
+				50145694210E2ED700004AFD /* AdjustTimesViewController.m in Sources */,
 				F9DA75281F02EE9600347B0D /* BTWorkout+CoreDataClass.m in Sources */,
 				F9DA75271F02EE9600347B0D /* BTExerciseType+CoreDataProperties.m in Sources */,
 				F9A5494E1F13075600743897 /* AnalyticsViewController.m in Sources */,
