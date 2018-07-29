@@ -109,17 +109,13 @@
 }
 
 + (BTWorkout *)workoutForWorkoutTemplate:(BTWorkoutTemplate *)workoutTemplate {
-    NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
     BTWorkout *workout = [BTWorkout workout];
     workout.name = workoutTemplate.name;
     workout.summary = workoutTemplate.summary;
     workout.supersets = workoutTemplate.supersets;
     for (BTExerciseTemplate *eT in workoutTemplate.exercises) {
-        BTExercise *exercise = [NSEntityDescription insertNewObjectForEntityForName:@"BTExercise" inManagedObjectContext:context];
-        exercise.name = eT.name;
-        exercise.iteration = eT.iteration;
-        exercise.category = eT.category;
-        exercise.style = eT.style;
+        BTExercise *exercise = [BTExerciseTemplate exerciseForExerciseTemplate:eT];
+        exercise.workout = workout;
         [workout addExercisesObject:exercise];
     }
     return workout;

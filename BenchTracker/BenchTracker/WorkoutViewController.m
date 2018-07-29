@@ -527,14 +527,18 @@
     NSMutableArray <NSIndexPath *> *indexPaths = [[NSMutableArray alloc] init];
     if (!superset) {
         for (NSArray *tiCombo in selectedTypeIterationCombinations) {
-            [self.workout addExercisesObject:[self exerciseForExerciseType:tiCombo[0] iteration:tiCombo[1]]];
+            BTExercise *exercise = [BTExercise exerciseForExerciseType:tiCombo[0] iteration:tiCombo[1]];
+            exercise.workout = self.workout;
+            [self.workout addExercisesObject:exercise];
             [indexPaths addObject:[NSIndexPath indexPathForRow:self.workout.exercises.count-1 inSection:0]];
         }
     }
     else {
         NSMutableArray <NSNumber *> *supersetArr = [[NSMutableArray alloc] init];
         for (NSArray *tiCombo in selectedTypeIterationCombinations) {
-            [self.workout addExercisesObject:[self exerciseForExerciseType:tiCombo[0] iteration:tiCombo[1]]];
+            BTExercise *exercise = [BTExercise exerciseForExerciseType:tiCombo[0] iteration:tiCombo[1]];
+            exercise.workout = self.workout;
+            [self.workout addExercisesObject:exercise];
             [supersetArr addObject:[NSNumber numberWithInt:(int)self.workout.exercises.count-1]];
             [indexPaths addObject:[NSIndexPath indexPathForRow:self.workout.exercises.count-1 inSection:0]];
         }
@@ -549,18 +553,6 @@
     [self.tableView endUpdates];
     [CATransaction commit];
     [self updateWorkout];
-}
-
-- (BTExercise *)exerciseForExerciseType: (BTExerciseType *)type iteration: (id)iteration {
-    BTExercise *exercise = [NSEntityDescription insertNewObjectForEntityForName:@"BTExercise" inManagedObjectContext:self.context];
-    exercise.name = type.name;
-    exercise.iteration = ([iteration isKindOfClass:[NSNull class]]) ? nil : iteration;
-    exercise.category = type.category;
-    exercise.style = type.style;
-    exercise.oneRM = 0;
-    exercise.sets = [NSKeyedArchiver archivedDataWithRootObject:[[NSMutableArray alloc] init]];
-    exercise.workout = self.workout;
-    return exercise;
 }
 
 #pragma mark - exerciseVC delegate

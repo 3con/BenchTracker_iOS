@@ -34,10 +34,13 @@ typedef struct {
 NS_ASSUME_NONNULL_BEGIN
 
 @class BTWorkout;
+@class BTExerciseType;
 
 @interface BTExercise : NSManagedObject
 
 @property (nonatomic, readonly) NSInteger numberOfSets;
+
++ (BTExercise *)exerciseForExerciseType:(BTExerciseType *)type iteration:(id)iteration;
 
 - (void)calculateOneRM;
 

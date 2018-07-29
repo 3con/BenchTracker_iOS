@@ -8,10 +8,24 @@
 
 #import "BTExercise+CoreDataClass.h"
 #import "BTWorkout+CoreDataClass.h"
+#import "BTExerciseType+CoreDataClass.h"
 #import "BT1RMCalculator.h"
 #import "AppDelegate.h"
 
 @implementation BTExercise
+
++ (BTExercise *)exerciseForExerciseType:(BTExerciseType *)type iteration:(id)iteration {
+    NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    BTExercise *exercise = [NSEntityDescription insertNewObjectForEntityForName:@"BTExercise" inManagedObjectContext:context];
+    exercise.name = type.name;
+    exercise.iteration = ([iteration isKindOfClass:[NSNull class]]) ? nil : iteration;
+    exercise.category = type.category;
+    exercise.style = type.style;
+    exercise.oneRM = 0;
+    exercise.volume = 0;
+    exercise.sets = [NSKeyedArchiver archivedDataWithRootObject:@[].mutableCopy];
+    return exercise;
+}
 
 - (NSInteger)numberOfSets {
     return [[NSKeyedUnarchiver unarchiveObjectWithData:self.sets] count];

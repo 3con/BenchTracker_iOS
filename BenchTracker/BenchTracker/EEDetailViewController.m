@@ -61,7 +61,7 @@
     [form addFormSection:section];
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"name" rowType:XLFormRowDescriptorTypeText title:@"Name"];
     row.value = (self.type) ? self.type.name : @"";
-    [row.cellConfig setObject:[UIColor BTBlackColor] forKey:@"textField.textColor"];
+    row.cellConfig[@"textField.textColor"] = [UIColor BTBlackColor];
     [section addFormRow:row];
     
     // Section 2: Category

@@ -13,7 +13,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class BTExercise;
+
 @interface BTExerciseTemplate : NSManagedObject
+
++ (BTExercise *)exerciseForExerciseTemplate:(BTExerciseTemplate *)exerciseTemplate;
 
 @end
 

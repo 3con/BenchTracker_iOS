@@ -324,7 +324,7 @@
 #pragma mark - pickerView delegate
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    if (component == 1) {//right
+    if (component == 1) { //right
         NSInteger weight = [pickerView viewForRow:row forComponent:component].tag;
         self.rightTextField.text = (weight != 11) ? [NSString stringWithFormat:@"%ld",(long)weight] : @"12.5";
     }
