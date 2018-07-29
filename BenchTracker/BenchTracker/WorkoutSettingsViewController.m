@@ -22,6 +22,7 @@
 
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 
+@property (weak, nonatomic) IBOutlet UIButton *adjustDatesButton;
 @property (weak, nonatomic) IBOutlet UIButton *qrButton;
 @property (weak, nonatomic) IBOutlet UIButton *printButton;
 @property (weak, nonatomic) IBOutlet UIButton *templateButton;
@@ -51,7 +52,8 @@
 - (void)updateInterface {
     self.contentView.backgroundColor = [UIColor BTPrimaryColor];
     self.backgroundView.backgroundColor = [UIColor BTModalViewBackgroundColor];
-    for (UIButton *button in @[self.qrButton, self.printButton, self.templateButton, self.darkModeButton]) {
+    for (UIButton *button in @[self.adjustDatesButton, self.qrButton, self.printButton,
+                               self.templateButton, self.darkModeButton]) {
         button.layer.cornerRadius = 12;
         button.clipsToBounds = YES;
         button.backgroundColor = [UIColor BTSecondaryColor];
@@ -88,9 +90,8 @@
         name, [yFormatter stringFromDate:self.workout.date], smartText, self.workout.numExercises, self.workout.numSets, self.workout.volume,
         self.settings.weightSuffix, [[dFormatter stringFromDate:self.workout.date] lowercaseString], self.workout.duration/60];
     NSMutableAttributedString *aStr = [[NSMutableAttributedString alloc] initWithString:str];
-    //[aStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0,5)];
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    paragraphStyle.minimumLineHeight = 22;
+    paragraphStyle.minimumLineHeight = 20;
     paragraphStyle.alignment = NSTextAlignmentCenter;
     [aStr addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, aStr.length)];
     self.detailLabel.attributedText = aStr;
@@ -103,6 +104,10 @@
 
 - (IBAction)doneButtonPressed:(UIButton *)sender {
     [self animateOut];
+}
+
+- (IBAction)adjustDatesButtonPressed:(UIButton *)sender {
+    NSLog(@"g");
 }
 
 - (IBAction)qrButtonPressed:(UIButton *)sender {
