@@ -167,9 +167,10 @@
     
     for (XLFormSectionDescriptor *section in form.formSections) {
         for (XLFormRowDescriptor *row in section.formRows) {
-            row.cellConfig[@"backgroundColor"] = [UIColor colorWithWhite:.64 alpha:.1];
-            row.cellConfig[@"textLabel.textColor"] = [UIColor BTBlackColor];
+            row.cellConfig[@"backgroundColor"] = UIColor.BTGroupTableViewCellColor;
+            row.cellConfig[@"textLabel.textColor"] = UIColor.BTBlackColor;
             row.cellConfig[@"textLabel.textAlignment"] = @(NSTextAlignmentNatural);
+            row.cellConfig[@"selectionStyle"] = @(UITableViewCellSelectionStyleNone);
         }
     }
     self.form = form;

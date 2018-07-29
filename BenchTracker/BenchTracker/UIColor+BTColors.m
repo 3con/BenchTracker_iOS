@@ -102,9 +102,17 @@
     }
 }
 
-+ (UIColor *)BTGroupTableViewBackgroundColor { //rgb(235,235,241)
++ (UIColor *)BTGroupTableViewCellColor {
     switch ([self colorScheme]) {
         case 0: return [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1];
+        case 1: return [UIColor colorWithRed:36/255.0 green:51/255.0 blue:72/255.0 alpha:1];
+        default: return nil;
+    }
+}
+
++ (UIColor *)BTGroupTableViewBackgroundColor { //rgb(235,235,241)
+    switch ([self colorScheme]) {
+        case 0: return [UIColor colorWithRed:235/255.0 green:235/255.0 blue:241/255.0 alpha:1];
         case 1: return [UIColor colorWithRed:26/255.0 green:39/255.0 blue:55/255.0 alpha:1];
         default: return nil;
     }

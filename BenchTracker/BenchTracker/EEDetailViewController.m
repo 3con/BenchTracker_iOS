@@ -92,15 +92,16 @@
     section.multivaluedTag = @"variations";
     section.multivaluedAddButton.title = @"Add a variation";
     row = [XLFormRowDescriptor formRowDescriptorWithTag:nil rowType:XLFormRowDescriptorTypeText title:nil];
-    row.cellConfig[@"textField.placeholder"] = @"Variation name";
-    row.cellConfig[@"backgroundColor"] = [UIColor colorWithWhite:1 alpha:.1];
-    row.cellConfig[@"textLabel.textColor"] = [UIColor BTBlackColor];
-    row.cellConfig[@"tintColor"] = [UIColor BTSecondaryColor];
+    row.cellConfig[@"backgroundColor"] = UIColor.BTGroupTableViewCellColor;
+    row.cellConfig[@"textField.textColor"] = UIColor.BTBlackColor;
+    row.cellConfig[@"textField.attributedPlaceholder"] = [[NSAttributedString alloc] initWithString:@"Variation name"
+                                                                                         attributes:@{NSForegroundColorAttributeName: UIColor.lightGrayColor}];
+    row.cellConfig[@"tintColor"] = UIColor.BTBlackColor;
     section.multivaluedRowTemplate = row;
     if (self.type) {
-        for (NSString *varitaion in [NSKeyedUnarchiver unarchiveObjectWithData:self.type.iterations]) {
+        for (NSString *variation in [NSKeyedUnarchiver unarchiveObjectWithData:self.type.iterations]) {
             row = [section.multivaluedRowTemplate copy];
-            row.value = varitaion;
+            row.value = variation;
             [section addFormRow:row];
         }
     }
@@ -116,9 +117,9 @@
     
     for (XLFormSectionDescriptor *section in form.formSections) {
         for (XLFormRowDescriptor *row in section.formRows) {
-            row.cellConfig[@"backgroundColor"] = [UIColor colorWithWhite:.64 alpha:.1];
-            row.cellConfig[@"textLabel.textColor"] = [UIColor BTBlackColor];
-            row.cellConfig[@"tintColor"] = [UIColor BTSecondaryColor];
+            row.cellConfig[@"backgroundColor"] = UIColor.BTGroupTableViewCellColor;
+            row.cellConfig[@"textLabel.textColor"] = UIColor.BTBlackColor;
+            row.cellConfig[@"tintColor"] = UIColor.BTBlackColor;
         }
     }
     self.form = form;

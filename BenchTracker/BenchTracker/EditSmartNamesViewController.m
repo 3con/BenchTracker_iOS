@@ -89,21 +89,21 @@
     
     for (XLFormSectionDescriptor *section in form.formSections) {
         for (XLFormRowDescriptor *row in section.formRows) {
-            row.cellConfig[@"backgroundColor"] = [UIColor colorWithWhite:.64 alpha:.1];
+            row.cellConfig[@"backgroundColor"] = UIColor.BTGroupTableViewCellColor;
             row.height = 45;
-            if ([row.tag isEqualToString:@"reset"])
-                continue;
-            row.cellConfig[@"textLabel.textColor"] = [UIColor BTBlackColor];
+            if ([row.tag isEqualToString:@"reset"]) continue;
+            row.cellConfig[@"textLabel.textColor"] = UIColor.BTBlackColor;
             row.cellConfig[@"textLabel.textAlignment"] = @(NSTextAlignmentNatural);
             row.cellConfig[@"textLabel.font"] = [UIFont systemFontOfSize:15 weight:UIFontWeightMedium];
-            row.cellConfig[@"textField.textColor"] = [UIColor BTBlackColor];
+            row.cellConfig[@"textField.textColor"] = UIColor.BTBlackColor;
             row.cellConfig[@"textField.textAlignment"] = @(NSTextAlignmentRight);
             row.cellConfig[@"textField.font"] = [UIFont systemFontOfSize:15 weight:UIFontWeightRegular];
-            row.cellConfig[@"tintColor"] = [UIColor BTSecondaryColor];
+            row.cellConfig[@"tintColor"] = UIColor.BTBlackColor;
+            row.cellConfig[@"selectionStyle"] = @(UITableViewCellSelectionStyleNone);
             if (self.selectedSmartName && [row.tag isEqualToString:self.selectedSmartName]) {
-                row.cellConfig[@"textLabel.textColor"] = [UIColor BTRedColor];
-                row.cellConfig[@"textField.textColor"] = [UIColor BTRedColor];
-                row.cellConfig[@"tintColor"] = [UIColor BTRedColor];
+                row.cellConfig[@"textLabel.textColor"] = UIColor.BTRedColor;
+                row.cellConfig[@"textField.textColor"] = UIColor.BTRedColor;
+                row.cellConfig[@"tintColor"] = UIColor.BTRedColor;
             }
         }
     }

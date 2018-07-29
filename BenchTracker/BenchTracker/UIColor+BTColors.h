@@ -38,6 +38,8 @@
 
 + (UIColor *)BTTableViewSelectionColor;
 
++ (UIColor *)BTGroupTableViewCellColor;
+
 + (UIColor *)BTGroupTableViewBackgroundColor;
 
 + (UIColor *)BTTableViewSeparatorColor;
