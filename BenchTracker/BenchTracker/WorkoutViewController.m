@@ -553,9 +553,10 @@
 
 #pragma mark - exerciseVC delegate
 
-- (void)exerciseViewController:(ExerciseViewController *)exerciseVC didRequestSaveWithEditedExercises:(NSArray<BTExercise *> *)exercises
-                                                                                     deletedExercises:(NSArray<BTExercise *> *)deleted
-                                                                                             animated:(BOOL)animated {
+- (void)exerciseViewController:(ExerciseViewController *)exerciseVC
+                                    didRequestSaveWithEditedExercises:(NSArray<BTExercise *> *)exercises
+                                                     deletedExercises:(NSArray<BTExercise *> *)deleted
+                                                             animated:(BOOL)animated {
     if (animated) {
         NSArray *deletedIndexPaths = [self resultIndexPathsFromDeleteExercisesActionWithExercises:deleted];
         [self.tableView beginUpdates];

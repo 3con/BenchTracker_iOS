@@ -127,9 +127,7 @@
 
 - (IBAction)doneButtonPressed:(UIButton *)sender {
     [self saveExercisesAnimated:YES];
-    [self dismissViewControllerAnimated:YES completion:^{
-                                 
-    }];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)saveExercisesAnimated:(BOOL)animated {

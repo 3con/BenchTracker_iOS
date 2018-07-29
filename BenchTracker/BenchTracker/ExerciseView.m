@@ -101,8 +101,7 @@
 }
 
 - (void)loadExercise:(BTExercise *)exercise {
-    self.previousExerciseButton.hidden = ![exercise lastInstance] ||
-                                         !self.settings.showLastWorkout ||
+    self.previousExerciseButton.hidden = !self.settings.showLastWorkout ||
                                          [exercise.style isEqualToString:STYLE_CUSTOM];
     self.previousExerciseButtonCenterConstraint.active = [exercise.style isEqualToString:STYLE_REPS] ||
                                                          [exercise.style isEqualToString:STYLE_TIME];
@@ -150,6 +149,8 @@
 #pragma mark - private methods
 
 - (void)selectAppropriatePickerViewRows {
+    self.leftTextField.text = @"10";
+    self.rightTextField.text = @"40";
     NSArray <NSString *> *set = [self.collectionView.sets.lastObject componentsSeparatedByString:@" "];
     NSArray <NSString *> *prevInstanceSets = [NSKeyedUnarchiver unarchiveObjectWithData:[self.exercise lastInstance].sets];
     if (!set && prevInstanceSets) set = [prevInstanceSets.firstObject componentsSeparatedByString:@" "];
@@ -178,6 +179,7 @@
         self.leftTextField.userInteractionEnabled = NO;
         self.rightTextField.alpha = 0;
         self.rightTextField.userInteractionEnabled = NO;
+        self.centerTextField.text = @"30";
         if (set) {
             [self selectRowClosestTo:set[1].floatValue inComponent:0];
             self.centerTextField.text = set[1];
@@ -186,6 +188,7 @@
     else { //TIME_WEIGHT
         self.centerTextField.alpha = 0;
         self.centerTextField.userInteractionEnabled = NO;
+        self.leftTextField.text = @"30";
         if (set) {
             [self selectRowClosestTo:set[1].floatValue inComponent:0];
             [self selectRowClosestTo:set[2].floatValue inComponent:1];
