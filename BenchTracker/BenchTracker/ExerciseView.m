@@ -149,14 +149,14 @@
 #pragma mark - private methods
 
 - (void)selectAppropriatePickerViewRows {
-    self.leftTextField.text = @"10";
-    self.rightTextField.text = @"40";
     NSArray <NSString *> *set = [self.collectionView.sets.lastObject componentsSeparatedByString:@" "];
     NSArray <NSString *> *prevInstanceSets = [NSKeyedUnarchiver unarchiveObjectWithData:[self.exercise lastInstance].sets];
     if (!set && prevInstanceSets) set = [prevInstanceSets.firstObject componentsSeparatedByString:@" "];
     if ([self styleIs:STYLE_REPSWEIGHT]) {
         self.centerTextField.alpha = 0;
         self.centerTextField.userInteractionEnabled = NO;
+        self.leftTextField.text = @"10";
+        self.rightTextField.text = @"40";
         if (set) {
             [self selectRowClosestTo:set[0].floatValue inComponent:0];
             [self selectRowClosestTo:set[1].floatValue inComponent:1];
@@ -169,6 +169,7 @@
         self.leftTextField.userInteractionEnabled = NO;
         self.rightTextField.alpha = 0;
         self.rightTextField.userInteractionEnabled = NO;
+        self.centerTextField.text = @"10";
         if (set) {
             [self selectRowClosestTo:set[0].floatValue inComponent:0];
             self.centerTextField.text = set[0];
@@ -189,6 +190,7 @@
         self.centerTextField.alpha = 0;
         self.centerTextField.userInteractionEnabled = NO;
         self.leftTextField.text = @"30";
+        self.rightTextField.text = @"40";
         if (set) {
             [self selectRowClosestTo:set[1].floatValue inComponent:0];
             [self selectRowClosestTo:set[2].floatValue inComponent:1];
