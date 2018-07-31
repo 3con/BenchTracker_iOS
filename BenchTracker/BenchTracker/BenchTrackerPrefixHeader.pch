@@ -11,5 +11,6 @@
 
 #import "UIColor+BTColors.h"
 #import "UIView+Toast.h"
+#import "Log.h"
 
 #endif /* BenchTrackerPrefixHeader_pch */

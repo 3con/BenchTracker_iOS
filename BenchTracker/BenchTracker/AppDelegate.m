@@ -19,6 +19,9 @@
 #import "BTDataTransferManager.h"
 #import "MainViewController.h"
 #import "WorkoutViewController.h"
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
+#import "Amplitude.h"
 
 #define ROOTVIEW [[[UIApplication sharedApplication] keyWindow] rootViewController]
 
@@ -60,6 +63,10 @@
     [Appirater setCustomAlertRateButtonTitle:@"Rate Weightlifting App"];
     [Appirater setDebug:NO];
     [Appirater appLaunched:YES];
+    //CRASHLYTICS
+    [Fabric with:@[[Crashlytics class]]];
+    //AMPLITUDE
+    [Amplitude.instance initializeApiKey:AMPLITUDE_KEY];
     return YES;
 }
 

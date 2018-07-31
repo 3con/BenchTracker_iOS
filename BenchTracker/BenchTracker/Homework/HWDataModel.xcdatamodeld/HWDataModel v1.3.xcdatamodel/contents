@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11147.23" systemVersion="16A201w" minimumToolsVersion="Xcode 7.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+    <entity name="HWCourse" representedClassName="HWCourse" syncable="YES">
+        <attribute name="color" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="period" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="courseList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="HWCourseList" inverseName="courses" inverseEntity="HWCourseList" syncable="YES"/>
+        <relationship name="dates" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="HWDate" inverseName="course" inverseEntity="HWDate" syncable="YES"/>
+    </entity>
+    <entity name="HWCourseList" representedClassName="HWCourseList" syncable="YES">
+        <relationship name="courses" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="HWCourse" inverseName="courseList" inverseEntity="HWCourse" syncable="YES"/>
+    </entity>
+    <entity name="HWDate" representedClassName="HWDate" syncable="YES">
+        <attribute name="dateAssigned" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="dateDue" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <attribute name="isCompleted" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="notificationInterval" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="notificationUID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="priority" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="HWCourse" inverseName="dates" inverseEntity="HWCourse" syncable="YES"/>
+    </entity>
+    <entity name="HWSettings" representedClassName="HWSettings" syncable="YES">
+        <attribute name="abbrevIsPeriod" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="dateTypes" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="defaultReminderTime" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="letterPeriods" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="manualDateAssinged" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="shiftDates" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="showImage" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="showNotes" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="spitWeekend" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="HWCourse" positionX="-36" positionY="9" width="128" height="118"/>
+        <element name="HWCourseList" positionX="-18" positionY="27" width="128" height="60"/>
+        <element name="HWDate" positionX="-54" positionY="-9" width="128" height="210"/>
+        <element name="HWSettings" positionX="-36" positionY="81" width="128" height="180"/>
+    </elements>
+</model>

@@ -18,6 +18,7 @@
 		50060FDA1F33A83B00F6DC00 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50060FD91F33A83B00F6DC00 /* Assets.xcassets */; };
 		50060FDD1F33BB8E00F6DC00 /* BTWorkoutModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50060FDC1F33BB8E00F6DC00 /* BTWorkoutModel.m */; };
 		50145694210E2ED700004AFD /* AdjustTimesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50145693210E2ED700004AFD /* AdjustTimesViewController.m */; };
+		501FEA1F21101AF700634766 /* Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 501FEA1E21101AF700634766 /* Log.m */; };
 		502145A41FDE5ABE00048F46 /* WorkoutSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 502145A21FDE5ABE00048F46 /* WorkoutSummaryViewController.m */; };
 		502ABF7E1FE42A8C00C0232C /* AWSUsername.m in Sources */ = {isa = PBXBuildFile; fileRef = 502ABF7D1FE42A8C00C0232C /* AWSUsername.m */; };
 		502ABF821FE441CA00C0232C /* LeaderboardViewButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 502ABF811FE441CA00C0232C /* LeaderboardViewButton.m */; };
@@ -206,6 +207,8 @@
 		50145692210E2ED700004AFD /* AdjustTimesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdjustTimesViewController.h; sourceTree = "<group>"; };
 		50145693210E2ED700004AFD /* AdjustTimesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdjustTimesViewController.m; sourceTree = "<group>"; };
 		50145696210E5B8D00004AFD /* BTDataModel13.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BTDataModel13.xcdatamodel; sourceTree = "<group>"; };
+		501FEA1D21101AF700634766 /* Log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Log.h; sourceTree = "<group>"; };
+		501FEA1E21101AF700634766 /* Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Log.m; sourceTree = "<group>"; };
 		502145A11FDE5ABE00048F46 /* WorkoutSummaryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WorkoutSummaryViewController.h; sourceTree = "<group>"; };
 		502145A21FDE5ABE00048F46 /* WorkoutSummaryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WorkoutSummaryViewController.m; sourceTree = "<group>"; };
 		5025A2AA20199A0800CFEF0E /* BTDataModel9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BTDataModel9.xcdatamodel; sourceTree = "<group>"; };
@@ -575,6 +578,15 @@
 				50145693210E2ED700004AFD /* AdjustTimesViewController.m */,
 			);
 			name = "Adjust times vc";
+			sourceTree = "<group>";
+		};
+		501FEA1C21101AC800634766 /* Amplitude Logging */ = {
+			isa = PBXGroup;
+			children = (
+				501FEA1D21101AF700634766 /* Log.h */,
+				501FEA1E21101AF700634766 /* Log.m */,
+			);
+			name = "Amplitude Logging";
 			sourceTree = "<group>";
 		};
 		502145A61FDE5ACC00048F46 /* Summary vc */ = {
@@ -1291,6 +1303,7 @@
 				F9C240741F17FA7800A268F3 /* BTColor extension */,
 				F94C89461F15D5BC006C6BDD /* 1RM calculator */,
 				506C915A1F9FEEAD003C4758 /* BTButton */,
+				501FEA1C21101AC800634766 /* Amplitude Logging */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -1950,6 +1963,7 @@
 				502ABF7E1FE42A8C00C0232C /* AWSUsername.m in Sources */,
 				F9A549511F134A3100743897 /* AnalyticsDetailViewController.m in Sources */,
 				508568CC1F310DDD0046A76F /* ECSideTableViewCell.m in Sources */,
+				501FEA1F21101AF700634766 /* Log.m in Sources */,
 				F95F933B1F034DA500A19C4D /* MainViewController.m in Sources */,
 				50B8907B20426DD2000E7FE3 /* BTViewMoreView.m in Sources */,
 				F9418FAC1F04A94E0083C3DC /* ExerciseView.m in Sources */,
