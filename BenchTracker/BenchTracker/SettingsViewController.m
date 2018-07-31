@@ -150,12 +150,15 @@
     
     // Section 10: Share, Rate
     section = [XLFormSectionDescriptor formSection];
+    section.footerTitle = [NSString stringWithFormat:@"Version: %@ (%@)",
+                           NSBundle.mainBundle.infoDictionary[@"CFBundleShortVersionString"],
+                           NSBundle.mainBundle.infoDictionary[(NSString *)kCFBundleVersionKey]];
     [form addFormSection:section];
     //Share
-    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"share" rowType:XLFormRowDescriptorTypeButton title:@"Share Weightlifting App"];
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"share" rowType:XLFormRowDescriptorTypeButton title:@"Share Weightlifting App 🙌"];
     [section addFormRow:row];
     //Rate
-    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"rate" rowType:XLFormRowDescriptorTypeButton title:@"Rate Weightlifting App"];
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"rate" rowType:XLFormRowDescriptorTypeButton title:@"Rate Weightlifting App 🌟"];
     [section addFormRow:row];
     
     // Section 11: Reset data
@@ -200,8 +203,10 @@
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Reset Complete"
                                                                    message:@"Weightlifting App has reset your data. The app will now close to complete the process."
                                                              preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *okButton = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-        assert(! "BT: User reset data. Intentional crash.");
+    UIAlertAction *okButton = [UIAlertAction actionWithTitle:@"Ok"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:^(UIAlertAction * action) {
+        assert(!"Weightlifting App: RESET DATA - Intentional crash");
     }];
     [alert addAction:okButton];
     [self presentViewController:alert animated:YES completion:nil];
