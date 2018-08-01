@@ -1722,6 +1722,7 @@
 				F907129E19415FB0008694E5 /* Frameworks */,
 				F907129F19415FB0008694E5 /* Resources */,
 				0BE8EBDAC6CFD27B5670E02A /* [CP] Embed Pods Frameworks */,
+				50567A80211161A7008EA8EA /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1901,6 +1902,24 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BenchTracker/Pods-BenchTracker-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		50567A80211161A7008EA8EA /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 1da75c5bcb5b55b07ab34922920385cde0157958 29b9fb36c7f62fa5d43ed0439fde556e332ac791b185c5e91e878c95734c07d8\n";
 		};
 		D1D6B4C6571974BB99FFA597 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

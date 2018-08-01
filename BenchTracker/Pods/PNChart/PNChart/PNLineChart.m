@@ -145,8 +145,6 @@
             [label setTextAlignment:NSTextAlignmentRight];
             label.text = labelText;
             [self setCustomStyleForYLabel:label];
-            label.minimumScaleFactor = 0.1;
-            label.numberOfLines = 1;
             [self addSubview:label];
             [_yChartLabels addObject:label];
         }
@@ -195,11 +193,10 @@
         for (int index = 0; index < xLabels.count; index++) {
             labelText = xLabels[index];
 
-            NSInteger x = (index * _xLabelWidth + _chartMarginLeft);
+            NSInteger x = (index * _xLabelWidth + _chartMarginLeft + _xLabelWidth / 2.0);
             NSInteger y = _chartMarginBottom + _chartCavanHeight;
 
-            PNChartLabel *label = [[PNChartLabel alloc] initWithFrame:
-                CGRectMake(x+MIN(0, (_xLabelWidth-30)/2.0), y, (NSInteger) MAX(30, _xLabelWidth), (NSInteger) _chartMarginBottom)];
+            PNChartLabel *label = [[PNChartLabel alloc] initWithFrame:CGRectMake(x, y, (NSInteger) _xLabelWidth, (NSInteger) _chartMarginBottom)];
             [label setTextAlignment:NSTextAlignmentCenter];
             label.text = labelText;
             [self setCustomStyleForXLabel:label];
@@ -498,7 +495,7 @@
             last_y = y;
         }
 
-        if (self.showSmoothLines && chartData.itemCount >= 3) {
+        if (self.showSmoothLines && chartData.itemCount >= 4) {
             [progressline moveToPoint:[progrssLinePaths[0][@"from"] CGPointValue]];
             for (NSDictionary<NSString *, NSValue *> *item in progrssLinePaths) {
                 CGPoint p1 = [item[@"from"] CGPointValue];
@@ -548,7 +545,7 @@
             CAShapeLayer *chartLine = [CAShapeLayer layer];
             chartLine.lineCap = kCALineCapButt;
             chartLine.lineJoin = kCALineJoinMiter;
-            chartLine.fillColor = [[UIColor clearColor] CGColor];
+            chartLine.fillColor = [[UIColor whiteColor] CGColor];
             chartLine.lineWidth = chartData.lineWidth;
             chartLine.strokeEnd = 0.0;
             [self.layer addSublayer:chartLine];

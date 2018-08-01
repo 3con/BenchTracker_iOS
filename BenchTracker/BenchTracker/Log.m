@@ -16,20 +16,29 @@
 + (void)sendIdentity {
     BTUser *user = BTUser.sharedInstance;
     BTSettings *settings = BTSettings.sharedInstance;
-    NSDictionary *properties = @{@"User":     @{@"Dark mode": @(UIColor.colorScheme),
-                                                @"Shift dates": settings.shiftDates,
-                                                @"Default reminder time": settings.defaultReminderTime,
-                                                @"Date types": settings.dateTypes},
-                                 @"Settings": @{@"Dark mode": @(UIColor.colorScheme),
-                                                @"Shift dates": settings.shiftDates,
-                                                @"Default reminder time": settings.defaultReminderTime,
-                                                @"Date types": settings.dateTypes,
-                                                @"Show image": settings.showImage,
-                                                @"Show notes": settings.showNotes,
-                                                @"Manual date assigned": settings.manualDateAssinged,
-                                                @"Split weekend": settings.spitWeekend,
-                                                @"Alphabetical periods": settings.letterPeriods,
-                                                @"Abbrev is period": settings.abbrevIsPeriod}};
+    NSDictionary *properties = @{@"User":     @{@"Date created": user.dateCreated,
+                                                @"Username": (user.name == nil) ? @"<NULL>" : user.name,
+                                                @"Weight": @(user.weight),
+                                                @"Achievement list version": @(user.achievementListVersion),
+                                                @"Experience": @(user.xp),
+                                                @"Total duration": @(user.totalDuration),
+                                                @"Total volume": @(user.totalVolume),
+                                                @"Total workouts": @(user.totalWorkouts),
+                                                @"Total sets": @(user.totalSets),
+                                                @"Total exercises": @(user.totalExercises),
+                                                @"Current streak": @(user.currentStreak),
+                                                @"Longest streak": @(user.longestStreak)},
+                                 @"Settings": @{@"Active workout": @(settings.activeWorkout != nil),
+                                                @"Show smart names": @(settings.showSmartNames),
+                                                @"Smart nicknames": (settings.smartNicknameDict == nil) ? @"<NULL>" : settings.smartNicknameDict,
+                                                @"Start week on monday": @(settings.startWeekOnMonday),
+                                                @"Disable sleep": @(settings.disableSleep),
+                                                @"Weight in lbs": @(settings.weightInLbs),
+                                                @"Show workout details": @(settings.showWorkoutDetails),
+                                                @"Show equivalency chart": @(settings.showEquivalencyChart),
+                                                @"Show last workout": @(settings.showLastWorkout),
+                                                @"Bodyweight is volume": @(settings.bodyweightIsVolume),
+                                                @"Bodyweight multiplier": @(settings.bodyweightMultiplier)}};
     [Amplitude.instance setUserProperties:properties];
 }
 

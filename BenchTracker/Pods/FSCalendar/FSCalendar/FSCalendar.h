@@ -22,8 +22,6 @@
 #import "FSCalendarWeekdayView.h"
 #import "FSCalendarHeaderView.h"
 
-#import "FSCalendarCollectionView.h"
-
 //! Project version number for FSCalendar.
 FOUNDATION_EXPORT double FSCalendarVersionNumber;
 
@@ -266,8 +264,8 @@ NS_ASSUME_NONNULL_BEGIN
 IB_DESIGNABLE
 @interface FSCalendar : UIView
 
-@property (weak  , nonatomic) FSCalendarCollectionView   *collectionView;
-
+@property (weak, nonatomic) FSCalendarCollectionView   *collectionView;
+    
 /**
  * The object that acts as the delegate of the calendar.
  */

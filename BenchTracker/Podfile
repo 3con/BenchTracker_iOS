@@ -19,6 +19,7 @@ target 'BenchTracker' do
   pod 'WZLBadge'
   pod 'AWSCognito'
   pod 'AWSDynamoDB'
+  pod 'Fabric'
   pod 'Crashlytics'
   pod 'Amplitude-iOS'
 

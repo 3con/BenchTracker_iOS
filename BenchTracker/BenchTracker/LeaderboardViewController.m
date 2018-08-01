@@ -48,8 +48,7 @@
 - (void)refreshLeaderboard {
     [self.user topLevelsWithCompletionBlock:^(NSArray<AWSLeaderboard *> *topLevels) {
         for (NSInteger i = 0; i < topLevels.count; i++) {
-            if (topLevels[i].experience.longValue == self.user.xp &&
-                [topLevels[i].username isEqualToString:self.user.name]) {
+            if ([topLevels[i].username isEqualToString:self.user.name]) {
                 self.localRank = [NSNumber numberWithInteger:i];
                 break;
             }

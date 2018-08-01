@@ -18,6 +18,7 @@
 #import "BTAchievement+CoreDataClass.h"
 #import "WZLBadgeImport.h"
 #import "Appirater.h"
+#import "FSCalendarCollectionView.h"
 
 @interface MainViewController ()
 

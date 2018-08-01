@@ -30,6 +30,7 @@ DEPENDENCIES:
   - AWSCognito
   - AWSDynamoDB
   - Crashlytics
+  - Fabric
   - FSCalendar
   - HMSegmentedControl
   - JSONModel
@@ -88,6 +89,6 @@ SPEC CHECKSUMS:
   XLForm: 04110197c12187dd28a6c7295d3d8b95f4fdb4de
   ZFDragableModalTransition: 0d294eaaba6edfcb9839595de765f9ca06a4b524
 
-PODFILE CHECKSUM: 1e6c263cb174536b99134f1d347466cc2c458f2d
+PODFILE CHECKSUM: 97435dc198c90e4cf83b35642a3415ee2176a384
 
 COCOAPODS: 1.5.3

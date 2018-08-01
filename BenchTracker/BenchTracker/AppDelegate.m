@@ -67,6 +67,7 @@
     [Fabric with:@[[Crashlytics class]]];
     //AMPLITUDE
     [Amplitude.instance initializeApiKey:AMPLITUDE_KEY];
+    [Log sendIdentity];
     return YES;
 }
 
