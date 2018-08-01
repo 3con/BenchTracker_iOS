@@ -15,6 +15,7 @@
 #import "BTDataTransferManager.h"
 #import "BTAchievement+CoreDataClass.h"
 #import "AppDelegate.h"
+#import "BenchTrackerKeys.h"
 
 @interface SettingsViewController ()
 
@@ -139,7 +140,7 @@
     
     // Section 9: Import, Export data
     section = [XLFormSectionDescriptor formSection];
-    section.footerTitle = @"Import or export all of your Weightlifting App data using email attachments. This includes all of your workouts and custom exercises. Open your data on another phone to transfer your gains.";
+    section.footerTitle = @"Export and import all of your Weightlifting App data via '.wld' files. This record includes all of your workouts, custom exercises, achievements, settings, and user data. Open your data on another phone to transfer your gains!";
     [form addFormSection:section];
     //Import
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"import" rowType:XLFormRowDescriptorTypeButton title:@"Import data"];
@@ -235,7 +236,7 @@
     else if ([formRow.tag isEqualToString:@"editSmartNames"]) [self presentEditSmartNamesViewController];
     else if ([formRow.tag isEqualToString:@"import"]) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Import Data"
-                                                                       message:@"To import your Weightlifting App data, please open an email with the compatible '.wld' file. Then, tap on the file to open it in the Weightlifting App."
+                                                                       message:@"To import your Weightlifting App data, please locate a compatible '.wld' file and tap on the file to open it in the Weightlifting App."
                                                                 preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *okButton = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
         [alert addAction:okButton];
@@ -244,25 +245,33 @@
     else if ([formRow.tag isEqualToString:@"export"]) {
         [self saveSettings];
         NSString *dataPath = [BTDataTransferManager pathForJSONDataExport];
-        NSData *BTData = [[NSFileManager defaultManager] contentsAtPath:dataPath];
-        if (BTData != nil) {
-            MFMailComposeViewController *email = [[MFMailComposeViewController alloc] init];
-            if (!email) {
-                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Cannot Export Data"
-                                                                               message:@"Unfortunatly, we can not export your data at this time. This may be becuase you have not set up system email or iMessage. We are sorry for the inconvenience."
-                                                                        preferredStyle:UIAlertControllerStyleAlert];
-                UIAlertAction *okButton = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
-                [alert addAction:okButton];
-                [self presentViewController:alert animated:YES completion:nil];
-            }
-            else {
-                [email setSubject:@"Weightlifting App Data"];
-                [email addAttachmentData:BTData mimeType:@"application/benchtracker" fileName:@"Weightlifting App Data"];
-                [email setToRecipients:[NSArray array]];
-                [email setMessageBody:@"Here's my Weightlifting App data. Once you have the Weightlifting App, tap on the file to open it." isHTML:NO];
-                [email setMailComposeDelegate:self];
-                [self presentViewController:email animated:YES completion:nil];
-            }
+        NSData *data = [[NSFileManager defaultManager] contentsAtPath:dataPath];
+        if (data != nil) {
+            NSArray *shareData = @[@"Here's my Weightlifting App data. Download Weightlifting App on the iOS App Store then tap on the file to open it.",
+                                   [NSURL URLWithString:@"https://itunes.apple.com/app/id1266077653"],
+                                   [NSURL fileURLWithPath:dataPath]];
+            UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:shareData applicationActivities:nil];
+            [activityViewController setCompletionWithItemsHandler:^(NSString *activityType, BOOL completed, NSArray *returnedItems, NSError *activityError) {
+                if (activityError) {
+                    UIAlertController *alert =
+                        [UIAlertController alertControllerWithTitle:@"Cannot Export Data"
+                                                            message:@"Unfortunatly, we can not export your data at this time. An unknown error occured. We are sorry for the inconvenience."
+                                                     preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *okButton = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+                    [alert addAction:okButton];
+                    [self presentViewController:alert animated:YES completion:nil];
+                }
+            }];
+            [self presentViewController:activityViewController animated:YES completion:nil];
+        }
+        else {
+            UIAlertController *alert =
+                [UIAlertController alertControllerWithTitle:@"Cannot Export Data"
+                                                    message:@"Unfortunatly, we can not export your data at this time. An unknown error occured. We are sorry for the inconvenience."
+                                             preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okButton = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+            [alert addAction:okButton];
+            [self presentViewController:alert animated:YES completion:nil];
         }
     }
     else if ([formRow.tag isEqualToString:@"share"]) {
@@ -275,7 +284,7 @@
         [self presentViewController:activityViewController animated:YES completion:nil];
     }
     else if ([formRow.tag isEqualToString:@"rate"])
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=1266077653&onlyLatestVersion=true&pageNumber=0&sortOrdering=1&type=Purple+Software"]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:RATE_URL] options:@{} completionHandler:nil];
     else if ([formRow.tag isEqualToString:@"reset"]) {
         //WARN USER DATA WILL BE DELETED, SUGGEST DOWNLOADING DATA
         UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Reset Data"
