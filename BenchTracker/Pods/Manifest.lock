@@ -6,9 +6,6 @@ PODS:
   - AWSCore (2.6.25)
   - AWSDynamoDB (2.6.25):
     - AWSCore (= 2.6.25)
-  - Crashlytics (3.10.5):
-    - Fabric (~> 1.7.9)
-  - Fabric (1.7.9)
   - FSCalendar (2.7.9)
   - HMSegmentedControl (1.5.5)
   - JSONModel (1.7.0)
@@ -29,8 +26,6 @@ DEPENDENCIES:
   - Appirater
   - AWSCognito
   - AWSDynamoDB
-  - Crashlytics
-  - Fabric
   - FSCalendar
   - HMSegmentedControl
   - JSONModel
@@ -51,8 +46,6 @@ SPEC REPOS:
     - AWSCognito
     - AWSCore
     - AWSDynamoDB
-    - Crashlytics
-    - Fabric
     - FSCalendar
     - HMSegmentedControl
     - JSONModel
@@ -73,8 +66,6 @@ SPEC CHECKSUMS:
   AWSCognito: c86cc3a4b1c6e2250dee489c17010662d3e4b3b5
   AWSCore: 93ac57c361f6ff9c0749adf9404c4a1a1ecdaa2b
   AWSDynamoDB: b891ec00abf6b58ca850172e4f92ed8de53d1b16
-  Crashlytics: 7f2e38d302d9da96475b3d64d86fb29e31a542b7
-  Fabric: a2917d3895e4c1569b9c3170de7320ea1b1e6661
   FSCalendar: a04b09f16f811bc92e82f3cf852a15225233b9d5
   HMSegmentedControl: f514c6dad47aa3065e0ed2e8046b73efc71221b9
   JSONModel: 840bc0fcffb24b8454d2c026bf26fea454b8e98d
@@ -89,6 +80,6 @@ SPEC CHECKSUMS:
   XLForm: 04110197c12187dd28a6c7295d3d8b95f4fdb4de
   ZFDragableModalTransition: 0d294eaaba6edfcb9839595de765f9ca06a4b524
 
-PODFILE CHECKSUM: 97435dc198c90e4cf83b35642a3415ee2176a384
+PODFILE CHECKSUM: 77892a5007b5093c71ceacbef77e1222372aeb1b
 
 COCOAPODS: 1.5.3
