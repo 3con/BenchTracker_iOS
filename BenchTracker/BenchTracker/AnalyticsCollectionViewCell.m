@@ -36,6 +36,7 @@
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.separatorColor = [UIColor clearColor];
     [self.tableContainerView addSubview:self.tableView];
+    self.seeMoreButton.userInteractionEnabled = NO;
 }
 
 - (void)setGraphView:(PNGenericChart *)graphView {
