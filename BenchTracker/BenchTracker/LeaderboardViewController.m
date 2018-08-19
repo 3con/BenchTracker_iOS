@@ -43,6 +43,7 @@
     self.tableView.showsVerticalScrollIndicator = NO;
     self.user = [BTUser sharedInstance];
     [self refreshLeaderboard];
+    [Log event:@"LeaderboardVC: Presentation" properties:nil];
 }
 
 - (void)refreshLeaderboard {
@@ -70,8 +71,7 @@
 }
 
 - (IBAction)editUsernameButtonPressed:(UIButton *)sender {
-    [self presentEditUsernameViewControllerWithPoint:
-     [self.bottomContainerView convertPoint:sender.center toView:self.view]];
+    [self presentEditUsernameViewControllerWithPoint: [self.bottomContainerView convertPoint:sender.center toView:self.view]];
 }
 
 #pragma mark - tableView delegate / dataSource

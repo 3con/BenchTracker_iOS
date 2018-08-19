@@ -76,6 +76,7 @@
     singleTap.cancelsTouchesInView = NO;
     [self.tableView addGestureRecognizer:singleTap];
     [self loadSearchBar];
+    [Log event:@"AddExerciseVC: Presentation" properties:nil];
 }
 
 - (void)loadSearchBar {
@@ -114,24 +115,29 @@
 }
 
 - (IBAction)cancelButtonPressed:(UIButton *)sender {
+    [Log event:@"AddExerciseVC: Cancel" properties:nil];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)editButtonPressed:(UIButton *)sender {
+    [Log event:@"AddExerciseVC: Edit" properties:nil];
     [self presentEditExercisesViewController];
 }
 
 - (IBAction)supersetButtonPressed:(UIButton *)sender {
+    [Log event:@"AddExerciseVC: Done" properties:@{@"Superset": @"True"}];
     [self.delegate addExerciseViewController:self willDismissWithSelectedTypeIterationCombinations:[self typeIterationPairs] superset:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)addExerciseButtonPressed:(UIButton *)sender {
+    [Log event:@"AddExerciseVC: Done" properties:@{@"Superset": @"False"}];
     [self.delegate addExerciseViewController:self willDismissWithSelectedTypeIterationCombinations:[self typeIterationPairs] superset:NO];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)clearButtonPressed:(UIButton *)sender {
+    [Log event:@"AddExerciseVC: Clear" properties:nil];
     [self clearTypeIterations];
 }
 
@@ -290,6 +296,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.searchBar.isFirstResponder) [self.searchBar resignFirstResponder];
     BTExerciseType *type = [_fetchedResultsController objectAtIndexPath:indexPath];
+    [Log event:@"AddExerciseVC: Selected type" properties:@{@"Type": type.name}];
     [self addType:type andIteration:@""];
     NSInteger numSelected = self.selectedTypes.count;
     if (numSelected == 1) {
@@ -307,6 +314,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [Log event:@"AddExerciseVC: Deselected type" properties:nil];
     NSInteger numSelected = self.selectedTypes.count;
     if (numSelected == 0) {
         for (UIButton *button in @[self.supersetButton, self.addExerciseButton, self.clearButton]) {
@@ -327,6 +335,8 @@
 #pragma mark - headerView delegate
 
 - (void)headerView:(AETableHeaderView *)headerView didChangeExpanded:(BOOL)expanded {
+    [Log event:@"AddExerciseVC: Expanded header" properties:@{@"Expanded": @(expanded),
+                                                              @"Body part": headerView.name}];
     [self.tableView beginUpdates];
     if (expanded && [self.tempHiddenSections containsObject:headerView.name]) {
         [self.tempHiddenSections removeObject:headerView.name];

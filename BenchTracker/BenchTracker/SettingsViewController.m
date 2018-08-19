@@ -39,6 +39,7 @@
     self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(50, 0, 0, 0);
     [self loadForm];
     [self.view sendSubviewToBack:self.tableView];
+    [Log event:@"SettingsVC: Presentation" properties:nil];
 }
 
 - (void)updateInterface {
@@ -200,6 +201,7 @@
 }
 
 - (IBAction)resetDataButtonPressed:(UIButton *)sender {
+    [Log event:@"SettingsVC: Reset data" properties:@{@"Step": @"2"}];
     [(AppDelegate *)[[UIApplication sharedApplication] delegate] resetCoreData];
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Reset Complete"
                                                                    message:@"Weightlifting App has reset your data. The app will now close to complete the process."
@@ -287,6 +289,7 @@
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:RATE_URL] options:@{} completionHandler:nil];
     else if ([formRow.tag isEqualToString:@"reset"]) {
         //WARN USER DATA WILL BE DELETED, SUGGEST DOWNLOADING DATA
+        [Log event:@"SettingsVC: Reset data" properties:@{@"Step": @"1"}];
         UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Reset Data"
                                                                         message:@"Are you sure you want to reset your accout? You will lose all of your hard work! We suggest saving your data beforehand by exporting your data or printing out your workouts. This action cannot be undone."
                                                                  preferredStyle:UIAlertControllerStyleAlert];
@@ -299,12 +302,6 @@
         [self presentViewController:alert animated:YES completion:nil];
     }
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
-}
-
-#pragma mark - mailVC delegate
-
-- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
-    [controller dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - view handling

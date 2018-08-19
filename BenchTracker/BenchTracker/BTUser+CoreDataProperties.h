@@ -8,7 +8,6 @@
 
 #import "BTUser+CoreDataClass.h"
 
-
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BTUser (CoreDataProperties)
@@ -18,9 +17,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSDate *dateCreated;
 @property (nullable, nonatomic, copy) NSString *name;
 @property (nullable, nonatomic, retain) NSData *imageData;
-@property (nonatomic) int32_t weight;
 
+@property (nonatomic) int32_t weight;
 @property (nonatomic) int32_t achievementListVersion;
+
 @property (nonatomic) int32_t xp;
 
 @property (nonatomic) int64_t totalDuration;

@@ -40,6 +40,7 @@
     self.containingView.alpha = 0.0;
     self.backgroundView.alpha = 0.0;
     self.errorLabel.hidden = YES;
+    [Log event:@"EditNameVC: Presentation" properties:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

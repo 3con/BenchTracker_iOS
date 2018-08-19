@@ -19,8 +19,8 @@
 #import "BTDataTransferManager.h"
 #import "MainViewController.h"
 #import "WorkoutViewController.h"
-//#import <Fabric/Fabric.h>
-//#import <Crashlytics/Crashlytics.h>
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
 #import "Amplitude.h"
 
 #define ROOTVIEW [[[UIApplication sharedApplication] keyWindow] rootViewController]
@@ -64,15 +64,17 @@
     [Appirater setDebug:NO];
     [Appirater appLaunched:YES];
     //CRASHLYTICS
-    //[Fabric with:@[[Crashlytics class]]];
+    [Fabric with:@[[Crashlytics class]]];
     //AMPLITUDE
     [Amplitude.instance initializeApiKey:AMPLITUDE_KEY];
     [Log sendIdentity];
+    [Log event:@"App Open" properties:nil];
     return YES;
 }
 
 - (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem
                                                             completionHandler:(void (^)(BOOL))completionHandler {
+    [Log event:@"AppDelegate: Performed shortcut" properties:@{@"Shortcut": shortcutItem.type}];
     if ([shortcutItem.type isEqualToString:@"com.chappyasel.benchtracker.newworkout"]) {
         if (ROOTVIEW.class == WorkoutViewController.class) return;
         if (ROOTVIEW.class != MainViewController.class) {
@@ -90,14 +92,19 @@
 
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
     UIAlertController *alertController;
-    if ([self loadNewStoreWithURL:url]) //Successfully loaded file
-        alertController = [UIAlertController alertControllerWithTitle:@"Import Successful!"
-                                                              message:@"Your settings, workouts, and custom exercises have all been successfully imported. Happy tracking!"
-                                                       preferredStyle:UIAlertControllerStyleAlert];
-    else                                //Failed to load file
-        alertController = [UIAlertController alertControllerWithTitle:@"Import Failed"
-                                                              message:@"Unfortunately, we could not import your data. Please make sure the version of Weightlifting App on this app is the same as the one you used to export and that no data was lost between the transfer. We apoligize for the inconvenience."
-                                                       preferredStyle:UIAlertControllerStyleAlert];
+    if ([self loadNewStoreWithURL:url]) { //Successfully loaded file
+        [Log event:@"AppDelegate: Import data" properties:@{@"Success": @"True"}];
+        alertController = [UIAlertController
+            alertControllerWithTitle:@"Import Successful!"
+                             message:@"Your settings, workouts, and custom exercises have all been successfully imported. Happy tracking!"
+                      preferredStyle:UIAlertControllerStyleAlert];
+    } else { //Failed to load file
+        [Log event:@"AppDelegate: Import data" properties:@{@"Success": @"False"}];
+        alertController = [UIAlertController
+            alertControllerWithTitle:@"Import Failed"
+                             message:@"Unfortunately, we could not import your data. Please make sure the version of Weightlifting App on this app is the same as the one you used to export and that no data was lost between the transfer. We apoligize for the inconvenience."
+                      preferredStyle:UIAlertControllerStyleAlert];
+    }
     UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
     [alertController addAction:ok];
     UIWindow *alertWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
@@ -109,6 +116,7 @@
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
+    [Log event:@"App Terminated" properties:nil];
     [self saveContext];
 }
 

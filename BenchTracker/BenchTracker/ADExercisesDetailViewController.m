@@ -74,6 +74,7 @@
     self.tableView.dataSource = self;
     self.tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, CGFLOAT_MAX);
     self.iteration = nil;
+    [Log event:@"AD: ExerciseDetailVC: Loaded" properties:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -101,6 +102,7 @@
         [self setTimeSegmentedControlCollapsed:YES];
         [self loadGraphView];
         [self loadIterationButton];
+        [Log event:@"AD: ExerciseDetailVC: Presentation" properties:@{@"Type": self.exerciseType.name}];
     }
 }
 
@@ -140,6 +142,7 @@
 
 - (IBAction)viewMoreButtonPressed:(UIButton *)sender {
     self.viewMoreView.expanded = !self.viewMoreView.expanded;
+    [Log event:@"AD: ExerciseDetailVC: View more pressed" properties:@{@"Expanded": @(self.viewMoreView.expanded)}];
     [self updateViewMoreHeight];
 }
 
@@ -407,6 +410,8 @@
 }
 
 - (void)updateFetchRequest:(NSFetchRequest *)request {
+    [Log event:@"AD: ExerciseDetailVC: Changed metric"
+    properties:@{@"Metric": (self.metricSegmentedControl.selectedSegmentIndex == 1) ? @"Volume" : @"1RM"}];
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"workout.date" ascending:NO]];
     if (self.typeSegmentedControl.selectedSegmentIndex == 1) {
         NSSortDescriptor *d = (self.metricSegmentedControl.selectedSegmentIndex == 1) ?
@@ -461,6 +466,7 @@
 #pragma mrk - iterationVC delegate
 
 - (void)iterationSelectionVC:(IterationSelectionViewController *)iterationVC willDismissWithSelectedIteration:(NSString *)iteration {
+    [Log event:@"AD: ExerciseDetailVC: Change iteration" properties:@{@"Iteration": (iteration) ? iteration : @"None"}];
     [self.typeSegmentedControl setSelectedSegmentIndex:0 animated:YES];
     self.iteration = iteration;
     [self updateIterationButtonText];
@@ -503,6 +509,7 @@
 }
 
 - (void)presentWorkoutViewControllerWithWorkout:(BTWorkout *)workout {
+    [Log event:@"AD: ExerciseDetailVC: Workout pressed" properties:nil];
     WorkoutViewController *workoutVC = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]]
                                         instantiateViewControllerWithIdentifier:@"w"];
     workoutVC.delegate = self;

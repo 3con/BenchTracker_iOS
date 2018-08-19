@@ -69,6 +69,11 @@
     [self scrollHorizontallyToOffset:CGPointMake(50.0*(self.selectedIndexPath.section+.5)-(self.view.frame.size.width-70)/2.0, 0)];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [Log event:@"EquivalencyVC: Presentation" properties:@{@"Exercise": self.exercise.name}];
+}
+
 - (void)loadTopScrollView {
     for (int i = 0; i < SIZE_WIDTH-1; i++) {
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(50*i, 0, 50, 35)];

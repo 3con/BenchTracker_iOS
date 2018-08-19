@@ -73,6 +73,7 @@
         [self loadSegmentedControls];
         [self setTimeSegmentedControlCollapsed:NO];
         [self loadPodiumView];
+        [Log event:@"AD: WorkoutsVC: Presentation" properties:@{@"Type": self.titleString}];
     }
 }
 
@@ -223,6 +224,7 @@
 #pragma mark - tableView delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [Log event:@"AD: WorkoutsVC: Workout pressed" properties:nil];
     BTWorkout *workout = [_fetchedResultsController objectAtIndexPath:indexPath];
     [self presentWorkoutViewControllerWithWorkout:workout];
 }

@@ -49,6 +49,7 @@
     self.tableView.delegate = self;
     self.tableView.separatorColor = [UIColor clearColor];
     [self loadSearchBar];
+    [Log event:@"EditExerciseVC: Presenatation" properties:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -227,7 +228,9 @@
     UIAlertAction *deleteButton = [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
         dispatch_async(dispatch_get_main_queue(), ^{
             NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-            [self.context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+            BTExerciseType *type = [self.fetchedResultsController objectAtIndexPath:indexPath];
+            [Log event:@"EditExerciseVC: Delete" properties:@{@"Type": type.name}];
+            [self.context deleteObject:type];
             [self.context save:nil];
         });
     }];

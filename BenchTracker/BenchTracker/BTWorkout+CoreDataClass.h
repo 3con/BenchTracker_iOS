@@ -56,6 +56,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)calculateSmartName;
 
+- (NSDictionary *)logDescription;
+
 @end
 
 NS_ASSUME_NONNULL_END

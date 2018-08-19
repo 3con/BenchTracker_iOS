@@ -18,11 +18,12 @@
 @property (nonatomic) NSNumber *achievementListVersion;
 @property (nonatomic) NSNumber *xp;
 
-@property (nonatomic) NSNumber *totalSets;
-@property (nonatomic) NSNumber *totalExercises;
 @property (nonatomic) NSNumber *totalDuration;
 @property (nonatomic) NSNumber *totalVolume;
 @property (nonatomic) NSNumber *totalWorkouts;
+@property (nonatomic) NSNumber *totalSets;
+@property (nonatomic) NSNumber *totalExercises;
+
 @property (nonatomic) NSNumber *currentStreak;
 @property (nonatomic) NSNumber *longestStreak;
 

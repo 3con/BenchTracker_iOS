@@ -41,6 +41,7 @@
     [self loadForm];
     self.numStartVariations = (self.type) ? [[NSKeyedUnarchiver unarchiveObjectWithData:self.type.iterations] count] : 0;
     [self.view sendSubviewToBack:self.tableView];
+    [Log event:@"EditExerciseDetailVC: Presenatation" properties:@{@"Creating": @(self.type == nil)}];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -141,6 +142,8 @@
             }
         }
     }
+    [Log event:@"EditExerciseDetailVC: Done" properties:@{@"Creating": @(self.type == nil),
+                                                          @"Type": result}];
     if (!self.type) {
         self.awardCreation = YES;
         self.type = [NSEntityDescription insertNewObjectForEntityForName:@"BTExerciseType" inManagedObjectContext:self.context];
@@ -160,6 +163,7 @@
 }
 
 - (IBAction)cancelButtonPressed:(UIButton *)sender {
+    [Log event:@"EditExerciseDetailVC: Cancel" properties:@{@"Creating": @(self.type == nil)}];
     [self.delegate editExerciseDetailViewControllerWillDismiss:self];
     [self dismissViewControllerAnimated:YES completion:nil];
 }

@@ -58,6 +58,7 @@
     [self.doneButton setTitleColor: [UIColor BTButtonTextPrimaryColor] forState:UIControlStateNormal];
     [self setSecondaryButtonHidden:YES];
     [self loadWorkout];
+    [Log event:@"WorkoutSummaryVC: Presentation" properties:@{@"Workout": self.workout.logDescription}];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -90,6 +91,7 @@
     self.secondaryButton.hidden = YES;
     [self.delegate workoutSummaryViewControllerWillDismiss:self];
     [self animateOutWithAcheivementShowRequest:YES];
+    [Log event:@"WorkoutSummaryVC: Show achievements" properties:nil];
 }
 
 - (void)setSecondaryButtonHidden:(BOOL)hidden {
@@ -106,6 +108,8 @@
     for (WorkoutMilestone *milestone in self.milestones)
         if (milestone.type == WorkoutMilestoneTypeAchievement)
             [self setSecondaryButtonHidden:NO];
+    [Log event:@"WorkoutSummaryVC: Loaded milestones" properties:@{@"Count": @(self.milestones.count),
+                                                                   @"Show achievements": @(!self.secondaryButton.hidden)}];
     [self.tableView reloadData];
 }
 

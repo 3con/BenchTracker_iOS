@@ -78,6 +78,7 @@
 		509AB30920422A35006FC96B /* RecentWorkoutsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 509AB30820422A35006FC96B /* RecentWorkoutsView.xib */; };
 		509AB30C2042341B006FC96B /* SetProgressionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 509AB30B2042341B006FC96B /* SetProgressionsView.m */; };
 		509AB30F20423434006FC96B /* SetProgressionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 509AB30E20423434006FC96B /* SetProgressionsView.xib */; };
+		50A1820D21153DF6005469B5 /* AWSLeaderboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A1820B21153DF6005469B5 /* AWSLeaderboard.m */; };
 		50B8907B20426DD2000E7FE3 /* BTViewMoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B8907A20426DD2000E7FE3 /* BTViewMoreView.m */; };
 		50B8907D20426DD9000E7FE3 /* BTViewMoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50B8907C20426DD9000E7FE3 /* BTViewMoreView.xib */; };
 		50B8908120427F5E000E7FE3 /* ExerciseSummaryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B8908020427F5E000E7FE3 /* ExerciseSummaryView.m */; };
@@ -85,7 +86,6 @@
 		50CF4D9C2021642900B55679 /* EditSmartNamesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CF4D9A2021642900B55679 /* EditSmartNamesViewController.m */; };
 		50CF4D9D2021642900B55679 /* EditSmartNamesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50CF4D9B2021642900B55679 /* EditSmartNamesViewController.xib */; };
 		50CF69D61F3A685C00DDE8A6 /* TemplateSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CF69D51F3A685C00DDE8A6 /* TemplateSelectionViewController.m */; };
-		50DF09932046135600AD397E /* AWSLeaderboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DF09922046135600AD397E /* AWSLeaderboard.m */; };
 		6FF44576CFF404C6C4707802 /* Pods_BenchTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C83D3A0EA46ECDF1788C990 /* Pods_BenchTracker.framework */; };
 		F77B8D13565A4E6664DC71A8 /* Pods_BenchTrackerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40B18DFBDA158AF111B21958 /* Pods_BenchTrackerTests.framework */; };
 		F90712A719415FB1008694E5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F90712A619415FB1008694E5 /* main.m */; };
@@ -318,6 +318,8 @@
 		509AB30A2042341B006FC96B /* SetProgressionsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetProgressionsView.h; sourceTree = "<group>"; };
 		509AB30B2042341B006FC96B /* SetProgressionsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetProgressionsView.m; sourceTree = "<group>"; };
 		509AB30E20423434006FC96B /* SetProgressionsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetProgressionsView.xib; sourceTree = "<group>"; };
+		50A1820B21153DF6005469B5 /* AWSLeaderboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWSLeaderboard.m; path = BenchTracker/AWSLeaderboard.m; sourceTree = SOURCE_ROOT; };
+		50A1820C21153DF6005469B5 /* AWSLeaderboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWSLeaderboard.h; path = BenchTracker/AWSLeaderboard.h; sourceTree = SOURCE_ROOT; };
 		50B8907920426DD2000E7FE3 /* BTViewMoreView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTViewMoreView.h; sourceTree = "<group>"; };
 		50B8907A20426DD2000E7FE3 /* BTViewMoreView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTViewMoreView.m; sourceTree = "<group>"; };
 		50B8907C20426DD9000E7FE3 /* BTViewMoreView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BTViewMoreView.xib; sourceTree = "<group>"; };
@@ -332,8 +334,6 @@
 		50CF69D41F3A685C00DDE8A6 /* TemplateSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemplateSelectionViewController.h; sourceTree = "<group>"; };
 		50CF69D51F3A685C00DDE8A6 /* TemplateSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TemplateSelectionViewController.m; sourceTree = "<group>"; };
 		50D3E79B2022F40C00D83769 /* BTDataModel12.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BTDataModel12.xcdatamodel; sourceTree = "<group>"; };
-		50DF09912046135600AD397E /* AWSLeaderboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWSLeaderboard.h; path = BenchTracker/AWSLeaderboard.h; sourceTree = SOURCE_ROOT; };
-		50DF09922046135600AD397E /* AWSLeaderboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWSLeaderboard.m; path = BenchTracker/AWSLeaderboard.m; sourceTree = SOURCE_ROOT; };
 		50FB89931F5A48A3002EA7A4 /* BTDataModel2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BTDataModel2.xcdatamodel; sourceTree = "<group>"; };
 		791833EF2E04B86CA95AD6B3 /* Pods-BenchTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BenchTracker.release.xcconfig"; path = "Pods/Target Support Files/Pods-BenchTracker/Pods-BenchTracker.release.xcconfig"; sourceTree = "<group>"; };
 		EABA566C7706F85FACB19B97 /* Pods-BenchTrackerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BenchTrackerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BenchTrackerTests/Pods-BenchTrackerTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1019,6 +1019,15 @@
 			name = "Set progressions view";
 			sourceTree = "<group>";
 		};
+		50A1820A21153DBB005469B5 /* AWS leaderboard */ = {
+			isa = PBXGroup;
+			children = (
+				50A1820C21153DF6005469B5 /* AWSLeaderboard.h */,
+				50A1820B21153DF6005469B5 /* AWSLeaderboard.m */,
+			);
+			path = "AWS leaderboard";
+			sourceTree = "<group>";
+		};
 		50B8907E20426DE1000E7FE3 /* View more view */ = {
 			isa = PBXGroup;
 			children = (
@@ -1060,15 +1069,6 @@
 				50530C311F52412600472426 /* Template tvc */,
 			);
 			name = "Template selection";
-			sourceTree = "<group>";
-		};
-		50DF09902046132C00AD397E /* AWS leaderboard */ = {
-			isa = PBXGroup;
-			children = (
-				50DF09912046135600AD397E /* AWSLeaderboard.h */,
-				50DF09922046135600AD397E /* AWSLeaderboard.m */,
-			);
-			path = "AWS leaderboard";
 			sourceTree = "<group>";
 		};
 		B57455EDB36A13EE7AEA1ED6 /* Frameworks */ = {
@@ -1579,7 +1579,7 @@
 				F9DA75131F02EE9600347B0D /* BTUser+CoreDataClass.m */,
 				F9DA75141F02EE9600347B0D /* BTUser+CoreDataProperties.h */,
 				F9DA75151F02EE9600347B0D /* BTUser+CoreDataProperties.m */,
-				50DF09902046132C00AD397E /* AWS leaderboard */,
+				50A1820A21153DBB005469B5 /* AWS leaderboard */,
 				502ABF7F1FE42A9500C0232C /* AWS username */,
 				50404F5C1F32804A0070B1A9 /* UserModel */,
 			);
@@ -1999,6 +1999,7 @@
 				50404F541F327EDE0070B1A9 /* BTDataTransferModel.m in Sources */,
 				F9DA75291F02EE9600347B0D /* BTWorkout+CoreDataProperties.m in Sources */,
 				508568BB1F30E4090046A76F /* EquivalencyChartViewController.m in Sources */,
+				50A1820D21153DF6005469B5 /* AWSLeaderboard.m in Sources */,
 				F95F93441F03738B00A19C4D /* WorkoutViewController.m in Sources */,
 				506C0CBB1FE852A200865BED /* EditUsernameViewController.m in Sources */,
 				F9B27CE51F117852008FCC7F /* AnalyticsCollectionViewCell.m in Sources */,
@@ -2013,7 +2014,6 @@
 				507FC4CF1F3243FA00A88A35 /* BTDataTransferManager.m in Sources */,
 				50530C261F50BC4100472426 /* SetCollectionView.m in Sources */,
 				50060FDD1F33BB8E00F6DC00 /* BTWorkoutModel.m in Sources */,
-				50DF09932046135600AD397E /* AWSLeaderboard.m in Sources */,
 				506C91591F9FEEA9003C4758 /* BTButton.m in Sources */,
 				50636F2F1F2B9E0D00FB65B4 /* EEDetailViewController.m in Sources */,
 				5099F1BF1F5F6746000A6DE4 /* AchievementListModel.m in Sources */,

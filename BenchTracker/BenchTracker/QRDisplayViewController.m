@@ -27,6 +27,7 @@
     self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 90, 0);
     self.doneButton.backgroundColor = [UIColor BTButtonPrimaryColor];
     [self.doneButton setTitleColor: [UIColor BTButtonTextPrimaryColor] forState:UIControlStateNormal];
+    [Log event:@"QRDisplayVC: Presentation" properties:nil];
 }
 
 - (void)viewDidLayoutSubviews {

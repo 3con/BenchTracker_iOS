@@ -37,6 +37,7 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.separatorColor = [UIColor clearColor];
+    [Log event:@"AD: ExcercisesVC: Presentation" properties:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -176,6 +177,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     BTExerciseType *type = [_fetchedResultsController objectAtIndexPath:indexPath];
+    [Log event:@"AD: ExercisesVC: Selected type" properties:@{@"Type": type.name}];
     [self presentExerciseDetailViewControllerWithType:type];
     [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
 }

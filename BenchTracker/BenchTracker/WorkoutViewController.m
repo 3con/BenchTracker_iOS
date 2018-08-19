@@ -73,6 +73,7 @@
     self.finishWorkoutButton.clipsToBounds = YES;
     self.deleteWorkoutButton.layer.cornerRadius = 12.5;
     self.deleteWorkoutButton.clipsToBounds = YES;
+    [Log event:@"WorkoutVC: Loaded" properties:@{@"Workout": @(self.workout != nil)}];
     if (!self.context) self.context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
     if (!self.workout) self.workout = [BTWorkout workout];
     [BTUser removeWorkoutFromTotals:self.workout];
@@ -128,6 +129,7 @@
     [super viewDidAppear:animated];
     self.settings.activeWorkout = self.workout;
     [self.context save:nil];
+    [Log event:@"WorkoutVC: Presentation" properties:@{@"Duration": @(self.workout.duration)}];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -148,10 +150,12 @@
         self.settings.activeWorkoutLastUpdate = nil;
         [self updateWorkout];
         [BTUser addWorkoutToTotals:self.workout];
+        [Log event:@"WorkoutVC: End" properties:@{@"Workout": self.workout.logDescription}];
     }
 }
 
 - (void)handleEnteredBackground:(id)sender {
+    [Log event:@"WorkoutVC: Entered background" properties:@{@"Duration": @(self.workout.duration)}];
     [self updateWorkout];
     [self performSelector:@selector(delayedSave) withObject:nil afterDelay:.2];
 }
@@ -242,6 +246,7 @@
                                                            style:UIAlertActionStyleDestructive
                                                          handler:^(UIAlertAction * action) {
         dispatch_async(dispatch_get_main_queue(), ^{
+            [Log event:@"WorkoutVC: Delete" properties:@{@"Workout": self.workout.logDescription}];
             [self deleteWorkout];
         });
     }];
@@ -332,6 +337,7 @@
     static NSMutableArray <NSNumber *> *sourceSuperset = nil;
     switch (sender.state) {
         case UIGestureRecognizerStateBegan: {
+            [Log event:@"WorkoutVC: Long press" properties:nil];
             if (destinationRow >= 0) {
                 sourceSuperset = [self supersetForIndexPath:[NSIndexPath indexPathForRow:destinationRow inSection:0]];
                 if (!sourceSuperset) sourceSuperset = @[[NSNumber numberWithInteger:destinationRow]].mutableCopy;
@@ -492,6 +498,7 @@
 #pragma mark - gesture handling
 
 - (IBAction)pauseGestureActivated:(UITapGestureRecognizer *)sender {
+    [Log event:@"WorkoutVC: Pause" properties:@{@"Duration": @(self.workout.duration)}];
     self.paused = !self.paused;
     if (!self.paused) {
         self.pauseView.alpha = 0;
@@ -507,6 +514,7 @@
 
 - (BOOL)swipeTableCell:(MGSwipeTableCell *)cell tappedButtonAtIndex:(NSInteger)index
              direction:(MGSwipeDirection)direction fromExpansion:(BOOL)fromExpansion {
+    [Log event:@"WorkoutVC: Swipe exercise" properties:@{@"Action": @"Delete"}];
     NSIndexPath *path = [self.tableView indexPathForCell:cell];
     self.selectedIndexPaths = [NSMutableArray array];
     for (NSMutableArray *superset in self.tempSupersets) {
@@ -613,6 +621,7 @@
 #pragma mark - textField delegate
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    [Log event:@"WorkoutVC: Edit name" properties:@{@"Duration": @(self.workout.duration)}];
     if (@available(iOS 11, *)) {
         if(self.settings.showSmartNames) {
             [self presentEditSmartNamesViewController];

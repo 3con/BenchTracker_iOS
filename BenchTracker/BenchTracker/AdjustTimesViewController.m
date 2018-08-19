@@ -51,6 +51,7 @@
     self.contentView.alpha = 0.0;
     self.backgroundView.alpha = 0.0;
     self.doneButton.alpha = 0.0;
+    [Log event:@"AdjustTimesVC: Presentation" properties:@{@"Duration": @(self.workout.duration)}];
 }
 
 - (void)updateInterface {
@@ -72,6 +73,7 @@
 
 - (IBAction)doneButtonPressed:(id)sender {
     [self.delegate adjustTimesViewControllerWillDismiss:self];
+    [Log event:@"AdjustTimesVC: Dismiss" properties:@{@"Duration": @(self.workout.duration)}];
     [self animateOut];
 }
 

@@ -43,6 +43,7 @@
             NSLog(@"Achievements fetch error: %@, %@", error, [error userInfo]);
         }
     }
+    [Log event:@"AchievementsVC: Presentation" properties:nil];
 }
 
 - (void)loadFlowLayout {

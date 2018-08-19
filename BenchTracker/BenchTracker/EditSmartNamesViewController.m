@@ -45,6 +45,7 @@
     self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(50, 0, 0, 0);
     [self loadForm];
     [self.view sendSubviewToBack:self.tableView];
+    [Log event:@"EditSmartNamesVC: Presenatation" properties:nil];
 }
 
 - (void)updateInterface {
@@ -126,6 +127,7 @@
                                                                  preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *deleteButton = [UIAlertAction actionWithTitle:@"Restore" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
             dispatch_async(dispatch_get_main_queue(), ^{
+                [Log event:@"EditSmartNamesVC: Reset" properties:nil];
                 self.settings.smartNicknames = nil;
                 [self.settings smartNicknameDict];
                 [self.context save:nil];

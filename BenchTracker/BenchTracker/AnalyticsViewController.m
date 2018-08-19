@@ -56,6 +56,7 @@
     [self.collectionView registerNib:[UINib nibWithNibName:@"AnalyticsCollectionViewCell" bundle:[NSBundle mainBundle]]
                          forCellWithReuseIdentifier:@"Cell"];
     [self determineCollectionViewFormattingWithSize:self.view.frame.size];
+    [Log event:@"AnalyticsVC: Presentation" properties:nil];
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
@@ -85,9 +86,7 @@
 }
 
 - (IBAction)doneButtonPressed:(UIButton *)sender {
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - collectionView dataSource
@@ -194,6 +193,7 @@
 #pragma mark - collectionView delegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    [Log event:@"AnalyticsVC: Selected card" properties:@{@"Card": @(indexPath.row)}];
     [self presentAnalyticsDetailViewControllerWithIndex:indexPath.row
                                                    cell:(AnalyticsCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:indexPath]];
 }
@@ -242,15 +242,5 @@
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return [UIColor statusBarStyle];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

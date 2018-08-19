@@ -16,7 +16,7 @@
 - (void)settingsViewWillDismiss:(SettingsViewController *)settingsVC;
 @end
 
-@interface SettingsViewController : XLFormViewController <XLFormDescriptorDelegate, MFMailComposeViewControllerDelegate>
+@interface SettingsViewController : XLFormViewController <XLFormDescriptorDelegate>
 
 @property (nonatomic) id<SettingsViewControllerDelegate> delegate;
 

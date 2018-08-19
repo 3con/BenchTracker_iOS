@@ -62,6 +62,7 @@
         }];
     }
     else [self animateIn];
+    [Log event:@"IterationSelectionVC: Presentation" properties:@{@"Type": self.exerciseType.name}];
 }
 
 - (IBAction)tapGesture:(UITapGestureRecognizer *)sender {
@@ -77,11 +78,6 @@
 - (IBAction)tapGesture3:(UITapGestureRecognizer *)sender {
     [self.delegate iterationSelectionVC:self willDismissWithSelectedIteration:@""];
     [self animateOut];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - tableView dataSource
@@ -124,6 +120,7 @@
 #pragma mark - tableView delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [Log event:@"IterationSelectionVC: Selected iteration" properties:@{@"Iteration": @(indexPath.row)}];
     if (indexPath.row != 0) {
         if (indexPath.row == 1) [self.delegate iterationSelectionVC:self willDismissWithSelectedIteration:@""];
         else [self.delegate iterationSelectionVC:self willDismissWithSelectedIteration:self.tempIerations[indexPath.row-2]];

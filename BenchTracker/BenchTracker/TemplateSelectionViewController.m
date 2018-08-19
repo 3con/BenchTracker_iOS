@@ -44,9 +44,11 @@
     coverView.backgroundColor = [UIColor BTPrimaryColor];
     coverView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [self.tableView addSubview:coverView];
+    [Log event:@"TemplateVC: Presentation" properties:nil];
 }
 
 - (IBAction)cancelButtonPressed:(UIButton *)sender {
+    [Log event:@"TemplateVC: Cancel" properties:nil];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -110,6 +112,7 @@
     if (self.fetchedResultsController.sections.count == 1 && indexPath.section == 0) return;
     BTWorkout *workout = [BTWorkoutTemplate workoutForWorkoutTemplate:[self modifiedObjectAtIndex:indexPath]];
     [self dismissViewControllerAnimated:YES completion:^{
+        [Log event:@"TemplateVC: Selected workout" properties:nil];
         [self.delegate templateSelectionViewController:self didDismissWithSelectedWorkout:workout];
     }];
 }
@@ -127,6 +130,7 @@
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     BTWorkoutTemplate *template = [self modifiedObjectAtIndex:indexPath];
     if (direction == MGSwipeDirectionLeftToRight) {
+        [Log event:@"TemplateVC: Delete template" properties:nil];
         UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Delete Template"
                                                                         message:@"Are you sure you want to delete this template? This action cannot be undone."
                                                                  preferredStyle:UIAlertControllerStyleAlert];

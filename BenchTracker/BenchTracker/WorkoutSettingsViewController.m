@@ -47,6 +47,7 @@
     self.backgroundView.alpha = 0.0;
     self.doneButton.alpha = 0.0;
     [self updateTemplateButton];
+    [Log event:@"WorkoutSettingsVC: Presentation" properties:nil];
 }
 
 - (void)updateInterface {
@@ -110,16 +111,19 @@
 }
 
 - (IBAction)adjustDatesButtonPressed:(UIButton *)sender {
+    [Log event:@"WorkoutSettingsVC: Adjust dates" properties:nil];
     [self presentAdjustTimesViewControllerWithPoint:[self.view convertPoint:sender.center fromView:self.contentView]];
     self.doneButton.hidden = YES;
 }
 
 - (IBAction)qrButtonPressed:(UIButton *)sender {
+    [Log event:@"WorkoutSettingsVC: QR" properties:nil];
     [self presentQRDisplayViewControllerWithPoint:[self.view convertPoint:sender.center fromView:self.contentView]];
     self.doneButton.hidden = YES;
 }
 
 - (IBAction)printButtonPressed:(UIButton *)sender {
+    [Log event:@"WorkoutSettingsVC: Print" properties:nil];
     NSString *path = [BTPDFGenerator generatePDFWithWorkouts:@[self.workout]];
     UIPrintInteractionController *printController = [UIPrintInteractionController sharedPrintController];
     printController.delegate = self;
@@ -136,12 +140,14 @@
 }
 
 - (IBAction)darkModeButtonPressed:(UIButton *)sender {
+    [Log event:@"WorkoutSettingsVC: Dark mode" properties:nil];
     int colorScheme = [UIColor colorScheme];
     [UIColor changeColorSchemeTo:(colorScheme+1)%2];
     [self updateInterface];
 }
 
 - (IBAction)templateButtonPressed:(UIButton *)sender {
+    [Log event:@"WorkoutSettingsVC: Template" properties:nil];
     if ([BTWorkoutTemplate templateExistsForWorkout:self.workout])
          [BTWorkoutTemplate removeWorkoutFromTemplateList:self.workout];
     else [BTWorkoutTemplate saveWorkoutToTemplateList:self.workout];
@@ -173,6 +179,7 @@
 }
 
 - (IBAction)durationButtonPressed:(UIButton *)sender {
+    [Log event:@"WorkoutSettingsVC: Secret duration" properties:nil];
     UIAlertController * alertController =
         [UIAlertController alertControllerWithTitle: @"Manual Duration"
                                             message: @"Please enter your workout duration in minutes. Be aware that if you continue adding sets workout duration will still increment."

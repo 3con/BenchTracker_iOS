@@ -60,6 +60,7 @@
     self.userStats = [UserStats statsWithUser:self.user settings:self.settings];
     [BTUser updateStreaks];
     self.statsOffset = 0;
+    [Log event:@"UserVC: Presentation" properties:nil];
 }
 
 - (void)updateInterface {
@@ -182,11 +183,10 @@
     [self presentLeaderboardViewController];
 }
 
-- (IBAction)switchStatsButtonPressed:(UIButton *)sender { // forEvent:(UIEvent *)event
-    //CGPoint location = [[[event touchesForView:sender] anyObject] locationInView:sender];
-    //int index = (int)(location.y/(sender.frame.size.height/3.0))*2+(int)(location.x/(sender.frame.size.width/2.0));
+- (IBAction)switchStatsButtonPressed:(UIButton *)sender {
     [self animateCells];
     self.statsOffset = (self.statsOffset+1)%(self.userStats.numStats/(int)((self.numRows-2)*2));
+    [Log event:@"UserVC: Switch stats" properties:@{@"Offset": @(self.statsOffset)}];
     self.pageControlView.currentPage = self.statsOffset;
     [self refreshStats];
 }

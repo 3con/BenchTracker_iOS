@@ -34,6 +34,7 @@
     self.user = [BTUser sharedInstance];
     [self loadWeekLogic];
     self.titleString = @"Weekly Summary";
+    [Log event:@"AD: WeeklySummaryVC: Presentation" properties:nil];
 }
 
 - (void)loadWeekLogic {

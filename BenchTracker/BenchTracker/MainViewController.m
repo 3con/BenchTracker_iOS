@@ -94,6 +94,7 @@
     [self.listTableView registerNib:[UINib nibWithNibName:@"WorkoutTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"Cell"];
     if ([self isForceTouchAvailable])
         self.previewingContext = [self registerForPreviewingWithDelegate:self sourceView:self.view];
+    [Log event:@"MainVC: Loaded" properties:nil];
 }
 
 - (UIViewController *)previewingContext:(id<UIViewControllerPreviewing>)previewingContext viewControllerForLocation:(CGPoint)location {
@@ -102,6 +103,7 @@
     WorkoutViewController *wVC = [storyboard instantiateViewControllerWithIdentifier:@"w"];
     wVC.delegate = self;
     wVC.context = self.context;
+    [Log event:@"MainVC: 3D touch workout: peek" properties:@{@"Tab": @(self.segmentedControl.selectedSegmentIndex)}];
     if (self.segmentedControl.selectedSegmentIndex == 0) {
         if (location.y > self.view.frame.size.height-100) return nil;
         CGPoint cellPostion = [self.listTableView convertPoint:location fromView:self.view];
@@ -148,6 +150,7 @@
 }
 
 - (void)previewingContext:(id<UIViewControllerPreviewing>)previewingContext commitViewController:(UIViewController *)viewControllerToCommit {
+    [Log event:@"MainVC: 3D touch workout: pop" properties:@{@"Tab": @(self.segmentedControl.selectedSegmentIndex)}];
     [self presentViewController:viewControllerToCommit animated:YES completion:nil];
 }
 
@@ -226,16 +229,20 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    [Log event:@"MainVC: Presentation" properties:nil];
     if (self.firstLoad) {
         [self.weekdayView scrollToDate:[NSDate date]];
         self.firstLoad = NO;
     }
     if ([BTTutorialManager needsOnboarding]) {
         BTTutorialManager *manager = [[BTTutorialManager alloc] init];
+        [Log event:@"MainVC: Onboarding: Presentation" properties:nil];
         [self presentViewController:[manager onboardingViewControllerforSize:self.view.frame.size] animated:YES completion:nil];
     }
-    if (self.settings.activeWorkout)
+    if (self.settings.activeWorkout) {
+        [Log event:@"MainVC: Present active workout" properties:nil];
         [self presentWorkoutViewControllerWithWorkout:self.settings.activeWorkout];
+    }
     [self updateBadgeView];
 }
 
@@ -426,6 +433,8 @@
 }
 
 - (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl {
+    [Log event:@"MainVC: Changed tab" properties:@{@"Mode": @"Segmented control",
+                                                    @"Tab": @(self.segmentedControl.selectedSegmentIndex)}];
     [self setSelectedViewIndex:self.segmentedControl.selectedSegmentIndex];
 }
 
@@ -631,6 +640,8 @@
     NSIndexPath *indexPath = [self.listTableView indexPathForCell:cell];
     BTWorkout *workout = [self.fetchedResultsController objectAtIndexPath:indexPath];
     if (direction == MGSwipeDirectionLeftToRight) {
+        [Log event:@"MainVC: Swiped cell" properties:@{@"Action": @"Delete",
+                                                       @"Index": @(self.segmentedControl.selectedSegmentIndex)}];
         UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Delete Workout"
                                                                         message:@"Are you sure you want to delete this workout? You will lose all of your hard work! This action cannot be undone."
                                                                  preferredStyle:UIAlertControllerStyleAlert];
@@ -647,6 +658,8 @@
         [self presentViewController:alert animated:YES completion:nil];
     }
     else {
+        [Log event:@"MainVC: Swiped cell" properties:@{@"Action": @"Template",
+                                                       @"Index": @(self.segmentedControl.selectedSegmentIndex)}];
         CSToastStyle *style = [CSToastManager sharedStyle];
         if ([BTWorkoutTemplate templateExistsForWorkout:workout]) {
             [BTWorkoutTemplate removeWorkoutFromTemplateList:workout];
@@ -676,6 +689,7 @@
 #pragma mark - QRScanner delegate
 
 - (void)qrScannerVC:(BTQRScannerViewController *)qrVC didDismissWithScannedString:(NSString *)string {
+    [Log event:@"MainVC: QR scanned" properties:@{@"Success": @(string != nil)}];
     BTWorkout *workout = [BTWorkout workoutForJSON:string];
     [self presentWorkoutViewControllerWithWorkout:workout];
 }
@@ -683,6 +697,7 @@
 #pragma mark - view handling
 
 - (void)presentAnalyticsViewController {
+    [Log event:@"MainVC: Present analytics" properties:@{@"Index": @(self.segmentedControl.selectedSegmentIndex)}];
     AnalyticsViewController *analyiticsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"a"];
     analyiticsVC.delegate = self;
     analyiticsVC.context = self.context;
@@ -699,6 +714,8 @@
 }
 
 - (void)presentWorkoutViewControllerWithWorkout:(BTWorkout *)workout {
+    [Log event:@"MainVC: Present workoutVC" properties:@{@"Workout": @(workout != nil),
+                                                           @"Index": @(self.segmentedControl.selectedSegmentIndex)}];
     WorkoutViewController *workoutVC = [self.storyboard instantiateViewControllerWithIdentifier:@"w"];
     workoutVC.delegate = self;
     workoutVC.context = self.context;
@@ -754,6 +771,7 @@
 }
 
 - (void)presentQRScannerViewController {
+    [Log event:@"MainVC: Present qrVC" properties:@{@"Index": @(self.segmentedControl.selectedSegmentIndex)}];
     BTQRScannerViewController *qrVC = [[NSBundle mainBundle] loadNibNamed:@"BTQRScannerViewController" owner:self options:nil].firstObject;
     qrVC.delegate = self;
     self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:qrVC];
@@ -769,6 +787,7 @@
 }
 
 - (void)presentTemplateSelectionViewController {
+    [Log event:@"MainVC: Present templateVC" properties:@{@"Index": @(self.segmentedControl.selectedSegmentIndex)}];
     TemplateSelectionViewController *tsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ts"];
     tsVC.delegate = self;
     tsVC.context = self.context;
@@ -786,6 +805,7 @@
 }
 
 - (void)presentUserViewControllerWithForwardToAcheivements:(BOOL)forward {
+    [Log event:@"MainVC: Present userVC" properties:@{@"Index": @(self.segmentedControl.selectedSegmentIndex)}];
     UserViewController *userVC = [self.storyboard instantiateViewControllerWithIdentifier:@"us"];
     userVC.delegate = self;
     userVC.context = self.context;

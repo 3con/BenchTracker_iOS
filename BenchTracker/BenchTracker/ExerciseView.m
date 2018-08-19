@@ -86,6 +86,7 @@
 
 - (IBAction)editButtonPressed:(UIButton *)sender {
     [self.delegate exerciseViewRequestedEditIteration:self withPoint:sender.center];
+    [Log event:@"ExerciseView: Edit iteration" properties:@{@"Exercise": self.exercise.name}];
 }
 
 - (void)dealloc {
@@ -234,6 +235,8 @@
 }
 
 - (IBAction)deleteButtonPressed:(UIButton *)sender {
+    [Log event:@"ExerciseView: Delete exercise" properties:@{@"Deleted": @"True",
+                                                             @"Exercise": self.exercise.name}];
     [self resignFirstResponderAllTextFields];
     self.isDeleted = YES;
     self.deletedView.userInteractionEnabled = YES;
@@ -243,14 +246,18 @@
 }
 
 - (IBAction)previousExerciseButtonPressed:(UIButton *)sender {
+    [Log event:@"ExerciseView: Show analytics" properties:@{@"Exercise": self.exercise.name}];
     [self.delegate exerciseViewRequestedShowExerciseDetails:self];
 }
 
 - (IBAction)tableShowButtonPressed:(UIButton *)sender {
+    [Log event:@"ExerciseView: Show equivalency" properties:@{@"Exercise": self.exercise.name}];
     [self.delegate exerciseViewRequestedShowTable:self];
 }
 
 - (IBAction)undoDeleteButtonPressed:(UIButton *)sender {
+    [Log event:@"ExerciseView: Delete exercise" properties:@{@"Deleted": @"False",
+                                                             @"Exercise": self.exercise.name}];
     self.isDeleted = NO;
     self.deletedView.userInteractionEnabled = NO;
     [UIView animateWithDuration:.3 animations:^{
@@ -439,13 +446,5 @@
 - (void)keyboardWillHide:(NSNotification *)n {
 
 }
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
 
 @end

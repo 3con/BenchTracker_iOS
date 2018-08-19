@@ -44,6 +44,7 @@
         self.detailsLabel.text = @"";
     }
     self.imageView.image = self.achievement.image;
+    [Log event:@"AchievementDetailVC: Presentation" properties:@{@"Name": self.nameLabel.text}];
 }
 
 - (void)viewDidLayoutSubviews {

@@ -46,6 +46,7 @@
                                              selector: @selector(handleEnterBackground:)
                                                  name: UIApplicationDidEnterBackgroundNotification
                                                object: nil];
+    [Log event:@"ExerciseVC: Loaded" properties:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -80,6 +81,7 @@
                                                                constant:MAX(self.view.frame.size.height+1, h+101)]]; //Keyboard: 226px
     }
     else for (ExerciseView *view in self.exerciseViews) [view reloadData];
+    [Log event:@"ExerciseVC: Presentation" properties:@{@"Count": @(self.exercises.count)}];
 }
 
 - (void)viewDidLayoutSubviews {

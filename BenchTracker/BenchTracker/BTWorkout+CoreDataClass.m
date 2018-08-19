@@ -324,4 +324,16 @@
     return arr;
 }
 
+- (NSDictionary *)logDescription {
+    return @{@"Name": (self.name) ? self.name : @"None",
+             @"Smart name": (self.smartName) ? self.smartName : @"None",
+             @"Calculated duration": @(self.duration),
+             @"Actual duration": @([NSDate.date timeIntervalSinceDate:self.date]),
+             @"Date modified": @(self.dateModified),
+             @"Volume": @(self.volume),
+             @"Num exercises": @(self.numExercises),
+             @"Num sets": @(self.numSets),
+             @"Summary": (self.summary) ? self.summary : @"None"};
+}
+
 @end
