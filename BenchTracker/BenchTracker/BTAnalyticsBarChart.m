@@ -39,18 +39,16 @@
         self.yLabelSum = max/interval+1;
         [self setXLabels:xData];
         [self setYValues:yData];
-        //FIX: PNbarChart.m
-        //updateBar:
+    //COCOAPODS PNCHART FIX in PNBarChart.m -> updateBar:
         //bar = [[PNBar alloc] initWithFrame:CGRectMake(barXPosition, _chartMarginTop, barWidth, self.showLevelLine ? chartCavanHeight/2.0:chartCavanHeight)];
-        //__addYCoordinateLabelsValues:
+    //COCOAPODS PNCHART FIX in PNBarChart.m -> __addYCoordinateLabelsValues:
         //label.frame = (CGRect){0, sectionHeight * i + _chartMarginTop - kYLabelHeight/2.0 , _yChartLabelWidth, kYLabelHeight};
-        //FIX 2: PNBarChart.m
-        //setXLabels:
+    //COCOAPODS PNCHART FIX in PNBarChart.m -> setXLabels:
         //PNChartLabel *label = [[PNChartLabel alloc] initWithFrame:CGRectMake(0, 0, 42, kXLabelHeight)];
         //labelXPosition = (index *  _xLabelWidth + _chartMarginLeft + _xLabelWidth / 2.0);
         //label.center = CGPointMake(labelXPosition, self.frame.size.height - kXLabelHeight - _chartMarginTop + 20 + _labelMarginTop);
-        //ProcessYMaxValue:
-        //remove: if (_yLabelSum==4) { _yLabelSum = yAxisValues.count; (_yLabelSum % 2 == 0) ? _yLabelSum : _yLabelSum++; }
+    //COCOAPODS PNCHART FIX in PNBarChart.m -> ProcessYMaxValue:
+        //REMOVE: if (_yLabelSum==4) { _yLabelSum = yAxisValues.count; (_yLabelSum % 2 == 0) ? _yLabelSum : _yLabelSum++; }
     }
 }
 
@@ -69,13 +67,5 @@
     self.chartMarginBottom = 32;
     self.isShowNumbers = NO;
 }
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
 
 @end

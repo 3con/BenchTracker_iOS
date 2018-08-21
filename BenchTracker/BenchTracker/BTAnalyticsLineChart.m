@@ -21,11 +21,14 @@
 
 - (void)setXAxisData:(NSArray <NSString *> *)data {
     if (data.count == 1) [self setXLabels:@[@"", data[0]]];
-    else [self setXLabels:data]; //FIX in PNLineChart.m -> setXLabel:withWidth: NSInteger x = (index * _xLabelWidth + _chartMarginLeft);
-}                                //FIX in PNLineChart.m -> ""
-                                        //PNChartLabel *label = [[PNChartLabel alloc] initWithFrame:
-                                        //CGRectMake(x+MIN(0, (_xLabelWidth-30)/2.0), y,
-                                        //(NSInteger) MAX(30, _xLabelWidth), (NSInteger) _chartMarginBottom)];
+    else [self setXLabels:data];
+}
+
+//COCOAPODS PNCHART FIX in PNLineChart.m -> setXLabel:withWidth:
+    //NSInteger x = (index * _xLabelWidth + _chartMarginLeft);
+    //...
+    //PNChartLabel *label = [[PNChartLabel alloc] initWithFrame: CGRectMake(x+MIN(0, (_xLabelWidth-30)/2.0), y, (NSInteger) MAX(30, _xLabelWidth), (NSInteger) _chartMarginBottom)];
+
 
 - (void)setYAxisData:(NSArray <NSNumber *> *)data {
     if (data.count == 0) { self.tag = -1; return; }
@@ -56,7 +59,8 @@
 #pragma mark - private mathods
 
 - (void)setYLabelData:(NSArray<NSArray<NSNumber *> *> *)data {
-    //FIX in PNLineChart.m -> setYLabels:withHeight: label.minimumScaleFactor = 0.1; label.numberOfLines = 1;
+    //COCOAPODS PNCHART FIX in PNLineChart.m -> setYLabels:withHeight:
+        //label.minimumScaleFactor = 0.1; label.numberOfLines = 1;
     float max = -MAXFLOAT;
     float min = MAXFLOAT;
     for (NSArray *d in data) {
@@ -96,9 +100,13 @@
     self.yLabels = yLabels;
 }
 
+//COCOAPODS PNCHART FIX in PNLineChart.m -> setChartData:
+    //chartLine.fillColor = [[UIColor clearColor] CGColor];
+//COCOAPODS PNCHART FIX in PNLineChart.m -> calculateChartPath: (501)
+    //CHANGE TO (self.showSmoothLines && chartData.itemCount >= 3)
+
 - (void)loadLayout {
-    self.showSmoothLines = YES; //FIX in PNLineChart.m: chartLine.fillColor = [[UIColor clearColor] CGColor];
-                                //FIX in PNLineChart.m: (self.showSmoothLines && chartData.itemCount >= 3)
+    self.showSmoothLines = YES;
     self.backgroundColor = [UIColor clearColor];
     self.yLabelFont = [UIFont systemFontOfSize:10 weight:UIFontWeightBold];
     self.yLabelColor = [UIColor whiteColor];

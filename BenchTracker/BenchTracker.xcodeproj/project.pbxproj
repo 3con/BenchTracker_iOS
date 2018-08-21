@@ -428,8 +428,8 @@
 		F9AF067D1F07535C003A2200 /* WorkoutTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WorkoutTableViewCell.xib; sourceTree = "<group>"; };
 		F9AF06811F07596F003A2200 /* BTStackedBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTStackedBarView.h; sourceTree = "<group>"; };
 		F9AF06821F07596F003A2200 /* BTStackedBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTStackedBarView.m; sourceTree = "<group>"; };
-		F9B27CDF1F1170F5008FCC7F /* StickCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StickCollectionViewFlowLayout.h; path = "Third Party/StickCollectionViewFlowLayout.h"; sourceTree = "<group>"; };
-		F9B27CE01F1170F5008FCC7F /* StickCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StickCollectionViewFlowLayout.m; path = "Third Party/StickCollectionViewFlowLayout.m"; sourceTree = "<group>"; };
+		F9B27CDF1F1170F5008FCC7F /* StickCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StickCollectionViewFlowLayout.h; sourceTree = "<group>"; };
+		F9B27CE01F1170F5008FCC7F /* StickCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StickCollectionViewFlowLayout.m; sourceTree = "<group>"; };
 		F9B27CE21F117852008FCC7F /* AnalyticsCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyticsCollectionViewCell.h; sourceTree = "<group>"; };
 		F9B27CE31F117852008FCC7F /* AnalyticsCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyticsCollectionViewCell.m; sourceTree = "<group>"; };
 		F9B27CE41F117852008FCC7F /* AnalyticsCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnalyticsCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -569,6 +569,15 @@
 				50060FDC1F33BB8E00F6DC00 /* BTWorkoutModel.m */,
 			);
 			name = WorkoutModel;
+			sourceTree = "<group>";
+		};
+		50097E40212C557200BD0C28 /* StickFlowLayout */ = {
+			isa = PBXGroup;
+			children = (
+				F9B27CDF1F1170F5008FCC7F /* StickCollectionViewFlowLayout.h */,
+				F9B27CE01F1170F5008FCC7F /* StickCollectionViewFlowLayout.m */,
+			);
+			path = StickFlowLayout;
 			sourceTree = "<group>";
 		};
 		50145695210E2EE000004AFD /* Adjust times vc */ = {
@@ -1497,8 +1506,7 @@
 		F9B27CDE1F1170E0008FCC7F /* Third Party */ = {
 			isa = PBXGroup;
 			children = (
-				F9B27CDF1F1170F5008FCC7F /* StickCollectionViewFlowLayout.h */,
-				F9B27CE01F1170F5008FCC7F /* StickCollectionViewFlowLayout.m */,
+				50097E40212C557200BD0C28 /* StickFlowLayout */,
 			);
 			name = "Third Party";
 			path = BenchTracker;
