@@ -19,6 +19,7 @@
 #import "WZLBadgeImport.h"
 #import "Appirater.h"
 #import "FSCalendarCollectionView.h"
+#import "WeekdayTableViewCell.h"
 
 @interface MainViewController ()
 
@@ -176,7 +177,7 @@
 }
 
 - (void)updateTableViewColors {
-    NSInteger count = self.listTableView.visibleCells.count;
+    NSInteger count = _fetchedResultsController.fetchedObjects.count;
     self.listTableView.backgroundColor = (count > 0) ? [UIColor BTTableViewBackgroundColor] : [UIColor clearColor];
     self.listTableView.separatorColor = (count > 0) ? [UIColor BTTableViewSeparatorColor] : [UIColor clearColor];
     self.noWorkoutsView.backgroundColor = [UIColor BTTableViewBackgroundColor];
@@ -607,7 +608,7 @@
 #pragma mark - tableView dataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSInteger num = [[[_fetchedResultsController sections] objectAtIndex:section] numberOfObjects];
+    NSInteger num = _fetchedResultsController.fetchedObjects.count;
     self.noWorkoutsView.userInteractionEnabled = (num == 0);
     [self updateTableViewColors];
     [UIView animateWithDuration:.25 animations:^{
@@ -623,8 +624,8 @@
 - (void)configureWorkoutCell:(WorkoutTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     if (self.settings.exerciseTypeColors)
         cell.exerciseTypeColors = [NSKeyedUnarchiver unarchiveObjectWithData:self.settings.exerciseTypeColors];
+    cell.workout = [_fetchedResultsController objectAtIndexPath:indexPath];
     cell.delegate = self;
-    [cell loadWorkout:[_fetchedResultsController objectAtIndexPath:indexPath]];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -653,14 +654,17 @@
 #pragma mark - MGSwipeTableCell delegate
 
 - (BOOL)swipeTableCell:(MGSwipeTableCell *)cell canSwipe:(MGSwipeDirection)direction fromPoint:(CGPoint)point {
-    [(WorkoutTableViewCell *)cell checkTemplateStatus];
-    return YES;
+    return [(WorkoutTableViewCell *)cell checkTemplateStatus];
 }
 
 - (BOOL)swipeTableCell:(MGSwipeTableCell *)cell tappedButtonAtIndex:(NSInteger)index
              direction:(MGSwipeDirection)direction fromExpansion:(BOOL)fromExpansion {
-    NSIndexPath *indexPath = [self.listTableView indexPathForCell:cell];
-    BTWorkout *workout = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    BTWorkout *workout;
+    if ([cell isKindOfClass:WorkoutTableViewCell.class]) {
+        workout = [(WorkoutTableViewCell *)cell workout];
+    } else {
+        workout = [(WeekdayTableViewCell *)cell workouts].firstObject;
+    }
     if (direction == MGSwipeDirectionLeftToRight) {
         [Log event:@"MainVC: Swiped cell" properties:@{@"Action": @"Delete",
                                                        @"Index": @(self.segmentedControl.selectedSegmentIndex)}];

@@ -16,10 +16,10 @@
 
 @property (nonatomic) NSDictionary *exerciseTypeColors;
 
-- (void)loadWorkout:(BTWorkout *)workout;
+@property (nonatomic) BTWorkout *workout;
 
 + (CGFloat)heightForWorkoutCell;
 
-- (void)checkTemplateStatus;
+- (bool)checkTemplateStatus;
 
 @end

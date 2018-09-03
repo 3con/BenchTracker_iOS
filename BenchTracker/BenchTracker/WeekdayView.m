@@ -120,13 +120,14 @@
     cell.today = [[NSCalendar currentCalendar] isDate:date inSameDayAsDate:[NSDate date]];
     if (self.settings.exerciseTypeColors)
         cell.exerciseTypeColors = [NSKeyedUnarchiver unarchiveObjectWithData:self.settings.exerciseTypeColors];
-    [cell loadWithWorkouts:[BTWorkout workoutsBetweenBeginDate:[date dateByAddingTimeInterval:-86400] andEndDate:date]];
+    cell.workouts = [BTWorkout workoutsBetweenBeginDate:[date dateByAddingTimeInterval:-86400] andEndDate:date];
+    cell.delegate = self.delegate;
     cell.date = date;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     WeekdayTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ACell"];
-    if (cell == nil) cell = [[NSBundle mainBundle] loadNibNamed:@"WeekdayTableViewCell" owner:nil options:nil].firstObject;
+    if (cell == nil) cell = [NSBundle.mainBundle loadNibNamed:@"WeekdayTableViewCell" owner:nil options:nil].firstObject;
     [self configureWeekdayCell:cell atIndexPath:indexPath];
     return cell;
 }

@@ -12,6 +12,7 @@
 @class BTWorkoutManager;
 @class BTSettings;
 @class WeekdayTableViewCell;
+@protocol MGSwipeTableCellDelegate;
 
 @class WeekdayView;
 
@@ -21,7 +22,7 @@
 
 @interface WeekdayView : UIView <UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate>
 
-@property (nonatomic) id<WeekdayViewDelegate> delegate;
+@property (nonatomic) id<WeekdayViewDelegate, MGSwipeTableCellDelegate> delegate;
 
 @property (nonatomic) NSManagedObjectContext *context;
 @property (nonatomic) BTUser *user;

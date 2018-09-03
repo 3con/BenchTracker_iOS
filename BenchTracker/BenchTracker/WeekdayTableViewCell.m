@@ -9,6 +9,7 @@
 #import "WeekdayTableViewCell.h"
 #import "BTWorkout+CoreDataClass.h"
 #import "BTSettings+CoreDataClass.h"
+#import "BTWorkoutTemplate+CoreDataClass.h"
 #import "WorkoutDetailsView.h"
 
 @interface WeekdayTableViewCell ()
@@ -60,12 +61,29 @@
     self.weekdaySubtitleLabel.text = [NSString stringWithFormat:@"%ld", (long)components.day];
 }
 
-- (void)loadWithWorkouts:(NSArray <BTWorkout *> *)workouts {
+- (void)setWorkouts:(NSArray<BTWorkout *> *)workouts {
+    _workouts = workouts;
     if (workouts.count == 0) {
         self.nameLabel.alpha = 0;
         self.stackedView.alpha = 0;
     }
     else {
+        MGSwipeButton *delButton = [MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"Trash"]
+                                                  backgroundColor:[UIColor BTRedColor]];
+        delButton.buttonWidth = 80;
+        self.leftButtons = @[delButton];
+        self.leftSwipeSettings.transition = MGSwipeTransitionClipCenter;
+        self.leftExpansion.buttonIndex = 0;
+        self.leftExpansion.fillOnTrigger = NO;
+        self.leftExpansion.threshold = 2.0;
+        MGSwipeButton *temButton = [MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"TemplateAdd"]
+                                                  backgroundColor:[UIColor BTButtonSecondaryColor]];
+        temButton.buttonWidth = 80;
+        self.rightButtons = @[temButton];
+        self.rightSwipeSettings.transition = MGSwipeTransitionClipCenter;
+        self.rightExpansion.buttonIndex = 0;
+        self.rightExpansion.fillOnTrigger = NO;
+        self.rightExpansion.threshold = 2.0;
         if (workouts.count == 1)
             self.nameLabel.text = ([BTSettings sharedInstance].showSmartNames && workouts[0].smartName) ?
                 workouts[0].smartNickname : workouts[0].name;
@@ -113,6 +131,27 @@
     [self.stackedView reloadData];
 }
 
+- (bool)checkTemplateStatus {
+    [self refreshButtons:YES];
+    if (self.workouts.count == 0) return NO;
+    MGSwipeButton *delButton = [MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"Trash"] backgroundColor:[UIColor BTRedColor]];
+    delButton.buttonWidth = 80;
+    self.leftButtons = @[delButton];
+    if (![BTWorkoutTemplate templateExistsForWorkout:self.workouts.firstObject]) {
+        MGSwipeButton *temButton = [MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"TemplateAdd"]
+                                                  backgroundColor:[UIColor BTButtonSecondaryColor]];
+        temButton.buttonWidth = 80;
+        self.rightButtons = @[temButton];
+    }
+    else {
+        MGSwipeButton *temButton = [MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"TemplateDelete"]
+                                                  backgroundColor:[UIColor BTRedColor]];
+        temButton.buttonWidth = 80;
+        self.rightButtons = @[temButton];
+    }
+    return YES;
+}
+
 #pragma mark - stackedView datasource
 
 - (NSInteger)numberOfBarsForStackedBarView:(BTStackedBarView *)barView {
@@ -129,12 +168,6 @@
 
 - (UIColor *)stackedBarView:(BTStackedBarView *)barView colorForBarAtIndex:(NSInteger)index {
     return self.exerciseTypeColors[self.tempSummary[index][0]];
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 @end

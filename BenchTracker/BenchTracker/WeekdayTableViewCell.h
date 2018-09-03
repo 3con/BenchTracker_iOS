@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "BTStackedBarView.h"
+#import "MGSwipeTableCell.h"
 
 @class BTWorkout;
 
-@interface WeekdayTableViewCell : UITableViewCell <BTStackedBarViewDataSource>
+@interface WeekdayTableViewCell : MGSwipeTableCell <BTStackedBarViewDataSource>
 
 @property (nonatomic) BOOL today;
 
@@ -19,6 +20,8 @@
 
 @property (nonatomic) NSDictionary *exerciseTypeColors;
 
-- (void)loadWithWorkouts:(NSArray <BTWorkout *> *)workouts;
+@property (nonatomic) NSArray <BTWorkout *> *workouts;
+
+- (bool)checkTemplateStatus;
 
 @end

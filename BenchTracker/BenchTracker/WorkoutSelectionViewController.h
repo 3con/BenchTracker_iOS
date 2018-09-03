@@ -8,19 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
-#import "MGSwipeTableCell.h"
 
 @class WorkoutSelectionViewController;
 @class BTWorkoutManager;
 @class BTWorkout;
+@protocol MGSwipeTableCellDelegate;
 
 @protocol WorkoutSelectionViewControllerDelegate <NSObject>
 - (void)workoutSelectionVC:(WorkoutSelectionViewController *)wsVC didDismissWithSelectedWorkout:(BTWorkout *)workout;
 @end
 
-@interface WorkoutSelectionViewController : UIViewController <UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, MGSwipeTableCellDelegate>
+@interface WorkoutSelectionViewController : UIViewController <UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate>
 
-@property (nonatomic) id<WorkoutSelectionViewControllerDelegate> delegate;
+@property (nonatomic) id<WorkoutSelectionViewControllerDelegate, MGSwipeTableCellDelegate> delegate;
 
 @property (nonatomic) NSManagedObjectContext *context;
 @property (nonatomic) BTWorkoutManager *workoutManager;

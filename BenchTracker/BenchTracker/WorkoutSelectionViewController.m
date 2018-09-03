@@ -126,8 +126,8 @@
     BTWorkout *workout = [_fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row-1 inSection:0]];
     if (self.settings.exerciseTypeColors)
         cell.exerciseTypeColors = [NSKeyedUnarchiver unarchiveObjectWithData:self.settings.exerciseTypeColors];
-    cell.delegate = self;
-    [cell loadWorkout:workout];
+    cell.workout = workout;
+    cell.delegate = self.delegate;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -177,29 +177,6 @@
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     [cell setNeedsLayout];
     [cell layoutIfNeeded];
-}
-
-#pragma mark - SWTableViewCell delegate
-
-- (BOOL)swipeTableCell:(MGSwipeTableCell *)cell tappedButtonAtIndex:(NSInteger)index
-             direction:(MGSwipeDirection)direction fromExpansion:(BOOL)fromExpansion {
-    UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Delete Workout"
-                                                                    message:@"Are you sure you want to delete this workout? You will lose all of your hard work! This action cannot be undone."
-                                                             preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction* deleteButton = [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-            BTWorkout *workout = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row-1 inSection:0]];
-            [BTUser removeWorkoutFromTotals:workout];
-            [self.context deleteObject:workout];
-            [self.context save:nil];
-        });
-    }];
-    UIAlertAction* cancelButton = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
-    [alert addAction:cancelButton];
-    [alert addAction:deleteButton];
-    [self presentViewController:alert animated:YES completion:nil];
-    return YES;
 }
 
 #pragma mark - scrollView delegate

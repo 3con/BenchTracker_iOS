@@ -22,8 +22,6 @@
 
 @property (nonatomic) WorkoutDetailsView *workoutDetailsView;
 
-@property (nonatomic) BTWorkout *workout;
-
 @property (nonatomic) NSMutableArray <NSArray *> *tempSummary;
 
 @end
@@ -44,9 +42,9 @@
     [self.stackedView reloadData];
 }
 
-- (void)loadWorkout:(BTWorkout *)workout {
+- (void)setWorkout:(BTWorkout *)workout {
+    _workout = workout;
     [self loadInterface];
-    
     MGSwipeButton *delButton = [MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"Trash"]
                                               backgroundColor:[UIColor BTRedColor]];
     delButton.buttonWidth = 80;
@@ -63,7 +61,6 @@
     self.rightExpansion.buttonIndex = 0;
     self.rightExpansion.fillOnTrigger = NO;
     self.rightExpansion.threshold = 2.0;
-    self.workout = workout;
     self.nameLabel.text = ([BTSettings sharedInstance].showSmartNames && workout.smartName) ? workout.smartNickname : workout.name;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"EEEE, MMMM d"];
@@ -110,7 +107,7 @@
     return [BTSettings sharedInstance].showWorkoutDetails ? 80 : 60;
 }
 
-- (void)checkTemplateStatus {
+- (bool)checkTemplateStatus {
     [self refreshButtons:YES];
     MGSwipeButton *delButton = [MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"Trash"] backgroundColor:[UIColor BTRedColor]];
     delButton.buttonWidth = 80;
@@ -127,6 +124,7 @@
         temButton.buttonWidth = 80;
         self.rightButtons = @[temButton];
     }
+    return YES;
 }
 
 #pragma mark - stackedView datasource

@@ -1,108 +1,109 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.13.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.9"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="R3D-3W-qA6" customClass="WeekdayTableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="89"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yzz-q3-UIA">
-                    <rect key="frame" x="0.0" y="0.5" width="65" height="89"/>
-                    <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aCf-OG-vm4">
-                            <rect key="frame" x="0.0" y="-0.5" width="65" height="90"/>
-                            <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mon" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UY2-7k-MZ2">
-                                    <rect key="frame" x="7" y="22" width="51" height="20"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="24" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="onK-en-alR">
-                                    <rect key="frame" x="7" y="39" width="51" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="65" id="FGV-Z7-dXG"/>
-                                <constraint firstAttribute="height" constant="90" id="bdp-eG-6wN"/>
-                            </constraints>
-                        </view>
-                    </subviews>
-                    <color key="backgroundColor" red="0.078297413885593414" green="0.077457226812839508" blue="0.32783538103103638" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <constraints>
-                        <constraint firstItem="aCf-OG-vm4" firstAttribute="centerY" secondItem="Yzz-q3-UIA" secondAttribute="centerY" id="0Vz-Oa-Mrd"/>
-                        <constraint firstAttribute="width" constant="65" id="Jw7-Xz-q6l"/>
-                        <constraint firstItem="aCf-OG-vm4" firstAttribute="centerX" secondItem="Yzz-q3-UIA" secondAttribute="centerX" id="oNr-mY-aTu"/>
-                    </constraints>
-                </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="500" text="Afternoon Workout" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hXL-RF-imJ">
-                    <rect key="frame" x="75" y="21.5" width="165" height="25"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="25" id="7xL-sL-P9j"/>
-                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="165" id="zg2-ot-VUm"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TyM-qj-3DK" customClass="BTStackedBarView">
-                    <rect key="frame" x="250" y="14" width="154" height="40"/>
-                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="40" id="Xso-jU-BOc"/>
-                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="250" id="unA-ki-bnO"/>
-                    </constraints>
-                </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a30-eh-200">
-                    <rect key="frame" x="75" y="59" width="329" height="20"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="20" id="Wm7-rg-fqp"/>
-                    </constraints>
-                </view>
-            </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstItem="Yzz-q3-UIA" firstAttribute="leading" secondItem="R3D-3W-qA6" secondAttribute="leading" id="6yv-Cp-Dtt"/>
-                <constraint firstItem="hXL-RF-imJ" firstAttribute="leading" secondItem="Yzz-q3-UIA" secondAttribute="trailing" constant="10" id="AyR-zd-rnt"/>
-                <constraint firstItem="Yzz-q3-UIA" firstAttribute="centerY" secondItem="R3D-3W-qA6" secondAttribute="centerY" id="Bvl-Fo-hjs"/>
-                <constraint firstItem="a30-eh-200" firstAttribute="top" secondItem="TyM-qj-3DK" secondAttribute="bottom" priority="750" constant="5" id="KTP-qB-1Xw"/>
-                <constraint firstAttribute="trailing" secondItem="TyM-qj-3DK" secondAttribute="trailing" constant="10" id="N7a-Tf-4CW"/>
-                <constraint firstItem="Yzz-q3-UIA" firstAttribute="height" secondItem="R3D-3W-qA6" secondAttribute="height" id="Pat-io-88M"/>
-                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="a30-eh-200" secondAttribute="bottom" constant="2" id="Tjc-oP-UfU"/>
-                <constraint firstItem="a30-eh-200" firstAttribute="leading" secondItem="aCf-OG-vm4" secondAttribute="trailing" constant="10" id="YU9-Ag-ZEO"/>
-                <constraint firstAttribute="trailing" secondItem="a30-eh-200" secondAttribute="trailing" constant="10" id="Yfw-X0-S9c"/>
-                <constraint firstItem="TyM-qj-3DK" firstAttribute="centerY" secondItem="R3D-3W-qA6" secondAttribute="centerY" constant="-11" id="jAb-fy-YlB"/>
-                <constraint firstItem="TyM-qj-3DK" firstAttribute="leading" secondItem="hXL-RF-imJ" secondAttribute="trailing" priority="750" constant="10" id="sbf-lJ-fy8"/>
-                <constraint firstItem="hXL-RF-imJ" firstAttribute="centerY" secondItem="TyM-qj-3DK" secondAttribute="centerY" id="xXX-l6-fTf"/>
-            </constraints>
-            <nil key="simulatedStatusBarMetrics"/>
-            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="t4Z-Xo-xGu" customClass="WeekdayTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="t4Z-Xo-xGu" id="RlX-oC-qdr">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="89.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pXM-93-dhE" customClass="BTStackedBarView">
+                        <rect key="frame" x="250" y="14" width="154" height="40"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="250" id="CiU-sr-bdu"/>
+                            <constraint firstAttribute="height" constant="40" id="Hpx-vW-6c8"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Qd-y3-eWe">
+                        <rect key="frame" x="75" y="59" width="329" height="20"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="rrG-Hg-vvi"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="500" text="Afternoon Workout" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mTj-M8-L95">
+                        <rect key="frame" x="75" y="21.5" width="165" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="ReZ-gI-x0J"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="165" id="bMa-5B-Un7"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aSn-Rh-SK0">
+                        <rect key="frame" x="0.0" y="0.0" width="65" height="89.5"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nha-4g-ubB">
+                                <rect key="frame" x="0.0" y="-0.5" width="65" height="90.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mon" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JUr-T2-b2H">
+                                        <rect key="frame" x="7" y="22" width="51" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="24" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7G0-Oo-Asa">
+                                        <rect key="frame" x="7" y="39" width="51" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" id="RV3-Nm-bQs"/>
+                                    <constraint firstAttribute="width" constant="65" id="zr6-c8-mJB"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.078297413890000001" green="0.077457226810000002" blue="0.32783538099999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Nha-4g-ubB" firstAttribute="centerY" secondItem="aSn-Rh-SK0" secondAttribute="centerY" id="5I0-SL-3gp"/>
+                            <constraint firstAttribute="width" constant="65" id="jkP-t1-gTO"/>
+                            <constraint firstItem="Nha-4g-ubB" firstAttribute="centerX" secondItem="aSn-Rh-SK0" secondAttribute="centerX" id="z1r-cC-WWt"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="pXM-93-dhE" firstAttribute="centerY" secondItem="RlX-oC-qdr" secondAttribute="centerY" constant="-11" id="5Hi-gB-EEu"/>
+                    <constraint firstItem="mTj-M8-L95" firstAttribute="centerY" secondItem="pXM-93-dhE" secondAttribute="centerY" id="5aF-eq-7uc"/>
+                    <constraint firstItem="mTj-M8-L95" firstAttribute="leading" secondItem="aSn-Rh-SK0" secondAttribute="trailing" constant="10" id="5xj-2q-DJ1"/>
+                    <constraint firstItem="aSn-Rh-SK0" firstAttribute="leading" secondItem="RlX-oC-qdr" secondAttribute="leading" id="HSo-NB-b3e"/>
+                    <constraint firstItem="0Qd-y3-eWe" firstAttribute="leading" secondItem="Nha-4g-ubB" secondAttribute="trailing" constant="10" id="KSD-Ff-XML"/>
+                    <constraint firstAttribute="trailing" secondItem="0Qd-y3-eWe" secondAttribute="trailing" constant="10" id="RAT-lS-RkX"/>
+                    <constraint firstItem="pXM-93-dhE" firstAttribute="leading" secondItem="mTj-M8-L95" secondAttribute="trailing" priority="750" constant="10" id="SJG-Kq-Mdq"/>
+                    <constraint firstAttribute="trailing" secondItem="pXM-93-dhE" secondAttribute="trailing" constant="10" id="W3f-Dg-ODT"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="0Qd-y3-eWe" secondAttribute="bottom" constant="2" id="W4g-i7-KpS"/>
+                    <constraint firstItem="aSn-Rh-SK0" firstAttribute="top" secondItem="RlX-oC-qdr" secondAttribute="top" id="ld4-an-Srm"/>
+                    <constraint firstAttribute="bottom" secondItem="aSn-Rh-SK0" secondAttribute="bottom" id="mFi-eO-jeQ"/>
+                    <constraint firstItem="0Qd-y3-eWe" firstAttribute="top" secondItem="pXM-93-dhE" secondAttribute="bottom" priority="750" constant="5" id="y9s-xx-ZBb"/>
+                </constraints>
+            </tableViewCellContentView>
             <connections>
-                <outlet property="contentCenterConstraint" destination="jAb-fy-YlB" id="Oso-5x-m18"/>
-                <outlet property="nameLabel" destination="hXL-RF-imJ" id="VeN-rZ-J5k"/>
-                <outlet property="stackedView" destination="TyM-qj-3DK" id="UIj-h5-Eic"/>
-                <outlet property="weekdayContainerView" destination="Yzz-q3-UIA" id="buP-h4-R6k"/>
-                <outlet property="weekdaySubtitleLabel" destination="onK-en-alR" id="UTt-tG-mFA"/>
-                <outlet property="weekdayTitleLabel" destination="UY2-7k-MZ2" id="UQ8-5a-mJO"/>
-                <outlet property="workoutDetailsContainerView" destination="a30-eh-200" id="r2X-N8-Jnz"/>
+                <outlet property="contentCenterConstraint" destination="5Hi-gB-EEu" id="cTz-ww-WBx"/>
+                <outlet property="nameLabel" destination="mTj-M8-L95" id="ban-Rx-uxr"/>
+                <outlet property="stackedView" destination="pXM-93-dhE" id="eAo-oM-9yc"/>
+                <outlet property="weekdayContainerView" destination="aSn-Rh-SK0" id="XuN-86-piQ"/>
+                <outlet property="weekdaySubtitleLabel" destination="7G0-Oo-Asa" id="ihR-hF-GYB"/>
+                <outlet property="weekdayTitleLabel" destination="JUr-T2-b2H" id="7re-uj-U9h"/>
+                <outlet property="workoutDetailsContainerView" destination="0Qd-y3-eWe" id="7Q1-q5-Nba"/>
             </connections>
-            <point key="canvasLocation" x="97" y="-233"/>
-        </view>
+            <point key="canvasLocation" x="96" y="-110"/>
+        </tableViewCell>
     </objects>
 </document>
