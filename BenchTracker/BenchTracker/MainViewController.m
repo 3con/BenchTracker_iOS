@@ -830,7 +830,7 @@
 }
 
 - (void)workoutViewController:(WorkoutViewController *)workoutVC didDismissWithResultWorkout:(BTWorkout *)workout {
-    if (workout && workout.duration != self.settings.activeWorkoutBeforeDuration) {
+    if (workout && workout.duration != self.settings.activeWorkoutBeforeDuration && workout == BTWorkout.lastWorkout) {
         self.blankWorkoutButton.hidden = YES;
         self.scanWorkoutButton.hidden = YES;
         self.templateButton.hidden = YES;

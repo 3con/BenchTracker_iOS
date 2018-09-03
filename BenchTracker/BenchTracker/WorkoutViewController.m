@@ -75,9 +75,14 @@
     self.deleteWorkoutButton.clipsToBounds = YES;
     [Log event:@"WorkoutVC: Loaded" properties:@{@"Workout": @(self.workout != nil)}];
     if (!self.context) self.context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
-    if (!self.workout) self.workout = [BTWorkout workout];
-    [BTUser removeWorkoutFromTotals:self.workout];
+    if (!self.workout) {
+        self.workout = [BTWorkout workout];
+        self.settings.activeWorkoutLastUpdate = NSDate.date;
+    } else if (self.workout != BTWorkout.lastWorkout) {
+        self.settings.activeWorkoutLastUpdate = NSDate.date;
+    }
     self.settings.activeWorkoutBeforeDuration = self.workout.duration;
+    [BTUser removeWorkoutFromTotals:self.workout];
     BOOL placeholder = true;
     if (@available(iOS 11, *)) {
         placeholder = !self.settings.showSmartNames;
@@ -146,8 +151,6 @@
 - (void)workoutWillEnd {
     if (self.settings.activeWorkout) {
         self.settings.activeWorkout = nil;
-        self.settings.activeWorkoutStartDate = nil;
-        self.settings.activeWorkoutLastUpdate = nil;
         [self updateWorkout];
         [BTUser addWorkoutToTotals:self.workout];
         [Log event:@"WorkoutVC: End" properties:@{@"Workout": self.workout.logDescription}];
@@ -193,7 +196,6 @@
 }
 
 - (void)updateWorkout {
-    [self updateWorkoutInterval];
     NSMutableDictionary <NSString *, NSNumber *> *dict = [[NSMutableDictionary alloc] init];
     self.workout.volume = 0;
     self.workout.numExercises = self.workout.exercises.count;
@@ -227,14 +229,11 @@
 }
 
 - (void)updateWorkoutInterval {
-    if (self.settings.activeWorkoutStartDate) {
-        NSTimeInterval timeInterval = [self.settings.activeWorkoutStartDate timeIntervalSinceDate:self.settings.activeWorkoutLastUpdate];
-        if (timeInterval > 0) return;
-        //if (self.workout.duration < 1) self.workout.date = [NSDate date];
-        self.workout.duration += MIN(1800, -timeInterval+.5); //cap of 30 mins to prevent outrageous workout times
-        self.settings.activeWorkoutStartDate = self.settings.activeWorkoutLastUpdate;
-        [self.context save:nil];
-    }
+    NSTimeInterval timeInterval = [NSDate.date timeIntervalSinceDate:self.settings.activeWorkoutLastUpdate];
+    if (timeInterval < 0) return;
+    self.workout.duration += MIN(900, timeInterval + .5); //cap of 15 mins to prevent outrageous workout times
+    self.settings.activeWorkoutLastUpdate = NSDate.date;
+    [self.context save:nil];
 }
 
 - (IBAction)deleteWorkoutButtonPressed:(UIButton *)sender {
@@ -258,7 +257,6 @@
 
 - (void)deleteWorkout {
     self.settings.activeWorkout = nil;
-    self.settings.activeWorkoutStartDate = nil;
     self.settings.activeWorkoutLastUpdate = nil;
     [BTUser removeWorkoutFromTotals:self.workout];
     [self.context deleteObject:self.workout];
@@ -585,9 +583,7 @@
 }
 
 - (void)exerciseViewDidAddSet:(ExerciseView *)exerciseView withResultExercise:(BTExercise *)exercise {
-    self.settings.activeWorkoutLastUpdate = [NSDate date];
-    if (!self.settings.activeWorkoutStartDate)
-        self.settings.activeWorkoutStartDate = [NSDate date];
+    [self updateWorkoutInterval];
 }
 
 - (NSArray <NSIndexPath *> *)resultIndexPathsFromDeleteExercisesActionWithExercises:(NSArray <BTExercise *> *)deleted {
@@ -604,11 +600,11 @@
     }];
     for (NSIndexPath *index in deletedIndexPaths) {
         for (NSMutableArray <NSNumber *> *superset in self.tempSupersets) {
-            for (int i = (int)superset.count-1; i >= 0; i--) {
+            for (NSInteger i = superset.count - 1; i >= 0; i--) {
                 if (superset[i].integerValue == index.row) [superset removeObjectAtIndex:i];
                 else if (superset[i].integerValue > index.row) superset[i] = [NSNumber numberWithInt:superset[i].intValue - 1];
     }   }   }
-    for (NSInteger i = self.tempSupersets.count-1; i >= 0; i--)
+    for (NSInteger i = self.tempSupersets.count - 1; i >= 0; i--)
         if (self.tempSupersets[i].count <= 1) [self.tempSupersets removeObjectAtIndex:i];
     for (BTExercise *exercise in deleted) {
         [self.workout removeExercisesObject:exercise];

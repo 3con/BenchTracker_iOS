@@ -206,6 +206,15 @@
     return (NSArray <BTWorkout *> *)[context executeFetchRequest:fetchRequest error:nil];
 }
 
++ (BTWorkout *)lastWorkout {
+    NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"BTWorkout"];
+    fetchRequest.fetchLimit = 1;
+    fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO]];
+    NSArray *arr = [context executeFetchRequest:fetchRequest error:nil];
+    return arr.count > 0 ? arr.firstObject : nil;
+}
+
 + (NSInteger)numberOfWorkouts {
     NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"BTWorkout"];

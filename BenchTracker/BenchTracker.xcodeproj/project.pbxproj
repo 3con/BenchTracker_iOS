@@ -211,6 +211,7 @@
 		501FEA1E21101AF700634766 /* Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Log.m; sourceTree = "<group>"; };
 		502145A11FDE5ABE00048F46 /* WorkoutSummaryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WorkoutSummaryViewController.h; sourceTree = "<group>"; };
 		502145A21FDE5ABE00048F46 /* WorkoutSummaryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WorkoutSummaryViewController.m; sourceTree = "<group>"; };
+		5021A7B0213DA973006852AE /* BTDataModel14.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BTDataModel14.xcdatamodel; sourceTree = "<group>"; };
 		5025A2AA20199A0800CFEF0E /* BTDataModel9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BTDataModel9.xcdatamodel; sourceTree = "<group>"; };
 		502ABF7C1FE42A8C00C0232C /* AWSUsername.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AWSUsername.h; sourceTree = "<group>"; };
 		502ABF7D1FE42A8C00C0232C /* AWSUsername.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AWSUsername.m; sourceTree = "<group>"; };
@@ -2321,6 +2322,7 @@
 		F9DA750F1F02DC1700347B0D /* BTDataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				5021A7B0213DA973006852AE /* BTDataModel14.xcdatamodel */,
 				50145696210E5B8D00004AFD /* BTDataModel13.xcdatamodel */,
 				50D3E79B2022F40C00D83769 /* BTDataModel12.xcdatamodel */,
 				50CF4D9820215F3400B55679 /* BTDataModel11.xcdatamodel */,
@@ -2335,7 +2337,7 @@
 				50FB89931F5A48A3002EA7A4 /* BTDataModel2.xcdatamodel */,
 				F9DA75101F02DC1700347B0D /* BTDataModel.xcdatamodel */,
 			);
-			currentVersion = 50145696210E5B8D00004AFD /* BTDataModel13.xcdatamodel */;
+			currentVersion = 5021A7B0213DA973006852AE /* BTDataModel14.xcdatamodel */;
 			path = BTDataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

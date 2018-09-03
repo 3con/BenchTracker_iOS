@@ -15,7 +15,6 @@
 }
 
 @dynamic activeWorkout;
-@dynamic activeWorkoutStartDate;
 @dynamic activeWorkoutLastUpdate;
 @dynamic activeWorkoutBeforeDuration;
 
