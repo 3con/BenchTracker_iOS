@@ -252,8 +252,8 @@
             NSArray *shareData = @[@"Here's my Weightlifting App data. Download Weightlifting App on the iOS App Store then tap on the file to open it.",
                                    [NSURL URLWithString:@"https://itunes.apple.com/app/id1266077653"],
                                    [NSURL fileURLWithPath:dataPath]];
-            UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:shareData applicationActivities:nil];
-            [activityViewController setCompletionWithItemsHandler:^(NSString *activityType, BOOL completed, NSArray *returnedItems, NSError *activityError) {
+            UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:shareData applicationActivities:nil];
+            [activityVC setCompletionWithItemsHandler:^(NSString *activityType, BOOL completed, NSArray *returnedItems, NSError *activityError) {
                 if (activityError) {
                     UIAlertController *alert =
                         [UIAlertController alertControllerWithTitle:@"Cannot Export Data"
@@ -264,7 +264,13 @@
                     [self presentViewController:alert animated:YES completion:nil];
                 }
             }];
-            [self presentViewController:activityViewController animated:YES completion:nil];
+            if (UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+                UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:7]];
+                activityVC.modalPresentationStyle = UIModalPresentationPopover;
+                activityVC.popoverPresentationController.sourceView = self.view;
+                activityVC.popoverPresentationController.sourceRect = [self.view convertRect:cell.frame fromView:self.tableView];
+            }
+            [self presentViewController:activityVC animated:YES completion:nil];
         }
         else {
             UIAlertController *alert =
@@ -278,12 +284,18 @@
     }
     else if ([formRow.tag isEqualToString:@"share"]) {
         NSArray *dataToShare = @[@"Go download Weightlifting App on the iOS App Store! https://itunes.apple.com/app/id1266077653"];
-        UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:dataToShare
+        UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:dataToShare
                                                                                              applicationActivities:nil];
-        [activityViewController setCompletionWithItemsHandler:^(NSString *activityType, BOOL completed, NSArray *returnedItems, NSError *activityError) {
+        [activityVC setCompletionWithItemsHandler:^(NSString *activityType, BOOL completed, NSArray *returnedItems, NSError *activityError) {
             if (completed) [BTAchievement markAchievementComplete:ACHIEVEMENT_SHARE animated:YES];
         }];
-        [self presentViewController:activityViewController animated:YES completion:nil];
+        if (UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+            UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:8]];
+            activityVC.modalPresentationStyle = UIModalPresentationPopover;
+            activityVC.popoverPresentationController.sourceView = self.view;
+            activityVC.popoverPresentationController.sourceRect = [self.view convertRect:cell.frame fromView:self.tableView];
+        }
+        [self presentViewController:activityVC animated:YES completion:nil];
     }
     else if ([formRow.tag isEqualToString:@"rate"])
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:RATE_URL] options:@{} completionHandler:nil];
