@@ -181,30 +181,7 @@
         achievement.completed = YES;
         [[NSUserDefaults standardUserDefaults] setInteger:[BTAchievement numberOfUnreadAchievements]+1 forKey:@"achievementsCount"];
         [[NSUserDefaults standardUserDefaults] synchronize];
-        if (animated) {
-            UIViewController *viewController = [BTAchievement topMostController];
-            CSToastStyle *style = [[CSToastStyle alloc] initWithDefaultStyle];
-            style.backgroundColor = [UIColor BTVibrantColors][0];
-            style.cornerRadius = 12;
-            style.verticalPadding = 20;
-            style.horizontalPadding = 20;
-            style.titleFont = [UIFont systemFontOfSize:19 weight:UIFontWeightSemibold];
-            style.messageFont = [UIFont systemFontOfSize:15 weight:UIFontWeightMedium];
-            style.titleAlignment = NSTextAlignmentCenter;
-            style.messageAlignment = NSTextAlignmentCenter;
-            style.maxWidthPercentage = 90;
-            style.imageSize = CGSizeMake(80, 80);
-            style.fadeDuration = .25;
-            NSString *str = [NSString stringWithFormat:@"ACHIEVEMENT UNLOCKED!\n+%d xp (Level %ld)",
-                                                        achievement.xp, (long)[BTUser sharedInstance].level];
-            [viewController.view makeToast:str duration:3.0 position:CSToastPositionTop title:achievement.name
-                                     image:achievement.image style:style completion:^(BOOL didTap) {
-                    if (didTap && [viewController isKindOfClass:[MainViewController class]])
-                        [(MainViewController *)viewController presentUserViewControllerWithForwardToAcheivements:YES];
-            }];
-            if ([viewController isKindOfClass:[MainViewController class]])
-                [(MainViewController *)viewController updateBadgeView];
-        }
+        if (animated) [BTToastManager presentToastForAchievement:achievement];
         [context save:nil];
     }
 }
@@ -309,12 +286,6 @@
     NSScanner *scanner = [NSScanner scannerWithString:hex];
     [scanner scanHexInt:&rgbValue];
     return [UIColor colorWithRed:((rgbValue & 0xFF0000) >> 16)/255.0 green:((rgbValue & 0xFF00) >> 8)/255.0 blue:(rgbValue & 0xFF)/255.0 alpha:1.0];
-}
-
-+ (UIViewController *)topMostController {
-    UIViewController *topController = [UIApplication sharedApplication].keyWindow.rootViewController;
-    while (topController.presentedViewController) topController = topController.presentedViewController;
-    return topController;
 }
 
 @end

@@ -10,7 +10,7 @@
 #define BenchTrackerPrefixHeader_pch
 
 #import "UIColor+BTColors.h"
-#import "UIView+Toast.h"
+#import "BTToastManager.h"
 #import "Log.h"
 
 #endif /* BenchTrackerPrefixHeader_pch */

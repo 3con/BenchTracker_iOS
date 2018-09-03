@@ -20,6 +20,7 @@
 		50145694210E2ED700004AFD /* AdjustTimesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50145693210E2ED700004AFD /* AdjustTimesViewController.m */; };
 		501FEA1F21101AF700634766 /* Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 501FEA1E21101AF700634766 /* Log.m */; };
 		502145A41FDE5ABE00048F46 /* WorkoutSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 502145A21FDE5ABE00048F46 /* WorkoutSummaryViewController.m */; };
+		5021A7B3213DE029006852AE /* BTToastManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5021A7B2213DE029006852AE /* BTToastManager.m */; };
 		502ABF7E1FE42A8C00C0232C /* AWSUsername.m in Sources */ = {isa = PBXBuildFile; fileRef = 502ABF7D1FE42A8C00C0232C /* AWSUsername.m */; };
 		502ABF821FE441CA00C0232C /* LeaderboardViewButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 502ABF811FE441CA00C0232C /* LeaderboardViewButton.m */; };
 		502ABF851FE441F900C0232C /* LeaderboardViewButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 502ABF841FE441F900C0232C /* LeaderboardViewButton.xib */; };
@@ -212,6 +213,8 @@
 		502145A11FDE5ABE00048F46 /* WorkoutSummaryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WorkoutSummaryViewController.h; sourceTree = "<group>"; };
 		502145A21FDE5ABE00048F46 /* WorkoutSummaryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WorkoutSummaryViewController.m; sourceTree = "<group>"; };
 		5021A7B0213DA973006852AE /* BTDataModel14.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BTDataModel14.xcdatamodel; sourceTree = "<group>"; };
+		5021A7B1213DE029006852AE /* BTToastManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTToastManager.h; sourceTree = "<group>"; };
+		5021A7B2213DE029006852AE /* BTToastManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTToastManager.m; sourceTree = "<group>"; };
 		5025A2AA20199A0800CFEF0E /* BTDataModel9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BTDataModel9.xcdatamodel; sourceTree = "<group>"; };
 		502ABF7C1FE42A8C00C0232C /* AWSUsername.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AWSUsername.h; sourceTree = "<group>"; };
 		502ABF7D1FE42A8C00C0232C /* AWSUsername.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AWSUsername.m; sourceTree = "<group>"; };
@@ -608,6 +611,15 @@
 				500544E21FDF2D5500BB836F /* WS tvc */,
 			);
 			name = "Summary vc";
+			sourceTree = "<group>";
+		};
+		5021A7B4213DE02F006852AE /* BTToastManager */ = {
+			isa = PBXGroup;
+			children = (
+				5021A7B1213DE029006852AE /* BTToastManager.h */,
+				5021A7B2213DE029006852AE /* BTToastManager.m */,
+			);
+			name = BTToastManager;
 			sourceTree = "<group>";
 		};
 		502ABF7F1FE42A9500C0232C /* AWS username */ = {
@@ -1314,6 +1326,7 @@
 				F94C89461F15D5BC006C6BDD /* 1RM calculator */,
 				506C915A1F9FEEAD003C4758 /* BTButton */,
 				501FEA1C21101AC800634766 /* Amplitude Logging */,
+				5021A7B4213DE02F006852AE /* BTToastManager */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -1996,6 +2009,7 @@
 				F9F522FA1F19BC0C00061AF0 /* EditExercisesViewController.m in Sources */,
 				F9DA75251F02EE9600347B0D /* BTExercise+CoreDataProperties.m in Sources */,
 				F9640BD81F080E590053C9C0 /* BTSettings+CoreDataClass.m in Sources */,
+				5021A7B3213DE029006852AE /* BTToastManager.m in Sources */,
 				5084CF211F3BD66F0083FA19 /* BTTemplateListModel.m in Sources */,
 				50636F2A1F2B9BFE00FB65B4 /* EEExerciseTypeTableViewCell.m in Sources */,
 				F94C89401F15B68D006C6BDD /* ADMuscleSplitTableViewCell.m in Sources */,

@@ -79,14 +79,7 @@
     [self updateInterface];
     self.context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
     self.user = [BTUser sharedInstance];
-    CSToastStyle *style = [[CSToastStyle alloc] initWithDefaultStyle];
-    style.horizontalPadding = 32;
-    style.verticalPadding = 32;
-    style.cornerRadius = 12;
-    style.imageSize = CGSizeMake(32, 32);
-    [CSToastManager setSharedStyle:style];
-    [CSToastManager setTapToDismissEnabled:YES];
-    [CSToastManager setQueueEnabled:YES];
+    [BTToastManager setUpToasts];
     NSError *error;
     if (![[self fetchedResultsController] performFetch:&error])
         NSLog(@"Main fetch error: %@, %@", error, [error userInfo]);
@@ -686,19 +679,10 @@
     else {
         [Log event:@"MainVC: Swiped cell" properties:@{@"Action": @"Template",
                                                        @"Index": @(self.segmentedControl.selectedSegmentIndex)}];
-        CSToastStyle *style = [CSToastManager sharedStyle];
-        if ([BTWorkoutTemplate templateExistsForWorkout:workout]) {
-            [BTWorkoutTemplate removeWorkoutFromTemplateList:workout];
-            style.backgroundColor = [[UIColor BTRedColor] colorWithAlphaComponent:.8];
-            [self.view makeToast:nil duration:0.5 position:CSToastPositionCenter title:nil
-                           image:[UIImage imageNamed:@"TemplateDelete"] style:style completion:nil];
-        }
-        else {
-            [BTWorkoutTemplate saveWorkoutToTemplateList:workout];
-            style.backgroundColor = [[UIColor BTButtonSecondaryColor] colorWithAlphaComponent:.8];
-            [self.view makeToast:nil duration:0.5 position:CSToastPositionCenter title:nil
-                           image:[UIImage imageNamed:@"TemplateAdd"] style:nil completion:nil];
-        }
+        [BTToastManager presentToastForTemplate:![BTWorkoutTemplate templateExistsForWorkout:workout]];
+        if ([BTWorkoutTemplate templateExistsForWorkout:workout])
+             [BTWorkoutTemplate removeWorkoutFromTemplateList:workout];
+        else [BTWorkoutTemplate saveWorkoutToTemplateList:workout];
     }
     return YES;
 }

@@ -148,6 +148,7 @@
 
 - (IBAction)templateButtonPressed:(UIButton *)sender {
     [Log event:@"WorkoutSettingsVC: Template" properties:nil];
+    [BTToastManager presentToastForTemplate:![BTWorkoutTemplate templateExistsForWorkout:self.workout]];
     if ([BTWorkoutTemplate templateExistsForWorkout:self.workout])
          [BTWorkoutTemplate removeWorkoutFromTemplateList:self.workout];
     else [BTWorkoutTemplate saveWorkoutToTemplateList:self.workout];
