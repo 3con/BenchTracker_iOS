@@ -120,7 +120,7 @@
     cell.today = [[NSCalendar currentCalendar] isDate:date inSameDayAsDate:[NSDate date]];
     if (self.settings.exerciseTypeColors)
         cell.exerciseTypeColors = [NSKeyedUnarchiver unarchiveObjectWithData:self.settings.exerciseTypeColors];
-    cell.workouts = [BTWorkout workoutsBetweenBeginDate:[date dateByAddingTimeInterval:-86400] andEndDate:date];
+    cell.workouts = [BTWorkout workoutsBetweenBeginDate:date andEndDate:[date dateByAddingTimeInterval:86400]];
     cell.delegate = self.delegate;
     cell.date = date;
 }
@@ -135,7 +135,7 @@
 #pragma mark - tableView delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSDate *date = [self.firstDayDate dateByAddingTimeInterval:86400*(indexPath.row-1)];
+    NSDate *date = [self.firstDayDate dateByAddingTimeInterval:86400*indexPath.row];
     CGRect frame = [tableView rectForRowAtIndexPath:indexPath];
     CGFloat offset = self.tableView.contentOffset.y-self.frame.origin.y-self.superview.frame.origin.y;
     CGPoint point = CGPointMake(frame.origin.x+frame.size.width/2.0, frame.origin.y+frame.size.height/2.0-offset);

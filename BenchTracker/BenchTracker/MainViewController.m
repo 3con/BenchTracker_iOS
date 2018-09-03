@@ -106,9 +106,9 @@
         CGPoint cellPostion = [self.listTableView convertPoint:location fromView:self.view];
         NSIndexPath *path = [self.listTableView indexPathForRowAtPoint:cellPostion];
         if (path) {
-            WorkoutTableViewCell *tableCell = [self.listTableView cellForRowAtIndexPath:path];
-            wVC.workout = self.fetchedResultsController.fetchedObjects[path.row];
-            previewingContext.sourceRect = [self.view convertRect:tableCell.frame fromView:self.listTableView];
+            WorkoutTableViewCell *cell = [self.listTableView cellForRowAtIndexPath:path];
+            wVC.workout = cell.workout;
+            previewingContext.sourceRect = [self.view convertRect:cell.frame fromView:self.listTableView];
             return wVC;
         }
     }
@@ -116,11 +116,9 @@
         CGPoint cellPostion = [self.weekdayView convertPoint:location fromView:self.view];
         NSIndexPath *path = [self.weekdayView indexPathForRowAtPoint:cellPostion];
         if (path) {
-            WeekdayTableViewCell *tableCell = [self.weekdayView cellForRowAtIndexPath:path];
-            BTWorkout *workout = [BTWorkout workoutsBetweenBeginDate:[tableCell.date dateByAddingTimeInterval:-86400]
-                                                          andEndDate:tableCell.date].firstObject;
-            if (workout) {
-                wVC.workout = workout;
+            WeekdayTableViewCell *cell = [self.weekdayView cellForRowAtIndexPath:path];
+            if (cell.workouts.count) {
+                wVC.workout = cell.workouts.firstObject;
                 previewingContext.sourceRect = [self.view convertRect:[self.weekdayView sourceRectForIndex:path] fromView:self.weekdayView];
                 return wVC;
             }
