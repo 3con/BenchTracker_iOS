@@ -197,10 +197,11 @@
 
 - (UIView *)flashlightView {
     if (!_flashlightView) {
-        _flashlightView = [[UIView alloc] initWithFrame:CGRectMake(0, self.noteLab.bottom+10, self.view.width, 80)];
+        _flashlightView = [[UIView alloc] initWithFrame:CGRectMake(0, self.noteLab.bottom + 40, self.view.width, 80)];
         _flashlightView.backgroundColor = [UIColor clearColor];
-        UIButton *flashBtn = [[UIButton alloc] initWithFrame:CGRectMake((_flashlightView.width-60)/2, 0, 60, 60)];
+        UIButton *flashBtn = [[UIButton alloc] initWithFrame:CGRectMake((_flashlightView.width - 60) / 2, 0, 60, 60)];
         [flashBtn setImage:[UIImage imageNamed:@"Flashlight"] forState:UIControlStateNormal];
+        flashBtn.imageEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
         [flashBtn addTarget:self action:@selector(flashClicked) forControlEvents:UIControlEventTouchUpInside];
         [_flashlightView addSubview:flashBtn];
         UILabel *noteLab = [[UILabel alloc] initWithFrame:CGRectMake(0, flashBtn.bottom, _flashlightView.width, 20)];

@@ -21,6 +21,7 @@
 		501FEA1F21101AF700634766 /* Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 501FEA1E21101AF700634766 /* Log.m */; };
 		502145A41FDE5ABE00048F46 /* WorkoutSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 502145A21FDE5ABE00048F46 /* WorkoutSummaryViewController.m */; };
 		5021A7B3213DE029006852AE /* BTToastManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5021A7B2213DE029006852AE /* BTToastManager.m */; };
+		5021A7B7213DED0F006852AE /* TemplateQuestionMarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5021A7B6213DED0F006852AE /* TemplateQuestionMarkViewController.m */; };
 		502ABF7E1FE42A8C00C0232C /* AWSUsername.m in Sources */ = {isa = PBXBuildFile; fileRef = 502ABF7D1FE42A8C00C0232C /* AWSUsername.m */; };
 		502ABF821FE441CA00C0232C /* LeaderboardViewButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 502ABF811FE441CA00C0232C /* LeaderboardViewButton.m */; };
 		502ABF851FE441F900C0232C /* LeaderboardViewButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 502ABF841FE441F900C0232C /* LeaderboardViewButton.xib */; };
@@ -215,6 +216,8 @@
 		5021A7B0213DA973006852AE /* BTDataModel14.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BTDataModel14.xcdatamodel; sourceTree = "<group>"; };
 		5021A7B1213DE029006852AE /* BTToastManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTToastManager.h; sourceTree = "<group>"; };
 		5021A7B2213DE029006852AE /* BTToastManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTToastManager.m; sourceTree = "<group>"; };
+		5021A7B5213DED0F006852AE /* TemplateQuestionMarkViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TemplateQuestionMarkViewController.h; sourceTree = "<group>"; };
+		5021A7B6213DED0F006852AE /* TemplateQuestionMarkViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TemplateQuestionMarkViewController.m; sourceTree = "<group>"; };
 		5025A2AA20199A0800CFEF0E /* BTDataModel9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BTDataModel9.xcdatamodel; sourceTree = "<group>"; };
 		502ABF7C1FE42A8C00C0232C /* AWSUsername.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AWSUsername.h; sourceTree = "<group>"; };
 		502ABF7D1FE42A8C00C0232C /* AWSUsername.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AWSUsername.m; sourceTree = "<group>"; };
@@ -620,6 +623,15 @@
 				5021A7B2213DE029006852AE /* BTToastManager.m */,
 			);
 			name = BTToastManager;
+			sourceTree = "<group>";
+		};
+		5021A7B8213DED12006852AE /* Question mark vc */ = {
+			isa = PBXGroup;
+			children = (
+				5021A7B5213DED0F006852AE /* TemplateQuestionMarkViewController.h */,
+				5021A7B6213DED0F006852AE /* TemplateQuestionMarkViewController.m */,
+			);
+			name = "Question mark vc";
 			sourceTree = "<group>";
 		};
 		502ABF7F1FE42A9500C0232C /* AWS username */ = {
@@ -1083,14 +1095,15 @@
 			name = "Edit smart names vc";
 			sourceTree = "<group>";
 		};
-		50CF69D71F3A686600DDE8A6 /* Template selection */ = {
+		50CF69D71F3A686600DDE8A6 /* Template selection vc */ = {
 			isa = PBXGroup;
 			children = (
 				50CF69D41F3A685C00DDE8A6 /* TemplateSelectionViewController.h */,
 				50CF69D51F3A685C00DDE8A6 /* TemplateSelectionViewController.m */,
+				5021A7B8213DED12006852AE /* Question mark vc */,
 				50530C311F52412600472426 /* Template tvc */,
 			);
-			name = "Template selection";
+			name = "Template selection vc";
 			sourceTree = "<group>";
 		};
 		B57455EDB36A13EE7AEA1ED6 /* Frameworks */ = {
@@ -1197,14 +1210,14 @@
 			name = "QR display vc";
 			sourceTree = "<group>";
 		};
-		F917BB651F0DEA9700614AB1 /* QR scanner */ = {
+		F917BB651F0DEA9700614AB1 /* QR scanner vc */ = {
 			isa = PBXGroup;
 			children = (
 				F917BB621F0DEA7C00614AB1 /* BTQRScannerViewController.h */,
 				F917BB631F0DEA7C00614AB1 /* BTQRScannerViewController.m */,
 				F917BB661F0DEAE000614AB1 /* BTQRScannerViewController.xib */,
 			);
-			name = "QR scanner";
+			name = "QR scanner vc";
 			sourceTree = "<group>";
 		};
 		F927D1501F0C9BDA0004CF3A /* Iteration Selection */ = {
@@ -1371,8 +1384,8 @@
 			children = (
 				F95F93391F034DA500A19C4D /* MainViewController.h */,
 				F95F933A1F034DA500A19C4D /* MainViewController.m */,
-				50CF69D71F3A686600DDE8A6 /* Template selection */,
-				F917BB651F0DEA9700614AB1 /* QR scanner */,
+				50CF69D71F3A686600DDE8A6 /* Template selection vc */,
+				F917BB651F0DEA9700614AB1 /* QR scanner vc */,
 				F9FA47271F0B39DF00A4AF98 /* Workout selection */,
 				F97B1CA81F097D9100B3EEC7 /* Weekday view */,
 				505484601F55177700658BD2 /* Calendar cell */,
@@ -2052,6 +2065,7 @@
 				F90712A719415FB1008694E5 /* main.m in Sources */,
 				F97773E11F1726A2009AEDE3 /* ADExerciseTypeTableViewCell.m in Sources */,
 				F9418FB21F04C83F0083C3DC /* SetFlowLayout.m in Sources */,
+				5021A7B7213DED0F006852AE /* TemplateQuestionMarkViewController.m in Sources */,
 				F927D1541F0C9DDB0004CF3A /* IterationTableViewCell.m in Sources */,
 				F97B1CA21F09759000B3EEC7 /* WeekdayTableViewCell.m in Sources */,
 				F9418FA81F04A4F80083C3DC /* ExerciseViewController.m in Sources */,

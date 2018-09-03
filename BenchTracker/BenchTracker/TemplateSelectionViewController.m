@@ -7,6 +7,8 @@
 //
 
 #import "TemplateSelectionViewController.h"
+#import "TemplateQuestionMarkViewController.h"
+#import "ZFModalTransitionAnimator.h"
 #import "BTWorkoutTemplate+CoreDataClass.h"
 #import "WorkoutTemplateTableViewCell.h"
 #import "BTSettings+CoreDataClass.h"
@@ -19,6 +21,8 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
+
+@property (nonatomic) ZFModalTransitionAnimator *animator;
 
 @end
 
@@ -34,6 +38,7 @@
     }
     self.tableView.backgroundColor = [UIColor BTTableViewBackgroundColor];
     self.tableView.separatorColor = [UIColor BTTableViewSeparatorColor];
+    self.tableView.separatorInset = UIEdgeInsetsMake(0, 25, 0, 25);
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"EmptyTemplateTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"ACell"];
@@ -50,6 +55,10 @@
 - (IBAction)cancelButtonPressed:(UIButton *)sender {
     [Log event:@"TemplateVC: Cancel" properties:nil];
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)questionMarkButtonPressed:(UIButton *)sender {
+    [self presentTemplateQuestionMarkViewController];
 }
 
 #pragma mark - tableView dataSource
@@ -98,6 +107,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.fetchedResultsController.sections.count == 1 && indexPath.section == 0) { //no user templates
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ACell"];
+        cell.backgroundColor = [UIColor BTTableViewBackgroundColor];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
@@ -146,6 +156,23 @@
         [self presentViewController:alert animated:YES completion:nil];
     }
     return YES;
+}
+
+#pragma mark - view handling
+
+- (void)presentTemplateQuestionMarkViewController {
+    [Log event:@"TemplateVC: Present question mark" properties:nil];
+    TemplateQuestionMarkViewController *tqmVC = [self.storyboard instantiateViewControllerWithIdentifier:@"tqm"];
+    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:tqmVC];
+    self.animator.bounces = NO;
+    self.animator.dragable = NO;
+    self.animator.behindViewAlpha = 0.8;
+    self.animator.behindViewScale = 1.0; //0.92;
+    self.animator.transitionDuration = 0.5;
+    self.animator.direction = ZFModalTransitonDirectionBottom;
+    tqmVC.transitioningDelegate = self.animator;
+    tqmVC.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self presentViewController:tqmVC animated:YES completion:nil];
 }
 
 #pragma mark - fetchedResultsController

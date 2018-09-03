@@ -70,6 +70,8 @@
 
 + (UIStatusBarStyle)statusBarStyle;
 
++ (UIStatusBarStyle)altStatusBarStyle;
+
 + (UIKeyboardAppearance)keyboardAppearance;
 
 @end

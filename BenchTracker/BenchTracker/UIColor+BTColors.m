@@ -209,6 +209,14 @@
     }
 }
 
++ (UIStatusBarStyle)altStatusBarStyle {
+    switch ([self colorScheme]) {
+        case 0: return UIStatusBarStyleDefault;
+        case 1: return UIStatusBarStyleLightContent;
+        default: return UIStatusBarStyleDefault;
+    }
+}
+
 + (UIKeyboardAppearance)keyboardAppearance {
     switch ([self colorScheme]) {
         case 0: return UIKeyboardAppearanceLight;

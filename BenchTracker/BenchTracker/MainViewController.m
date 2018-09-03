@@ -94,54 +94,48 @@
     [Log event:@"MainVC: Loaded" properties:nil];
 }
 
-- (UIViewController *)previewingContext:(id<UIViewControllerPreviewing>)previewingContext viewControllerForLocation:(CGPoint)location {
+- (UIViewController *)previewingContext:(id<UIViewControllerPreviewing>)previewingContext
+              viewControllerForLocation:(CGPoint)location {
     if ([self.presentedViewController isKindOfClass:[WorkoutViewController class]]) return nil;
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     WorkoutViewController *wVC = [storyboard instantiateViewControllerWithIdentifier:@"w"];
     wVC.delegate = self;
     wVC.context = self.context;
-    [Log event:@"MainVC: 3D touch workout: peek" properties:@{@"Tab": @(self.segmentedControl.selectedSegmentIndex)}];
     if (self.segmentedControl.selectedSegmentIndex == 0) {
         if (location.y > self.view.frame.size.height-100) return nil;
         CGPoint cellPostion = [self.listTableView convertPoint:location fromView:self.view];
         NSIndexPath *path = [self.listTableView indexPathForRowAtPoint:cellPostion];
-        if (path) {
-            WorkoutTableViewCell *cell = [self.listTableView cellForRowAtIndexPath:path];
-            wVC.workout = cell.workout;
-            previewingContext.sourceRect = [self.view convertRect:cell.frame fromView:self.listTableView];
-            return wVC;
-        }
+        if (!path) return nil;
+        WorkoutTableViewCell *cell = [self.listTableView cellForRowAtIndexPath:path];
+        wVC.workout = cell.workout;
+        previewingContext.sourceRect = [self.view convertRect:cell.frame fromView:self.listTableView];
     }
     else if (self.segmentedControl.selectedSegmentIndex == 1) {
         CGPoint cellPostion = [self.weekdayView convertPoint:location fromView:self.view];
         NSIndexPath *path = [self.weekdayView indexPathForRowAtPoint:cellPostion];
-        if (path) {
-            WeekdayTableViewCell *cell = [self.weekdayView cellForRowAtIndexPath:path];
-            if (cell.workouts.count) {
-                wVC.workout = cell.workouts.firstObject;
-                previewingContext.sourceRect = [self.view convertRect:[self.weekdayView sourceRectForIndex:path] fromView:self.weekdayView];
-                return wVC;
-            }
-        }
+        if (!path) return nil;
+        WeekdayTableViewCell *cell = [self.weekdayView cellForRowAtIndexPath:path];
+        if (cell.workouts.count == 0) return nil;
+        wVC.workout = cell.workouts.firstObject;
+        previewingContext.sourceRect = [self.view convertRect:[self.weekdayView sourceRectForIndex:path]
+                                                     fromView:self.weekdayView];
     }
     else {
         CGPoint cellPostion = [self.calendarView.collectionView convertPoint:location fromView:self.view];
         //COCOAPODS FSCALENDAR FIX: Move collectionview from FSCalendar.m to FSCalendar.h
         NSIndexPath *path = [self.calendarView.collectionView indexPathForItemAtPoint:cellPostion];
-        if (path) {
-            NSIndexPath *lP = [self.calendarView.collectionView indexPathForCell:self.calendarView.visibleCells.firstObject];
-            BTCalendarCell *cell = (BTCalendarCell *)[self.calendarView.collectionView cellForItemAtIndexPath:
-                                    [NSIndexPath indexPathForRow:path.row inSection:lP.section]];
-            NSDate *d = [self.calendarView dateForCell:cell];
-            BTWorkout *workout = [BTWorkout workoutsBetweenBeginDate:d andEndDate:[d dateByAddingTimeInterval:86400]].firstObject;
-            if (workout) {
-                wVC.workout = workout;
-                previewingContext.sourceRect = [self.calendarView frameForDate:d];
-                return wVC;
-            }
-        }
+        if (!path) return nil;
+        NSIndexPath *lP = [self.calendarView.collectionView indexPathForCell:self.calendarView.visibleCells.firstObject];
+        BTCalendarCell *cell = (BTCalendarCell *)[self.calendarView.collectionView cellForItemAtIndexPath:
+                                [NSIndexPath indexPathForRow:path.row inSection:lP.section]];
+        NSDate *d = [self.calendarView dateForCell:cell];
+        BTWorkout *workout = [BTWorkout workoutsBetweenBeginDate:d andEndDate:[d dateByAddingTimeInterval:86400]].firstObject;
+        if (!workout) return nil;
+        wVC.workout = workout;
+        previewingContext.sourceRect = [self.calendarView frameForDate:d];
     }
-    return nil;
+    [Log event:@"MainVC: 3D touch workout: peek" properties:@{@"Tab": @(self.segmentedControl.selectedSegmentIndex)}];
+    return wVC;
 }
 
 - (void)previewingContext:(id<UIViewControllerPreviewing>)previewingContext commitViewController:(UIViewController *)viewControllerToCommit {
