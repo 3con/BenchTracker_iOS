@@ -262,13 +262,13 @@
 #pragma mark - tap gesture delegate
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
-    [self.searchBar resignFirstResponder];
+    if (self.searchBar.isFirstResponder) [self.searchBar resignFirstResponder];
     UITableView *tableView = (UITableView *)gestureRecognizer.view;
-    CGPoint p = [gestureRecognizer locationInView:gestureRecognizer.view];
-    NSIndexPath *indexPath = [tableView indexPathForRowAtPoint:p];
+    CGPoint point = [gestureRecognizer locationInView:tableView];
+    NSIndexPath *indexPath = [tableView indexPathForRowAtPoint:point];
     AddExerciseTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     if (!cell || [[NSKeyedUnarchiver unarchiveObjectWithData:cell.exerciseType.iterations] count] == 0) return NO;
-    return indexPath && p.x > cell.frame.size.width-120 && !cell.cellSelected;
+    return indexPath && point.x > cell.frame.size.width - 120 && !cell.cellSelected;
 }
 
 - (void)handleTap:(UITapGestureRecognizer *)sender {
@@ -284,7 +284,6 @@
     BTExerciseType *type = [_fetchedResultsController objectAtIndexPath:indexPath];
     if ([self typeExists:type]) {
         [[tableView cellForRowAtIndexPath:indexPath] setSelected:NO animated:YES];
-        //[tableView deselectRowAtIndexPath:indexPath animated:YES];
         [self removeType:type];
         [self tableView:tableView didDeselectRowAtIndexPath:indexPath];
         return nil;
@@ -298,38 +297,27 @@
     BTExerciseType *type = [_fetchedResultsController objectAtIndexPath:indexPath];
     [Log event:@"AddExerciseVC: Selected type" properties:@{@"Type": type.name}];
     [self addType:type andIteration:@""];
-    NSInteger numSelected = self.selectedTypes.count;
-    if (numSelected == 1) {
-        for (UIButton *button in @[self.supersetButton, self.addExerciseButton, self.clearButton]) {
-            button.hidden = NO;
-        }
-    }
-    [self.addExerciseButton setTitle:(numSelected == 1) ? @"Add\nExercise" :
-                                [NSString stringWithFormat:@"Add\n%ld Exercises",(long)numSelected]
-                                    forState:UIControlStateNormal];
-    [self.supersetButton setTitle:[NSString stringWithFormat:@"Superset\n%ld Exercises",(long)numSelected]
-                                    forState:UIControlStateNormal];
-    self.supersetButton.hidden = (numSelected == 1);
-    self.addExerciseConstraint.constant = (numSelected != 1) ? 135 : 5;
+    [self updateButtons];
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [Log event:@"AddExerciseVC: Deselected type" properties:nil];
+    if (self.searchBar.isFirstResponder) [self.searchBar resignFirstResponder];
+    BTExerciseType *type = [_fetchedResultsController objectAtIndexPath:indexPath];
+    [Log event:@"AddExerciseVC: Deselected type" properties:@{@"Type": type.name}];
+    [self updateButtons];
+}
+
+- (void)updateButtons {
     NSInteger numSelected = self.selectedTypes.count;
-    if (numSelected == 0) {
-        for (UIButton *button in @[self.supersetButton, self.addExerciseButton, self.clearButton]) {
-            button.hidden = YES;
-        }
+    for (UIButton *button in @[self.supersetButton, self.addExerciseButton, self.clearButton]) {
+        button.hidden = (numSelected == 0);
     }
-    else {
-        [self.addExerciseButton setTitle:(numSelected == 1) ? @"Add\nExercise" :
-                                    [NSString stringWithFormat:@"Add\n%ld Exercises",(long)numSelected]
-                                        forState:UIControlStateNormal];
-        [self.supersetButton setTitle:[NSString stringWithFormat:@"Superset\n%ld Exercises",(long)numSelected]
-                                        forState:UIControlStateNormal];
-        self.supersetButton.hidden = (numSelected == 1);
-        self.addExerciseConstraint.constant = (numSelected != 1) ? 135 : 5;
-    }
+    [self.addExerciseButton setTitle:(numSelected == 1) ? @"Add\nExercise" : [NSString stringWithFormat:@"Add\n%ld Exercises",(long)numSelected]
+                            forState:UIControlStateNormal];
+    [self.supersetButton setTitle:[NSString stringWithFormat:@"Superset\n%ld Exercises",(long)numSelected]
+                         forState:UIControlStateNormal];
+    self.supersetButton.hidden = (numSelected < 2);
+    self.addExerciseConstraint.constant = (numSelected < 2) ? 5 : 135;
 }
 
 #pragma mark - headerView delegate
@@ -367,8 +355,12 @@
 - (void)iterationSelectionVC:(IterationSelectionViewController *)iterationVC willDismissWithSelectedIteration:(NSString *)iteration {
     NSIndexPath *indexPath = [_fetchedResultsController indexPathForObject:iterationVC.exerciseType];
     AddExerciseTableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-    [self removeType:iterationVC.exerciseType];
+    BOOL animate = ![self removeType:iterationVC.exerciseType];
     [self addType:iterationVC.exerciseType andIteration:iteration];
+    if (animate) {
+        [self updateButtons];
+        cell.selected = true;
+    }
     [cell loadIteration:iteration];
 }
 
@@ -475,10 +467,12 @@
     [self.selectedIterations addObject:iteration];
 }
 
-- (void)removeType:(BTExerciseType *)type {
+- (BOOL)removeType:(BTExerciseType *)type {
+    if (![self typeExists:type]) return NO;
     NSInteger index = [self.selectedTypes indexOfObject:type];
     [self.selectedTypes removeObjectAtIndex:index];
     [self.selectedIterations removeObjectAtIndex:index];
+    return YES;
 }
      
 - (void)clearTypeIterations {
