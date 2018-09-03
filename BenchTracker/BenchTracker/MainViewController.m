@@ -453,6 +453,10 @@
         [self.rightBarButton setTitle:@"" forState:UIControlStateNormal];
         [self.rightBarButton setImage:[[UIImage imageNamed:@"User"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]
                              forState:UIControlStateNormal];
+        self.listTableView.hidden = NO;
+        self.blankWorkoutButton.hidden = NO;
+        self.scanWorkoutButton.hidden = NO;
+        self.templateButton.hidden = NO;
         self.calendarView.userInteractionEnabled = NO;
         self.weekdayContainerView.userInteractionEnabled = NO;
         [UIView animateWithDuration:.2 animations:^{
@@ -468,6 +472,8 @@
             self.blankWorkoutButton.userInteractionEnabled = YES;
             self.scanWorkoutButton.userInteractionEnabled = YES;
             self.templateButton.userInteractionEnabled = YES;
+            self.calendarView.hidden = YES;
+            self.weekdayContainerView.hidden = YES;
         }];
     }
     else if (index == 1) {
@@ -478,6 +484,7 @@
         NSString *text = (self.view.frame.size.width > 400) ? @"New Workout" : @"New";
         [self.rightBarButton setTitle:text forState:UIControlStateNormal];
         [self.rightBarButton setImage:nil forState:UIControlStateNormal];
+        self.weekdayContainerView.hidden = NO;
         self.listTableView.userInteractionEnabled = NO;
         self.calendarView.userInteractionEnabled = NO;
         self.blankWorkoutButton.userInteractionEnabled = NO;
@@ -493,6 +500,11 @@
             self.rightBarButton.alpha = 1;
         } completion:^(BOOL finished) {
             self.weekdayContainerView.userInteractionEnabled = YES;
+            self.listTableView.hidden = YES;
+            self.calendarView.hidden = YES;
+            self.blankWorkoutButton.hidden = YES;
+            self.scanWorkoutButton.hidden = YES;
+            self.templateButton.hidden = YES;
         }];
     }
     else {
@@ -503,6 +515,7 @@
         NSString *text = (self.view.frame.size.width > 400) ? @"New Workout" : @"New";
         [self.rightBarButton setTitle:text forState:UIControlStateNormal];
         [self.rightBarButton setImage:nil forState:UIControlStateNormal];
+        self.calendarView.hidden = NO;
         self.listTableView.userInteractionEnabled = NO;
         self.weekdayContainerView.userInteractionEnabled = NO;
         self.blankWorkoutButton.userInteractionEnabled = NO;
@@ -518,6 +531,11 @@
             self.rightBarButton.alpha = 1;
         } completion:^(BOOL finished) {
             self.calendarView.userInteractionEnabled = YES;
+            self.listTableView.hidden = YES;
+            self.weekdayContainerView.hidden = YES;
+            self.blankWorkoutButton.hidden = YES;
+            self.scanWorkoutButton.hidden = YES;
+            self.templateButton.hidden = YES;
         }];
     }
 }

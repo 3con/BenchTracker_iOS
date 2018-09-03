@@ -103,7 +103,8 @@
 
 - (void)loadExercise:(BTExercise *)exercise {
     self.previousExerciseButton.hidden = !self.settings.showLastWorkout ||
-                                         [exercise.style isEqualToString:STYLE_CUSTOM];
+                                         [exercise.style isEqualToString:STYLE_CUSTOM] ||
+                                         ![BTExerciseType typeForExercise:exercise];
     self.previousExerciseButtonCenterConstraint.active = [exercise.style isEqualToString:STYLE_REPS] ||
                                                          [exercise.style isEqualToString:STYLE_TIME];
     self.tableShowButton.hidden = ![exercise.style isEqualToString:STYLE_REPSWEIGHT] || !self.settings.showEquivalencyChart;
