@@ -36,6 +36,8 @@
 @property (nonatomic) BTSettings *settings;
 @property (nonatomic) NSInteger queryType;
 
+@property (nonatomic) UIImpactFeedbackGenerator *feedbackImpact;
+
 @end
 
 @implementation ADWorkoutsViewController
@@ -52,6 +54,7 @@
     self.tableView.contentInset = UIEdgeInsetsMake(4, 0, 4, 0);
     self.tableView.layer.cornerRadius = 16;
     self.tableView.clipsToBounds = YES;
+    self.feedbackImpact = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleMedium];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -143,6 +146,7 @@
 }
 
 - (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl {
+    [self.feedbackImpact impactOccurred];
     [self setTimeSegmentedControlCollapsed:self.typeSegmentedControl.selectedSegmentIndex == 1];
     [self updateFetchRequest:self.fetchedResultsController.fetchRequest];
     NSError *error;

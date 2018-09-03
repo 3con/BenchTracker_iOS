@@ -63,6 +63,8 @@
 
 @property (nonatomic) BTExerciseType *exerciseType;
 
+@property (nonatomic) UIImpactFeedbackGenerator *feedbackImpact;
+
 @end
 
 @implementation ADExercisesDetailViewController
@@ -74,6 +76,7 @@
     self.tableView.dataSource = self;
     self.tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, CGFLOAT_MAX);
     self.iteration = nil;
+    self.feedbackImpact = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleMedium];
     [Log event:@"AD: ExerciseDetailVC: Loaded" properties:nil];
 }
 
@@ -371,6 +374,7 @@
 }
 
 - (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl {
+    [self.feedbackImpact impactOccurred];
     [self setTimeSegmentedControlCollapsed:self.typeSegmentedControl.selectedSegmentIndex != 1];
     [self updateFetchRequest:self.fetchedResultsController.fetchRequest];
     NSError *error;

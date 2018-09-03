@@ -6,8 +6,7 @@
   "data" : [
     {
       "idiom" : "universal",
-      "filename" : "defaultTemplateList",
-      "universal-type-identifier" : "public.data"
+      "filename" : "defaultTemplateList.txt"
     }
   ]
 }

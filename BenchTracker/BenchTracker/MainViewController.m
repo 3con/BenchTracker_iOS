@@ -64,6 +64,8 @@
 
 @property (nonatomic) NSDate *firstDay;
 
+@property (nonatomic) UIImpactFeedbackGenerator *feedbackImpact;
+
 @end
 
 @implementation MainViewController
@@ -94,6 +96,7 @@
     [self.listTableView registerNib:[UINib nibWithNibName:@"WorkoutTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"Cell"];
     if ([self isForceTouchAvailable])
         self.previewingContext = [self registerForPreviewingWithDelegate:self sourceView:self.view];
+    self.feedbackImpact = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleMedium];
     [Log event:@"MainVC: Loaded" properties:nil];
 }
 
@@ -435,6 +438,7 @@
 - (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl {
     [Log event:@"MainVC: Changed tab" properties:@{@"Mode": @"Segmented control",
                                                     @"Tab": @(self.segmentedControl.selectedSegmentIndex)}];
+    [self.feedbackImpact impactOccurred];
     [self setSelectedViewIndex:self.segmentedControl.selectedSegmentIndex];
 }
 

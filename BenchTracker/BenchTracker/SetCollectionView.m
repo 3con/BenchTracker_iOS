@@ -12,6 +12,9 @@
 #import "BTSettings+CoreDataClass.h"
 
 @interface SetCollectionView()
+@property (nonatomic) UISelectionFeedbackGenerator *feedbackSelection;
+@property (nonatomic) UIImpactFeedbackGenerator *feedbackImpact;
+@property (nonatomic) UINotificationFeedbackGenerator *feedbackNotification;
 @end
 
 @implementation SetCollectionView
@@ -32,6 +35,9 @@
     [self setCollectionViewLayout:flowLayout];
     [self registerNib:[UINib nibWithNibName:@"SetCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"Cell"];
     [self registerClass:[BTCollectionViewCell class] forCellWithReuseIdentifier:@"ACell"];
+    self.feedbackSelection = [[UISelectionFeedbackGenerator alloc] init];
+    self.feedbackImpact = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleMedium];
+    self.feedbackNotification = [[UINotificationFeedbackGenerator alloc] init];
 }
 
 - (void)setSets:(NSMutableArray<NSString *> *)sets {
@@ -93,13 +99,19 @@
                 if (result) {
                     [self.sets addObject:result];
                     [self insertItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:0]]];
+                    [self.feedbackImpact impactOccurred];
+                } else {
+                    [self animateCancelAdd];
+                    [self.feedbackNotification notificationOccurred:UINotificationFeedbackTypeWarning];
                 }
-                else [self animateCancelAdd];
             } completion:nil];
+        } else {
+            [self animateCancelAdd];
+            [self.feedbackNotification notificationOccurred:UINotificationFeedbackTypeError];
         }
-        else [self animateCancelAdd];
     }
     else { //delete set
+        [self.feedbackSelection selectionChanged];
         [(SetCollectionViewCell *)[self cellForItemAtIndexPath:indexPath] performDeleteAnimationWithDuration:.4];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW,.2*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
             [self performBatchUpdates:^{
