@@ -19,13 +19,19 @@
 		},
 		{
 			"name": "Deadlift",
-			"iterations": ["Conventional", "Sumo", "Dumbbell", "Romanian", "Trap Bar", "Stiff legged", "Deficit"],
+			"iterations": ["Conventional", "Sumo", "Dumbbell", "Stiff-legged", "Deficit", "Trap Bar"],
+			"category": "Back",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Rack Pulls",
+			"iterations": [],
 			"category": "Back",
 			"style": "repsWeight"
 		},
 		{
 			"name": "Shrugs",
-			"iterations": ["Dumbbell", "Barbell", "Cable"],
+			"iterations": ["Dumbbell", "Barbell", "Machine"],
 			"category": "Back",
 			"style": "repsWeight"
 		},
@@ -37,13 +43,7 @@
 		},
 		{
 			"name": "Lat Pullovers",
-			"iterations": ["Dumbbell", "Barbell"],
-			"category": "Back",
-			"style": "repsWeight"
-		},
-		{
-			"name": "Upright Rows",
-			"iterations": ["Barbell", "Dumbbell", "Cable"],
+			"iterations": ["Dumbbell", "Barbell", "Machine"],
 			"category": "Back",
 			"style": "repsWeight"
 		},
@@ -61,7 +61,7 @@
 		},
 		{
 			"name": "One-arm Rows",
-			"iterations": ["Dumbbell", "Cable", "Long Bar"],
+			"iterations": ["Dumbbell", "Cable", "Long Bar", "Band"],
 			"category": "Back",
 			"style": "repsWeight"
 		},
@@ -73,7 +73,7 @@
 		},
 		{
 			"name": "Reverse Flyes",
-			"iterations": ["Bent", "Incline Bench", "Flat Bench", "Machine"],
+			"iterations": ["Bent", "Incline Bench", "Cable", "Machine"],
 			"category": "Back",
 			"style": "repsWeight"
 		},
@@ -103,7 +103,19 @@
 		},
 		{
 			"name": "Conventional Curls",
-			"iterations": ["Dumbbell", "Barbell"],
+			"iterations": ["Dumbbell", "Cable", "Band"],
+			"category": "Biceps",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Barbell Curls",
+			"iterations": ["Normal", "Wide-grip", "Close-grip"],
+			"category": "Biceps",
+			"style": "repsWeight"
+		},
+		{
+			"name": "EZ Bar Curls",
+			"iterations": ["Normal", "Wide-grip", "Close-grip"],
 			"category": "Biceps",
 			"style": "repsWeight"
 		},
@@ -174,7 +186,7 @@
 			"style": "repsWeight"
 		},
 		{
-			"name": "DB Flyes",
+			"name": "Dumbbell Flyes",
 			"iterations": ["Flat", "Incline", "Decline"],
 			"category": "Chest",
 			"style": "repsWeight"
@@ -193,15 +205,21 @@
 		},
 		{
 			"name": "Underhand Front Raises",
-			"iterations": ["Dumbbell", "Barbell", "Band"],
+			"iterations": ["Dumbbell", "Cable", "Band", "Barbell"],
 			"category": "Chest",
 			"style": "repsWeight"
 		},
 		{
-			"name": "Chest Dips",
+			"name": "Bodyweight Chest Dips",
 			"iterations": [],
 			"category": "Chest",
 			"style": "reps"
+		},
+		{
+			"name": "Weighted Chest Dips",
+			"iterations": [],
+			"category": "Chest",
+			"style": "repsWeight"
 		},
 		{
 			"name": "Pushups",
@@ -223,13 +241,13 @@
 		},
 		{
 			"name": "Overhead Extensions",
-			"iterations": ["Dumbbell", "Barbell", "One-arm", "Machine", "Band"],
+			"iterations": ["Dumbbell", "Barbell", "One-arm", "Cable", "Band"],
 			"category": "Triceps",
 			"style": "repsWeight"
 		},
 		{
 			"name": "Underhand-grip Rows",
-			"iterations": ["Barbell", "Dumbbell"],
+			"iterations": ["Barbell", "Dumbbell", "Cable", "Band"],
 			"category": "Triceps",
 			"style": "repsWeight"
 		},
@@ -240,10 +258,16 @@
 			"style": "repsWeight"
 		},
 		{
-			"name": "Tricep Dips",
+			"name": "Bodyweight Tricep Dips",
 			"iterations": [],
 			"category": "Triceps",
 			"style": "reps"
+		},
+		{
+			"name": "Weighted Tricep Dips",
+			"iterations": [],
+			"category": "Triceps",
+			"style": "repsWeight"
 		},
 		{
 			"name": "Pushups",
@@ -253,19 +277,31 @@
 		},
 		{
 			"name": "Squats",
-			"iterations": ["Back", "Front", "Dumbbell", "Box", "Hack"],
+			"iterations": ["Back", "Front", "Box", "Split", "Hack", "Dumbbell"],
 			"category": "Legs",
 			"style": "repsWeight"
 		},
 		{
 			"name": "Machine Squats",
-			"iterations": ["Hack", "Back"],
+			"iterations": ["Conventional", "Hack"],
 			"category": "Legs",
 			"style": "repsWeight"
 		},
 		{
 			"name": "Hip Thrusts",
 			"iterations": [],
+			"category": "Legs",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Hip Abductions",
+			"iterations": ["Inner-thigh", "Outer-thigh"],
+			"category": "Legs",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Glute Kickbacks",
+			"iterations": ["Cable", "Band"],
 			"category": "Legs",
 			"style": "repsWeight"
 		},
@@ -307,13 +343,19 @@
 		},
 		{
 			"name": "Lateral Raises",
-			"iterations": ["Dumbbell", "Cable", "Band"],
+			"iterations": ["Dumbbell", "Cable", "Band", "Machine"],
 			"category": "Shoulders",
 			"style": "repsWeight"
 		},
 		{
 			"name": "Front Raises",
 			"iterations": ["Dumbbell", "Cable", "Band", "Barbell"],
+			"category": "Shoulders",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Upright Rows",
+			"iterations": ["Barbell", "Dumbbell", "Cable", "Band"],
 			"category": "Shoulders",
 			"style": "repsWeight"
 		},
@@ -355,13 +397,13 @@
 		},
 		{
 			"name": "Bodyweight Situps",
-			"iterations": ["Normal", "Ball"],
+			"iterations": [],
 			"category": "Abs / Core",
 			"style": "reps"
 		},
 		{
 			"name": "Weighted Situps",
-			"iterations": ["Normal", "Ball"],
+			"iterations": [],
 			"category": "Abs / Core",
 			"style": "repsWeight"
 		},
@@ -385,7 +427,7 @@
 		},
 		{
 			"name": "Bodyweight Crunches",
-			"iterations": ["Normal", "Side", "Decline", "Reverse", "Ball"],
+			"iterations": ["Normal", "Side", "Decline", "Reverse"],
 			"category": "Abs / Core",
 			"style": "reps"
 		},
@@ -423,31 +465,37 @@
 			"name": "Cycling",
 			"iterations": ["Machine"],
 			"category": "Cardio",
-			"style": "custom"
+			"style": "time"
+		},
+		{
+			"name": "Walking",
+			"iterations": ["Treadmill"],
+			"category": "Cardio",
+			"style": "time"
 		},
 		{
 			"name": "Running",
 			"iterations": ["Treadmill"],
 			"category": "Cardio",
-			"style": "custom"
+			"style": "time"
 		},
 		{
 			"name": "Elliptical",
 			"iterations": [],
 			"category": "Cardio",
-			"style": "custom"
+			"style": "time"
 		},
 		{
 			"name": "Rowing / Erg",
 			"iterations": [],
 			"category": "Cardio",
-			"style": "custom"
+			"style": "time"
 		},
 		{
 			"name": "Step Machine",
 			"iterations": [],
 			"category": "Cardio",
-			"style": "custom"
+			"style": "time"
 		},
 		{
 			"name": "Clean",
