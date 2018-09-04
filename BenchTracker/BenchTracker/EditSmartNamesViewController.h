@@ -11,8 +11,14 @@
 
 @class BTSettings;
 
+typedef enum BTEditSmartNamesSource : NSInteger {
+    BTEditSmartNamesSourceSettings,
+    BTEditSmartNamesSourceWorkout
+} BTEditSmartNamesSource;
+
 @interface EditSmartNamesViewController : XLFormViewController <XLFormDescriptorDelegate>
 
+@property (nonatomic) BTEditSmartNamesSource source;
 @property (nonatomic) NSManagedObjectContext *context;
 @property (nonatomic) BTSettings *settings;
 

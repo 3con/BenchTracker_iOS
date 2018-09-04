@@ -7,6 +7,8 @@
 //
 
 #import "EditSmartNamesViewController.h"
+#import "SmartNameQuestionMarkViewController.h"
+#import "ZFModalTransitionAnimator.h"
 #import "BTSettings+CoreDataClass.h"
 #import "BTButtonFormCell.h"
 
@@ -18,6 +20,8 @@
 
 @property (nonatomic) NSArray *sortedKeys;
 @property (nonatomic) NSDictionary *altKeys;
+
+@property (nonatomic) ZFModalTransitionAnimator *animator;
 
 @end
 
@@ -45,7 +49,8 @@
     self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(50, 0, 0, 0);
     [self loadForm];
     [self.view sendSubviewToBack:self.tableView];
-    [Log event:@"EditSmartNamesVC: Presenatation" properties:nil];
+    [Log event:@"EditSmartNamesVC: Presenatation" properties:
+       @{@"Source": (self.source == BTEditSmartNamesSourceSettings) ? @"Settings" : @"Workout"}];
 }
 
 - (void)updateInterface {
@@ -53,6 +58,8 @@
     self.navView.layer.borderWidth = 1.0;
     self.navView.layer.borderColor = [UIColor BTNavBarLineColor].CGColor;
     self.titleLabel.textColor = [UIColor BTTextPrimaryColor];
+    [self.backButton setTitle:(self.source == BTEditSmartNamesSourceSettings) ? @"Back" : @"Done"
+                     forState:UIControlStateNormal];
     [self.backButton setTitleColor:[UIColor BTTextPrimaryColor] forState:UIControlStateNormal];
     self.tableView.backgroundColor = [UIColor BTGroupTableViewBackgroundColor];
     self.tableView.separatorColor = [UIColor BTTableViewSeparatorColor];
@@ -65,6 +72,10 @@
 
 - (IBAction)backButtonPressed:(UIButton *)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)questionMarkButtonPressed:(UIButton *)sender {
+    [self presentSmartNamesQuestionMarkViewController];
 }
 
 - (void)loadForm {
@@ -140,6 +151,25 @@
         [self presentViewController:alert animated:YES completion:nil];
     }
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
+}
+
+#pragma mark - view handling
+
+- (void)presentSmartNamesQuestionMarkViewController {
+    [Log event:@"EditSmartNamesVC: Present question mark" properties:nil];
+    SmartNameQuestionMarkViewController *snqmVC =
+        [[SmartNameQuestionMarkViewController alloc] initWithNibName:@"SmartNameQuestionMarkViewController"
+                                                              bundle:[NSBundle mainBundle]];
+    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:snqmVC];
+    self.animator.bounces = NO;
+    self.animator.dragable = NO;
+    self.animator.behindViewAlpha = 0.6;
+    self.animator.behindViewScale = 1.0;
+    self.animator.transitionDuration = 0.35;
+    self.animator.direction = ZFModalTransitonDirectionBottom;
+    snqmVC.transitioningDelegate = self.animator;
+    snqmVC.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self presentViewController:snqmVC animated:YES completion:nil];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {

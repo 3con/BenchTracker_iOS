@@ -24,7 +24,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
 
 @property (nonatomic) ZFModalTransitionAnimator *animator;
-
 @property (nonatomic) BTSettings *settings;
 
 @end
@@ -94,7 +93,7 @@
     if (@available(iOS 11, *)) {
         // Section 4: Workout smart names
         section = [XLFormSectionDescriptor formSection];
-        section.footerTitle = @"Weightlifting App will use machine learning to automatically determine a smart name for your workout based on the exercises you perform.";
+        section.footerTitle = @"Weightlifting App uses machine learning to automatically determine a smart name for your workout based on the exercises you perform.";
         [form addFormSection:section];
         row = [XLFormRowDescriptor formRowDescriptorWithTag:@"showSmartNames" rowType:XLFormRowDescriptorTypeBooleanSwitch title:@"Workout smart names"];
         row.value = [NSNumber numberWithBool:self.settings.showSmartNames];
@@ -336,6 +335,7 @@
 - (void)presentEditSmartNamesViewController {
     EditSmartNamesViewController *esnVC = [[EditSmartNamesViewController alloc] initWithNibName:@"EditSmartNamesViewController"
                                                                                          bundle:[NSBundle mainBundle]];
+    esnVC.source = BTEditSmartNamesSourceSettings;
     esnVC.context = self.context;
     esnVC.settings = self.settings;
     self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:esnVC];

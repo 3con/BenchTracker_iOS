@@ -1017,20 +1017,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Onboard5" translatesAutoresizingMaskIntoConstraints="NO" id="5fg-de-yg5">
-                                <rect key="frame" x="20" y="181" width="335" height="631"/>
+                                <rect key="frame" x="20" y="226" width="335" height="546"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="800" id="sw3-9W-Vl6"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fYd-Bf-Eis">
-                                <rect key="frame" x="25" y="91.333333333333314" width="325" height="89.666666666666686"/>
+                                <rect key="frame" x="25" y="136.33333333333334" width="325" height="89.666666666666657"/>
                                 <string key="text">Templates allow for quick access to your favorite workouts. Simply tap on a default template to get started right away or swipe left on any workout to add it to your templates.</string>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="What Are Templates?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hrm-Ka-0c5">
-                                <rect key="frame" x="57.333333333333343" y="49" width="260.33333333333326" height="32.333333333333343"/>
+                                <rect key="frame" x="57.333333333333343" y="94" width="260.33333333333326" height="32.333333333333343"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="27"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -1059,10 +1059,10 @@
                             <constraint firstItem="5fg-de-yg5" firstAttribute="centerX" secondItem="IJh-rw-VN2" secondAttribute="centerX" id="7ne-gX-JN4"/>
                             <constraint firstItem="5fg-de-yg5" firstAttribute="leading" secondItem="IJh-rw-VN2" secondAttribute="leading" constant="20" id="9kW-sv-aMX"/>
                             <constraint firstItem="Txf-aV-lB4" firstAttribute="centerX" secondItem="IJh-rw-VN2" secondAttribute="centerX" id="BpZ-SO-vlQ"/>
-                            <constraint firstItem="hrm-Ka-0c5" firstAttribute="top" secondItem="IJh-rw-VN2" secondAttribute="top" constant="5" id="Jbn-2m-sMf"/>
+                            <constraint firstItem="hrm-Ka-0c5" firstAttribute="top" secondItem="IJh-rw-VN2" secondAttribute="top" constant="50" id="Jbn-2m-sMf"/>
                             <constraint firstItem="fYd-Bf-Eis" firstAttribute="centerX" secondItem="IJh-rw-VN2" secondAttribute="centerX" id="cbS-Lc-HmW"/>
                             <constraint firstItem="fYd-Bf-Eis" firstAttribute="leading" secondItem="IJh-rw-VN2" secondAttribute="leading" constant="25" id="crh-Da-gGu"/>
-                            <constraint firstAttribute="bottom" secondItem="5fg-de-yg5" secondAttribute="bottom" id="gRu-sb-Z85"/>
+                            <constraint firstAttribute="bottom" secondItem="5fg-de-yg5" secondAttribute="bottom" constant="40" id="gRu-sb-Z85"/>
                             <constraint firstItem="fYd-Bf-Eis" firstAttribute="top" secondItem="hrm-Ka-0c5" secondAttribute="bottom" constant="10" id="koB-Ub-8vZ"/>
                             <constraint firstItem="5fg-de-yg5" firstAttribute="top" secondItem="fYd-Bf-Eis" secondAttribute="bottom" priority="800" id="tvg-EC-xVr"/>
                         </constraints>

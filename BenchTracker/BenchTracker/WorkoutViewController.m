@@ -719,6 +719,7 @@
 - (void)presentEditSmartNamesViewController {
     EditSmartNamesViewController *esnVC = [[EditSmartNamesViewController alloc] initWithNibName:@"EditSmartNamesViewController"
                                                                                          bundle:[NSBundle mainBundle]];
+    esnVC.source = BTEditSmartNamesSourceWorkout;
     esnVC.context = self.context;
     esnVC.settings = self.settings;
     esnVC.selectedSmartName = self.workout.smartName;

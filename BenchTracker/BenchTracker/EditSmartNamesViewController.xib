@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.13.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.9"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -26,6 +26,18 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UBl-iN-Edq">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="94"/>
                     <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2PQ-Db-Ri0">
+                            <rect key="frame" x="265" y="54" width="100" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="100" id="5Bb-5m-0nF"/>
+                                <constraint firstAttribute="height" constant="30" id="HrD-qN-1tc"/>
+                            </constraints>
+                            <inset key="imageEdgeInsets" minX="78" minY="4" maxX="0.0" maxY="4"/>
+                            <state key="normal" image="questionMark"/>
+                            <connections>
+                                <action selector="questionMarkButtonPressed:" destination="-1" eventType="touchUpInside" id="7LX-HW-dX4"/>
+                            </connections>
+                        </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ehm-MC-dn3">
                             <rect key="frame" x="10" y="54" width="100" height="30"/>
                             <constraints>
@@ -55,6 +67,8 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="94" id="1Ir-Qv-OUF"/>
                         <constraint firstItem="ehm-MC-dn3" firstAttribute="centerY" secondItem="RN7-k6-4Kk" secondAttribute="centerY" id="6ky-wr-SFc"/>
+                        <constraint firstItem="2PQ-Db-Ri0" firstAttribute="centerY" secondItem="ehm-MC-dn3" secondAttribute="centerY" id="EbO-m8-1Xc"/>
+                        <constraint firstAttribute="trailing" secondItem="2PQ-Db-Ri0" secondAttribute="trailing" constant="10" id="QSE-hn-BHr"/>
                         <constraint firstItem="ehm-MC-dn3" firstAttribute="leading" secondItem="UBl-iN-Edq" secondAttribute="leading" constant="10" id="XV3-VS-hOR"/>
                         <constraint firstItem="RN7-k6-4Kk" firstAttribute="centerX" secondItem="UBl-iN-Edq" secondAttribute="centerX" id="Z5q-Iy-SAp"/>
                         <constraint firstAttribute="bottom" secondItem="RN7-k6-4Kk" secondAttribute="bottom" constant="10" id="eRy-U1-m3T"/>
@@ -70,4 +84,7 @@
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
         </view>
     </objects>
+    <resources>
+        <image name="questionMark" width="102.40000152587891" height="102.40000152587891"/>
+    </resources>
 </document>

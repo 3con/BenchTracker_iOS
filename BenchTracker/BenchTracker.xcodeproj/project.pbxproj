@@ -22,6 +22,8 @@
 		502145A41FDE5ABE00048F46 /* WorkoutSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 502145A21FDE5ABE00048F46 /* WorkoutSummaryViewController.m */; };
 		5021A7B3213DE029006852AE /* BTToastManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5021A7B2213DE029006852AE /* BTToastManager.m */; };
 		5021A7B7213DED0F006852AE /* TemplateQuestionMarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5021A7B6213DED0F006852AE /* TemplateQuestionMarkViewController.m */; };
+		5021A7BC213DFEA1006852AE /* SmartNameQuestionMarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5021A7BA213DFEA1006852AE /* SmartNameQuestionMarkViewController.m */; };
+		5021A7BD213DFEA1006852AE /* SmartNameQuestionMarkViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5021A7BB213DFEA1006852AE /* SmartNameQuestionMarkViewController.xib */; };
 		502ABF7E1FE42A8C00C0232C /* AWSUsername.m in Sources */ = {isa = PBXBuildFile; fileRef = 502ABF7D1FE42A8C00C0232C /* AWSUsername.m */; };
 		502ABF821FE441CA00C0232C /* LeaderboardViewButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 502ABF811FE441CA00C0232C /* LeaderboardViewButton.m */; };
 		502ABF851FE441F900C0232C /* LeaderboardViewButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 502ABF841FE441F900C0232C /* LeaderboardViewButton.xib */; };
@@ -218,6 +220,9 @@
 		5021A7B2213DE029006852AE /* BTToastManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTToastManager.m; sourceTree = "<group>"; };
 		5021A7B5213DED0F006852AE /* TemplateQuestionMarkViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TemplateQuestionMarkViewController.h; sourceTree = "<group>"; };
 		5021A7B6213DED0F006852AE /* TemplateQuestionMarkViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TemplateQuestionMarkViewController.m; sourceTree = "<group>"; };
+		5021A7B9213DFEA1006852AE /* SmartNameQuestionMarkViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SmartNameQuestionMarkViewController.h; sourceTree = "<group>"; };
+		5021A7BA213DFEA1006852AE /* SmartNameQuestionMarkViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SmartNameQuestionMarkViewController.m; sourceTree = "<group>"; };
+		5021A7BB213DFEA1006852AE /* SmartNameQuestionMarkViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SmartNameQuestionMarkViewController.xib; sourceTree = "<group>"; };
 		5025A2AA20199A0800CFEF0E /* BTDataModel9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BTDataModel9.xcdatamodel; sourceTree = "<group>"; };
 		502ABF7C1FE42A8C00C0232C /* AWSUsername.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AWSUsername.h; sourceTree = "<group>"; };
 		502ABF7D1FE42A8C00C0232C /* AWSUsername.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AWSUsername.m; sourceTree = "<group>"; };
@@ -630,6 +635,16 @@
 			children = (
 				5021A7B5213DED0F006852AE /* TemplateQuestionMarkViewController.h */,
 				5021A7B6213DED0F006852AE /* TemplateQuestionMarkViewController.m */,
+			);
+			name = "Question mark vc";
+			sourceTree = "<group>";
+		};
+		5021A7BE213DFEA4006852AE /* Question mark vc */ = {
+			isa = PBXGroup;
+			children = (
+				5021A7B9213DFEA1006852AE /* SmartNameQuestionMarkViewController.h */,
+				5021A7BA213DFEA1006852AE /* SmartNameQuestionMarkViewController.m */,
+				5021A7BB213DFEA1006852AE /* SmartNameQuestionMarkViewController.xib */,
 			);
 			name = "Question mark vc";
 			sourceTree = "<group>";
@@ -1091,6 +1106,7 @@
 				50CF4D992021642900B55679 /* EditSmartNamesViewController.h */,
 				50CF4D9A2021642900B55679 /* EditSmartNamesViewController.m */,
 				50CF4D9B2021642900B55679 /* EditSmartNamesViewController.xib */,
+				5021A7BE213DFEA4006852AE /* Question mark vc */,
 			);
 			name = "Edit smart names vc";
 			sourceTree = "<group>";
@@ -1851,6 +1867,7 @@
 				F917BB671F0DEAE000614AB1 /* BTQRScannerViewController.xib in Resources */,
 				F9418FA41F048B1E0083C3DC /* AddExerciseTableViewCell.xib in Resources */,
 				50B8908420427F6C000E7FE3 /* ExerciseSummaryView.xib in Resources */,
+				5021A7BD213DFEA1006852AE /* SmartNameQuestionMarkViewController.xib in Resources */,
 				F90712B319415FB1008694E5 /* Main.storyboard in Resources */,
 				F9FD19EA1F14746E00AB3FEE /* ADWeeklySummaryViewController.xib in Resources */,
 				F9F522F61F195B7200061AF0 /* BTButtonFormCell.xib in Resources */,
@@ -2038,6 +2055,7 @@
 				50A1820D21153DF6005469B5 /* AWSLeaderboard.m in Sources */,
 				F95F93441F03738B00A19C4D /* WorkoutViewController.m in Sources */,
 				506C0CBB1FE852A200865BED /* EditUsernameViewController.m in Sources */,
+				5021A7BC213DFEA1006852AE /* SmartNameQuestionMarkViewController.m in Sources */,
 				F9B27CE51F117852008FCC7F /* AnalyticsCollectionViewCell.m in Sources */,
 				F9418FA31F048B1E0083C3DC /* AddExerciseTableViewCell.m in Sources */,
 				49A97BCF200C0AAD009A5B48 /* ADWorkoutsTableViewCell.m in Sources */,
