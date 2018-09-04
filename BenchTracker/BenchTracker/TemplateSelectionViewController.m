@@ -163,16 +163,7 @@
 - (void)presentTemplateQuestionMarkViewController {
     [Log event:@"TemplateVC: Present question mark" properties:nil];
     TemplateQuestionMarkViewController *tqmVC = [self.storyboard instantiateViewControllerWithIdentifier:@"tqm"];
-    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:tqmVC];
-    self.animator.bounces = NO;
-    self.animator.dragable = NO;
-    self.animator.behindViewAlpha = 0.8;
-    self.animator.behindViewScale = 1.0; //0.92;
-    self.animator.transitionDuration = 0.5;
-    self.animator.direction = ZFModalTransitonDirectionBottom;
-    tqmVC.transitioningDelegate = self.animator;
-    tqmVC.modalPresentationStyle = UIModalPresentationFullScreen;
-    [self presentViewController:tqmVC animated:YES completion:nil];
+    [self presentViewController:tqmVC withStyle:BTPresentationStyleFromBottom];
 }
 
 #pragma mark - fetchedResultsController

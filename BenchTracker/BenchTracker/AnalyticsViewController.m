@@ -220,23 +220,16 @@
 
 - (void)presentAnalyticsDetailViewControllerWithIndex:(NSInteger)index cell:(AnalyticsCollectionViewCell *)cell {
     AnalyticsDetailViewController *adVC;
-    if (index == 0)     adVC = [[NSBundle mainBundle] loadNibNamed:@"ADWeeklySummaryViewController" owner:self options:nil].firstObject;
-    else if (index < 3) adVC = [[NSBundle mainBundle] loadNibNamed:@"ADExercisesViewController" owner:self options:nil].firstObject;
-    else                adVC = [[NSBundle mainBundle] loadNibNamed:@"ADWorkoutsViewController" owner:self options:nil].firstObject;
+    if (index == 0)
+         adVC = [[NSBundle mainBundle] loadNibNamed:@"ADWeeklySummaryViewController" owner:self options:nil].firstObject;
+    else if (index < 3)
+         adVC = [[NSBundle mainBundle] loadNibNamed:@"ADExercisesViewController" owner:self options:nil].firstObject;
+    else adVC = [[NSBundle mainBundle] loadNibNamed:@"ADWorkoutsViewController" owner:self options:nil].firstObject;
     adVC.context = self.context;
     adVC.settings = self.settings;
     adVC.color = cell.backgroundColor;
     adVC.titleString = cell.titleLabel.text;
-    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:adVC];
-    self.animator.bounces = NO;
-    self.animator.dragable = YES;
-    self.animator.behindViewAlpha = 0.6;
-    self.animator.behindViewScale = 1.0;
-    self.animator.transitionDuration = 0.35;
-    self.animator.direction = ZFModalTransitonDirectionRight;
-    adVC.transitioningDelegate = self.animator;
-    adVC.modalPresentationStyle = UIModalPresentationFullScreen;
-    [self presentViewController:adVC animated:YES completion:nil];
+    [self presentViewController:adVC withStyle:BTPresentationStyleFromRight];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {

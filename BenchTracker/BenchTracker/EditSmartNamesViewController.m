@@ -164,16 +164,7 @@
     SmartNameQuestionMarkViewController *snqmVC =
         [[SmartNameQuestionMarkViewController alloc] initWithNibName:@"SmartNameQuestionMarkViewController"
                                                               bundle:[NSBundle mainBundle]];
-    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:snqmVC];
-    self.animator.bounces = NO;
-    self.animator.dragable = NO;
-    self.animator.behindViewAlpha = 0.6;
-    self.animator.behindViewScale = 1.0;
-    self.animator.transitionDuration = 0.35;
-    self.animator.direction = ZFModalTransitonDirectionBottom;
-    snqmVC.transitioningDelegate = self.animator;
-    snqmVC.modalPresentationStyle = UIModalPresentationFullScreen;
-    [self presentViewController:snqmVC animated:YES completion:nil];
+    [self presentViewController:snqmVC withStyle:BTPresentationStyleFromBottom];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {

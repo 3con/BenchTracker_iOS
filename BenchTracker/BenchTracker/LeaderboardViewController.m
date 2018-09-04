@@ -114,16 +114,7 @@
     euVC.delegate = self;
     euVC.user = self.user;
     euVC.originPoint = point;
-    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:euVC];
-    self.animator.bounces = NO;
-    self.animator.dragable = NO;
-    self.animator.behindViewAlpha = 1.0;
-    self.animator.behindViewScale = 1.0;
-    self.animator.transitionDuration = .0;
-    self.animator.direction = ZFModalTransitonDirectionBottom;
-    euVC.transitioningDelegate = self.animator;
-    euVC.modalPresentationStyle = UIModalPresentationCustom;
-    [self presentViewController:euVC animated:YES completion:nil];
+    [self presentViewController:euVC withStyle:BTPresentationStyleNone];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {

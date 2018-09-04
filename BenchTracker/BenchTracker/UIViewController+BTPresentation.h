@@ -12,6 +12,7 @@ typedef enum BTPresentationStyle : NSInteger {
     BTPresentationStyleFromBottom,
     BTPresentationStyleFromLeft,
     BTPresentationStyleFromRight,
+    BTPresentationStyleSlowModal,
     BTPresentationStyleNone
 } BTPresentationStyle;
 

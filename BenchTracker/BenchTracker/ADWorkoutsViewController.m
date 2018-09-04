@@ -241,16 +241,7 @@
     workoutVC.delegate = self;
     workoutVC.context = self.context;
     workoutVC.workout = workout;
-    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:workoutVC];
-    self.animator.bounces = NO;
-    self.animator.dragable = NO;
-    self.animator.behindViewAlpha = 0.6;
-    self.animator.behindViewScale = 1.0;
-    self.animator.transitionDuration = 0.35;
-    self.animator.direction = ZFModalTransitonDirectionRight;
-    workoutVC.transitioningDelegate = self.animator;
-    workoutVC.modalPresentationStyle = UIModalPresentationFullScreen;
-    [self presentViewController:workoutVC animated:YES completion:nil];
+    [self presentViewController:workoutVC withStyle:BTPresentationStyleFromRight];
 }
 
 #pragma mark - workoutVC delegate

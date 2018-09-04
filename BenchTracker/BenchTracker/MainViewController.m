@@ -8,6 +8,7 @@
 
 #import "MainViewController.h"
 #import "BTSettings+CoreDataClass.h"
+#import "ZFModalTransitionAnimator.h"
 #import "AppDelegate.h"
 #import "WorkoutTableViewCell.h"
 #import "WeekdayTableViewCell.h"
@@ -56,6 +57,7 @@
 
 @property (nonatomic) HMSegmentedControl *segmentedControl;
 
+@property (nonatomic) ZFModalTransitionAnimator *animator;
 @property (nonatomic) BTWorkoutManager *workoutManager;
 @property (nonatomic) BTSettings *settings;
 @property (nonatomic) NSMutableDictionary *exerciseTypeColors;

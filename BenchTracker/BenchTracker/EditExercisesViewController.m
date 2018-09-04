@@ -202,16 +202,7 @@
     eedVC.delegate = self;
     eedVC.context = self.context;
     eedVC.type = type;
-    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:eedVC];
-    self.animator.bounces = NO;
-    self.animator.dragable = NO;
-    self.animator.behindViewAlpha = 0.6;
-    self.animator.behindViewScale = 1.0;
-    self.animator.transitionDuration = 0.35;
-    self.animator.direction = ZFModalTransitonDirectionRight;
-    eedVC.transitioningDelegate = self.animator;
-    eedVC.modalPresentationStyle = UIModalPresentationFullScreen;
-    [self presentViewController:eedVC animated:YES completion:nil];
+    [self presentViewController:eedVC withStyle:BTPresentationStyleFromRight];
 }
 
 #pragma mark - eedVC delegate

@@ -39,6 +39,12 @@
             self.animator.transitionDuration = 0.35;
             self.animator.direction = ZFModalTransitonDirectionLeft;
             break;
+        case BTPresentationStyleSlowModal:
+            self.animator.behindViewAlpha = 1-CGColorGetComponents([UIColor BTModalViewBackgroundColor].CGColor)[3];
+            self.animator.transitionDuration = 0.75;
+            self.animator.direction = ZFModalTransitonDirectionBottom;
+            viewController.modalPresentationStyle = UIModalPresentationCustom;
+            break;
         case BTPresentationStyleNone:
             self.animator.behindViewAlpha = 1.0;
             self.animator.transitionDuration = 0.0;

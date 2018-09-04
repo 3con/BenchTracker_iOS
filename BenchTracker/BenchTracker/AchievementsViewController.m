@@ -118,16 +118,7 @@
     adVC.achievement = achievement;
     adVC.color = achievement.color;
     adVC.originPoint = point;
-    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:adVC];
-    self.animator.bounces = NO;
-    self.animator.dragable = NO;
-    self.animator.behindViewAlpha = 1.0;
-    self.animator.behindViewScale = 1.0;
-    self.animator.transitionDuration = 0.0;
-    self.animator.direction = ZFModalTransitonDirectionBottom;
-    adVC.transitioningDelegate = self.animator;
-    adVC.modalPresentationStyle = UIModalPresentationCustom;
-    [self presentViewController:adVC animated:YES completion:nil];
+    [self presentViewController:adVC withStyle:BTPresentationStyleNone];
 }
 
 #pragma mark - fetchedResultsController delegate

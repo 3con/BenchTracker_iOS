@@ -189,16 +189,7 @@
     isVC.exerciseType = [BTExerciseType typeForExercise:exercise];
     isVC.originPoint = point;
     isVC.color = self.exerciseTypeColors[exercise.category];
-    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:isVC];
-    self.animator.dragable = NO;
-    self.animator.bounces = YES;
-    self.animator.behindViewAlpha = 1.0;
-    self.animator.behindViewScale = 1.0;
-    self.animator.transitionDuration = 0.0;
-    self.animator.direction = ZFModalTransitonDirectionBottom;
-    isVC.transitioningDelegate = self.animator;
-    isVC.modalPresentationStyle = UIModalPresentationCustom;
-    [self presentViewController:isVC animated:YES completion:nil];
+    [self presentViewController:isVC withStyle:BTPresentationStyleNone];
 }
 
 - (void)presentExerciseDetailViewControllerWithExerice:(BTExercise *)exercise {
@@ -208,32 +199,14 @@
     adedVC.color = [UIColor BTButtonSecondaryColor];
     adedVC.titleString = exercise.name;
     adedVC.iteration = exercise.iteration;
-    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:adedVC];
-    self.animator.bounces = NO;
-    self.animator.dragable = NO;
-    self.animator.behindViewAlpha = 1.0;
-    self.animator.behindViewScale = 1.0; //0.92;
-    self.animator.transitionDuration = 0.5;
-    self.animator.direction = ZFModalTransitonDirectionBottom;
-    adedVC.transitioningDelegate = self.animator;
-    adedVC.modalPresentationStyle = UIModalPresentationFullScreen;
-    [self presentViewController:adedVC animated:YES completion:nil];
+    [self presentViewController:adedVC withStyle:BTPresentationStyleFromBottom];
 }
 
 - (void)presentEquivalencyChartViewControllerWithExercise:(BTExercise *)exercise {
     EquivalencyChartViewController *ecVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ec"];
     ecVC.settings = self.settings;
     ecVC.exercise = exercise;
-    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:ecVC];
-    self.animator.dragable = NO;
-    self.animator.bounces = YES;
-    self.animator.behindViewAlpha = 1.0;
-    self.animator.behindViewScale = 1.0; //0.92;
-    self.animator.transitionDuration = 0.5;
-    self.animator.direction = ZFModalTransitonDirectionBottom;
-    ecVC.transitioningDelegate = self.animator;
-    ecVC.modalPresentationStyle = UIModalPresentationFullScreen;
-    [self presentViewController:ecVC animated:YES completion:nil];
+    [self presentViewController:ecVC withStyle:BTPresentationStyleFromBottom];
 }
 
 - (BOOL)isForceTouchAvailable {

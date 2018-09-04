@@ -230,16 +230,7 @@
     atVC.point = point;
     atVC.context = self.context;
     atVC.workout = self.workout;
-    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:atVC];
-    self.animator.bounces = NO;
-    self.animator.dragable = NO;
-    self.animator.behindViewAlpha = 1.0;
-    self.animator.behindViewScale = 1.0;
-    self.animator.transitionDuration = 0;
-    self.animator.direction = ZFModalTransitonDirectionBottom;
-    atVC.transitioningDelegate = self.animator;
-    atVC.modalPresentationStyle = UIModalPresentationCustom;
-    [self presentViewController:atVC animated:YES completion:nil];
+    [self presentViewController:atVC withStyle:BTPresentationStyleNone];
 }
 
 - (void)presentQRDisplayViewControllerWithPoint:(CGPoint)point {
@@ -250,16 +241,7 @@
     qVC.image2 = [MMQRCodeMakerUtil qrImageWithContent:jsonString2 logoImage:nil qrColor:nil qrWidth:440];
     qVC.point = point;
     qVC.delegate = self;
-    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:qVC];
-    self.animator.bounces = NO;
-    self.animator.dragable = NO;
-    self.animator.behindViewAlpha = 1.0;
-    self.animator.behindViewScale = 1.0;
-    self.animator.transitionDuration = 0;
-    self.animator.direction = ZFModalTransitonDirectionBottom;
-    qVC.transitioningDelegate = self.animator;
-    qVC.modalPresentationStyle = UIModalPresentationCustom;
-    [self presentViewController:qVC animated:YES completion:nil];
+    [self presentViewController:qVC withStyle:BTPresentationStyleNone];
 }
 
 #pragma mark - animation

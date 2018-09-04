@@ -197,16 +197,7 @@
     adedVC.context = self.context;
     adedVC.color = self.color;
     adedVC.titleString = type.name;
-    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:adedVC];
-    self.animator.bounces = NO;
-    self.animator.dragable = YES;
-    self.animator.behindViewAlpha = 0.6;
-    self.animator.behindViewScale = 1.0;
-    self.animator.transitionDuration = 0.35;
-    self.animator.direction = ZFModalTransitonDirectionRight;
-    adedVC.transitioningDelegate = self.animator;
-    adedVC.modalPresentationStyle = UIModalPresentationFullScreen;
-    [self presentViewController:adedVC animated:YES completion:nil];
+    [self presentViewController:adedVC withStyle:BTPresentationStyleFromRight];
 }
 
 #pragma mark - fetchedResultsController delegate

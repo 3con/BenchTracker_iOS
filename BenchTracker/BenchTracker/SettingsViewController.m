@@ -327,16 +327,7 @@
     EditExercisesViewController *eeVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ee"];
     eeVC.source = BTEditExercisesSourceSettings;
     eeVC.context = self.context;
-    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:eeVC];
-    self.animator.bounces = NO;
-    self.animator.dragable = NO;
-    self.animator.behindViewAlpha = 0.6;
-    self.animator.behindViewScale = 1.0;
-    self.animator.transitionDuration = 0.35;
-    self.animator.direction = ZFModalTransitonDirectionRight;
-    eeVC.transitioningDelegate = self.animator;
-    eeVC.modalPresentationStyle = UIModalPresentationFullScreen;
-    [self presentViewController:eeVC animated:YES completion:nil];
+    [self presentViewController:eeVC withStyle:BTPresentationStyleFromRight];
 }
 
 - (void)presentEditSmartNamesViewController {
@@ -345,16 +336,7 @@
     esnVC.source = BTEditSmartNamesSourceSettings;
     esnVC.context = self.context;
     esnVC.settings = self.settings;
-    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:esnVC];
-    self.animator.bounces = NO;
-    self.animator.dragable = YES;
-    self.animator.behindViewAlpha = 0.6;
-    self.animator.behindViewScale = 1.0;
-    self.animator.transitionDuration = 0.35;
-    self.animator.direction = ZFModalTransitonDirectionRight;
-    esnVC.transitioningDelegate = self.animator;
-    esnVC.modalPresentationStyle = UIModalPresentationFullScreen;
-    [self presentViewController:esnVC animated:YES completion:nil];
+    [self presentViewController:esnVC withStyle:BTPresentationStyleFromRight];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {

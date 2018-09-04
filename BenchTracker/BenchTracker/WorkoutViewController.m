@@ -650,16 +650,7 @@
     AddExerciseViewController *addVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ae"];
     addVC.delegate = self;
     addVC.context = self.context;
-    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:addVC];
-    self.animator.bounces = NO;
-    self.animator.dragable = NO;
-    self.animator.behindViewAlpha = 1-CGColorGetComponents([UIColor BTModalViewBackgroundColor].CGColor)[3];
-    self.animator.behindViewScale = 1.0;
-    self.animator.transitionDuration = 0.75;
-    self.animator.direction = ZFModalTransitonDirectionBottom;
-    addVC.transitioningDelegate = self.animator;
-    addVC.modalPresentationStyle = UIModalPresentationCustom;
-    [self presentViewController:addVC animated:YES completion:nil];
+    [self presentViewController:addVC withStyle:BTPresentationStyleSlowModal];
 }
 
 - (void)presentExerciseViewControllerWithExercises: (NSArray<BTExercise *> *)exercises {
@@ -667,16 +658,7 @@
     eVC.delegate = self;
     eVC.exercises = exercises;
     eVC.settings = self.settings;
-    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:eVC];
-    self.animator.bounces = NO;
-    self.animator.dragable = NO;
-    self.animator.behindViewAlpha = 1-CGColorGetComponents([UIColor BTModalViewBackgroundColor].CGColor)[3];
-    self.animator.behindViewScale = 1.0;
-    self.animator.transitionDuration = 0.75;
-    self.animator.direction = ZFModalTransitonDirectionBottom;
-    eVC.transitioningDelegate = self.animator;
-    eVC.modalPresentationStyle = UIModalPresentationCustom;
-    [self presentViewController:eVC animated:YES completion:nil];
+    [self presentViewController:eVC withStyle:BTPresentationStyleSlowModal];
 }
 
 - (void)presentSettingsViewControllerWithPoint:(CGPoint)point {
@@ -686,16 +668,7 @@
     wseVC.context = self.context;
     wseVC.settings = self.settings;
     wseVC.workout = self.workout;
-    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:wseVC];
-    self.animator.bounces = NO;
-    self.animator.dragable = NO;
-    self.animator.behindViewAlpha = 1.0;
-    self.animator.behindViewScale = 1.0;
-    self.animator.transitionDuration = 0;
-    self.animator.direction = ZFModalTransitonDirectionBottom;
-    wseVC.transitioningDelegate = self.animator;
-    wseVC.modalPresentationStyle = UIModalPresentationCustom;
-    [self presentViewController:wseVC animated:YES completion:nil];
+    [self presentViewController:wseVC withStyle:BTPresentationStyleNone];
 }
 
 - (void)presentAdjustTimesViewControllerWithPoint:(CGPoint)point {
@@ -704,16 +677,7 @@
     atVC.point = point;
     atVC.context = self.context;
     atVC.workout = self.workout;
-    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:atVC];
-    self.animator.bounces = NO;
-    self.animator.dragable = NO;
-    self.animator.behindViewAlpha = 1.0;
-    self.animator.behindViewScale = 1.0;
-    self.animator.transitionDuration = 0;
-    self.animator.direction = ZFModalTransitonDirectionBottom;
-    atVC.transitioningDelegate = self.animator;
-    atVC.modalPresentationStyle = UIModalPresentationCustom;
-    [self presentViewController:atVC animated:YES completion:nil];
+    [self presentViewController:atVC withStyle:BTPresentationStyleNone];
 }
 
 - (void)presentEditSmartNamesViewController {
@@ -723,16 +687,7 @@
     esnVC.context = self.context;
     esnVC.settings = self.settings;
     esnVC.selectedSmartName = self.workout.smartName;
-    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:esnVC];
-    self.animator.bounces = NO;
-    self.animator.dragable = NO;
-    self.animator.behindViewAlpha = 0.6;
-    self.animator.behindViewScale = 1.0;
-    self.animator.transitionDuration = 0.35;
-    self.animator.direction = ZFModalTransitonDirectionBottom;
-    esnVC.transitioningDelegate = self.animator;
-    esnVC.modalPresentationStyle = UIModalPresentationFullScreen;
-    [self presentViewController:esnVC animated:YES completion:nil];
+    [self presentViewController:esnVC withStyle:BTPresentationStyleFromBottom];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {

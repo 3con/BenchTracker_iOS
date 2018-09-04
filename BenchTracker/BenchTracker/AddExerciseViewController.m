@@ -377,32 +377,14 @@
     isVC.originPoint = point;
     NSString *key = _fetchedResultsController.sections[indexPath.section].name;
     isVC.color = self.exerciseTypeColors[key];
-    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:isVC];
-    self.animator.dragable = NO;
-    self.animator.bounces = YES;
-    self.animator.behindViewAlpha = 1.0;
-    self.animator.behindViewScale = 1.0;
-    self.animator.transitionDuration = 0.0;
-    self.animator.direction = ZFModalTransitonDirectionBottom;
-    isVC.transitioningDelegate = self.animator;
-    isVC.modalPresentationStyle = UIModalPresentationCustom;
-    [self presentViewController:isVC animated:YES completion:nil];
+    [self presentViewController:isVC withStyle:BTPresentationStyleNone];
 }
 
 - (void)presentEditExercisesViewController {
     EditExercisesViewController *eeVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ee"];
     eeVC.source = BTEditExercisesSourceWorkout;
     eeVC.context = self.context;
-    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:eeVC];
-    self.animator.dragable = NO;
-    self.animator.bounces = YES;
-    self.animator.behindViewAlpha = 0.8;
-    self.animator.behindViewScale = 1.0; //0.92;
-    self.animator.transitionDuration = 0.5;
-    self.animator.direction = ZFModalTransitonDirectionBottom;
-    eeVC.transitioningDelegate = self.animator;
-    eeVC.modalPresentationStyle = UIModalPresentationCustom;
-    [self presentViewController:eeVC animated:YES completion:nil];
+    [self presentViewController:eeVC withStyle:BTPresentationStyleFromBottom];
 }
 
 #pragma mark - fetchedResultsController delegate

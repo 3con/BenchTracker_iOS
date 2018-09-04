@@ -207,47 +207,20 @@
     AchievementsViewController *aVC = [self.storyboard instantiateViewControllerWithIdentifier:@"av"];
     aVC.settings = self.settings;
     aVC.context = self.context;
-    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:aVC];
-    self.animator.bounces = NO;
-    self.animator.dragable = YES;
-    self.animator.behindViewAlpha = 0.6;
-    self.animator.behindViewScale = 1.0;
-    self.animator.transitionDuration = 0.35;
-    self.animator.direction = ZFModalTransitonDirectionRight;
-    aVC.transitioningDelegate = self.animator;
-    aVC.modalPresentationStyle = UIModalPresentationFullScreen;
-    [self presentViewController:aVC animated:YES completion:nil];
+    [self presentViewController:aVC withStyle:BTPresentationStyleFromRight];
 }
 
 - (void)presentLeaderboardViewController {
     LeaderboardViewController *lVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ld"];
     lVC.context = self.context;
-    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:lVC];
-    self.animator.bounces = NO;
-    self.animator.dragable = YES;
-    self.animator.behindViewAlpha = 0.6;
-    self.animator.behindViewScale = 1.0;
-    self.animator.transitionDuration = 0.35;
-    self.animator.direction = ZFModalTransitonDirectionRight;
-    lVC.transitioningDelegate = self.animator;
-    lVC.modalPresentationStyle = UIModalPresentationFullScreen;
-    [self presentViewController:lVC animated:YES completion:nil];
+    [self presentViewController:lVC withStyle:BTPresentationStyleFromRight];
 }
 
 - (void)presentSettingsViewController {
     SettingsViewController *settingsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"s"];
     settingsVC.delegate = self;
     settingsVC.context = self.context;
-    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:settingsVC];
-    self.animator.bounces = NO;
-    self.animator.dragable = YES;
-    self.animator.behindViewAlpha = 0.6;
-    self.animator.behindViewScale = 1.0;
-    self.animator.transitionDuration = 0.35;
-    self.animator.direction = ZFModalTransitonDirectionRight;
-    settingsVC.transitioningDelegate = self.animator;
-    settingsVC.modalPresentationStyle = UIModalPresentationFullScreen;
-    [self presentViewController:settingsVC animated:YES completion:nil];
+    [self presentViewController:settingsVC withStyle:BTPresentationStyleFromRight];
 }
 
 #pragma mark - settingsVC delegate
