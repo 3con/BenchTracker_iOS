@@ -8,7 +8,6 @@
 
 #import "MainViewController.h"
 #import "BTSettings+CoreDataClass.h"
-#import "ZFModalTransitionAnimator.h"
 #import "AppDelegate.h"
 #import "WorkoutTableViewCell.h"
 #import "WeekdayTableViewCell.h"
@@ -57,7 +56,6 @@
 
 @property (nonatomic) HMSegmentedControl *segmentedControl;
 
-@property (nonatomic) ZFModalTransitionAnimator *animator;
 @property (nonatomic) BTWorkoutManager *workoutManager;
 @property (nonatomic) BTSettings *settings;
 @property (nonatomic) NSMutableDictionary *exerciseTypeColors;
@@ -710,16 +708,7 @@
     AnalyticsViewController *analyiticsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"a"];
     analyiticsVC.delegate = self;
     analyiticsVC.context = self.context;
-    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:analyiticsVC];
-    self.animator.bounces = NO;
-    self.animator.dragable = YES;
-    self.animator.behindViewAlpha = 0.6;
-    self.animator.behindViewScale = 1.0;
-    self.animator.transitionDuration = 0.35;
-    self.animator.direction = ZFModalTransitonDirectionLeft;
-    analyiticsVC.transitioningDelegate = self.animator;
-    analyiticsVC.modalPresentationStyle = UIModalPresentationFullScreen;
-    [self presentViewController:analyiticsVC animated:YES completion:nil];
+    [self presentViewController:analyiticsVC withStyle:BTPresentationStyleFromLeft];
 }
 
 - (void)presentWorkoutViewControllerWithWorkout:(BTWorkout *)workout {
@@ -729,16 +718,7 @@
     workoutVC.delegate = self;
     workoutVC.context = self.context;
     workoutVC.workout = workout;
-    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:workoutVC];
-    self.animator.bounces = NO;
-    self.animator.dragable = NO;
-    self.animator.behindViewAlpha = 0.8;
-    self.animator.behindViewScale = 1.0; //0.92;
-    self.animator.transitionDuration = 0.5;
-    self.animator.direction = ZFModalTransitonDirectionBottom;
-    workoutVC.transitioningDelegate = self.animator;
-    workoutVC.modalPresentationStyle = UIModalPresentationFullScreen;
-    [self presentViewController:workoutVC animated:YES completion:nil];
+    [self presentViewController:workoutVC withStyle:BTPresentationStyleFromBottom];
 }
 
 - (void)presentWorkoutSummaryViewControllerWithWorkout:(BTWorkout *)workout {
@@ -746,18 +726,8 @@
     wssVC.delegate = self;
     wssVC.context = self.context;
     wssVC.workout = workout;
-    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:wssVC];
-    self.animator.bounces = NO;
-    self.animator.dragable = NO;
-    self.animator.behindViewAlpha = 1.0;
-    self.animator.behindViewScale = 1.0;
-    self.animator.transitionDuration = 0.0;
-    self.animator.direction = ZFModalTransitonDirectionBottom;
-    wssVC.transitioningDelegate = self.animator;
-    wssVC.modalPresentationStyle = UIModalPresentationCustom;
-    [self presentViewController:wssVC animated:YES completion:^{
-        [Appirater userDidSignificantEvent:YES];
-    }];
+    [self presentViewController:wssVC withStyle:BTPresentationStyleNone];
+    [Appirater userDidSignificantEvent:YES];
 }
 
 - (void)presentWorkoutSelectionViewControllerWithOriginPoint:(CGPoint)point date:(NSDate *)date {
@@ -767,32 +737,14 @@
     wsVC.workoutManager = self.workoutManager;
     wsVC.date = date;
     wsVC.originPoint = point;
-    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:wsVC];
-    self.animator.dragable = NO;
-    self.animator.bounces = YES;
-    self.animator.behindViewAlpha = 1.0;
-    self.animator.behindViewScale = 1.0;
-    self.animator.transitionDuration = 0.0;
-    self.animator.direction = ZFModalTransitonDirectionBottom;
-    wsVC.transitioningDelegate = self.animator;
-    wsVC.modalPresentationStyle = UIModalPresentationCustom;
-    [self presentViewController:wsVC animated:YES completion:nil];
+    [self presentViewController:wsVC withStyle:BTPresentationStyleNone];
 }
 
 - (void)presentQRScannerViewController {
     [Log event:@"MainVC: Present qrVC" properties:@{@"Index": @(self.segmentedControl.selectedSegmentIndex)}];
     BTQRScannerViewController *qrVC = [[NSBundle mainBundle] loadNibNamed:@"BTQRScannerViewController" owner:self options:nil].firstObject;
     qrVC.delegate = self;
-    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:qrVC];
-    self.animator.dragable = NO;
-    self.animator.bounces = YES;
-    self.animator.behindViewAlpha = 0.8;
-    self.animator.behindViewScale = 1.0; //0.92;
-    self.animator.transitionDuration = 0.5;
-    self.animator.direction = ZFModalTransitonDirectionBottom;
-    qrVC.transitioningDelegate = self.animator;
-    qrVC.modalPresentationStyle = UIModalPresentationFullScreen;
-    [self presentViewController:qrVC animated:YES completion:nil];
+    [self presentViewController:qrVC withStyle:BTPresentationStyleFromBottom];
 }
 
 - (void)presentTemplateSelectionViewController {
@@ -801,16 +753,7 @@
     tsVC.delegate = self;
     tsVC.context = self.context;
     tsVC.settings = self.settings;
-    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:tsVC];
-    self.animator.bounces = NO;
-    self.animator.dragable = NO;
-    self.animator.behindViewAlpha = 0.8;
-    self.animator.behindViewScale = 1.0; //0.92;
-    self.animator.transitionDuration = 0.5;
-    self.animator.direction = ZFModalTransitonDirectionBottom;
-    tsVC.transitioningDelegate = self.animator;
-    tsVC.modalPresentationStyle = UIModalPresentationFullScreen;
-    [self presentViewController:tsVC animated:YES completion:nil];
+    [self presentViewController:tsVC withStyle:BTPresentationStyleFromBottom];
 }
 
 - (void)presentUserViewControllerWithForwardToAcheivements:(BOOL)forward {
@@ -819,16 +762,7 @@
     userVC.delegate = self;
     userVC.context = self.context;
     userVC.forwardToAcheivements = forward;
-    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:userVC];
-    self.animator.bounces = NO;
-    self.animator.dragable = YES;
-    self.animator.behindViewAlpha = 0.6;
-    self.animator.behindViewScale = 1.0;
-    self.animator.transitionDuration = 0.35;
-    self.animator.direction = ZFModalTransitonDirectionRight;
-    userVC.transitioningDelegate = self.animator;
-    userVC.modalPresentationStyle = UIModalPresentationFullScreen;
-    [self presentViewController:userVC animated:YES completion:nil];
+    [self presentViewController:userVC withStyle:BTPresentationStyleFromRight];
 }
 
 #pragma mark - workoutVC delegate

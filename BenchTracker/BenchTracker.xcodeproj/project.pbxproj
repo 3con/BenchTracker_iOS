@@ -83,6 +83,7 @@
 		509AB30C2042341B006FC96B /* SetProgressionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 509AB30B2042341B006FC96B /* SetProgressionsView.m */; };
 		509AB30F20423434006FC96B /* SetProgressionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 509AB30E20423434006FC96B /* SetProgressionsView.xib */; };
 		50A1820D21153DF6005469B5 /* AWSLeaderboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A1820B21153DF6005469B5 /* AWSLeaderboard.m */; };
+		50B6BBA8213E1812006FD8D6 /* UIViewController+BTPresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B6BBA7213E1812006FD8D6 /* UIViewController+BTPresentation.m */; };
 		50B8907B20426DD2000E7FE3 /* BTViewMoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B8907A20426DD2000E7FE3 /* BTViewMoreView.m */; };
 		50B8907D20426DD9000E7FE3 /* BTViewMoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50B8907C20426DD9000E7FE3 /* BTViewMoreView.xib */; };
 		50B8908120427F5E000E7FE3 /* ExerciseSummaryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B8908020427F5E000E7FE3 /* ExerciseSummaryView.m */; };
@@ -332,6 +333,8 @@
 		509AB30E20423434006FC96B /* SetProgressionsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetProgressionsView.xib; sourceTree = "<group>"; };
 		50A1820B21153DF6005469B5 /* AWSLeaderboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWSLeaderboard.m; path = BenchTracker/AWSLeaderboard.m; sourceTree = SOURCE_ROOT; };
 		50A1820C21153DF6005469B5 /* AWSLeaderboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWSLeaderboard.h; path = BenchTracker/AWSLeaderboard.h; sourceTree = SOURCE_ROOT; };
+		50B6BBA6213E1812006FD8D6 /* UIViewController+BTPresentation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+BTPresentation.h"; sourceTree = "<group>"; };
+		50B6BBA7213E1812006FD8D6 /* UIViewController+BTPresentation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+BTPresentation.m"; sourceTree = "<group>"; };
 		50B8907920426DD2000E7FE3 /* BTViewMoreView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTViewMoreView.h; sourceTree = "<group>"; };
 		50B8907A20426DD2000E7FE3 /* BTViewMoreView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTViewMoreView.m; sourceTree = "<group>"; };
 		50B8907C20426DD9000E7FE3 /* BTViewMoreView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BTViewMoreView.xib; sourceTree = "<group>"; };
@@ -1077,6 +1080,15 @@
 			path = "AWS leaderboard";
 			sourceTree = "<group>";
 		};
+		50B6BBA9213E1819006FD8D6 /* BTPresentation extension */ = {
+			isa = PBXGroup;
+			children = (
+				50B6BBA6213E1812006FD8D6 /* UIViewController+BTPresentation.h */,
+				50B6BBA7213E1812006FD8D6 /* UIViewController+BTPresentation.m */,
+			);
+			name = "BTPresentation extension";
+			sourceTree = "<group>";
+		};
 		50B8907E20426DE1000E7FE3 /* View more view */ = {
 			isa = PBXGroup;
 			children = (
@@ -1352,6 +1364,7 @@
 			isa = PBXGroup;
 			children = (
 				F9C240741F17FA7800A268F3 /* BTColor extension */,
+				50B6BBA9213E1819006FD8D6 /* BTPresentation extension */,
 				F94C89461F15D5BC006C6BDD /* 1RM calculator */,
 				506C915A1F9FEEAD003C4758 /* BTButton */,
 				501FEA1C21101AC800634766 /* Amplitude Logging */,
@@ -2055,6 +2068,7 @@
 				50A1820D21153DF6005469B5 /* AWSLeaderboard.m in Sources */,
 				F95F93441F03738B00A19C4D /* WorkoutViewController.m in Sources */,
 				506C0CBB1FE852A200865BED /* EditUsernameViewController.m in Sources */,
+				50B6BBA8213E1812006FD8D6 /* UIViewController+BTPresentation.m in Sources */,
 				5021A7BC213DFEA1006852AE /* SmartNameQuestionMarkViewController.m in Sources */,
 				F9B27CE51F117852008FCC7F /* AnalyticsCollectionViewCell.m in Sources */,
 				F9418FA31F048B1E0083C3DC /* AddExerciseTableViewCell.m in Sources */,
