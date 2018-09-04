@@ -71,6 +71,8 @@
 	<string>Weightlifting App uses the camera to read workout QR codes. Please allow access to use this feature.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Weightlifting App can scan QR codes directly from your camera roll. Please allow access to use this feature.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Weightlifting App can save workouts to your camera roll. Please allow access to use this feature.</string>
 	<key>UIApplicationShortcutItems</key>
 	<array>
 		<dict>

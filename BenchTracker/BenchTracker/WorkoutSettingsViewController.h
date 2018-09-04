@@ -16,6 +16,7 @@
 
 @protocol WorkoutSettingsViewControllerDelegate <NSObject>
 - (void)WorkoutSettingsViewControllerWillDismiss:(WorkoutSettingsViewController *)wsVC;
+- (UIImage *)imageToShare;
 @end
 
 @interface WorkoutSettingsViewController : UIViewController <UIScrollViewDelegate, UIPrintInteractionControllerDelegate, QRDisplayViewControllerDelegate, AdjustTimesViewControllerDelegate>
@@ -26,7 +27,6 @@
 @property (nonatomic) BTSettings *settings;
 
 @property (nonatomic) BTWorkout *workout;
-
 @property (nonatomic) CGPoint point;
 
 @end

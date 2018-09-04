@@ -548,6 +548,33 @@
                                     <action selector="addExerciseButtonPressed:" destination="H2S-2B-J58" eventType="touchUpInside" id="bTU-Dr-6WA"/>
                                 </connections>
                             </button>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aqr-Za-tmY">
+                                <rect key="frame" x="37.666666666666657" y="662" width="300" height="100"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="ADi-DD-50C">
+                                        <rect key="frame" x="50" y="-20" width="200" height="120"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="46C-fg-0sM"/>
+                                            <constraint firstAttribute="height" constant="120" id="jE6-mv-9hC"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weightlifting App" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dg9-o3-tbn">
+                                        <rect key="frame" x="56" y="78" width="188" height="27.666666666666671"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="5gW-1R-dkp"/>
+                                    <constraint firstAttribute="height" constant="100" id="cJN-d5-Uaf"/>
+                                    <constraint firstItem="ADi-DD-50C" firstAttribute="top" secondItem="aqr-Za-tmY" secondAttribute="top" constant="-20" id="dL0-KD-dd0"/>
+                                    <constraint firstItem="ADi-DD-50C" firstAttribute="centerX" secondItem="aqr-Za-tmY" secondAttribute="centerX" id="oCe-rm-BgE"/>
+                                    <constraint firstItem="dg9-o3-tbn" firstAttribute="top" secondItem="ADi-DD-50C" secondAttribute="bottom" constant="-22" id="oYp-Mc-VNN"/>
+                                    <constraint firstItem="dg9-o3-tbn" firstAttribute="centerX" secondItem="aqr-Za-tmY" secondAttribute="centerX" id="rYq-5e-3mf"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bCM-CD-4b0">
                                 <rect key="frame" x="0.0" y="149" width="375" height="663"/>
                                 <subviews>
@@ -585,6 +612,7 @@
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="bNs-B4-sba" firstAttribute="top" secondItem="Pj3-Pj-9H7" secondAttribute="bottom" constant="-37.5" id="1di-CK-J9b"/>
+                            <constraint firstItem="aqr-Za-tmY" firstAttribute="bottom" secondItem="nkC-SS-85L" secondAttribute="bottom" constant="-50" id="54t-Pv-HLL"/>
                             <constraint firstItem="HGU-c2-dRq" firstAttribute="centerX" secondItem="bNs-B4-sba" secondAttribute="centerX" id="8nw-Bh-kej"/>
                             <constraint firstAttribute="bottom" secondItem="nkC-SS-85L" secondAttribute="bottom" id="CRP-rM-Tj0"/>
                             <constraint firstItem="D7n-as-euy" firstAttribute="centerX" secondItem="bNs-B4-sba" secondAttribute="centerX" id="HFO-NB-snZ"/>
@@ -597,6 +625,7 @@
                             <constraint firstItem="nkC-SS-85L" firstAttribute="width" secondItem="YY8-9r-rpW" secondAttribute="width" priority="800" id="gfV-8g-z4f"/>
                             <constraint firstItem="D7n-as-euy" firstAttribute="width" secondItem="YY8-9r-rpW" secondAttribute="width" constant="2" id="h0a-9c-02Y"/>
                             <constraint firstItem="nkC-SS-85L" firstAttribute="top" secondItem="D7n-as-euy" secondAttribute="bottom" id="mZO-Eb-pV9"/>
+                            <constraint firstItem="aqr-Za-tmY" firstAttribute="centerX" secondItem="nkC-SS-85L" secondAttribute="centerX" id="nJE-DP-GRq"/>
                             <constraint firstItem="bCM-CD-4b0" firstAttribute="centerX" secondItem="bNs-B4-sba" secondAttribute="centerX" id="vGC-hX-q0y"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bNs-B4-sba"/>
@@ -620,6 +649,7 @@
                         <outlet property="navView" destination="D7n-as-euy" id="hGf-YU-aLy"/>
                         <outlet property="pauseView" destination="bCM-CD-4b0" id="mlh-kZ-QOF"/>
                         <outlet property="settingsButton" destination="1J2-jh-rSG" id="xRX-GT-GuU"/>
+                        <outlet property="shareView" destination="aqr-Za-tmY" id="gHY-a2-i7j"/>
                         <outlet property="tableView" destination="nkC-SS-85L" id="tAV-Xq-K7X"/>
                     </connections>
                 </viewController>
@@ -1935,44 +1965,19 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y1U-pM-LQM">
                                         <rect key="frame" x="32.666666666666657" y="136" width="310" height="450"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hFm-bK-f7D" customClass="BTButton">
-                                                <rect key="frame" x="20" y="160" width="270" height="50"/>
-                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="cAj-6q-Rhd"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                                <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                <inset key="imageEdgeInsets" minX="0.0" minY="9" maxX="10" maxY="9"/>
-                                                <state key="normal" title="Print workout" image="Print">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
+                                            <label opaque="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eu6-ZU-KBQ">
+                                                <rect key="frame" x="10" y="440" width="290" height="0.0"/>
+                                                <gestureRecognizers/>
+                                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="13"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
                                                 <connections>
-                                                    <action selector="printButtonPressed:" destination="siM-ZI-Tvc" eventType="touchUpInside" id="s1q-zL-8dm"/>
+                                                    <outletCollection property="gestureRecognizers" destination="Jay-eU-gAP" appends="YES" id="riC-YI-daM"/>
                                                 </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rbz-z4-07Z" customClass="BTButton">
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sb1-Yc-tCa" customClass="BTButton">
                                                 <rect key="frame" x="20" y="90" width="270" height="50"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="SC9-h1-TV3"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                                <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                <inset key="imageEdgeInsets" minX="0.0" minY="9" maxX="10" maxY="9"/>
-                                                <state key="normal" title="Share workout" image="QRCodeSmall">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="qrButtonPressed:" destination="siM-ZI-Tvc" eventType="touchUpInside" id="gui-3q-YaK"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sb1-Yc-tCa" customClass="BTButton">
-                                                <rect key="frame" x="20" y="230" width="270" height="50"/>
-                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="80l-jC-Mq7"/>
-                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                 <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="9" maxX="10" maxY="9"/>
@@ -1983,34 +1988,8 @@
                                                     <action selector="templateButtonPressed:" destination="siM-ZI-Tvc" eventType="touchUpInside" id="Bvb-gd-shM"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eu6-ZU-KBQ">
-                                                <rect key="frame" x="10" y="358" width="290" height="82"/>
-                                                <gestureRecognizers/>
-                                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="13"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                                <connections>
-                                                    <outletCollection property="gestureRecognizers" destination="Jay-eU-gAP" appends="YES" id="riC-YI-daM"/>
-                                                </connections>
-                                            </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m6Y-C3-vGM" customClass="BTButton">
-                                                <rect key="frame" x="20" y="298" width="270" height="50"/>
-                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="EBu-Xm-scz"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                                <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                <inset key="imageEdgeInsets" minX="0.0" minY="9" maxX="10" maxY="9"/>
-                                                <state key="normal" title="Enable dark mode" image="Moon">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="darkModeButtonPressed:" destination="siM-ZI-Tvc" eventType="touchUpInside" id="6a5-Sp-om2"/>
-                                                </connections>
-                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="STi-nf-lZn" customClass="BTButton">
-                                                <rect key="frame" x="20" y="20" width="270" height="50"/>
+                                                <rect key="frame" x="20" y="160" width="270" height="50"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="vQC-bo-0c5"/>
@@ -2025,28 +2004,90 @@
                                                     <action selector="adjustDatesButtonPressed:" destination="siM-ZI-Tvc" eventType="touchUpInside" id="loz-Gw-zYp"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hUm-6m-HX9" customClass="BTButton">
+                                                <rect key="frame" x="20" y="20" width="270" height="50"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="eZo-Pq-e1h"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="9" maxX="10" maxY="9"/>
+                                                <state key="normal" title="Share Workout" image="Share">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="shareButtonPressed:" destination="siM-ZI-Tvc" eventType="touchUpInside" id="WiD-6J-qpZ"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hFm-bK-f7D" customClass="BTButton">
+                                                <rect key="frame" x="20" y="300" width="125" height="50"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="9" maxX="10" maxY="9"/>
+                                                <state key="normal" title="Print" image="Print">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="printButtonPressed:" destination="siM-ZI-Tvc" eventType="touchUpInside" id="s1q-zL-8dm"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rbz-z4-07Z" customClass="BTButton">
+                                                <rect key="frame" x="165" y="300" width="125" height="50"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="9" maxX="10" maxY="9"/>
+                                                <state key="normal" title="Scan" image="QRCodeSmall">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="qrButtonPressed:" destination="siM-ZI-Tvc" eventType="touchUpInside" id="gui-3q-YaK"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m6Y-C3-vGM" customClass="BTButton">
+                                                <rect key="frame" x="20" y="230" width="270" height="50"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="EBu-Xm-scz"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="9" maxX="10" maxY="9"/>
+                                                <state key="normal" title="Enable dark mode" image="Moon">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="darkModeButtonPressed:" destination="siM-ZI-Tvc" eventType="touchUpInside" id="6a5-Sp-om2"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="m6Y-C3-vGM" firstAttribute="width" secondItem="Sb1-Yc-tCa" secondAttribute="width" id="4wp-vn-kgM"/>
-                                            <constraint firstItem="m6Y-C3-vGM" firstAttribute="top" secondItem="Sb1-Yc-tCa" secondAttribute="bottom" constant="18" id="ADo-AF-4Dg"/>
+                                            <constraint firstItem="Rbz-z4-07Z" firstAttribute="centerY" secondItem="hFm-bK-f7D" secondAttribute="centerY" id="68H-LA-Yam"/>
+                                            <constraint firstItem="m6Y-C3-vGM" firstAttribute="top" secondItem="STi-nf-lZn" secondAttribute="bottom" constant="20" id="7LE-4a-N7n"/>
+                                            <constraint firstItem="hFm-bK-f7D" firstAttribute="top" secondItem="m6Y-C3-vGM" secondAttribute="bottom" constant="20" id="8kv-nz-F6z"/>
                                             <constraint firstAttribute="bottom" secondItem="eu6-ZU-KBQ" secondAttribute="bottom" constant="10" id="AKi-iA-pd7"/>
-                                            <constraint firstItem="Rbz-z4-07Z" firstAttribute="centerX" secondItem="y1U-pM-LQM" secondAttribute="centerX" id="GVa-em-AZD"/>
+                                            <constraint firstItem="hFm-bK-f7D" firstAttribute="leading" secondItem="y1U-pM-LQM" secondAttribute="leading" constant="20" id="GbT-V3-hPg"/>
                                             <constraint firstAttribute="width" constant="310" id="GgI-MI-V02"/>
-                                            <constraint firstItem="Sb1-Yc-tCa" firstAttribute="width" secondItem="hFm-bK-f7D" secondAttribute="width" id="HXb-wW-NMB"/>
-                                            <constraint firstItem="Rbz-z4-07Z" firstAttribute="leading" secondItem="y1U-pM-LQM" secondAttribute="leading" constant="20" id="MnC-V6-7i2"/>
-                                            <constraint firstItem="Rbz-z4-07Z" firstAttribute="width" secondItem="STi-nf-lZn" secondAttribute="width" id="Pme-UG-0ee"/>
+                                            <constraint firstItem="hUm-6m-HX9" firstAttribute="top" secondItem="y1U-pM-LQM" secondAttribute="top" constant="20" id="IGT-0H-bgx"/>
+                                            <constraint firstAttribute="trailing" secondItem="hUm-6m-HX9" secondAttribute="trailing" constant="20" id="Ndl-u9-nvt"/>
+                                            <constraint firstItem="Rbz-z4-07Z" firstAttribute="leading" secondItem="hFm-bK-f7D" secondAttribute="trailing" constant="20" id="OSj-03-0YF"/>
+                                            <constraint firstItem="Rbz-z4-07Z" firstAttribute="width" secondItem="hFm-bK-f7D" secondAttribute="width" id="RsE-4U-hvf"/>
+                                            <constraint firstAttribute="trailing" secondItem="Rbz-z4-07Z" secondAttribute="trailing" constant="20" id="TYB-w0-zMD"/>
                                             <constraint firstItem="m6Y-C3-vGM" firstAttribute="centerX" secondItem="y1U-pM-LQM" secondAttribute="centerX" id="Y7v-gu-QbY"/>
-                                            <constraint firstItem="eu6-ZU-KBQ" firstAttribute="top" secondItem="m6Y-C3-vGM" secondAttribute="bottom" constant="10" id="YTF-F8-hgy"/>
-                                            <constraint firstItem="Rbz-z4-07Z" firstAttribute="top" secondItem="STi-nf-lZn" secondAttribute="bottom" constant="20" id="bce-0V-geL"/>
+                                            <constraint firstItem="Sb1-Yc-tCa" firstAttribute="height" secondItem="hUm-6m-HX9" secondAttribute="height" id="ZCm-R9-nbj"/>
+                                            <constraint firstItem="hUm-6m-HX9" firstAttribute="leading" secondItem="y1U-pM-LQM" secondAttribute="leading" constant="20" id="dNI-ef-1Fn"/>
                                             <constraint firstItem="Rbz-z4-07Z" firstAttribute="height" secondItem="STi-nf-lZn" secondAttribute="height" id="eXA-eL-Rly"/>
-                                            <constraint firstItem="STi-nf-lZn" firstAttribute="top" secondItem="y1U-pM-LQM" secondAttribute="top" constant="20" id="grh-Dq-3wN"/>
-                                            <constraint firstItem="hFm-bK-f7D" firstAttribute="width" secondItem="Rbz-z4-07Z" secondAttribute="width" id="hse-lp-LaB"/>
-                                            <constraint firstItem="Sb1-Yc-tCa" firstAttribute="top" secondItem="hFm-bK-f7D" secondAttribute="bottom" constant="20" id="mmq-WU-9ed"/>
-                                            <constraint firstItem="hFm-bK-f7D" firstAttribute="centerX" secondItem="y1U-pM-LQM" secondAttribute="centerX" id="nXb-sU-Zct"/>
+                                            <constraint firstItem="STi-nf-lZn" firstAttribute="top" secondItem="Sb1-Yc-tCa" secondAttribute="bottom" constant="20" id="f3k-WW-Oxp"/>
+                                            <constraint firstItem="hFm-bK-f7D" firstAttribute="height" secondItem="Rbz-z4-07Z" secondAttribute="height" id="iP8-T8-htR"/>
+                                            <constraint firstItem="Sb1-Yc-tCa" firstAttribute="top" secondItem="hUm-6m-HX9" secondAttribute="bottom" constant="20" id="nYD-IA-GPa"/>
+                                            <constraint firstItem="STi-nf-lZn" firstAttribute="width" secondItem="Sb1-Yc-tCa" secondAttribute="width" id="oep-ci-ybH"/>
                                             <constraint firstItem="Sb1-Yc-tCa" firstAttribute="centerX" secondItem="y1U-pM-LQM" secondAttribute="centerX" id="qBv-ds-tMw"/>
-                                            <constraint firstItem="hFm-bK-f7D" firstAttribute="top" secondItem="Rbz-z4-07Z" secondAttribute="bottom" constant="20" id="sSo-GD-KJf"/>
                                             <constraint firstAttribute="height" constant="450" id="sVa-Yf-RyD"/>
+                                            <constraint firstItem="Sb1-Yc-tCa" firstAttribute="width" secondItem="hUm-6m-HX9" secondAttribute="width" id="tik-Dt-qEp"/>
                                             <constraint firstItem="STi-nf-lZn" firstAttribute="centerX" secondItem="y1U-pM-LQM" secondAttribute="centerX" id="uYj-3z-9KU"/>
                                             <constraint firstAttribute="trailing" secondItem="eu6-ZU-KBQ" secondAttribute="trailing" constant="10" id="zc9-Ge-8a8"/>
                                             <constraint firstItem="eu6-ZU-KBQ" firstAttribute="leading" secondItem="y1U-pM-LQM" secondAttribute="leading" constant="10" id="zd1-kj-e2e"/>
@@ -2103,6 +2144,7 @@
                         <outlet property="printButton" destination="hFm-bK-f7D" id="gxZ-sB-1Zr"/>
                         <outlet property="qrButton" destination="Rbz-z4-07Z" id="Okd-6J-w9G"/>
                         <outlet property="scrollView" destination="UA2-W2-0AX" id="Dog-7C-3iI"/>
+                        <outlet property="shareButton" destination="hUm-6m-HX9" id="tDo-J9-0v1"/>
                         <outlet property="templateButton" destination="Sb1-Yc-tCa" id="8Tz-KR-7gp"/>
                     </connections>
                 </viewController>
@@ -2113,7 +2155,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="286.95652173913044" y="488.31521739130437"/>
+            <point key="canvasLocation" x="285.60000000000002" y="487.6847290640394"/>
         </scene>
         <!--Display View Controller-->
         <scene sceneID="Eb2-zf-2pj">
@@ -2906,6 +2948,7 @@
         <image name="Chart" width="512" height="512"/>
         <image name="ClockOutline" width="64" height="64"/>
         <image name="Delete" width="512" height="512"/>
+        <image name="Logo" width="1024" height="1024"/>
         <image name="Moon" width="64" height="64"/>
         <image name="More" width="204.80000305175781" height="204.80000305175781"/>
         <image name="NewWorkoutArrow" width="512" height="512"/>
@@ -2914,6 +2957,7 @@
         <image name="QRCodeSmall" width="51.200000762939453" height="51.200000762939453"/>
         <image name="QrCode" width="204.80000305175781" height="204.80000305175781"/>
         <image name="Settings" width="512" height="512"/>
+        <image name="Share" width="64" height="64"/>
         <image name="Template" width="512" height="512"/>
         <image name="TemplateAdd" width="64" height="64"/>
         <image name="User" width="512" height="512"/>

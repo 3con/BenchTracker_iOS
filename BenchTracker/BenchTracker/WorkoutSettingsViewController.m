@@ -22,11 +22,12 @@
 
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 
-@property (weak, nonatomic) IBOutlet UIButton *adjustDatesButton;
-@property (weak, nonatomic) IBOutlet UIButton *qrButton;
-@property (weak, nonatomic) IBOutlet UIButton *printButton;
+@property (weak, nonatomic) IBOutlet UIButton *shareButton;
 @property (weak, nonatomic) IBOutlet UIButton *templateButton;
+@property (weak, nonatomic) IBOutlet UIButton *adjustDatesButton;
 @property (weak, nonatomic) IBOutlet UIButton *darkModeButton;
+@property (weak, nonatomic) IBOutlet UIButton *printButton;
+@property (weak, nonatomic) IBOutlet UIButton *qrButton;
 @property (weak, nonatomic) IBOutlet UILabel *detailLabel;
 
 @property (nonatomic) ZFModalTransitionAnimator *animator;
@@ -53,7 +54,7 @@
 - (void)updateInterface {
     self.contentView.backgroundColor = [UIColor BTPrimaryColor];
     self.backgroundView.backgroundColor = [UIColor BTModalViewBackgroundColor];
-    for (UIButton *button in @[self.adjustDatesButton, self.qrButton, self.printButton,
+    for (UIButton *button in @[self.shareButton, self.adjustDatesButton, self.qrButton, self.printButton,
                                self.templateButton, self.darkModeButton]) {
         button.layer.cornerRadius = 12;
         button.clipsToBounds = YES;
@@ -110,20 +111,47 @@
     [self animateOut];
 }
 
+- (IBAction)shareButtonPressed:(UIButton *)sender {
+    [Log event:@"WorkoutSettingsVC: Will share" properties:nil];
+    NSArray *shareData = @[@"Check out my latest workout on Weightlifting App 💪 Think you can top it? Download Weightlifting App on the iOS App Store!",
+                           [NSURL URLWithString:@"https://itunes.apple.com/app/id1266077653"],
+                           [self.delegate imageToShare]];
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:shareData applicationActivities:nil];
+    [activityVC setCompletionWithItemsHandler:^(NSString *activityType, BOOL completed, NSArray *returnedItems, NSError *activityError) {
+        if (activityType)
+            [Log event:@"WorkoutSettingsVC: Did share" properties:@{@"Type": activityType, @"Workout": self.workout.logDescription}];
+        if (activityError) {
+            UIAlertController *alert =
+                [UIAlertController alertControllerWithTitle:@"Cannot Share Workout"
+                                                    message:@"Unfortunatly, we can not share your workout at this time. An unknown error occured. We are sorry for the inconvenience."
+                                             preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okButton = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+            [alert addAction:okButton];
+            [self presentViewController:alert animated:YES completion:nil];
+        }
+    }];
+    if (UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        activityVC.modalPresentationStyle = UIModalPresentationPopover;
+        activityVC.popoverPresentationController.sourceView = self.view;
+        activityVC.popoverPresentationController.sourceRect = [self.view convertRect:sender.frame fromView:self.contentView];
+    }
+    [self presentViewController:activityVC animated:YES completion:nil];
+}
+
 - (IBAction)adjustDatesButtonPressed:(UIButton *)sender {
-    [Log event:@"WorkoutSettingsVC: Adjust dates" properties:nil];
+    [Log event:@"WorkoutSettingsVC: Adjust dates" properties:@{@"Workout": self.workout.logDescription}];
     [self presentAdjustTimesViewControllerWithPoint:[self.view convertPoint:sender.center fromView:self.contentView]];
     self.doneButton.hidden = YES;
 }
 
 - (IBAction)qrButtonPressed:(UIButton *)sender {
-    [Log event:@"WorkoutSettingsVC: QR" properties:nil];
+    [Log event:@"WorkoutSettingsVC: QR" properties:@{@"Workout": self.workout.logDescription}];
     [self presentQRDisplayViewControllerWithPoint:[self.view convertPoint:sender.center fromView:self.contentView]];
     self.doneButton.hidden = YES;
 }
 
 - (IBAction)printButtonPressed:(UIButton *)sender {
-    [Log event:@"WorkoutSettingsVC: Print" properties:nil];
+    [Log event:@"WorkoutSettingsVC: Print" properties:@{@"Workout": self.workout.logDescription}];
     NSString *path = [BTPDFGenerator generatePDFWithWorkouts:@[self.workout]];
     UIPrintInteractionController *printController = [UIPrintInteractionController sharedPrintController];
     printController.delegate = self;
@@ -147,7 +175,7 @@
 }
 
 - (IBAction)templateButtonPressed:(UIButton *)sender {
-    [Log event:@"WorkoutSettingsVC: Template" properties:nil];
+    [Log event:@"WorkoutSettingsVC: Template" properties:@{@"Workout": self.workout.logDescription}];
     [BTToastManager presentToastForTemplate:![BTWorkoutTemplate templateExistsForWorkout:self.workout]];
     if ([BTWorkoutTemplate templateExistsForWorkout:self.workout])
          [BTWorkoutTemplate removeWorkoutFromTemplateList:self.workout];

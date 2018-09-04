@@ -20,12 +20,12 @@
     self.animator.bounces = NO;
     self.animator.dragable = NO;
     self.animator.behindViewScale = 1.0;
+    self.animator.direction = ZFModalTransitonDirectionBottom;
     viewController.modalPresentationStyle = UIModalPresentationFullScreen;
     switch (style) {
         case BTPresentationStyleFromBottom:
             self.animator.behindViewAlpha = 0.8;
             self.animator.transitionDuration = 0.5;
-            self.animator.direction = ZFModalTransitonDirectionBottom;
             break;
         case BTPresentationStyleFromRight:
             self.animator.dragable = YES;
@@ -40,15 +40,13 @@
             self.animator.direction = ZFModalTransitonDirectionLeft;
             break;
         case BTPresentationStyleSlowModal:
-            self.animator.behindViewAlpha = 1-CGColorGetComponents([UIColor BTModalViewBackgroundColor].CGColor)[3];
+            self.animator.behindViewAlpha = 1 - CGColorGetComponents(UIColor.BTModalViewBackgroundColor.CGColor)[3];
             self.animator.transitionDuration = 0.75;
-            self.animator.direction = ZFModalTransitonDirectionBottom;
             viewController.modalPresentationStyle = UIModalPresentationCustom;
             break;
         case BTPresentationStyleNone:
             self.animator.behindViewAlpha = 1.0;
             self.animator.transitionDuration = 0.0;
-            self.animator.direction = ZFModalTransitonDirectionBottom;
             viewController.modalPresentationStyle = UIModalPresentationCustom;
             break;
     }

@@ -30,6 +30,7 @@
 @property (weak, nonatomic) IBOutlet UIView *pauseView;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIView *shareView;
 
 @property (weak, nonatomic) IBOutlet UIButton *addExerciseButton;
 
@@ -60,6 +61,7 @@
     self.exerciseTypeColors = [NSKeyedUnarchiver unarchiveObjectWithData:self.settings.exerciseTypeColors];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.shareView.hidden = YES;
     UILongPressGestureRecognizer *lP = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
     lP.minimumPressDuration = .15;
     lP.delegate = self;
@@ -635,6 +637,24 @@
 
 - (void)WorkoutSettingsViewControllerWillDismiss:(WorkoutSettingsViewController *)wsVC {
     self.addExerciseButton.hidden = NO;
+}
+
+- (UIImage *)imageToShare {
+    [self prepareForShare:YES];
+    UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, self.view.opaque, 0.0);
+    [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage * img = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    [self prepareForShare:NO];
+    return img;
+}
+
+- (void)prepareForShare:(bool)share {
+    self.deleteWorkoutButton.hidden = share;
+    self.finishWorkoutButton.hidden = share;
+    self.settingsButton.hidden = share;
+    self.adjustTimesButton.hidden = share;
+    self.shareView.hidden = !share;
 }
 
 #pragma mark - adjustTimesVC delegate
