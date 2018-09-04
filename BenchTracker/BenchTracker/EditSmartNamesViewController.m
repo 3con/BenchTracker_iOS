@@ -84,7 +84,11 @@
     XLFormRowDescriptor *row;
     
     section = [XLFormSectionDescriptor formSection];
-    section.footerTitle = @"Tap any smart name to edit its display name for all workout instances.";
+    if (self.source == BTEditSmartNamesSourceSettings) {
+        section.footerTitle = @"Tap any smart name to edit its display name for all workout instances.";
+    } else {
+        section.footerTitle = @"Tap any smart name to edit its display name for all workout instances. You can disable smart names in settings.";
+    }
     [form addFormSection:section];
     for (int i = 0; i < self.settings.smartNicknameDict.count; i++) {
         row = [XLFormRowDescriptor formRowDescriptorWithTag:self.sortedKeys[i] rowType:XLFormRowDescriptorTypeText

@@ -66,6 +66,7 @@
 @property (nonatomic) NSDate *firstDay;
 
 @property (nonatomic) UIImpactFeedbackGenerator *feedbackImpact;
+@property (nonatomic) UISelectionFeedbackGenerator *feedbackSelection;
 
 @end
 
@@ -91,6 +92,7 @@
     if ([self isForceTouchAvailable])
         self.previewingContext = [self registerForPreviewingWithDelegate:self sourceView:self.view];
     self.feedbackImpact = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleMedium];
+    self.feedbackSelection = [[UISelectionFeedbackGenerator alloc] init];
     [Log event:@"MainVC: Loaded" properties:nil];
 }
 
@@ -640,6 +642,11 @@
 
 - (BOOL)swipeTableCell:(MGSwipeTableCell *)cell canSwipe:(MGSwipeDirection)direction fromPoint:(CGPoint)point {
     return [(WorkoutTableViewCell *)cell checkTemplateStatus];
+}
+
+- (void)swipeTableCell:(MGSwipeTableCell *)cell didChangeSwipeState:(MGSwipeState)state gestureIsActive:(BOOL)gestureIsActive {
+    if (gestureIsActive && (state == MGSwipeStateExpandingLeftToRight || state == MGSwipeStateExpandingRightToLeft))
+        [self.feedbackSelection selectionChanged];
 }
 
 - (BOOL)swipeTableCell:(MGSwipeTableCell *)cell tappedButtonAtIndex:(NSInteger)index

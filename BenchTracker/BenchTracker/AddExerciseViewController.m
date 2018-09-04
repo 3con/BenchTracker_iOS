@@ -391,7 +391,7 @@
 
 - (void)presentEditExercisesViewController {
     EditExercisesViewController *eeVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ee"];
-    //eeVC.delegate = self;
+    eeVC.source = BTEditExercisesSourceWorkout;
     eeVC.context = self.context;
     self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:eeVC];
     self.animator.dragable = NO;

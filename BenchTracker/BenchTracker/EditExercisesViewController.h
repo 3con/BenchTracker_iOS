@@ -11,8 +11,14 @@
 #import "EEDetailViewController.h"
 #import "MGSwipeTableCell.h"
 
+typedef enum BTEditExercisesSource : NSInteger {
+    BTEditExercisesSourceSettings,
+    BTEditExercisesSourceWorkout
+} BTEditExercisesSource;
+
 @interface EditExercisesViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, UISearchBarDelegate, EEDetailViewControllerDelegate, MGSwipeTableCellDelegate>
 
+@property (nonatomic) BTEditExercisesSource source;
 @property (nonatomic) NSManagedObjectContext *context;
 
 @end

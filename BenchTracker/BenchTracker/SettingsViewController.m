@@ -95,10 +95,16 @@
         section = [XLFormSectionDescriptor formSection];
         section.footerTitle = @"Weightlifting App uses machine learning to automatically determine a smart name for your workout based on the exercises you perform.";
         [form addFormSection:section];
+        __block XLFormRowDescriptor *toHide;
         row = [XLFormRowDescriptor formRowDescriptorWithTag:@"showSmartNames" rowType:XLFormRowDescriptorTypeBooleanSwitch title:@"Workout smart names"];
         row.value = [NSNumber numberWithBool:self.settings.showSmartNames];
+        row.onChangeBlock = ^(id old, id new, XLFormRowDescriptor *rowDescriptor) {
+            toHide.hidden = [NSNumber numberWithBool:![new boolValue]];
+        };
         [section addFormRow:row];
         row = [XLFormRowDescriptor formRowDescriptorWithTag:@"editSmartNames" rowType:XLFormRowDescriptorTypeSelectorPush title:@"Edit smart names"];
+        row.hidden = [NSNumber numberWithBool:!self.settings.showSmartNames];
+        toHide = row;
         [section addFormRow:row];
     }
     
@@ -319,6 +325,7 @@
 
 - (void)presentEditExercisesViewController {
     EditExercisesViewController *eeVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ee"];
+    eeVC.source = BTEditExercisesSourceSettings;
     eeVC.context = self.context;
     self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:eeVC];
     self.animator.bounces = NO;

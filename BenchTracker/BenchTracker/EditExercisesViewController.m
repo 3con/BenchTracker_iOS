@@ -42,6 +42,8 @@
     self.navBar.layer.borderColor = [UIColor BTNavBarLineColor].CGColor;
     self.titleLabel.textColor = [UIColor BTTextPrimaryColor];
     [self.doneButton setTitleColor:[UIColor BTTextPrimaryColor] forState:UIControlStateNormal];
+    [self.doneButton setTitle:(self.source == BTEditExercisesSourceSettings) ? @"Back" : @"Done"
+                     forState:UIControlStateNormal];
     [self.createButton setTitleColor:[UIColor BTTextPrimaryColor] forState:UIControlStateNormal];
     self.searchString = @"";
     self.tableView.backgroundColor = [UIColor BTTableViewBackgroundColor];
