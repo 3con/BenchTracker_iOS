@@ -44,11 +44,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>4.6</string>
+	<string>4.5.2</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>3</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -68,11 +68,11 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>Weightlifting App uses the camera to read workout QR codes. Please allow access to use this feature.</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Weightlifting App can scan QR codes directly from your camera roll. Please allow access to use this feature.</string>
+	<string>Weightlifting App can scan workout QR codes shared by your friends to quickly copy workouts.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Weightlifting App can save workouts to your camera roll. Please allow access to use this feature.</string>
+	<string>Weightlifting App can save sharable workout summaries to your camera roll.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Weightlifting App can scan shared workout QR codes directly from your camera roll.</string>
 	<key>UIApplicationShortcutItems</key>
 	<array>
 		<dict>
