@@ -277,7 +277,7 @@
 		},
 		{
 			"name": "Squats",
-			"iterations": ["Back", "Front", "Box", "Split", "Hack", "Dumbbell"],
+			"iterations": ["Back", "Front", "Box", "Split", "Hack", "Dumbbell", "Goblet"],
 			"category": "Legs",
 			"style": "repsWeight"
 		},
@@ -289,13 +289,13 @@
 		},
 		{
 			"name": "Hip Thrusts",
-			"iterations": [],
+			"iterations": ["Conventional", "Single leg"],
 			"category": "Legs",
 			"style": "repsWeight"
 		},
 		{
 			"name": "Hip Abductions",
-			"iterations": ["Inner-thigh", "Outer-thigh"],
+			"iterations": ["Inner-thigh", "Outer-thigh", "Band"],
 			"category": "Legs",
 			"style": "repsWeight"
 		},
@@ -329,6 +329,12 @@
 			"category": "Legs",
 			"style": "repsWeight"
 		},
+		{
+			"name": "Pull Throughs",
+			"iterations": ["Cable", "Band"],
+			"category": "Legs",
+			"style": "repsWeight"
+		}
 		{
 			"name": "Bodyweight Calf Raises",
 			"iterations": [],
