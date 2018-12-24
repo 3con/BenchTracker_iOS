@@ -12,12 +12,6 @@
 	},
 	"list": [
 		{
-			"name": "Back Extensions",
-			"iterations": ["Normal", "Machine"],
-			"category": "Back",
-			"style": "repsWeight"
-		},
-		{
 			"name": "Deadlift",
 			"iterations": ["Conventional", "Sumo", "Dumbbell", "Stiff-legged", "Deficit", "Trap Bar"],
 			"category": "Back",
@@ -98,6 +92,12 @@
 		{
 			"name": "Weighted Chin-ups",
 			"iterations": ["Normal", "Wide-grip", "Close-grip"],
+			"category": "Back",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Back Extensions",
+			"iterations": ["Normal", "Machine"],
 			"category": "Back",
 			"style": "repsWeight"
 		},
@@ -205,7 +205,7 @@
 		},
 		{
 			"name": "Underhand Front Raises",
-			"iterations": ["Dumbbell", "Cable", "Band", "Barbell"],
+			"iterations": ["Cable", "Band", "Dumbbell", "Barbell"],
 			"category": "Chest",
 			"style": "repsWeight"
 		},
@@ -235,7 +235,7 @@
 		},
 		{
 			"name": "Skullcrushers",
-			"iterations": ["Normal", "Reverse-grip"],
+			"iterations": ["Barbell", "Dumbbell"],
 			"category": "Triceps",
 			"style": "repsWeight"
 		},
@@ -271,7 +271,7 @@
 		},
 		{
 			"name": "Pushups",
-			"iterations": ["Close-grip", "Diamond"],
+			"iterations": ["Close-grip", "Diamond", "Medicine Ball"],
 			"category": "Triceps",
 			"style": "reps"
 		},
@@ -289,7 +289,7 @@
 		},
 		{
 			"name": "Hip Thrusts",
-			"iterations": ["Conventional", "Single leg"],
+			"iterations": ["Conventional", "Single Leg"],
 			"category": "Legs",
 			"style": "repsWeight"
 		},
@@ -301,7 +301,7 @@
 		},
 		{
 			"name": "Glute Kickbacks",
-			"iterations": ["Cable", "Band"],
+			"iterations": ["Machine", "Cable", "Band"],
 			"category": "Legs",
 			"style": "repsWeight"
 		},
@@ -385,13 +385,13 @@
 		},
 		{
 			"name": "Push Press",
-			"iterations": ["Barbell", "Dumbbell", "Behind-neck"],
+			"iterations": ["Barbell", "Dumbbell", "Machine", "Behind-neck"],
 			"category": "Shoulders",
 			"style": "repsWeight"
 		},
 		{
-			"name": "Military Press",
-			"iterations": ["Dumbbell", "Barbell", "Machine", "Behind-neck"],
+			"name": "Seated Military Press",
+			"iterations": ["Barbell", "Dumbbell", "Machine", "Behind-neck"],
 			"category": "Shoulders",
 			"style": "repsWeight"
 		},
@@ -403,12 +403,18 @@
 		},
 		{
 			"name": "Bodyweight Situps",
-			"iterations": [],
+			"iterations": ["Flat", "Decline Bench"],
 			"category": "Abs / Core",
 			"style": "reps"
 		},
 		{
 			"name": "Weighted Situps",
+			"iterations": ["Flat", "Decline Bench"],
+			"category": "Abs / Core",
+			"style": "repsWeight"
+		},
+		{
+			"name": "Seated Twist Machine",
 			"iterations": [],
 			"category": "Abs / Core",
 			"style": "repsWeight"
@@ -439,7 +445,7 @@
 		},
 		{
 			"name": "Weighted Crunches",
-			"iterations": ["Cable", "Band", "Suitcase"],
+			"iterations": ["Normal", "Machine", "Cable", "Band", "Suitcase"],
 			"category": "Abs / Core",
 			"style": "repsWeight"
 		},
@@ -498,7 +504,7 @@
 			"style": "time"
 		},
 		{
-			"name": "Step Machine",
+			"name": "Stair Climber",
 			"iterations": [],
 			"category": "Cardio",
 			"style": "time"

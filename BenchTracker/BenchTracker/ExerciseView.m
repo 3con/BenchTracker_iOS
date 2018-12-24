@@ -364,25 +364,38 @@
         (int)[self.pickerView viewForRow:[self.pickerView selectedRowInComponent:0] forComponent:0].tag;
         float weight = (val3 >= 0) ? val3 :
         (float)[self.pickerView viewForRow:[self.pickerView selectedRowInComponent:1] forComponent:1].tag;
-        if (weight == 11)   result = [NSString stringWithFormat:@"%d 12.5",reps];
-        else                result = [NSString stringWithFormat:@"%d %.0f",reps,weight];
+        float trash;
+        float dec = modff(weight, &trash);
+        BOOL d2 = modff(dec * 10, &trash) > .05;
+        BOOL d1 = dec > .05;
+        if (!val3 && weight == 11)
+             result = [NSString stringWithFormat:@"%d 12.5", reps];
+        else result = [NSString stringWithFormat:(d2) ? @"%d %.2f" :
+                                                 (d1) ? @"%d %.1f" :
+                                                        @"%d %.0f", reps, weight];
     }
     else if ([self styleIs:STYLE_REPS]) {
         int reps = (val2 >= 0) ? val2 :
         (int)[self.pickerView viewForRow:[self.pickerView selectedRowInComponent:0] forComponent:0].tag;
-        result = [NSString stringWithFormat:@"%d",reps];
+        result = [NSString stringWithFormat:@"%d", reps];
     }
     else if ([self styleIs:STYLE_TIME]) {
         int time = (val2 >= 0) ? val2 :
         (int)[self.pickerView viewForRow:[self.pickerView selectedRowInComponent:0] forComponent:0].tag;
-        result = [NSString stringWithFormat:@"s %d",time];
+        result = [NSString stringWithFormat:@"s %d", time];
     }
     else if ([self styleIs:STYLE_TIMEWEIGHT]) {
         int time = (val1 >= 0) ? val1 :
         (int)[self.pickerView viewForRow:[self.pickerView selectedRowInComponent:0] forComponent:0].tag;
         float weight = (val3 >= 0) ? val3 :
         (float)[self.pickerView viewForRow:[self.pickerView selectedRowInComponent:1] forComponent:1].tag;
-        result = [NSString stringWithFormat:@"s %d %.0f",time,weight];
+        float trash;
+        float dec = modff(weight, &trash);
+        BOOL d2 = modff(dec * 10, &trash) > .05;
+        BOOL d1 = dec > .05;
+        result = [NSString stringWithFormat:(d2) ? @"s %d %.2f" :
+                                            (d1) ? @"s %d %.1f" :
+                                                   @"s %d %.0f", time, weight];
     }
     else result = [NSString stringWithFormat:@"~ %@",self.textField.text];
     return result;
@@ -405,10 +418,14 @@
     NSString *rStr = [textField.text stringByReplacingCharactersInRange:range withString:string];
     if (textField == self.textField && rStr.length <= 30) return YES;
     if (textField == self.rightTextField) {
-        if ([rStr containsString:@"."] && rStr.length <= 5) return YES;
-        else if (rStr.length <= 4) return YES;
+        if ([textField.text containsString:@"."]) {
+            if ([string isEqualToString:@"."]) return NO;
+            NSArray <NSString *> *split = [rStr componentsSeparatedByString:@"."];
+            if (split.count < 2 || split[1].length <= 2) return YES;
+        }
+        else if (rStr.length <= 4 || [string isEqualToString:@"."]) return YES;
     }
-    if (rStr.length <= 3) return YES;
+    if (rStr.length <= 3 && rStr.floatValue <= 600) return YES;
     return NO;
 }
 
